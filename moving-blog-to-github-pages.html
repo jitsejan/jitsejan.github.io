@@ -11991,7 +11991,7 @@ Done: Processed <span class="m">1</span> article, <span class="m">0</span> draft
 </pre></div>
 
 
-<p>Push the output code to the <code>pelican-html</code> repository:</p>
+<p>Push the output code to the <code>jitsejan.github.io</code> repository:</p>
 <div class="highlight"><pre><span></span>jitsejan@dev16:~/code/jitsejan.github.io-source$ <span class="nb">cd</span> output/
 jitsejan@dev16:~/code/jitsejan.github.io-source/output$ git add .
 jitsejan@dev16:~/code/jitsejan.github.io-source/output$ git commit -m <span class="s1">&#39;My first post&#39;</span>
@@ -11999,7 +11999,7 @@ jitsejan@dev16:~/code/jitsejan.github.io-source/output$ git push -u origin maste
 </pre></div>
 
 
-<p>Push the source code to the <code>pelican-source</code> repository:</p>
+<p>Push the source code to the <code>jitsejan.github.io-source</code> repository:</p>
 <div class="highlight"><pre><span></span>jitsejan@dev16:~/code/jitsejan.github.io-source/output$ <span class="nb">cd</span> ..
 jitsejan@dev16:~/code/jitsejan.github.io-source$ <span class="nb">echo</span> <span class="s1">&#39;*.pyc&#39;</span> &gt;&gt; .gitignore
 jitsejan@dev16:~/code/jitsejan.github.io-source$ git add .
@@ -12044,6 +12044,7 @@ jitsejan@dev16:~/code$ mv pelican-blog/* jitsejan.github.io-source
 <li>Update the DNS record for my DreamHost account and modify the two primary nameservers to point to <a href="https://www.cloudflare.com">Cloudflare</a> and remove the additional ones. (Nameserver 1: janet.ns.cloudflare.com, Nameserver 2: marty.ns.cloudflare.com)</li>
 <li>Add DNS records in Cloudflare. One CNAME for <code>www</code> and one CNAME for <code>jitsejan.com</code> to point to <code>jitsejan.github.io</code>.</li>
 </ol>
+<p>Done. No more server needed for hosting a blog!</p>
         </div>
 
         <div class="meta">
