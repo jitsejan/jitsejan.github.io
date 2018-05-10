@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="./theme/css/main.css?24409b33">
+            <link rel="stylesheet" href="./theme/css/main.css?fb8efcb4">
 
 
     </head>
@@ -12836,7 +12836,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h3><p>The aim of this notebook is to create a machine learning model and transform it an API which, when given some novel input parameters, returns the model’s prediction.</p>
+<h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h3><p>The aim of this notebook is to create a machine learning model and transform it into an API which, when given some novel input parameters, returns the model’s prediction.</p>
 <h3 id="The-model">The model<a class="anchor-link" href="#The-model">¶</a></h3><p>The model that is going to be used is a Random Forest model, built using a data set of Titanic passengers (<code>data/train.csv</code>). The model looks to predict the probability of whether a passenger would have survived.</p>
 <h3 id="The-goal">The goal<a class="anchor-link" href="#The-goal">¶</a></h3><p>Input is an API call such as</p>
 <pre><code>/predict?class=2&amp;sex=male&amp;age=22&amp;sibsp=2&amp;parch=0&amp;title=mr</code></pre>
@@ -14714,7 +14714,7 @@ except:
 app = Flask(__name__)
 
 @app.route('/')
-def hello_marketinvoice():
+def main():
     """ Main page of the API """
     return "This is the main page"
 
@@ -14773,7 +14773,7 @@ if __name__ == '__main__':
 <div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <span class="nd">@app.route</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">hello_marketinvoice</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="sd">""" Main page of the API """</span>
     <span class="k">return</span> <span class="s2">"This is the main page"</span>
 </pre></div>
@@ -14836,8 +14836,7 @@ scipy==1.0.0
 six==1.11.0
 Werkzeug==0.14.1</code></pre>
 <p>The <code>docker-compose.yml</code> will simply build the current <code>Dockerfile</code> and expose port 5000.</p>
-<pre><code>yml
-version: '2'
+<pre><code>version: '2'
 services:
   flask:
     build: .
@@ -15119,7 +15118,7 @@ Creating notebooks_flask_1 ...
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And that is it. The JSON object can now be returned to the front-end of the web application and be displayed in a fancy way, but that is outside the scope of this notebook.</p>
+<p>And that is it! The JSON object can now be returned to the front-end of the web application and be displayed in a fancy way, but that is outside the scope of this notebook.</p>
 </div>
 </div>
 </div>
