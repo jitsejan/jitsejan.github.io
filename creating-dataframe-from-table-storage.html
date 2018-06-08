@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Home | JJ's World</title>
+        <title>Creating Pandas dataframe from Azure Table Storage | JJ's World</title>
 
 
 <style type="text/css">
@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="../theme/css/main.css?fb8efcb4">
+            <link rel="stylesheet" href="./theme/css/main.css?fb8efcb4">
 
 
     </head>
@@ -11843,527 +11843,114 @@ jQuery(document).ready(function($) {
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
-                <li><a href="../pages/python-cheatsheet">Python cheatsheet</a></li>
+                <li><a href="./pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
+                <li><a href="./pages/python-cheatsheet">Python cheatsheet</a></li>
             </ul>
         </div><!-- .navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container index">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-9">
-  <article>
-    <header>
-      <h2><a href="../nltk-first-experiments.html">First experiments with NLTK</a></h2>
-      <time datetime="" title="2017-03-29T13:53:00+01:00" pubdate>Wed 29 March 2017</time>
-    </header>
-
-    <div class="article_content">
-        
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../nltk-first-experiments.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-            <a href="../tag/nltk.html" class="tag">nltk</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="../tag/machinelearning.html" class="tag">machinelearning</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../basic-search-with-elasticsearch.html">Basic search with Elasticsearch</a></h2>
-      <time datetime="" title="2017-03-14T11:41:00+00:00" pubdate>Tue 14 March 2017</time>
-    </header>
-
-    <div class="article_content">
-        
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Inspired by this <a href="https://qbox.io/blog/building-an-elasticsearch-index-with-python">tutorial</a> I tried to continue investigating <a href="https://www.elastic.co/products/elasticsearch">Elasticsearch</a> since I would like to use a fast indexing tool for the data I am gathering and the applications I am developing.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Install-the-Python-library-for-Elasticsearch">Install the Python library for Elasticsearch<a class="anchor-link" href="#Install-the-Python-library-for-Elasticsearch">¶</a></h2><p><a href="https://elasticsearch-py.readthedocs.io/en/master/">https://elasticsearch-py.readthedocs.io/en/master/</a></p>
-<div class="highlight"><pre><span></span>$ pip install elasticsearch
-</pre></div>
-<p>Note: on my Mac I installed Elasticsearch through Brew</p>
-<div class="highlight"><pre><span></span>$ brew install elasticsearch
-$ brew services start elasticsearch
-</pre>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../basic-search-with-elasticsearch.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-            <a href="../tag/elasticsearch.html" class="tag">elasticsearch</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../color-recognition-opencv.html">Color recognition of images using OpenCV</a></h2>
-      <time datetime="" title="2017-01-31T17:45:00+00:00" pubdate>Tue 31 January 2017</time>
-    </header>
-
-    <div class="article_content">
-        
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As a training for myself to get more familiar with image classification and OpenCV I followed the tutorial on <a href="http://www.pyimagesearch.com/2014/08/04/opencv-python-color-detection/">http://www.pyimagesearch.com/2014/08/04/opencv-python-color-detection/</a>. I modified it slightly to fit my environment.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Imports">Imports<a class="anchor-link" href="#Imports">¶</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../color-recognition-opencv.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="../tag/opencv.html" class="tag">opencv</a>
-            <a href="../tag/imagedetection.html" class="tag">imagedetection</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../mocking-in-unittests-in-python.html">Mocking in unittests in Python</a></h2>
-      <time datetime="" title="2017-01-30T15:41:00+00:00" pubdate>Mon 30 January 2017</time>
-    </header>
-
-    <div class="article_content">
-        
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Example---Using-mock">Example - Using mock<a class="anchor-link" href="#Example---Using-mock">¶</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Imports">Imports<a class="anchor-link" href="#Imports">¶</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../mocking-in-unittests-in-python.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-            <a href="../tag/unittest.html" class="tag">unittest</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="../tag/mock.html" class="tag">mock</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../unittesting-in-jupyter-notebook.html">Unittesting in a Jupyter notebook</a></h2>
-      <time datetime="" title="2017-01-17T11:41:00+00:00" pubdate>Tue 17 January 2017</time>
-    </header>
-
-    <div class="article_content">
-        
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Example---Unittesting">Example - Unittesting<a class="anchor-link" href="#Example---Unittesting">¶</a></h1><p>In this example I show how to run a unittest within your Jupyter Notebook with two simple classes.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Create-two-classes">Create two classes<a class="anchor-link" href="#Create-two-classes">¶</a></h2><h3 id="Castle-class">Castle class<a class="anchor-link" href="#Castle-class">¶</a></h3><p>The important method for the castle is the access method. It will grant access when the character has the powerup 'Super Mushroom'.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../unittesting-in-jupyter-notebook.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-            <a href="../tag/unittest.html" class="tag">unittest</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../add-css-splunk-dashboard.html">Add CSS to Splunk dashboard</a></h2>
-      <time datetime="" title="2016-12-17T14:18:00+00:00" pubdate>Sat 17 December 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>To add some custom style to your dashboard, you can create a cascade stylesheet in your app folder and overrule the standard dashboard lay-out.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../add-css-splunk-dashboard.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/splunk.html" class="tag">Splunk</a>
-            <a href="../tag/tutorial.html" class="tag">tutorial</a>
-            <a href="../tag/dashboard.html" class="tag">dashboard</a>
-            <a href="../tag/css.html" class="tag">CSS</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../create-splunk-app-monitor-nginx.html">Create a Splunk app to monitor Nginx</a></h2>
-      <time datetime="" title="2016-12-12T15:34:00+00:00" pubdate>Mon 12 December 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>In this short tutorial I will create a Splunk app to monitor the webserver. We will create the bare-bone app and we add a few panels to the dashboard.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../create-splunk-app-monitor-nginx.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/splunk.html" class="tag">Splunk</a>
-            <a href="../tag/tutorial.html" class="tag">tutorial</a>
-            <a href="../tag/dashboard.html" class="tag">dashboard</a>
-            <a href="../tag/nginx.html" class="tag">Nginx</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../adding-aliases-windows.html">Adding aliases to Windows</a></h2>
-      <time datetime="" title="2016-12-05T10:27:00+00:00" pubdate>Mon 05 December 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Since I have been using Linux for a while, switching back to the Windows CLI has some challenges. Luckily you can add aliases to the command prompt with the following procedure.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../adding-aliases-windows.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/windows.html" class="tag">Windows</a>
-            <a href="../tag/alias.html" class="tag">alias</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../install-kdiff3-on-osx.html">Install KDiff3 on OSX</a></h2>
-      <time datetime="" title="2016-11-17T12:27:00+00:00" pubdate>Thu 17 November 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Installing the diff/merge tool <a href="http://kdiff3.sourceforge.net">KDiff3</a> is easy using the package manager <a href="http://brew.s">Homebrew</a> extension <a href="https://caskroom.github.io">Cask</a>. The extension makes is possible to install (GUI) applications on the Mac without the dragging and dropping of the DMG-files.</p>
-<div class="highlight"><pre><span></span>jitsejan@MBP $ /usr/bin/ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
-jitsejan@MBP $ brew tap caskroom/cask
-jitsejan@MBP $ brew cask install kdiff3
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/kdiff3.html" class="tag">kdiff3</a>
-            <a href="../tag/mac.html" class="tag">mac</a>
-            <a href="../tag/osx.html" class="tag">OSX</a>
-            <a href="../tag/brew.html" class="tag">brew</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../installing-splunk-on-ubuntu-1404.html">Installing Splunk on Ubuntu 14.04</a></h2>
-      <time datetime="" title="2016-11-17T11:47:00+00:00" pubdate>Thu 17 November 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Explanation of the installation of Splunk.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../installing-splunk-on-ubuntu-1404.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/splunk.html" class="tag">Splunk</a>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-
-  <nav class="pagination row">
-    <div class="col-xs-6 left">
-        <a class="prev" href="../category/posts5.html">&#8592; Past</a>
-    </div>
-    <div class="col-xs-6 right">
-        <a class="next" href="../category/posts3.html">Future &#8594;</a>
-    </div>
-  </nav>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-3">
-<aside class="page-sidebar">
-    <nav class="widget" id="sidebar-about">
-        <div class="row img-div">
-            <img src="/theme/images/JJ_Montreal.png" />
-        </div>
-        <div class="row">
-        <p>I am a Data Engineer currently working for MarketInvoice in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
-<p>
-While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
-for visualizations as for modern web applications it is the go-to language. 
-</p>
-<p>
-I am using this page as a portfolio and showcase, but mainly as a cheatsheet. That is why you will mainly find shell commands, short scripts or notebooks just for myself to not reinvent the wheel.
-</p>
-
-        </div>  
-    </nav>
-    <hr/>
-    <nav class="widget">
-        <ul class="tagcloud">
-        <li class="tag-3">
-            <a href="../tag/linux.html">
-            Linux
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/django.html">
-            Django
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/d3js.html">
-            D3.js
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/javascript.html">
-            JavaScript
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/virtualization.html">
-            virtualization
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ether.html">
-            ether
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/mapreduce.html">
-            mapreduce
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/hadoop.html">
-            Hadoop
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/expressjs.html">
-            ExpressJS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        </ul>
-    </nav>
-    <hr/>
+<div class="container post">
     <div class="row">
-        <div class="col-md-12">
-            <ul class="social-list">
-                    <li><a href="http://www.facebook.com/jitsejan" title="Facebook" rel="me" target="new"><i class="fa fa-1x fa-facebook"></i></a></li>
-                    <li><a href="http://www.flickr.com/photos/jitsejan" title="Flickr" rel="me" target="new"><i class="fa fa-1x fa-flickr"></i></a></li>
-                    <li><a href="https://play.spotify.com/user/jitsejan" title="Spotify" rel="me" target="new"><i class="fa fa-1x fa-spotify"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jitsejan" title="LinkedIn" rel="me" target="new"><i class="fa fa-1x fa-linkedin"></i></a></li>
-                    <li><a href="http://twitter.com/jitsejan" title="Twitter" rel="me" target="new"><i class="fa fa-1x fa-twitter"></i></a></li>
-                    <li><a href="http://www.github.com/jitsejan" title="Github" rel="me" target="new"><i class="fa fa-1x fa-github"></i></a></li>
-                    <li><a href="http://bitbucket.org/jitsejan" title="Bitbucket" rel="me" target="new"><i class="fa fa-1x fa-bitbucket"></i></a></li>
-                    <li><a href="http://bl.ocks.org/jitsejan" title="Blocks.org" rel="me" target="new"><i class="fa fa-1x fa-bar-chart"></i></a></li>
-                    <li><a href="https://hub.docker.com/r/jitsejan" title="Docker" rel="me" target="new"><i class="fa fa-1x fa-docker"></i></a></li>
-            </ul>
-        </div>
+        <a href="javascript:history.back()">Go back</a>
     </div>
-</aside>  </div>
-  
-  </div>
+    <article>
+        <header>
+            <h1>Creating Pandas dataframe from Azure Table Storage</h1>
+            <time datetime="article.date.isoformat()" pubdate>Fri 08 June 2018</time>
+        </header>
 
+        <div class="article_content">
+            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">azure.cosmosdb.table.tableservice</span> <span class="kn">import</span> <span class="n">TableService</span>
+
+<span class="n">CONNECTION_STRING</span> <span class="o">=</span> <span class="s2">&quot;DUMMYDUMMY&quot;</span>
+
+<span class="k">def</span> <span class="nf">set_table_service</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Set the Azure Table Storage service &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">TableService</span><span class="p">(</span><span class="n">connection_string</span><span class="o">=</span><span class="n">CONNECTION_STRING</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_dataframe_from_table_storage_table</span><span class="p">(</span><span class="n">table_service</span><span class="p">,</span> <span class="n">filter_query</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Create a dataframe from table storage data &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">get_data_from_table_storage_table</span><span class="p">(</span><span class="n">table_service</span><span class="p">,</span>
+                                                          <span class="n">filter_query</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">get_data_from_table_storage_table</span><span class="p">(</span><span class="n">table_service</span><span class="p">,</span> <span class="n">filter_query</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Retrieve data from Table Storage &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">table_service</span><span class="o">.</span><span class="n">query_entities</span><span class="p">(</span>
+        <span class="n">source_table</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="n">filter_query</span>
+    <span class="p">):</span>
+        <span class="k">yield</span> <span class="n">record</span>
+
+<span class="n">fq</span> <span class="o">=</span> <span class="s2">&quot;PartiitionKey eq &#39;12345&#39;</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">set_table_service</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">get_data_dataframe_from_table_storage_table</span><span class="p">(</span><span class="n">table_service</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span>
+                                                 <span class="n">filter_query</span><span class="o">=</span><span class="n">fq</span><span class="p">)</span>
+</pre></div>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/pandas.html" class="tag">pandas</a>
+                    <a href="./tag/azure.html" class="tag">Azure</a>
+                    <a href="./tag/dataframe.html" class="tag">dataframe</a>
+                    <a href="./tag/generator.html" class="tag">generator</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
 
         </div>
 <footer class="footer">
     <div class="container">
         <center>
             <address id="about" class="vcard body">
-                &copy; <a href="..">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2018
+                &copy; <a href=".">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2018
             </address><!-- /#about -->
         </center>
     </div>
