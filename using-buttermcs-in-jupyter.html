@@ -12863,8 +12863,26 @@ Drop-in our Headless CMS and get back to more interesting problems.</p>
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># !pip install buttercms-python</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install buttercms-python
 </pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Requirement already satisfied: buttercms-python in /home/jitsejan/miniconda3/lib/python3.6/site-packages (1.1)
+Requirement already satisfied: requests in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from buttercms-python) (2.18.4)
+Requirement already satisfied: chardet&lt;3.1.0,&gt;=3.0.2 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (3.0.4)
+Requirement already satisfied: idna&lt;2.7,&gt;=2.5 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (2.6)
+Requirement already satisfied: urllib3&lt;1.23,&gt;=1.21.1 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (1.22)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (2018.4.16)
+<span class="ansi-yellow-fg">You are using pip version 10.0.0, however version 10.0.1 is available.
+You should consider upgrading via the 'pip install --upgrade pip' command.</span>
+</pre>
+</div>
 </div>
 </div>
 </div>
@@ -12924,7 +12942,7 @@ Drop-in our Headless CMS and get back to more interesting problems.</p>
 <div class="output_area">
 <div class="prompt output_prompt">Out[4]:</div>
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;butter_cms.ButterCMS at 0x7f58e06f8208&gt;</pre>
+<pre>&lt;butter_cms.ButterCMS at 0x7f3edc72f630&gt;</pre>
 </div>
 </div>
 </div>
@@ -13164,10 +13182,10 @@ Drop-in our Headless CMS and get back to more interesting problems.</p>
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="6817e5bf-2c2e-4084-8bd8-db0b05c025be"></div>
+<div id="2e57d167-ecda-4d70-88ad-48d72775d89d"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#6817e5bf-2c2e-4084-8bd8-db0b05c025be');
+var element = $('#2e57d167-ecda-4d70-88ad-48d72775d89d');
 require.config({
     paths: {
         buttercms: "https://cdnjs.buttercms.com/buttercms-1.1.1.min",
@@ -13205,10 +13223,10 @@ require.config({
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="7eb13706-950e-4dad-bace-c0075d195b85"></div>
+<div id="eef2d473-6020-451b-a9d9-86e2b69dd648"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#7eb13706-950e-4dad-bace-c0075d195b85');
+var element = $('#eef2d473-6020-451b-a9d9-86e2b69dd648');
 require(['buttercms'], function(ButterCMS) {
     var butter = Butter('1b13611e144e11bbce5b484f4064e39638b223a1');
     butter.post.list({page: 1, page_size: 10}).then(function(response) {
@@ -13259,10 +13277,10 @@ require(['buttercms'], function(ButterCMS) {
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="5dbeaa11-affc-413b-92b4-8653f205b01c"></div>
+<div id="8bbed0d4-b9b6-4553-996f-aada1365c622"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#5dbeaa11-affc-413b-92b4-8653f205b01c');
+var element = $('#8bbed0d4-b9b6-4553-996f-aada1365c622');
 require.config({
     paths: {
         buttercms: "https://cdnjs.buttercms.com/buttercms-1.1.1.min",
@@ -13329,7 +13347,7 @@ require.config({
                   <img v-else src="http://via.placeholder.com/250x250" alt="">
                 </figure>
                 <h2>{{ post.title }}</h2>
-                <p>{{ post.slug }}</p>
+                <p>{{ post.summary }}</p>
             </article>
         </div>
     </div>
@@ -13418,10 +13436,10 @@ require.config({
 <div class="output">
 <div class="output_area">
 <div class="prompt"></div>
-<div id="d0454525-f6a5-49fa-8c13-ae60b192ace1"></div>
+<div id="7c56a1b0-3176-48a2-852d-5d5c9adee811"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#d0454525-f6a5-49fa-8c13-ae60b192ace1');
+var element = $('#7c56a1b0-3176-48a2-852d-5d5c9adee811');
 require(['buttercms', 'vue'], function(ButterCMS, Vue) {
     console.log(Vue.version);
     var butter = Butter('1b13611e144e11bbce5b484f4064e39638b223a1');
@@ -13478,8 +13496,8 @@ require(['buttercms', 'vue'], function(ButterCMS, Vue) {
     width: 50%;
     float: left;
 }
-#blog-home article figure{
-    height: 250px;
+#blog-home article figure img{
+    height: 50px;
 }
 &lt;/style&gt;
 </pre></div>
@@ -13496,10 +13514,40 @@ require(['buttercms', 'vue'], function(ButterCMS, Vue) {
     width: 50%;
     float: left;
 }
-#blog-home article figure{
-    height: 250px;
+#blog-home article figure img{
+    height: 50px;
 }
 </style>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Result">Result<a class="anchor-link" href="#Result">¶</a></h2><p>To put everything together I have created a JSfiddle and embedded the result below.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [16]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">html</span>
+&lt;iframe width="100%" height="500" src="//jsfiddle.net/z4hapsLt/13/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"&gt;&lt;/iframe&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_html rendered_html output_subarea ">
+<iframe allowfullscreen="allowfullscreen" allowpaymentrequest="" frameborder="0" height="500" src="//jsfiddle.net/z4hapsLt/13/embedded/" width="100%"></iframe>
 </div>
 </div>
 </div>
