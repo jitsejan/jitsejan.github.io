@@ -12834,186 +12834,229 @@ h6:hover .anchor-link {
 </style>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">nltk</span>
 <span class="c1"># Run this the first time you use NLTK</span>
 <span class="c1"># nltk.download()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="k">import</span> <span class="n">sent_tokenize</span><span class="p">,</span> <span class="n">word_tokenize</span>
 
-<span class="n">EXAMPLE_TEXT</span> <span class="o">=</span> <span class="s2">"Hello Mr. Smith, how are you doing today? The weather is great, and Python is awesome. The sky is pinkish-blue. You shouldn't eat cardboard."</span>
+<span class="n">EXAMPLE_TEXT</span> <span class="o">=</span> <span class="s2">&quot;Hello Mr. Smith, how are you doing today? The weather is great, and Python is awesome. The sky is pinkish-blue. You shouldn&#39;t eat cardboard.&quot;</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">sent_tokenize</span><span class="p">(</span><span class="n">EXAMPLE_TEXT</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">EXAMPLE_TEXT</span><span class="p">))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>['Hello Mr. Smith, how are you doing today?', 'The weather is great, and Python is awesome.', 'The sky is pinkish-blue.', "You shouldn't eat cardboard."]
-['Hello', 'Mr.', 'Smith', ',', 'how', 'are', 'you', 'doing', 'today', '?', 'The', 'weather', 'is', 'great', ',', 'and', 'Python', 'is', 'awesome', '.', 'The', 'sky', 'is', 'pinkish-blue', '.', 'You', 'should', "n't", 'eat', 'cardboard', '.']
+<pre>[&#39;Hello Mr. Smith, how are you doing today?&#39;, &#39;The weather is great, and Python is awesome.&#39;, &#39;The sky is pinkish-blue.&#39;, &#34;You shouldn&#39;t eat cardboard.&#34;]
+[&#39;Hello&#39;, &#39;Mr.&#39;, &#39;Smith&#39;, &#39;,&#39;, &#39;how&#39;, &#39;are&#39;, &#39;you&#39;, &#39;doing&#39;, &#39;today&#39;, &#39;?&#39;, &#39;The&#39;, &#39;weather&#39;, &#39;is&#39;, &#39;great&#39;, &#39;,&#39;, &#39;and&#39;, &#39;Python&#39;, &#39;is&#39;, &#39;awesome&#39;, &#39;.&#39;, &#39;The&#39;, &#39;sky&#39;, &#39;is&#39;, &#39;pinkish-blue&#39;, &#39;.&#39;, &#39;You&#39;, &#39;should&#39;, &#34;n&#39;t&#34;, &#39;eat&#39;, &#39;cardboard&#39;, &#39;.&#39;]
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Stop-words">Stop words<a class="anchor-link" href="#Stop-words">¶</a></h2><p>Stopwords should be removed from the list of words.</p>
+<h2 id="Stop-words">Stop words<a class="anchor-link" href="#Stop-words">&#182;</a></h2><p>Stopwords should be removed from the list of words.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="k">import</span> <span class="n">stopwords</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">'english'</span><span class="p">))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">stop_words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">word_tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">EXAMPLE_TEXT</span><span class="p">)</span>
 <span class="n">filtered_sentence</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word_tokens</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">word_tokens</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">filtered_sentence</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>['Hello', 'Mr.', 'Smith', ',', 'how', 'are', 'you', 'doing', 'today', '?', 'The', 'weather', 'is', 'great', ',', 'and', 'Python', 'is', 'awesome', '.', 'The', 'sky', 'is', 'pinkish-blue', '.', 'You', 'should', "n't", 'eat', 'cardboard', '.']
-['Hello', 'Mr.', 'Smith', ',', 'today', '?', 'weather', 'great', ',', 'Python', 'awesome', '.', 'sky', 'pinkish-blue', '.', "n't", 'eat', 'cardboard', '.']
+<pre>[&#39;Hello&#39;, &#39;Mr.&#39;, &#39;Smith&#39;, &#39;,&#39;, &#39;how&#39;, &#39;are&#39;, &#39;you&#39;, &#39;doing&#39;, &#39;today&#39;, &#39;?&#39;, &#39;The&#39;, &#39;weather&#39;, &#39;is&#39;, &#39;great&#39;, &#39;,&#39;, &#39;and&#39;, &#39;Python&#39;, &#39;is&#39;, &#39;awesome&#39;, &#39;.&#39;, &#39;The&#39;, &#39;sky&#39;, &#39;is&#39;, &#39;pinkish-blue&#39;, &#39;.&#39;, &#39;You&#39;, &#39;should&#39;, &#34;n&#39;t&#34;, &#39;eat&#39;, &#39;cardboard&#39;, &#39;.&#39;]
+[&#39;Hello&#39;, &#39;Mr.&#39;, &#39;Smith&#39;, &#39;,&#39;, &#39;today&#39;, &#39;?&#39;, &#39;weather&#39;, &#39;great&#39;, &#39;,&#39;, &#39;Python&#39;, &#39;awesome&#39;, &#39;.&#39;, &#39;sky&#39;, &#39;pinkish-blue&#39;, &#39;.&#39;, &#34;n&#39;t&#34;, &#39;eat&#39;, &#39;cardboard&#39;, &#39;.&#39;]
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-one---Bob-Dylan---Hurricane's-lyrics">Example one - Bob Dylan - Hurricane's lyrics<a class="anchor-link" href="#Example-one---Bob-Dylan---Hurricane's-lyrics">¶</a></h2><p>Lets analyse the lyrics from Bob Dylan's Hurricane. First we get the lyrics from his website:</p>
+<h2 id="Example-one---Bob-Dylan---Hurricane's-lyrics">Example one - Bob Dylan - Hurricane's lyrics<a class="anchor-link" href="#Example-one---Bob-Dylan---Hurricane's-lyrics">&#182;</a></h2><p>Lets analyse the lyrics from Bob Dylan's Hurricane. First we get the lyrics from his website:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">lxml.html</span>
 <span class="kn">import</span> <span class="nn">requests</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'https://bobdylan.com/songs/hurricane/'</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://bobdylan.com/songs/hurricane/&#39;</span><span class="p">)</span>
 <span class="n">etree</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-<span class="n">lyrics</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s1">'div[class*=</span><span class="se">\'</span><span class="s1">lyrics</span><span class="se">\'</span><span class="s1">]'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text_content</span><span class="p">()</span>
+<span class="n">lyrics</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s1">&#39;div[class*=</span><span class="se">\&#39;</span><span class="s1">lyrics</span><span class="se">\&#39;</span><span class="s1">]&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text_content</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Tokenize the lyrics based on words:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">word_tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">lyrics</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Remove the stopwords from the words:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">filtered_sentence</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word_tokens</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Create-a-word-frequency-graph">Create a word frequency graph<a class="anchor-link" href="#Create-a-word-frequency-graph">¶</a></h3>
+<h3 id="Create-a-word-frequency-graph">Create a word frequency graph<a class="anchor-link" href="#Create-a-word-frequency-graph">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nltk</span> <span class="k">import</span> <span class="n">FreqDist</span>
 <span class="n">fd</span> <span class="o">=</span> <span class="n">FreqDist</span><span class="p">(</span><span class="n">filtered_sentence</span><span class="p">)</span>
 <span class="n">fd</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="n">cumulative</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYIAAAExCAYAAABxpKVSAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XmYHFW5x/HvO5NlMtlDAg5bIqtAWGQCsoNsgiIIAooi
@@ -13256,58 +13299,75 @@ MjFKpCpUI5BMMbNtzWzrvE27APOi/xdG7fbHtiPrzaOOaIDPAVNij08D9jazraJyDDSzbaL9DXX3
 +4BvATu3Y98iHaIagWTNIOByMxtGuJLXC4RmokXAs8CbwJPtyHce8A0zuxZ4Drgi/0F3fztqgrrF
 zPpHm38ILAXuMrM6Qq3hnHbsW6RDtMSESAeZ2RjgnqijWaTHUdOQiEjGqUYgIpJxqhGIiGScAoGI
 SMYpEIiIZJwCgYhIxikQiIhknAKBiEjG/T8LmYSAexbTSgAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>What we see in the graph above is that punctuation is disturbing the graph. We use a regular expression now to remove these characters and only select words.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="k">import</span> <span class="n">RegexpTokenizer</span>
 
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RegexpTokenizer</span><span class="p">(</span><span class="sa">r</span><span class="s1">'\w+'</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RegexpTokenizer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\w+&#39;</span><span class="p">)</span>
 <span class="n">word_tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">lyrics</span><span class="p">)</span>
 <span class="n">filtered_sentence</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word_tokens</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Lets create the graph again:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fd</span> <span class="o">=</span> <span class="n">FreqDist</span><span class="p">(</span><span class="n">filtered_sentence</span><span class="p">)</span>
 <span class="n">fd</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="n">cumulative</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYIAAAExCAYAAABxpKVSAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnXmYXFW1t9/VnbEzMiTQAUmYIUYCdIOIKJN4VUBkcODq
@@ -13572,59 +13632,76 @@ oTCzPc1s99hT+wILo/vLorj9SX1QvVOUiAb4d+Afidf/CbzezHaL7BhjZntEx5vg7n8hbNQ+sw/H
 FqJfaEYgGo2xwLlmNpGwk9djhDDRcuBB4Hngvj7oXQicbma/Bh4Gfh5/0d1fjEJQl5jZyOjpLwGr
 gKvNbBRh1vCpPhxbiH6hJSaE6CdmNg24Nko0CzHoUGhICCEaHM0IhBCiwdGMQAghGhw5AiGEaHDk
 CIQQosGRIxBCiAZHjkAIIRocOQIhhGhw/j/bp6RKKzbZuQAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-two---Wikipedia-about-Nintendo">Example two - Wikipedia about Nintendo<a class="anchor-link" href="#Example-two---Wikipedia-about-Nintendo">¶</a></h2>
+<h2 id="Example-two---Wikipedia-about-Nintendo">Example two - Wikipedia about Nintendo<a class="anchor-link" href="#Example-two---Wikipedia-about-Nintendo">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">wikipedia</span>
-<span class="n">nintendo</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="s2">"Nintendo"</span><span class="p">)</span>
+<span class="n">nintendo</span> <span class="o">=</span> <span class="n">wikipedia</span><span class="o">.</span><span class="n">page</span><span class="p">(</span><span class="s2">&quot;Nintendo&quot;</span><span class="p">)</span>
 <span class="n">word_tokens</span> <span class="o">=</span> <span class="n">word_tokenize</span><span class="p">(</span><span class="n">nintendo</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">filtered_sentence</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word_tokens</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fd</span> <span class="o">=</span> <span class="n">FreqDist</span><span class="p">(</span><span class="n">filtered_sentence</span><span class="p">)</span>
 <span class="n">fd</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">cumulative</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYgAAAEtCAYAAAASkvd7AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XucVfV97vHPM8MwMDAw3Bm5ykUMKqIzEq0mUdRqo4nG
@@ -13821,50 +13898,67 @@ LnBtO756ZDIADnAT8PIRn78GnC9pXJKjl6RTku31jYhfAn8BnNmObZudEO9BmGX0Br4rqYLMLUiW
 kTnctA14C9gAzG3H9y4BbpP0H8DbwPeafxgRm5JDWTMklSazvw7UAY9L6kFmL6PFx8OaZZNvtWGW
 JZJGA08mA9xmnY4PMZmZWYu8B2FmZi3yHoSZmbXIBWFmZi1yQZiZWYtcEGZm1iIXhJmZtej/A3eo
 OPnBfGXQAAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RegexpTokenizer</span><span class="p">(</span><span class="sa">r</span><span class="s1">'\w+'</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">RegexpTokenizer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\w+&#39;</span><span class="p">)</span>
 <span class="n">word_tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">nintendo</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">filtered_sentence</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">word_tokens</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">stop_words</span><span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fd</span> <span class="o">=</span> <span class="n">FreqDist</span><span class="p">(</span><span class="n">filtered_sentence</span><span class="p">)</span>
 <span class="n">fd</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">cumulative</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYgAAAEuCAYAAACUBoXVAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl8XHW9//HXJ/vSJl0paboiLdCmpZCILP6URQU3th8i
@@ -14077,12 +14171,18 @@ AvuAG8zsYqBl0H5YkX5SH4RIyN07gIeBh8OE8DFgNtDg7i+b2VeAsrRTUpsaddJzg6NOuv9v9Z5o
 Aq4ys18R7BL30/QX3f3VsCnrFjMrDYv/HWgG7jKzMoJaRsatckWySUttiGSJmU0B7gk7uEXyjpqY
 REQkI9UgREQkI9UgREQkIyUIERHJSAlCREQyUoIQEZGMlCBERCQjJQgREcno/wPkInraiTbwSgAA
 AABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
+
 </div>
-</div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');

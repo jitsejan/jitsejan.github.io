@@ -11866,17 +11866,54 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="./using-executemany-to-increase-pyodbc-connection.html">Using executemany to increase PyODBC connection</a></h2>
+      <time datetime="" title="2018-07-19T16:13:00+01:00" pubdate>Thu 19 July 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>I recently had to insert data from a Pandas dataframe into a Azure SQL database using <code>pandas.to_sql()</code>. This was performing very poorly and seemed to take ages, but since  PyODBC introduced <a href="https://github.com/mkleehammer/pyodbc/wiki/Features-beyond-the-DB-API#fast_executemany">executemany</a> it is easy to improve the performance: simply add an event listener that activates the <code>executemany</code> for the cursor. For 2300 records I did a small comparison 8.67s and 7.22s versus 5min 57s and 5min 26s, so roughly 50 times faster for this small example dataset.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pyodbc</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">event</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.pool</span> <span class="kn">import</span> <span class="n">StaticPool</span>
+
+<span class="n">wh_conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;DRIVER={config[name][&#39;driver&#39;]};SERVER={config[name][&#39;server&#39;]},{config[name][&#39;port&#39;]};DATABASE={config[name][&#39;database&#39;]};UID={config[name][&#39;username&#39;]};PWD={config[name][&#39;password&#39;]}&quot;</span><span class="p">)</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;mssql+pyodbc://&quot;</span><span class="p">,</span> <span class="n">poolclass</span><span class="o">=</span><span class="n">StaticPool</span><span class="p">,</span> <span class="n">creator</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">wh_conn</span><span class="p">)</span>
+
+<span class="nd">@event.listens_for</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span> <span class="s1">&#39;before_cursor_execute&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">receive_before_cursor_execute</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">statement</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">executemany</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">executemany</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">fast_executemany</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Table&#39;</span><span class="p">,</span>
+          <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+          <span class="n">schema</span><span class="o">=</span><span class="s1">&#39;Schema&#39;</span><span class="p">,</span>
+          <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+          <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">)</span>
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/pandas.html" class="tag">pandas</a>
+            <a href="./tag/azure.html" class="tag">Azure</a>
+            <a href="./tag/dataframe.html" class="tag">dataframe</a>
+            <a href="./tag/pyodbc.html" class="tag">PyODBC</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./using-buttermcs-in-jupyter.html">Using ButterCMS in a Jupyter notebook with VueJS</a></h2>
       <time datetime="" title="2018-06-14T16:07:00+01:00" pubdate>Thu 14 June 2018</time>
     </header>
 
     <div class="article_content">
-        
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="ButterCMS">ButterCMS<a class="anchor-link" href="#ButterCMS">¶</a></h1><h2 id="Goal">Goal<a class="anchor-link" href="#Goal">¶</a></h2><p>The goal of this notebook is to get myself familiar with ButterCMS, a headless CMS that can be easily integrated with any platform in any language. In the past I've experienced with Joomla, Drupal and WordPress (and Blogger long time ago), where I have <strike>lost</strike> invested a lot of time in simply getting the CMS in place, extending the CMS with more functionality and migrating data between servers. Since I am investigating different ways of using microservices, becoming less platform dependent and overall learning new tools, I use this notebook to show a simple example of ButterCMS in Jupyter.</p>
+        <p>The goal of this notebook is to get myself familiar with ButterCMS, a headless CMS that can be easily integrated with any platform in any language. In the past I've experienced with Joomla, Drupal and WordPress (and Blogger long time ago), where I have lost invested a lot of time in simply getting the CMS in place, extending the CMS with more functionality and migrating data between servers. Since I am investigating different ways of using microservices, becoming less platform dependent and overall learning new tools, I use this notebook to show a simple example of ButterCMS in Jupyter.</p>
     </div>
     
     <div class="meta">
@@ -11952,13 +11989,7 @@ jQuery(document).ready(function($) {
     </header>
 
     <div class="article_content">
-        
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h3><p>The aim of this notebook is to create a machine learning model and transform it into an API which, when given some novel input parameters, returns the model’s prediction.</p>
-<h3 id="The-model">The model<a class="anchor-link" href="#The-model">¶</a></h3><p>The model that is going to be used is a Random Forest model, built using a data set of Titanic passengers (<code>data/train.csv</code>
+        <p>The aim of this notebook is to create a machine learning model and transform it an API which, when given some novel input parameters, returns the model’s prediction.</p>
     </div>
     
     <div class="meta">
@@ -12011,12 +12042,7 @@ jQuery(document).ready(function($) {
     </header>
 
     <div class="article_content">
-        
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In this notebook I want to play with Jupyter and show the steps of how to create a MEVN application from a notebook. Normally I would do this in the normal Linux terminal and a text editor, but since we can combine code, explanation and shell commands, I want to create a story in this notebook which hopefully will be of any help of people experimenting with full-stack development. I will create the application, use some simple Linux tricks and use Selenium to test the application.</p>
+        <p>An experiment to see how far I can go developing an application using only a Jupyter notebook.</p>
     </div>
     
     <div class="meta">
@@ -12048,25 +12074,7 @@ jQuery(document).ready(function($) {
     </header>
 
     <div class="article_content">
-        
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Creating-block-diagram">Creating block diagram<a class="anchor-link" href="#Creating-block-diagram">¶</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Install-the-blockdiag-library">Install the blockdiag library<a class="anchor-link" href="#Install-the-blockdiag-library">¶</a></h2><p>We will use the <a href="http://blockdiag.com/en/blockdiag/">blockdiag</a> library to easily create a block diagram to insert in the Jupyter notebook.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+        <p>Using the <code>blockdiag</code> library of Python you can easily create block diagrams and with the magic of Jupyter's <code>nbconvert</code> transform it into a presentation.</p>
     </div>
     
     <div class="meta">
@@ -12172,32 +12180,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./hadoop-experiment-pig-scripting.html">Hadoop Experiment - Using Pig</a></h2>
-      <time datetime="" title="2017-10-03T09:36:00+01:00" pubdate>Tue 03 October 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>In my previous posts I have already shown simple examples of using MapReduce and Spark with Pyspark. A missing piece moving from MapReduce to Spark is the usage of Pig scripts. This posts shows an example howto use a Pig script.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./hadoop-experiment-pig-scripting.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/hadoop.html" class="tag">Hadoop</a>
-            <a href="./tag/pig.html" class="tag">Pig</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/cloudera.html" class="tag">Cloudera</a>
-            <a href="./tag/mapreduce.html" class="tag">mapreduce</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12242,64 +12224,9 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/expressjs.html">
-            ExpressJS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
-            </a>
-        </li>
         <li class="tag-1">
             <a href="./tag/notebook.html">
             notebook
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/mapreduce.html">
-            mapreduce
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
             </a>
         </li>
         <li class="tag-3">
@@ -12308,13 +12235,23 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/django.html">
-            Django
+            <a href="./tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/mongodb.html">
+            MongoDB
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/virtualization.html">
-            virtualization
+            <a href="./tag/mapreduce.html">
+            mapreduce
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/pandas.html">
+            pandas
             </a>
         </li>
         <li class="tag-3">
@@ -12323,8 +12260,48 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/hadoop.html">
-            Hadoop
+            <a href="./tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/expressjs.html">
+            ExpressJS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/container.html">
+            container
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/python.html">
+            Python
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/django.html">
+            Django
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/docker.html">
+            Docker
             </a>
         </li>
         <li class="tag-2">
@@ -12332,14 +12309,19 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             ether
             </a>
         </li>
+        <li class="tag-2">
+            <a href="./tag/hadoop.html">
+            Hadoop
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
         <li class="tag-1">
             <a href="./tag/jupyter.html">
             Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
             </a>
         </li>
         </ul>

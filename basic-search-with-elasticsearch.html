@@ -12837,6 +12837,7 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Inspired by this <a href="https://qbox.io/blog/building-an-elasticsearch-index-with-python">tutorial</a> I tried to continue investigating <a href="https://www.elastic.co/products/elasticsearch">Elasticsearch</a> since I would like to use a fast indexing tool for the data I am gathering and the applications I am developing.</p>
+
 </div>
 </div>
 </div>
@@ -12844,13 +12845,14 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Install-the-Python-library-for-Elasticsearch">Install the Python library for Elasticsearch<a class="anchor-link" href="#Install-the-Python-library-for-Elasticsearch">¶</a></h2><p><a href="https://elasticsearch-py.readthedocs.io/en/master/">https://elasticsearch-py.readthedocs.io/en/master/</a></p>
+<h2 id="Install-the-Python-library-for-Elasticsearch">Install the Python library for Elasticsearch<a class="anchor-link" href="#Install-the-Python-library-for-Elasticsearch">&#182;</a></h2><p><a href="https://elasticsearch-py.readthedocs.io/en/master/">https://elasticsearch-py.readthedocs.io/en/master/</a></p>
 <div class="highlight"><pre><span></span>$ pip install elasticsearch
 </pre></div>
 <p>Note: on my Mac I installed Elasticsearch through Brew</p>
 <div class="highlight"><pre><span></span>$ brew install elasticsearch
 $ brew services start elasticsearch
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -12858,589 +12860,653 @@ $ brew services start elasticsearch
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Creating-the-data">Creating the data<a class="anchor-link" href="#Creating-the-data">¶</a></h2><h3 id="Read-the-CSV-files">Read the CSV files<a class="anchor-link" href="#Read-the-CSV-files">¶</a></h3><p>Read the character data</p>
+<h2 id="Creating-the-data">Creating the data<a class="anchor-link" href="#Creating-the-data">&#182;</a></h2><h3 id="Read-the-CSV-files">Read the CSV files<a class="anchor-link" href="#Read-the-CSV-files">&#182;</a></h3><p>Read the character data</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">character_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/nintendo_characters.csv'</span><span class="p">)</span>
+<span class="n">character_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/nintendo_characters.csv&#39;</span><span class="p">)</span>
 <span class="n">character_df</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[1]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>id</th>
-<th>name</th>
-<th>description</th>
-<th>color</th>
-<th>occupation</th>
-<th>picture</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>2</td>
-<td>Luigi</td>
-<td>This is Luigi</td>
-<td>green</td>
-<td>plumber</td>
-<td>https://upload.wikimedia.org/wikipedia/en/f/f1...</td>
-</tr>
-<tr>
-<th>1</th>
-<td>1</td>
-<td>Mario</td>
-<td>This is Mario</td>
-<td>red</td>
-<td>plumber</td>
-<td>https://upload.wikimedia.org/wikipedia/en/9/99...</td>
-</tr>
-<tr>
-<th>2</th>
-<td>3</td>
-<td>Peach</td>
-<td>My name is Peach</td>
-<td>pink</td>
-<td>princess</td>
-<td>https://s-media-cache-ak0.pinimg.com/originals...</td>
-</tr>
-<tr>
-<th>3</th>
-<td>4</td>
-<td>Toad</td>
-<td>I like funghi</td>
-<td>red</td>
-<td>NaN</td>
-<td>https://upload.wikimedia.org/wikipedia/en/d/d1...</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>name</th>
+      <th>description</th>
+      <th>color</th>
+      <th>occupation</th>
+      <th>picture</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2</td>
+      <td>Luigi</td>
+      <td>This is Luigi</td>
+      <td>green</td>
+      <td>plumber</td>
+      <td>https://upload.wikimedia.org/wikipedia/en/f/f1...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>Mario</td>
+      <td>This is Mario</td>
+      <td>red</td>
+      <td>plumber</td>
+      <td>https://upload.wikimedia.org/wikipedia/en/9/99...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Peach</td>
+      <td>My name is Peach</td>
+      <td>pink</td>
+      <td>princess</td>
+      <td>https://s-media-cache-ak0.pinimg.com/originals...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Toad</td>
+      <td>I like funghi</td>
+      <td>red</td>
+      <td>NaN</td>
+      <td>https://upload.wikimedia.org/wikipedia/en/d/d1...</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Remove the NaN</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">character_df</span><span class="o">.</span><span class="n">occupation</span> <span class="o">=</span> <span class="n">character_df</span><span class="o">.</span><span class="n">occupation</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">''</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">character_df</span><span class="o">.</span><span class="n">occupation</span> <span class="o">=</span> <span class="n">character_df</span><span class="o">.</span><span class="n">occupation</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Read the world data</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">world_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/super_mario_3_worlds.csv'</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">';'</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">world_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/super_mario_3_worlds.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 <span class="n">world_df</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[3]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>id</th>
-<th>world</th>
-<th>name</th>
-<th>image</th>
-<th>description</th>
-<th>picture</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>1</td>
-<td>World 1</td>
-<td>Grass Land</td>
-<td>Grass Land.PNG</td>
-<td>Grass Land is the first world of the game. It ...</td>
-<td>https://www.mariowiki.com/images/thumb/f/fa/Gr...</td>
-</tr>
-<tr>
-<th>1</th>
-<td>2</td>
-<td>World 2</td>
-<td>Desert Land</td>
-<td>World2SMB3.PNG</td>
-<td>Desert Land is the second world of the game. I...</td>
-<td>https://www.mariowiki.com/images/thumb/d/d1/Wo...</td>
-</tr>
-<tr>
-<th>2</th>
-<td>3</td>
-<td>World 3</td>
-<td>Water Land</td>
-<td>Sea Side.PNG</td>
-<td>Water Land is a water-themed region that was r...</td>
-<td>https://www.mariowiki.com/images/thumb/b/b7/Se...</td>
-</tr>
-<tr>
-<th>3</th>
-<td>4</td>
-<td>World 4</td>
-<td>Giant Land</td>
-<td>SMAS-Big Island Map.PNG</td>
-<td>Giant Land is mainly composed of an island in ...</td>
-<td>https://www.mariowiki.com/images/thumb/9/9c/SM...</td>
-</tr>
-<tr>
-<th>4</th>
-<td>5</td>
-<td>World 5</td>
-<td>Sky Land</td>
-<td>Sky world.PNG</td>
-<td>Sky Land is the world that has been conquered ...</td>
-<td>https://www.mariowiki.com/images/thumb/6/69/Sk...</td>
-</tr>
-<tr>
-<th>5</th>
-<td>6</td>
-<td>World 6</td>
-<td>Ice Land</td>
-<td>SMB36.PNG</td>
-<td>Ice Land is an area covered in snow and ice. T...</td>
-<td>https://www.mariowiki.com/images/thumb/4/40/SM...</td>
-</tr>
-<tr>
-<th>6</th>
-<td>7</td>
-<td>World 7</td>
-<td>Pipe Land</td>
-<td>Pipe maze.PNG</td>
-<td>Pipe Land is a series of small islands in a ne...</td>
-<td>https://www.mariowiki.com/images/thumb/a/aa/Pi...</td>
-</tr>
-<tr>
-<th>7</th>
-<td>8</td>
-<td>World 8</td>
-<td>Dark Land</td>
-<td>Dark land2.PNG</td>
-<td>The eighth and final world is ruled by King Bo...</td>
-<td>https://www.mariowiki.com/images/thumb/0/01/Da...</td>
-</tr>
-<tr>
-<th>8</th>
-<td>9</td>
-<td>World 9</td>
-<td>Warp Zone</td>
-<td>World 9.PNG</td>
-<td>World 9 is only accessible by a Warp Whistle. ...</td>
-<td>https://www.mariowiki.com/images/thumb/0/09/Wo...</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>world</th>
+      <th>name</th>
+      <th>image</th>
+      <th>description</th>
+      <th>picture</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>World 1</td>
+      <td>Grass Land</td>
+      <td>Grass Land.PNG</td>
+      <td>Grass Land is the first world of the game. It ...</td>
+      <td>https://www.mariowiki.com/images/thumb/f/fa/Gr...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>World 2</td>
+      <td>Desert Land</td>
+      <td>World2SMB3.PNG</td>
+      <td>Desert Land is the second world of the game. I...</td>
+      <td>https://www.mariowiki.com/images/thumb/d/d1/Wo...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>World 3</td>
+      <td>Water Land</td>
+      <td>Sea Side.PNG</td>
+      <td>Water Land is a water-themed region that was r...</td>
+      <td>https://www.mariowiki.com/images/thumb/b/b7/Se...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>World 4</td>
+      <td>Giant Land</td>
+      <td>SMAS-Big Island Map.PNG</td>
+      <td>Giant Land is mainly composed of an island in ...</td>
+      <td>https://www.mariowiki.com/images/thumb/9/9c/SM...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>World 5</td>
+      <td>Sky Land</td>
+      <td>Sky world.PNG</td>
+      <td>Sky Land is the world that has been conquered ...</td>
+      <td>https://www.mariowiki.com/images/thumb/6/69/Sk...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>World 6</td>
+      <td>Ice Land</td>
+      <td>SMB36.PNG</td>
+      <td>Ice Land is an area covered in snow and ice. T...</td>
+      <td>https://www.mariowiki.com/images/thumb/4/40/SM...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7</td>
+      <td>World 7</td>
+      <td>Pipe Land</td>
+      <td>Pipe maze.PNG</td>
+      <td>Pipe Land is a series of small islands in a ne...</td>
+      <td>https://www.mariowiki.com/images/thumb/a/aa/Pi...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>8</td>
+      <td>World 8</td>
+      <td>Dark Land</td>
+      <td>Dark land2.PNG</td>
+      <td>The eighth and final world is ruled by King Bo...</td>
+      <td>https://www.mariowiki.com/images/thumb/0/01/Da...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>World 9</td>
+      <td>Warp Zone</td>
+      <td>World 9.PNG</td>
+      <td>World 9 is only accessible by a Warp Whistle. ...</td>
+      <td>https://www.mariowiki.com/images/thumb/0/09/Wo...</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Setup-Elasticsearch">Setup Elasticsearch<a class="anchor-link" href="#Setup-Elasticsearch">¶</a></h2><h3 id="Create-the-parameters">Create the parameters<a class="anchor-link" href="#Create-the-parameters">¶</a></h3>
+<h2 id="Setup-Elasticsearch">Setup Elasticsearch<a class="anchor-link" href="#Setup-Elasticsearch">&#182;</a></h2><h3 id="Create-the-parameters">Create the parameters<a class="anchor-link" href="#Create-the-parameters">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ES_HOST</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"host"</span> <span class="p">:</span> <span class="s2">"localhost"</span><span class="p">,</span> <span class="s2">"port"</span> <span class="p">:</span> <span class="mi">9200</span><span class="p">}</span>
-<span class="n">INDEX_NAME</span> <span class="o">=</span> <span class="s1">'nintendo'</span>
-<span class="n">TYPE_NAME</span> <span class="o">=</span> <span class="s1">'character'</span>
-<span class="n">ID_FIELD</span> <span class="o">=</span> <span class="s1">'id'</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ES_HOST</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;host&quot;</span> <span class="p">:</span> <span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;port&quot;</span> <span class="p">:</span> <span class="mi">9200</span><span class="p">}</span>
+<span class="n">INDEX_NAME</span> <span class="o">=</span> <span class="s1">&#39;nintendo&#39;</span>
+<span class="n">TYPE_NAME</span> <span class="o">=</span> <span class="s1">&#39;character&#39;</span>
+<span class="n">ID_FIELD</span> <span class="o">=</span> <span class="s1">&#39;id&#39;</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Setup-the-Elasticsearch-connector">Setup the Elasticsearch connector<a class="anchor-link" href="#Setup-the-Elasticsearch-connector">¶</a></h3>
+<h3 id="Setup-the-Elasticsearch-connector">Setup the Elasticsearch connector<a class="anchor-link" href="#Setup-the-Elasticsearch-connector">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">elasticsearch</span> <span class="k">import</span> <span class="n">Elasticsearch</span>
 <span class="n">es</span> <span class="o">=</span> <span class="n">Elasticsearch</span><span class="p">(</span><span class="n">hosts</span> <span class="o">=</span> <span class="p">[</span><span class="n">ES_HOST</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Create-the-index">Create the index<a class="anchor-link" href="#Create-the-index">¶</a></h3><p>Create the index for <code>nintendo</code> if it does not exists, otherwise first delete it.</p>
+<h3 id="Create-the-index">Create the index<a class="anchor-link" href="#Create-the-index">&#182;</a></h3><p>Create the index for <code>nintendo</code> if it does not exists, otherwise first delete it.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="n">es</span><span class="o">.</span><span class="n">indices</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">INDEX_NAME</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Deleting the '</span><span class="si">%s</span><span class="s2">' index"</span> <span class="o">%</span> <span class="p">(</span><span class="n">INDEX_NAME</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Deleting the &#39;</span><span class="si">%s</span><span class="s2">&#39; index&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">INDEX_NAME</span><span class="p">))</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">indices</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="n">INDEX_NAME</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Acknowledged: '</span><span class="si">%s</span><span class="s2">'"</span> <span class="o">%</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">'acknowledged'</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Acknowledged: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;acknowledged&#39;</span><span class="p">]))</span>
 
 <span class="n">request_body</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"settings"</span> <span class="p">:</span> <span class="p">{</span>
-        <span class="s2">"number_of_shards"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">"number_of_replicas"</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="s2">&quot;settings&quot;</span> <span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;number_of_shards&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;number_of_replicas&quot;</span><span class="p">:</span> <span class="mi">0</span>
     <span class="p">}</span>
 <span class="p">}</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Creating the '</span><span class="si">%s</span><span class="s2">' index!"</span> <span class="o">%</span> <span class="p">(</span><span class="n">INDEX_NAME</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Creating the &#39;</span><span class="si">%s</span><span class="s2">&#39; index!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">INDEX_NAME</span><span class="p">))</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">indices</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="n">INDEX_NAME</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="n">request_body</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Acknowledged: '</span><span class="si">%s</span><span class="s2">'"</span> <span class="o">%</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">'acknowledged'</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Acknowledged: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s1">&#39;acknowledged&#39;</span><span class="p">]))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Deleting the 'nintendo' index
-Acknowledged: 'True'
-Creating the 'nintendo' index!
-Acknowledged: 'True'
+<pre>Deleting the &#39;nintendo&#39; index
+Acknowledged: &#39;True&#39;
+Creating the &#39;nintendo&#39; index!
+Acknowledged: &#39;True&#39;
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Create-the-bulk-data">Create the bulk data<a class="anchor-link" href="#Create-the-bulk-data">¶</a></h3><p>Loop through the dataframe and create the data to insert into the index.</p>
+<h3 id="Create-the-bulk-data">Create the bulk data<a class="anchor-link" href="#Create-the-bulk-data">&#182;</a></h3><p>Loop through the dataframe and create the data to insert into the index.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bulk_data</span> <span class="o">=</span> <span class="p">[]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">character_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)):</span>
         <span class="n">data_dict</span><span class="p">[</span><span class="n">character_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">op_dict</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">"index"</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">"_index"</span><span class="p">:</span> <span class="s1">'nintendo'</span><span class="p">,</span>
-            <span class="s2">"_type"</span><span class="p">:</span> <span class="s1">'character'</span><span class="p">,</span>
-            <span class="s2">"_id"</span><span class="p">:</span> <span class="n">data_dict</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span>
+        <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;_index&quot;</span><span class="p">:</span> <span class="s1">&#39;nintendo&#39;</span><span class="p">,</span>
+            <span class="s2">&quot;_type&quot;</span><span class="p">:</span> <span class="s1">&#39;character&#39;</span><span class="p">,</span>
+            <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
         <span class="p">}</span>
     <span class="p">}</span>
     <span class="n">bulk_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">op_dict</span><span class="p">)</span>
     <span class="n">bulk_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_dict</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">world_df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="n">data_dict</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">row</span><span class="p">)):</span>
         <span class="n">data_dict</span><span class="p">[</span><span class="n">world_df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">op_dict</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">"index"</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s2">"_index"</span><span class="p">:</span> <span class="s1">'nintendo'</span><span class="p">,</span>
-            <span class="s2">"_type"</span><span class="p">:</span> <span class="s1">'world'</span><span class="p">,</span>
-            <span class="s2">"_id"</span><span class="p">:</span> <span class="n">data_dict</span><span class="p">[</span><span class="s1">'id'</span><span class="p">]</span>
+        <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;_index&quot;</span><span class="p">:</span> <span class="s1">&#39;nintendo&#39;</span><span class="p">,</span>
+            <span class="s2">&quot;_type&quot;</span><span class="p">:</span> <span class="s1">&#39;world&#39;</span><span class="p">,</span>
+            <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="n">data_dict</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
         <span class="p">}</span>
     <span class="p">}</span>
     <span class="n">bulk_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">op_dict</span><span class="p">)</span>
     <span class="n">bulk_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data_dict</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Insert-the-data-into-the-index">Insert the data into the index<a class="anchor-link" href="#Insert-the-data-into-the-index">¶</a></h2>
+<h2 id="Insert-the-data-into-the-index">Insert the data into the index<a class="anchor-link" href="#Insert-the-data-into-the-index">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Bulk indexing..."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bulk indexing...&quot;</span><span class="p">)</span>
 <span class="n">res</span> <span class="o">=</span> <span class="n">es</span><span class="o">.</span><span class="n">bulk</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="n">INDEX_NAME</span><span class="p">,</span> <span class="n">body</span> <span class="o">=</span> <span class="n">bulk_data</span><span class="p">,</span> <span class="n">refresh</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Bulk indexing...
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Query-using-CURL">Query using CURL<a class="anchor-link" href="#Query-using-CURL">¶</a></h2>
+<h2 id="Query-using-CURL">Query using CURL<a class="anchor-link" href="#Query-using-CURL">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl -XGET <span class="s1">'http://localhost:9200/_search?pretty'</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>curl -XGET <span class="s1">&#39;http://localhost:9200/_search?pretty&#39;</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>{
-  "took" : 5,
-  "timed_out" : false,
-  "_shards" : {
-    "total" : 2,
-    "successful" : 2,
-    "failed" : 0
+  &#34;took&#34; : 5,
+  &#34;timed_out&#34; : false,
+  &#34;_shards&#34; : {
+    &#34;total&#34; : 2,
+    &#34;successful&#34; : 2,
+    &#34;failed&#34; : 0
   },
-  "hits" : {
-    "total" : 3295,
-    "max_score" : 1.0,
-    "hits" : [
+  &#34;hits&#34; : {
+    &#34;total&#34; : 3295,
+    &#34;max_score&#34; : 1.0,
+    &#34;hits&#34; : [
       {
-        "_index" : "nintendo",
-        "_type" : "character",
-        "_id" : "2",
-        "_score" : 1.0,
-        "_source" : {
-          "id" : 2,
-          "name" : "Luigi",
-          "description" : "This is Luigi",
-          "color" : "green",
-          "occupation" : "plumber",
-          "picture" : "https://upload.wikimedia.org/wikipedia/en/f/f1/LuigiNSMBW.png"
+        &#34;_index&#34; : &#34;nintendo&#34;,
+        &#34;_type&#34; : &#34;character&#34;,
+        &#34;_id&#34; : &#34;2&#34;,
+        &#34;_score&#34; : 1.0,
+        &#34;_source&#34; : {
+          &#34;id&#34; : 2,
+          &#34;name&#34; : &#34;Luigi&#34;,
+          &#34;description&#34; : &#34;This is Luigi&#34;,
+          &#34;color&#34; : &#34;green&#34;,
+          &#34;occupation&#34; : &#34;plumber&#34;,
+          &#34;picture&#34; : &#34;https://upload.wikimedia.org/wikipedia/en/f/f1/LuigiNSMBW.png&#34;
         }
       },
       {
-        "_index" : "nintendo",
-        "_type" : "character",
-        "_id" : "1",
-        "_score" : 1.0,
-        "_source" : {
-          "id" : 1,
-          "name" : "Mario",
-          "description" : "This is Mario",
-          "color" : "red",
-          "occupation" : "plumber",
-          "picture" : "https://upload.wikimedia.org/wikipedia/en/9/99/MarioSMBW.png"
+        &#34;_index&#34; : &#34;nintendo&#34;,
+        &#34;_type&#34; : &#34;character&#34;,
+        &#34;_id&#34; : &#34;1&#34;,
+        &#34;_score&#34; : 1.0,
+        &#34;_source&#34; : {
+          &#34;id&#34; : 1,
+          &#34;name&#34; : &#34;Mario&#34;,
+          &#34;description&#34; : &#34;This is Mario&#34;,
+          &#34;color&#34; : &#34;red&#34;,
+          &#34;occupation&#34; : &#34;plumber&#34;,
+          &#34;picture&#34; : &#34;https://upload.wikimedia.org/wikipedia/en/9/99/MarioSMBW.png&#34;
         }
       },
       {
-        "_index" : "nintendo",
-        "_type" : "character",
-        "_id" : "3",
-        "_score" : 1.0,
-        "_source" : {
-          "id" : 3,
-          "name" : "Peach",
-          "description" : "My name is Peach",
-          "color" : "pink",
-          "occupation" : "princess",
-          "picture" : "https://s-media-cache-ak0.pinimg.com/originals/d2/4d/77/d24d77cfbba789256c9c1afa1f69b385.png"
+        &#34;_index&#34; : &#34;nintendo&#34;,
+        &#34;_type&#34; : &#34;character&#34;,
+        &#34;_id&#34; : &#34;3&#34;,
+        &#34;_score&#34; : 1.0,
+        &#34;_source&#34; : {
+          &#34;id&#34; : 3,
+          &#34;name&#34; : &#34;Peach&#34;,
+          &#34;description&#34; : &#34;My name is Peach&#34;,
+          &#34;color&#34; : &#34;pink&#34;,
+          &#34;occupation&#34; : &#34;princess&#34;,
+          &#34;picture&#34; : &#34;https://s-media-cache-ak0.pinimg.com/originals/d2/4d/77/d24d77cfbba789256c9c1afa1f69b385.png&#34;
         }
       },
       {
-        "_index" : "nintendo",
-        "_type" : "character",
-        "_id" : "4",
-        "_score" : 1.0,
-        "_source" : {
-          "id" : 4,
-          "name" : "Toad",
-          "description" : "I like funghi",
-          "color" : "red",
-          "occupation" : "",
-          "picture" : "https://upload.wikimedia.org/wikipedia/en/d/d1/Toad_3D_Land.png"
+        &#34;_index&#34; : &#34;nintendo&#34;,
+        &#34;_type&#34; : &#34;character&#34;,
+        &#34;_id&#34; : &#34;4&#34;,
+        &#34;_score&#34; : 1.0,
+        &#34;_source&#34; : {
+          &#34;id&#34; : 4,
+          &#34;name&#34; : &#34;Toad&#34;,
+          &#34;description&#34; : &#34;I like funghi&#34;,
+          &#34;color&#34; : &#34;red&#34;,
+          &#34;occupation&#34; : &#34;&#34;,
+          &#34;picture&#34; : &#34;https://upload.wikimedia.org/wikipedia/en/d/d1/Toad_3D_Land.png&#34;
         }
       },
       {
-        "_index" : "nintendo",
-        "_type" : "world",
-        "_id" : "1",
-        "_score" : 1.0,
-        "_source" : {
-          "id" : 1,
-          "world" : "World 1",
-          "name" : "Grass Land",
-          "image" : "Grass Land.PNG",
-          "description" : "Grass Land is the first world of the game. It was attacked by Larry Koopa, who stole the wand of the Grass Land king and turned him into a dog (or a Cobrat from Super Mario Bros. 2 in the remake). The landscape itself is mainly composed of plains, surrounded by hills and even some cliffs in the south. A fortress can be found in the middle of Grass Land, and the king's castle lies to the southeast, surrounded by a circular moat. The enemies Mario encounters here are regular ones, like Goombas, Koopa Troopas and Piranha Plants. The world features a Spade Panel, two Toad Houses and six levels, of which four have to be cleared to reach the king's castle.",
-          "picture" : "https://www.mariowiki.com/images/thumb/f/fa/Grass_Land.PNG/200px-Grass_Land.PNG"
+        &#34;_index&#34; : &#34;nintendo&#34;,
+        &#34;_type&#34; : &#34;world&#34;,
+        &#34;_id&#34; : &#34;1&#34;,
+        &#34;_score&#34; : 1.0,
+        &#34;_source&#34; : {
+          &#34;id&#34; : 1,
+          &#34;world&#34; : &#34;World 1&#34;,
+          &#34;name&#34; : &#34;Grass Land&#34;,
+          &#34;image&#34; : &#34;Grass Land.PNG&#34;,
+          &#34;description&#34; : &#34;Grass Land is the first world of the game. It was attacked by Larry Koopa, who stole the wand of the Grass Land king and turned him into a dog (or a Cobrat from Super Mario Bros. 2 in the remake). The landscape itself is mainly composed of plains, surrounded by hills and even some cliffs in the south. A fortress can be found in the middle of Grass Land, and the king&#39;s castle lies to the southeast, surrounded by a circular moat. The enemies Mario encounters here are regular ones, like Goombas, Koopa Troopas and Piranha Plants. The world features a Spade Panel, two Toad Houses and six levels, of which four have to be cleared to reach the king&#39;s castle.&#34;,
+          &#34;picture&#34; : &#34;https://www.mariowiki.com/images/thumb/f/fa/Grass_Land.PNG/200px-Grass_Land.PNG&#34;
         }
       },
       {
-        "_index" : "nintendo",
-        "_type" : "world",
-        "_id" : "2",
-        "_score" : 1.0,
-        "_source" : {
-          "id" : 2,
-          "world" : "World 2",
-          "name" : "Desert Land",
-          "image" : "World2SMB3.PNG",
-          "description" : "Desert Land is the second world of the game. It is a region within a vast desert, filled with sand, palm trees and some pyramids. A fortress is located in the west part of the desert, and a quicksand field can also be found, as well as a great pyramid that the player needs to traverse in order to reach the king's castle. The king was attacked by Morton Koopa Jr., who turned him into a spider (or a Hoopster from Super Mario Bros. 2 in the remake). The world features two Spade Panels and three Toad Houses, of which one lies in a secret area behind a rock that needs to be crushed by a Hammer. The boulder also hides two Fire Brothers which stole the last Warp Whistle. Four of the five levels need to be cleared to get to the great pyramid and the castle. Desert Land houses many desert-related creatures like Fire Snakes and the extremely rare Angry Sun.",
-          "picture" : "https://www.mariowiki.com/images/thumb/d/d1/World2SMB3.PNG/200px-World2SMB3.PNG"
+        &#34;_index&#34; : &#34;nintendo&#34;,
+        &#34;_type&#34; : &#34;world&#34;,
+        &#34;_id&#34; : &#34;2&#34;,
+        &#34;_score&#34; : 1.0,
+        &#34;_source&#34; : {
+          &#34;id&#34; : 2,
+          &#34;world&#34; : &#34;World 2&#34;,
+          &#34;name&#34; : &#34;Desert Land&#34;,
+          &#34;image&#34; : &#34;World2SMB3.PNG&#34;,
+          &#34;description&#34; : &#34;Desert Land is the second world of the game. It is a region within a vast desert, filled with sand, palm trees and some pyramids. A fortress is located in the west part of the desert, and a quicksand field can also be found, as well as a great pyramid that the player needs to traverse in order to reach the king&#39;s castle. The king was attacked by Morton Koopa Jr., who turned him into a spider (or a Hoopster from Super Mario Bros. 2 in the remake). The world features two Spade Panels and three Toad Houses, of which one lies in a secret area behind a rock that needs to be crushed by a Hammer. The boulder also hides two Fire Brothers which stole the last Warp Whistle. Four of the five levels need to be cleared to get to the great pyramid and the castle. Desert Land houses many desert-related creatures like Fire Snakes and the extremely rare Angry Sun.&#34;,
+          &#34;picture&#34; : &#34;https://www.mariowiki.com/images/thumb/d/d1/World2SMB3.PNG/200px-World2SMB3.PNG&#34;
         }
       },
       {
-        "_index" : "nintendo",
-        "_type" : "world",
-        "_id" : "3",
-        "_score" : 1.0,
-        "_source" : {
-          "id" : 3,
-          "world" : "World 3",
-          "name" : "Water Land",
-          "image" : "Sea Side.PNG",
-          "description" : "Water Land is a water-themed region that was raided by Wendy O. Koopa, who turned the king into a kappa (or a Dino-Rhino from Super Mario World in the remake). While some levels take place on solid ground, most of the levels and even one of the worlds two fortresses involve water in a certain way. At the northern part of the world map, Mario will encounter drawbridges that open and close in a set pattern. The world's castle is located far to the east on a small, remote island that is only accessible through a Warp Pipe. A boat can be unlocked by using a Hammer on a rock in the south. Through it, the player can reach some bonus Spade Panels and Toad Houses. Water Land contains nine levels in total, of which one can be skipped if a certain drawbridge is closed, and houses several water creatures like Bloopers, Cheep Cheeps, and Big Berthas. The world also introduces a very rare Boo known as a Stretch.",
-          "picture" : "https://www.mariowiki.com/images/thumb/b/b7/Sea_Side.PNG/200px-Sea_Side.PNG"
+        &#34;_index&#34; : &#34;nintendo&#34;,
+        &#34;_type&#34; : &#34;world&#34;,
+        &#34;_id&#34; : &#34;3&#34;,
+        &#34;_score&#34; : 1.0,
+        &#34;_source&#34; : {
+          &#34;id&#34; : 3,
+          &#34;world&#34; : &#34;World 3&#34;,
+          &#34;name&#34; : &#34;Water Land&#34;,
+          &#34;image&#34; : &#34;Sea Side.PNG&#34;,
+          &#34;description&#34; : &#34;Water Land is a water-themed region that was raided by Wendy O. Koopa, who turned the king into a kappa (or a Dino-Rhino from Super Mario World in the remake). While some levels take place on solid ground, most of the levels and even one of the worlds two fortresses involve water in a certain way. At the northern part of the world map, Mario will encounter drawbridges that open and close in a set pattern. The world&#39;s castle is located far to the east on a small, remote island that is only accessible through a Warp Pipe. A boat can be unlocked by using a Hammer on a rock in the south. Through it, the player can reach some bonus Spade Panels and Toad Houses. Water Land contains nine levels in total, of which one can be skipped if a certain drawbridge is closed, and houses several water creatures like Bloopers, Cheep Cheeps, and Big Berthas. The world also introduces a very rare Boo known as a Stretch.&#34;,
+          &#34;picture&#34; : &#34;https://www.mariowiki.com/images/thumb/b/b7/Sea_Side.PNG/200px-Sea_Side.PNG&#34;
         }
       },
       {
-        "_index" : "nintendo",
-        "_type" : "world",
-        "_id" : "4",
-        "_score" : 1.0,
-        "_source" : {
-          "id" : 4,
-          "world" : "World 4",
-          "name" : "Giant Land",
-          "image" : "SMAS-Big Island Map.PNG",
-          "description" : "Giant Land is mainly composed of an island in the vague shape of a Koopa. It is a relatively green island with plants growing on it that resemble Fire Flowers. The castle at the west coast of the island was attacked by Iggy Koopa, who transformed the king into an orange dinosaur (or Donkey Kong Jr. in the remake). The world has two fortresses, one on the east side and one on a small island in a lake in the world's center. The most prominent feature of Giant Land, which gives this world its name, is the fact that many enlarged versions of regular enemies, blocks, and environmental features can be found here. The world features four Toad Houses, two Spade Panels and six levels, of which five need to be cleared to reach the king's castle.",
-          "picture" : "https://www.mariowiki.com/images/thumb/9/9c/SMAS-Big_Island_Map.PNG/200px-SMAS-Big_Island_Map.PNG"
+        &#34;_index&#34; : &#34;nintendo&#34;,
+        &#34;_type&#34; : &#34;world&#34;,
+        &#34;_id&#34; : &#34;4&#34;,
+        &#34;_score&#34; : 1.0,
+        &#34;_source&#34; : {
+          &#34;id&#34; : 4,
+          &#34;world&#34; : &#34;World 4&#34;,
+          &#34;name&#34; : &#34;Giant Land&#34;,
+          &#34;image&#34; : &#34;SMAS-Big Island Map.PNG&#34;,
+          &#34;description&#34; : &#34;Giant Land is mainly composed of an island in the vague shape of a Koopa. It is a relatively green island with plants growing on it that resemble Fire Flowers. The castle at the west coast of the island was attacked by Iggy Koopa, who transformed the king into an orange dinosaur (or Donkey Kong Jr. in the remake). The world has two fortresses, one on the east side and one on a small island in a lake in the world&#39;s center. The most prominent feature of Giant Land, which gives this world its name, is the fact that many enlarged versions of regular enemies, blocks, and environmental features can be found here. The world features four Toad Houses, two Spade Panels and six levels, of which five need to be cleared to reach the king&#39;s castle.&#34;,
+          &#34;picture&#34; : &#34;https://www.mariowiki.com/images/thumb/9/9c/SMAS-Big_Island_Map.PNG/200px-SMAS-Big_Island_Map.PNG&#34;
         }
       },
       {
-        "_index" : "nintendo",
-        "_type" : "world",
-        "_id" : "5",
-        "_score" : 1.0,
-        "_source" : {
-          "id" : 5,
-          "world" : "World 5",
-          "name" : "Sky Land",
-          "image" : "Sky world.PNG",
-          "description" : "Sky Land is the world that has been conquered by Roy Koopa, who has turned its king into a condor (Albatoss in the remake). It is divided into two parts: a ground part and a sky part. The player begins on the ground. The most notable feature of this area is the possibility to gain the Goomba's Shoe, an item that can be obtained in level 5-3. After clearing the levels on the ground, the player can reach a spiraling tower that reaches up to the sky. The main part of the level is located here, and there are also some creatures exclusively to this realm, namely the Para-Beetle. After clearing the tower that serves as a link between the two areas, the player can go back to the ground, but they will have to clear the tower again on their way up. If the Koopaling isn't defeated at the first try, his Airship will be able to move freely between sky and ground. There are nine levels in total, three Spade Panels, three Toad Houses and two fortresses. The castle is on the southwest part of the sky part.",
-          "picture" : "https://www.mariowiki.com/images/thumb/6/69/Sky_world.PNG/200px-Sky_world.PNG"
+        &#34;_index&#34; : &#34;nintendo&#34;,
+        &#34;_type&#34; : &#34;world&#34;,
+        &#34;_id&#34; : &#34;5&#34;,
+        &#34;_score&#34; : 1.0,
+        &#34;_source&#34; : {
+          &#34;id&#34; : 5,
+          &#34;world&#34; : &#34;World 5&#34;,
+          &#34;name&#34; : &#34;Sky Land&#34;,
+          &#34;image&#34; : &#34;Sky world.PNG&#34;,
+          &#34;description&#34; : &#34;Sky Land is the world that has been conquered by Roy Koopa, who has turned its king into a condor (Albatoss in the remake). It is divided into two parts: a ground part and a sky part. The player begins on the ground. The most notable feature of this area is the possibility to gain the Goomba&#39;s Shoe, an item that can be obtained in level 5-3. After clearing the levels on the ground, the player can reach a spiraling tower that reaches up to the sky. The main part of the level is located here, and there are also some creatures exclusively to this realm, namely the Para-Beetle. After clearing the tower that serves as a link between the two areas, the player can go back to the ground, but they will have to clear the tower again on their way up. If the Koopaling isn&#39;t defeated at the first try, his Airship will be able to move freely between sky and ground. There are nine levels in total, three Spade Panels, three Toad Houses and two fortresses. The castle is on the southwest part of the sky part.&#34;,
+          &#34;picture&#34; : &#34;https://www.mariowiki.com/images/thumb/6/69/Sky_world.PNG/200px-Sky_world.PNG&#34;
         }
       },
       {
-        "_index" : "nintendo",
-        "_type" : "world",
-        "_id" : "6",
-        "_score" : 1.0,
-        "_source" : {
-          "id" : 6,
-          "world" : "World 6",
-          "name" : "Ice Land",
-          "image" : "SMB36.PNG",
-          "description" : "Ice Land is an area covered in snow and ice. The castle was attacked by Lemmy Koopa - who has turned its king into a fur seal (Monty Mole in the remake) and Mario has to venture there and reclaim the magic wand just like in the previous worlds. Before he can reach the castle however, the player has to navigate Mario through the levels of Ice Land. These levels feature frozen ground which makes movement more difficult, as Mario has poor footing on them and is likely to slip off into a bottomless pit. In some levels, the player can find ice blocks that contain coins or enemies. These blocks can only be melted with one of Fire Mario's fireballs. There are ten levels in total, three Spade Panels, two Toad Houses, and three fortresses. The castle is far to the east near the sea.",
-          "picture" : "https://www.mariowiki.com/images/thumb/4/40/SMB36.PNG/200px-SMB36.PNG"
+        &#34;_index&#34; : &#34;nintendo&#34;,
+        &#34;_type&#34; : &#34;world&#34;,
+        &#34;_id&#34; : &#34;6&#34;,
+        &#34;_score&#34; : 1.0,
+        &#34;_source&#34; : {
+          &#34;id&#34; : 6,
+          &#34;world&#34; : &#34;World 6&#34;,
+          &#34;name&#34; : &#34;Ice Land&#34;,
+          &#34;image&#34; : &#34;SMB36.PNG&#34;,
+          &#34;description&#34; : &#34;Ice Land is an area covered in snow and ice. The castle was attacked by Lemmy Koopa - who has turned its king into a fur seal (Monty Mole in the remake) and Mario has to venture there and reclaim the magic wand just like in the previous worlds. Before he can reach the castle however, the player has to navigate Mario through the levels of Ice Land. These levels feature frozen ground which makes movement more difficult, as Mario has poor footing on them and is likely to slip off into a bottomless pit. In some levels, the player can find ice blocks that contain coins or enemies. These blocks can only be melted with one of Fire Mario&#39;s fireballs. There are ten levels in total, three Spade Panels, two Toad Houses, and three fortresses. The castle is far to the east near the sea.&#34;,
+          &#34;picture&#34; : &#34;https://www.mariowiki.com/images/thumb/4/40/SMB36.PNG/200px-SMB36.PNG&#34;
         }
       }
     ]
@@ -13449,28 +13515,33 @@ Acknowledged: 'True'
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Search all worlds:</p>
-<div class="highlight"><pre><span></span>curl -XGET <span class="s1">'http://localhost:9200/nintendo/world/_search?pretty'</span>
+<div class="highlight"><pre><span></span>curl -XGET <span class="s1">&#39;http://localhost:9200/nintendo/world/_search?pretty&#39;</span>
 </pre></div>
 <p>Pagination:</p>
-<div class="highlight"><pre><span></span>curl -XGET <span class="s1">'http://localhost:9200/nintendo/world/_search?size=2&amp;from=2&amp;pretty'</span>
+<div class="highlight"><pre><span></span>curl -XGET <span class="s1">&#39;http://localhost:9200/nintendo/world/_search?size=2&amp;from=2&amp;pretty&#39;</span>
 </pre></div>
 <p>Specify the fields you want to be returned:</p>
-<div class="highlight"><pre><span></span>curl -XGET <span class="s1">'http://localhost:9200/nintendo/character/_search?pretty&amp;q=name:Luigi&amp;fields=name,occupation'</span>
+<div class="highlight"><pre><span></span>curl -XGET <span class="s1">&#39;http://localhost:9200/nintendo/character/_search?pretty&amp;q=name:Luigi&amp;fields=name,occupation&#39;</span>
 </pre></div>
 <p>Search for the word 'pipe':</p>
-<div class="highlight"><pre><span></span>curl -XGET <span class="s1">'http://localhost:9200/nintendo/world/_search?pretty&amp;q=pipe'</span>
+<div class="highlight"><pre><span></span>curl -XGET <span class="s1">&#39;http://localhost:9200/nintendo/world/_search?pretty&amp;q=pipe&#39;</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');

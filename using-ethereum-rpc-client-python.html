@@ -12836,57 +12836,72 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Ethereum---RPC-client">Ethereum - RPC client<a class="anchor-link" href="#Ethereum---RPC-client">¶</a></h2>
+<h2 id="Ethereum---RPC-client">Ethereum - RPC client<a class="anchor-link" href="#Ethereum---RPC-client">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.interactiveshell</span> <span class="k">import</span> <span class="n">InteractiveShell</span>
-<span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s2">"all"</span>
+<span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this notebook I will try out the RPC client of Ethereum using Python. See <a href="https://github.com/ethereum/wiki/wiki/JSON-RPC">JSON RPC</a> for more information on JSON RPC .</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">version</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>'3.6.0 |Anaconda 4.3.0 (64-bit)| (default, Dec 23 2016, 12:22:00) \n[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]'</pre>
+<pre>&#39;3.6.0 |Anaconda 4.3.0 (64-bit)| (default, Dec 23 2016, 12:22:00) \n[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]&#39;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Prepare-environment">Prepare environment<a class="anchor-link" href="#Prepare-environment">¶</a></h3>
+<h3 id="Prepare-environment">Prepare environment<a class="anchor-link" href="#Prepare-environment">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -12897,6 +12912,7 @@ h6:hover .anchor-link {
 <p>Install the Python <a href="https://pypi.python.org/pypi/ethereum-rpc-client">RPC client</a> for Ethereum. <a href="https://github.com/ConsenSys/ethjsonrpc">Github</a></p>
 <div class="highlight"><pre><span></span>jitsejan@jjvps:~$ pip install ethereum-rpc-client
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -12907,6 +12923,7 @@ h6:hover .anchor-link {
 <p>Start the blockchain making sure RPC is enabled.</p>
 <div class="highlight"><pre><span></span>jitsejan@jjvps:~$ geth --networkid <span class="m">23</span> --nodiscover --maxpeers <span class="m">0</span>  --port <span class="m">30333</span> --rpc
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -12915,74 +12932,95 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Verify that geth is running and the account is listed.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>geth account list
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Account #0: {8cf9deda0712f2291fb16739f8759e4a0a575854} keystore:///home/jitsejan/.ethereum/keystore/UTC--2017-05-01T14-58-43.532247863Z--8cf9deda0712f2291fb16739f8759e4a0a575854
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Connect-to-the-RPC-client">Connect to the RPC client<a class="anchor-link" href="#Connect-to-the-RPC-client">¶</a></h3>
+<h3 id="Connect-to-the-RPC-client">Connect to the RPC client<a class="anchor-link" href="#Connect-to-the-RPC-client">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">eth_rpc_client</span> <span class="k">import</span> <span class="n">Client</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">"127.0.0.1"</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s2">"8545"</span><span class="p">)</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;127.0.0.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;8545&quot;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Inspect-the-client">Inspect the client<a class="anchor-link" href="#Inspect-the-client">¶</a></h3>
+<h3 id="Inspect-the-client">Inspect the client<a class="anchor-link" href="#Inspect-the-client">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pdir</span>
 <span class="n">pdir</span><span class="p">(</span><span class="n">client</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre><span class="ansi-yellow-fg">abstract class:</span>
     <span class="ansi-cyan-fg">__subclasshook__</span>
@@ -13001,7 +13039,7 @@ h6:hover .anchor-link {
 <span class="ansi-yellow-fg">special attribute:</span>
     <span class="ansi-cyan-fg">__class__</span><span class="ansi-black-intense-fg ansi-bold">, </span><span class="ansi-cyan-fg">__dict__</span><span class="ansi-black-intense-fg ansi-bold">, </span><span class="ansi-cyan-fg">__doc__</span><span class="ansi-black-intense-fg ansi-bold">, </span><span class="ansi-cyan-fg">__module__</span><span class="ansi-black-intense-fg ansi-bold">, </span><span class="ansi-cyan-fg">__weakref__</span>
 <span class="ansi-yellow-fg">descriptor:</span>
-    <span class="ansi-cyan-fg">default_from_address:</span> <span class="ansi-black-intense-fg ansi-bold">@property with getter, Cache the coinbase address so that we don't make two requests for every</span>
+    <span class="ansi-cyan-fg">default_from_address:</span> <span class="ansi-black-intense-fg ansi-bold">@property with getter, Cache the coinbase address so that we don&#39;t make two requests for every</span>
 <span class="ansi-yellow-fg">function:</span>
     <span class="ansi-cyan-fg">_make_request:</span> 
     <span class="ansi-cyan-fg">call:</span> <span class="ansi-black-intense-fg ansi-bold">https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_call</span>
@@ -13031,143 +13069,196 @@ h6:hover .anchor-link {
     <span class="ansi-cyan-fg">wait_for_block:</span> 
     <span class="ansi-cyan-fg">wait_for_transaction:</span> </pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Get-the-coinbase-for-the-blockchain">Get the coinbase for the blockchain<a class="anchor-link" href="#Get-the-coinbase-for-the-blockchain">¶</a></h3>
+<h3 id="Get-the-coinbase-for-the-blockchain">Get the coinbase for the blockchain<a class="anchor-link" href="#Get-the-coinbase-for-the-blockchain">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">address</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_coinbase</span><span class="p">()</span>
 <span class="n">address</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>'0x8cf9deda0712f2291fb16739f8759e4a0a575854'</pre>
+<pre>&#39;0x8cf9deda0712f2291fb16739f8759e4a0a575854&#39;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Retrieve-the-balance-of-the-main-address">Retrieve the balance of the main address<a class="anchor-link" href="#Retrieve-the-balance-of-the-main-address">¶</a></h3>
+<h3 id="Retrieve-the-balance-of-the-main-address">Retrieve the balance of the main address<a class="anchor-link" href="#Retrieve-the-balance-of-the-main-address">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>135000419895999999940</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Set the addresses of the two other machines:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">address_vps_one</span> <span class="o">=</span> <span class="s2">"0xc257beaea430afb3a09640ce7f020c906331f805"</span>
-<span class="n">address_vps_two</span> <span class="o">=</span> <span class="s2">"0xe86ee31b7d32b743907fa7438c422a1803717deb"</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">address_vps_one</span> <span class="o">=</span> <span class="s2">&quot;0xc257beaea430afb3a09640ce7f020c906331f805&quot;</span>
+<span class="n">address_vps_two</span> <span class="o">=</span> <span class="s2">&quot;0xe86ee31b7d32b743907fa7438c422a1803717deb&quot;</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">address_vps_one</span><span class="p">)</span>
 <span class="n">client</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">address_vps_two</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>6999160060000000000</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>83000420044000000060</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Transaction">Transaction<a class="anchor-link" href="#Transaction">¶</a></h2><p>Lets send 12 Ether from the main machine to VPS one.</p>
+<h2 id="Transaction">Transaction<a class="anchor-link" href="#Transaction">&#182;</a></h2><p>Lets send 12 Ether from the main machine to VPS one.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">amount</span> <span class="o">=</span> <span class="mi">12</span> <span class="c1"># Ether</span>
 <span class="n">sending_address</span> <span class="o">=</span> <span class="n">address</span>
 <span class="n">receiving_address</span> <span class="o">=</span> <span class="n">address_vps_one</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>1 GWEI = 0.000000001 Ether</p>
+
 </div>
 </div>
 </div>
@@ -13175,284 +13266,363 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Get-the-password-to-unlock-the-sending-account">Get the password to unlock the sending account<a class="anchor-link" href="#Get-the-password-to-unlock-the-sending-account">¶</a></h3>
+<h3 id="Get-the-password-to-unlock-the-sending-account">Get the password to unlock the sending account<a class="anchor-link" href="#Get-the-password-to-unlock-the-sending-account">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">getpass</span> <span class="k">import</span> <span class="n">getpass</span>  
-<span class="n">pw</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s1">'Enter the password for the sender: '</span><span class="p">)</span>
+<span class="n">pw</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;Enter the password for the sender: &#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Enter the password for the sender: ········
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Unlock-the-account-via-the-command-line">Unlock the account via the command line<a class="anchor-link" href="#Unlock-the-account-via-the-command-line">¶</a></h3><p>(By lack of a better way)</p>
+<h3 id="Unlock-the-account-via-the-command-line">Unlock the account via the command line<a class="anchor-link" href="#Unlock-the-account-via-the-command-line">&#182;</a></h3><p>(By lack of a better way)</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">command</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'geth --exec "personal.unlockAccount(\"</span><span class="si">%s</span><span class="s1">\", \"</span><span class="si">%s</span><span class="s1">\");" attach '</span> <span class="o">%</span> <span class="p">(</span><span class="n">sending_address</span><span class="p">,</span> <span class="n">pw</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">command</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;geth --exec &quot;personal.unlockAccount(\&quot;</span><span class="si">%s</span><span class="s1">\&quot;, \&quot;</span><span class="si">%s</span><span class="s1">\&quot;);&quot; attach &#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sending_address</span><span class="p">,</span> <span class="n">pw</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="o">!</span><span class="nv">$command</span>
-<span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">'true'</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'Fail: </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;true&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fail: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'Account is unlocked!'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Account is unlocked!&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Account is unlocked!
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Send-the-transaction">Send the transaction<a class="anchor-link" href="#Send-the-transaction">¶</a></h3>
+<h3 id="Send-the-transaction">Send the transaction<a class="anchor-link" href="#Send-the-transaction">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tx_hash</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">send_transaction</span><span class="p">(</span><span class="n">to</span><span class="o">=</span><span class="n">receiving_address</span><span class="p">,</span> <span class="n">_from</span><span class="o">=</span><span class="n">sending_address</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">amount</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">9</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Check-the-transaction-details">Check the transaction details<a class="anchor-link" href="#Check-the-transaction-details">¶</a></h3>
+<h3 id="Check-the-transaction-details">Check the transaction details<a class="anchor-link" href="#Check-the-transaction-details">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span><span class="o">.</span><span class="n">get_transaction_by_hash</span><span class="p">(</span><span class="n">tx_hash</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>{'blockHash': '0x0000000000000000000000000000000000000000000000000000000000000000',
- 'blockNumber': None,
- 'from': '0x8cf9deda0712f2291fb16739f8759e4a0a575854',
- 'gas': '0x15f90',
- 'gasPrice': '0x4a817c800',
- 'hash': '0x3d1a193ccfccc4e9ab2a411044069deeec2feef31a594bbf73726b463e8e90b4',
- 'input': '0x',
- 'nonce': '0xb',
- 'r': '0xe8698846a461938e800698fcc34570e0c4e9a3425f0bc441bf3e0716dab7b3e0',
- 's': '0x4fcd9bda8a1e98a7b0e8d953dec0cc733238c383d97393aa15c43963551f8daf',
- 'to': '0xc257beaea430afb3a09640ce7f020c906331f805',
- 'transactionIndex': '0x0',
- 'v': '0x42',
- 'value': '0x2cb417800'}</pre>
+<pre>{&#39;blockHash&#39;: &#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+ &#39;blockNumber&#39;: None,
+ &#39;from&#39;: &#39;0x8cf9deda0712f2291fb16739f8759e4a0a575854&#39;,
+ &#39;gas&#39;: &#39;0x15f90&#39;,
+ &#39;gasPrice&#39;: &#39;0x4a817c800&#39;,
+ &#39;hash&#39;: &#39;0x3d1a193ccfccc4e9ab2a411044069deeec2feef31a594bbf73726b463e8e90b4&#39;,
+ &#39;input&#39;: &#39;0x&#39;,
+ &#39;nonce&#39;: &#39;0xb&#39;,
+ &#39;r&#39;: &#39;0xe8698846a461938e800698fcc34570e0c4e9a3425f0bc441bf3e0716dab7b3e0&#39;,
+ &#39;s&#39;: &#39;0x4fcd9bda8a1e98a7b0e8d953dec0cc733238c383d97393aa15c43963551f8daf&#39;,
+ &#39;to&#39;: &#39;0xc257beaea430afb3a09640ce7f020c906331f805&#39;,
+ &#39;transactionIndex&#39;: &#39;0x0&#39;,
+ &#39;v&#39;: &#39;0x42&#39;,
+ &#39;value&#39;: &#39;0x2cb417800&#39;}</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Perform-one-mining-step">Perform one mining step<a class="anchor-link" href="#Perform-one-mining-step">¶</a></h3><p>Execute the miner to validate the transaction.</p>
+<h3 id="Perform-one-mining-step">Perform one mining step<a class="anchor-link" href="#Perform-one-mining-step">&#182;</a></h3><p>Execute the miner to validate the transaction.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">prev_balance_sen</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">sending_address</span><span class="p">)</span>
 <span class="n">prev_balance_rec</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">receiving_address</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="o">!</span>geth --exec <span class="s2">"miner.start();admin.sleepBlocks(1);miner.stop();"</span> attach
-<span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">'true'</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'Fail: </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="o">!</span>geth --exec <span class="s2">&quot;miner.start();admin.sleepBlocks(1);miner.stop();&quot;</span> attach
+<span class="k">if</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;true&#39;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Fail: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Mining finished!"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mining finished!&quot;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Mining finished!
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Check-if-the-Ether-has-been-received">Check if the Ether has been received<a class="anchor-link" href="#Check-if-the-Ether-has-been-received">¶</a></h3>
+<h3 id="Check-if-the-Ether-has-been-received">Check if the Ether has been received<a class="anchor-link" href="#Check-if-the-Ether-has-been-received">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Received </span><span class="si">%d</span><span class="s2">"</span><span class="o">%</span> <span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">receiving_address</span><span class="p">)</span><span class="o">-</span><span class="n">prev_balance_rec</span><span class="p">))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Received </span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span> <span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">receiving_address</span><span class="p">)</span><span class="o">-</span><span class="n">prev_balance_rec</span><span class="p">))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Received 12000000000
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Check-if-the-Ether-was-sent">Check if the Ether was sent<a class="anchor-link" href="#Check-if-the-Ether-was-sent">¶</a></h3><p>First check the difference in the balance.</p>
+<h3 id="Check-if-the-Ether-was-sent">Check if the Ether was sent<a class="anchor-link" href="#Check-if-the-Ether-was-sent">&#182;</a></h3><p>First check the difference in the balance.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Difference of the sender </span><span class="si">%d</span><span class="s2">"</span><span class="o">%</span> <span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">sending_address</span><span class="p">)</span><span class="o">-</span><span class="n">prev_balance_sen</span><span class="p">))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difference of the sender </span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span> <span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">sending_address</span><span class="p">)</span><span class="o">-</span><span class="n">prev_balance_sen</span><span class="p">))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Difference of the sender 4999999988000000000
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For mining, the miner will get a mining bonus.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">mining_bonus</span> <span class="o">=</span> <span class="mi">5000000000000000000</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To get the amount of Ether sent we need to substract the mining bonus.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"Amount difference: </span><span class="si">%d</span><span class="s2">"</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">sending_address</span><span class="p">)</span><span class="o">-</span><span class="n">prev_balance_sen</span> <span class="o">-</span> <span class="n">mining_bonus</span><span class="p">))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Amount difference: </span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">get_balance</span><span class="p">(</span><span class="n">sending_address</span><span class="p">)</span><span class="o">-</span><span class="n">prev_balance_sen</span> <span class="o">-</span> <span class="n">mining_bonus</span><span class="p">))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Amount difference: -12000000000
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');

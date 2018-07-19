@@ -12836,7 +12836,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Creating-block-diagram">Creating block diagram<a class="anchor-link" href="#Creating-block-diagram">¶</a></h1>
+<h1 id="Creating-block-diagram">Creating block diagram<a class="anchor-link" href="#Creating-block-diagram">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -12844,24 +12844,32 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Install-the-blockdiag-library">Install the blockdiag library<a class="anchor-link" href="#Install-the-blockdiag-library">¶</a></h2><p>We will use the <a href="http://blockdiag.com/en/blockdiag/">blockdiag</a> library to easily create a block diagram to insert in the Jupyter notebook.</p>
+<h2 id="Install-the-blockdiag-library">Install the blockdiag library<a class="anchor-link" href="#Install-the-blockdiag-library">&#182;</a></h2><p>We will use the <a href="http://blockdiag.com/en/blockdiag/">blockdiag</a> library to easily create a block diagram to insert in the Jupyter notebook.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install blockdiag
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Collecting blockdiag
   Using cached blockdiag-1.5.3-py2.py3-none-any.whl
@@ -12875,52 +12883,65 @@ Successfully installed blockdiag-1.5.3
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Diagram-definition">Diagram definition<a class="anchor-link" href="#Diagram-definition">¶</a></h2><p>First we create the folder:</p>
+<h2 id="Diagram-definition">Diagram definition<a class="anchor-link" href="#Diagram-definition">&#182;</a></h2><p>First we create the folder:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>mkdir diagrams
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>mkdir: diagrams: File exists
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>and we create a new file inside the <code>diagrams</code> folder with the definition of the graph:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> diagrams/block_diagram
 blockdiag {
   // Define class (list of attributes)
@@ -12930,69 +12951,91 @@ blockdiag {
   Extract -&gt; Transform -&gt; Load;
 
   // Set class to node
-  Transform [class = "emphasis"];
+  Transform [class = &quot;emphasis&quot;];
 
   // Set class to edge
-  Transform -&gt; Load [class = "redline"];
+  Transform -&gt; Load [class = &quot;redline&quot;];
 }
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Overwriting diagrams/block_diagram
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Convert-the-diagram-to-PNG">Convert the diagram to PNG<a class="anchor-link" href="#Convert-the-diagram-to-PNG">¶</a></h2><p>Using the <code>blockdiag</code> library, we can convert the diagram from the definition to a PNG by running the <code>blockdiag</code> command from the command line with the graph definition as first argument:</p>
+<h2 id="Convert-the-diagram-to-PNG">Convert the diagram to PNG<a class="anchor-link" href="#Convert-the-diagram-to-PNG">&#182;</a></h2><p>Using the <code>blockdiag</code> library, we can convert the diagram from the definition to a PNG by running the <code>blockdiag</code> command from the command line with the graph definition as first argument:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>blockdiag diagrams/block_diagram
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Display-the-PNG">Display the PNG<a class="anchor-link" href="#Display-the-PNG">¶</a></h2><p>By using the display functionality of the Jupyter notebook we can show the generated PNG:</p>
+<h2 id="Display-the-PNG">Display the PNG<a class="anchor-link" href="#Display-the-PNG">&#182;</a></h2><p>By using the display functionality of the Jupyter notebook we can show the generated PNG:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="s2">"diagrams/block_diagram.png"</span><span class="p">)</span>
+<span class="n">Image</span><span class="p">(</span><span class="s2">&quot;diagrams/block_diagram.png&quot;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
 <div class="output_png output_subarea output_execute_result">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAB4CAYAAABik0N+AAAK00lEQVR4nO3d324bxx3F8d/Mzi65
 JOEobWwkEoqiFw18k6fxa/QmgB/DQN6i6U16UfRNemOkSIMigALYDSwrlGiSuzO90K5DrklKSixT
@@ -13044,141 +13087,188 @@ wGuw8/eX2s7+a5D//iL/1yP//UX+KYAAAAByuLI5AACAGAogAACAGAogAACAGAogAACAGAogAACA
 GAogAACAGAogAACAGAogAACAGAogAACAGAogAACAGAogAACAGAogAACAGAogAACAGAogAACAGAog
 AACAGAogAACAGAogAACAGAogAACAGAogAACAGAogAACAGAogAACAGAogAACAGAogAACAGAogAACA
 GAogAACAGAogAACAmP8DU1hQZ/aFxWkAAAAASUVORK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Convert-to-slides">Convert to slides<a class="anchor-link" href="#Convert-to-slides">¶</a></h2><p>Jupyter has the functionality to convert a Jupyter notebook to a fancy looking presentation. By using <code>nbconvert</code> and with the output set to <code>slides</code>, the notebook will be translated to an HTML page, which will be transformed into a beautiful presentation by adding the <a href="https://revealjs.com/#/">RevealJS</a> library.</p>
+<h2 id="Convert-to-slides">Convert to slides<a class="anchor-link" href="#Convert-to-slides">&#182;</a></h2><p>Jupyter has the functionality to convert a Jupyter notebook to a fancy looking presentation. By using <code>nbconvert</code> and with the output set to <code>slides</code>, the notebook will be translated to an HTML page, which will be transformed into a beautiful presentation by adding the <a href="https://revealjs.com/#/">RevealJS</a> library.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>jupyter nbconvert creating_block_diagram.ipynb --to slides
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[NbConvertApp] Converting notebook creating_block_diagram.ipynb to slides
 [NbConvertApp] Writing 297425 bytes to creating_block_diagram.slides.html
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Check-for-resulting-HTML">Check for resulting HTML<a class="anchor-link" href="#Check-for-resulting-HTML">¶</a></h2><p>After conversion we should see both the .ipynb and .html in the directory.</p>
+<h2 id="Check-for-resulting-HTML">Check for resulting HTML<a class="anchor-link" href="#Check-for-resulting-HTML">&#182;</a></h2><p>After conversion we should see both the .ipynb and .html in the directory.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>ls -la creating_block_diagram.slides.html
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>-rw-r--r--  1 jitsejan  staff  297489 Jan 15 00:43 creating_block_diagram.slides.html
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Retrieve-RevealJS">Retrieve RevealJS<a class="anchor-link" href="#Retrieve-RevealJS">¶</a></h2><p>To use Jupyter slides we need to download RevealJS to the root directory of the notebooks. We do this by cloning the <code>reveal.js</code> Git repository directly in the current folder.</p>
+<h2 id="Retrieve-RevealJS">Retrieve RevealJS<a class="anchor-link" href="#Retrieve-RevealJS">&#182;</a></h2><p>To use Jupyter slides we need to download RevealJS to the root directory of the notebooks. We do this by cloning the <code>reveal.js</code> Git repository directly in the current folder.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>git clone https://github.com/hakimel/reveal.js.git
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>fatal: destination path 'reveal.js' already exists and is not an empty directory.
+<pre>fatal: destination path &#39;reveal.js&#39; already exists and is not an empty directory.
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Start-Python-webserver">Start Python webserver<a class="anchor-link" href="#Start-Python-webserver">¶</a></h2><p>Use <code>http.server</code> for Python 3 and <code>SimpleHTTPServer</code> when using Python 2 to start the server to view the HTML page.</p>
+<h2 id="Start-Python-webserver">Start Python webserver<a class="anchor-link" href="#Start-Python-webserver">&#182;</a></h2><p>Use <code>http.server</code> for Python 3 and <code>SimpleHTTPServer</code> when using Python 2 to start the server to view the HTML page.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>python -m http.server <span class="m">8000</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Check port 8000 and open the HTML page containing the slides. In this case the HTML of this notebook will be visible on <a href="http://localhost:8000/creating_block_diagram.slides.html#/">http://localhost:8000/creating_block_diagram.slides.html#/</a>.</p>
+
 </div>
 </div>
 </div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');

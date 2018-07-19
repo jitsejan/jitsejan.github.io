@@ -12836,7 +12836,7 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Example---Using-mock">Example - Using mock<a class="anchor-link" href="#Example---Using-mock">¶</a></h1>
+<h1 id="Example---Using-mock">Example - Using mock<a class="anchor-link" href="#Example---Using-mock">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -12844,15 +12844,15 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Imports">Imports<a class="anchor-link" href="#Imports">¶</a></h2>
+<h2 id="Imports">Imports<a class="anchor-link" href="#Imports">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [35]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
 <span class="c1"># Python compatibility</span>
@@ -12861,15 +12861,17 @@ h6:hover .anchor-link {
 <span class="k">else</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">unittest.mock</span> <span class="k">as</span> <span class="nn">mock</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-mock-object">The mock object<a class="anchor-link" href="#The-mock-object">¶</a></h2>
+<h2 id="The-mock-object">The mock object<a class="anchor-link" href="#The-mock-object">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -12878,265 +12880,354 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Create a mock object:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Show the attributes of the object:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>['assert_any_call',
- 'assert_called_once_with',
- 'assert_called_with',
- 'assert_has_calls',
- 'assert_not_called',
- 'attach_mock',
- 'call_args',
- 'call_args_list',
- 'call_count',
- 'called',
- 'configure_mock',
- 'method_calls',
- 'mock_add_spec',
- 'mock_calls',
- 'reset_mock',
- 'return_value',
- 'side_effect']</pre>
+<pre>[&#39;assert_any_call&#39;,
+ &#39;assert_called_once_with&#39;,
+ &#39;assert_called_with&#39;,
+ &#39;assert_has_calls&#39;,
+ &#39;assert_not_called&#39;,
+ &#39;attach_mock&#39;,
+ &#39;call_args&#39;,
+ &#39;call_args_list&#39;,
+ &#39;call_count&#39;,
+ &#39;called&#39;,
+ &#39;configure_mock&#39;,
+ &#39;method_calls&#39;,
+ &#39;mock_add_spec&#39;,
+ &#39;mock_calls&#39;,
+ &#39;reset_mock&#39;,
+ &#39;return_value&#39;,
+ &#39;side_effect&#39;]</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Print a fake attribute. It doesn't exist, but will be shown.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">fake_attribute</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;Mock name='mock.fake_attribute' id='2582717621248'&gt;</pre>
+<pre>&lt;Mock name=&#39;mock.fake_attribute&#39; id=&#39;2582717621248&#39;&gt;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Again show the object. This time the <code>fake_attribute</code> will be shown too.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>['assert_any_call',
- 'assert_called_once_with',
- 'assert_called_with',
- 'assert_has_calls',
- 'assert_not_called',
- 'attach_mock',
- 'call_args',
- 'call_args_list',
- 'call_count',
- 'called',
- 'configure_mock',
- 'fake_attribute',
- 'method_calls',
- 'mock_add_spec',
- 'mock_calls',
- 'reset_mock',
- 'return_value',
- 'side_effect']</pre>
+<pre>[&#39;assert_any_call&#39;,
+ &#39;assert_called_once_with&#39;,
+ &#39;assert_called_with&#39;,
+ &#39;assert_has_calls&#39;,
+ &#39;assert_not_called&#39;,
+ &#39;attach_mock&#39;,
+ &#39;call_args&#39;,
+ &#39;call_args_list&#39;,
+ &#39;call_count&#39;,
+ &#39;called&#39;,
+ &#39;configure_mock&#39;,
+ &#39;fake_attribute&#39;,
+ &#39;method_calls&#39;,
+ &#39;mock_add_spec&#39;,
+ &#39;mock_calls&#39;,
+ &#39;reset_mock&#39;,
+ &#39;return_value&#39;,
+ &#39;side_effect&#39;]</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Set a return value for the newly introduced attribute and retrieve it.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">fake_attribute</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">"Fake return value"</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">fake_attribute</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Fake return value&quot;</span>
 <span class="n">m</span><span class="o">.</span><span class="n">fake_attribute</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>'Fake return value'</pre>
+<pre>&#39;Fake return value&#39;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Create another attribute, but this time assign a (fake) function to its <code>return_value</code>.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [108]:</div>
+<div class="prompt input_prompt">In&nbsp;[108]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">print_fake_value</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Fake function is called!"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fake function is called!&quot;</span><span class="p">)</span>
 
 <span class="n">m</span><span class="o">.</span><span class="n">another_attribute</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">print_fake_value</span>
 <span class="n">m</span><span class="o">.</span><span class="n">another_attribute</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[108]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;Mock name='mock.another_attribute.print_fake_value()' id='2582735302608'&gt;</pre>
+<pre>&lt;Mock name=&#39;mock.another_attribute.print_fake_value()&#39; id=&#39;2582735302608&#39;&gt;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Same exercise with a function with an argument:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">print_fake_value_with_arg</span><span class="p">(</span><span class="n">argument</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Fake argument </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="n">argument</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fake argument </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">argument</span><span class="p">)</span>
 
 <span class="n">m</span><span class="o">.</span><span class="n">the_third_attribute</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">print_fake_value_with_arg</span>
-<span class="n">m</span><span class="o">.</span><span class="n">the_third_attribute</span><span class="p">(</span><span class="s1">'Print me'</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">the_third_attribute</span><span class="p">(</span><span class="s1">&#39;Print me&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[21]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;function __main__.print_fake_value_with_arg&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You can also create a custom exception by using the <code>side_effect</code>. It can be an exception, callable or an iterable.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">some_function</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Super error"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">some_function</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Super error&quot;</span><span class="p">)</span>
 <span class="n">m</span><span class="o">.</span><span class="n">some_function</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
 <span class="ansi-green-fg">&lt;ipython-input-22-197c49fcbb5e&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-fg">()</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> m<span class="ansi-yellow-intense-fg ansi-bold">.</span>some_function<span class="ansi-yellow-intense-fg ansi-bold">.</span>side_effect <span class="ansi-yellow-intense-fg ansi-bold">=</span> ValueError<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">"Super error"</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> m<span class="ansi-yellow-intense-fg ansi-bold">.</span>some_function<span class="ansi-yellow-intense-fg ansi-bold">.</span>side_effect <span class="ansi-yellow-intense-fg ansi-bold">=</span> ValueError<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;Super error&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 <span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>m<span class="ansi-yellow-intense-fg ansi-bold">.</span>some_function<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
 
 <span class="ansi-green-fg">C:\Users\J-J van Waterschoot\Anaconda3\lib\unittest\mock.py</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(_mock_self, *args, **kwargs)</span>
@@ -13156,74 +13247,108 @@ h6:hover .anchor-link {
 <span class="ansi-red-fg">ValueError</span>: Super error</pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To make it an iterable, the following can be used. By calling the mock several times, it will return the values until the limit of the range is reached.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">some_iteration_thing</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">m</span><span class="o">.</span><span class="n">some_iteration_thing</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>0</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">some_iteration_thing</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[24]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>1</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">some_iteration_thing</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
@@ -13248,155 +13373,206 @@ h6:hover .anchor-link {
 <span class="ansi-red-fg">StopIteration</span>: </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Finally you can also pass a callable to the <code>side_effect</code>, by doing the following:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">side_function</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'This is a side function!'</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is a side function!&#39;</span><span class="p">)</span>
     
 <span class="n">m</span><span class="o">.</span><span class="n">some_simple_function</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">side_function</span><span class="p">()</span>
 <span class="n">m</span><span class="o">.</span><span class="n">some_simple_function</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>This is a side function!
 </pre>
 </div>
 </div>
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[27]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;Mock name='mock.some_simple_function()' id='2582717767408'&gt;</pre>
+<pre>&lt;Mock name=&#39;mock.some_simple_function()&#39; id=&#39;2582717767408&#39;&gt;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">side_function_with_arg</span><span class="p">(</span><span class="n">argument</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">'This is a side function with argument: </span><span class="si">%s</span><span class="s1">'</span> <span class="o">%</span> <span class="n">argument</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;This is a side function with argument: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">argument</span><span class="p">)</span>
     
 <span class="n">m</span><span class="o">.</span><span class="n">some_simple_function_with_arg</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">side_function_with_arg</span>
-<span class="n">m</span><span class="o">.</span><span class="n">some_simple_function_with_arg</span><span class="p">(</span><span class="s1">'No argument!'</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">some_simple_function_with_arg</span><span class="p">(</span><span class="s1">&#39;No argument!&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>This is a side function with argument: No argument!
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>An important function of the <code>side_effect</code> is that you can pass it a class, which can be helpful if you are testing code and verify the behaviour of the class</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Car</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
     <span class="k">def</span> <span class="nf">print_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Name: </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Name: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
         
 <span class="n">m</span><span class="o">.</span><span class="n">a_car_attribute</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="n">Car</span>
-<span class="n">car</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">a_car_attribute</span><span class="o">.</span><span class="n">side_effect</span><span class="p">(</span><span class="s1">'My red car'</span><span class="p">)</span>
+<span class="n">car</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">a_car_attribute</span><span class="o">.</span><span class="n">side_effect</span><span class="p">(</span><span class="s1">&#39;My red car&#39;</span><span class="p">)</span>
 <span class="n">car</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[29]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;__main__.Car at 0x25955fdd6a0&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">car</span><span class="o">.</span><span class="n">print_name</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Name: My red car
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Testing">Testing<a class="anchor-link" href="#Testing">¶</a></h2><h3 id="Castle">Castle<a class="anchor-link" href="#Castle">¶</a></h3><p>Lets define the castle class:</p>
+<h2 id="Testing">Testing<a class="anchor-link" href="#Testing">&#182;</a></h2><h3 id="Castle">Castle<a class="anchor-link" href="#Castle">&#182;</a></h3><p>Lets define the castle class:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [99]:</div>
+<div class="prompt input_prompt">In&nbsp;[99]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Castle</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">boss</span> <span class="o">=</span> <span class="s1">'Bowser'</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">world</span> <span class="o">=</span> <span class="s1">'Grass Land'</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">boss</span> <span class="o">=</span> <span class="s1">&#39;Bowser&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">world</span> <span class="o">=</span> <span class="s1">&#39;Grass Land&#39;</span>
 
     <span class="k">def</span> <span class="nf">access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">==</span> <span class="s1">'Super Mushroom'</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">==</span> <span class="s1">&#39;Super Mushroom&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
@@ -13407,27 +13583,30 @@ h6:hover .anchor-link {
     <span class="k">def</span> <span class="nf">get_world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">world</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We will also define a character class:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [100]:</div>
+<div class="prompt input_prompt">In&nbsp;[100]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Character</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">''</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
     <span class="k">def</span> <span class="nf">powerup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">powerup</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="n">powerup</span>
@@ -13435,122 +13614,134 @@ h6:hover .anchor-link {
     <span class="k">def</span> <span class="nf">get_powerup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">powerup</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Finally we will define a testclass to test the functionality of the classes.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [101]:</div>
+<div class="prompt input_prompt">In&nbsp;[101]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">CharacterTestClass</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-    <span class="sd">""" Defines the tests for the Character class """</span>
+    <span class="sd">&quot;&quot;&quot; Defines the tests for the Character class &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" Set the castle for the test cases """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">(</span><span class="s1">'Bowsers Castle'</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot; Set the castle for the test cases &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">(</span><span class="s1">&#39;Bowsers Castle&#39;</span><span class="p">)</span>
         
     <span class="k">def</span> <span class="nf">test_mock_access_denied</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" Access denied for star powerup """</span>
-        <span class="n">mock_character</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">'Starman'</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot; Access denied for star powerup &quot;&quot;&quot;</span>
+        <span class="n">mock_character</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">&#39;Starman&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">mock_character</span><span class="p">))</span>
    
     <span class="k">def</span> <span class="nf">test_mock_access_granted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" Access granted for mushroom powerup """</span>
-        <span class="n">mock_character</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">'Super Mushroom'</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot; Access granted for mushroom powerup &quot;&quot;&quot;</span>
+        <span class="n">mock_character</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">&#39;Super Mushroom&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">mock_character</span><span class="p">))</span>
         
     <span class="k">def</span> <span class="nf">test_default_castle_boss</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" Verifty the default boss is Bowser """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">"Bowser"</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot; Verifty the default boss is Bowser &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Bowser&quot;</span><span class="p">)</span>
         
     <span class="k">def</span> <span class="nf">test_default_castle_world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" Verify the default world is Grass Land """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">(),</span> <span class="s2">"Grass Land"</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot; Verify the default world is Grass Land &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">(),</span> <span class="s2">&quot;Grass Land&quot;</span><span class="p">)</span>
 
     <span class="c1"># Mock a class method</span>
-    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Castle</span><span class="p">,</span> <span class="s1">'get_boss'</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Castle</span><span class="p">,</span> <span class="s1">&#39;get_boss&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_mock_castle_boss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mock_get_boss</span><span class="p">):</span>
-        <span class="n">mock_get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">"Hammer Bro"</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">"Hammer Bro"</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">(),</span> <span class="s2">"Grass Land"</span><span class="p">)</span>
+        <span class="n">mock_get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Hammer Bro&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Hammer Bro&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">(),</span> <span class="s2">&quot;Grass Land&quot;</span><span class="p">)</span>
         
     <span class="c1"># Mock an instance</span>
-    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="vm">__name__</span><span class="o">+</span><span class="s1">'.Castle'</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="vm">__name__</span><span class="o">+</span><span class="s1">&#39;.Castle&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_mock_castle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">MockCastle</span><span class="p">):</span>
         <span class="n">instance</span> <span class="o">=</span> <span class="n">MockCastle</span>
-        <span class="n">instance</span><span class="o">.</span><span class="n">get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">"Toad"</span>
-        <span class="n">instance</span><span class="o">.</span><span class="n">get_world</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">"Desert Land"</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Toad&quot;</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">get_world</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Desert Land&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">"Toad"</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">(),</span> <span class="s2">"Desert Land"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Toad&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">(),</span> <span class="s2">&quot;Desert Land&quot;</span><span class="p">)</span>
         
     <span class="c1"># Mock an instance method</span>
     <span class="k">def</span> <span class="nf">test_mock_castle_instance_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Boss is still Bowser</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">"Koopa Troopa"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Koopa Troopa&quot;</span><span class="p">)</span>
         <span class="c1"># Set a return_value for the get_boss method</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">"Koopa Troopa"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Koopa Troopa&quot;</span><span class="p">)</span>
         <span class="c1"># Boss is Koopa Troopa now</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">"Koopa Troopa"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Koopa Troopa&quot;</span><span class="p">)</span>
         
     <span class="k">def</span> <span class="nf">test_castle_with_more_bosses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">multi_boss_castle</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
         <span class="c1"># Set a list as side_effect for the get_boss method</span>
-        <span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Goomba"</span><span class="p">,</span> <span class="s2">"Boo"</span><span class="p">]</span>
+        <span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Goomba&quot;</span><span class="p">,</span> <span class="s2">&quot;Boo&quot;</span><span class="p">]</span>
         <span class="c1"># First value is Goomba</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">"Goomba"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Goomba&quot;</span><span class="p">)</span>
         <span class="c1"># Second value is Boo</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">"Boo"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Boo&quot;</span><span class="p">)</span>
         <span class="c1"># Third value does not exist and raises a StopIteration</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">StopIteration</span><span class="p">,</span> <span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">)</span>
          
     <span class="k">def</span> <span class="nf">test_calls_to_castle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">"No access"</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;No access&quot;</span>
         <span class="c1"># We should retrieve no access for everybody</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="s1">'Let me in'</span><span class="p">),</span> <span class="s2">"No access"</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="s1">'Let me in, please'</span><span class="p">),</span> <span class="s2">"No access"</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="s1">'Let me in, please sir!'</span><span class="p">),</span> <span class="s2">"No access"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="s1">&#39;Let me in&#39;</span><span class="p">),</span> <span class="s2">&quot;No access&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="s1">&#39;Let me in, please&#39;</span><span class="p">),</span> <span class="s2">&quot;No access&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="s1">&#39;Let me in, please sir!&#39;</span><span class="p">),</span> <span class="s2">&quot;No access&quot;</span><span class="p">)</span>
         <span class="c1"># Verify the length of the arguments list</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="o">.</span><span class="n">call_args_list</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Run-the-test-suite">Run the test suite<a class="anchor-link" href="#Run-the-test-suite">¶</a></h2>
+<h2 id="Run-the-test-suite">Run the test suite<a class="anchor-link" href="#Run-the-test-suite">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [102]:</div>
+<div class="prompt input_prompt">In&nbsp;[102]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">suite</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestLoader</span><span class="p">()</span><span class="o">.</span><span class="n">loadTestsFromTestCase</span><span class="p">(</span><span class="n">CharacterTestClass</span><span class="p">)</span>
 <span class="n">unittest</span><span class="o">.</span><span class="n">TextTestRunner</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">suite</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>test_calls_to_castle (__main__.CharacterTestClass) ... ok
 test_castle_with_more_bosses (__main__.CharacterTestClass) ... ok
@@ -13573,68 +13764,86 @@ OK
 </pre>
 </div>
 </div>
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[102]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;unittest.runner.TextTestResult run=9 errors=0 failures=0&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [103]:</div>
+<div class="prompt input_prompt">In&nbsp;[103]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">CharacterCastleTestClass</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-    <span class="sd">""" Defines the tests for the Character and Castle class together """</span>
-    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="vm">__name__</span><span class="o">+</span><span class="s1">'.Castle'</span><span class="p">)</span>
-    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="vm">__name__</span><span class="o">+</span><span class="s1">'.Character'</span><span class="p">)</span>
+    <span class="sd">&quot;&quot;&quot; Defines the tests for the Character and Castle class together &quot;&quot;&quot;</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="vm">__name__</span><span class="o">+</span><span class="s1">&#39;.Castle&#39;</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="vm">__name__</span><span class="o">+</span><span class="s1">&#39;.Character&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_mock_castle_and_character</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">MockCharacter</span><span class="p">,</span> <span class="n">MockCastle</span><span class="p">):</span>
         <span class="c1"># Note the order of the arguments of this test</span>
-        <span class="n">MockCastle</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'Mocked Castle'</span>
-        <span class="n">MockCharacter</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">'Mocked Character'</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Castle</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">'Mocked Castle'</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Character</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">'Mocked Character'</span><span class="p">)</span>
+        <span class="n">MockCastle</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Mocked Castle&#39;</span>
+        <span class="n">MockCharacter</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Mocked Character&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Castle</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;Mocked Castle&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Character</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;Mocked Character&#39;</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">test_fake_powerup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">character</span> <span class="o">=</span> <span class="n">Character</span><span class="p">(</span><span class="s2">"Sentinel Character"</span><span class="p">)</span>
+        <span class="n">character</span> <span class="o">=</span> <span class="n">Character</span><span class="p">(</span><span class="s2">&quot;Sentinel Character&quot;</span><span class="p">)</span>
         <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
         <span class="n">character</span><span class="o">.</span><span class="n">powerup</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">sentinel</span><span class="o">.</span><span class="n">fake_superpower</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">character</span><span class="o">.</span><span class="n">powerup</span><span class="p">(),</span> <span class="n">mock</span><span class="o">.</span><span class="n">sentinel</span><span class="o">.</span><span class="n">fake_superpower</span><span class="p">)</span>
         
     <span class="k">def</span> <span class="nf">test_castle_with_more_powerups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">(</span><span class="s1">'Beautiful Castle'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">(</span><span class="s1">&#39;Beautiful Castle&#39;</span><span class="p">)</span>
         <span class="n">multi_characters</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
         <span class="c1"># Set a list as side_effect for the get_boss method</span>
-        <span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"mushroom"</span><span class="p">,</span> <span class="s2">"star"</span><span class="p">]</span>
+        <span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;mushroom&quot;</span><span class="p">,</span> <span class="s2">&quot;star&quot;</span><span class="p">]</span>
         <span class="c1"># First value is mushroom</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">(),</span> <span class="s2">"mushroom"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">(),</span> <span class="s2">&quot;mushroom&quot;</span><span class="p">)</span>
         <span class="c1"># Second value is star</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">(),</span> <span class="s2">"star"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">(),</span> <span class="s2">&quot;star&quot;</span><span class="p">)</span>
         <span class="c1"># Third value does not exist and raises a StopIteration</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">StopIteration</span><span class="p">,</span> <span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [104]:</div>
+<div class="prompt input_prompt">In&nbsp;[104]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">suite</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestLoader</span><span class="p">()</span><span class="o">.</span><span class="n">loadTestsFromTestCase</span><span class="p">(</span><span class="n">CharacterCastleTestClass</span><span class="p">)</span>
 <span class="n">unittest</span><span class="o">.</span><span class="n">TextTestRunner</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">suite</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>test_castle_with_more_powerups (__main__.CharacterCastleTestClass) ... ok
 test_fake_powerup (__main__.CharacterCastleTestClass) ... ok
@@ -13647,15 +13856,26 @@ OK
 </pre>
 </div>
 </div>
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[104]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;unittest.runner.TextTestResult run=3 errors=0 failures=0&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');

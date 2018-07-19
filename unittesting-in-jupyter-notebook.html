@@ -12836,7 +12836,8 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Example---Unittesting">Example - Unittesting<a class="anchor-link" href="#Example---Unittesting">¶</a></h1><p>In this example I show how to run a unittest within your Jupyter Notebook with two simple classes.</p>
+<h1 id="Example---Unittesting">Example - Unittesting<a class="anchor-link" href="#Example---Unittesting">&#182;</a></h1><p>In this example I show how to run a unittest within your Jupyter Notebook with two simple classes.</p>
+
 </div>
 </div>
 </div>
@@ -12844,23 +12845,24 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Create-two-classes">Create two classes<a class="anchor-link" href="#Create-two-classes">¶</a></h2><h3 id="Castle-class">Castle class<a class="anchor-link" href="#Castle-class">¶</a></h3><p>The important method for the castle is the access method. It will grant access when the character has the powerup 'Super Mushroom'.</p>
+<h2 id="Create-two-classes">Create two classes<a class="anchor-link" href="#Create-two-classes">&#182;</a></h2><h3 id="Castle-class">Castle class<a class="anchor-link" href="#Castle-class">&#182;</a></h3><p>The important method for the castle is the access method. It will grant access when the character has the powerup 'Super Mushroom'.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">class</span> <span class="nc">Castle</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_boss</span> <span class="o">=</span> <span class="s1">'Bowser'</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span> <span class="o">=</span> <span class="s1">'Grass Land'</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_boss</span> <span class="o">=</span> <span class="s1">&#39;Bowser&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span> <span class="o">=</span> <span class="s1">&#39;Grass Land&#39;</span>
 
     <span class="k">def</span> <span class="nf">access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">==</span> <span class="s1">'Super Mushroom'</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">==</span> <span class="s1">&#39;Super Mushroom&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
@@ -12871,27 +12873,30 @@ h6:hover .anchor-link {
     <span class="k">def</span> <span class="nf">get_world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Character-class">Character class<a class="anchor-link" href="#Character-class">¶</a></h3><p>By default the powerup of a character is empty.</p>
+<h3 id="Character-class">Character class<a class="anchor-link" href="#Character-class">&#182;</a></h3><p>By default the powerup of a character is empty.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">class</span> <span class="nc">Character</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">''</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
 
     <span class="k">def</span> <span class="nf">powerup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">powerup</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="n">powerup</span>
@@ -12899,84 +12904,96 @@ h6:hover .anchor-link {
     <span class="k">def</span> <span class="nf">get_powerup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">powerup</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Create-a-test-class">Create a test class<a class="anchor-link" href="#Create-a-test-class">¶</a></h2><p>We will create two characters and test that only the right powerup gives access to the castle.</p>
+<h2 id="Create-a-test-class">Create a test class<a class="anchor-link" href="#Create-a-test-class">&#182;</a></h2><p>We will create two characters and test that only the right powerup gives access to the castle.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
 
 <span class="k">class</span> <span class="nc">CharacterTestClass</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
-    <span class="sd">""" Defines the tests for the Character class """</span>
+    <span class="sd">&quot;&quot;&quot; Defines the tests for the Character class &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" Set the castle for the test cases """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">(</span><span class="s1">'Bowsers Castle'</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot; Set the castle for the test cases &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">(</span><span class="s1">&#39;Bowsers Castle&#39;</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">test_default_cannot_access</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" Default can not access """</span>
-        <span class="n">default</span> <span class="o">=</span> <span class="n">Character</span><span class="p">(</span><span class="s1">'Default'</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot; Default can not access &quot;&quot;&quot;</span>
+        <span class="n">default</span> <span class="o">=</span> <span class="n">Character</span><span class="p">(</span><span class="s1">&#39;Default&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">default</span><span class="p">))</span>
     
     <span class="k">def</span> <span class="nf">test_mario_cannot_access</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" Mario cannot access """</span>
-        <span class="n">mario</span> <span class="o">=</span> <span class="n">Character</span><span class="p">(</span><span class="s1">'Mario'</span><span class="p">)</span>
-        <span class="n">mario</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">'Starman'</span>
+        <span class="sd">&quot;&quot;&quot; Mario cannot access &quot;&quot;&quot;</span>
+        <span class="n">mario</span> <span class="o">=</span> <span class="n">Character</span><span class="p">(</span><span class="s1">&#39;Mario&#39;</span><span class="p">)</span>
+        <span class="n">mario</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">&#39;Starman&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">mario</span><span class="p">))</span>
     
     <span class="k">def</span> <span class="nf">test_peach_can_access</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" Peach can access """</span>
-        <span class="n">peach</span> <span class="o">=</span> <span class="n">Character</span><span class="p">(</span><span class="s1">'Peach'</span><span class="p">)</span>
-        <span class="n">peach</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">'Super Mushroom'</span>
+        <span class="sd">&quot;&quot;&quot; Peach can access &quot;&quot;&quot;</span>
+        <span class="n">peach</span> <span class="o">=</span> <span class="n">Character</span><span class="p">(</span><span class="s1">&#39;Peach&#39;</span><span class="p">)</span>
+        <span class="n">peach</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">&#39;Super Mushroom&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">access</span><span class="p">(</span><span class="n">peach</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">test_default_castle_boss</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" Verifty the default boss is Bowser """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">"Bowser"</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot; Verifty the default boss is Bowser &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Bowser&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">test_default_castle_world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">""" Verify the default world is Grass Land """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">(),</span> <span class="s2">"Grass Land"</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot; Verify the default world is Grass Land &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">(),</span> <span class="s2">&quot;Grass Land&quot;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Run-the-test-suite">Run the test suite<a class="anchor-link" href="#Run-the-test-suite">¶</a></h2>
+<h2 id="Run-the-test-suite">Run the test suite<a class="anchor-link" href="#Run-the-test-suite">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">suite</span> <span class="o">=</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestLoader</span><span class="p">()</span><span class="o">.</span><span class="n">loadTestsFromTestCase</span><span class="p">(</span><span class="n">CharacterTestClass</span><span class="p">)</span>
 <span class="n">unittest</span><span class="o">.</span><span class="n">TextTestRunner</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">stream</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">suite</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>test_default_cannot_access (__main__.CharacterTestClass)
 Default can not access ... ok
@@ -12996,15 +13013,26 @@ OK
 </pre>
 </div>
 </div>
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;unittest.runner.TextTestResult run=5 errors=0 failures=0&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');

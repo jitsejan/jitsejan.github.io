@@ -12836,17 +12836,18 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="D3.js-and-Jupyter">D3.js and Jupyter<a class="anchor-link" href="#D3.js-and-Jupyter">¶</a></h1><p>A short description how to use D3.js in a Jupyter notebook.</p>
-<h2 id="Input-data">Input data<a class="anchor-link" href="#Input-data">¶</a></h2><p>Lets create a CSV file containing the amounts of 5 crypto currencies over a small period.</p>
+<h1 id="D3.js-and-Jupyter">D3.js and Jupyter<a class="anchor-link" href="#D3.js-and-Jupyter">&#182;</a></h1><p>A short description how to use D3.js in a Jupyter notebook.</p>
+<h2 id="Input-data">Input data<a class="anchor-link" href="#Input-data">&#182;</a></h2><p>Lets create a CSV file containing the amounts of 5 crypto currencies over a small period.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">csvstring</span> <span class="o">=</span> <span class="s2">"""</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">csvstring</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">Time;BTC;DOGE;ETH;LTC;REP</span>
 <span class="s2">2017-05-03 23:17;19,70;;78,88;20,81;</span>
 <span class="s2">2017-05-04 20:18;21,21;;90,45;24,91;</span>
@@ -12865,116 +12866,150 @@ h6:hover .anchor-link {
 <span class="s2">2017-05-16 20:25;23,12;15,68;88,54;24,19;31,36</span>
 <span class="s2">2017-05-17 22:01;24,00;19,26;86,28;24,50;30,62</span>
 <span class="s2">2017-05-18 23:45;24,84;21,05;94,93;27,93;32,62</span>
-<span class="s2">2017-05-19 22:01;25,59;21,98;118,55;27,03;33,62"""</span>
+<span class="s2">2017-05-19 22:01;25,59;21,98;118,55;27,03;33,62&quot;&quot;&quot;</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Write the CSV text fo a file.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$csvstring</span><span class="s2">"</span> &gt; wallet.csv
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span><span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$csvstring</span><span class="s2">&quot;</span> &gt; wallet.csv
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Check if the file exists.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>ls -la wallet.csv
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>-rw-rw-r-- 1 jitsejan jitsejan 833 Aug  2 10:38 wallet.csv
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Check the last entry of the CSV file.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>tail -n <span class="m">1</span> wallet.csv
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>2017-05-19 22:01;25,59;21,98;118,55;27,03;33,62
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Read the file into a dataframe.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">wallet_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'wallet.csv'</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">';'</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="s2">","</span><span class="p">)</span>
+<span class="n">wallet_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;wallet.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">decimal</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
 <span class="n">wallet_data</span> <span class="o">=</span> <span class="n">wallet_data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">wallet_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[5]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -12991,93 +13026,104 @@ h6:hover .anchor-link {
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Time</th>
-<th>BTC</th>
-<th>DOGE</th>
-<th>ETH</th>
-<th>LTC</th>
-<th>REP</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>2017-05-03 23:17</td>
-<td>19.70</td>
-<td>0.00</td>
-<td>78.88</td>
-<td>20.81</td>
-<td>0.0</td>
-</tr>
-<tr>
-<th>1</th>
-<td>2017-05-04 20:18</td>
-<td>21.21</td>
-<td>0.00</td>
-<td>90.45</td>
-<td>24.91</td>
-<td>0.0</td>
-</tr>
-<tr>
-<th>2</th>
-<td>2017-05-05 19:11</td>
-<td>20.10</td>
-<td>11.58</td>
-<td>91.73</td>
-<td>24.06</td>
-<td>0.0</td>
-</tr>
-<tr>
-<th>3</th>
-<td>2017-05-06 18:56</td>
-<td>20.28</td>
-<td>12.37</td>
-<td>92.78</td>
-<td>25.91</td>
-<td>0.0</td>
-</tr>
-<tr>
-<th>4</th>
-<td>2017-05-09 0:50</td>
-<td>21.77</td>
-<td>20.34</td>
-<td>89.27</td>
-<td>28.45</td>
-<td>0.0</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Time</th>
+      <th>BTC</th>
+      <th>DOGE</th>
+      <th>ETH</th>
+      <th>LTC</th>
+      <th>REP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2017-05-03 23:17</td>
+      <td>19.70</td>
+      <td>0.00</td>
+      <td>78.88</td>
+      <td>20.81</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2017-05-04 20:18</td>
+      <td>21.21</td>
+      <td>0.00</td>
+      <td>90.45</td>
+      <td>24.91</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2017-05-05 19:11</td>
+      <td>20.10</td>
+      <td>11.58</td>
+      <td>91.73</td>
+      <td>24.06</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2017-05-06 18:56</td>
+      <td>20.28</td>
+      <td>12.37</td>
+      <td>92.78</td>
+      <td>25.91</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2017-05-09 0:50</td>
+      <td>21.77</td>
+      <td>20.34</td>
+      <td>89.27</td>
+      <td>28.45</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Add a total column for the currency columns.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wallet_data</span><span class="p">[</span><span class="s1">'total'</span><span class="p">]</span> <span class="o">=</span> <span class="n">wallet_data</span><span class="o">.</span><span class="n">ix</span><span class="p">[:,</span> <span class="n">wallet_data</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s1">'Time'</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wallet_data</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wallet_data</span><span class="o">.</span><span class="n">ix</span><span class="p">[:,</span> <span class="n">wallet_data</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s1">&#39;Time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>/home/jitsejan/anaconda3/lib/python3.6/site-packages/ipykernel_launcher.py:1: DeprecationWarning: 
 .ix is deprecated. Please use
@@ -13086,27 +13132,37 @@ h6:hover .anchor-link {
 
 See the documentation here:
 http://pandas.pydata.org/pandas-docs/stable/indexing.html#deprecate_ix
-  """Entry point for launching an IPython kernel.
+  &#34;&#34;&#34;Entry point for launching an IPython kernel.
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wallet_data</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[7]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -13123,295 +13179,326 @@ http://pandas.pydata.org/pandas-docs/stable/indexing.html#deprecate_ix
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Time</th>
-<th>BTC</th>
-<th>DOGE</th>
-<th>ETH</th>
-<th>LTC</th>
-<th>REP</th>
-<th>total</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>2017-05-03 23:17</td>
-<td>19.70</td>
-<td>0.00</td>
-<td>78.88</td>
-<td>20.81</td>
-<td>0.00</td>
-<td>119.39</td>
-</tr>
-<tr>
-<th>1</th>
-<td>2017-05-04 20:18</td>
-<td>21.21</td>
-<td>0.00</td>
-<td>90.45</td>
-<td>24.91</td>
-<td>0.00</td>
-<td>136.57</td>
-</tr>
-<tr>
-<th>2</th>
-<td>2017-05-05 19:11</td>
-<td>20.10</td>
-<td>11.58</td>
-<td>91.73</td>
-<td>24.06</td>
-<td>0.00</td>
-<td>147.47</td>
-</tr>
-<tr>
-<th>3</th>
-<td>2017-05-06 18:56</td>
-<td>20.28</td>
-<td>12.37</td>
-<td>92.78</td>
-<td>25.91</td>
-<td>0.00</td>
-<td>151.34</td>
-</tr>
-<tr>
-<th>4</th>
-<td>2017-05-09 0:50</td>
-<td>21.77</td>
-<td>20.34</td>
-<td>89.27</td>
-<td>28.45</td>
-<td>0.00</td>
-<td>159.83</td>
-</tr>
-<tr>
-<th>5</th>
-<td>2017-05-09 2:15</td>
-<td>21.99</td>
-<td>20.58</td>
-<td>88.62</td>
-<td>28.49</td>
-<td>34.70</td>
-<td>194.38</td>
-</tr>
-<tr>
-<th>6</th>
-<td>2017-05-09 23:59</td>
-<td>22.46</td>
-<td>17.51</td>
-<td>87.45</td>
-<td>30.14</td>
-<td>32.45</td>
-<td>190.01</td>
-</tr>
-<tr>
-<th>7</th>
-<td>2017-05-11 0:57</td>
-<td>23.15</td>
-<td>18.83</td>
-<td>86.94</td>
-<td>32.18</td>
-<td>34.36</td>
-<td>195.46</td>
-</tr>
-<tr>
-<th>8</th>
-<td>2017-05-11 22:17</td>
-<td>24.17</td>
-<td>17.48</td>
-<td>87.87</td>
-<td>29.62</td>
-<td>34.36</td>
-<td>193.50</td>
-</tr>
-<tr>
-<th>9</th>
-<td>2017-05-12 1:55</td>
-<td>24.13</td>
-<td>17.99</td>
-<td>88.05</td>
-<td>30.02</td>
-<td>36.08</td>
-<td>196.27</td>
-</tr>
-<tr>
-<th>10</th>
-<td>2017-05-13 1:57</td>
-<td>22.41</td>
-<td>17.48</td>
-<td>85.25</td>
-<td>27.00</td>
-<td>33.72</td>
-<td>185.86</td>
-</tr>
-<tr>
-<th>11</th>
-<td>2017-05-14 15:32</td>
-<td>23.67</td>
-<td>17.04</td>
-<td>89.19</td>
-<td>28.90</td>
-<td>34.24</td>
-<td>193.04</td>
-</tr>
-<tr>
-<th>12</th>
-<td>2017-05-14 23:34</td>
-<td>23.47</td>
-<td>17.51</td>
-<td>88.60</td>
-<td>28.01</td>
-<td>33.72</td>
-<td>191.31</td>
-</tr>
-<tr>
-<th>13</th>
-<td>2017-05-15 22:12</td>
-<td>22.34</td>
-<td>16.16</td>
-<td>90.20</td>
-<td>24.43</td>
-<td>32.58</td>
-<td>185.71</td>
-</tr>
-<tr>
-<th>14</th>
-<td>2017-05-16 20:25</td>
-<td>23.12</td>
-<td>15.68</td>
-<td>88.54</td>
-<td>24.19</td>
-<td>31.36</td>
-<td>182.89</td>
-</tr>
-<tr>
-<th>15</th>
-<td>2017-05-17 22:01</td>
-<td>24.00</td>
-<td>19.26</td>
-<td>86.28</td>
-<td>24.50</td>
-<td>30.62</td>
-<td>184.66</td>
-</tr>
-<tr>
-<th>16</th>
-<td>2017-05-18 23:45</td>
-<td>24.84</td>
-<td>21.05</td>
-<td>94.93</td>
-<td>27.93</td>
-<td>32.62</td>
-<td>201.37</td>
-</tr>
-<tr>
-<th>17</th>
-<td>2017-05-19 22:01</td>
-<td>25.59</td>
-<td>21.98</td>
-<td>118.55</td>
-<td>27.03</td>
-<td>33.62</td>
-<td>226.77</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Time</th>
+      <th>BTC</th>
+      <th>DOGE</th>
+      <th>ETH</th>
+      <th>LTC</th>
+      <th>REP</th>
+      <th>total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2017-05-03 23:17</td>
+      <td>19.70</td>
+      <td>0.00</td>
+      <td>78.88</td>
+      <td>20.81</td>
+      <td>0.00</td>
+      <td>119.39</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2017-05-04 20:18</td>
+      <td>21.21</td>
+      <td>0.00</td>
+      <td>90.45</td>
+      <td>24.91</td>
+      <td>0.00</td>
+      <td>136.57</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2017-05-05 19:11</td>
+      <td>20.10</td>
+      <td>11.58</td>
+      <td>91.73</td>
+      <td>24.06</td>
+      <td>0.00</td>
+      <td>147.47</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2017-05-06 18:56</td>
+      <td>20.28</td>
+      <td>12.37</td>
+      <td>92.78</td>
+      <td>25.91</td>
+      <td>0.00</td>
+      <td>151.34</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2017-05-09 0:50</td>
+      <td>21.77</td>
+      <td>20.34</td>
+      <td>89.27</td>
+      <td>28.45</td>
+      <td>0.00</td>
+      <td>159.83</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2017-05-09 2:15</td>
+      <td>21.99</td>
+      <td>20.58</td>
+      <td>88.62</td>
+      <td>28.49</td>
+      <td>34.70</td>
+      <td>194.38</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2017-05-09 23:59</td>
+      <td>22.46</td>
+      <td>17.51</td>
+      <td>87.45</td>
+      <td>30.14</td>
+      <td>32.45</td>
+      <td>190.01</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2017-05-11 0:57</td>
+      <td>23.15</td>
+      <td>18.83</td>
+      <td>86.94</td>
+      <td>32.18</td>
+      <td>34.36</td>
+      <td>195.46</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2017-05-11 22:17</td>
+      <td>24.17</td>
+      <td>17.48</td>
+      <td>87.87</td>
+      <td>29.62</td>
+      <td>34.36</td>
+      <td>193.50</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2017-05-12 1:55</td>
+      <td>24.13</td>
+      <td>17.99</td>
+      <td>88.05</td>
+      <td>30.02</td>
+      <td>36.08</td>
+      <td>196.27</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2017-05-13 1:57</td>
+      <td>22.41</td>
+      <td>17.48</td>
+      <td>85.25</td>
+      <td>27.00</td>
+      <td>33.72</td>
+      <td>185.86</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2017-05-14 15:32</td>
+      <td>23.67</td>
+      <td>17.04</td>
+      <td>89.19</td>
+      <td>28.90</td>
+      <td>34.24</td>
+      <td>193.04</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2017-05-14 23:34</td>
+      <td>23.47</td>
+      <td>17.51</td>
+      <td>88.60</td>
+      <td>28.01</td>
+      <td>33.72</td>
+      <td>191.31</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>2017-05-15 22:12</td>
+      <td>22.34</td>
+      <td>16.16</td>
+      <td>90.20</td>
+      <td>24.43</td>
+      <td>32.58</td>
+      <td>185.71</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>2017-05-16 20:25</td>
+      <td>23.12</td>
+      <td>15.68</td>
+      <td>88.54</td>
+      <td>24.19</td>
+      <td>31.36</td>
+      <td>182.89</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>2017-05-17 22:01</td>
+      <td>24.00</td>
+      <td>19.26</td>
+      <td>86.28</td>
+      <td>24.50</td>
+      <td>30.62</td>
+      <td>184.66</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>2017-05-18 23:45</td>
+      <td>24.84</td>
+      <td>21.05</td>
+      <td>94.93</td>
+      <td>27.93</td>
+      <td>32.62</td>
+      <td>201.37</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>2017-05-19 22:01</td>
+      <td>25.59</td>
+      <td>21.98</td>
+      <td>118.55</td>
+      <td>27.03</td>
+      <td>33.62</td>
+      <td>226.77</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Convert the data to a dictionary that Javascript can use.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wallet_data</span> <span class="o">=</span> <span class="n">wallet_data</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">'records'</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wallet_data</span> <span class="o">=</span> <span class="n">wallet_data</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Attach the data to the current window by using Javascript.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Javascript</span>
-<span class="n">Javascript</span><span class="p">(</span><span class="s2">"""</span>
+<span class="n">Javascript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">           window.walletData=</span><span class="si">{}</span><span class="s2">;</span>
-<span class="s2">           """</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wallet_data</span><span class="p">))</span>
+<span class="s2">           &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wallet_data</span><span class="p">))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[9]:</div>
-<div id="63b5f670-401f-4d86-95c2-d453529ebc98"></div>
+
+
+
+
+
+<div id="4b8ac7d1-6ea1-468d-9778-cb3c19b1d0e4"></div>
 <div class="output_subarea output_javascript output_execute_result">
 <script type="text/javascript">
-var element = $('#63b5f670-401f-4d86-95c2-d453529ebc98');
+var element = $('#4b8ac7d1-6ea1-468d-9778-cb3c19b1d0e4');
 
            window.walletData=[{"Time":"2017-05-03 23:17","BTC":19.7,"DOGE":0.0,"ETH":78.88,"LTC":20.81,"REP":0.0,"total":119.39},{"Time":"2017-05-04 20:18","BTC":21.21,"DOGE":0.0,"ETH":90.45,"LTC":24.91,"REP":0.0,"total":136.57},{"Time":"2017-05-05 19:11","BTC":20.1,"DOGE":11.58,"ETH":91.73,"LTC":24.06,"REP":0.0,"total":147.47},{"Time":"2017-05-06 18:56","BTC":20.28,"DOGE":12.37,"ETH":92.78,"LTC":25.91,"REP":0.0,"total":151.34},{"Time":"2017-05-09 0:50","BTC":21.77,"DOGE":20.34,"ETH":89.27,"LTC":28.45,"REP":0.0,"total":159.83},{"Time":"2017-05-09 2:15","BTC":21.99,"DOGE":20.58,"ETH":88.62,"LTC":28.49,"REP":34.7,"total":194.38},{"Time":"2017-05-09 23:59","BTC":22.46,"DOGE":17.51,"ETH":87.45,"LTC":30.14,"REP":32.45,"total":190.01},{"Time":"2017-05-11 0:57","BTC":23.15,"DOGE":18.83,"ETH":86.94,"LTC":32.18,"REP":34.36,"total":195.46},{"Time":"2017-05-11 22:17","BTC":24.17,"DOGE":17.48,"ETH":87.87,"LTC":29.62,"REP":34.36,"total":193.5},{"Time":"2017-05-12 1:55","BTC":24.13,"DOGE":17.99,"ETH":88.05,"LTC":30.02,"REP":36.08,"total":196.27},{"Time":"2017-05-13 1:57","BTC":22.41,"DOGE":17.48,"ETH":85.25,"LTC":27.0,"REP":33.72,"total":185.86},{"Time":"2017-05-14 15:32","BTC":23.67,"DOGE":17.04,"ETH":89.19,"LTC":28.9,"REP":34.24,"total":193.04},{"Time":"2017-05-14 23:34","BTC":23.47,"DOGE":17.51,"ETH":88.6,"LTC":28.01,"REP":33.72,"total":191.31},{"Time":"2017-05-15 22:12","BTC":22.34,"DOGE":16.16,"ETH":90.2,"LTC":24.43,"REP":32.58,"total":185.71},{"Time":"2017-05-16 20:25","BTC":23.12,"DOGE":15.68,"ETH":88.54,"LTC":24.19,"REP":31.36,"total":182.89},{"Time":"2017-05-17 22:01","BTC":24.0,"DOGE":19.26,"ETH":86.28,"LTC":24.5,"REP":30.62,"total":184.66},{"Time":"2017-05-18 23:45","BTC":24.84,"DOGE":21.05,"ETH":94.93,"LTC":27.93,"REP":32.62,"total":201.37},{"Time":"2017-05-19 22:01","BTC":25.59,"DOGE":21.98,"ETH":118.55,"LTC":27.03,"REP":33.62,"total":226.77}];
            
 </script>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Create-the-graph">Create the graph<a class="anchor-link" href="#Create-the-graph">¶</a></h2><p>First include the D3.js library.</p>
+<h2 id="Create-the-graph">Create the graph<a class="anchor-link" href="#Create-the-graph">&#182;</a></h2><p>First include the D3.js library.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
 <span class="nx">require</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
     <span class="nx">paths</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">d3</span><span class="o">:</span> <span class="s1">'//cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min'</span>
+        <span class="nx">d3</span><span class="o">:</span> <span class="s1">&#39;//cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min&#39;</span>
     <span class="p">}</span>
 <span class="p">});</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
-<div id="b9bf7d1a-3a1c-4d66-8ea9-34c5ba6d6ff8"></div>
+
+
+
+
+
+<div id="8c3d5887-d5cc-4523-b5dc-74448c772ed8"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#b9bf7d1a-3a1c-4d66-8ea9-34c5ba6d6ff8');
+var element = $('#8c3d5887-d5cc-4523-b5dc-74448c772ed8');
 require.config({
     paths: {
         d3: 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl'
@@ -13419,25 +13506,29 @@ require.config({
 });
 </script>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I copied the content of my <a href="https://gist.github.com/jqadrad/a58719d82741b1642a2061c071ae2375">gist</a> to recreate the graph inside this notebook. Use the HTML function of IPython to attach inline style to the page.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">HTML</span>
-<span class="n">HTML</span><span class="p">(</span><span class="s2">"""</span>
+<span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">&lt;style&gt;</span>
 <span class="s2">path { </span>
 <span class="s2">    stroke-width: 1;</span>
@@ -13460,16 +13551,25 @@ require.config({
 <span class="s2">    background-color: white;</span>
 <span class="s2">}</span>
 <span class="s2">&lt;/style&gt;</span>
-<span class="s2">"""</span><span class="p">)</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[11]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
+
 <style>
 path { 
     stroke-width: 1;
@@ -13492,52 +13592,57 @@ circle {
     background-color: white;
 }
 </style>
+
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Create the graph by retrieving the data from the window.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-<span class="nx">require</span><span class="p">([</span><span class="s1">'d3'</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">//a weird idempotency thing</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s2">"#chart1"</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#chart1&quot;</span><span class="p">).</span><span class="nx">remove</span><span class="p">();</span>
     <span class="c1">//create canvas</span>
-    <span class="nx">element</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">"&lt;svg id='chart1' width='960' height='500'&gt;&lt;/svg&gt;"</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">'svg'</span><span class="p">),</span>
+    <span class="nx">element</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;&lt;svg id=&#39;chart1&#39; width=&#39;960&#39; height=&#39;500&#39;&gt;&lt;/svg&gt;&quot;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">),</span>
         <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span>
             <span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span>
             <span class="nx">right</span><span class="o">:</span> <span class="mi">50</span><span class="p">,</span>
             <span class="nx">bottom</span><span class="o">:</span> <span class="mi">100</span><span class="p">,</span>
             <span class="nx">left</span><span class="o">:</span> <span class="mi">50</span>
         <span class="p">},</span>
-        <span class="nx">width</span> <span class="o">=</span> <span class="o">+</span><span class="nx">svg</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'width'</span><span class="p">)</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span>
-        <span class="nx">height</span> <span class="o">=</span> <span class="o">+</span><span class="nx">svg</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'height'</span><span class="p">)</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">,</span>
-        <span class="nx">g</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'g'</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'transform'</span><span class="p">,</span> <span class="s1">'translate('</span> <span class="o">+</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="s1">','</span> <span class="o">+</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="s1">')'</span><span class="p">);</span>
+        <span class="nx">width</span> <span class="o">=</span> <span class="o">+</span><span class="nx">svg</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span>
+        <span class="nx">height</span> <span class="o">=</span> <span class="o">+</span><span class="nx">svg</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">,</span>
+        <span class="nx">g</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="s1">&#39;translate(&#39;</span> <span class="o">+</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">);</span>
     <span class="c1">// Graph title</span>
-    <span class="nx">g</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">'text'</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'x'</span><span class="p">,</span> <span class="p">(</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'y'</span><span class="p">,</span> <span class="mi">0</span> <span class="o">-</span> <span class="p">(</span><span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">/</span> <span class="mi">3</span><span class="p">))</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'text-anchor'</span><span class="p">,</span> <span class="s1">'middle'</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s1">'font-size'</span><span class="p">,</span> <span class="s1">'16px'</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">'Wallet chart'</span><span class="p">);</span>
+    <span class="nx">g</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">0</span> <span class="o">-</span> <span class="p">(</span><span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">/</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;text-anchor&#39;</span><span class="p">,</span> <span class="s1">&#39;middle&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s1">&#39;font-size&#39;</span><span class="p">,</span> <span class="s1">&#39;16px&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Wallet chart&#39;</span><span class="p">);</span>
 
     <span class="c1">// Function to convert a string into a time</span>
-    <span class="kd">var</span> <span class="nx">parseTime</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s1">'%Y-%m-%d %H:%M'</span><span class="p">).</span><span class="nx">parse</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">parseTime</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;%Y-%m-%d %H:%M&#39;</span><span class="p">).</span><span class="nx">parse</span><span class="p">;</span>
     <span class="c1">// Function to show specific time format</span>
-    <span class="kd">var</span> <span class="nx">formatTime</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s1">'%e %B'</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">formatTime</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;%e %B&#39;</span><span class="p">);</span>
     <span class="c1">// Set data</span>
     <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">walletData</span><span class="p">;</span>
     <span class="nx">data</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
@@ -13551,12 +13656,12 @@ circle {
     <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scale</span><span class="p">.</span><span class="nx">category10</span><span class="p">();</span>
     <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">svg</span><span class="p">.</span><span class="nx">axis</span><span class="p">()</span>
         <span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">orient</span><span class="p">(</span><span class="s2">"bottom"</span><span class="p">);</span>
+        <span class="p">.</span><span class="nx">orient</span><span class="p">(</span><span class="s2">&quot;bottom&quot;</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">svg</span><span class="p">.</span><span class="nx">axis</span><span class="p">()</span>
         <span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">orient</span><span class="p">(</span><span class="s2">"left"</span><span class="p">);</span>
+        <span class="p">.</span><span class="nx">orient</span><span class="p">(</span><span class="s2">&quot;left&quot;</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">line</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">svg</span><span class="p">.</span><span class="nx">line</span><span class="p">()</span>
-        <span class="c1">// .interpolate("basis")</span>
+        <span class="c1">// .interpolate(&quot;basis&quot;)</span>
         <span class="p">.</span><span class="nx">x</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">date</span><span class="p">);</span>
         <span class="p">})</span>
@@ -13564,7 +13669,7 @@ circle {
             <span class="k">return</span> <span class="nx">y</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">worth</span><span class="p">);</span>
         <span class="p">});</span>
     <span class="nx">color</span><span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]).</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">key</span> <span class="o">!==</span> <span class="s2">"Time"</span> <span class="o">&amp;&amp;</span> <span class="nx">key</span> <span class="o">!==</span> <span class="s2">"date"</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nx">key</span> <span class="o">!==</span> <span class="s2">&quot;Time&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">key</span> <span class="o">!==</span> <span class="s2">&quot;date&quot;</span><span class="p">;</span>
     <span class="p">}));</span>
     <span class="kd">var</span> <span class="nx">currencies</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">domain</span><span class="p">().</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">{</span>
@@ -13595,86 +13700,96 @@ circle {
         <span class="p">})</span>
     <span class="p">]);</span>
     <span class="c1">// Set the X axis</span>
-    <span class="nx">g</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">"g"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"class"</span><span class="p">,</span> <span class="s2">"x axis"</span><span class="p">)</span>
-        <span class="c1">//         .attr("fill", "none")</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"transform"</span><span class="p">,</span> <span class="s2">"translate(0,"</span> <span class="o">+</span> <span class="nx">height</span> <span class="o">+</span> <span class="s2">")"</span><span class="p">)</span>
+    <span class="nx">g</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;x axis&quot;</span><span class="p">)</span>
+        <span class="c1">//         .attr(&quot;fill&quot;, &quot;none&quot;)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="nx">height</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">);</span>
     <span class="c1">// Set the Y axis</span>
-    <span class="nx">g</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">"g"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"class"</span><span class="p">,</span> <span class="s2">"y axis"</span><span class="p">)</span>
+    <span class="nx">g</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;y axis&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">yAxis</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">"text"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"transform"</span><span class="p">,</span> <span class="s2">"rotate(-90)"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"y"</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"dy"</span><span class="p">,</span> <span class="s2">".71em"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">"text-anchor"</span><span class="p">,</span> <span class="s2">"end"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">"Value (USD)"</span><span class="p">);</span>
+        <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;rotate(-90)&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;dy&quot;</span><span class="p">,</span> <span class="s2">&quot;.71em&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;text-anchor&quot;</span><span class="p">,</span> <span class="s2">&quot;end&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;Value (USD)&quot;</span><span class="p">);</span>
     <span class="c1">// Draw the lines</span>
-    <span class="kd">var</span> <span class="nx">currency</span> <span class="o">=</span> <span class="nx">g</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">".currency"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">currency</span> <span class="o">=</span> <span class="nx">g</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;.currency&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">currencies</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">enter</span><span class="p">().</span><span class="nx">append</span><span class="p">(</span><span class="s2">"g"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"class"</span><span class="p">,</span> <span class="s2">"currency"</span><span class="p">);</span>
+        <span class="p">.</span><span class="nx">enter</span><span class="p">().</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;currency&quot;</span><span class="p">);</span>
 
-    <span class="nx">currency</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">"path"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"class"</span><span class="p">,</span> <span class="s2">"line"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"fill"</span><span class="p">,</span> <span class="s2">"none"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"d"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">currency</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;line&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nx">line</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">values</span><span class="p">);</span>
         <span class="p">})</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">"stroke"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nx">color</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
         <span class="p">});</span>
 
     <span class="c1">// Add the circles</span>
-    <span class="nx">currency</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">"g"</span><span class="p">).</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">"circle"</span><span class="p">)</span>
+    <span class="nx">currency</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">).</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">values</span>
         <span class="p">})</span>
         <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
-        <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">"circle"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"r"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"cx"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dd</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dd</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nx">x</span><span class="p">(</span><span class="nx">dd</span><span class="p">.</span><span class="nx">date</span><span class="p">)</span>
         <span class="p">})</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"cy"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dd</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dd</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nx">y</span><span class="p">(</span><span class="nx">dd</span><span class="p">.</span><span class="nx">worth</span><span class="p">)</span>
         <span class="p">})</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"fill"</span><span class="p">,</span> <span class="s2">"none"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"stroke"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nx">color</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">__data__</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
         <span class="p">});</span>
     <span class="c1">// Add label to the end of the line</span>
-    <span class="nx">currency</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">"text"</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"class"</span><span class="p">,</span> <span class="s2">"label"</span><span class="p">)</span>
+    <span class="nx">currency</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">datum</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="p">{</span>
                 <span class="nx">name</span><span class="o">:</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
                 <span class="nx">value</span><span class="o">:</span> <span class="nx">d</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
             <span class="p">};</span>
         <span class="p">})</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"transform"</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="s2">"translate("</span> <span class="o">+</span> <span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">date</span><span class="p">)</span> <span class="o">+</span> <span class="s2">","</span> <span class="o">+</span> <span class="nx">y</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">worth</span><span class="p">)</span> <span class="o">+</span> <span class="s2">")"</span><span class="p">;</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s2">&quot;translate(&quot;</span> <span class="o">+</span> <span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">date</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span> <span class="o">+</span> <span class="nx">y</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">worth</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">;</span>
         <span class="p">})</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"x"</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">"dy"</span><span class="p">,</span> <span class="s2">".35em"</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;dy&quot;</span><span class="p">,</span> <span class="s2">&quot;.35em&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
         <span class="p">});</span>
     
 <span class="p">});</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
-<div id="fb4c49bc-cc33-434b-a113-1852abf2f8ad"></div>
+
+
+
+
+
+<div id="dd7f5342-492c-4b29-9e35-e005ec1a1c6d"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#fb4c49bc-cc33-434b-a113-1852abf2f8ad');
+var element = $('#dd7f5342-492c-4b29-9e35-e005ec1a1c6d');
 require(['d3'], function(d3) {
     //a weird idempotency thing
     $("#chart1").remove();
@@ -13829,10 +13944,15 @@ require(['d3'], function(d3) {
 });
 </script>
 </div>
+
+</div>
+
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');

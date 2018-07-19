@@ -12839,48 +12839,61 @@ h6:hover .anchor-link {
 <p>This notebook makes use of the <a href="https://scrapy.org">Scrapy</a> library to scrape data from a website. Following the basic example, we create a QuotesSpider and call the CrawlerProcess with this spider to retrieve quotes from <a href="http://quotes.toscrape.com">http://quotes.toscrape.com</a>.</p>
 <p>In this notebook two pipelines are defined, both writing results to a JSON file. The first option is to create a separate class that defines the pipeline and explicitly has the functions to write to a file per found item. It enables more flexibility when dealing with stranger data formats, or if you want to setup a custom way of writing items to file. The pipeline is set in the custom_settings parameter ITEM_PIPELINES inside the QuoteSpider class. However, I simply want to write the list of items that are found in the spider to a JSON file and therefor it is easier to choose the second option, where only the FEED_FORMAT has to be set to JSON and the output file needs to be defined in FEED_URI inside the custom settings of the spider. No additional classes or definitions need to be created, making the FEED_FORMAT/FEED_URI a convenient option.</p>
 <p>Once the quotes are retrieved the JSON file will be created on disk and can be loaded to a Pandas dataframe. This dataframe can then be analyzed, modified and be used for further processing. This notebook simply loads the JSON file to a dataframe and writes it again to a pickle.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Settings for notebook</span>
 <span class="kn">from</span> <span class="nn">IPython.core.interactiveshell</span> <span class="k">import</span> <span class="n">InteractiveShell</span>
-<span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s2">"all"</span>
+<span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>
 <span class="c1"># Show Python version</span>
 <span class="kn">import</span> <span class="nn">platform</span>
 <span class="n">platform</span><span class="o">.</span><span class="n">python_version</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[1]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>'3.6.1'</pre>
+<pre>&#39;3.6.1&#39;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Import-Scrapy">Import Scrapy<a class="anchor-link" href="#Import-Scrapy">¶</a></h3>
+<h3 id="Import-Scrapy">Import Scrapy<a class="anchor-link" href="#Import-Scrapy">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">scrapy</span>
 <span class="k">except</span><span class="p">:</span>
@@ -12888,224 +12901,285 @@ h6:hover .anchor-link {
     <span class="kn">import</span> <span class="nn">scrapy</span>
 <span class="kn">from</span> <span class="nn">scrapy.crawler</span> <span class="k">import</span> <span class="n">CrawlerProcess</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Setup-a-pipeline">Setup a pipeline<a class="anchor-link" href="#Setup-a-pipeline">¶</a></h3><p>This class creates a simple pipeline that writes all found items to a JSON file, where each line contains one JSON element.</p>
+<h3 id="Setup-a-pipeline">Setup a pipeline<a class="anchor-link" href="#Setup-a-pipeline">&#182;</a></h3><p>This class creates a simple pipeline that writes all found items to a JSON file, where each line contains one JSON element.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
 
 <span class="k">class</span> <span class="nc">JsonWriterPipeline</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">open_spider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'quoteresult.jl'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;quoteresult.jl&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">close_spider</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">process_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">item</span><span class="p">))</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">item</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">item</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Define-the-spider">Define the spider<a class="anchor-link" href="#Define-the-spider">¶</a></h3><p>The QuotesSpider class defines from which URLs to start crawling and which values to retrieve. I set the logging level of the crawler to warning, otherwise the notebook is overloaded with DEBUG messages about the retrieved data.</p>
+<h3 id="Define-the-spider">Define the spider<a class="anchor-link" href="#Define-the-spider">&#182;</a></h3><p>The QuotesSpider class defines from which URLs to start crawling and which values to retrieve. I set the logging level of the crawler to warning, otherwise the notebook is overloaded with DEBUG messages about the retrieved data.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="k">class</span> <span class="nc">QuotesSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">"quotes"</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;quotes&quot;</span>
     <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">'http://quotes.toscrape.com/page/1/'</span><span class="p">,</span>
-        <span class="s1">'http://quotes.toscrape.com/page/2/'</span><span class="p">,</span>
+        <span class="s1">&#39;http://quotes.toscrape.com/page/1/&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;http://quotes.toscrape.com/page/2/&#39;</span><span class="p">,</span>
     <span class="p">]</span>
     <span class="n">custom_settings</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">'LOG_LEVEL'</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">,</span>
-        <span class="s1">'ITEM_PIPELINES'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'__main__.JsonWriterPipeline'</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="c1"># Used for pipeline 1</span>
-        <span class="s1">'FEED_FORMAT'</span><span class="p">:</span><span class="s1">'json'</span><span class="p">,</span>                                 <span class="c1"># Used for pipeline 2</span>
-        <span class="s1">'FEED_URI'</span><span class="p">:</span> <span class="s1">'quoteresult.json'</span>                        <span class="c1"># Used for pipeline 2</span>
+        <span class="s1">&#39;LOG_LEVEL&#39;</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">,</span>
+        <span class="s1">&#39;ITEM_PIPELINES&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;__main__.JsonWriterPipeline&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="c1"># Used for pipeline 1</span>
+        <span class="s1">&#39;FEED_FORMAT&#39;</span><span class="p">:</span><span class="s1">&#39;json&#39;</span><span class="p">,</span>                                 <span class="c1"># Used for pipeline 2</span>
+        <span class="s1">&#39;FEED_URI&#39;</span><span class="p">:</span> <span class="s1">&#39;quoteresult.json&#39;</span>                        <span class="c1"># Used for pipeline 2</span>
     <span class="p">}</span>
     
     <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">quote</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">'div.quote'</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">quote</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;div.quote&#39;</span><span class="p">):</span>
             <span class="k">yield</span> <span class="p">{</span>
-                <span class="s1">'text'</span><span class="p">:</span> <span class="n">quote</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">'span.text::text'</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">(),</span>
-                <span class="s1">'author'</span><span class="p">:</span> <span class="n">quote</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">'span small::text'</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">(),</span>
-                <span class="s1">'tags'</span><span class="p">:</span> <span class="n">quote</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">'div.tags a.tag::text'</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">(),</span>
+                <span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">quote</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;span.text::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">(),</span>
+                <span class="s1">&#39;author&#39;</span><span class="p">:</span> <span class="n">quote</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;span small::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">(),</span>
+                <span class="s1">&#39;tags&#39;</span><span class="p">:</span> <span class="n">quote</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;div.tags a.tag::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">(),</span>
             <span class="p">}</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Start-the-crawler">Start the crawler<a class="anchor-link" href="#Start-the-crawler">¶</a></h3>
+<h3 id="Start-the-crawler">Start the crawler<a class="anchor-link" href="#Start-the-crawler">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">CrawlerProcess</span><span class="p">({</span>
-    <span class="s1">'USER_AGENT'</span><span class="p">:</span> <span class="s1">'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'</span>
+    <span class="s1">&#39;USER_AGENT&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)&#39;</span>
 <span class="p">})</span>
 
 <span class="n">process</span><span class="o">.</span><span class="n">crawl</span><span class="p">(</span><span class="n">QuotesSpider</span><span class="p">)</span>
 <span class="n">process</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>2017-08-02 15:22:02 [scrapy.utils.log] INFO: Scrapy 1.4.0 started (bot: scrapybot)
-2017-08-02 15:22:02 [scrapy.utils.log] INFO: Overridden settings: {'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'}
+2017-08-02 15:22:02 [scrapy.utils.log] INFO: Overridden settings: {&#39;USER_AGENT&#39;: &#39;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)&#39;}
 </pre>
 </div>
 </div>
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;Deferred at 0x7f8b9a41c7b8&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Check-the-files">Check the files<a class="anchor-link" href="#Check-the-files">¶</a></h3><p>Verify that the files has been created on disk. As we can observe the files are both created and have data. The .jl file has line separated JSON elements, while the .json file has one big JSON array containing all the quotes.</p>
+<h3 id="Check-the-files">Check the files<a class="anchor-link" href="#Check-the-files">&#182;</a></h3><p>Verify that the files has been created on disk. As we can observe the files are both created and have data. The .jl file has line separated JSON elements, while the .json file has one big JSON array containing all the quotes.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ll</span> <span class="n">quoteresult</span><span class="o">.*</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>-rw-rw-r-- 1 jitsejan 5551 Aug  2 15:22 quoteresult.jl
 -rw-rw-r-- 1 jitsejan 5573 Aug  2 15:22 quoteresult.json
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>tail -n <span class="m">2</span> quoteresult.jl
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>{"text": "\u201cA woman is like a tea bag; you never know how strong it is until it's in hot water.\u201d", "author": "Eleanor Roosevelt", "tags": ["misattributed-eleanor-roosevelt"]}
-{"text": "\u201cA day without sunshine is like, you know, night.\u201d", "author": "Steve Martin", "tags": ["humor", "obvious", "simile"]}
+<pre>{&#34;text&#34;: &#34;\u201cA woman is like a tea bag; you never know how strong it is until it&#39;s in hot water.\u201d&#34;, &#34;author&#34;: &#34;Eleanor Roosevelt&#34;, &#34;tags&#34;: [&#34;misattributed-eleanor-roosevelt&#34;]}
+{&#34;text&#34;: &#34;\u201cA day without sunshine is like, you know, night.\u201d&#34;, &#34;author&#34;: &#34;Steve Martin&#34;, &#34;tags&#34;: [&#34;humor&#34;, &#34;obvious&#34;, &#34;simile&#34;]}
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>tail -n <span class="m">2</span> quoteresult.json
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>{"text": "\u201cA day without sunshine is like, you know, night.\u201d", "author": "Steve Martin", "tags": ["humor", "obvious", "simile"]}
+<pre>{&#34;text&#34;: &#34;\u201cA day without sunshine is like, you know, night.\u201d&#34;, &#34;author&#34;: &#34;Steve Martin&#34;, &#34;tags&#34;: [&#34;humor&#34;, &#34;obvious&#34;, &#34;simile&#34;]}
 ]</pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Create-dataframes">Create dataframes<a class="anchor-link" href="#Create-dataframes">¶</a></h3><p>Pandas can now be used to create dataframes and save the frames to pickles. The .sjon file can be loaded directly into a frame, whereas for the .jl file we need to specify the JSON objects are divided per line.</p>
+<h3 id="Create-dataframes">Create dataframes<a class="anchor-link" href="#Create-dataframes">&#182;</a></h3><p>Pandas can now be used to create dataframes and save the frames to pickles. The .sjon file can be loaded directly into a frame, whereas for the .jl file we need to specify the JSON objects are divided per line.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">dfjson</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">'quoteresult.json'</span><span class="p">)</span>
+<span class="n">dfjson</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">&#39;quoteresult.json&#39;</span><span class="p">)</span>
 <span class="n">dfjson</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[9]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -13122,158 +13196,169 @@ h6:hover .anchor-link {
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>author</th>
-<th>tags</th>
-<th>text</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>Marilyn Monroe</td>
-<td>[friends, heartbreak, inspirational, life, lov...</td>
-<td>“This life is what you make it. No matter what...</td>
-</tr>
-<tr>
-<th>1</th>
-<td>J.K. Rowling</td>
-<td>[courage, friends]</td>
-<td>“It takes a great deal of bravery to stand up ...</td>
-</tr>
-<tr>
-<th>2</th>
-<td>Albert Einstein</td>
-<td>[simplicity, understand]</td>
-<td>“If you can't explain it to a six year old, yo...</td>
-</tr>
-<tr>
-<th>3</th>
-<td>Bob Marley</td>
-<td>[love]</td>
-<td>“You may not be her first, her last, or her on...</td>
-</tr>
-<tr>
-<th>4</th>
-<td>Dr. Seuss</td>
-<td>[fantasy]</td>
-<td>“I like nonsense, it wakes up the brain cells....</td>
-</tr>
-<tr>
-<th>5</th>
-<td>Douglas Adams</td>
-<td>[life, navigation]</td>
-<td>“I may not have gone where I intended to go, b...</td>
-</tr>
-<tr>
-<th>6</th>
-<td>Elie Wiesel</td>
-<td>[activism, apathy, hate, indifference, inspira...</td>
-<td>“The opposite of love is not hate, it's indiff...</td>
-</tr>
-<tr>
-<th>7</th>
-<td>Friedrich Nietzsche</td>
-<td>[friendship, lack-of-friendship, lack-of-love,...</td>
-<td>“It is not a lack of love, but a lack of frien...</td>
-</tr>
-<tr>
-<th>8</th>
-<td>Mark Twain</td>
-<td>[books, contentment, friends, friendship, life]</td>
-<td>“Good friends, good books, and a sleepy consci...</td>
-</tr>
-<tr>
-<th>9</th>
-<td>Allen Saunders</td>
-<td>[fate, life, misattributed-john-lennon, planni...</td>
-<td>“Life is what happens to us while we are makin...</td>
-</tr>
-<tr>
-<th>10</th>
-<td>Albert Einstein</td>
-<td>[change, deep-thoughts, thinking, world]</td>
-<td>“The world as we have created it is a process ...</td>
-</tr>
-<tr>
-<th>11</th>
-<td>J.K. Rowling</td>
-<td>[abilities, choices]</td>
-<td>“It is our choices, Harry, that show what we t...</td>
-</tr>
-<tr>
-<th>12</th>
-<td>Albert Einstein</td>
-<td>[inspirational, life, live, miracle, miracles]</td>
-<td>“There are only two ways to live your life. On...</td>
-</tr>
-<tr>
-<th>13</th>
-<td>Jane Austen</td>
-<td>[aliteracy, books, classic, humor]</td>
-<td>“The person, be it gentleman or lady, who has ...</td>
-</tr>
-<tr>
-<th>14</th>
-<td>Marilyn Monroe</td>
-<td>[be-yourself, inspirational]</td>
-<td>“Imperfection is beauty, madness is genius and...</td>
-</tr>
-<tr>
-<th>15</th>
-<td>Albert Einstein</td>
-<td>[adulthood, success, value]</td>
-<td>“Try not to become a man of success. Rather be...</td>
-</tr>
-<tr>
-<th>16</th>
-<td>André Gide</td>
-<td>[life, love]</td>
-<td>“It is better to be hated for what you are tha...</td>
-</tr>
-<tr>
-<th>17</th>
-<td>Thomas A. Edison</td>
-<td>[edison, failure, inspirational, paraphrased]</td>
-<td>“I have not failed. I've just found 10,000 way...</td>
-</tr>
-<tr>
-<th>18</th>
-<td>Eleanor Roosevelt</td>
-<td>[misattributed-eleanor-roosevelt]</td>
-<td>“A woman is like a tea bag; you never know how...</td>
-</tr>
-<tr>
-<th>19</th>
-<td>Steve Martin</td>
-<td>[humor, obvious, simile]</td>
-<td>“A day without sunshine is like, you know, nig...</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>author</th>
+      <th>tags</th>
+      <th>text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Marilyn Monroe</td>
+      <td>[friends, heartbreak, inspirational, life, lov...</td>
+      <td>“This life is what you make it. No matter what...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>J.K. Rowling</td>
+      <td>[courage, friends]</td>
+      <td>“It takes a great deal of bravery to stand up ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Albert Einstein</td>
+      <td>[simplicity, understand]</td>
+      <td>“If you can't explain it to a six year old, yo...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bob Marley</td>
+      <td>[love]</td>
+      <td>“You may not be her first, her last, or her on...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Dr. Seuss</td>
+      <td>[fantasy]</td>
+      <td>“I like nonsense, it wakes up the brain cells....</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Douglas Adams</td>
+      <td>[life, navigation]</td>
+      <td>“I may not have gone where I intended to go, b...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Elie Wiesel</td>
+      <td>[activism, apathy, hate, indifference, inspira...</td>
+      <td>“The opposite of love is not hate, it's indiff...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Friedrich Nietzsche</td>
+      <td>[friendship, lack-of-friendship, lack-of-love,...</td>
+      <td>“It is not a lack of love, but a lack of frien...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Mark Twain</td>
+      <td>[books, contentment, friends, friendship, life]</td>
+      <td>“Good friends, good books, and a sleepy consci...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Allen Saunders</td>
+      <td>[fate, life, misattributed-john-lennon, planni...</td>
+      <td>“Life is what happens to us while we are makin...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Albert Einstein</td>
+      <td>[change, deep-thoughts, thinking, world]</td>
+      <td>“The world as we have created it is a process ...</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>J.K. Rowling</td>
+      <td>[abilities, choices]</td>
+      <td>“It is our choices, Harry, that show what we t...</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Albert Einstein</td>
+      <td>[inspirational, life, live, miracle, miracles]</td>
+      <td>“There are only two ways to live your life. On...</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Jane Austen</td>
+      <td>[aliteracy, books, classic, humor]</td>
+      <td>“The person, be it gentleman or lady, who has ...</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Marilyn Monroe</td>
+      <td>[be-yourself, inspirational]</td>
+      <td>“Imperfection is beauty, madness is genius and...</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Albert Einstein</td>
+      <td>[adulthood, success, value]</td>
+      <td>“Try not to become a man of success. Rather be...</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>André Gide</td>
+      <td>[life, love]</td>
+      <td>“It is better to be hated for what you are tha...</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Thomas A. Edison</td>
+      <td>[edison, failure, inspirational, paraphrased]</td>
+      <td>“I have not failed. I've just found 10,000 way...</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Eleanor Roosevelt</td>
+      <td>[misattributed-eleanor-roosevelt]</td>
+      <td>“A woman is like a tea bag; you never know how...</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Steve Martin</td>
+      <td>[humor, obvious, simile]</td>
+      <td>“A day without sunshine is like, you know, nig...</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfjl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">'quoteresult.jl'</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfjl</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">&#39;quoteresult.jl&#39;</span><span class="p">,</span> <span class="n">lines</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">dfjl</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[10]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -13290,178 +13375,194 @@ h6:hover .anchor-link {
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>author</th>
-<th>tags</th>
-<th>text</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>Marilyn Monroe</td>
-<td>[friends, heartbreak, inspirational, life, lov...</td>
-<td>“This life is what you make it. No matter what...</td>
-</tr>
-<tr>
-<th>1</th>
-<td>J.K. Rowling</td>
-<td>[courage, friends]</td>
-<td>“It takes a great deal of bravery to stand up ...</td>
-</tr>
-<tr>
-<th>2</th>
-<td>Albert Einstein</td>
-<td>[simplicity, understand]</td>
-<td>“If you can't explain it to a six year old, yo...</td>
-</tr>
-<tr>
-<th>3</th>
-<td>Bob Marley</td>
-<td>[love]</td>
-<td>“You may not be her first, her last, or her on...</td>
-</tr>
-<tr>
-<th>4</th>
-<td>Dr. Seuss</td>
-<td>[fantasy]</td>
-<td>“I like nonsense, it wakes up the brain cells....</td>
-</tr>
-<tr>
-<th>5</th>
-<td>Douglas Adams</td>
-<td>[life, navigation]</td>
-<td>“I may not have gone where I intended to go, b...</td>
-</tr>
-<tr>
-<th>6</th>
-<td>Elie Wiesel</td>
-<td>[activism, apathy, hate, indifference, inspira...</td>
-<td>“The opposite of love is not hate, it's indiff...</td>
-</tr>
-<tr>
-<th>7</th>
-<td>Friedrich Nietzsche</td>
-<td>[friendship, lack-of-friendship, lack-of-love,...</td>
-<td>“It is not a lack of love, but a lack of frien...</td>
-</tr>
-<tr>
-<th>8</th>
-<td>Mark Twain</td>
-<td>[books, contentment, friends, friendship, life]</td>
-<td>“Good friends, good books, and a sleepy consci...</td>
-</tr>
-<tr>
-<th>9</th>
-<td>Allen Saunders</td>
-<td>[fate, life, misattributed-john-lennon, planni...</td>
-<td>“Life is what happens to us while we are makin...</td>
-</tr>
-<tr>
-<th>10</th>
-<td>Albert Einstein</td>
-<td>[change, deep-thoughts, thinking, world]</td>
-<td>“The world as we have created it is a process ...</td>
-</tr>
-<tr>
-<th>11</th>
-<td>J.K. Rowling</td>
-<td>[abilities, choices]</td>
-<td>“It is our choices, Harry, that show what we t...</td>
-</tr>
-<tr>
-<th>12</th>
-<td>Albert Einstein</td>
-<td>[inspirational, life, live, miracle, miracles]</td>
-<td>“There are only two ways to live your life. On...</td>
-</tr>
-<tr>
-<th>13</th>
-<td>Jane Austen</td>
-<td>[aliteracy, books, classic, humor]</td>
-<td>“The person, be it gentleman or lady, who has ...</td>
-</tr>
-<tr>
-<th>14</th>
-<td>Marilyn Monroe</td>
-<td>[be-yourself, inspirational]</td>
-<td>“Imperfection is beauty, madness is genius and...</td>
-</tr>
-<tr>
-<th>15</th>
-<td>Albert Einstein</td>
-<td>[adulthood, success, value]</td>
-<td>“Try not to become a man of success. Rather be...</td>
-</tr>
-<tr>
-<th>16</th>
-<td>André Gide</td>
-<td>[life, love]</td>
-<td>“It is better to be hated for what you are tha...</td>
-</tr>
-<tr>
-<th>17</th>
-<td>Thomas A. Edison</td>
-<td>[edison, failure, inspirational, paraphrased]</td>
-<td>“I have not failed. I've just found 10,000 way...</td>
-</tr>
-<tr>
-<th>18</th>
-<td>Eleanor Roosevelt</td>
-<td>[misattributed-eleanor-roosevelt]</td>
-<td>“A woman is like a tea bag; you never know how...</td>
-</tr>
-<tr>
-<th>19</th>
-<td>Steve Martin</td>
-<td>[humor, obvious, simile]</td>
-<td>“A day without sunshine is like, you know, nig...</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>author</th>
+      <th>tags</th>
+      <th>text</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Marilyn Monroe</td>
+      <td>[friends, heartbreak, inspirational, life, lov...</td>
+      <td>“This life is what you make it. No matter what...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>J.K. Rowling</td>
+      <td>[courage, friends]</td>
+      <td>“It takes a great deal of bravery to stand up ...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Albert Einstein</td>
+      <td>[simplicity, understand]</td>
+      <td>“If you can't explain it to a six year old, yo...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bob Marley</td>
+      <td>[love]</td>
+      <td>“You may not be her first, her last, or her on...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Dr. Seuss</td>
+      <td>[fantasy]</td>
+      <td>“I like nonsense, it wakes up the brain cells....</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Douglas Adams</td>
+      <td>[life, navigation]</td>
+      <td>“I may not have gone where I intended to go, b...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Elie Wiesel</td>
+      <td>[activism, apathy, hate, indifference, inspira...</td>
+      <td>“The opposite of love is not hate, it's indiff...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Friedrich Nietzsche</td>
+      <td>[friendship, lack-of-friendship, lack-of-love,...</td>
+      <td>“It is not a lack of love, but a lack of frien...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Mark Twain</td>
+      <td>[books, contentment, friends, friendship, life]</td>
+      <td>“Good friends, good books, and a sleepy consci...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Allen Saunders</td>
+      <td>[fate, life, misattributed-john-lennon, planni...</td>
+      <td>“Life is what happens to us while we are makin...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Albert Einstein</td>
+      <td>[change, deep-thoughts, thinking, world]</td>
+      <td>“The world as we have created it is a process ...</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>J.K. Rowling</td>
+      <td>[abilities, choices]</td>
+      <td>“It is our choices, Harry, that show what we t...</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Albert Einstein</td>
+      <td>[inspirational, life, live, miracle, miracles]</td>
+      <td>“There are only two ways to live your life. On...</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Jane Austen</td>
+      <td>[aliteracy, books, classic, humor]</td>
+      <td>“The person, be it gentleman or lady, who has ...</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Marilyn Monroe</td>
+      <td>[be-yourself, inspirational]</td>
+      <td>“Imperfection is beauty, madness is genius and...</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Albert Einstein</td>
+      <td>[adulthood, success, value]</td>
+      <td>“Try not to become a man of success. Rather be...</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>André Gide</td>
+      <td>[life, love]</td>
+      <td>“It is better to be hated for what you are tha...</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Thomas A. Edison</td>
+      <td>[edison, failure, inspirational, paraphrased]</td>
+      <td>“I have not failed. I've just found 10,000 way...</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Eleanor Roosevelt</td>
+      <td>[misattributed-eleanor-roosevelt]</td>
+      <td>“A woman is like a tea bag; you never know how...</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Steve Martin</td>
+      <td>[humor, obvious, simile]</td>
+      <td>“A day without sunshine is like, you know, nig...</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfjson</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">'quotejson.pickle'</span><span class="p">)</span>
-<span class="n">dfjl</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">'quotejl.pickle'</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfjson</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;quotejson.pickle&#39;</span><span class="p">)</span>
+<span class="n">dfjl</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;quotejl.pickle&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ll</span> <span class="o">*</span><span class="n">pickle</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>-rw-rw-r-- 1 jitsejan 5676 Aug  2 15:22 quotejl.pickle
 -rw-rw-r-- 1 jitsejan 5676 Aug  2 15:22 quotejson.pickle
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');

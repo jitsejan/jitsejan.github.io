@@ -11866,6 +11866,42 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="./using-pythons-pickle-to-save-and-load-variables.html">Using Pythons pickle to save and load variables</a></h2>
+      <time datetime="" title="2017-06-27T13:45:00+01:00" pubdate>Tue 27 June 2017</time>
+    </header>
+
+    <div class="article_content">
+        <p>Recently I was playing with some code that generated big dictionaries and had to manipulate these dictonaries
+several times. I used to save them via Pythons pandas to CSV and load them back from the CSV the next time 
+I was using my script. Luckily I found out an easier way to deal with saving and loading variables, namely by using <a href="https://wiki.python.org/moin/UsingPickle">Pickle</a>.</p>
+<h4>Import</h4>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+</pre></div>
+
+
+<h4>Saving</h4>
+<div class="highlight"><pre><span></span><span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">picklename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
+</pre></div>
+
+
+<h4>Loading</h4>
+<div class="highlight"><pre><span></span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="nb">open</span><span class="p">(</span> <span class="n">picklename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span> <span class="p">)</span> <span class="p">)</span>
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/pickle.html" class="tag">pickle</a>
+            <a href="./tag/tool.html" class="tag">tool</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./select-boxes-with-font-awesome.html">Fancy select boxes using FontAwesome</a></h2>
       <time datetime="" title="2017-06-20T23:21:00+01:00" pubdate>Tue 20 June 2017</time>
     </header>
@@ -11896,18 +11932,7 @@ jQuery(document).ready(function($) {
     </header>
 
     <div class="article_content">
-        
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="D3.js-and-Jupyter">D3.js and Jupyter<a class="anchor-link" href="#D3.js-and-Jupyter">¶</a></h1><p>A short description how to use D3.js in a Jupyter notebook.</p>
-<h2 id="Input-data">Input data<a class="anchor-link" href="#Input-data">¶</a></h2><p>Lets create a CSV file containing the amounts of 5 crypto currencies over a small period.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+        <p>A short description how to use D3.js in a Jupyter notebook.</p>
     </div>
     
     <div class="meta">
@@ -11988,21 +12013,7 @@ jQuery(document).ready(function($) {
     </header>
 
     <div class="article_content">
-        
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Ethereum---Web3">Ethereum - Web3<a class="anchor-link" href="#Ethereum---Web3">¶</a></h2><p>Similar to the RPC client, I will use the web3 API to make a transaction on my private blockchain.</p>
-<ul>
-<li><a href="http://web3py.readthedocs.io/en/latest/">Read The Docs</a></li>
-<li><a href="https://github.com/pipermerriam/web3.py">GitHub</a></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+        <p>Similar to the RPC client, I will use the web3 API to make a transaction on my private blockchain. I will probably move to develop in Javascript where web3 is the essential library to use for interacting with the blockchain. This way I can get familiar with its functionality.</p>
     </div>
     
     <div class="meta">
@@ -12030,17 +12041,7 @@ jQuery(document).ready(function($) {
     </header>
 
     <div class="article_content">
-        
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Ethereum---RPC-client">Ethereum - RPC client<a class="anchor-link" href="#Ethereum---RPC-client">¶</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+        <p>In this notebook I will try out the RPC client of Ethereum using Python. See <a href="https://github.com/ethereum/wiki/wiki/JSON-RPC">JSON RPC</a> for more information on JSON RPC.</p>
     </div>
     
     <div class="meta">
@@ -12143,53 +12144,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./r-in-notebook.html">Using R and Python together in a notebook</a></h2>
-      <time datetime="" title="2017-04-07T17:04:00+01:00" pubdate>Fri 07 April 2017</time>
-    </header>
-
-    <div class="article_content">
-        
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Installation">Installation<a class="anchor-link" href="#Installation">¶</a></h2><div class="highlight"><pre><span></span>$ sudo apt-get install python-rpy2
-$ conda install -c r r-essentials
-$ conda install -c r r-rjson
-$ pip install rpy2
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Load-the-magic">Load the magic<a class="anchor-link" href="#Load-the-magic">¶</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./r-in-notebook.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/notebook.html" class="tag">notebook</a>
-            <a href="./tag/r.html" class="tag">R</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12235,64 +12189,9 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/expressjs.html">
-            ExpressJS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
-            </a>
-        </li>
         <li class="tag-1">
             <a href="./tag/notebook.html">
             notebook
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/mapreduce.html">
-            mapreduce
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
             </a>
         </li>
         <li class="tag-3">
@@ -12301,13 +12200,23 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/django.html">
-            Django
+            <a href="./tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/mongodb.html">
+            MongoDB
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/virtualization.html">
-            virtualization
+            <a href="./tag/mapreduce.html">
+            mapreduce
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/pandas.html">
+            pandas
             </a>
         </li>
         <li class="tag-3">
@@ -12316,8 +12225,48 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/hadoop.html">
-            Hadoop
+            <a href="./tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/expressjs.html">
+            ExpressJS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/container.html">
+            container
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/python.html">
+            Python
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/django.html">
+            Django
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/docker.html">
+            Docker
             </a>
         </li>
         <li class="tag-2">
@@ -12325,14 +12274,19 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             ether
             </a>
         </li>
+        <li class="tag-2">
+            <a href="./tag/hadoop.html">
+            Hadoop
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
         <li class="tag-1">
             <a href="./tag/jupyter.html">
             Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
             </a>
         </li>
         </ul>

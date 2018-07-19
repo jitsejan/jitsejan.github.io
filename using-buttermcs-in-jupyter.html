@@ -12836,17 +12836,18 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="ButterCMS">ButterCMS<a class="anchor-link" href="#ButterCMS">¶</a></h1><h2 id="Goal">Goal<a class="anchor-link" href="#Goal">¶</a></h2><p>The goal of this notebook is to get myself familiar with ButterCMS, a headless CMS that can be easily integrated with any platform in any language. In the past I've experienced with Joomla, Drupal and WordPress (and Blogger long time ago), where I have <strike>lost</strike> invested a lot of time in simply getting the CMS in place, extending the CMS with more functionality and migrating data between servers. Since I am investigating different ways of using microservices, becoming less platform dependent and overall learning new tools, I use this notebook to show a simple example of ButterCMS in Jupyter.</p>
-<h2 id="About">About<a class="anchor-link" href="#About">¶</a></h2><center>
-<img src="http://files.jitsejan.com/logos/buttercms.PNG" width="150" />
+<h1 id="ButterCMS">ButterCMS<a class="anchor-link" href="#ButterCMS">&#182;</a></h1><h2 id="Goal">Goal<a class="anchor-link" href="#Goal">&#182;</a></h2><p>The goal of this notebook is to get myself familiar with ButterCMS, a headless CMS that can be easily integrated with any platform in any language. In the past I've experienced with Joomla, Drupal and WordPress (and Blogger long time ago), where I have <strike>lost</strike> invested a lot of time in simply getting the CMS in place, extending the CMS with more functionality and migrating data between servers. Since I am investigating different ways of using microservices, becoming less platform dependent and overall learning new tools, I use this notebook to show a simple example of ButterCMS in Jupyter.</p>
+<h2 id="About">About<a class="anchor-link" href="#About">&#182;</a></h2><center>
+    <img src="http://files.jitsejan.com/logos/buttercms.PNG" width=150 />
 </center><blockquote><p>Add a blog or CMS to your site in minutes
 Drop-in our Headless CMS and get back to more interesting problems.</p>
 </blockquote>
-<h2 id="Links">Links<a class="anchor-link" href="#Links">¶</a></h2><ul>
+<h2 id="Links">Links<a class="anchor-link" href="#Links">&#182;</a></h2><ul>
 <li><a href="https://buttercms.com/">Homepage</a></li>
 <li><a href="https://buttercms.com/docs/api-client/python">Python client</a></li>
 <li><a href="https://buttercms.com/docs/api-client/vuejs">VueJS client</a></li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -12854,24 +12855,31 @@ Drop-in our Headless CMS and get back to more interesting problems.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Prerequisites">Prerequisites<a class="anchor-link" href="#Prerequisites">¶</a></h2>
+<h2 id="Prerequisites">Prerequisites<a class="anchor-link" href="#Prerequisites">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install buttercms-python
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Requirement already satisfied: buttercms-python in /home/jitsejan/miniconda3/lib/python3.6/site-packages (1.1)
 Requirement already satisfied: requests in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from buttercms-python) (2.18.4)
@@ -12880,30 +12888,35 @@ Requirement already satisfied: idna&lt;2.7,&gt;=2.5 in /home/jitsejan/miniconda3
 Requirement already satisfied: urllib3&lt;1.23,&gt;=1.21.1 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (1.22)
 Requirement already satisfied: certifi&gt;=2017.4.17 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (2018.4.16)
 <span class="ansi-yellow-fg">You are using pip version 10.0.0, however version 10.0.1 is available.
-You should consider upgrading via the 'pip install --upgrade pip' command.</span>
+You should consider upgrading via the &#39;pip install --upgrade pip&#39; command.</span>
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">'buttercmskey'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'1b13611e144e11bbce5b484f4064e39638b223a1'</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;buttercmskey&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1b13611e144e11bbce5b484f4064e39638b223a1&#39;</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><img src="http://files.jitsejan.com/screenshots/butterCMS.png" /></p>
+
 </div>
 </div>
 </div>
@@ -12911,281 +12924,342 @@ You should consider upgrading via the 'pip install --upgrade pip' command.</span
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Python-implementation">Python implementation<a class="anchor-link" href="#Python-implementation">¶</a></h2><p><img src="http://files.jitsejan.com/logos/python.PNG" width="150/" /></p>
+<h2 id="Python-implementation">Python implementation<a class="anchor-link" href="#Python-implementation">&#182;</a></h2><p><img src="http://files.jitsejan.com/logos/python.PNG" width=150/></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">butter_cms</span> <span class="k">import</span> <span class="n">ButterCMS</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">ButterCMS</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">'buttercmskey'</span><span class="p">))</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">ButterCMS</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;buttercmskey&#39;</span><span class="p">))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;butter_cms.ButterCMS at 0x7f3edc72f630&gt;</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">all</span><span class="p">({</span><span class="s1">'page_size'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">'page'</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">all</span><span class="p">({</span><span class="s1">&#39;page_size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>{
-    "data": [
+    &#34;data&#34;: [
         {
-            "url": "jupyter-notebook",
-            "created": "2018-06-14T11:53:54.533383Z",
-            "published": "2018-06-14T11:50:00Z",
-            "author": {
-                "first_name": "Jitse-Jan",
-                "last_name": "van Waterschoot",
-                "email": "code@jitsejan.com",
-                "slug": "jitse-jan-van-waterschoot",
-                "bio": "",
-                "title": "",
-                "linkedin_url": "",
-                "facebook_url": "",
-                "instagram_url": "",
-                "pinterest_url": "",
-                "twitter_handle": "",
-                "profile_image": ""
+            &#34;url&#34;: &#34;jupyter-notebook&#34;,
+            &#34;created&#34;: &#34;2018-06-14T11:53:54.533383Z&#34;,
+            &#34;published&#34;: &#34;2018-06-14T11:50:00Z&#34;,
+            &#34;author&#34;: {
+                &#34;first_name&#34;: &#34;Jitse-Jan&#34;,
+                &#34;last_name&#34;: &#34;van Waterschoot&#34;,
+                &#34;email&#34;: &#34;code@jitsejan.com&#34;,
+                &#34;slug&#34;: &#34;jitse-jan-van-waterschoot&#34;,
+                &#34;bio&#34;: &#34;&#34;,
+                &#34;title&#34;: &#34;&#34;,
+                &#34;linkedin_url&#34;: &#34;&#34;,
+                &#34;facebook_url&#34;: &#34;&#34;,
+                &#34;instagram_url&#34;: &#34;&#34;,
+                &#34;pinterest_url&#34;: &#34;&#34;,
+                &#34;twitter_handle&#34;: &#34;&#34;,
+                &#34;profile_image&#34;: &#34;&#34;
             },
-            "categories": [
+            &#34;categories&#34;: [
                 {
-                    "name": "development",
-                    "slug": "development"
+                    &#34;name&#34;: &#34;development&#34;,
+                    &#34;slug&#34;: &#34;development&#34;
                 }
             ],
-            "tags": [
+            &#34;tags&#34;: [
                 {
-                    "name": "",
-                    "slug": ""
+                    &#34;name&#34;: &#34;&#34;,
+                    &#34;slug&#34;: &#34;&#34;
                 },
                 {
-                    "name": "buttercms",
-                    "slug": "buttercms"
+                    &#34;name&#34;: &#34;buttercms&#34;,
+                    &#34;slug&#34;: &#34;buttercms&#34;
                 },
                 {
-                    "name": "python",
-                    "slug": "python"
+                    &#34;name&#34;: &#34;python&#34;,
+                    &#34;slug&#34;: &#34;python&#34;
                 },
                 {
-                    "name": "vuejs",
-                    "slug": "vuejs"
+                    &#34;name&#34;: &#34;vuejs&#34;,
+                    &#34;slug&#34;: &#34;vuejs&#34;
                 }
             ],
-            "featured_image": "https://cdn.buttercms.com/eBXUxLoCR4CKQMUnhjur",
-            "slug": "jupyter-notebook",
-            "title": "Jupyter notebook",
-            "body": "&lt;p&gt;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&amp;nbsp;&lt;/p&gt;",
-            "summary": "I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.",
-            "seo_title": "Jupyter notebook",
-            "meta_description": "I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.",
-            "status": "published"
+            &#34;featured_image&#34;: &#34;https://cdn.buttercms.com/eBXUxLoCR4CKQMUnhjur&#34;,
+            &#34;slug&#34;: &#34;jupyter-notebook&#34;,
+            &#34;title&#34;: &#34;Jupyter notebook&#34;,
+            &#34;body&#34;: &#34;&lt;p&gt;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&amp;nbsp;&lt;/p&gt;&#34;,
+            &#34;summary&#34;: &#34;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&#34;,
+            &#34;seo_title&#34;: &#34;Jupyter notebook&#34;,
+            &#34;meta_description&#34;: &#34;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&#34;,
+            &#34;status&#34;: &#34;published&#34;
         },
         {
-            "url": "example-post",
-            "created": "2018-06-14T11:47:08.121702Z",
-            "published": "2018-06-14T11:47:08.121391Z",
-            "author": {
-                "first_name": "Jitse-Jan",
-                "last_name": "van Waterschoot",
-                "email": "code@jitsejan.com",
-                "slug": "jitse-jan-van-waterschoot",
-                "bio": "",
-                "title": "",
-                "linkedin_url": "",
-                "facebook_url": "",
-                "instagram_url": "",
-                "pinterest_url": "",
-                "twitter_handle": "",
-                "profile_image": ""
+            &#34;url&#34;: &#34;example-post&#34;,
+            &#34;created&#34;: &#34;2018-06-14T11:47:08.121702Z&#34;,
+            &#34;published&#34;: &#34;2018-06-14T11:47:08.121391Z&#34;,
+            &#34;author&#34;: {
+                &#34;first_name&#34;: &#34;Jitse-Jan&#34;,
+                &#34;last_name&#34;: &#34;van Waterschoot&#34;,
+                &#34;email&#34;: &#34;code@jitsejan.com&#34;,
+                &#34;slug&#34;: &#34;jitse-jan-van-waterschoot&#34;,
+                &#34;bio&#34;: &#34;&#34;,
+                &#34;title&#34;: &#34;&#34;,
+                &#34;linkedin_url&#34;: &#34;&#34;,
+                &#34;facebook_url&#34;: &#34;&#34;,
+                &#34;instagram_url&#34;: &#34;&#34;,
+                &#34;pinterest_url&#34;: &#34;&#34;,
+                &#34;twitter_handle&#34;: &#34;&#34;,
+                &#34;profile_image&#34;: &#34;&#34;
             },
-            "categories": [
+            &#34;categories&#34;: [
                 {
-                    "name": "Example Category",
-                    "slug": "example-category"
+                    &#34;name&#34;: &#34;Example Category&#34;,
+                    &#34;slug&#34;: &#34;example-category&#34;
                 }
             ],
-            "tags": [
+            &#34;tags&#34;: [
                 {
-                    "name": "Example Tag",
-                    "slug": "example-tag"
+                    &#34;name&#34;: &#34;Example Tag&#34;,
+                    &#34;slug&#34;: &#34;example-tag&#34;
                 }
             ],
-            "featured_image": "https://d2devwt40at1e2.cloudfront.net/api/file/tdt3s1OHRO6wfQOpmAHw",
-            "slug": "example-post",
-            "title": "Example Post",
-            "body": "&lt;p&gt;Welcome to ButterCMS! This an example blog post written using Butter.&lt;/p&gt;\n&lt;h3&gt;What's happening here?&lt;/h3&gt;\n&lt;p&gt;If you're viewing this post from your website or command line, you've successfully made a request to&amp;nbsp;the &lt;a href=\"https://buttercms.com/docs/api\"&gt;Butter API&lt;/a&gt;. If you haven't already, make sure you have our &lt;a href=\"https://buttercms.com/docs/\"&gt;development guides&lt;/a&gt; pulled up for step-by-step instructions on setting up Butter.&lt;/p&gt;\n&lt;h3&gt;How does&amp;nbsp;editing work?&lt;/h3&gt;\n&lt;p&gt;Butter's WYSIWYG editor supports standard text formatting including headings, links, quotes, code, text alignment, and more. You can upload, crop, and resize images which are automatically hosted and delivered through a CDN (see below). You can also edit HTML directly when needed.&lt;/p&gt;\n&lt;figure class=\"image\"&gt;&lt;img src=\"https://d2wzhk7xhrnk1x.cloudfront.net/rgPM9aHoSSKnjk44TQlD_butter-blog-post.jpg\" alt=\"Delivered to you via CDN\" /&gt;\n&lt;figcaption&gt;Delivered to you via CDN&lt;/figcaption&gt;\n&lt;/figure&gt;\n&lt;h3&gt;Can I use Butter as a full CMS for&amp;nbsp;things other than a&amp;nbsp;blog?&lt;/h3&gt;\n&lt;p&gt;Yes. Butter can be used as a full CMS for managing dynamic content and creating pages across your entire website or app. Check out our &lt;a href=\"https://buttercms.com/docs/\"&gt;development guides&lt;/a&gt; for step-by-step tutorials on setting this up.&lt;/p&gt;\n",
-            "summary": "This is an example blog post. Pretty neat huh?",
-            "seo_title": "Example Post SEO Optimized Title",
-            "meta_description": "This is our example blog posts SEO optimized meta description.",
-            "status": "published"
+            &#34;featured_image&#34;: &#34;https://d2devwt40at1e2.cloudfront.net/api/file/tdt3s1OHRO6wfQOpmAHw&#34;,
+            &#34;slug&#34;: &#34;example-post&#34;,
+            &#34;title&#34;: &#34;Example Post&#34;,
+            &#34;body&#34;: &#34;&lt;p&gt;Welcome to ButterCMS! This an example blog post written using Butter.&lt;/p&gt;\n&lt;h3&gt;What&#39;s happening here?&lt;/h3&gt;\n&lt;p&gt;If you&#39;re viewing this post from your website or command line, you&#39;ve successfully made a request to&amp;nbsp;the &lt;a href=\&#34;https://buttercms.com/docs/api\&#34;&gt;Butter API&lt;/a&gt;. If you haven&#39;t already, make sure you have our &lt;a href=\&#34;https://buttercms.com/docs/\&#34;&gt;development guides&lt;/a&gt; pulled up for step-by-step instructions on setting up Butter.&lt;/p&gt;\n&lt;h3&gt;How does&amp;nbsp;editing work?&lt;/h3&gt;\n&lt;p&gt;Butter&#39;s WYSIWYG editor supports standard text formatting including headings, links, quotes, code, text alignment, and more. You can upload, crop, and resize images which are automatically hosted and delivered through a CDN (see below). You can also edit HTML directly when needed.&lt;/p&gt;\n&lt;figure class=\&#34;image\&#34;&gt;&lt;img src=\&#34;https://d2wzhk7xhrnk1x.cloudfront.net/rgPM9aHoSSKnjk44TQlD_butter-blog-post.jpg\&#34; alt=\&#34;Delivered to you via CDN\&#34; /&gt;\n&lt;figcaption&gt;Delivered to you via CDN&lt;/figcaption&gt;\n&lt;/figure&gt;\n&lt;h3&gt;Can I use Butter as a full CMS for&amp;nbsp;things other than a&amp;nbsp;blog?&lt;/h3&gt;\n&lt;p&gt;Yes. Butter can be used as a full CMS for managing dynamic content and creating pages across your entire website or app. Check out our &lt;a href=\&#34;https://buttercms.com/docs/\&#34;&gt;development guides&lt;/a&gt; for step-by-step tutorials on setting this up.&lt;/p&gt;\n&#34;,
+            &#34;summary&#34;: &#34;This is an example blog post. Pretty neat huh?&#34;,
+            &#34;seo_title&#34;: &#34;Example Post SEO Optimized Title&#34;,
+            &#34;meta_description&#34;: &#34;This is our example blog posts SEO optimized meta description.&#34;,
+            &#34;status&#34;: &#34;published&#34;
         }
     ],
-    "meta": {
-        "next_page": null,
-        "count": 2,
-        "previous_page": null
+    &#34;meta&#34;: {
+        &#34;next_page&#34;: null,
+        &#34;count&#34;: 2,
+        &#34;previous_page&#34;: null
     }
 }
 </pre>
 </div>
 </div>
+
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [6]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">posts</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">all</span><span class="p">({</span><span class="s1">'page_size'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">'page'</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
-</pre></div>
-</div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">posts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">posts</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">all</span><span class="p">({</span><span class="s1">&#39;page_size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">posts</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>{'url': 'jupyter-notebook',
- 'created': '2018-06-14T11:53:54.533383Z',
- 'published': '2018-06-14T11:50:00Z',
- 'author': {'first_name': 'Jitse-Jan',
-  'last_name': 'van Waterschoot',
-  'email': 'code@jitsejan.com',
-  'slug': 'jitse-jan-van-waterschoot',
-  'bio': '',
-  'title': '',
-  'linkedin_url': '',
-  'facebook_url': '',
-  'instagram_url': '',
-  'pinterest_url': '',
-  'twitter_handle': '',
-  'profile_image': ''},
- 'categories': [{'name': 'development', 'slug': 'development'}],
- 'tags': [{'name': '', 'slug': ''},
-  {'name': 'buttercms', 'slug': 'buttercms'},
-  {'name': 'python', 'slug': 'python'},
-  {'name': 'vuejs', 'slug': 'vuejs'}],
- 'featured_image': 'https://cdn.buttercms.com/eBXUxLoCR4CKQMUnhjur',
- 'slug': 'jupyter-notebook',
- 'title': 'Jupyter notebook',
- 'body': '&lt;p&gt;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&amp;nbsp;&lt;/p&gt;',
- 'summary': 'I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.',
- 'seo_title': 'Jupyter notebook',
- 'meta_description': 'I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.',
- 'status': 'published'}</pre>
+<pre>{&#39;url&#39;: &#39;jupyter-notebook&#39;,
+ &#39;created&#39;: &#39;2018-06-14T11:53:54.533383Z&#39;,
+ &#39;published&#39;: &#39;2018-06-14T11:50:00Z&#39;,
+ &#39;author&#39;: {&#39;first_name&#39;: &#39;Jitse-Jan&#39;,
+  &#39;last_name&#39;: &#39;van Waterschoot&#39;,
+  &#39;email&#39;: &#39;code@jitsejan.com&#39;,
+  &#39;slug&#39;: &#39;jitse-jan-van-waterschoot&#39;,
+  &#39;bio&#39;: &#39;&#39;,
+  &#39;title&#39;: &#39;&#39;,
+  &#39;linkedin_url&#39;: &#39;&#39;,
+  &#39;facebook_url&#39;: &#39;&#39;,
+  &#39;instagram_url&#39;: &#39;&#39;,
+  &#39;pinterest_url&#39;: &#39;&#39;,
+  &#39;twitter_handle&#39;: &#39;&#39;,
+  &#39;profile_image&#39;: &#39;&#39;},
+ &#39;categories&#39;: [{&#39;name&#39;: &#39;development&#39;, &#39;slug&#39;: &#39;development&#39;}],
+ &#39;tags&#39;: [{&#39;name&#39;: &#39;&#39;, &#39;slug&#39;: &#39;&#39;},
+  {&#39;name&#39;: &#39;buttercms&#39;, &#39;slug&#39;: &#39;buttercms&#39;},
+  {&#39;name&#39;: &#39;python&#39;, &#39;slug&#39;: &#39;python&#39;},
+  {&#39;name&#39;: &#39;vuejs&#39;, &#39;slug&#39;: &#39;vuejs&#39;}],
+ &#39;featured_image&#39;: &#39;https://cdn.buttercms.com/eBXUxLoCR4CKQMUnhjur&#39;,
+ &#39;slug&#39;: &#39;jupyter-notebook&#39;,
+ &#39;title&#39;: &#39;Jupyter notebook&#39;,
+ &#39;body&#39;: &#39;&lt;p&gt;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&amp;nbsp;&lt;/p&gt;&#39;,
+ &#39;summary&#39;: &#39;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&#39;,
+ &#39;seo_title&#39;: &#39;Jupyter notebook&#39;,
+ &#39;meta_description&#39;: &#39;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&#39;,
+ &#39;status&#39;: &#39;published&#39;}</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">title</span> <span class="o">=</span> <span class="n">posts</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'title'</span><span class="p">]</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">title</span> <span class="o">=</span> <span class="n">posts</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
 <span class="n">title</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>'Jupyter notebook'</pre>
+<pre>&#39;Jupyter notebook&#39;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Javascript-implementation">Javascript implementation<a class="anchor-link" href="#Javascript-implementation">¶</a></h2><p><img src="http://files.jitsejan.com/logos/javascript.PNG" width="150" /></p>
+<h2 id="Javascript-implementation">Javascript implementation<a class="anchor-link" href="#Javascript-implementation">&#182;</a></h2><p><img src="http://files.jitsejan.com/logos/javascript.PNG" width=150 /></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
 <span class="nx">require</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
     <span class="nx">paths</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">buttercms</span><span class="o">:</span> <span class="s2">"https://cdnjs.buttercms.com/buttercms-1.1.1.min"</span><span class="p">,</span>
+        <span class="nx">buttercms</span><span class="o">:</span> <span class="s2">&quot;https://cdnjs.buttercms.com/buttercms-1.1.1.min&quot;</span><span class="p">,</span>
     <span class="p">},</span>
     <span class="nx">shim</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">buttercms</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">exports</span><span class="o">:</span> <span class="s2">"ButterCMS"</span>
+            <span class="nx">exports</span><span class="o">:</span> <span class="s2">&quot;ButterCMS&quot;</span>
         <span class="p">},</span>
     <span class="p">}</span>
 <span class="p">});</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
-<div id="2e57d167-ecda-4d70-88ad-48d72775d89d"></div>
+
+
+
+
+
+<div id="e7e9a953-c756-453b-8625-2041dcaa7454"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#2e57d167-ecda-4d70-88ad-48d72775d89d');
+var element = $('#e7e9a953-c756-453b-8625-2041dcaa7454');
 require.config({
     paths: {
         buttercms: "https://cdnjs.buttercms.com/buttercms-1.1.1.min",
@@ -13198,35 +13272,48 @@ require.config({
 });
 </script>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-<span class="nx">require</span><span class="p">([</span><span class="s1">'buttercms'</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ButterCMS</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">butter</span> <span class="o">=</span> <span class="nx">Butter</span><span class="p">(</span><span class="s1">'1b13611e144e11bbce5b484f4064e39638b223a1'</span><span class="p">);</span>
+<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;buttercms&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ButterCMS</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">butter</span> <span class="o">=</span> <span class="nx">Butter</span><span class="p">(</span><span class="s1">&#39;1b13611e144e11bbce5b484f4064e39638b223a1&#39;</span><span class="p">);</span>
     <span class="nx">butter</span><span class="p">.</span><span class="nx">post</span><span class="p">.</span><span class="nx">list</span><span class="p">({</span><span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">page_size</span><span class="o">:</span> <span class="mi">10</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'title'</span><span class="p">])</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="s1">'data'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">'body'</span><span class="p">])</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;body&#39;</span><span class="p">])</span>
     <span class="p">})</span>
 <span class="p">});</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
-<div id="eef2d473-6020-451b-a9d9-86e2b69dd648"></div>
+
+
+
+
+
+<div id="2f97e131-59b4-4e7b-9e40-21109e74cdb4"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#eef2d473-6020-451b-a9d9-86e2b69dd648');
+var element = $('#2f97e131-59b4-4e7b-9e40-21109e74cdb4');
 require(['buttercms'], function(ButterCMS) {
     var butter = Butter('1b13611e144e11bbce5b484f4064e39638b223a1');
     butter.post.list({page: 1, page_size: 10}).then(function(response) {
@@ -13236,51 +13323,65 @@ require(['buttercms'], function(ButterCMS) {
 });
 </script>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="VueJS-implementation">VueJS implementation<a class="anchor-link" href="#VueJS-implementation">¶</a></h2><p><img src="http://files.jitsejan.com/logos/vuejs.PNG" width="150" /></p>
+<h2 id="VueJS-implementation">VueJS implementation<a class="anchor-link" href="#VueJS-implementation">&#182;</a></h2><p><img src="http://files.jitsejan.com/logos/vuejs.PNG" width=150 /></p>
 <p>Finally an attempt to integrate VueJS with Jupyter using data from the ButterCMS. Following <a href="https://vuejs.org/v2/cookbook/serverless-blog.html">this guide</a> we are able to add the blog posts to the body of this notebook.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
 <span class="nx">require</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
     <span class="nx">paths</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">buttercms</span><span class="o">:</span> <span class="s2">"https://cdnjs.buttercms.com/buttercms-1.1.1.min"</span><span class="p">,</span>
-        <span class="nx">vue</span><span class="o">:</span> <span class="s2">"https://cdn.jsdelivr.net/npm/vue/dist/vue"</span>
+        <span class="nx">buttercms</span><span class="o">:</span> <span class="s2">&quot;https://cdnjs.buttercms.com/buttercms-1.1.1.min&quot;</span><span class="p">,</span>
+        <span class="nx">vue</span><span class="o">:</span> <span class="s2">&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue&quot;</span>
     <span class="p">},</span>
     <span class="nx">shim</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">buttercms</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">exports</span><span class="o">:</span> <span class="s2">"ButterCMS"</span>
+            <span class="nx">exports</span><span class="o">:</span> <span class="s2">&quot;ButterCMS&quot;</span>
         <span class="p">},</span>
         <span class="nx">vue</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">exports</span><span class="o">:</span> <span class="s2">"Vue"</span>
+            <span class="nx">exports</span><span class="o">:</span> <span class="s2">&quot;Vue&quot;</span>
         <span class="p">}</span>
     <span class="p">}</span>
 <span class="p">});</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
-<div id="8bbed0d4-b9b6-4553-996f-aada1365c622"></div>
+
+
+
+
+
+<div id="8203eb33-203a-4316-8e0d-bae852b3856d"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#8bbed0d4-b9b6-4553-996f-aada1365c622');
+var element = $('#8203eb33-203a-4316-8e0d-bae852b3856d');
 require.config({
     paths: {
         buttercms: "https://cdnjs.buttercms.com/buttercms-1.1.1.min",
@@ -13297,27 +13398,30 @@ require.config({
 });
 </script>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">html</span>
-&lt;script type="text/x-template" id="blog-home-template"&gt;
-    &lt;div id="blog-home"&gt;
+&lt;script type=&quot;text/x-template&quot; id=&quot;blog-home-template&quot;&gt;
+    &lt;div id=&quot;blog-home&quot;&gt;
         &lt;h1&gt;{{ page_title }}&lt;/h1&gt;
         &lt;!-- Create `v-for` and apply a `key` for Vue. Here we are using a combination of the slug and index. --&gt;
-        &lt;div v-for="(post,index) in posts" :key="post.slug + '_' + index"&gt;
-            &lt;article class="media"&gt;
+        &lt;div v-for=&quot;(post,index) in posts&quot; :key=&quot;post.slug + &#39;_&#39; + index&quot;&gt;
+            &lt;article class=&quot;media&quot;&gt;
                 &lt;figure&gt;
                   &lt;!-- Bind results using a `:` --&gt;
                   &lt;!-- Use a `v-if`/`else` if their is a `featured_image` --&gt;
-                  &lt;img v-if="post.featured_image" :src="post.featured_image" alt=""&gt;
-                  &lt;img v-else src="http://via.placeholder.com/250x250" alt=""&gt;
+                  &lt;img v-if=&quot;post.featured_image&quot; :src=&quot;post.featured_image&quot; alt=&quot;&quot;&gt;
+                  &lt;img v-else src=&quot;http://via.placeholder.com/250x250&quot; alt=&quot;&quot;&gt;
                 &lt;/figure&gt;
                 &lt;h2&gt;{{ post.title }}&lt;/h2&gt;
                 &lt;p&gt;{{ post.summary }}&lt;/p&gt;
@@ -13326,15 +13430,23 @@ require.config({
     &lt;/div&gt;
 &lt;/script&gt;
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
 <div class="output_html rendered_html output_subarea ">
-<script id="blog-home-template" type="text/x-template">
+<script type="text/x-template" id="blog-home-template">
     <div id="blog-home">
         <h1>{{ page_title }}</h1>
         <!-- Create `v-for` and apply a `key` for Vue. Here we are using a combination of the slug and index. -->
@@ -13353,54 +13465,68 @@ require.config({
     </div>
 </script>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">html</span>
-&lt;div id="vue-app"&gt;
-  &lt;blog-home :posts="blogPosts"/&gt;
+&lt;div id=&quot;vue-app&quot;&gt;
+  &lt;blog-home :posts=&quot;blogPosts&quot;/&gt;
 &lt;/div&gt;
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
 <div class="output_html rendered_html output_subarea ">
 <div id="vue-app">
-<blog-home :posts="blogPosts"></blog-home>
+  <blog-home :posts="blogPosts"/>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-<span class="nx">require</span><span class="p">([</span><span class="s1">'buttercms'</span><span class="p">,</span> <span class="s1">'vue'</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ButterCMS</span><span class="p">,</span> <span class="nx">Vue</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;buttercms&#39;</span><span class="p">,</span> <span class="s1">&#39;vue&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ButterCMS</span><span class="p">,</span> <span class="nx">Vue</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Vue</span><span class="p">.</span><span class="nx">version</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">butter</span> <span class="o">=</span> <span class="nx">Butter</span><span class="p">(</span><span class="s1">'1b13611e144e11bbce5b484f4064e39638b223a1'</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">butter</span> <span class="o">=</span> <span class="nx">Butter</span><span class="p">(</span><span class="s1">&#39;1b13611e144e11bbce5b484f4064e39638b223a1&#39;</span><span class="p">);</span>
     
-    <span class="kd">var</span> <span class="nx">BlogHome</span> <span class="o">=</span> <span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">'blog-home'</span><span class="p">,</span> <span class="p">{</span>
-      <span class="nx">template</span><span class="o">:</span> <span class="s1">'#blog-home-template'</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="nx">BlogHome</span> <span class="o">=</span> <span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;blog-home&#39;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;#blog-home-template&#39;</span><span class="p">,</span>
       <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
         <span class="nx">data</span><span class="o">:</span> <span class="nb">Array</span><span class="p">,</span>
       <span class="p">},</span>
       <span class="nx">data</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="nx">page_title</span><span class="o">:</span> <span class="s1">'Blog'</span><span class="p">,</span>
+            <span class="nx">page_title</span><span class="o">:</span> <span class="s1">&#39;Blog&#39;</span><span class="p">,</span>
             <span class="nx">posts</span><span class="o">:</span> <span class="p">[]</span>
           <span class="p">}</span>
       <span class="p">},</span>
@@ -13420,7 +13546,7 @@ require.config({
     <span class="p">})</span>
 
     <span class="kd">var</span> <span class="nx">vueApp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-      <span class="nx">el</span><span class="o">:</span> <span class="s1">'#vue-app'</span><span class="p">,</span>
+      <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#vue-app&#39;</span><span class="p">,</span>
       <span class="nx">components</span><span class="o">:</span> <span class="p">{</span><span class="nx">BlogHome</span><span class="o">:</span> <span class="nx">BlogHome</span><span class="p">},</span>
       <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
           <span class="nx">blogPosts</span><span class="o">:</span> <span class="p">[]</span>
@@ -13429,17 +13555,27 @@ require.config({
 
 <span class="p">});</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
-<div id="7c56a1b0-3176-48a2-852d-5d5c9adee811"></div>
+
+
+
+
+
+<div id="d19d54cc-49cf-4491-8a93-012cd798198e"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#7c56a1b0-3176-48a2-852d-5d5c9adee811');
+var element = $('#d19d54cc-49cf-4491-8a93-012cd798198e');
 require(['buttercms', 'vue'], function(ButterCMS, Vue) {
     console.log(Vue.version);
     var butter = Butter('1b13611e144e11bbce5b484f4064e39638b223a1');
@@ -13481,15 +13617,18 @@ require(['buttercms', 'vue'], function(ButterCMS, Vue) {
 });
 </script>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">html</span>
 &lt;style&gt;
 #blog-home article{
@@ -13501,13 +13640,21 @@ require(['buttercms', 'vue'], function(ButterCMS, Vue) {
 }
 &lt;/style&gt;
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
 <div class="output_html rendered_html output_subarea ">
 <style>
 #blog-home article{
@@ -13519,40 +13666,57 @@ require(['buttercms', 'vue'], function(ButterCMS, Vue) {
 }
 </style>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Result">Result<a class="anchor-link" href="#Result">¶</a></h2><p>To put everything together I have created a JSfiddle and embedded the result below.</p>
+<h2 id="Result">Result<a class="anchor-link" href="#Result">&#182;</a></h2><p>To put everything together I have created a JSfiddle and embedded the result below.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">html</span>
-&lt;iframe width="100%" height="500" src="//jsfiddle.net/z4hapsLt/13/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"&gt;&lt;/iframe&gt;
+&lt;iframe width=&quot;100%&quot; height=&quot;500&quot; src=&quot;//jsfiddle.net/z4hapsLt/13/embedded/&quot; allowfullscreen=&quot;allowfullscreen&quot; allowpaymentrequest frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
 <div class="output_html rendered_html output_subarea ">
-<iframe allowfullscreen="allowfullscreen" allowpaymentrequest="" frameborder="0" height="500" src="//jsfiddle.net/z4hapsLt/13/embedded/" width="100%"></iframe>
+<iframe width="100%" height="500" src="//jsfiddle.net/z4hapsLt/13/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+</div>
+
+</div>
+
 </div>
 </div>
+
 </div>
-</div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');

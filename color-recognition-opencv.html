@@ -12837,6 +12837,7 @@ h6:hover .anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As a training for myself to get more familiar with image classification and OpenCV I followed the tutorial on <a href="http://www.pyimagesearch.com/2014/08/04/opencv-python-color-detection/">http://www.pyimagesearch.com/2014/08/04/opencv-python-color-detection/</a>. I modified it slightly to fit my environment.</p>
+
 </div>
 </div>
 </div>
@@ -12844,103 +12845,129 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Imports">Imports<a class="anchor-link" href="#Imports">¶</a></h3>
+<h3 id="Imports">Imports<a class="anchor-link" href="#Imports">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
 <span class="kn">from</span> <span class="nn">IPython.core.interactiveshell</span> <span class="k">import</span> <span class="n">InteractiveShell</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">os</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Settings">Settings<a class="anchor-link" href="#Settings">¶</a></h3>
+<h3 id="Settings">Settings<a class="anchor-link" href="#Settings">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s2">"all"</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="s1">'../input/images/'</span>
+<span class="n">DATA_DIR</span> <span class="o">=</span> <span class="s1">&#39;../input/images/&#39;</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Retrieve the first image for each character.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">images</span> <span class="o">=</span> <span class="p">{</span><span class="n">f</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]:</span><span class="n">DATA_DIR</span><span class="o">+</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">'.jpg'</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">'_01'</span> <span class="ow">in</span> <span class="n">f</span><span class="p">}</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">images</span> <span class="o">=</span> <span class="p">{</span><span class="n">f</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]:</span><span class="n">DATA_DIR</span><span class="o">+</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">DATA_DIR</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.jpg&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="s1">&#39;_01&#39;</span> <span class="ow">in</span> <span class="n">f</span><span class="p">}</span>
 <span class="n">images</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>{'luigi_01': '../input/images/luigi_01.jpg',
- 'mario_01': '../input/images/mario_01.jpg',
- 'peach_01': '../input/images/peach_01.jpg',
- 'toad_01': '../input/images/toad_01.jpg'}</pre>
+<pre>{&#39;luigi_01&#39;: &#39;../input/images/luigi_01.jpg&#39;,
+ &#39;mario_01&#39;: &#39;../input/images/mario_01.jpg&#39;,
+ &#39;peach_01&#39;: &#39;../input/images/peach_01.jpg&#39;,
+ &#39;toad_01&#39;: &#39;../input/images/toad_01.jpg&#39;}</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Display-the-Mario-image-using-matplotlib">Display the Mario image using matplotlib<a class="anchor-link" href="#Display-the-Mario-image-using-matplotlib">¶</a></h3>
+<h3 id="Display-the-Mario-image-using-matplotlib">Display the Mario image using matplotlib<a class="anchor-link" href="#Display-the-Mario-image-using-matplotlib">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="s1">'mario_01'</span><span class="p">])</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">img</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="s1">&#39;mario_01&#39;</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIoAAAD8CAYAAACo/Dy4AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXeYZGd95/t5Tz6Vq7q7Os70hJ6kkTQjlMAKwEogg1mC
@@ -13506,17 +13533,21 @@ GfrffO4oL599gWR8nX39/Rxafx8AJz72BMsrB/F7+8HvAbaBAYDAdu4Qc1Tk9b+xW0aUhl3Oe+Nx
 aPh/0wilYSoaoTRMRSOUhqlohNIwFY1QGqaiEUrDVDRCaZiKRigNU9EIpWEqGqE0TEUjlIapaITS
 MBWNUBqmohFKw1Q0QmmYikYoDVPRCKVhKhqhNExFI5SGqWiE0jAVjVAapqIRSsNU/Df2TAF2dO5S
 4AAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Color-detection">Color detection<a class="anchor-link" href="#Color-detection">¶</a></h2>
+<h2 id="Color-detection">Color detection<a class="anchor-link" href="#Color-detection">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -13525,36 +13556,40 @@ MBWNUBqmohFKw1Q0QmmYikYoDVPRCKVhKhqhNExFI5SGqWiE0jAVjVAapqIRSsNU/Df2TAF2dO5S
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>First read the images using OpenCV.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mario_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="s1">'mario_01'</span><span class="p">])</span>
-<span class="n">luigi_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="s1">'luigi_01'</span><span class="p">])</span>
-<span class="n">peach_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="s1">'peach_01'</span><span class="p">])</span>
-<span class="n">toad_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="s1">'toad_01'</span><span class="p">])</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mario_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="s1">&#39;mario_01&#39;</span><span class="p">])</span>
+<span class="n">luigi_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="s1">&#39;luigi_01&#39;</span><span class="p">])</span>
+<span class="n">peach_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="s1">&#39;peach_01&#39;</span><span class="p">])</span>
+<span class="n">toad_image</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="s1">&#39;toad_01&#39;</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Next we set up the boundaries for the images. Since I am working with Mario, Luigi, Toad and Peach the easy choices are blue, red, green, pink and white. Note that the colors for OpenCV are not in in RGB order but in BGR. For example for the blue boundary the 0 is the lower bound for blue and 200 the upper bound.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">blue_boundary</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">112</span><span class="p">])</span>
 <span class="n">red_boundary</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">255</span><span class="p">])</span>
 <span class="n">green_boundary</span> <span class="o">=</span> <span class="p">([</span><span class="mi">23</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">33</span><span class="p">],</span> <span class="p">[</span><span class="mi">51</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">65</span><span class="p">])</span>
@@ -13570,79 +13605,94 @@ MBWNUBqmohFKw1Q0QmmYikYoDVPRCKVhKhqhNExFI5SGqWiE0jAVjVAapqIRSsNU/Df2TAF2dO5S
     <span class="n">white_boundary</span><span class="p">,</span>
 <span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Make a list of the images for the four characters.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">input_images</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="s1">'image'</span> <span class="p">:</span> <span class="n">toad_image</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">'image'</span> <span class="p">:</span> <span class="n">peach_image</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">'image'</span> <span class="p">:</span> <span class="n">mario_image</span><span class="p">},</span>
-    <span class="p">{</span><span class="s1">'image'</span> <span class="p">:</span> <span class="n">luigi_image</span><span class="p">}</span>
+    <span class="p">{</span><span class="s1">&#39;image&#39;</span> <span class="p">:</span> <span class="n">toad_image</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;image&#39;</span> <span class="p">:</span> <span class="n">peach_image</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;image&#39;</span> <span class="p">:</span> <span class="n">mario_image</span><span class="p">},</span>
+    <span class="p">{</span><span class="s1">&#39;image&#39;</span> <span class="p">:</span> <span class="n">luigi_image</span><span class="p">}</span>
 <span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now loop through the images first and for each image loop through the boundaries. The</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Loop through the images</span>
 <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">input_images</span><span class="p">:</span>
     <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="c1"># Loop through the boundaries</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span> <span class="ow">in</span> <span class="n">boundaries</span><span class="p">:</span>
         <span class="c1"># Create NumPy arrays from the boundaries</span>
-        <span class="n">lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="s2">"uint8"</span><span class="p">)</span>
-        <span class="n">upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">upper</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="s2">"uint8"</span><span class="p">)</span>
+        <span class="n">lower</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
+        <span class="n">upper</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">upper</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="s2">&quot;uint8&quot;</span><span class="p">)</span>
         <span class="c1"># Check which pixels fall in between the boundaries and create a mask</span>
-        <span class="n">mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">inRange</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">'image'</span><span class="p">],</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">inRange</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">],</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
         <span class="c1"># Apply the mask to the input image</span>
-        <span class="n">output</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">'image'</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s1">'image'</span><span class="p">],</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="p">)</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">],</span> <span class="n">item</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">],</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="p">)</span>
         <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
     <span class="c1"># Show the mask for each boundary</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">item</span><span class="p">[</span><span class="s1">'image'</span><span class="p">],</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;image&#39;</span><span class="p">],</span>
                                        <span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                                        <span class="n">outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
                                        <span class="n">outputs</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
                                        <span class="n">outputs</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>
                                        <span class="n">outputs</span><span class="p">[</span><span class="mi">4</span><span class="p">]]),</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2RGB</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">);</span>
-    <span class="n">item</span><span class="p">[</span><span class="s1">'outputs'</span><span class="p">]</span> <span class="o">=</span> <span class="n">outputs</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">'off'</span><span class="p">);</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
+    <span class="n">item</span><span class="p">[</span><span class="s1">&#39;outputs&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">outputs</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">);</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAABiCAYAAABQ16T4AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAFj1JREFUeJzt3XuY3NV93/H3Oed3m5mdXd2vCCEMMkhgIyGEsLnExo7b
@@ -13746,11 +13796,19 @@ nqJWH2MwV3z+rl9M9SaEEKKj5DwEIYQQgEwZCSGEmCazYoQghBCi82SEIIQQApBAEEII0SaBIIQQ
 ApBAEEII0SaBIIQQApBAEEII0SaBIIQQApBAEEII0SaBIIQQApBAEEII0SaBIIQQApBAEEII0SaB
 IIQQApBAEEII0SaBIIQQApBAEEII0SaBIIQQApBAEEII0SaBIIQQApBAEEII0SaBIIQQApBAEEII
 0SaBIIQQAoD/D+ou/4QTxJseAAAAAElFTkSuQmCC
-" />
+"
+>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXoAAACLCAYAAABvGVKYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnX2cZFdZ57/n3Hvrrbtnenqmh0ySySSThAB5IySQ8CIg
@@ -13953,11 +14011,19 @@ Byf0DofDMeA4oXc4HI4Bxwm9w+FwDDhO6B0Oh2PAcULvcDgcA44TeofD4RhwnNA7HA7HgOOE3uFw
 OAYcJ/QOh8Mx4DihdzgcjgHHCb3D4XAMOE7oHQ6HY8BxQu9wOBwDjhN6h8PhGHCc0DscDseA44Te
 4XA4Bhwn9A6HwzHgOKF3OByOAccJvcPhcAw4TugdDodjwHFC73A4HAOOE3qHw+EYcP4/xzeF/pAx
 Xo0AAAAASUVORK5CYII=
-" />
+"
+>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXoAAACjCAYAAACE5tXDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXecHld59/090+65++69Xbur3mzLlixZltwLBhtDqMb0
@@ -14382,11 +14448,19 @@ WCwLHGv0FovFssCxRm+xWCwLHGv0FovFssCxRm+xWCwLHGv0FovFssCxRm+xWCwLHGv0FovFssCx
 Rm+xWCwLHGv0FovFssCxRm+xWCwLHGv0FovFssCxRm+xWCwLHGv0FovFssCxRm+xWCwLHGv0FovF
 ssCxRm+xWCwLHGv0FovFssCxRm+xWCwLHGv0FovFssCxRm+xWCwLHGv0FovFssD5/5jybXbY76wm
 AAAAAElFTkSuQmCC
-" />
+"
+>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXoAAACKCAYAAACkRYE9AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJztnXe8XVWZ979r7XLKPbff5CYhCYSQEEoIhBpRAWmDFbs0
@@ -14637,12 +14711,18 @@ GCNcRu9wOBzTHGf0DofDMc1xRu9wOBzTHGf0DofDMc1xRu9wOBzTHGf0DofDMc1xRu9wOBzTHGf0
 DofDMc1xRu9wOBzTHGf0DofDMc1xRu9wOBzTHGf0DofDMc1xRu9wOBzTHGf0DofDMc1xRu9wOBzT
 HGf0DofDMc1xRu9wOBzTHGf0DofDMc1xRu9wOBzTHGf0DofDMc1xRu9wOBzTHGf0DofDMc1xRu9w
 OBzTnP8PdIcsHuAJL8cAAAAASUVORK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
+
 </div>
-</div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');

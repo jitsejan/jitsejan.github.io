@@ -12836,12 +12836,15 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">¶</a></h3><p>The aim of this notebook is to create a machine learning model and transform it into an API which, when given some novel input parameters, returns the model’s prediction.</p>
-<h3 id="The-model">The model<a class="anchor-link" href="#The-model">¶</a></h3><p>The model that is going to be used is a Random Forest model, built using a data set of Titanic passengers (<code>data/train.csv</code>). The model looks to predict the probability of whether a passenger would have survived.</p>
-<h3 id="The-goal">The goal<a class="anchor-link" href="#The-goal">¶</a></h3><p>Input is an API call such as</p>
+<h3 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h3><p>The aim of this notebook is to create a machine learning model and transform it into an API which, when given some novel input parameters, returns the model’s prediction.</p>
+<h3 id="The-model">The model<a class="anchor-link" href="#The-model">&#182;</a></h3><p>The model that is going to be used is a Random Forest model, built using a data set of Titanic passengers (<code>data/train.csv</code>). The model looks to predict the probability of whether a passenger would have survived.</p>
+<h3 id="The-goal">The goal<a class="anchor-link" href="#The-goal">&#182;</a></h3><p>Input is an API call such as</p>
+
 <pre><code>/predict?class=2&amp;sex=male&amp;age=22&amp;sibsp=2&amp;parch=0&amp;title=mr</code></pre>
 <p>with a response in the form of</p>
+
 <pre><code>{ "probabilityOfSurvival": 0.95 }</code></pre>
+
 </div>
 </div>
 </div>
@@ -12849,180 +12852,206 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Creating-the-model">Creating the model<a class="anchor-link" href="#Creating-the-model">¶</a></h3>
+<h3 id="Creating-the-model">Creating the model<a class="anchor-link" href="#Creating-the-model">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Import the data from the CSV file train.csv.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'data/train.csv'</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/train.csv&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Explore the data.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[3]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>PassengerId</th>
-<th>Survived</th>
-<th>Pclass</th>
-<th>Name</th>
-<th>Sex</th>
-<th>Age</th>
-<th>SibSp</th>
-<th>Parch</th>
-<th>Ticket</th>
-<th>Fare</th>
-<th>Cabin</th>
-<th>Embarked</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>1</td>
-<td>0</td>
-<td>3</td>
-<td>Braund, Mr. Owen Harris</td>
-<td>male</td>
-<td>22.0</td>
-<td>1</td>
-<td>0</td>
-<td>A/5 21171</td>
-<td>7.2500</td>
-<td>NaN</td>
-<td>S</td>
-</tr>
-<tr>
-<th>1</th>
-<td>2</td>
-<td>1</td>
-<td>1</td>
-<td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
-<td>female</td>
-<td>38.0</td>
-<td>1</td>
-<td>0</td>
-<td>PC 17599</td>
-<td>71.2833</td>
-<td>C85</td>
-<td>C</td>
-</tr>
-<tr>
-<th>2</th>
-<td>3</td>
-<td>1</td>
-<td>3</td>
-<td>Heikkinen, Miss. Laina</td>
-<td>female</td>
-<td>26.0</td>
-<td>0</td>
-<td>0</td>
-<td>STON/O2. 3101282</td>
-<td>7.9250</td>
-<td>NaN</td>
-<td>S</td>
-</tr>
-<tr>
-<th>3</th>
-<td>4</td>
-<td>1</td>
-<td>1</td>
-<td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
-<td>female</td>
-<td>35.0</td>
-<td>1</td>
-<td>0</td>
-<td>113803</td>
-<td>53.1000</td>
-<td>C123</td>
-<td>S</td>
-</tr>
-<tr>
-<th>4</th>
-<td>5</td>
-<td>0</td>
-<td>3</td>
-<td>Allen, Mr. William Henry</td>
-<td>male</td>
-<td>35.0</td>
-<td>0</td>
-<td>0</td>
-<td>373450</td>
-<td>8.0500</td>
-<td>NaN</td>
-<td>S</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>A/5 21171</td>
+      <td>7.2500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17599</td>
+      <td>71.2833</td>
+      <td>C85</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>STON/O2. 3101282</td>
+      <td>7.9250</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>113803</td>
+      <td>53.1000</td>
+      <td>C123</td>
+      <td>S</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Allen, Mr. William Henry</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>373450</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">dtypes</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>PassengerId      int64
 Survived         int64
@@ -13038,153 +13067,210 @@ Cabin           object
 Embarked        object
 dtype: object</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Get the mapping for the gender by creating a function that retrieves the categories of a column of type <code>category</code>. This will return a number and its corresponding value.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">_get_category_mapping</span><span class="p">(</span><span class="n">column</span><span class="p">):</span>
-    <span class="sd">""" Return the mapping of a category """</span>
+    <span class="sd">&quot;&quot;&quot; Return the mapping of a category &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">dict</span><span class="p">([(</span><span class="n">cat</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span> <span class="k">for</span> <span class="n">code</span><span class="p">,</span> <span class="n">cat</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">column</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span><span class="p">)])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The unique values before converting to a category:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">'Sex'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>array(['male', 'female'], dtype=object)</pre>
+<pre>array([&#39;male&#39;, &#39;female&#39;], dtype=object)</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">'Sex'</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">'Sex'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">'category'</span><span class="p">)</span>
-<span class="n">sex_mapping</span> <span class="o">=</span> <span class="n">_get_category_mapping</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">'Sex'</span><span class="p">])</span>
-<span class="n">train</span><span class="p">[</span><span class="s1">'Sex'</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">'Sex'</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
+<span class="n">sex_mapping</span> <span class="o">=</span> <span class="n">_get_category_mapping</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">])</span>
+<span class="n">train</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>and the values after converting:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sex_mapping</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>{'female': 0, 'male': 1}</pre>
+<pre>{&#39;female&#39;: 0, &#39;male&#39;: 1}</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We will keep the mapping so we can use it later once we deploy the Model as a Service.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">'Sex'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>array([1, 0])</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Create categories for the titles by extracting them from the names.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">'Name'</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>0                              Braund, Mr. Owen Harris
 1    Cumings, Mrs. John Bradley (Florence Briggs Th...
@@ -13198,1304 +13284,1398 @@ dtype: object</pre>
 9                  Nasser, Mrs. Nicholas (Adele Achem)
 Name: Name, dtype: object</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">FRENCH_MAPPING</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">'Mme'</span><span class="p">:</span> <span class="s1">'Mrs'</span><span class="p">,</span>   <span class="c1"># Madame</span>
-    <span class="s1">'Mlle'</span><span class="p">:</span> <span class="s1">'Miss'</span><span class="p">,</span> <span class="c1"># Mademoiselle</span>
-    <span class="s1">'M.'</span><span class="p">:</span> <span class="s1">'Mr'</span><span class="p">,</span>     <span class="c1"># Monsieur</span>
+    <span class="s1">&#39;Mme&#39;</span><span class="p">:</span> <span class="s1">&#39;Mrs&#39;</span><span class="p">,</span>   <span class="c1"># Madame</span>
+    <span class="s1">&#39;Mlle&#39;</span><span class="p">:</span> <span class="s1">&#39;Miss&#39;</span><span class="p">,</span> <span class="c1"># Mademoiselle</span>
+    <span class="s1">&#39;M.&#39;</span><span class="p">:</span> <span class="s1">&#39;Mr&#39;</span><span class="p">,</span>     <span class="c1"># Monsieur</span>
 <span class="p">}</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">FINAL_TITLES</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">'master'</span><span class="p">,</span>
-    <span class="s1">'miss'</span><span class="p">,</span>
-    <span class="s1">'mr'</span><span class="p">,</span>
-    <span class="s1">'mrs'</span>
+    <span class="s1">&#39;master&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;miss&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;mr&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;mrs&#39;</span>
 <span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
 <span class="k">def</span> <span class="nf">_extract_title</span><span class="p">(</span><span class="n">column</span><span class="p">):</span>
-    <span class="sd">""" Extract the title """</span>
+    <span class="sd">&quot;&quot;&quot; Extract the title &quot;&quot;&quot;</span>
     <span class="c1"># Remove dots</span>
-    <span class="n">title_column</span> <span class="o">=</span> <span class="n">column</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">'(.*, )|(\..*)'</span><span class="p">,</span> <span class="s1">''</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">title_column</span> <span class="o">=</span> <span class="n">column</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;(.*, )|(\..*)&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
     <span class="c1"># Map the French to English titles</span>
     <span class="n">title_column</span> <span class="o">=</span> <span class="n">title_column</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">FRENCH_MAPPING</span><span class="p">)</span>
     <span class="c1"># Create the categories based on the final titles and the rare title</span>
-    <span class="n">title_column</span> <span class="o">=</span> <span class="n">title_column</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">'rare title'</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">FINAL_TITLES</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">title_column</span> <span class="o">=</span> <span class="n">title_column</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;rare title&#39;</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">FINAL_TITLES</span> <span class="k">else</span> <span class="n">x</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">title_column</span>
 </pre></div>
+
 </div>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [14]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">'Title'</span><span class="p">]</span> <span class="o">=</span> <span class="n">_extract_title</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">'Name'</span><span class="p">])</span>
-</pre></div>
-</div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[[</span><span class="s1">'Name'</span><span class="p">,</span> <span class="s1">'Title'</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_extract_title</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[[</span><span class="s1">&#39;Name&#39;</span><span class="p">,</span> <span class="s1">&#39;Title&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[15]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Name</th>
-<th>Title</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>Braund, Mr. Owen Harris</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>1</th>
-<td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
-<td>mrs</td>
-</tr>
-<tr>
-<th>2</th>
-<td>Heikkinen, Miss. Laina</td>
-<td>miss</td>
-</tr>
-<tr>
-<th>3</th>
-<td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
-<td>mrs</td>
-</tr>
-<tr>
-<th>4</th>
-<td>Allen, Mr. William Henry</td>
-<td>mr</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Braund, Mr. Owen Harris</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Cumings, Mrs. John Bradley (Florence Briggs Th...</td>
+      <td>mrs</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Heikkinen, Miss. Laina</td>
+      <td>miss</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Futrelle, Mrs. Jacques Heath (Lily May Peel)</td>
+      <td>mrs</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Allen, Mr. William Henry</td>
+      <td>mr</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="n">train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Title'</span><span class="p">)[</span><span class="s1">'Name'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Distribution of titles"</span><span class="p">)</span>
+<span class="n">train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Title&#39;</span><span class="p">)[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Distribution of titles&quot;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f45edca0cf8&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,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
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's now convert the titles to a category as we did for the gender:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">'Title'</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">'Title'</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">"category"</span><span class="p">)</span>
-<span class="n">title_mapping</span> <span class="o">=</span> <span class="n">_get_category_mapping</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">'Title'</span><span class="p">])</span>
-<span class="n">train</span><span class="p">[</span><span class="s1">'Title'</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">'Title'</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;Title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+<span class="n">title_mapping</span> <span class="o">=</span> <span class="n">_get_category_mapping</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Title&#39;</span><span class="p">])</span>
+<span class="n">train</span><span class="p">[</span><span class="s1">&#39;Title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="p">[</span><span class="s1">&#39;Title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">codes</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">title_mapping</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[29]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>{'master': 0, 'miss': 1, 'mr': 2, 'mrs': 3, 'rare title': 4}</pre>
+<pre>{&#39;master&#39;: 0, &#39;miss&#39;: 1, &#39;mr&#39;: 2, &#39;mrs&#39;: 3, &#39;rare title&#39;: 4}</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let us now investigate the ages of the people aboard the Titanic.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'Age'</span><span class="p">)[</span><span class="s1">'Name'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">"Top 20 ages"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;Age&#39;</span><span class="p">)[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Top 20 ages&quot;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f45eda0cac8&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,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
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="p">[</span><span class="s1">'Age'</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[18]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>PassengerId</th>
-<th>Survived</th>
-<th>Pclass</th>
-<th>Name</th>
-<th>Sex</th>
-<th>Age</th>
-<th>SibSp</th>
-<th>Parch</th>
-<th>Ticket</th>
-<th>Fare</th>
-<th>Cabin</th>
-<th>Embarked</th>
-<th>Title</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>5</th>
-<td>6</td>
-<td>0</td>
-<td>3</td>
-<td>Moran, Mr. James</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>330877</td>
-<td>8.4583</td>
-<td>NaN</td>
-<td>Q</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>17</th>
-<td>18</td>
-<td>1</td>
-<td>2</td>
-<td>Williams, Mr. Charles Eugene</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>244373</td>
-<td>13.0000</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>19</th>
-<td>20</td>
-<td>1</td>
-<td>3</td>
-<td>Masselmani, Mrs. Fatima</td>
-<td>0</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>2649</td>
-<td>7.2250</td>
-<td>NaN</td>
-<td>C</td>
-<td>mrs</td>
-</tr>
-<tr>
-<th>26</th>
-<td>27</td>
-<td>0</td>
-<td>3</td>
-<td>Emir, Mr. Farred Chehab</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>2631</td>
-<td>7.2250</td>
-<td>NaN</td>
-<td>C</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>28</th>
-<td>29</td>
-<td>1</td>
-<td>3</td>
-<td>O'Dwyer, Miss. Ellen "Nellie"</td>
-<td>0</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>330959</td>
-<td>7.8792</td>
-<td>NaN</td>
-<td>Q</td>
-<td>miss</td>
-</tr>
-<tr>
-<th>29</th>
-<td>30</td>
-<td>0</td>
-<td>3</td>
-<td>Todoroff, Mr. Lalio</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>349216</td>
-<td>7.8958</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>31</th>
-<td>32</td>
-<td>1</td>
-<td>1</td>
-<td>Spencer, Mrs. William Augustus (Marie Eugenie)</td>
-<td>0</td>
-<td>NaN</td>
-<td>1</td>
-<td>0</td>
-<td>PC 17569</td>
-<td>146.5208</td>
-<td>B78</td>
-<td>C</td>
-<td>mrs</td>
-</tr>
-<tr>
-<th>32</th>
-<td>33</td>
-<td>1</td>
-<td>3</td>
-<td>Glynn, Miss. Mary Agatha</td>
-<td>0</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>335677</td>
-<td>7.7500</td>
-<td>NaN</td>
-<td>Q</td>
-<td>miss</td>
-</tr>
-<tr>
-<th>36</th>
-<td>37</td>
-<td>1</td>
-<td>3</td>
-<td>Mamee, Mr. Hanna</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>2677</td>
-<td>7.2292</td>
-<td>NaN</td>
-<td>C</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>42</th>
-<td>43</td>
-<td>0</td>
-<td>3</td>
-<td>Kraeff, Mr. Theodor</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>349253</td>
-<td>7.8958</td>
-<td>NaN</td>
-<td>C</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>45</th>
-<td>46</td>
-<td>0</td>
-<td>3</td>
-<td>Rogers, Mr. William John</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>S.C./A.4. 23567</td>
-<td>8.0500</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>46</th>
-<td>47</td>
-<td>0</td>
-<td>3</td>
-<td>Lennon, Mr. Denis</td>
-<td>1</td>
-<td>NaN</td>
-<td>1</td>
-<td>0</td>
-<td>370371</td>
-<td>15.5000</td>
-<td>NaN</td>
-<td>Q</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>47</th>
-<td>48</td>
-<td>1</td>
-<td>3</td>
-<td>O'Driscoll, Miss. Bridget</td>
-<td>0</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>14311</td>
-<td>7.7500</td>
-<td>NaN</td>
-<td>Q</td>
-<td>miss</td>
-</tr>
-<tr>
-<th>48</th>
-<td>49</td>
-<td>0</td>
-<td>3</td>
-<td>Samaan, Mr. Youssef</td>
-<td>1</td>
-<td>NaN</td>
-<td>2</td>
-<td>0</td>
-<td>2662</td>
-<td>21.6792</td>
-<td>NaN</td>
-<td>C</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>55</th>
-<td>56</td>
-<td>1</td>
-<td>1</td>
-<td>Woolner, Mr. Hugh</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>19947</td>
-<td>35.5000</td>
-<td>C52</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>64</th>
-<td>65</td>
-<td>0</td>
-<td>1</td>
-<td>Stewart, Mr. Albert A</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>PC 17605</td>
-<td>27.7208</td>
-<td>NaN</td>
-<td>C</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>65</th>
-<td>66</td>
-<td>1</td>
-<td>3</td>
-<td>Moubarek, Master. Gerios</td>
-<td>1</td>
-<td>NaN</td>
-<td>1</td>
-<td>1</td>
-<td>2661</td>
-<td>15.2458</td>
-<td>NaN</td>
-<td>C</td>
-<td>master</td>
-</tr>
-<tr>
-<th>76</th>
-<td>77</td>
-<td>0</td>
-<td>3</td>
-<td>Staneff, Mr. Ivan</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>349208</td>
-<td>7.8958</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>77</th>
-<td>78</td>
-<td>0</td>
-<td>3</td>
-<td>Moutal, Mr. Rahamin Haim</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>374746</td>
-<td>8.0500</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>82</th>
-<td>83</td>
-<td>1</td>
-<td>3</td>
-<td>McDermott, Miss. Brigdet Delia</td>
-<td>0</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>330932</td>
-<td>7.7875</td>
-<td>NaN</td>
-<td>Q</td>
-<td>miss</td>
-</tr>
-<tr>
-<th>87</th>
-<td>88</td>
-<td>0</td>
-<td>3</td>
-<td>Slocovski, Mr. Selman Francis</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>SOTON/OQ 392086</td>
-<td>8.0500</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>95</th>
-<td>96</td>
-<td>0</td>
-<td>3</td>
-<td>Shorney, Mr. Charles Joseph</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>374910</td>
-<td>8.0500</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>101</th>
-<td>102</td>
-<td>0</td>
-<td>3</td>
-<td>Petroff, Mr. Pastcho ("Pentcho")</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>349215</td>
-<td>7.8958</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>107</th>
-<td>108</td>
-<td>1</td>
-<td>3</td>
-<td>Moss, Mr. Albert Johan</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>312991</td>
-<td>7.7750</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>109</th>
-<td>110</td>
-<td>1</td>
-<td>3</td>
-<td>Moran, Miss. Bertha</td>
-<td>0</td>
-<td>NaN</td>
-<td>1</td>
-<td>0</td>
-<td>371110</td>
-<td>24.1500</td>
-<td>NaN</td>
-<td>Q</td>
-<td>miss</td>
-</tr>
-<tr>
-<th>121</th>
-<td>122</td>
-<td>0</td>
-<td>3</td>
-<td>Moore, Mr. Leonard Charles</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>A4. 54510</td>
-<td>8.0500</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>126</th>
-<td>127</td>
-<td>0</td>
-<td>3</td>
-<td>McMahon, Mr. Martin</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>370372</td>
-<td>7.7500</td>
-<td>NaN</td>
-<td>Q</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>128</th>
-<td>129</td>
-<td>1</td>
-<td>3</td>
-<td>Peter, Miss. Anna</td>
-<td>0</td>
-<td>NaN</td>
-<td>1</td>
-<td>1</td>
-<td>2668</td>
-<td>22.3583</td>
-<td>F E69</td>
-<td>C</td>
-<td>miss</td>
-</tr>
-<tr>
-<th>140</th>
-<td>141</td>
-<td>0</td>
-<td>3</td>
-<td>Boulos, Mrs. Joseph (Sultana)</td>
-<td>0</td>
-<td>NaN</td>
-<td>0</td>
-<td>2</td>
-<td>2678</td>
-<td>15.2458</td>
-<td>NaN</td>
-<td>C</td>
-<td>mrs</td>
-</tr>
-<tr>
-<th>154</th>
-<td>155</td>
-<td>0</td>
-<td>3</td>
-<td>Olsen, Mr. Ole Martin</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>Fa 265302</td>
-<td>7.3125</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>...</th>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-<td>...</td>
-</tr>
-<tr>
-<th>718</th>
-<td>719</td>
-<td>0</td>
-<td>3</td>
-<td>McEvoy, Mr. Michael</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>36568</td>
-<td>15.5000</td>
-<td>NaN</td>
-<td>Q</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>727</th>
-<td>728</td>
-<td>1</td>
-<td>3</td>
-<td>Mannion, Miss. Margareth</td>
-<td>0</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>36866</td>
-<td>7.7375</td>
-<td>NaN</td>
-<td>Q</td>
-<td>miss</td>
-</tr>
-<tr>
-<th>732</th>
-<td>733</td>
-<td>0</td>
-<td>2</td>
-<td>Knight, Mr. Robert J</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>239855</td>
-<td>0.0000</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>738</th>
-<td>739</td>
-<td>0</td>
-<td>3</td>
-<td>Ivanoff, Mr. Kanio</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>349201</td>
-<td>7.8958</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>739</th>
-<td>740</td>
-<td>0</td>
-<td>3</td>
-<td>Nankoff, Mr. Minko</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>349218</td>
-<td>7.8958</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>740</th>
-<td>741</td>
-<td>1</td>
-<td>1</td>
-<td>Hawksford, Mr. Walter James</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>16988</td>
-<td>30.0000</td>
-<td>D45</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>760</th>
-<td>761</td>
-<td>0</td>
-<td>3</td>
-<td>Garfirth, Mr. John</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>358585</td>
-<td>14.5000</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>766</th>
-<td>767</td>
-<td>0</td>
-<td>1</td>
-<td>Brewe, Dr. Arthur Jackson</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>112379</td>
-<td>39.6000</td>
-<td>NaN</td>
-<td>C</td>
-<td>rare title</td>
-</tr>
-<tr>
-<th>768</th>
-<td>769</td>
-<td>0</td>
-<td>3</td>
-<td>Moran, Mr. Daniel J</td>
-<td>1</td>
-<td>NaN</td>
-<td>1</td>
-<td>0</td>
-<td>371110</td>
-<td>24.1500</td>
-<td>NaN</td>
-<td>Q</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>773</th>
-<td>774</td>
-<td>0</td>
-<td>3</td>
-<td>Elias, Mr. Dibo</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>2674</td>
-<td>7.2250</td>
-<td>NaN</td>
-<td>C</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>776</th>
-<td>777</td>
-<td>0</td>
-<td>3</td>
-<td>Tobin, Mr. Roger</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>383121</td>
-<td>7.7500</td>
-<td>F38</td>
-<td>Q</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>778</th>
-<td>779</td>
-<td>0</td>
-<td>3</td>
-<td>Kilgannon, Mr. Thomas J</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>36865</td>
-<td>7.7375</td>
-<td>NaN</td>
-<td>Q</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>783</th>
-<td>784</td>
-<td>0</td>
-<td>3</td>
-<td>Johnston, Mr. Andrew G</td>
-<td>1</td>
-<td>NaN</td>
-<td>1</td>
-<td>2</td>
-<td>W./C. 6607</td>
-<td>23.4500</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>790</th>
-<td>791</td>
-<td>0</td>
-<td>3</td>
-<td>Keane, Mr. Andrew "Andy"</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>12460</td>
-<td>7.7500</td>
-<td>NaN</td>
-<td>Q</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>792</th>
-<td>793</td>
-<td>0</td>
-<td>3</td>
-<td>Sage, Miss. Stella Anna</td>
-<td>0</td>
-<td>NaN</td>
-<td>8</td>
-<td>2</td>
-<td>CA. 2343</td>
-<td>69.5500</td>
-<td>NaN</td>
-<td>S</td>
-<td>miss</td>
-</tr>
-<tr>
-<th>793</th>
-<td>794</td>
-<td>0</td>
-<td>1</td>
-<td>Hoyt, Mr. William Fisher</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>PC 17600</td>
-<td>30.6958</td>
-<td>NaN</td>
-<td>C</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>815</th>
-<td>816</td>
-<td>0</td>
-<td>1</td>
-<td>Fry, Mr. Richard</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>112058</td>
-<td>0.0000</td>
-<td>B102</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>825</th>
-<td>826</td>
-<td>0</td>
-<td>3</td>
-<td>Flynn, Mr. John</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>368323</td>
-<td>6.9500</td>
-<td>NaN</td>
-<td>Q</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>826</th>
-<td>827</td>
-<td>0</td>
-<td>3</td>
-<td>Lam, Mr. Len</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>1601</td>
-<td>56.4958</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>828</th>
-<td>829</td>
-<td>1</td>
-<td>3</td>
-<td>McCormack, Mr. Thomas Joseph</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>367228</td>
-<td>7.7500</td>
-<td>NaN</td>
-<td>Q</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>832</th>
-<td>833</td>
-<td>0</td>
-<td>3</td>
-<td>Saad, Mr. Amin</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>2671</td>
-<td>7.2292</td>
-<td>NaN</td>
-<td>C</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>837</th>
-<td>838</td>
-<td>0</td>
-<td>3</td>
-<td>Sirota, Mr. Maurice</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>392092</td>
-<td>8.0500</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>839</th>
-<td>840</td>
-<td>1</td>
-<td>1</td>
-<td>Marechal, Mr. Pierre</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>11774</td>
-<td>29.7000</td>
-<td>C47</td>
-<td>C</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>846</th>
-<td>847</td>
-<td>0</td>
-<td>3</td>
-<td>Sage, Mr. Douglas Bullen</td>
-<td>1</td>
-<td>NaN</td>
-<td>8</td>
-<td>2</td>
-<td>CA. 2343</td>
-<td>69.5500</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>849</th>
-<td>850</td>
-<td>1</td>
-<td>1</td>
-<td>Goldenberg, Mrs. Samuel L (Edwiga Grabowska)</td>
-<td>0</td>
-<td>NaN</td>
-<td>1</td>
-<td>0</td>
-<td>17453</td>
-<td>89.1042</td>
-<td>C92</td>
-<td>C</td>
-<td>mrs</td>
-</tr>
-<tr>
-<th>859</th>
-<td>860</td>
-<td>0</td>
-<td>3</td>
-<td>Razi, Mr. Raihed</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>2629</td>
-<td>7.2292</td>
-<td>NaN</td>
-<td>C</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>863</th>
-<td>864</td>
-<td>0</td>
-<td>3</td>
-<td>Sage, Miss. Dorothy Edith "Dolly"</td>
-<td>0</td>
-<td>NaN</td>
-<td>8</td>
-<td>2</td>
-<td>CA. 2343</td>
-<td>69.5500</td>
-<td>NaN</td>
-<td>S</td>
-<td>miss</td>
-</tr>
-<tr>
-<th>868</th>
-<td>869</td>
-<td>0</td>
-<td>3</td>
-<td>van Melkebeke, Mr. Philemon</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>345777</td>
-<td>9.5000</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>878</th>
-<td>879</td>
-<td>0</td>
-<td>3</td>
-<td>Laleff, Mr. Kristo</td>
-<td>1</td>
-<td>NaN</td>
-<td>0</td>
-<td>0</td>
-<td>349217</td>
-<td>7.8958</td>
-<td>NaN</td>
-<td>S</td>
-<td>mr</td>
-</tr>
-<tr>
-<th>888</th>
-<td>889</td>
-<td>0</td>
-<td>3</td>
-<td>Johnston, Miss. Catherine Helen "Carrie"</td>
-<td>0</td>
-<td>NaN</td>
-<td>1</td>
-<td>2</td>
-<td>W./C. 6607</td>
-<td>23.4500</td>
-<td>NaN</td>
-<td>S</td>
-<td>miss</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>PassengerId</th>
+      <th>Survived</th>
+      <th>Pclass</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>SibSp</th>
+      <th>Parch</th>
+      <th>Ticket</th>
+      <th>Fare</th>
+      <th>Cabin</th>
+      <th>Embarked</th>
+      <th>Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Moran, Mr. James</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330877</td>
+      <td>8.4583</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>18</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Williams, Mr. Charles Eugene</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>244373</td>
+      <td>13.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>20</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Masselmani, Mrs. Fatima</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2649</td>
+      <td>7.2250</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>mrs</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>27</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Emir, Mr. Farred Chehab</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2631</td>
+      <td>7.2250</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>29</td>
+      <td>1</td>
+      <td>3</td>
+      <td>O'Dwyer, Miss. Ellen "Nellie"</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330959</td>
+      <td>7.8792</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>miss</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>30</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Todoroff, Mr. Lalio</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>349216</td>
+      <td>7.8958</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>32</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Spencer, Mrs. William Augustus (Marie Eugenie)</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>0</td>
+      <td>PC 17569</td>
+      <td>146.5208</td>
+      <td>B78</td>
+      <td>C</td>
+      <td>mrs</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>33</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Glynn, Miss. Mary Agatha</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>335677</td>
+      <td>7.7500</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>miss</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>37</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Mamee, Mr. Hanna</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2677</td>
+      <td>7.2292</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>43</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Kraeff, Mr. Theodor</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>349253</td>
+      <td>7.8958</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>46</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Rogers, Mr. William John</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>S.C./A.4. 23567</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>47</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Lennon, Mr. Denis</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>0</td>
+      <td>370371</td>
+      <td>15.5000</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>48</td>
+      <td>1</td>
+      <td>3</td>
+      <td>O'Driscoll, Miss. Bridget</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>14311</td>
+      <td>7.7500</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>miss</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>49</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Samaan, Mr. Youssef</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2662</td>
+      <td>21.6792</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>55</th>
+      <td>56</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Woolner, Mr. Hugh</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>19947</td>
+      <td>35.5000</td>
+      <td>C52</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>65</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Stewart, Mr. Albert A</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>PC 17605</td>
+      <td>27.7208</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>66</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Moubarek, Master. Gerios</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2661</td>
+      <td>15.2458</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>master</td>
+    </tr>
+    <tr>
+      <th>76</th>
+      <td>77</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Staneff, Mr. Ivan</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>349208</td>
+      <td>7.8958</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>77</th>
+      <td>78</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Moutal, Mr. Rahamin Haim</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>374746</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>82</th>
+      <td>83</td>
+      <td>1</td>
+      <td>3</td>
+      <td>McDermott, Miss. Brigdet Delia</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>330932</td>
+      <td>7.7875</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>miss</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>88</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Slocovski, Mr. Selman Francis</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>SOTON/OQ 392086</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>96</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Shorney, Mr. Charles Joseph</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>374910</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>102</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Petroff, Mr. Pastcho ("Pentcho")</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>349215</td>
+      <td>7.8958</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>107</th>
+      <td>108</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Moss, Mr. Albert Johan</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>312991</td>
+      <td>7.7750</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>110</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Moran, Miss. Bertha</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>0</td>
+      <td>371110</td>
+      <td>24.1500</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>miss</td>
+    </tr>
+    <tr>
+      <th>121</th>
+      <td>122</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Moore, Mr. Leonard Charles</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>A4. 54510</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>126</th>
+      <td>127</td>
+      <td>0</td>
+      <td>3</td>
+      <td>McMahon, Mr. Martin</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>370372</td>
+      <td>7.7500</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>128</th>
+      <td>129</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Peter, Miss. Anna</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2668</td>
+      <td>22.3583</td>
+      <td>F E69</td>
+      <td>C</td>
+      <td>miss</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>141</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Boulos, Mrs. Joseph (Sultana)</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2678</td>
+      <td>15.2458</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>mrs</td>
+    </tr>
+    <tr>
+      <th>154</th>
+      <td>155</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Olsen, Mr. Ole Martin</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Fa 265302</td>
+      <td>7.3125</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>718</th>
+      <td>719</td>
+      <td>0</td>
+      <td>3</td>
+      <td>McEvoy, Mr. Michael</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>36568</td>
+      <td>15.5000</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>727</th>
+      <td>728</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Mannion, Miss. Margareth</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>36866</td>
+      <td>7.7375</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>miss</td>
+    </tr>
+    <tr>
+      <th>732</th>
+      <td>733</td>
+      <td>0</td>
+      <td>2</td>
+      <td>Knight, Mr. Robert J</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>239855</td>
+      <td>0.0000</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>738</th>
+      <td>739</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Ivanoff, Mr. Kanio</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>349201</td>
+      <td>7.8958</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>739</th>
+      <td>740</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Nankoff, Mr. Minko</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>349218</td>
+      <td>7.8958</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>740</th>
+      <td>741</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Hawksford, Mr. Walter James</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>16988</td>
+      <td>30.0000</td>
+      <td>D45</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>760</th>
+      <td>761</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Garfirth, Mr. John</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>358585</td>
+      <td>14.5000</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>766</th>
+      <td>767</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Brewe, Dr. Arthur Jackson</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>112379</td>
+      <td>39.6000</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>rare title</td>
+    </tr>
+    <tr>
+      <th>768</th>
+      <td>769</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Moran, Mr. Daniel J</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>0</td>
+      <td>371110</td>
+      <td>24.1500</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>773</th>
+      <td>774</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Elias, Mr. Dibo</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2674</td>
+      <td>7.2250</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>776</th>
+      <td>777</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Tobin, Mr. Roger</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>383121</td>
+      <td>7.7500</td>
+      <td>F38</td>
+      <td>Q</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>778</th>
+      <td>779</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Kilgannon, Mr. Thomas J</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>36865</td>
+      <td>7.7375</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>783</th>
+      <td>784</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Johnston, Mr. Andrew G</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>2</td>
+      <td>W./C. 6607</td>
+      <td>23.4500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>790</th>
+      <td>791</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Keane, Mr. Andrew "Andy"</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>12460</td>
+      <td>7.7500</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>792</th>
+      <td>793</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Sage, Miss. Stella Anna</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>2</td>
+      <td>CA. 2343</td>
+      <td>69.5500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>miss</td>
+    </tr>
+    <tr>
+      <th>793</th>
+      <td>794</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Hoyt, Mr. William Fisher</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>PC 17600</td>
+      <td>30.6958</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>815</th>
+      <td>816</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Fry, Mr. Richard</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>112058</td>
+      <td>0.0000</td>
+      <td>B102</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>825</th>
+      <td>826</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Flynn, Mr. John</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>368323</td>
+      <td>6.9500</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>826</th>
+      <td>827</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Lam, Mr. Len</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1601</td>
+      <td>56.4958</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>828</th>
+      <td>829</td>
+      <td>1</td>
+      <td>3</td>
+      <td>McCormack, Mr. Thomas Joseph</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>367228</td>
+      <td>7.7500</td>
+      <td>NaN</td>
+      <td>Q</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>832</th>
+      <td>833</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Saad, Mr. Amin</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2671</td>
+      <td>7.2292</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>837</th>
+      <td>838</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Sirota, Mr. Maurice</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>392092</td>
+      <td>8.0500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>839</th>
+      <td>840</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Marechal, Mr. Pierre</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>11774</td>
+      <td>29.7000</td>
+      <td>C47</td>
+      <td>C</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>846</th>
+      <td>847</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Sage, Mr. Douglas Bullen</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>2</td>
+      <td>CA. 2343</td>
+      <td>69.5500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>849</th>
+      <td>850</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Goldenberg, Mrs. Samuel L (Edwiga Grabowska)</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>0</td>
+      <td>17453</td>
+      <td>89.1042</td>
+      <td>C92</td>
+      <td>C</td>
+      <td>mrs</td>
+    </tr>
+    <tr>
+      <th>859</th>
+      <td>860</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Razi, Mr. Raihed</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2629</td>
+      <td>7.2292</td>
+      <td>NaN</td>
+      <td>C</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>863</th>
+      <td>864</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Sage, Miss. Dorothy Edith "Dolly"</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>8</td>
+      <td>2</td>
+      <td>CA. 2343</td>
+      <td>69.5500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>miss</td>
+    </tr>
+    <tr>
+      <th>868</th>
+      <td>869</td>
+      <td>0</td>
+      <td>3</td>
+      <td>van Melkebeke, Mr. Philemon</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>345777</td>
+      <td>9.5000</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>878</th>
+      <td>879</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Laleff, Mr. Kristo</td>
+      <td>1</td>
+      <td>NaN</td>
+      <td>0</td>
+      <td>0</td>
+      <td>349217</td>
+      <td>7.8958</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>mr</td>
+    </tr>
+    <tr>
+      <th>888</th>
+      <td>889</td>
+      <td>0</td>
+      <td>3</td>
+      <td>Johnston, Miss. Catherine Helen "Carrie"</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>2</td>
+      <td>W./C. 6607</td>
+      <td>23.4500</td>
+      <td>NaN</td>
+      <td>S</td>
+      <td>miss</td>
+    </tr>
+  </tbody>
 </table>
 <p>177 rows × 13 columns</p>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the dataset the age is missing for 177 persons. Use a linear model to calculate the age based on the class, gender and number of siblings/spouses based on the rows <strong>with</strong> an age.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">LIN_MOD_FEATURES</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">'Pclass'</span><span class="p">,</span>
-    <span class="s1">'Sex'</span><span class="p">,</span>
-    <span class="s1">'SibSp'</span>
+    <span class="s1">&#39;Pclass&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Sex&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SibSp&#39;</span>
 <span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">LIN_MOD_TARGET</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">'Age'</span>
+    <span class="s1">&#39;Age&#39;</span>
 <span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="k">import</span> <span class="n">linear_model</span>
 
 <span class="k">def</span> <span class="nf">_create_linear_model</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
-    <span class="sd">""" Create linear model """</span>
+    <span class="sd">&quot;&quot;&quot; Create linear model &quot;&quot;&quot;</span>
     <span class="n">imput</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="n">frame</span><span class="o">.</span><span class="n">Age</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
     <span class="n">features</span> <span class="o">=</span> <span class="n">imput</span><span class="p">[</span><span class="n">LIN_MOD_FEATURES</span><span class="p">]</span>
     <span class="n">target</span> <span class="o">=</span> <span class="n">imput</span><span class="p">[</span><span class="n">LIN_MOD_TARGET</span><span class="p">]</span>
@@ -14503,116 +14683,132 @@ Name: Name, dtype: object</pre>
     <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">model</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">linear_mod</span> <span class="o">=</span> <span class="n">_create_linear_model</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Calculate the predicted age for <strong>all</strong> the rows:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">'PredictedAge'</span><span class="p">]</span> <span class="o">=</span> <span class="n">linear_mod</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">LIN_MOD_FEATURES</span><span class="p">])</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;PredictedAge&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">linear_mod</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train</span><span class="p">[</span><span class="n">LIN_MOD_FEATURES</span><span class="p">])</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Merge the predicted age into the dataframe where there is no age yet:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">'Age'</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Age</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Age</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="o">.</span><span class="n">PredictedAge</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">Age</span> <span class="k">if</span> <span class="n">pd</span><span class="o">.</span><span class="n">notnull</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">Age</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span><span class="o">.</span><span class="n">PredictedAge</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Drop the prediction column since it is not needed anymore:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'PredictedAge'</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;PredictedAge&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To estimate the chance of survival we will use a Random Forest Classifier.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [36]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">FEATURES</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">'Pclass'</span><span class="p">,</span>
-    <span class="s1">'Sex'</span><span class="p">,</span>
-    <span class="s1">'Age'</span><span class="p">,</span>
-    <span class="s1">'SibSp'</span><span class="p">,</span>
-    <span class="s1">'Parch'</span><span class="p">,</span>
-    <span class="s1">'Title'</span><span class="p">,</span>
+    <span class="s1">&#39;Pclass&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Sex&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Age&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;SibSp&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Parch&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;Title&#39;</span><span class="p">,</span>
 <span class="p">]</span>
-<span class="n">TARGET</span> <span class="o">=</span> <span class="s1">'Survived'</span>
+<span class="n">TARGET</span> <span class="o">=</span> <span class="s1">&#39;Survived&#39;</span>
 <span class="n">NUM_TREES</span> <span class="o">=</span> <span class="mi">500</span>
 <span class="n">MAX_FEATURES</span> <span class="o">=</span> <span class="mi">2</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [42]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="k">import</span> <span class="n">RandomForestClassifier</span>
 
 <span class="k">def</span> <span class="nf">_create_random_forest_classifier</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
-    <span class="sd">""" Build a random forest classifier """</span>
+    <span class="sd">&quot;&quot;&quot; Build a random forest classifier &quot;&quot;&quot;</span>
     <span class="n">features</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="n">FEATURES</span><span class="p">]</span>
     <span class="n">target</span> <span class="o">=</span> <span class="n">frame</span><span class="p">[</span><span class="n">TARGET</span><span class="p">]</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="n">NUM_TREES</span><span class="p">,</span>
@@ -14621,62 +14817,71 @@ Name: Name, dtype: object</pre>
     <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">model</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [43]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">random_forest_classifier</span> <span class="o">=</span> <span class="n">_create_random_forest_classifier</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>As a final step for the <em>MaaS</em> we will save the model and the two mappings to disk. This way we can upload them to the microservice in the next step.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [40]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.externals</span> <span class="k">import</span> <span class="n">joblib</span>
 
 <span class="k">def</span> <span class="nf">_save_variable</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-    <span class="sd">""" Save a variable to a file """</span>
+    <span class="sd">&quot;&quot;&quot; Save a variable to a file &quot;&quot;&quot;</span>
     <span class="n">joblib</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [41]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">_save_variable</span><span class="p">(</span><span class="n">random_forest_classifier</span><span class="p">,</span> <span class="s1">'random_forest.mdl'</span><span class="p">)</span>
-<span class="n">_save_variable</span><span class="p">(</span><span class="n">title_mapping</span><span class="p">,</span> <span class="s1">'title_mapping.pkl'</span><span class="p">)</span>
-<span class="n">_save_variable</span><span class="p">(</span><span class="n">sex_mapping</span><span class="p">,</span> <span class="s1">'sex_mapping.pkl'</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">_save_variable</span><span class="p">(</span><span class="n">random_forest_classifier</span><span class="p">,</span> <span class="s1">&#39;random_forest.mdl&#39;</span><span class="p">)</span>
+<span class="n">_save_variable</span><span class="p">(</span><span class="n">title_mapping</span><span class="p">,</span> <span class="s1">&#39;title_mapping.pkl&#39;</span><span class="p">)</span>
+<span class="n">_save_variable</span><span class="p">(</span><span class="n">sex_mapping</span><span class="p">,</span> <span class="s1">&#39;sex_mapping.pkl&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Deploying-the-model-as-a-service">Deploying the model as a service<a class="anchor-link" href="#Deploying-the-model-as-a-service">¶</a></h2>
+<h2 id="Deploying-the-model-as-a-service">Deploying the model as a service<a class="anchor-link" href="#Deploying-the-model-as-a-service">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -14685,18 +14890,19 @@ Name: Name, dtype: object</pre>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To deploy the model as a service, I am going to use the web framework Flask. This makes it easy to interact with the variables we saved in the previous step and it is straighforward to create a simple web app with only a few routes. The <code>app.py</code> contains all the magic and will be used in the Dockerfile to get the container with the model online. This is the code for the main application:</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [44]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> app.py
 #!/usr/bin/env python
 # # -*- coding: utf-8 -*-
-""" Flask API for predicting probability of survival """
+&quot;&quot;&quot; Flask API for predicting probability of survival &quot;&quot;&quot;
 import json
 import sys
 from flask import Flask, jsonify, request, render_template, url_for
@@ -14704,103 +14910,113 @@ from sklearn.externals import joblib
 import numpy as np
 
 try:
-    saved_model = joblib.load('random_forest.mdl')
-    sex_mapping = joblib.load('sex_mapping.pkl')
-    title_mapping = joblib.load('title_mapping.pkl')
+    saved_model = joblib.load(&#39;random_forest.mdl&#39;)
+    sex_mapping = joblib.load(&#39;sex_mapping.pkl&#39;)
+    title_mapping = joblib.load(&#39;title_mapping.pkl&#39;)
 except:
-    print("Error loading application. Please run `python create_random_forest.py` first!")
+    print(&quot;Error loading application. Please run `python create_random_forest.py` first!&quot;)
     sys.exit(0)
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route(&#39;/&#39;)
 def main():
-    """ Main page of the API """
-    return "This is the main page"
+    &quot;&quot;&quot; Main page of the API &quot;&quot;&quot;
+    return &quot;This is the main page&quot;
 
-@app.route('/predict', methods=['GET'])
+@app.route(&#39;/predict&#39;, methods=[&#39;GET&#39;])
 def predict():
-    """ Predict the probability of survival """
+    &quot;&quot;&quot; Predict the probability of survival &quot;&quot;&quot;
     args = request.args
-    required_args = ['class', 'sex', 'age', 'sibsp', 'parch', 'title']
+    required_args = [&#39;class&#39;, &#39;sex&#39;, &#39;age&#39;, &#39;sibsp&#39;, &#39;parch&#39;, &#39;title&#39;]
     # Simple error handling for the arguments
     diff = set(required_args).difference(set(args.keys()))
     if len(diff) &gt; 0:
-        return "Error: wrong arguments. Missing arguments {}".format(str(diff))
-    person_features = np.array([args['class'],
-                                sex_mapping[args['sex']],
-                                args['age'],
-                                args['sibsp'],
-                                args['parch'],
-                                title_mapping[args['title'].lower()]
+        return &quot;Error: wrong arguments. Missing arguments {}&quot;.format(str(diff))
+    person_features = np.array([args[&#39;class&#39;],
+                                sex_mapping[args[&#39;sex&#39;]],
+                                args[&#39;age&#39;],
+                                args[&#39;sibsp&#39;],
+                                args[&#39;parch&#39;],
+                                title_mapping[args[&#39;title&#39;].lower()]
                                ]).reshape(1, -1)
     probability = saved_model.predict_proba(person_features)[:, 1][0]
-    return jsonify({'probabilityOfSurvival': probability})
+    return jsonify({&#39;probabilityOfSurvival&#39;: probability})
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+if __name__ == &#39;__main__&#39;:
+    app.run(host=&#39;0.0.0.0&#39;)
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Writing app.py
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Breakdown">Breakdown<a class="anchor-link" href="#Breakdown">¶</a></h4><p>The first bit</p>
+<h4 id="Breakdown">Breakdown<a class="anchor-link" href="#Breakdown">&#182;</a></h4><p>The first bit</p>
 <div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
-    <span class="n">saved_model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'random_forest.mdl'</span><span class="p">)</span>
-    <span class="n">sex_mapping</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'sex_mapping.pkl'</span><span class="p">)</span>
-    <span class="n">title_mapping</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'title_mapping.pkl'</span><span class="p">)</span>
+    <span class="n">saved_model</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;random_forest.mdl&#39;</span><span class="p">)</span>
+    <span class="n">sex_mapping</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;sex_mapping.pkl&#39;</span><span class="p">)</span>
+    <span class="n">title_mapping</span> <span class="o">=</span> <span class="n">joblib</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;title_mapping.pkl&#39;</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">"Error loading application. Please run `python create_random_forest.py` first!"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Error loading application. Please run `python create_random_forest.py` first!&quot;</span><span class="p">)</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 <p>will import the three variables that we saved during training the model. We can use the mappings to map the input arguments of the API to the proper fields of the model.</p>
 <p>The next part is default for a Flask application:</p>
 <div class="highlight"><pre><span></span><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span>
+<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="sd">""" Main page of the API """</span>
-    <span class="k">return</span> <span class="s2">"This is the main page"</span>
+    <span class="sd">&quot;&quot;&quot; Main page of the API &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s2">&quot;This is the main page&quot;</span>
 </pre></div>
 <p>The predict route is slightly more advanced. It will take parameters using the GET method and verify if all six required arguments are present.</p>
 <div class="highlight"><pre><span></span><span class="n">args</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span>
-<span class="n">required_args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'class'</span><span class="p">,</span> <span class="s1">'sex'</span><span class="p">,</span> <span class="s1">'age'</span><span class="p">,</span> <span class="s1">'sibsp'</span><span class="p">,</span> <span class="s1">'parch'</span><span class="p">,</span> <span class="s1">'title'</span><span class="p">]</span>
+<span class="n">required_args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="s1">&#39;sibsp&#39;</span><span class="p">,</span> <span class="s1">&#39;parch&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">]</span>
 <span class="c1"># Simple error handling for the arguments</span>
 <span class="n">diff</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">required_args</span><span class="p">)</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="k">return</span> <span class="s2">"Error: wrong arguments. Missing arguments {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">diff</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s2">&quot;Error: wrong arguments. Missing arguments {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">diff</span><span class="p">))</span>
 </pre></div>
 <p>If all arguments are present, it will create a feature array to feed to the prediction model by using <code>numpy</code>. This is where the mappings come in, as an input for the title we have a string, but this is mapped to the corresponding index of the mapping to match to the feature in the model.</p>
-<div class="highlight"><pre><span></span><span class="n">person_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">args</span><span class="p">[</span><span class="s1">'class'</span><span class="p">],</span>
-                            <span class="n">sex_mapping</span><span class="p">[</span><span class="n">args</span><span class="p">[</span><span class="s1">'sex'</span><span class="p">]],</span>
-                            <span class="n">args</span><span class="p">[</span><span class="s1">'age'</span><span class="p">],</span>
-                            <span class="n">args</span><span class="p">[</span><span class="s1">'sibsp'</span><span class="p">],</span>
-                            <span class="n">args</span><span class="p">[</span><span class="s1">'parch'</span><span class="p">],</span>
-                            <span class="n">title_mapping</span><span class="p">[</span><span class="n">args</span><span class="p">[</span><span class="s1">'title'</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+<div class="highlight"><pre><span></span><span class="n">person_features</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;class&#39;</span><span class="p">],</span>
+                            <span class="n">sex_mapping</span><span class="p">[</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">]],</span>
+                            <span class="n">args</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span>
+                            <span class="n">args</span><span class="p">[</span><span class="s1">&#39;sibsp&#39;</span><span class="p">],</span>
+                            <span class="n">args</span><span class="p">[</span><span class="s1">&#39;parch&#39;</span><span class="p">],</span>
+                            <span class="n">title_mapping</span><span class="p">[</span><span class="n">args</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
                            <span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 <p>Finally the probability is calculated based on the features and the probability is fed back using a JSON object.</p>
 <div class="highlight"><pre><span></span><span class="n">probability</span> <span class="o">=</span> <span class="n">saved_model</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">person_features</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">'probabilityOfSurvival'</span><span class="p">:</span> <span class="n">probability</span><span class="p">})</span>
+<span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;probabilityOfSurvival&#39;</span><span class="p">:</span> <span class="n">probability</span><span class="p">})</span>
 </pre></div>
 <p>The last bit of <code>app.py</code> is the default way of starting the Flask server. I have modified the host from <code>localhost</code> to <code>0.0.0.0</code> in order to be able to access the API from any IP address.</p>
-<div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">'0.0.0.0'</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -14808,7 +15024,7 @@ if __name__ == '__main__':
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Docker">Docker<a class="anchor-link" href="#Docker">¶</a></h4><p>To run the model as a service, I will use Docker to create a container where the server is running and the endpoint for the prediction is exposed. The <code>Dockerfile</code> is very basic. It will use Python 3, copy the contents to the container, install the requirements and start the server.</p>
+<h4 id="Docker">Docker<a class="anchor-link" href="#Docker">&#182;</a></h4><p>To run the model as a service, I will use Docker to create a container where the server is running and the endpoint for the prediction is exposed. The <code>Dockerfile</code> is very basic. It will use Python 3, copy the contents to the container, install the requirements and start the server.</p>
 <div class="highlight"><pre><span></span><span class="c"># Base image</span>
 <span class="k">FROM</span><span class="s"> python:3</span>
 <span class="c"># Copy contents</span>
@@ -14818,9 +15034,10 @@ COPY . /app
 <span class="c"># Install the requirements</span>
 <span class="k">RUN</span> pip install -r requirements.txt
 <span class="c"># Start the application</span>
-<span class="k">CMD</span><span class="s"> ["python", "app.py"]</span>
+<span class="k">CMD</span><span class="s"> [&quot;python&quot;, &quot;app.py&quot;]</span>
 </pre></div>
 <p>where <code>requirements.txt</code> contains the following:</p>
+
 <pre><code>certifi==2018.1.18
 click==6.7
 Flask==0.12.2
@@ -14836,6 +15053,7 @@ scipy==1.0.0
 six==1.11.0
 Werkzeug==0.14.1</code></pre>
 <p>The <code>docker-compose.yml</code> will simply build the current <code>Dockerfile</code> and expose port 5000.</p>
+
 <pre><code>version: '2'
 services:
   flask:
@@ -14843,6 +15061,7 @@ services:
     ports:
       - "5000:5000"</code></pre>
 <p>Running <code>docker-compose up -d</code> in this folder will now start the server and by going to the IP of the machine the endpoint should be visible on port 5000 and route <code>predict</code>.</p>
+
 </div>
 </div>
 </div>
@@ -14850,15 +15069,16 @@ services:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Execution">Execution<a class="anchor-link" href="#Execution">¶</a></h4><p>Let's put it to the test: create the files, spin up Docker and check the API response.</p>
+<h4 id="Execution">Execution<a class="anchor-link" href="#Execution">&#182;</a></h4><p>Let's put it to the test: create the files, spin up Docker and check the API response.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [45]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> Dockerfile
 # Base image
 FROM python:3
@@ -14869,28 +15089,37 @@ WORKDIR /app
 # Install the requirements
 RUN pip install -r requirements.txt
 # Start the application
-CMD ["python", "app.py"]
+CMD [&quot;python&quot;, &quot;app.py&quot;]
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Writing Dockerfile
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [46]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> requirements.txt
 certifi==2018.1.18
 click==6.7
@@ -14907,65 +15136,90 @@ scipy==1.0.0
 six==1.11.0
 Werkzeug==0.14.1
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Writing requirements.txt
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [47]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> docker-compose.yml
-version: '2'
+version: &#39;2&#39;
 services:
   flask:
     build: .
     ports:
-      - "5000:5000"
+      - &quot;5000:5000&quot;
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Writing docker-compose.yml
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [51]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>docker-compose up -d
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre><span class="ansi-yellow-fg">WARNING</span>: The Docker Engine you're using is running in swarm mode.
+<pre><span class="ansi-yellow-fg">WARNING</span>: The Docker Engine you&#39;re using is running in swarm mode.
 
 Compose does not use swarm mode to deploy services to multiple nodes in a swarm. All containers will be scheduled on the current node.
 
@@ -15023,17 +15277,17 @@ Collecting Werkzeug==0.14.1 (from -r requirements.txt (line 14))
   Downloading https://files.pythonhosted.org/packages/20/c4/12e3e56473e52375aa29c4764e70d1b8f3efa6682bef8d0aae04fe335243/Werkzeug-0.14.1-py2.py3-none-any.whl (322kB)
 Building wheels for collected packages: itsdangerous, MarkupSafe
   Running setup.py bdist_wheel for itsdangerous: started
-  Running setup.py bdist_wheel for itsdangerous: finished with status 'done'
+  Running setup.py bdist_wheel for itsdangerous: finished with status &#39;done&#39;
   Stored in directory: /root/.cache/pip/wheels/2c/4a/61/5599631c1554768c6290b08c02c72d7317910374ca602ff1e5
   Running setup.py bdist_wheel for MarkupSafe: started
-  Running setup.py bdist_wheel for MarkupSafe: finished with status 'done'
+  Running setup.py bdist_wheel for MarkupSafe: finished with status &#39;done&#39;
   Stored in directory: /root/.cache/pip/wheels/33/56/20/ebe49a5c612fffe1c5a632146b16596f9e64676768661e4e46
 Successfully built itsdangerous MarkupSafe
 Installing collected packages: certifi, click, itsdangerous, Werkzeug, MarkupSafe, Jinja2, Flask, numpy, pytz, six, python-dateutil, pandas, scikit-learn, scipy
 Successfully installed Flask-0.12.2 Jinja2-2.10 MarkupSafe-1.0 Werkzeug-0.14.1 certifi-2018.1.18 click-6.7 itsdangerous-0.24 numpy-1.14.0 pandas-0.22.0 python-dateutil-2.6.1 pytz-2017.3 scikit-learn-0.19.1 scipy-1.0.0 six-1.11.0
 Removing intermediate container ba1465b7f6e3
  ---&gt; efdb1e8577ad
-Step 5/5 : CMD ["python", "app.py"]
+Step 5/5 : CMD [&#34;python&#34;, &#34;app.py&#34;]
  ---&gt; Running in 5f7361303e7b
 Removing intermediate container 5f7361303e7b
  ---&gt; 1ad5cf22e305
@@ -15044,81 +15298,103 @@ Creating notebooks_flask_1 ...
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [53]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>docker ps <span class="p">|</span> grep flask
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>5e7d954d4215        notebooks_flask                    "python app.py"          19 minutes ago      Up 19 minutes          0.0.0.0:5000-&gt;5000/tcp             notebooks_flask_1
+<pre>5e7d954d4215        notebooks_flask                    &#34;python app.py&#34;          19 minutes ago      Up 19 minutes          0.0.0.0:5000-&gt;5000/tcp             notebooks_flask_1
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Verification">Verification<a class="anchor-link" href="#Verification">¶</a></h4><p>The following code will call the API with some parameters and print the result.</p>
+<h4 id="Verification">Verification<a class="anchor-link" href="#Verification">&#182;</a></h4><p>The following code will call the API with some parameters and print the result.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [55]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">'class'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s1">'age'</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span>
-    <span class="s1">'sibsp'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="s1">'parch'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'mr'</span><span class="p">,</span>
-    <span class="s1">'sex'</span><span class="p">:</span> <span class="s1">'male'</span><span class="p">,</span>
+    <span class="s1">&#39;class&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span>
+    <span class="s1">&#39;sibsp&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;parch&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;mr&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sex&#39;</span><span class="p">:</span> <span class="s1">&#39;male&#39;</span><span class="p">,</span>
 <span class="p">}</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s1">'http://hub.jitsejan.com:5000/predict'</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://hub.jitsejan.com:5000/predict&#39;</span>
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>http://hub.jitsejan.com:5000/predict?class=2&amp;age=22&amp;sibsp=2&amp;parch=0&amp;title=mr&amp;sex=male
-{'probabilityOfSurvival': 0.006333333333333333}
+{&#39;probabilityOfSurvival&#39;: 0.006333333333333333}
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>And that is it! The JSON object can now be returned to the front-end of the web application and be displayed in a fancy way, but that is outside the scope of this notebook.</p>
+
 </div>
 </div>
 </div>
@@ -15127,61 +15403,83 @@ Creating notebooks_flask_1 ...
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's clean up by retrieving the Docker ID and removing the container.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [57]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>docker stop <span class="k">$(</span>docker ps -aqf <span class="s2">"name=flask"</span><span class="k">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>docker stop <span class="k">$(</span>docker ps -aqf <span class="s2">&quot;name=flask&quot;</span><span class="k">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>5e7d954d4215
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [58]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>docker rm <span class="k">$(</span>docker ps -aqf <span class="s2">"name=flask"</span><span class="k">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>docker rm <span class="k">$(</span>docker ps -aqf <span class="s2">&quot;name=flask&quot;</span><span class="k">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>5e7d954d4215
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Check my <a href="https://github.com/jitsejan/notebooks/blob/master/notebooks/Project%20-%20Creating%20prediction%20model%20as%20a%20service%20using%20Flask%20and%20Docker.ipynb">Github</a> for the original notebook.</p>
+
 </div>
 </div>
 </div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');

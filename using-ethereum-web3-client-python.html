@@ -12836,55 +12836,71 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Ethereum---Web3">Ethereum - Web3<a class="anchor-link" href="#Ethereum---Web3">¶</a></h2><p>Similar to the RPC client, I will use the web3 API to make a transaction on my private blockchain.</p>
+<h2 id="Ethereum---Web3">Ethereum - Web3<a class="anchor-link" href="#Ethereum---Web3">&#182;</a></h2><p>Similar to the RPC client, I will use the web3 API to make a transaction on my private blockchain.</p>
 <ul>
 <li><a href="http://web3py.readthedocs.io/en/latest/">Read The Docs</a></li>
 <li><a href="https://github.com/pipermerriam/web3.py">GitHub</a></li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.interactiveshell</span> <span class="kn">import</span> <span class="n">InteractiveShell</span>
-<span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s2">"all"</span>
+<span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I willl use the Python 2.7 environment since Python 3.6 is not yet supported.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">version</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>'2.7.13 |Anaconda 4.3.1 (64-bit)| (default, Dec 20 2016, 23:09:15) \n[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]'</pre>
+<pre>&#39;2.7.13 |Anaconda 4.3.1 (64-bit)| (default, Dec 20 2016, 23:09:15) \n[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]&#39;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -12901,6 +12917,7 @@ Collecting pylru&gt;<span class="o">=</span><span class="m">1</span>.0.9 <span c
 Installing collected packages: ethereum-utils, ethereum-abi-utils, pylru, web3
 Successfully installed ethereum-abi-utils-0.4.0 ethereum-utils-0.2.0 pylru-1.0.9 web3-3.8.1
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -12909,138 +12926,176 @@ Successfully installed ethereum-abi-utils-0.4.0 ethereum-utils-0.2.0 pylru-1.0.9
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Note: make sure <code>geth</code> is started with arguments --rpc and --rpcapi="db,eth,net,web3,personal,web3"</p>
-<div class="highlight"><pre><span></span>jitsejan@jjvps:~$ geth --networkid <span class="m">23</span> --nodiscover --maxpeers <span class="m">0</span>  --port <span class="m">30333</span> --rpc --rpcapi<span class="o">=</span><span class="s2">"db,eth,net,web3,personal,miner"</span>
+<div class="highlight"><pre><span></span>jitsejan@jjvps:~$ geth --networkid <span class="m">23</span> --nodiscover --maxpeers <span class="m">0</span>  --port <span class="m">30333</span> --rpc --rpcapi<span class="o">=</span><span class="s2">&quot;db,eth,net,web3,personal,miner&quot;</span>
 </pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">web3</span>
 <span class="kn">from</span> <span class="nn">web3</span> <span class="kn">import</span> <span class="n">Web3</span><span class="p">,</span> <span class="n">KeepAliveRPCProvider</span><span class="p">,</span> <span class="n">IPCProvider</span>
 <span class="n">web3</span><span class="o">.</span><span class="n">__version__</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>'3.8.1'</pre>
+<pre>&#39;3.8.1&#39;</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Setup-RPC-connection">Setup RPC connection<a class="anchor-link" href="#Setup-RPC-connection">¶</a></h2>
+<h2 id="Setup-RPC-connection">Setup RPC connection<a class="anchor-link" href="#Setup-RPC-connection">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">web3</span> <span class="o">=</span> <span class="n">Web3</span><span class="p">(</span><span class="n">KeepAliveRPCProvider</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">'localhost'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s1">'8545'</span><span class="p">))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">web3</span> <span class="o">=</span> <span class="n">Web3</span><span class="p">(</span><span class="n">KeepAliveRPCProvider</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s1">&#39;8545&#39;</span><span class="p">))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Retrieve-the-accounts">Retrieve the accounts<a class="anchor-link" href="#Retrieve-the-accounts">¶</a></h3>
+<h3 id="Retrieve-the-accounts">Retrieve the accounts<a class="anchor-link" href="#Retrieve-the-accounts">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">accounts</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>[u'0x8cf9deda0712f2291fb16739f8759e4a0a575854']</pre>
+<pre>[u&#39;0x8cf9deda0712f2291fb16739f8759e4a0a575854&#39;]</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">address</span> <span class="o">=</span> <span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
+
 </div>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Set-the-two-other-machines">Set the two other machines<a class="anchor-link" href="#Set-the-two-other-machines">¶</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [7]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">address_vps_one</span> <span class="o">=</span> <span class="s2">"0xc257beaea430afb3a09640ce7f020c906331f805"</span>
-<span class="n">address_vps_two</span> <span class="o">=</span> <span class="s2">"0xe86ee31b7d32b743907fa7438c422a1803717deb"</span>
-</pre></div>
-</div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Show-their-balances">Show their balances<a class="anchor-link" href="#Show-their-balances">¶</a></h3>
+<h3 id="Set-the-two-other-machines">Set the two other machines<a class="anchor-link" href="#Set-the-two-other-machines">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="s2">"Host has </span><span class="si">%d</span><span class="s2"> Ether"</span><span class="o">%</span> <span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address</span><span class="p">),</span> <span class="s1">'ether'</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">"VPS 1 has </span><span class="si">%d</span><span class="s2"> Ether"</span> <span class="o">%</span> <span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address_vps_one</span><span class="p">),</span> <span class="s1">'ether'</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">"VPS 2 has </span><span class="si">%d</span><span class="s2"> Ether"</span> <span class="o">%</span> <span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address_vps_two</span><span class="p">),</span> <span class="s1">'ether'</span><span class="p">)</span>
-<span class="n">prev_host_amount</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address</span><span class="p">),</span> <span class="s1">'ether'</span><span class="p">))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">address_vps_one</span> <span class="o">=</span> <span class="s2">&quot;0xc257beaea430afb3a09640ce7f020c906331f805&quot;</span>
+<span class="n">address_vps_two</span> <span class="o">=</span> <span class="s2">&quot;0xe86ee31b7d32b743907fa7438c422a1803717deb&quot;</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Show-their-balances">Show their balances<a class="anchor-link" href="#Show-their-balances">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="s2">&quot;Host has </span><span class="si">%d</span><span class="s2"> Ether&quot;</span><span class="o">%</span> <span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address</span><span class="p">),</span> <span class="s1">&#39;ether&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;VPS 1 has </span><span class="si">%d</span><span class="s2"> Ether&quot;</span> <span class="o">%</span> <span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address_vps_one</span><span class="p">),</span> <span class="s1">&#39;ether&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;VPS 2 has </span><span class="si">%d</span><span class="s2"> Ether&quot;</span> <span class="o">%</span> <span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address_vps_two</span><span class="p">),</span> <span class="s1">&#39;ether&#39;</span><span class="p">)</span>
+<span class="n">prev_host_amount</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address</span><span class="p">),</span> <span class="s1">&#39;ether&#39;</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Host has 411 Ether
 VPS 1 has 150 Ether
@@ -13048,271 +13103,348 @@ VPS 2 has 83 Ether
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Transaction">Transaction<a class="anchor-link" href="#Transaction">¶</a></h2><p>Lets send 12 Ether from the main machine to VPS one.</p>
+<h2 id="Transaction">Transaction<a class="anchor-link" href="#Transaction">&#182;</a></h2><p>Lets send 12 Ether from the main machine to VPS one.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">amount</span> <span class="o">=</span> <span class="mi">12</span> <span class="c1"># Ether</span>
 <span class="n">sending_address</span> <span class="o">=</span> <span class="n">address</span>
 <span class="n">receiving_address</span> <span class="o">=</span> <span class="n">address_vps_one</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Get-the-password-to-unlock-the-sending-account">Get the password to unlock the sending account<a class="anchor-link" href="#Get-the-password-to-unlock-the-sending-account">¶</a></h3>
+<h3 id="Get-the-password-to-unlock-the-sending-account">Get the password to unlock the sending account<a class="anchor-link" href="#Get-the-password-to-unlock-the-sending-account">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">getpass</span> <span class="kn">import</span> <span class="n">getpass</span>  
-<span class="n">pw</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s1">'Enter the password for the sender: '</span><span class="p">)</span>
+<span class="n">pw</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;Enter the password for the sender: &#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Enter the password for the sender: ········
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Unlock-the-account">Unlock the account<a class="anchor-link" href="#Unlock-the-account">¶</a></h3>
+<h3 id="Unlock-the-account">Unlock the account<a class="anchor-link" href="#Unlock-the-account">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">web3</span><span class="o">.</span><span class="n">personal</span><span class="o">.</span><span class="n">unlockAccount</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">pw</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>True</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Create-the-transaction">Create the transaction<a class="anchor-link" href="#Create-the-transaction">¶</a></h3>
+<h3 id="Create-the-transaction">Create the transaction<a class="anchor-link" href="#Create-the-transaction">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">params</span><span class="p">[</span><span class="s1">'to'</span><span class="p">]</span> <span class="o">=</span> <span class="n">receiving_address</span>
-<span class="n">params</span><span class="p">[</span><span class="s1">'from'</span><span class="p">]</span> <span class="o">=</span> <span class="n">sending_address</span> 
-<span class="n">params</span><span class="p">[</span><span class="s1">'value'</span><span class="p">]</span> <span class="o">=</span> <span class="n">web3</span><span class="o">.</span><span class="n">toWei</span><span class="p">(</span><span class="n">amount</span><span class="p">,</span> <span class="s2">"ether"</span><span class="p">)</span>
+<span class="n">params</span><span class="p">[</span><span class="s1">&#39;to&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">receiving_address</span>
+<span class="n">params</span><span class="p">[</span><span class="s1">&#39;from&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sending_address</span> 
+<span class="n">params</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">web3</span><span class="o">.</span><span class="n">toWei</span><span class="p">(</span><span class="n">amount</span><span class="p">,</span> <span class="s2">&quot;ether&quot;</span><span class="p">)</span>
 <span class="n">tx_hash</span> <span class="o">=</span> <span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">sendTransaction</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Check-the-transaction">Check the transaction<a class="anchor-link" href="#Check-the-transaction">¶</a></h3>
+<h3 id="Check-the-transaction">Check the transaction<a class="anchor-link" href="#Check-the-transaction">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getTransaction</span><span class="p">(</span><span class="n">tx_hash</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>{u'blockHash': u'0x0000000000000000000000000000000000000000000000000000000000000000',
- u'blockNumber': None,
- u'from': u'0x8cf9deda0712f2291fb16739f8759e4a0a575854',
- u'gas': 90000,
- u'gasPrice': 20000000000,
- u'hash': u'0x46e0a5a96dbea0391adbfd401b087ad1d1dfb120684462d8652df7d8b8d7f069',
- u'input': u'0x',
- u'nonce': 24,
- u'r': u'0x63d0a6d39e9f57bf42e874bb268fc11c67cdb72d86cd21a65181b48063ddb531',
- u's': u'0x44bb390959b28e0f14d4a7891b5ac44c84816a69c2434aeafdc5c94a42997b2b',
- u'to': u'0xc257beaea430afb3a09640ce7f020c906331f805',
- u'transactionIndex': 0,
- u'v': u'0x42',
- u'value': 12000000000000000000L}</pre>
+<pre>{u&#39;blockHash&#39;: u&#39;0x0000000000000000000000000000000000000000000000000000000000000000&#39;,
+ u&#39;blockNumber&#39;: None,
+ u&#39;from&#39;: u&#39;0x8cf9deda0712f2291fb16739f8759e4a0a575854&#39;,
+ u&#39;gas&#39;: 90000,
+ u&#39;gasPrice&#39;: 20000000000,
+ u&#39;hash&#39;: u&#39;0x46e0a5a96dbea0391adbfd401b087ad1d1dfb120684462d8652df7d8b8d7f069&#39;,
+ u&#39;input&#39;: u&#39;0x&#39;,
+ u&#39;nonce&#39;: 24,
+ u&#39;r&#39;: u&#39;0x63d0a6d39e9f57bf42e874bb268fc11c67cdb72d86cd21a65181b48063ddb531&#39;,
+ u&#39;s&#39;: u&#39;0x44bb390959b28e0f14d4a7891b5ac44c84816a69c2434aeafdc5c94a42997b2b&#39;,
+ u&#39;to&#39;: u&#39;0xc257beaea430afb3a09640ce7f020c906331f805&#39;,
+ u&#39;transactionIndex&#39;: 0,
+ u&#39;v&#39;: u&#39;0x42&#39;,
+ u&#39;value&#39;: 12000000000000000000L}</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Check-the-receipt">Check the receipt<a class="anchor-link" href="#Check-the-receipt">¶</a></h3><p>The miner is not running, so the receipt returns nothing</p>
+<h3 id="Check-the-receipt">Check the receipt<a class="anchor-link" href="#Check-the-receipt">&#182;</a></h3><p>The miner is not running, so the receipt returns nothing</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getTransactionReceipt</span><span class="p">(</span><span class="n">tx_hash</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Start-and-stop-the-miner">Start and stop the miner<a class="anchor-link" href="#Start-and-stop-the-miner">¶</a></h3><p>Note: web3.admin.sleepBlocks seems not te be available so I use a simple sleep. Within this sleep it could be that there are more than 1 mining cycles.</p>
+<h3 id="Start-and-stop-the-miner">Start and stop the miner<a class="anchor-link" href="#Start-and-stop-the-miner">&#182;</a></h3><p>Note: web3.admin.sleepBlocks seems not te be available so I use a simple sleep. Within this sleep it could be that there are more than 1 mining cycles.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
 <span class="n">miner</span> <span class="o">=</span> <span class="n">web3</span><span class="o">.</span><span class="n">miner</span>
 <span class="n">miner</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">miner</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[15]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>True</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Check-the-receipt-again">Check the receipt again<a class="anchor-link" href="#Check-the-receipt-again">¶</a></h3><p>Now the transaction has taken place</p>
+<h3 id="Check-the-receipt-again">Check the receipt again<a class="anchor-link" href="#Check-the-receipt-again">&#182;</a></h3><p>Now the transaction has taken place</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getTransactionReceipt</span><span class="p">(</span><span class="n">tx_hash</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>{u'blockHash': u'0x635486b2100a4a9de155b57c1a9fad4dfafcf1db1d62f9aa55bd38d6a3864869',
- u'blockNumber': 110,
- u'contractAddress': None,
- u'cumulativeGasUsed': 21000,
- u'from': u'0x8cf9deda0712f2291fb16739f8759e4a0a575854',
- u'gasUsed': 21000,
- u'logs': [],
- u'logsBloom': u'0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000',
- u'root': u'0xe7ca6b8a99b6e69f52c2834ae84276dd9b0b89daf459c7391d29e2121e49e27e',
- u'to': u'0xc257beaea430afb3a09640ce7f020c906331f805',
- u'transactionHash': u'0x46e0a5a96dbea0391adbfd401b087ad1d1dfb120684462d8652df7d8b8d7f069',
- u'transactionIndex': 0}</pre>
+<pre>{u&#39;blockHash&#39;: u&#39;0x635486b2100a4a9de155b57c1a9fad4dfafcf1db1d62f9aa55bd38d6a3864869&#39;,
+ u&#39;blockNumber&#39;: 110,
+ u&#39;contractAddress&#39;: None,
+ u&#39;cumulativeGasUsed&#39;: 21000,
+ u&#39;from&#39;: u&#39;0x8cf9deda0712f2291fb16739f8759e4a0a575854&#39;,
+ u&#39;gasUsed&#39;: 21000,
+ u&#39;logs&#39;: [],
+ u&#39;logsBloom&#39;: u&#39;0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&#39;,
+ u&#39;root&#39;: u&#39;0xe7ca6b8a99b6e69f52c2834ae84276dd9b0b89daf459c7391d29e2121e49e27e&#39;,
+ u&#39;to&#39;: u&#39;0xc257beaea430afb3a09640ce7f020c906331f805&#39;,
+ u&#39;transactionHash&#39;: u&#39;0x46e0a5a96dbea0391adbfd401b087ad1d1dfb120684462d8652df7d8b8d7f069&#39;,
+ u&#39;transactionIndex&#39;: 0}</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Check-the-balances-again">Check the balances again<a class="anchor-link" href="#Check-the-balances-again">¶</a></h3><p>The host should have 12 Ether less, but received 5 Ether for each mining cycle. The first VPS should have received 12 Ether.</p>
+<h3 id="Check-the-balances-again">Check the balances again<a class="anchor-link" href="#Check-the-balances-again">&#182;</a></h3><p>The host should have 12 Ether less, but received 5 Ether for each mining cycle. The first VPS should have received 12 Ether.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="s2">"Host has </span><span class="si">%d</span><span class="s2"> Ether"</span><span class="o">%</span> <span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address</span><span class="p">),</span> <span class="s1">'ether'</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">"VPS 1 has </span><span class="si">%d</span><span class="s2"> Ether"</span> <span class="o">%</span> <span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address_vps_one</span><span class="p">),</span> <span class="s1">'ether'</span><span class="p">)</span>
-<span class="k">print</span> <span class="s2">"VPS 2 has </span><span class="si">%d</span><span class="s2"> Ether"</span> <span class="o">%</span> <span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address_vps_two</span><span class="p">),</span> <span class="s1">'ether'</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="s2">&quot;Host has </span><span class="si">%d</span><span class="s2"> Ether&quot;</span><span class="o">%</span> <span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address</span><span class="p">),</span> <span class="s1">&#39;ether&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;VPS 1 has </span><span class="si">%d</span><span class="s2"> Ether&quot;</span> <span class="o">%</span> <span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address_vps_one</span><span class="p">),</span> <span class="s1">&#39;ether&#39;</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">&quot;VPS 2 has </span><span class="si">%d</span><span class="s2"> Ether&quot;</span> <span class="o">%</span> <span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address_vps_two</span><span class="p">),</span> <span class="s1">&#39;ether&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Host has 404 Ether
 VPS 1 has 162 Ether
@@ -13320,33 +13452,46 @@ VPS 2 has 83 Ether
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">mine_bonus</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># Ether</span>
-<span class="n">num_cycles</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address</span><span class="p">),</span> <span class="s1">'ether'</span><span class="p">))</span> <span class="o">-</span> <span class="n">prev_host_amount</span> <span class="o">+</span> <span class="n">amount</span><span class="p">)</span><span class="o">/</span><span class="n">mine_bonus</span>
-<span class="k">print</span> <span class="s2">"</span><span class="si">%d</span><span class="s2"> mining cycle(s) are elapsed"</span> <span class="o">%</span> <span class="n">num_cycles</span>
+<span class="n">num_cycles</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address</span><span class="p">),</span> <span class="s1">&#39;ether&#39;</span><span class="p">))</span> <span class="o">-</span> <span class="n">prev_host_amount</span> <span class="o">+</span> <span class="n">amount</span><span class="p">)</span><span class="o">/</span><span class="n">mine_bonus</span>
+<span class="k">print</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> mining cycle(s) are elapsed&quot;</span> <span class="o">%</span> <span class="n">num_cycles</span>
 </pre></div>
+
 </div>
 </div>
 </div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
+
 <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>1 mining cycle(s) are elapsed
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
