@@ -11861,22 +11861,26 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <h2>TLDR:</h2>
-<p>Final solution:
-<em> <code>docker</code>
-</em> <code>kubeadm</code>
-<em> <code>kubectl</code>
-</em> <code>kubelet</code>
-<em> <code>helm</code>
-</em> <code>weave</code>
-<em> <code>heapster</code>
-</em> <code>traefik</code> </p>
+<p>Final solution:</p>
+<ul>
+<li><code>docker</code></li>
+<li><code>kubeadm</code></li>
+<li><code>kubectl</code></li>
+<li><code>kubelet</code></li>
+<li><code>helm</code></li>
+<li><code>weave</code></li>
+<li><code>heapster</code></li>
+<li><code>traefik</code> </li>
+</ul>
 <h2>Sources</h2>
-<p>Some of the sources I have used to get my Kubernetes cluster up and running:
-<em> <a href="https://blog.alexellis.io/kubernetes-in-10-minutes/">Kubernetes in 10 minutes</a>
-</em> <a href="https://blog.alexellis.io/your-instant-kubernetes-cluster/">Your instant Kubernetes cluster</a>
-<em> <a href="https://ninetaillabs.com/setting-up-a-single-node-kubernetes-cluster/">Setting up a single node Kubernetes Cluster</a>
-</em> <a href="https://joshrendek.com/2018/04/kubernetes-on-bare-metal/">Kubernetes On Bare Metal</a>
-* <a href="https://blog.osones.com/en/kubernetes-ingress-controller-with-traefik-and-lets-encrypt.html">Kubernetes : Ingress Controller with Træfɪk and Let's Encrypt</a></p>
+<p>Some of the sources I have used to get my Kubernetes cluster up and running:</p>
+<ul>
+<li><a href="https://blog.alexellis.io/kubernetes-in-10-minutes/">Kubernetes in 10 minutes</a></li>
+<li><a href="https://blog.alexellis.io/your-instant-kubernetes-cluster/">Your instant Kubernetes cluster</a></li>
+<li><a href="https://ninetaillabs.com/setting-up-a-single-node-kubernetes-cluster/">Setting up a single node Kubernetes Cluster</a></li>
+<li><a href="https://joshrendek.com/2018/04/kubernetes-on-bare-metal/">Kubernetes On Bare Metal</a></li>
+<li><a href="https://blog.osones.com/en/kubernetes-ingress-controller-with-traefik-and-lets-encrypt.html">Kubernetes : Ingress Controller with Træfɪk and Let's Encrypt</a></li>
+</ul>
 <h2>Walkthrough</h2>
 <p>Before we begin, update the system:</p>
 <div class="highlight"><pre><span></span>jitsejan@dev16:~$ sudo apt-get update
@@ -11892,7 +11896,7 @@ Docker version <span class="m">17</span>.03.2-ce, build f5ec1e2
 
 
 <h3>Install Kubernetes apt repository</h3>
-<p><center><img src="http://files.jitsejan.com/logos/kubernetes.PNG" width=200/></center></p>
+<p><center><img src="http://files.jitsejan.com/logos/kubernetes.svg" width=200/></center></p>
 <div class="highlight"><pre><span></span>jitsejan@dev16:~$ sudo apt-get install -y apt-transport-https <span class="o">&amp;&amp;</span> curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg <span class="p">|</span> sudo apt-key add -
 jitsejan@dev16:~$ <span class="nb">echo</span> <span class="s2">&quot;deb http://apt.kubernetes.io/ kubernetes-xenial main&quot;</span> <span class="se">\</span>
   <span class="p">|</span> sudo tee -a /etc/apt/sources.list.d/kubernetes.list <span class="se">\</span>
@@ -12114,7 +12118,7 @@ NOTES:
 
 
 <h2>Traefik</h2>
-<p><center><img src="http://files.jitsejan.com/logos/traefik.JPG" width=200/></center></p>
+<p><center><img src="http://files.jitsejan.com/logos/traefik.PNG" width=200/></center></p>
 <blockquote>
 <p>Træfik is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy. Træfik integrates with your existing infrastructure components (Docker, Swarm mode, Kubernetes, Marathon, Consul, Etcd, Rancher, Amazon ECS, ...) and configures itself automatically and dynamically. Pointing Træfik at your orchestrator should be the only configuration step you need.</p>
 </blockquote>
