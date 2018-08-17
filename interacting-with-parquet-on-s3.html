@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Using ButterCMS in a Jupyter notebook with VueJS | JJ's World</title>
+        <title>Interacting with Parquet on S3 with PyArrow and s3fs | JJ's World</title>
 
 
 <style type="text/css">
@@ -11855,8 +11855,8 @@ jQuery(document).ready(function($) {
     </div>
     <article>
         <header>
-            <h1>Using ButterCMS in a Jupyter notebook with VueJS</h1>
-            <time datetime="article.date.isoformat()" pubdate>Thu 14 June 2018</time>
+            <h1>Interacting with Parquet on S3 with PyArrow and s3fs</h1>
+            <time datetime="article.date.isoformat()" pubdate>Fri 17 August 2018</time>
         </header>
 
         <div class="article_content">
@@ -12836,26 +12836,8 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="ButterCMS">ButterCMS<a class="anchor-link" href="#ButterCMS">&#182;</a></h1><h2 id="Goal">Goal<a class="anchor-link" href="#Goal">&#182;</a></h2><p>The goal of this notebook is to get myself familiar with ButterCMS, a headless CMS that can be easily integrated with any platform in any language. In the past I've experienced with Joomla, Drupal and WordPress (and Blogger long time ago), where I have <strike>lost</strike> invested a lot of time in simply getting the CMS in place, extending the CMS with more functionality and migrating data between servers. Since I am investigating different ways of using microservices, becoming less platform dependent and overall learning new tools, I use this notebook to show a simple example of ButterCMS in Jupyter.</p>
-<h2 id="About">About<a class="anchor-link" href="#About">&#182;</a></h2><center>
-    <img src="http://files.jitsejan.com/logos/buttercms.PNG" width=150 />
-</center><blockquote><p>Add a blog or CMS to your site in minutes
-Drop-in our Headless CMS and get back to more interesting problems.</p>
-</blockquote>
-<h2 id="Links">Links<a class="anchor-link" href="#Links">&#182;</a></h2><ul>
-<li><a href="https://buttercms.com/">Homepage</a></li>
-<li><a href="https://buttercms.com/docs/api-client/python">Python client</a></li>
-<li><a href="https://buttercms.com/docs/api-client/vuejs">VueJS client</a></li>
-</ul>
+<h3 id="Prerequisites">Prerequisites<a class="anchor-link" href="#Prerequisites">&#182;</a></h3><p>Create the hidden folder to contain the AWS credentials:</p>
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Prerequisites">Prerequisites<a class="anchor-link" href="#Prerequisites">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -12864,7 +12846,32 @@ Drop-in our Headless CMS and get back to more interesting problems.</p>
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install buttercms-python
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>mkdir ~/.aws
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Write the credentials to the <code>credentials</code> file:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> ~/.aws/credentials
+[default]
+aws_access_key_id=AKIAJAAAAAAAAAJ4ZMIQ
+aws_secret_access_key=fVAAAAAAAALuLBvYQZ/5G+zxSe7wwJy+AAA
 </pre></div>
 
 </div>
@@ -12881,14 +12888,7 @@ Drop-in our Headless CMS and get back to more interesting problems.</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Requirement already satisfied: buttercms-python in /home/jitsejan/miniconda3/lib/python3.6/site-packages (1.1)
-Requirement already satisfied: requests in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from buttercms-python) (2.18.4)
-Requirement already satisfied: chardet&lt;3.1.0,&gt;=3.0.2 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (3.0.4)
-Requirement already satisfied: idna&lt;2.7,&gt;=2.5 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (2.6)
-Requirement already satisfied: urllib3&lt;1.23,&gt;=1.21.1 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (1.22)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (2018.4.16)
-<span class="ansi-yellow-fg">You are using pip version 10.0.0, however version 10.0.1 is available.
-You should consider upgrading via the &#39;pip install --upgrade pip&#39; command.</span>
+<pre>Writing /Users/j.waterschoot/.aws/credentials
 </pre>
 </div>
 </div>
@@ -12897,25 +12897,11 @@ You should consider upgrading via the &#39;pip install --upgrade pip&#39; comman
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;buttercmskey&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1b13611e144e11bbce5b484f4064e39638b223a1&#39;</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="http://files.jitsejan.com/screenshots/butterCMS.png" /></p>
+<p>Alternatively we can use the key and secret from other locations, or environment variables that we provide to the S3 instance.</p>
 
 </div>
 </div>
@@ -12924,7 +12910,15 @@ You should consider upgrading via the &#39;pip install --upgrade pip&#39; comman
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Python-implementation">Python implementation<a class="anchor-link" href="#Python-implementation">&#182;</a></h2><p><img src="http://files.jitsejan.com/logos/python.PNG" width=150/></p>
+<h3 id="Write-to-Parquet-on-S3">Write to Parquet on S3<a class="anchor-link" href="#Write-to-Parquet-on-S3">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Create the inputdata:</p>
 
 </div>
 </div>
@@ -12934,21 +12928,54 @@ You should consider upgrading via the &#39;pip install --upgrade pip&#39; comman
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">butter_cms</span> <span class="k">import</span> <span class="n">ButterCMS</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">ButterCMS</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;buttercmskey&#39;</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> inputdata.csv
+name,description,color,occupation,picture
+Luigi,This is Luigi,green,plumber,https://upload.wikimedia.org/wikipedia/en/f/f1/LuigiNSMBW.png
+Mario,This is Mario,red,plumber,https://upload.wikimedia.org/wikipedia/en/9/99/MarioSMBW.png
+Peach,My name is Peach,pink,princess,https://s-media-cache-ak0.pinimg.com/originals/d2/4d/77/d24d77cfbba789256c9c1afa1f69b385.png
+Toad,I like funghi,red,,https://upload.wikimedia.org/wikipedia/en/d/d1/Toad_3D_Land.png
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Overwriting inputdata.csv
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Read the data into a dataframe with Pandas:</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">dataframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;inputdata.csv&#39;</span><span class="p">)</span>
+<span class="n">dataframe</span>
 </pre></div>
 
 </div>
@@ -12965,9 +12992,68 @@ You should consider upgrading via the &#39;pip install --upgrade pip&#39; comman
 
 
 
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;butter_cms.ButterCMS at 0x7f3edc72f630&gt;</pre>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>description</th>
+      <th>color</th>
+      <th>occupation</th>
+      <th>picture</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Luigi</td>
+      <td>This is Luigi</td>
+      <td>green</td>
+      <td>plumber</td>
+      <td>https://upload.wikimedia.org/wikipedia/en/f/f1...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Mario</td>
+      <td>This is Mario</td>
+      <td>red</td>
+      <td>plumber</td>
+      <td>https://upload.wikimedia.org/wikipedia/en/9/99...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Peach</td>
+      <td>My name is Peach</td>
+      <td>pink</td>
+      <td>princess</td>
+      <td>https://s-media-cache-ak0.pinimg.com/originals...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Toad</td>
+      <td>I like funghi</td>
+      <td>red</td>
+      <td>NaN</td>
+      <td>https://upload.wikimedia.org/wikipedia/en/d/d1...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 
 </div>
@@ -12975,14 +13061,24 @@ You should consider upgrading via the &#39;pip install --upgrade pip&#39; comman
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Convert to a PyArrow table:</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">all</span><span class="p">({</span><span class="s1">&#39;page_size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">dataframe</span><span class="p">)</span>
+<span class="n">table</span>   
 </pre></div>
 
 </div>
@@ -12995,136 +13091,108 @@ You should consider upgrading via the &#39;pip install --upgrade pip&#39; comman
 
 <div class="output_area">
 
-<div class="prompt"></div>
+<div class="prompt output_prompt">Out[5]:</div>
 
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{
-    &#34;data&#34;: [
-        {
-            &#34;url&#34;: &#34;jupyter-notebook&#34;,
-            &#34;created&#34;: &#34;2018-06-14T11:53:54.533383Z&#34;,
-            &#34;published&#34;: &#34;2018-06-14T11:50:00Z&#34;,
-            &#34;author&#34;: {
-                &#34;first_name&#34;: &#34;Jitse-Jan&#34;,
-                &#34;last_name&#34;: &#34;van Waterschoot&#34;,
-                &#34;email&#34;: &#34;code@jitsejan.com&#34;,
-                &#34;slug&#34;: &#34;jitse-jan-van-waterschoot&#34;,
-                &#34;bio&#34;: &#34;&#34;,
-                &#34;title&#34;: &#34;&#34;,
-                &#34;linkedin_url&#34;: &#34;&#34;,
-                &#34;facebook_url&#34;: &#34;&#34;,
-                &#34;instagram_url&#34;: &#34;&#34;,
-                &#34;pinterest_url&#34;: &#34;&#34;,
-                &#34;twitter_handle&#34;: &#34;&#34;,
-                &#34;profile_image&#34;: &#34;&#34;
-            },
-            &#34;categories&#34;: [
-                {
-                    &#34;name&#34;: &#34;development&#34;,
-                    &#34;slug&#34;: &#34;development&#34;
-                }
-            ],
-            &#34;tags&#34;: [
-                {
-                    &#34;name&#34;: &#34;&#34;,
-                    &#34;slug&#34;: &#34;&#34;
-                },
-                {
-                    &#34;name&#34;: &#34;buttercms&#34;,
-                    &#34;slug&#34;: &#34;buttercms&#34;
-                },
-                {
-                    &#34;name&#34;: &#34;python&#34;,
-                    &#34;slug&#34;: &#34;python&#34;
-                },
-                {
-                    &#34;name&#34;: &#34;vuejs&#34;,
-                    &#34;slug&#34;: &#34;vuejs&#34;
-                }
-            ],
-            &#34;featured_image&#34;: &#34;https://cdn.buttercms.com/eBXUxLoCR4CKQMUnhjur&#34;,
-            &#34;slug&#34;: &#34;jupyter-notebook&#34;,
-            &#34;title&#34;: &#34;Jupyter notebook&#34;,
-            &#34;body&#34;: &#34;&lt;p&gt;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&amp;nbsp;&lt;/p&gt;&#34;,
-            &#34;summary&#34;: &#34;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&#34;,
-            &#34;seo_title&#34;: &#34;Jupyter notebook&#34;,
-            &#34;meta_description&#34;: &#34;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&#34;,
-            &#34;status&#34;: &#34;published&#34;
-        },
-        {
-            &#34;url&#34;: &#34;example-post&#34;,
-            &#34;created&#34;: &#34;2018-06-14T11:47:08.121702Z&#34;,
-            &#34;published&#34;: &#34;2018-06-14T11:47:08.121391Z&#34;,
-            &#34;author&#34;: {
-                &#34;first_name&#34;: &#34;Jitse-Jan&#34;,
-                &#34;last_name&#34;: &#34;van Waterschoot&#34;,
-                &#34;email&#34;: &#34;code@jitsejan.com&#34;,
-                &#34;slug&#34;: &#34;jitse-jan-van-waterschoot&#34;,
-                &#34;bio&#34;: &#34;&#34;,
-                &#34;title&#34;: &#34;&#34;,
-                &#34;linkedin_url&#34;: &#34;&#34;,
-                &#34;facebook_url&#34;: &#34;&#34;,
-                &#34;instagram_url&#34;: &#34;&#34;,
-                &#34;pinterest_url&#34;: &#34;&#34;,
-                &#34;twitter_handle&#34;: &#34;&#34;,
-                &#34;profile_image&#34;: &#34;&#34;
-            },
-            &#34;categories&#34;: [
-                {
-                    &#34;name&#34;: &#34;Example Category&#34;,
-                    &#34;slug&#34;: &#34;example-category&#34;
-                }
-            ],
-            &#34;tags&#34;: [
-                {
-                    &#34;name&#34;: &#34;Example Tag&#34;,
-                    &#34;slug&#34;: &#34;example-tag&#34;
-                }
-            ],
-            &#34;featured_image&#34;: &#34;https://d2devwt40at1e2.cloudfront.net/api/file/tdt3s1OHRO6wfQOpmAHw&#34;,
-            &#34;slug&#34;: &#34;example-post&#34;,
-            &#34;title&#34;: &#34;Example Post&#34;,
-            &#34;body&#34;: &#34;&lt;p&gt;Welcome to ButterCMS! This an example blog post written using Butter.&lt;/p&gt;\n&lt;h3&gt;What&#39;s happening here?&lt;/h3&gt;\n&lt;p&gt;If you&#39;re viewing this post from your website or command line, you&#39;ve successfully made a request to&amp;nbsp;the &lt;a href=\&#34;https://buttercms.com/docs/api\&#34;&gt;Butter API&lt;/a&gt;. If you haven&#39;t already, make sure you have our &lt;a href=\&#34;https://buttercms.com/docs/\&#34;&gt;development guides&lt;/a&gt; pulled up for step-by-step instructions on setting up Butter.&lt;/p&gt;\n&lt;h3&gt;How does&amp;nbsp;editing work?&lt;/h3&gt;\n&lt;p&gt;Butter&#39;s WYSIWYG editor supports standard text formatting including headings, links, quotes, code, text alignment, and more. You can upload, crop, and resize images which are automatically hosted and delivered through a CDN (see below). You can also edit HTML directly when needed.&lt;/p&gt;\n&lt;figure class=\&#34;image\&#34;&gt;&lt;img src=\&#34;https://d2wzhk7xhrnk1x.cloudfront.net/rgPM9aHoSSKnjk44TQlD_butter-blog-post.jpg\&#34; alt=\&#34;Delivered to you via CDN\&#34; /&gt;\n&lt;figcaption&gt;Delivered to you via CDN&lt;/figcaption&gt;\n&lt;/figure&gt;\n&lt;h3&gt;Can I use Butter as a full CMS for&amp;nbsp;things other than a&amp;nbsp;blog?&lt;/h3&gt;\n&lt;p&gt;Yes. Butter can be used as a full CMS for managing dynamic content and creating pages across your entire website or app. Check out our &lt;a href=\&#34;https://buttercms.com/docs/\&#34;&gt;development guides&lt;/a&gt; for step-by-step tutorials on setting this up.&lt;/p&gt;\n&#34;,
-            &#34;summary&#34;: &#34;This is an example blog post. Pretty neat huh?&#34;,
-            &#34;seo_title&#34;: &#34;Example Post SEO Optimized Title&#34;,
-            &#34;meta_description&#34;: &#34;This is our example blog posts SEO optimized meta description.&#34;,
-            &#34;status&#34;: &#34;published&#34;
-        }
-    ],
-    &#34;meta&#34;: {
-        &#34;next_page&#34;: null,
-        &#34;count&#34;: 2,
-        &#34;previous_page&#34;: null
-    }
-}
-</pre>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>pyarrow.Table
+name: string
+description: string
+color: string
+occupation: string
+picture: string
+__index_level_0__: int64
+metadata
+--------
+{b&#39;pandas&#39;: b&#39;{&#34;index_columns&#34;: [&#34;__index_level_0__&#34;], &#34;column_indexes&#34;: [{&#34;na&#39;
+            b&#39;me&#34;: null, &#34;field_name&#34;: null, &#34;pandas_type&#34;: &#34;unicode&#34;, &#34;numpy_&#39;
+            b&#39;type&#34;: &#34;object&#34;, &#34;metadata&#34;: {&#34;encoding&#34;: &#34;UTF-8&#34;}}], &#34;columns&#34;:&#39;
+            b&#39; [{&#34;name&#34;: &#34;name&#34;, &#34;field_name&#34;: &#34;name&#34;, &#34;pandas_type&#34;: &#34;unicode&#39;
+            b&#39;&#34;, &#34;numpy_type&#34;: &#34;object&#34;, &#34;metadata&#34;: null}, {&#34;name&#34;: &#34;descript&#39;
+            b&#39;ion&#34;, &#34;field_name&#34;: &#34;description&#34;, &#34;pandas_type&#34;: &#34;unicode&#34;, &#34;nu&#39;
+            b&#39;mpy_type&#34;: &#34;object&#34;, &#34;metadata&#34;: null}, {&#34;name&#34;: &#34;color&#34;, &#34;field&#39;
+            b&#39;_name&#34;: &#34;color&#34;, &#34;pandas_type&#34;: &#34;unicode&#34;, &#34;numpy_type&#34;: &#34;object&#39;
+            b&#39;&#34;, &#34;metadata&#34;: null}, {&#34;name&#34;: &#34;occupation&#34;, &#34;field_name&#34;: &#34;occu&#39;
+            b&#39;pation&#34;, &#34;pandas_type&#34;: &#34;unicode&#34;, &#34;numpy_type&#34;: &#34;object&#34;, &#34;meta&#39;
+            b&#39;data&#34;: null}, {&#34;name&#34;: &#34;picture&#34;, &#34;field_name&#34;: &#34;picture&#34;, &#34;pand&#39;
+            b&#39;as_type&#34;: &#34;unicode&#34;, &#34;numpy_type&#34;: &#34;object&#34;, &#34;metadata&#34;: null}, &#39;
+            b&#39;{&#34;name&#34;: null, &#34;field_name&#34;: &#34;__index_level_0__&#34;, &#34;pandas_type&#34;:&#39;
+            b&#39; &#34;int64&#34;, &#34;numpy_type&#34;: &#34;int64&#34;, &#34;metadata&#34;: null}], &#34;pandas_ver&#39;
+            b&#39;sion&#34;: &#34;0.23.3&#34;}&#39;}</pre>
 </div>
+
 </div>
 
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Create the output path for S3:</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">posts</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">all</span><span class="p">({</span><span class="s1">&#39;page_size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">BUCKET_NAME</span> <span class="o">=</span> <span class="s1">&#39;my-game-bucket-for-demo&#39;</span>
+<span class="n">CONTAINER_NAME</span> <span class="o">=</span> <span class="s1">&#39;nintendo-container&#39;</span>
+<span class="n">TABLE_NAME</span> <span class="o">=</span> <span class="s1">&#39;character-table&#39;</span>
+
+<span class="n">output_file</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;s3://</span><span class="si">{BUCKET_NAME}</span><span class="s2">/</span><span class="si">{CONTAINER_NAME}</span><span class="s2">/</span><span class="si">{TABLE_NAME}</span><span class="s2">.parquet&quot;</span>
+<span class="n">output_file</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;s3://my-game-bucket-for-demo/nintendo-container/character-table.parquet&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Setup connection with S3:</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">posts</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">s3fs</span> <span class="k">import</span> <span class="n">S3FileSystem</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="n">S3FileSystem</span><span class="p">()</span> <span class="c1"># or s3fs.S3FileSystem(key=ACCESS_KEY_ID, secret=SECRET_ACCESS_KEY)</span>
+<span class="n">s3</span>
 </pre></div>
 
 </div>
@@ -13143,34 +13211,7 @@ You should consider upgrading via the &#39;pip install --upgrade pip&#39; comman
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;url&#39;: &#39;jupyter-notebook&#39;,
- &#39;created&#39;: &#39;2018-06-14T11:53:54.533383Z&#39;,
- &#39;published&#39;: &#39;2018-06-14T11:50:00Z&#39;,
- &#39;author&#39;: {&#39;first_name&#39;: &#39;Jitse-Jan&#39;,
-  &#39;last_name&#39;: &#39;van Waterschoot&#39;,
-  &#39;email&#39;: &#39;code@jitsejan.com&#39;,
-  &#39;slug&#39;: &#39;jitse-jan-van-waterschoot&#39;,
-  &#39;bio&#39;: &#39;&#39;,
-  &#39;title&#39;: &#39;&#39;,
-  &#39;linkedin_url&#39;: &#39;&#39;,
-  &#39;facebook_url&#39;: &#39;&#39;,
-  &#39;instagram_url&#39;: &#39;&#39;,
-  &#39;pinterest_url&#39;: &#39;&#39;,
-  &#39;twitter_handle&#39;: &#39;&#39;,
-  &#39;profile_image&#39;: &#39;&#39;},
- &#39;categories&#39;: [{&#39;name&#39;: &#39;development&#39;, &#39;slug&#39;: &#39;development&#39;}],
- &#39;tags&#39;: [{&#39;name&#39;: &#39;&#39;, &#39;slug&#39;: &#39;&#39;},
-  {&#39;name&#39;: &#39;buttercms&#39;, &#39;slug&#39;: &#39;buttercms&#39;},
-  {&#39;name&#39;: &#39;python&#39;, &#39;slug&#39;: &#39;python&#39;},
-  {&#39;name&#39;: &#39;vuejs&#39;, &#39;slug&#39;: &#39;vuejs&#39;}],
- &#39;featured_image&#39;: &#39;https://cdn.buttercms.com/eBXUxLoCR4CKQMUnhjur&#39;,
- &#39;slug&#39;: &#39;jupyter-notebook&#39;,
- &#39;title&#39;: &#39;Jupyter notebook&#39;,
- &#39;body&#39;: &#39;&lt;p&gt;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&amp;nbsp;&lt;/p&gt;&#39;,
- &#39;summary&#39;: &#39;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&#39;,
- &#39;seo_title&#39;: &#39;Jupyter notebook&#39;,
- &#39;meta_description&#39;: &#39;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&#39;,
- &#39;status&#39;: &#39;published&#39;}</pre>
+<pre>&lt;s3fs.core.S3FileSystem at 0x1030f6eb8&gt;</pre>
 </div>
 
 </div>
@@ -13178,66 +13219,27 @@ You should consider upgrading via the &#39;pip install --upgrade pip&#39; comman
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Create the bucket if it does not exist yet:</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">title</span> <span class="o">=</span> <span class="n">posts</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
-<span class="n">title</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[8]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;Jupyter notebook&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Javascript-implementation">Javascript implementation<a class="anchor-link" href="#Javascript-implementation">&#182;</a></h2><p><img src="http://files.jitsejan.com/logos/javascript.PNG" width=150 /></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-<span class="nx">require</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
-    <span class="nx">paths</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">buttercms</span><span class="o">:</span> <span class="s2">&quot;https://cdnjs.buttercms.com/buttercms-1.1.1.min&quot;</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="nx">shim</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">buttercms</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">exports</span><span class="o">:</span> <span class="s2">&quot;ButterCMS&quot;</span>
-        <span class="p">},</span>
-    <span class="p">}</span>
-<span class="p">});</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">BUCKET_EXISTS</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">s3</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">)</span>
+    <span class="n">BUCKET_EXISTS</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Create bucket first!&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13253,79 +13255,51 @@ You should consider upgrading via the &#39;pip install --upgrade pip&#39; comman
 <div class="prompt"></div>
 
 
-
-
-
-<div id="7e5ed196-23dd-4d5a-843e-b20163efd9a3"></div>
-<div class="output_subarea output_javascript ">
-<script type="text/javascript">
-var element = $('#7e5ed196-23dd-4d5a-843e-b20163efd9a3');
-require.config({
-    paths: {
-        buttercms: "https://cdnjs.buttercms.com/buttercms-1.1.1.min",
-    },
-    shim: {
-        buttercms: {
-            exports: "ButterCMS"
-        },
-    }
-});
-</script>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Create bucket first!
+</pre>
 </div>
-
 </div>
 
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">BUCKET_EXISTS</span><span class="p">:</span>
+    <span class="n">s3</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Write the table to the S3 output:</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;buttercms&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ButterCMS</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">butter</span> <span class="o">=</span> <span class="nx">Butter</span><span class="p">(</span><span class="s1">&#39;1b13611e144e11bbce5b484f4064e39638b223a1&#39;</span><span class="p">);</span>
-    <span class="nx">butter</span><span class="p">.</span><span class="nx">post</span><span class="p">.</span><span class="nx">list</span><span class="p">({</span><span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">page_size</span><span class="o">:</span> <span class="mi">10</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;body&#39;</span><span class="p">])</span>
-    <span class="p">})</span>
-<span class="p">});</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pyarrow.parquet</span> <span class="k">as</span> <span class="nn">pq</span>
+<span class="n">pq</span><span class="o">.</span><span class="n">write_to_dataset</span><span class="p">(</span><span class="n">table</span><span class="o">=</span><span class="n">table</span><span class="p">,</span> 
+                    <span class="n">root_path</span><span class="o">=</span><span class="n">output_file</span><span class="p">,</span>
+                    <span class="n">filesystem</span><span class="o">=</span><span class="n">s3</span><span class="p">)</span> 
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-
-<div id="cdbc7929-ffa6-44fe-952d-8755c7e84754"></div>
-<div class="output_subarea output_javascript ">
-<script type="text/javascript">
-var element = $('#cdbc7929-ffa6-44fe-952d-8755c7e84754');
-require(['buttercms'], function(ButterCMS) {
-    var butter = Butter('1b13611e144e11bbce5b484f4064e39638b223a1');
-    butter.post.list({page: 1, page_size: 10}).then(function(response) {
-        console.log(response['data']['data'][0]['title'])
-        console.log(response['data']['data'][0]['body'])
-    })
-});
-</script>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -13334,8 +13308,7 @@ require(['buttercms'], function(ButterCMS) {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="VueJS-implementation">VueJS implementation<a class="anchor-link" href="#VueJS-implementation">&#182;</a></h2><p><img src="http://files.jitsejan.com/logos/vuejs.PNG" width=150 /></p>
-<p>Finally an attempt to integrate VueJS with Jupyter using data from the ButterCMS. Following <a href="https://vuejs.org/v2/cookbook/serverless-blog.html">this guide</a> we are able to add the blog posts to the body of this notebook.</p>
+<p>Check the files:</p>
 
 </div>
 </div>
@@ -13345,21 +13318,7 @@ require(['buttercms'], function(ButterCMS) {
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-<span class="nx">require</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
-    <span class="nx">paths</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">buttercms</span><span class="o">:</span> <span class="s2">&quot;https://cdnjs.buttercms.com/buttercms-1.1.1.min&quot;</span><span class="p">,</span>
-        <span class="nx">vue</span><span class="o">:</span> <span class="s2">&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue&quot;</span>
-    <span class="p">},</span>
-    <span class="nx">shim</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">buttercms</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">exports</span><span class="o">:</span> <span class="s2">&quot;ButterCMS&quot;</span>
-        <span class="p">},</span>
-        <span class="nx">vue</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">exports</span><span class="o">:</span> <span class="s2">&quot;Vue&quot;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">});</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s3</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="n">BUCKET_NAME</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13372,31 +13331,13 @@ require(['buttercms'], function(ButterCMS) {
 
 <div class="output_area">
 
-<div class="prompt"></div>
+<div class="prompt output_prompt">Out[11]:</div>
 
 
 
 
-
-<div id="a3fcf9b9-054b-4ac8-ab64-7fc56ff04a76"></div>
-<div class="output_subarea output_javascript ">
-<script type="text/javascript">
-var element = $('#a3fcf9b9-054b-4ac8-ab64-7fc56ff04a76');
-require.config({
-    paths: {
-        buttercms: "https://cdnjs.buttercms.com/buttercms-1.1.1.min",
-        vue: "https://cdn.jsdelivr.net/npm/vue/dist/vue"
-    },
-    shim: {
-        buttercms: {
-            exports: "ButterCMS"
-        },
-        vue: {
-            exports: "Vue"
-        }
-    }
-});
-</script>
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;my-game-bucket-for-demo/nintendo-container&#39;]</pre>
 </div>
 
 </div>
@@ -13410,25 +13351,7 @@ require.config({
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">html</span>
-&lt;script type=&quot;text/x-template&quot; id=&quot;blog-home-template&quot;&gt;
-    &lt;div id=&quot;blog-home&quot;&gt;
-        &lt;h1&gt;{{ page_title }}&lt;/h1&gt;
-        &lt;!-- Create `v-for` and apply a `key` for Vue. Here we are using a combination of the slug and index. --&gt;
-        &lt;div v-for=&quot;(post,index) in posts&quot; :key=&quot;post.slug + &#39;_&#39; + index&quot;&gt;
-            &lt;article class=&quot;media&quot;&gt;
-                &lt;figure&gt;
-                  &lt;!-- Bind results using a `:` --&gt;
-                  &lt;!-- Use a `v-if`/`else` if their is a `featured_image` --&gt;
-                  &lt;img v-if=&quot;post.featured_image&quot; :src=&quot;post.featured_image&quot; alt=&quot;&quot;&gt;
-                  &lt;img v-else src=&quot;http://via.placeholder.com/250x250&quot; alt=&quot;&quot;&gt;
-                &lt;/figure&gt;
-                &lt;h2&gt;{{ post.title }}&lt;/h2&gt;
-                &lt;p&gt;{{ post.summary }}&lt;/p&gt;
-            &lt;/article&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/script&gt;
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s3</span><span class="o">.</span><span class="n">ls</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{BUCKET_NAME}</span><span class="s2">/</span><span class="si">{CONTAINER_NAME}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -13441,230 +13364,13 @@ require.config({
 
 <div class="output_area">
 
-<div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<script type="text/x-template" id="blog-home-template">
-    <div id="blog-home">
-        <h1>{{ page_title }}</h1>
-        <!-- Create `v-for` and apply a `key` for Vue. Here we are using a combination of the slug and index. -->
-        <div v-for="(post,index) in posts" :key="post.slug + '_' + index">
-            <article class="media">
-                <figure>
-                  <!-- Bind results using a `:` -->
-                  <!-- Use a `v-if`/`else` if their is a `featured_image` -->
-                  <img v-if="post.featured_image" :src="post.featured_image" alt="">
-                  <img v-else src="http://via.placeholder.com/250x250" alt="">
-                </figure>
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.summary }}</p>
-            </article>
-        </div>
-    </div>
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">html</span>
-&lt;div id=&quot;vue-app&quot;&gt;
-  &lt;blog-home :posts=&quot;blogPosts&quot;/&gt;
-&lt;/div&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<div id="vue-app">
-  <blog-home :posts="blogPosts"/>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;buttercms&#39;</span><span class="p">,</span> <span class="s1">&#39;vue&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ButterCMS</span><span class="p">,</span> <span class="nx">Vue</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Vue</span><span class="p">.</span><span class="nx">version</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">butter</span> <span class="o">=</span> <span class="nx">Butter</span><span class="p">(</span><span class="s1">&#39;1b13611e144e11bbce5b484f4064e39638b223a1&#39;</span><span class="p">);</span>
-    
-    <span class="kd">var</span> <span class="nx">BlogHome</span> <span class="o">=</span> <span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;blog-home&#39;</span><span class="p">,</span> <span class="p">{</span>
-      <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;#blog-home-template&#39;</span><span class="p">,</span>
-      <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">data</span><span class="o">:</span> <span class="nb">Array</span><span class="p">,</span>
-      <span class="p">},</span>
-      <span class="nx">data</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="nx">page_title</span><span class="o">:</span> <span class="s1">&#39;Blog&#39;</span><span class="p">,</span>
-            <span class="nx">posts</span><span class="o">:</span> <span class="p">[]</span>
-          <span class="p">}</span>
-      <span class="p">},</span>
-      <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
-          <span class="nx">getPosts</span><span class="p">()</span> <span class="p">{</span>
-            <span class="nx">butter</span><span class="p">.</span><span class="nx">post</span><span class="p">.</span><span class="nx">list</span><span class="p">({</span>
-              <span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-              <span class="nx">page_size</span><span class="o">:</span> <span class="mi">10</span>
-            <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-              <span class="k">this</span><span class="p">.</span><span class="nx">posts</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">data</span>
-            <span class="p">})</span>
-          <span class="p">}</span>
-      <span class="p">},</span>
-      <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
-          <span class="k">this</span><span class="p">.</span><span class="nx">getPosts</span><span class="p">()</span>
-      <span class="p">}</span>
-    <span class="p">})</span>
-
-    <span class="kd">var</span> <span class="nx">vueApp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-      <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#vue-app&#39;</span><span class="p">,</span>
-      <span class="nx">components</span><span class="o">:</span> <span class="p">{</span><span class="nx">BlogHome</span><span class="o">:</span> <span class="nx">BlogHome</span><span class="p">},</span>
-      <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
-          <span class="nx">blogPosts</span><span class="o">:</span> <span class="p">[]</span>
-      <span class="p">}</span>
-    <span class="p">})</span>
-
-<span class="p">});</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
+<div class="prompt output_prompt">Out[12]:</div>
 
 
 
 
-
-<div id="58aeeea9-b385-48cc-b375-d5b6966d4651"></div>
-<div class="output_subarea output_javascript ">
-<script type="text/javascript">
-var element = $('#58aeeea9-b385-48cc-b375-d5b6966d4651');
-require(['buttercms', 'vue'], function(ButterCMS, Vue) {
-    console.log(Vue.version);
-    var butter = Butter('1b13611e144e11bbce5b484f4064e39638b223a1');
-    
-    var BlogHome = Vue.component('blog-home', {
-      template: '#blog-home-template',
-      props: {
-        data: Array,
-      },
-      data: function () {
-        return {
-            page_title: 'Blog',
-            posts: []
-          }
-      },
-      methods: {
-          getPosts() {
-            butter.post.list({
-              page: 1,
-              page_size: 10
-            }).then((res) => {
-              this.posts = res.data.data
-            })
-          }
-      },
-      created() {
-          this.getPosts()
-      }
-    })
-
-    var vueApp = new Vue({
-      el: '#vue-app',
-      components: {BlogHome: BlogHome},
-      data: {
-          blogPosts: []
-      }
-    })
-
-});
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">html</span>
-&lt;style&gt;
-#blog-home article{
-    width: 50%;
-    float: left;
-}
-#blog-home article figure img{
-    height: 50px;
-}
-&lt;/style&gt;
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<style>
-#blog-home article{
-    width: 50%;
-    float: left;
-}
-#blog-home article figure img{
-    height: 50px;
-}
-</style>
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;my-game-bucket-for-demo/nintendo-container/character-table.parquet&#39;]</pre>
 </div>
 
 </div>
@@ -13677,18 +13383,20 @@ require(['buttercms', 'vue'], function(ButterCMS, Vue) {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Result">Result<a class="anchor-link" href="#Result">&#182;</a></h2><p>To put everything together I have created a JSfiddle and embedded the result below.</p>
-
+<h3 id="Read-the-data-from-the-Parquet-file">Read the data from the Parquet file<a class="anchor-link" href="#Read-the-data-from-the-Parquet-file">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">html</span>
-&lt;iframe width=&quot;100%&quot; height=&quot;500&quot; src=&quot;//jsfiddle.net/z4hapsLt/13/embedded/&quot; allowfullscreen=&quot;allowfullscreen&quot; allowpaymentrequest frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pyarrow.parquet</span> <span class="k">as</span> <span class="nn">pq</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">ParquetDataset</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">filesystem</span><span class="o">=</span><span class="n">s3</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">read_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+<span class="n">df</span>
 </pre></div>
 
 </div>
@@ -13701,12 +13409,72 @@ require(['buttercms', 'vue'], function(ButterCMS, Vue) {
 
 <div class="output_area">
 
-<div class="prompt"></div>
+<div class="prompt output_prompt">Out[13]:</div>
 
 
 
-<div class="output_html rendered_html output_subarea ">
-<iframe width="100%" height="500" src="//jsfiddle.net/z4hapsLt/13/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>name</th>
+      <th>description</th>
+      <th>color</th>
+      <th>occupation</th>
+      <th>picture</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Luigi</td>
+      <td>This is Luigi</td>
+      <td>green</td>
+      <td>plumber</td>
+      <td>https://upload.wikimedia.org/wikipedia/en/f/f1...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Mario</td>
+      <td>This is Mario</td>
+      <td>red</td>
+      <td>plumber</td>
+      <td>https://upload.wikimedia.org/wikipedia/en/9/99...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Peach</td>
+      <td>My name is Peach</td>
+      <td>pink</td>
+      <td>princess</td>
+      <td>https://s-media-cache-ak0.pinimg.com/originals...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Toad</td>
+      <td>I like funghi</td>
+      <td>red</td>
+      <td>None</td>
+      <td>https://upload.wikimedia.org/wikipedia/en/d/d1...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 
 </div>
@@ -13754,9 +13522,10 @@ require(['buttercms', 'vue'], function(ButterCMS, Vue) {
                     <a href="./tag/notebook.html" class="tag">notebook</a>
                     <a href="./tag/python.html" class="tag">Python</a>
                     <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-                    <a href="./tag/vuejs.html" class="tag">VueJS</a>
-                    <a href="./tag/buttercms.html" class="tag">ButterCMS</a>
-                    <a href="./tag/javascript.html" class="tag">javascript</a>
+                    <a href="./tag/s3.html" class="tag">S3</a>
+                    <a href="./tag/pyarrow.html" class="tag">pyarrow</a>
+                    <a href="./tag/s3fs.html" class="tag">s3fs</a>
+                    <a href="./tag/parquet.html" class="tag">Parquet</a>
             </div>
         </div>
     </article>
