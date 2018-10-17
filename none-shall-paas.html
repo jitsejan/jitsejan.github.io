@@ -11875,7 +11875,7 @@ jQuery(document).ready(function($) {
 <h4>The old situation</h4>
 <p>When I joined MarketInvoice, it was far from a clean and structured platform. Two cloud providers were being used for different segments of the company. The platform for our customers was built on <a href="https://azure.microsoft.com/en-gb/">Microsoft Azure</a> Platform as a Service (PAAS) and contained different database servers with a large number of tables. Part of the data was pushed to <a href="https://aws.amazon.com/">Amazon AWS</a> to make it accessible in the BI tool <a href="https://looker.com/">Looker</a>. Additionally, data from third-party sources such as Google Analytics and Salesforce were pushed into AWS with the support of third-party synchronisation tools. Machine learning was performed by combining the data from AWS and Azure and was hosted on Azure. The data in AWS resided in one colossal database with tables from diverse sources plus aggregated tables based on the raw data.</p>
 <p><center>
-    <img src="images/structured_platform.png" />
+    <img src="images/mi_old_structure.png" />
     <br/>
     <sup>Figure 2. Diagram showing the old unstructured architecture of the data platform with data synchronised and stored using different tools.</sup>
 </center></p>
@@ -11910,12 +11910,12 @@ jQuery(document).ready(function($) {
     <br/>
     <sup>Figure 4. Simplification of the non-event-driven method. A script will check periodically if new data was written to the database and push the new data to the data warehouse.</sup> <br>
 </center></p>
+<p>Ideally, the data that was originally written to a database from the platform will follow a different route. Instead of writing data directly to the database, it will send the data event to a message bus, making it possible to have different clients listening to that bus and triggering a job to respond to that event. In the data-driven approach, we respond to a row added in the table (Figure 4). Whereas for our event-driven approach, we do not want to check the table but write the event data straight to the data lake and thereby avoiding the necessity of checking databases (Figure 5). While it does not influence the architecture of the data platform, it will help to respond faster to events on the user platform, and therefore increase the reliability of the data platform ensuring that the last data is always present, instead of waiting for the daily extraction job to get data from the databases in the data lakes.</p>
 <p><center>
     <img src="images/mi_event.png" />
     <br/>
     <sup>Figure 5. Simplification of the event-driven method. All events will be written to a message bus. The data warehouse will listen for new events in the bus and copy the data.</sup>
 </center></p>
-<p>Ideally, the data that was originally written to a database from the platform will follow a different route. Instead of writing data directly to the database, it will send the data event to a message bus, making it possible to have different clients listening to that bus and triggering a job to respond to that event. In the data-driven approach, we respond to a row added in the table (Figure 4). Whereas for our event-driven approach, we do not want to check the table but write the event data straight to the data lake and thereby avoiding the necessity of checking databases (Figure 5). While it does not influence the architecture of the data platform, it will help to respond faster to events on the user platform, and therefore increase the reliability of the data platform ensuring that the last data is always present, instead of waiting for the daily extraction job to get data from the databases in the data lakes.</p>
 <h3>Conclusion</h3>
 <p>We made a cost-effective solution by using the best of both platforms without depending on any specific vendor. Following the new approach, we created modular jobs to get data from the raw sources into the data warehouse using both Azure Functions and AWS Lambda. Data is stored in files on Azure Blob Storage and AWS S3 making it the perfect source for machine learning and business intelligence. All the tools that comprise the solution are scalable, consenting to follow the growth trends and projections for the company, as we embrace our new customers with originality in our solutions!</p>
         </div>
