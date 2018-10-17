@@ -11865,9 +11865,124 @@ jQuery(document).ready(function($) {
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -11946,12 +12061,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -11964,27 +12087,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -12180,7 +12315,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -12190,11 +12327,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -12442,6 +12592,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -12480,7 +12633,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -12602,6 +12755,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -12618,16 +12775,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -12643,6 +12808,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -12693,8 +12863,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -12833,8 +13010,7 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="D3.js-and-Jupyter">D3.js and Jupyter<a class="anchor-link" href="#D3.js-and-Jupyter">&#182;</a></h1><p>A short description how to use D3.js in a Jupyter notebook.</p>
 <h2 id="Input-data">Input data<a class="anchor-link" href="#Input-data">&#182;</a></h2><p>Lets create a CSV file containing the amounts of 5 crypto currencies over a small period.</p>
@@ -12869,14 +13045,13 @@ h6:hover .anchor-link {
 <span class="s2">2017-05-19 22:01;25,59;21,98;118,55;27,03;33,62&quot;&quot;&quot;</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Write the CSV text fo a file.</p>
 
@@ -12891,14 +13066,13 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span><span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$csvstring</span><span class="s2">&quot;</span> &gt; wallet.csv
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Check if the file exists.</p>
 
@@ -12913,7 +13087,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>ls -la wallet.csv
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -12923,7 +13097,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -12937,8 +13111,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Check the last entry of the CSV file.</p>
 
@@ -12953,7 +13126,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>tail -n <span class="m">1</span> wallet.csv
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -12963,7 +13136,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -12977,8 +13150,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Read the file into a dataframe.</p>
 
@@ -12996,7 +13168,7 @@ h6:hover .anchor-link {
 <span class="n">wallet_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13006,7 +13178,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -13095,8 +13267,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Add a total column for the currency columns.</p>
 
@@ -13111,7 +13282,7 @@ h6:hover .anchor-link {
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wallet_data</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">wallet_data</span><span class="o">.</span><span class="n">ix</span><span class="p">[:,</span> <span class="n">wallet_data</span><span class="o">.</span><span class="n">columns</span> <span class="o">!=</span> <span class="s1">&#39;Time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13121,7 +13292,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stderr output_text">
@@ -13149,7 +13320,7 @@ http://pandas.pydata.org/pandas-docs/stable/indexing.html#deprecate_ix
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wallet_data</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13159,7 +13330,7 @@ http://pandas.pydata.org/pandas-docs/stable/indexing.html#deprecate_ix
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -13384,8 +13555,7 @@ http://pandas.pydata.org/pandas-docs/stable/indexing.html#deprecate_ix
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Convert the data to a dictionary that Javascript can use.</p>
 
@@ -13400,14 +13570,13 @@ http://pandas.pydata.org/pandas-docs/stable/indexing.html#deprecate_ix
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">wallet_data</span> <span class="o">=</span> <span class="n">wallet_data</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Attach the data to the current window by using Javascript.</p>
 
@@ -13425,7 +13594,7 @@ http://pandas.pydata.org/pandas-docs/stable/indexing.html#deprecate_ix
 <span class="s2">           &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wallet_data</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13435,16 +13604,16 @@ http://pandas.pydata.org/pandas-docs/stable/indexing.html#deprecate_ix
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[9]:</div>
 
 
 
 
 
-<div id="7ee37379-da1a-40cd-9280-9096e99e8e2b"></div>
+<div id="6e0c1353-3f7f-4262-8b85-308efc4a1733"></div>
 <div class="output_subarea output_javascript output_execute_result">
 <script type="text/javascript">
-var element = $('#7ee37379-da1a-40cd-9280-9096e99e8e2b');
+var element = $('#6e0c1353-3f7f-4262-8b85-308efc4a1733');
 
            window.walletData=[{"Time":"2017-05-03 23:17","BTC":19.7,"DOGE":0.0,"ETH":78.88,"LTC":20.81,"REP":0.0,"total":119.39},{"Time":"2017-05-04 20:18","BTC":21.21,"DOGE":0.0,"ETH":90.45,"LTC":24.91,"REP":0.0,"total":136.57},{"Time":"2017-05-05 19:11","BTC":20.1,"DOGE":11.58,"ETH":91.73,"LTC":24.06,"REP":0.0,"total":147.47},{"Time":"2017-05-06 18:56","BTC":20.28,"DOGE":12.37,"ETH":92.78,"LTC":25.91,"REP":0.0,"total":151.34},{"Time":"2017-05-09 0:50","BTC":21.77,"DOGE":20.34,"ETH":89.27,"LTC":28.45,"REP":0.0,"total":159.83},{"Time":"2017-05-09 2:15","BTC":21.99,"DOGE":20.58,"ETH":88.62,"LTC":28.49,"REP":34.7,"total":194.38},{"Time":"2017-05-09 23:59","BTC":22.46,"DOGE":17.51,"ETH":87.45,"LTC":30.14,"REP":32.45,"total":190.01},{"Time":"2017-05-11 0:57","BTC":23.15,"DOGE":18.83,"ETH":86.94,"LTC":32.18,"REP":34.36,"total":195.46},{"Time":"2017-05-11 22:17","BTC":24.17,"DOGE":17.48,"ETH":87.87,"LTC":29.62,"REP":34.36,"total":193.5},{"Time":"2017-05-12 1:55","BTC":24.13,"DOGE":17.99,"ETH":88.05,"LTC":30.02,"REP":36.08,"total":196.27},{"Time":"2017-05-13 1:57","BTC":22.41,"DOGE":17.48,"ETH":85.25,"LTC":27.0,"REP":33.72,"total":185.86},{"Time":"2017-05-14 15:32","BTC":23.67,"DOGE":17.04,"ETH":89.19,"LTC":28.9,"REP":34.24,"total":193.04},{"Time":"2017-05-14 23:34","BTC":23.47,"DOGE":17.51,"ETH":88.6,"LTC":28.01,"REP":33.72,"total":191.31},{"Time":"2017-05-15 22:12","BTC":22.34,"DOGE":16.16,"ETH":90.2,"LTC":24.43,"REP":32.58,"total":185.71},{"Time":"2017-05-16 20:25","BTC":23.12,"DOGE":15.68,"ETH":88.54,"LTC":24.19,"REP":31.36,"total":182.89},{"Time":"2017-05-17 22:01","BTC":24.0,"DOGE":19.26,"ETH":86.28,"LTC":24.5,"REP":30.62,"total":184.66},{"Time":"2017-05-18 23:45","BTC":24.84,"DOGE":21.05,"ETH":94.93,"LTC":27.93,"REP":32.62,"total":201.37},{"Time":"2017-05-19 22:01","BTC":25.59,"DOGE":21.98,"ETH":118.55,"LTC":27.03,"REP":33.62,"total":226.77}];
            
@@ -13458,8 +13627,7 @@ var element = $('#7ee37379-da1a-40cd-9280-9096e99e8e2b');
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Create-the-graph">Create the graph<a class="anchor-link" href="#Create-the-graph">&#182;</a></h2><p>First include the D3.js library.</p>
 
@@ -13479,7 +13647,7 @@ var element = $('#7ee37379-da1a-40cd-9280-9096e99e8e2b');
 <span class="p">});</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13489,16 +13657,16 @@ var element = $('#7ee37379-da1a-40cd-9280-9096e99e8e2b');
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
 
 
-<div id="8def43a5-0a18-41e2-953f-029b06e991be"></div>
+<div id="8cb178fc-ce91-4c1e-834f-7edf7ba29fb4"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#8def43a5-0a18-41e2-953f-029b06e991be');
+var element = $('#8cb178fc-ce91-4c1e-834f-7edf7ba29fb4');
 require.config({
     paths: {
         d3: 'https://api.tiles.mapbox.com/mapbox-gl-js/v0.39.1/mapbox-gl'
@@ -13514,8 +13682,7 @@ require.config({
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I copied the content of my <a href="https://gist.github.com/jqadrad/a58719d82741b1642a2061c071ae2375">gist</a> to recreate the graph inside this notebook. Use the HTML function of IPython to attach inline style to the page.</p>
 
@@ -13554,7 +13721,7 @@ require.config({
 <span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13564,7 +13731,7 @@ require.config({
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -13602,8 +13769,7 @@ circle {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Create the graph by retrieving the data from the window.</p>
 
@@ -13770,7 +13936,7 @@ circle {
 <span class="p">});</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13780,16 +13946,16 @@ circle {
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 
 
 
-<div id="57137f33-f723-4b30-a0db-f7630000622e"></div>
+<div id="9f2c167b-72c9-4f21-bca3-ce0965ffd6d7"></div>
 <div class="output_subarea output_javascript ">
 <script type="text/javascript">
-var element = $('#57137f33-f723-4b30-a0db-f7630000622e');
+var element = $('#9f2c167b-72c9-4f21-bca3-ce0965ffd6d7');
 require(['d3'], function(d3) {
     //a weird idempotency thing
     $("#chart1").remove();
@@ -13947,6 +14113,19 @@ require(['d3'], function(d3) {
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
 </div>
 </div>
 

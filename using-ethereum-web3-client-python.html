@@ -11865,9 +11865,124 @@ jQuery(document).ready(function($) {
 * IPython notebook
 *
 */
-/* CSS font colors for translated ANSI colors. */
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
 .ansibold {
   font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
 }
 /* use dark versions for foreground, to improve visibility */
 .ansiblack {
@@ -11946,12 +12061,20 @@ div.cell {
   /* This acts as a spacer between cells, that is outside the border */
   margin: 0px;
   outline: none;
-  border-left-width: 1px;
-  padding-left: 5px;
-  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
 }
 div.cell.jupyter-soft-selected {
-  border-left-color: #90CAF9;
   border-left-color: #E3F2FD;
   border-left-width: 1px;
   padding-left: 5px;
@@ -11964,27 +12087,39 @@ div.cell.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected {
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
   border-color: #ababab;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
 }
 @media print {
-  div.cell.selected {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
     border-color: transparent;
   }
 }
-div.cell.selected.jupyter-soft-selected {
-  border-left-width: 0;
-  padding-left: 6px;
-  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
-}
 .edit_mode div.cell.selected {
   border-color: #66BB6A;
-  border-left-width: 0px;
-  padding-left: 6px;
-  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
 }
 @media print {
   .edit_mode div.cell.selected {
@@ -12180,7 +12315,9 @@ div.input_area > div.highlight > pre {
 .CodeMirror-lines {
   /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
   /* we have set a different line-height and want this to scale with that. */
-  padding: 0.4em;
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
 }
 .CodeMirror-linenumber {
   padding: 0 8px 0 4px;
@@ -12190,11 +12327,24 @@ div.input_area > div.highlight > pre {
   border-top-left-radius: 2px;
 }
 .CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
-  /* .CodeMirror-lines */
-  padding: 0;
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
   border: 0;
   border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
 }
 /*
 
@@ -12442,6 +12592,9 @@ div.output_area img.unconfined,
 div.output_area svg.unconfined {
   max-width: none;
 }
+div.output_area .mglyph > img {
+  max-width: none;
+}
 /* This is needed to protect the pre formating from global settings such
    as that of bootstrap */
 .output {
@@ -12480,7 +12633,7 @@ div.output_area svg.unconfined {
 }
 div.output_area pre {
   margin: 0;
-  padding: 0;
+  padding: 1px 0 1px 0;
   border: 0;
   vertical-align: baseline;
   color: black;
@@ -12602,6 +12755,10 @@ div.output_unrecognized a:hover {
 .rendered_html h6:first-child {
   margin-top: 1em;
 }
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
 
 
 
@@ -12618,16 +12775,24 @@ div.output_unrecognized a:hover {
 }
 
 
+
+
+
 .rendered_html pre,
+
 
 
 
 .rendered_html tr,
 .rendered_html th,
 
-.rendered_html td,
 
-
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
 .rendered_html * + table {
   margin-top: 1em;
 }
@@ -12643,6 +12808,11 @@ div.output_unrecognized a:hover {
 
 .rendered_html img.unconfined,
 
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -12693,8 +12863,15 @@ h6:hover .anchor-link {
   display: none;
 }
 .text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
 .text_cell.unrendered .text_cell_render {
   display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
 }
 .cm-header-1,
 .cm-header-2,
@@ -12833,8 +13010,7 @@ h6:hover .anchor-link {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Ethereum---Web3">Ethereum - Web3<a class="anchor-link" href="#Ethereum---Web3">&#182;</a></h2><p>Similar to the RPC client, I will use the web3 API to make a transaction on my private blockchain.</p>
 <ul>
@@ -12854,14 +13030,13 @@ h6:hover .anchor-link {
 <span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>I willl use the Python 2.7 environment since Python 3.6 is not yet supported.</p>
 
@@ -12877,7 +13052,7 @@ h6:hover .anchor-link {
 <span class="n">sys</span><span class="o">.</span><span class="n">version</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -12887,7 +13062,7 @@ h6:hover .anchor-link {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[2]:</div>
+    <div class="prompt output_prompt">Out[2]:</div>
 
 
 
@@ -12903,8 +13078,7 @@ h6:hover .anchor-link {
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="o">(</span>python2<span class="o">)</span> jitsejan@jjvps:~$ pip install web3
 Collecting web3
@@ -12922,8 +13096,7 @@ Successfully installed ethereum-abi-utils-0.4.0 ethereum-utils-0.2.0 pylru-1.0.9
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Note: make sure <code>geth</code> is started with arguments --rpc and --rpcapi="db,eth,net,web3,personal,web3"</p>
 <div class="highlight"><pre><span></span>jitsejan@jjvps:~$ geth --networkid <span class="m">23</span> --nodiscover --maxpeers <span class="m">0</span>  --port <span class="m">30333</span> --rpc --rpcapi<span class="o">=</span><span class="s2">&quot;db,eth,net,web3,personal,miner&quot;</span>
@@ -12942,7 +13115,7 @@ Successfully installed ethereum-abi-utils-0.4.0 ethereum-utils-0.2.0 pylru-1.0.9
 <span class="n">web3</span><span class="o">.</span><span class="n">__version__</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -12952,7 +13125,7 @@ Successfully installed ethereum-abi-utils-0.4.0 ethereum-utils-0.2.0 pylru-1.0.9
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[3]:</div>
+    <div class="prompt output_prompt">Out[3]:</div>
 
 
 
@@ -12968,8 +13141,7 @@ Successfully installed ethereum-abi-utils-0.4.0 ethereum-utils-0.2.0 pylru-1.0.9
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Setup-RPC-connection">Setup RPC connection<a class="anchor-link" href="#Setup-RPC-connection">&#182;</a></h2>
 </div>
@@ -12983,14 +13155,13 @@ Successfully installed ethereum-abi-utils-0.4.0 ethereum-utils-0.2.0 pylru-1.0.9
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">web3</span> <span class="o">=</span> <span class="n">Web3</span><span class="p">(</span><span class="n">KeepAliveRPCProvider</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s1">&#39;8545&#39;</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Retrieve-the-accounts">Retrieve the accounts<a class="anchor-link" href="#Retrieve-the-accounts">&#182;</a></h3>
 </div>
@@ -13004,7 +13175,7 @@ Successfully installed ethereum-abi-utils-0.4.0 ethereum-utils-0.2.0 pylru-1.0.9
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">accounts</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13014,7 +13185,7 @@ Successfully installed ethereum-abi-utils-0.4.0 ethereum-utils-0.2.0 pylru-1.0.9
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[5]:</div>
+    <div class="prompt output_prompt">Out[5]:</div>
 
 
 
@@ -13037,14 +13208,13 @@ Successfully installed ethereum-abi-utils-0.4.0 ethereum-utils-0.2.0 pylru-1.0.9
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">address</span> <span class="o">=</span> <span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Set-the-two-other-machines">Set the two other machines<a class="anchor-link" href="#Set-the-two-other-machines">&#182;</a></h3>
 </div>
@@ -13059,14 +13229,13 @@ Successfully installed ethereum-abi-utils-0.4.0 ethereum-utils-0.2.0 pylru-1.0.9
 <span class="n">address_vps_two</span> <span class="o">=</span> <span class="s2">&quot;0xe86ee31b7d32b743907fa7438c422a1803717deb&quot;</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Show-their-balances">Show their balances<a class="anchor-link" href="#Show-their-balances">&#182;</a></h3>
 </div>
@@ -13083,7 +13252,7 @@ Successfully installed ethereum-abi-utils-0.4.0 ethereum-utils-0.2.0 pylru-1.0.9
 <span class="n">prev_host_amount</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address</span><span class="p">),</span> <span class="s1">&#39;ether&#39;</span><span class="p">))</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13093,7 +13262,7 @@ Successfully installed ethereum-abi-utils-0.4.0 ethereum-utils-0.2.0 pylru-1.0.9
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -13109,8 +13278,7 @@ VPS 2 has 83 Ether
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Transaction">Transaction<a class="anchor-link" href="#Transaction">&#182;</a></h2><p>Lets send 12 Ether from the main machine to VPS one.</p>
 
@@ -13127,14 +13295,13 @@ VPS 2 has 83 Ether
 <span class="n">receiving_address</span> <span class="o">=</span> <span class="n">address_vps_one</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Get-the-password-to-unlock-the-sending-account">Get the password to unlock the sending account<a class="anchor-link" href="#Get-the-password-to-unlock-the-sending-account">&#182;</a></h3>
 </div>
@@ -13149,7 +13316,7 @@ VPS 2 has 83 Ether
 <span class="n">pw</span> <span class="o">=</span> <span class="n">getpass</span><span class="p">(</span><span class="n">prompt</span><span class="o">=</span><span class="s1">&#39;Enter the password for the sender: &#39;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13159,7 +13326,7 @@ VPS 2 has 83 Ether
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -13173,8 +13340,7 @@ VPS 2 has 83 Ether
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Unlock-the-account">Unlock the account<a class="anchor-link" href="#Unlock-the-account">&#182;</a></h3>
 </div>
@@ -13188,7 +13354,7 @@ VPS 2 has 83 Ether
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">web3</span><span class="o">.</span><span class="n">personal</span><span class="o">.</span><span class="n">unlockAccount</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">pw</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13198,7 +13364,7 @@ VPS 2 has 83 Ether
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -13214,8 +13380,7 @@ VPS 2 has 83 Ether
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Create-the-transaction">Create the transaction<a class="anchor-link" href="#Create-the-transaction">&#182;</a></h3>
 </div>
@@ -13233,14 +13398,13 @@ VPS 2 has 83 Ether
 <span class="n">tx_hash</span> <span class="o">=</span> <span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">sendTransaction</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Check-the-transaction">Check the transaction<a class="anchor-link" href="#Check-the-transaction">&#182;</a></h3>
 </div>
@@ -13254,7 +13418,7 @@ VPS 2 has 83 Ether
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getTransaction</span><span class="p">(</span><span class="n">tx_hash</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13264,7 +13428,7 @@ VPS 2 has 83 Ether
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -13293,8 +13457,7 @@ VPS 2 has 83 Ether
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Check-the-receipt">Check the receipt<a class="anchor-link" href="#Check-the-receipt">&#182;</a></h3><p>The miner is not running, so the receipt returns nothing</p>
 
@@ -13309,14 +13472,13 @@ VPS 2 has 83 Ether
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getTransactionReceipt</span><span class="p">(</span><span class="n">tx_hash</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Start-and-stop-the-miner">Start and stop the miner<a class="anchor-link" href="#Start-and-stop-the-miner">&#182;</a></h3><p>Note: web3.admin.sleepBlocks seems not te be available so I use a simple sleep. Within this sleep it could be that there are more than 1 mining cycles.</p>
 
@@ -13335,7 +13497,7 @@ VPS 2 has 83 Ether
 <span class="n">miner</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13345,7 +13507,7 @@ VPS 2 has 83 Ether
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -13361,8 +13523,7 @@ VPS 2 has 83 Ether
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Check-the-receipt-again">Check the receipt again<a class="anchor-link" href="#Check-the-receipt-again">&#182;</a></h3><p>Now the transaction has taken place</p>
 
@@ -13377,7 +13538,7 @@ VPS 2 has 83 Ether
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getTransactionReceipt</span><span class="p">(</span><span class="n">tx_hash</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13387,7 +13548,7 @@ VPS 2 has 83 Ether
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -13414,8 +13575,7 @@ VPS 2 has 83 Ether
 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
+</div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Check-the-balances-again">Check the balances again<a class="anchor-link" href="#Check-the-balances-again">&#182;</a></h3><p>The host should have 12 Ether less, but received 5 Ether for each mining cycle. The first VPS should have received 12 Ether.</p>
 
@@ -13432,7 +13592,7 @@ VPS 2 has 83 Ether
 <span class="k">print</span> <span class="s2">&quot;VPS 2 has </span><span class="si">%d</span><span class="s2"> Ether&quot;</span> <span class="o">%</span> <span class="n">web3</span><span class="o">.</span><span class="n">fromWei</span><span class="p">(</span><span class="n">web3</span><span class="o">.</span><span class="n">eth</span><span class="o">.</span><span class="n">getBalance</span><span class="p">(</span><span class="n">address_vps_two</span><span class="p">),</span> <span class="s1">&#39;ether&#39;</span><span class="p">)</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13442,7 +13602,7 @@ VPS 2 has 83 Ether
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
@@ -13467,7 +13627,7 @@ VPS 2 has 83 Ether
 <span class="k">print</span> <span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> mining cycle(s) are elapsed&quot;</span> <span class="o">%</span> <span class="n">num_cycles</span>
 </pre></div>
 
-</div>
+    </div>
 </div>
 </div>
 
@@ -13477,7 +13637,7 @@ VPS 2 has 83 Ether
 
 <div class="output_area">
 
-<div class="prompt"></div>
+    <div class="prompt"></div>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
