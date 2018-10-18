@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Home | JJ's World</title>
+        <title>MEVN Stack - Setting up MongoDB, Express and VueJS | JJ's World</title>
 
 
 <style type="text/css">
@@ -11849,464 +11849,375 @@ jQuery(document).ready(function($) {
         </div><!-- .navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container index">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-<form class="navbar-form navbar-right" role="search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-9">
-  <article>
-    <header>
-      <h2><a href="./create-spark-dataframe-column-with-lag.html">Create Spark dataframe column with lag</a></h2>
-      <time datetime="" title="2017-12-14T21:25:00+00:00" pubdate>Thu 14 December 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>Create a lagged column in a PySpark dataframe:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">monotonically_increasing_id</span><span class="p">,</span> <span class="n">lag</span>
-<span class="kn">from</span> <span class="nn">pyspark.sql.window</span> <span class="kn">import</span> <span class="n">Window</span>
-
-<span class="c1"># Add ID to be used by the window function</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">monotonically_increasing_id</span><span class="p">())</span>
-<span class="c1"># Set the window</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
-<span class="c1"># Create the lagged value</span>
-<span class="n">value_lag</span> <span class="o">=</span> <span class="n">lag</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-<span class="c1"># Add the lagged values to a new column</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;prev_value&#39;</span><span class="p">,</span> <span class="n">value_lag</span><span class="p">)</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/lag.html" class="tag">lag</a>
-            <a href="./tag/pyspark.html" class="tag">pyspark</a>
-            <a href="./tag/dataframe.html" class="tag">dataframe</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./mevn-stack-tutorial.html">MEVN Stack - Setting up MongoDB, Express and VueJS</a></h2>
-      <time datetime="" title="2017-12-05T00:36:28+00:00" pubdate>Tue 05 December 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>This tutorial will go through creating an application using the MEVN stack.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./mevn-stack-tutorial.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/vuejs.html" class="tag">VueJS</a>
-            <a href="./tag/expressjs.html" class="tag">ExpressJS</a>
-            <a href="./tag/javascript.html" class="tag">Javascript</a>
-            <a href="./tag/mongodb.html" class="tag">MongoDB</a>
-            <a href="./tag/full-stack.html" class="tag">full-stack</a>
-            <a href="./tag/front-end.html" class="tag">front-end</a>
-            <a href="./tag/back-end.html" class="tag">back-end</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./using-pythons-filter-on-dataframe.html">Using Pythons filter to select columns in dataframe</a></h2>
-      <time datetime="" title="2017-11-09T23:45:00+00:00" pubdate>Thu 09 November 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>A simple trick to select columns from a dataframe:</p>
-<div class="highlight"><pre><span></span><span class="c1"># Create the filter condition</span>
-<span class="n">condition</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">DESIRED_COLUMNS</span>
-<span class="c1"># Filter the dataframe</span>
-<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="o">*</span><span class="nb">filter</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/filter.html" class="tag">filter</a>
-            <a href="./tag/tool.html" class="tag">tool</a>
-            <a href="./tag/lambda.html" class="tag">lambda</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./using-vuejs-in-jupyter-notebook.html">Using Vue.js in a Jupyter notebook</a></h2>
-      <time datetime="" title="2017-10-05T22:47:00+01:00" pubdate>Thu 05 October 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>Another experiment: using the progressive JavaScript Framework <a href="https://vuejs.org">Vue.js</a> in a Jupyter notebook.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./using-vuejs-in-jupyter-notebook.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="./tag/notebook.html" class="tag">notebook</a>
-            <a href="./tag/vuejs.html" class="tag">VueJS</a>
-            <a href="./tag/javascript.html" class="tag">JavaScript</a>
-            <a href="./tag/frontend.html" class="tag">frontend</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./hadoop-experiment-pig-scripting.html">Hadoop Experiment - Using Pig</a></h2>
-      <time datetime="" title="2017-10-03T09:36:00+01:00" pubdate>Tue 03 October 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>In my previous posts I have already shown simple examples of using MapReduce and Spark with Pyspark. A missing piece moving from MapReduce to Spark is the usage of Pig scripts. This posts shows an example howto use a Pig script.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./hadoop-experiment-pig-scripting.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/hadoop.html" class="tag">Hadoop</a>
-            <a href="./tag/pig.html" class="tag">Pig</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/cloudera.html" class="tag">Cloudera</a>
-            <a href="./tag/mapreduce.html" class="tag">mapreduce</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./truffle-in-docker.html">Running Truffle in a Docker container</a></h2>
-      <time datetime="" title="2017-09-29T16:17:00+01:00" pubdate>Fri 29 September 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>This is a short explanation on how to setup a Truffle decentralized app using Docker containers.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./truffle-in-docker.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/truffle.html" class="tag">Truffle</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/container.html" class="tag">container</a>
-            <a href="./tag/dapp.html" class="tag">dapp</a>
-            <a href="./tag/ethereum.html" class="tag">Ethereum</a>
-            <a href="./tag/blockchain.html" class="tag">blockchain</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./hadoop-experiment-spark-with-pyspark-in-jupyter.html">Hadoop Experiment - Spark with Pyspark in a Jupyter notebook</a></h2>
-      <time datetime="" title="2017-09-22T16:17:00+01:00" pubdate>Fri 22 September 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>Last time I started to experiment with Hadoop and simple scripts using MapReduce and Pig on a Cloudera Docker container. Now lets start playing with Spark, since this is the goto language for machine learning on Hadoop.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./hadoop-experiment-spark-with-pyspark-in-jupyter.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/hadoop.html" class="tag">Hadoop</a>
-            <a href="./tag/spark.html" class="tag">Spark</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/container.html" class="tag">container</a>
-            <a href="./tag/mapreduce.html" class="tag">mapreduce</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./hadoop-experiment-mapreduce-on-cloudera.html">Hadoop Experiment - MapReduce on Cloudera</a></h2>
-      <time datetime="" title="2017-09-08T15:17:00+01:00" pubdate>Fri 08 September 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>This post describes my first experiment with the Cloudera environment by trying to use the basic MapReduce method on a simple dataset.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./hadoop-experiment-mapreduce-on-cloudera.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/hadoop.html" class="tag">Hadoop</a>
-            <a href="./tag/cloudera.html" class="tag">Cloudera</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/container.html" class="tag">container</a>
-            <a href="./tag/virtualization.html" class="tag">virtualization</a>
-            <a href="./tag/mapreduce.html" class="tag">mapreduce</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./getting-started-with-hortonworks-sandbox.html">Getting started with the Hortonworks Hadoop Sandbox</a></h2>
-      <time datetime="" title="2017-09-01T12:16:00+01:00" pubdate>Fri 01 September 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>Using the Docker HDP image from <a href="https://hortonworks.com/downloads/#sandbox">Hortonworks</a>, it is easy to spin up an Hadoop environment onto your machine.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./getting-started-with-hortonworks-sandbox.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/hadoop.html" class="tag">Hadoop</a>
-            <a href="./tag/hortonworks.html" class="tag">Hortonworks</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/container.html" class="tag">container</a>
-            <a href="./tag/virtualization.html" class="tag">virtualization</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./using-anaconda-with-docker.html">Using Anaconda with Docker</a></h2>
-      <time datetime="" title="2017-08-31T16:30:00+01:00" pubdate>Thu 31 August 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>This post is a short explanation on how to get up and running with Docker and Anaconda.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./using-anaconda-with-docker.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/notebook.html" class="tag">notebook</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/container.html" class="tag">container</a>
-            <a href="./tag/virtualization.html" class="tag">virtualization</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-
-  <nav class="pagination row">
-    <div class="col-xs-6 left">
-        <a class="prev" href="./index3.html">&#8592; Past</a>
-    </div>
-    <div class="col-xs-6 right">
-        <a class="next" href="./index.html">Future &#8594;</a>
-    </div>
-  </nav>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm">
-<form class="navbar-form navbar-right" role="search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-3">
-<aside class="page-sidebar">
-    <nav class="widget" id="sidebar-about">
-        <div class="row img-div">
-            <img src="/theme/images/JJ_Montreal.png" />
-        </div>
-        <div class="row">
-        <p>I am a Data Engineer currently working for MarketInvoice in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
-<p>
-While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
-for visualizations as for modern web applications it is the go-to language. 
-</p>
-<p>
-I am using this page as a portfolio and showcase, but mainly as a cheatsheet. That is why you will mainly find shell commands, short scripts or notebooks just for myself to not reinvent the wheel.
-</p>
-
-        </div>  
-    </nav>
-    <hr/>
-    <nav class="widget">
-        <ul class="tagcloud">
-        <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/linux.html">
-            Linux
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/django.html">
-            Django
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/vuejs.html">
-            VueJS
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/hadoop.html">
-            Hadoop
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/azure.html">
-            Azure
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ether.html">
-            ether
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-0">
-            <a href="./tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/expressjs.html">
-            ExpressJS
-            </a>
-        </li>
-        </ul>
-    </nav>
-    <hr/>
+<div class="container post">
     <div class="row">
-        <div class="col-md-12">
-            <ul class="social-list">
-                    <li><a href="http://www.facebook.com/jitsejan" title="Facebook" rel="me" target="new"><i class="fa fa-1x fa-facebook"></i></a></li>
-                    <li><a href="http://www.flickr.com/photos/jitsejan" title="Flickr" rel="me" target="new"><i class="fa fa-1x fa-flickr"></i></a></li>
-                    <li><a href="https://play.spotify.com/user/jitsejan" title="Spotify" rel="me" target="new"><i class="fa fa-1x fa-spotify"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jitsejan" title="LinkedIn" rel="me" target="new"><i class="fa fa-1x fa-linkedin"></i></a></li>
-                    <li><a href="http://twitter.com/jitsejan" title="Twitter" rel="me" target="new"><i class="fa fa-1x fa-twitter"></i></a></li>
-                    <li><a href="http://www.github.com/jitsejan" title="Github" rel="me" target="new"><i class="fa fa-1x fa-github"></i></a></li>
-                    <li><a href="http://bitbucket.org/jitsejan" title="Bitbucket" rel="me" target="new"><i class="fa fa-1x fa-bitbucket"></i></a></li>
-                    <li><a href="http://bl.ocks.org/jitsejan" title="Blocks.org" rel="me" target="new"><i class="fa fa-1x fa-bar-chart"></i></a></li>
-                    <li><a href="https://hub.docker.com/r/jitsejan" title="Docker" rel="me" target="new"><i class="fa fa-1x fa-docker"></i></a></li>
-            </ul>
-        </div>
+        <a href="javascript:history.back()">Go back</a>
     </div>
-</aside>  </div>
-  
-  </div>
+    <article>
+        <header>
+            <h1>MEVN Stack - Setting up MongoDB, Express and VueJS</h1>
+            <time datetime="article.date.isoformat()" pubdate>Tue 05 December 2017</time>
+        </header>
 
+        <div class="article_content">
+            <h1>MEVN Stack</h1>
+<p>This stack consists of the following elements:</p>
+<ul>
+<li>MongoDB</li>
+<li>ExpressJS</li>
+<li>VueJS</li>
+<li>NodeJS</li>
+</ul>
+<h2>Objectives</h2>
+<ul>
+<li>Setup front-end with VueJS</li>
+<li>Setup back-end with ExpressJS</li>
+<li>Setup the connection between the front-end and back-end using Axios</li>
+<li>Setup the connection between ExpressJS and MongoDB</li>
+</ul>
+<h2>Prerequisites</h2>
+<p>Install the last version of <a href="https://nodejs.org/en/">node</a> and <a href="https://www.npmjs.com">npm</a>.</p>
+<div class="highlight"><pre><span></span>jitsejan@dev:~/code$ curl -sL https://deb.nodesource.com/setup_9.x <span class="p">|</span> sudo -E bash -
+jitsejan@dev:~/code$ sudo apt-get install -y nodejs
+jitsejan@dev:~/code$ node --version
+v9.2.0
+jitsejan@dev:~/code$ npm --version
+<span class="m">5</span>.5.1
+</pre></div>
+
+
+<h2>Setup</h2>
+<p>Create the folder for the application and move inside it.</p>
+<div class="highlight"><pre><span></span>jitsejan@dev:~/code$ mkdir mongo-express-vue-node <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$_</span>
+</pre></div>
+
+
+<h2>Client</h2>
+<p><center><img height=100 src="https://vuejs.org/images/logo.png"/></center></p>
+<p>Install the <a href="https://github.com/vuejs/vue-cli">Vue CLI</a> to easily create the scaffold for a Vue application.</p>
+<div class="highlight"><pre><span></span>jitsejan@dev:~/code$ sudo npm install -g vue-cli
+jitsejan@dev:~/code$ vue --version
+<span class="m">2</span>.9.1
+</pre></div>
+
+
+<p>Use the <a href="https://github.com/vuejs-templates/webpack">webpack template</a> to create a Vue app with a webpack boilerplate. </p>
+<div class="highlight"><pre><span></span>jitsejan@dev:~/code/mongo-express-vue-node$ vue init webpack client
+
+? Project name client
+? Project description MEVN - Vue.js client
+? Author Jitse-Jan &lt;jitsejan@gmail.com&gt;
+? Vue build standalone
+? Install vue-router? Yes
+? Use ESLint to lint your code? Yes
+? Pick an ESLint preset Standard
+? Setup unit tests Yes
+? Pick a <span class="nb">test</span> runner karma
+? Setup e2e tests with Nightwatch? Yes
+
+   vue-cli · Generated <span class="s2">&quot;client&quot;</span>.
+
+   To get started:
+
+     <span class="nb">cd</span> client
+     npm install
+     npm run dev
+
+   Documentation can be found at https://vuejs-templates.github.io/webpack
+
+jitsejan@dev:~/code/mongo-express-vue-node$ <span class="nb">cd</span> client
+jitsejan@dev:~/code/mongo-express-vue-node/client$ npm install
+</pre></div>
+
+
+<p>To make the app accessible from the VPS, first change the host for the webpack-dev-server in <code>client/package.json</code>from</p>
+<div class="highlight"><pre><span></span>...
+<span class="s2">&quot;scripts&quot;</span>: <span class="o">{</span>
+    <span class="s2">&quot;dev&quot;</span>: <span class="s2">&quot;webpack-dev-server --inline --progress --config build/webpack.dev.conf.js&quot;</span>,
+    ...
+  <span class="o">}</span>,
+...
+</pre></div>
+
+
+<p>to</p>
+<div class="highlight"><pre><span></span>...
+<span class="s2">&quot;scripts&quot;</span>: <span class="o">{</span>
+    <span class="s2">&quot;dev&quot;</span>: <span class="s2">&quot;webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 0.0.0.0&quot;</span>,
+    ...
+  <span class="o">}</span>,
+...
+</pre></div>
+
+
+<p>and make sure the <code>disableHostCheck</code> is set to <code>true</code> in <code>client/build/webpack.dev.conf.js</code>:</p>
+<div class="highlight"><pre><span></span>...
+devServer: <span class="o">{</span>
+    ...
+    disableHostCheck: <span class="nb">true</span>
+    ...
+<span class="o">}</span>    
+...
+</pre></div>
+
+
+<p>We can now start the application by running the following command:</p>
+<div class="highlight"><pre><span></span>jitsejan@dev:~/code/mongo-express-vue-node/client$ npm run dev
+</pre></div>
+
+
+<p>and use curl to check the page:</p>
+<div class="highlight"><pre><span></span>jitsejan@dev:~/code/mongo-express-vue-node/client$ curl dev.jitsejan.com:8080
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+<span class="m">100</span>   <span class="m">322</span>  <span class="m">100</span>   <span class="m">322</span>    <span class="m">0</span>     <span class="m">0</span>   <span class="m">1477</span>      <span class="m">0</span> --:--:-- --:--:-- --:--:--  <span class="m">1586</span>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta <span class="nv">charset</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span>&gt;
+    &lt;meta <span class="nv">name</span><span class="o">=</span><span class="s2">&quot;viewport&quot;</span> <span class="nv">content</span><span class="o">=</span><span class="s2">&quot;width=device-width,initial-scale=1.0&quot;</span>&gt;
+    &lt;title&gt;client&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;app&quot;</span>&gt;&lt;/div&gt;
+    &lt;!-- built files will be auto injected --&gt;
+  &lt;script <span class="nv">type</span><span class="o">=</span><span class="s2">&quot;text/javascript&quot;</span> <span class="nv">src</span><span class="o">=</span><span class="s2">&quot;/app.js&quot;</span>&gt;&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+
+<p>which is indeed the content of the <code>index.html</code> of the client application.</p>
+<h2>Server</h2>
+<p><center><img height=100 src="https://i.cloudup.com/zfY6lL7eFa-3000x3000.png"/></center></p>
+<p>As a back-end we will use <a href="https://expressjs.com/">ExpressJS</a> to connect the front-end to the data and deal with all server related functionality. To (again) not setup all the files by ourselves, but use a generator to create the scaffold, I will use the 
+<a href="https://expressjs.com/en/starter/generator.html">Express generator</a>. </p>
+<h3>Create boilerplate</h3>
+<div class="highlight"><pre><span></span>jitsejan@dev:~/code/mongo-express-vue-node$ sudo npm install express-generator -g
+jitsejan@dev:~/code/mongo-express-vue-node$ express --version
+<span class="m">4</span>.15.5
+</pre></div>
+
+
+<p>Using the generator, we can create the boilerplate for the server, with a <code>.gitignore</code> by using <code>--git</code> and with <code>ejs</code> support by setting the view argument. </p>
+<div class="highlight"><pre><span></span>jitsejan@dev:~/code/mongo-express-vue-node$ express --git --view ejs server
+
+   create : server
+   create : server/package.json
+   create : server/app.js
+   create : server/.gitignore
+   create : server/public
+   create : server/routes
+   create : server/routes/index.js
+   create : server/routes/users.js
+   create : server/views
+   create : server/views/index.ejs
+   create : server/views/error.ejs
+   create : server/bin
+   create : server/bin/www
+   create : server/public/javascripts
+   create : server/public/images
+   create : server/public/stylesheets
+   create : server/public/stylesheets/style.css
+
+   install dependencies:
+     $ <span class="nb">cd</span> server <span class="o">&amp;&amp;</span> npm install
+
+   run the app:
+     $ <span class="nv">DEBUG</span><span class="o">=</span>server:* npm start
+</pre></div>
+
+
+<p>Lets navigate inside the server folder, install the packages and start the server.</p>
+<div class="highlight"><pre><span></span>jitsejan@dev:~/code/mongo-express-vue-node$ <span class="nb">cd</span> server/
+jitsejan@dev:~/code/mongo-express-vue-node/server$ npm install
+jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span><span class="o">=</span>server:* npm start
+
+&gt; server@0.0.0 start /home/jitsejan/code/mongo-express-vue-node/server
+&gt; node ./bin/www
+
+  server:server Listening on port <span class="m">3000</span> +0ms
+</pre></div>
+
+
+<p>Using curl we can retrieve the content of the application by requesting the server on port 3000.</p>
+<div class="highlight"><pre><span></span>jitsejan@dev:~/code/mongo-express-vue-node$ curl dev.jitsejan.com:3000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+<span class="m">100</span>   <span class="m">207</span>  <span class="m">100</span>   <span class="m">207</span>    <span class="m">0</span>     <span class="m">0</span>    <span class="m">880</span>      <span class="m">0</span> --:--:-- --:--:-- --:--:--   <span class="m">945</span>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Express&lt;/title&gt;
+    &lt;link <span class="nv">rel</span><span class="o">=</span><span class="s1">&#39;stylesheet&#39;</span> <span class="nv">href</span><span class="o">=</span><span class="s1">&#39;/stylesheets/style.css&#39;</span> /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Express&lt;/h1&gt;
+    &lt;p&gt;Welcome to Express&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+
+<p><center><img style="max-width:500px; -webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(2px 5px 5px #222);" src="images/express_main.png" /></center></p>
+<h3>Setup API route</h3>
+<p>Add a new route to <code>server/app.js</code> and add some fake data to be returned:</p>
+<div class="highlight"><pre><span></span> <span class="p">...</span>
+ <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/characters&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span>
+    <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Mario&quot;</span><span class="p">,</span>
+        <span class="nx">color</span><span class="o">:</span> <span class="s2">&quot;red&quot;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Luigi&quot;</span><span class="p">,</span>
+        <span class="nx">color</span><span class="o">:</span> <span class="s2">&quot;green&quot;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">)</span>
+<span class="p">})</span>
+<span class="p">...</span>
+</pre></div>
+
+
+<p>Start the server to test the new route by running the following command:</p>
+<div class="highlight"><pre><span></span>jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span><span class="o">=</span>server:* npm start
+</pre></div>
+
+
+<p>which will result in the curl response as shown below using <code>jq</code> for a nicer layout.</p>
+<div class="highlight"><pre><span></span>jitsejan@dev:~$ curl dev.jitsejan.com:3000/characters <span class="p">|</span> jq <span class="s1">&#39;.&#39;</span>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+<span class="m">100</span>    <span class="m">65</span>  <span class="m">100</span>    <span class="m">65</span>    <span class="m">0</span>     <span class="m">0</span>   <span class="m">1029</span>      <span class="m">0</span> --:--:-- --:--:-- --:--:--  <span class="m">1031</span>
+<span class="o">[</span>
+  <span class="o">{</span>
+    <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;Mario&quot;</span>,
+    <span class="s2">&quot;color&quot;</span>: <span class="s2">&quot;red&quot;</span>
+  <span class="o">}</span>,
+  <span class="o">{</span>
+    <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;Luigi&quot;</span>,
+    <span class="s2">&quot;color&quot;</span>: <span class="s2">&quot;green&quot;</span>
+  <span class="o">}</span>
+<span class="o">]</span>
+</pre></div>
+
+
+<p><center><img style="max-width:500px; -webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(2px 5px 5px #222);" src="images/express_characters.png" /></center></p>
+<h2>Connect client and server</h2>
+<p>Finally, we need to connect the VueJS front with the ExpressJS back-end. To do this, we will use <code>axios</code> at the client-side to talk to the API from the server-side. First install <code>axios</code> for the client:</p>
+<div class="highlight"><pre><span></span>jitsejan@dev:~/code/mongo-express-vue-node/client$ npm install --save axios
+</pre></div>
+
+
+<h3>Setup characters component</h3>
+<p>Create a new Vue component to show the characters from the API. Add the content to <code>client/src/components/Characters.vue</code>:</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;characters&quot;</span><span class="p">&gt;</span>
+    This file will list all the characters.
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Characters&#39;</span><span class="p">,</span>
+  <span class="nx">data</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>Add a route to <code>client/src/router/index.js</code> for the characters view by adding the import of the component and defining the route parameters.</p>
+<div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="kr">import</span> <span class="nx">Characters</span> <span class="nx">from</span> <span class="s1">&#39;@/components/Characters&#39;</span>
+<span class="p">...</span>
+
+    <span class="p">{</span>
+      <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/characters&#39;</span><span class="p">,</span>
+      <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Characters&#39;</span><span class="p">,</span>
+      <span class="nx">component</span><span class="o">:</span> <span class="nx">Characters</span>
+    <span class="p">}</span>
+<span class="p">...</span>
+</pre></div>
+
+
+<h3>Extend main application</h3>
+<p>To visit the available routes, add the router-links to the main application. Change the template in <code>client/src/App.vue</code>:</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;app&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">router-link</span> <span class="na">:to</span><span class="o">=</span><span class="s">&quot;{ name: &#39;Home&#39; }&quot;</span><span class="p">&gt;</span>Home<span class="p">&lt;/</span><span class="nt">router-link</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">router-link</span> <span class="na">:to</span><span class="o">=</span><span class="s">&quot;{ name: &#39;Characters&#39;}&quot;</span><span class="p">&gt;</span>Characters<span class="p">&lt;/</span><span class="nt">router-link</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">router-view</span><span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+...
+</pre></div>
+
+
+<p>Main page:
+<center><img style="max-width:500px; -webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(2px 5px 5px #222);" src="images/main_menu.png" /></center>
+Character page:
+<center><img style="max-width:500px; -webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(2px 5px 5px #222);" src="images/characters_mevn.png" /></center></p>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/vuejs.html" class="tag">VueJS</a>
+                    <a href="./tag/expressjs.html" class="tag">ExpressJS</a>
+                    <a href="./tag/javascript.html" class="tag">Javascript</a>
+                    <a href="./tag/mongodb.html" class="tag">MongoDB</a>
+                    <a href="./tag/full-stack.html" class="tag">full-stack</a>
+                    <a href="./tag/front-end.html" class="tag">front-end</a>
+                    <a href="./tag/back-end.html" class="tag">back-end</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
 
         </div>
 <footer class="footer">
