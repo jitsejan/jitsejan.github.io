@@ -11921,6 +11921,91 @@ jQuery(document).ready(function($) {
   <div class="separator"></div>
   <article>
     <header>
+      <h2><a href="./write-dataframe-to-csv-on-s3.html">Write a Pandas dataframe to CSV on S3</a></h2>
+      <time datetime="" title="2018-10-05T11:00:00+01:00" pubdate>Fri 05 October 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>Write a <code>pandas</code> dataframe to a single CSV file on S3.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boto3</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
+
+<span class="n">DESTINATION</span> <span class="o">=</span> <span class="s1">&#39;my-bucket&#39;</span>
+
+<span class="k">def</span> <span class="nf">_write_dataframe_to_csv_on_s3</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Write a dataframe to a CSV on S3 &quot;&quot;&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Writing {} records to {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataframe</span><span class="p">),</span> <span class="n">filename</span><span class="p">))</span>
+    <span class="c1"># Create buffer</span>
+    <span class="n">csv_buffer</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
+    <span class="c1"># Write dataframe to buffer</span>
+    <span class="n">dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_buffer</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="c1"># Create S3 object</span>
+    <span class="n">s3_resource</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s2">&quot;s3&quot;</span><span class="p">)</span>
+    <span class="c1"># Write buffer to S3 object</span>
+    <span class="n">s3_resource</span><span class="o">.</span><span class="n">Object</span><span class="p">(</span><span class="n">DESTINATION</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">Body</span><span class="o">=</span><span class="n">csv_buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
+
+<span class="n">_write_dataframe_to_csv_on_s3</span><span class="p">(</span><span class="n">my_df</span><span class="p">,</span> <span class="s1">&#39;my-folder&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p><a href="https://gist.github.com/jitsejan/e24c6f9b288a839f40edd1ce944a747e">Gist</a></p>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/pandas.html" class="tag">pandas</a>
+            <a href="./tag/csv.html" class="tag">CSV</a>
+            <a href="./tag/dataframe.html" class="tag">dataframe</a>
+            <a href="./tag/aws.html" class="tag">AWS</a>
+            <a href="./tag/s3.html" class="tag">S3</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./write-dataframe-to-parquet-on-s3.html">Write a Pandas dataframe to Parquet on S3</a></h2>
+      <time datetime="" title="2018-10-05T11:00:00+01:00" pubdate>Fri 05 October 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>Write a <code>pandas</code> dataframe to a single Parquet file on S3.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Note: make sure `s3fs` is installed in order to make Pandas use S3.</span>
+<span class="c1">#       Credentials for AWS in the normal location ~/.aws/credentials</span>
+<span class="n">DESTINATION</span> <span class="o">=</span> <span class="s1">&#39;my-bucket&#39;</span>
+
+<span class="k">def</span> <span class="nf">_write_dataframe_to_parquet_on_s3</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Write a dataframe to a Parquet on S3 &quot;&quot;&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Writing {} records to {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataframe</span><span class="p">),</span> <span class="n">filename</span><span class="p">))</span>
+    <span class="n">output_file</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;s3://{DESTINATION}/{filename}/data.parquet&quot;</span>
+    <span class="n">dataframe</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+
+<span class="n">_write_dataframe_to_parquet_on_s3</span><span class="p">(</span><span class="n">my_df</span><span class="p">,</span> <span class="s1">&#39;my-folder&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p><a href="https://gist.github.com/jitsejan/557124bcbaf0780ab4efc6054199550a">Gist</a></p>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/pandas.html" class="tag">pandas</a>
+            <a href="./tag/parquet.html" class="tag">Parquet</a>
+            <a href="./tag/dataframe.html" class="tag">dataframe</a>
+            <a href="./tag/aws.html" class="tag">AWS</a>
+            <a href="./tag/s3.html" class="tag">S3</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./interacting-with-parquet-on-s3.html">Interacting with Parquet on S3 with PyArrow and s3fs</a></h2>
       <time datetime="" title="2018-08-17T17:30:00+01:00" pubdate>Fri 17 August 2018</time>
     </header>
@@ -12122,62 +12207,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./moving-blog-to-github-pages.html">Moving my blog to Github Pages</a></h2>
-      <time datetime="" title="2018-04-26T12:00:00+01:00" pubdate>Thu 26 April 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>A short description how I managed to move my blog from my VPS to Github pages with SSL served via CloudFlare.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./moving-blog-to-github-pages.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/infra.html" class="tag">infra</a>
-            <a href="./tag/static.html" class="tag">static</a>
-            <a href="./tag/hosting.html" class="tag">hosting</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./mevn-stack-experiment-with-jupyter.html">MEVN stack experiment with Jupyter</a></h2>
-      <time datetime="" title="2018-01-15T01:45:00+00:00" pubdate>Mon 15 January 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>An experiment to see how far I can go developing an application using only a Jupyter notebook.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./mevn-stack-experiment-with-jupyter.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/notebook.html" class="tag">notebook</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/selenium.html" class="tag">Selenium</a>
-            <a href="./tag/full-stack.html" class="tag">full-stack</a>
-            <a href="./tag/vuejs.html" class="tag">VueJS</a>
-            <a href="./tag/expressjs.html" class="tag">ExpressJS</a>
-            <a href="./tag/mongodb.html" class="tag">MongoDB</a>
-            <a href="./tag/mongoose.html" class="tag">Mongoose</a>
-            <a href="./tag/linux.html" class="tag">Linux</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12222,29 +12251,9 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-1">
-            <a href="./tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/notebook.html">
-            notebook
-            </a>
-        </li>
         <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/hadoop.html">
-            Hadoop
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ether.html">
-            ether
+            <a href="./tag/django.html">
+            Django
             </a>
         </li>
         <li class="tag-2">
@@ -12253,13 +12262,38 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
+            <a href="./tag/hadoop.html">
+            Hadoop
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
+            <a href="./tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/python.html">
+            Python
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/shell.html">
+            shell
             </a>
         </li>
         <li class="tag-2">
@@ -12268,18 +12302,18 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/vuejs.html">
-            VueJS
+            <a href="./tag/container.html">
+            container
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
+            <a href="./tag/pandas.html">
+            pandas
             </a>
         </li>
-        <li class="tag-3">
-            <a href="./tag/dataframe.html">
-            dataframe
+        <li class="tag-2">
+            <a href="./tag/vuejs.html">
+            VueJS
             </a>
         </li>
         <li class="tag-2">
@@ -12288,18 +12322,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/azure.html">
-            Azure
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
+            <a href="./tag/blockchain.html">
+            blockchain
             </a>
         </li>
         <li class="tag-3">
@@ -12307,19 +12331,24 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             DevOps
             </a>
         </li>
-        <li class="tag-0">
-            <a href="./tag/python.html">
-            Python
+        <li class="tag-1">
+            <a href="./tag/jupyter.html">
+            Jupyter
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/django.html">
-            Django
+            <a href="./tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/notebook.html">
+            notebook
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
+            <a href="./tag/ether.html">
+            ether
             </a>
         </li>
         </ul>
