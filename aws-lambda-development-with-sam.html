@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Home | JJ's World</title>
+        <title>AWS Lambda development - Python & SAM | JJ's World</title>
 
 
 <style type="text/css">
@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="../theme/css/main.css?cb94e6e8">
+            <link rel="stylesheet" href="./theme/css/main.css?cb94e6e8">
 
 
     </head>
@@ -11843,454 +11843,494 @@ jQuery(document).ready(function($) {
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
-                <li><a href="../pages/python-cheatsheet">Python cheatsheet</a></li>
+                <li><a href="./pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
+                <li><a href="./pages/python-cheatsheet">Python cheatsheet</a></li>
             </ul>
         </div><!-- .navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container index">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-9">
-  <article>
-    <header>
-      <h2><a href="../add-flickr-photosets-django.html">Add Flickr photosets to a Django site</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>A short description that describes how to retrieve pictures from Flickr and add them to a Django application using the <strong>flickrapi</strong>.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../add-flickr-photosets-django.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/django.html" class="tag">Django</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/flickr.html" class="tag">Flickr</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../change-postgresql-database-encoding.html">Change PostgreSQL database encoding</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>I ran into an issue where I couldn't save some JSON-data to the database because of a weird UTF8 character. Apparently my databases have the SQL ASCII encoding and not the necessary UTF8 encoding.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../change-postgresql-database-encoding.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/postgres.html" class="tag">Postgres</a>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../upgrade-postgresql.html">Upgrade PostgreSQL</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>By default Ubuntu 14.04 is running PostgreSQL version 9.3. In order to use the json datatype PostgreSQL version 9.4 or bigger is needed. The versions can be installed side by side, but for clarity you could remove the</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../upgrade-postgresql.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/postgres.html" class="tag">Postgres</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../write-dictionary-to-csv-python.html">Write dictionary to CSV in Python</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
-
-<span class="k">def</span> <span class="nf">write_dictionary_to_csv</span><span class="p">(</span><span class="n">o_file</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Write dictionary to output file &quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">o_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
-        <span class="n">outputwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span><span class="p">)</span>
-        <span class="n">outputwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="n">outputwriter</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
-
-<span class="n">dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">34</span><span class="p">],</span>
-              <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span><span class="mi">56</span><span class="p">,</span><span class="mi">67</span><span class="p">],</span>
-              <span class="s2">&quot;key3&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">78</span><span class="p">,</span><span class="mi">89</span><span class="p">,</span><span class="mi">90</span><span class="p">]}</span>
-<span class="n">output_file</span> <span class="o">=</span> <span class="s1">&#39;output.csv&#39;</span>
-<span class="n">write_dictionary_to_csv</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">)</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/dictionary.html" class="tag">dictionary</a>
-            <a href="../tag/csv.html" class="tag">CSV</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../using-supervisor-start-gunicorn.html">Using Supervisor to start Gunicorn</a></h2>
-      <time datetime="" title="2016-10-04T14:06:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>To avoid running the Gunicorn in a separate screen, you can use Supervisor to automatically start the Gunicorn server on system start or on user demand.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../using-supervisor-start-gunicorn.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
-            <a href="../tag/supervisor.html" class="tag">Supervisor</a>
-            <a href="../tag/gunicorn.html" class="tag">gunicorn</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../check-listening-ports-on-server.html">Check the listening ports on the server</a></h2>
-      <time datetime="" title="2016-10-04T11:24:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Use netstat to check with ports are listening on the machine.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ netstat -lnt <span class="p">|</span> awk <span class="s1">&#39;$6 == &quot;LISTEN&quot;&#39;</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-            <a href="../tag/network.html" class="tag">network</a>
-            <a href="../tag/netstat.html" class="tag">netstat</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../install-anaconda-ubuntu-1404.html">Install Anaconda on Ubuntu 14.04</a></h2>
-      <time datetime="" title="2016-10-04T10:29:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Installation of Anaconda on Ubuntu 14.04.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../install-anaconda-ubuntu-1404.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/anaconda.html" class="tag">Anaconda</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../move-django-between-servers.html">Move Django database between servers</a></h2>
-      <time datetime="" title="2016-10-04T10:05:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Save the database on the old server.</p>
-<div class="highlight"><pre><span></span><span class="o">(</span>oldenv<span class="o">)</span>jitsejan@oldvps:/opt/oldenv/django_project$ sudo python manage.py dumpdata blog &gt; blog.json
-</pre></div>
-
-
-<p>Load the data on the new server. Make sure the models for both blogs are identical.</p>
-<div class="highlight"><pre><span></span><span class="o">(</span>env<span class="o">)</span>jitsejan@jjsvps:/opt/env/django_project$ sudo python manage.py loaddata blog.json
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/django.html" class="tag">Django</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../install-django-ubuntu-1404-virtualenv-nginx-gunicorn-and-postgres.html">Install Django on Ubuntu 14.04 with virtualenv, Nginx, Gunicorn and postgres</a></h2>
-      <time datetime="" title="2016-10-04T09:46:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>A description of the steps needed to get Django working on Ubuntu 14.04.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../install-django-ubuntu-1404-virtualenv-nginx-gunicorn-and-postgres.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
-            <a href="../tag/django.html" class="tag">Django</a>
-            <a href="../tag/nginx.html" class="tag">Nginx</a>
-            <a href="../tag/gunicorn.html" class="tag">Gunicorn</a>
-            <a href="../tag/postgres.html" class="tag">postgres</a>
-            <a href="../tag/virtualenv.html" class="tag">virtualenv</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../install-jira-ubuntu-1404.html">Install Jira on Ubuntu 14.04</a></h2>
-      <time datetime="" title="2016-10-04T07:09:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>These are the steps needed to get Jira working on Ubuntu 14.04.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../install-jira-ubuntu-1404.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
-            <a href="../tag/jira.html" class="tag">Jira</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-
-  <nav class="pagination row">
-    <div class="col-xs-6 left">
-        <a class="prev" href="../category/posts7.html">&#8592; Past</a>
-    </div>
-    <div class="col-xs-6 right">
-        <a class="next" href="../category/posts5.html">Future &#8594;</a>
-    </div>
-  </nav>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-3">
-<aside class="page-sidebar">
-    <nav class="widget" id="sidebar-about">
-        <div class="row img-div">
-            <img src="/theme/images/JJ_Montreal.png" />
-        </div>
-        <div class="row">
-        <p>I am a Data Engineer currently working for MarketInvoice in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
-<p>
-While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
-for visualizations as for modern web applications it is the go-to language. 
-</p>
-<p>
-I am using this page as a portfolio and showcase, but mainly as a cheatsheet. That is why you will mainly find shell commands, short scripts or notebooks just for myself to not reinvent the wheel.
-</p>
-
-        </div>  
-    </nav>
-    <hr/>
-    <nav class="widget">
-        <ul class="tagcloud">
-        <li class="tag-1">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/hadoop.html">
-            Hadoop
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ether.html">
-            ether
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/expressjs.html">
-            ExpressJS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/vuejs.html">
-            VueJS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/azure.html">
-            Azure
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-0">
-            <a href="../tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/django.html">
-            Django
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        </ul>
-    </nav>
-    <hr/>
+<div class="container post">
     <div class="row">
-        <div class="col-md-12">
-            <ul class="social-list">
-                    <li><a href="http://www.facebook.com/jitsejan" title="Facebook" rel="me" target="new"><i class="fa fa-1x fa-facebook"></i></a></li>
-                    <li><a href="http://www.flickr.com/photos/jitsejan" title="Flickr" rel="me" target="new"><i class="fa fa-1x fa-flickr"></i></a></li>
-                    <li><a href="https://play.spotify.com/user/jitsejan" title="Spotify" rel="me" target="new"><i class="fa fa-1x fa-spotify"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jitsejan" title="LinkedIn" rel="me" target="new"><i class="fa fa-1x fa-linkedin"></i></a></li>
-                    <li><a href="http://twitter.com/jitsejan" title="Twitter" rel="me" target="new"><i class="fa fa-1x fa-twitter"></i></a></li>
-                    <li><a href="http://www.github.com/jitsejan" title="Github" rel="me" target="new"><i class="fa fa-1x fa-github"></i></a></li>
-                    <li><a href="http://bitbucket.org/jitsejan" title="Bitbucket" rel="me" target="new"><i class="fa fa-1x fa-bitbucket"></i></a></li>
-                    <li><a href="http://bl.ocks.org/jitsejan" title="Blocks.org" rel="me" target="new"><i class="fa fa-1x fa-bar-chart"></i></a></li>
-                    <li><a href="https://hub.docker.com/r/jitsejan" title="Docker" rel="me" target="new"><i class="fa fa-1x fa-docker"></i></a></li>
-            </ul>
-        </div>
+        <a href="javascript:history.back()">Go back</a>
     </div>
-</aside>  </div>
-  
-  </div>
+    <article>
+        <header>
+            <h1>AWS Lambda development - Python & SAM</h1>
+            <time datetime="article.date.isoformat()" pubdate>Tue 23 October 2018</time>
+        </header>
 
+        <div class="article_content">
+            <h2>Requirements</h2>
+<ul>
+<li>AWS CLI already configured with at least PowerUser permission</li>
+<li><a href="https://www.python.org/downloads/">Python 3 installed</a></li>
+<li><a href="https://github.com/pypa/pipenv">Pipenv installed</a><ul>
+<li><code>pip install pipenv</code></li>
+</ul>
+</li>
+<li><a href="https://www.docker.com/community-edition">Docker installed</a></li>
+<li><a href="https://github.com/awslabs/aws-sam-local">SAM Local installed</a> </li>
+</ul>
+<h2>Preparation</h2>
+<p>Make sure <strong>Python 3</strong> is installed on the machine, either as default version or alongside Python 2. Check the available downloads on <a href="https://www.python.org/downloads/">Python.org</a>.</p>
+<div class="highlight"><pre><span></span>~/c/python-lambda-tutorial $ python --version
+Python <span class="m">2</span>.7.15
+~/c/python-lambda-tutorial $ python3 --version
+Python <span class="m">3</span>.6.6
+</pre></div>
+
+
+<p>By installing Python, <code>pip</code> should be available on the machine. In case Python 3 is not the default Python interpreter, <code>pip</code> should be called with <code>pip3</code>. </p>
+<div class="highlight"><pre><span></span>~/c/python-lambda-tutorial $ pip --version
+pip <span class="m">18</span>.1 from /usr/local/lib/python2.7/site-packages/pip <span class="o">(</span>python <span class="m">2</span>.7<span class="o">)</span>
+~/c/python-lambda-tutorial $ pip3 --version
+pip <span class="m">18</span>.1 from /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pip <span class="o">(</span>python <span class="m">3</span>.6<span class="o">)</span>
+</pre></div>
+
+
+<p>Create the Python <strong>virtual environment</strong> using <code>pipenv</code>. <code>pipenv</code> is the recommended way to create virtual environments for Python. The same can be achieved using <code>conda</code> or <code>virtualenv</code> or other tools, but the preferred way for Python 3 is <code>pipenv</code>. (<a href="https://docs.python-guide.org/dev/virtualenvs/">Source</a>)</p>
+<p>Install <code>pipenv</code>:</p>
+<div class="highlight"><pre><span></span>~/c/python-lambda-tutorial $ pip3 install pipenv
+Collecting pipenv
+...
+Installing collected packages: pipenv
+Successfully installed pipenv-2018.10.13
+</pre></div>
+
+
+<p>Create an environment for Python 3.6:</p>
+<div class="highlight"><pre><span></span>~/c/python-lambda-tutorial $ pipenv --python <span class="m">3</span>.6
+Creating a virtualenv <span class="k">for</span> this project…
+Pipfile: /Users/jitsejan/code/python-lambda-tutorial/Pipfile
+Using /Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6m <span class="o">(</span><span class="m">3</span>.6.6<span class="o">)</span> to create virtualenv…
+⠦Running virtualenv with interpreter /Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6m
+Using base prefix <span class="s1">&#39;/Library/Frameworks/Python.framework/Versions/3.6&#39;</span>
+New python executable in /Users/jitsejan/.local/share/virtualenvs/python-lambda-tutorial-mfatrPYM/bin/python3.6m
+Also creating executable in /Users/jitsejan/.local/share/virtualenvs/python-lambda-tutorial-mfatrPYM/bin/python
+Installing setuptools, pip, wheel...done.
+
+Virtualenv location: /Users/jitsejan/.local/share/virtualenvs/python-lambda-tutorial-mfatrPYM
+</pre></div>
+
+
+<p>Activate the environment:</p>
+<div class="highlight"><pre><span></span>~/c/python-lambda-tutorial $ pipenv shell
+Launching subshell in virtual environment…
+</pre></div>
+
+
+<p>Install <a href="https://aws.amazon.com/cli/">AWS CLI</a>:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ pipenv install awscli
+Installing awscli…
+...
+Installing collected packages: urllib3, docutils, six, python-dateutil, jmespath, botocore, s3transfer, PyYAML, pyasn1, rsa, colorama, awscli
+Successfully installed PyYAML-3.13 awscli-1.16.35 botocore-1.12.25 colorama-0.3.9 docutils-0.14 jmespath-0.9.3 pyasn1-0.4.4 python-dateutil-2.7.3 rsa-3.4.2 s3transfer-0.1.13 six-1.11.0 urllib3-1.23
+
+Adding awscli to Pipfile<span class="err">&#39;</span>s <span class="o">[</span>packages<span class="o">]</span>…
+Pipfile.lock not found, creating…
+Locking <span class="o">[</span>dev-packages<span class="o">]</span> dependencies…
+Locking <span class="o">[</span>packages<span class="o">]</span> dependencies…
+Updated Pipfile.lock <span class="o">(</span>94bc2a<span class="o">)</span>!
+Installing dependencies from Pipfile.lock <span class="o">(</span>94bc2a<span class="o">)</span>…
+  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ <span class="m">12</span>/12 — <span class="m">00</span>:00:03
+python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ aws --version
+aws-cli/1.16.35 Python/3.6.6 Darwin/18.0.0 botocore/1.12.25
+</pre></div>
+
+
+<p>Install <a href="https://github.com/awslabs/aws-sam-local">AWS SAM CLI</a>:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ pipenv install aws-sam-cli 
+Installing aws-sam-cli…
+...
+Requirement already satisfied, skipping upgrade: docutils&gt;<span class="o">=</span><span class="m">0</span>.10 in /Users/jitsejan/.local/share/virtualenvs/python-lambda-tutorial-mfatrPYM/lib/python3.6/site-packages <span class="o">(</span>from botocore&lt;<span class="m">1</span>.13.0,&gt;<span class="o">=</span><span class="m">1</span>.12.25-&gt;boto3~<span class="o">=</span><span class="m">1</span>.5-&gt;aws-sam-cli<span class="o">)</span> <span class="o">(</span><span class="m">0</span>.14<span class="o">)</span>
+Collecting arrow <span class="o">(</span>from jinja2-time&gt;<span class="o">=</span><span class="m">0</span>.1.0-&gt;cookiecutter~<span class="o">=</span><span class="m">1</span>.6.0-&gt;aws-sam-cli<span class="o">)</span>
+Installing collected packages: enum34, click, itsdangerous, Werkzeug, MarkupSafe, Jinja2, Flask, docker-pycreds, websocket-client, certifi, chardet, idna, requests, docker, jsonschema, boto3, aws-sam-translator, arrow, jinja2-time, binaryornot, poyo, future, whichcraft, cookiecutter, pytz, tzlocal, regex, dateparser, pystache, aws-sam-cli
+Successfully installed Flask-1.0.2 Jinja2-2.10 MarkupSafe-1.0 Werkzeug-0.14.1 arrow-0.12.1 aws-sam-cli-0.6.0 aws-sam-translator-1.6.0 binaryornot-0.4.4 boto3-1.9.25 certifi-2018.10.15 chardet-3.0.4 click-6.7 cookiecutter-1.6.0 dateparser-0.7.0 docker-3.5.0 docker-pycreds-0.3.0 enum34-1.1.6 future-0.16.0 idna-2.7 itsdangerous-0.24 jinja2-time-0.2.0 jsonschema-2.6.0 poyo-0.4.2 pystache-0.5.4 pytz-2018.5 regex-2018.8.29 requests-2.19.1 tzlocal-1.5.1 websocket-client-0.53.0 whichcraft-0.5.2
+
+Adding aws-sam-cli to Pipfile<span class="err">&#39;</span>s <span class="o">[</span>packages<span class="o">]</span>…
+Pipfile.lock <span class="o">(</span>a1782d<span class="o">)</span> out of date, updating to <span class="o">(</span>94bc2a<span class="o">)</span>…
+Locking <span class="o">[</span>dev-packages<span class="o">]</span> dependencies…
+Locking <span class="o">[</span>packages<span class="o">]</span> dependencies…
+Updated Pipfile.lock <span class="o">(</span>a1782d<span class="o">)</span>!
+Installing dependencies from Pipfile.lock <span class="o">(</span>a1782d<span class="o">)</span>…
+  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ <span class="m">42</span>/42 — <span class="m">00</span>:00:10
+python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ sam --version
+SAM CLI, version <span class="m">0</span>.6.0
+</pre></div>
+
+
+<p>Install the template tool <a href="https://github.com/audreyr/cookiecutter"><code>cookiecutter</code></a>:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ pipenv install cookiecutter
+Installing cookiecutter…
+...
+
+Adding cookiecutter to Pipfile<span class="err">&#39;</span>s <span class="o">[</span>packages<span class="o">]</span>…
+Pipfile.lock <span class="o">(</span>23abb4<span class="o">)</span> out of date, updating to <span class="o">(</span>a1782d<span class="o">)</span>…
+Locking <span class="o">[</span>dev-packages<span class="o">]</span> dependencies…
+Locking <span class="o">[</span>packages<span class="o">]</span> dependencies…
+Updated Pipfile.lock <span class="o">(</span>23abb4<span class="o">)</span>!
+Installing dependencies from Pipfile.lock <span class="o">(</span>23abb4<span class="o">)</span>…
+  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ <span class="m">42</span>/42 — <span class="m">00</span>:00:11
+</pre></div>
+
+
+<p>Verify the environment:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ tree
+.
+├── Pipfile
+└── Pipfile.lock
+
+<span class="m">0</span> directories, <span class="m">2</span> files
+python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ cat Pipfile 
+<span class="o">[[</span>source<span class="o">]]</span>
+<span class="nv">url</span> <span class="o">=</span> <span class="s2">&quot;https://pypi.org/simple&quot;</span>
+<span class="nv">verify_ssl</span> <span class="o">=</span> <span class="nb">true</span>
+<span class="nv">name</span> <span class="o">=</span> <span class="s2">&quot;pypi&quot;</span>
+
+<span class="o">[</span>dev-packages<span class="o">]</span>
+
+<span class="o">[</span>packages<span class="o">]</span>
+<span class="nv">awscli</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span>
+aws-sam-cli <span class="o">=</span> <span class="s2">&quot;*&quot;</span>
+<span class="nv">cookiecutter</span> <span class="o">=</span> <span class="s2">&quot;*&quot;</span>
+
+<span class="o">[</span>requires<span class="o">]</span>
+<span class="nv">python_version</span> <span class="o">=</span> <span class="s2">&quot;3.6&quot;</span>
+</pre></div>
+
+
+<p><strong>Important</strong></p>
+<p>Make sure the AWS credentials are saved in <code>~/.aws/credentials</code> with the following content and the ID and key replaced with the correct values.</p>
+<div class="highlight"><pre><span></span><span class="k">[default]</span>
+<span class="na">aws_access_key_id</span><span class="o">=</span><span class="s">AAAAAAAAAAAAAAAAAAAA</span>
+<span class="na">aws_secret_access_key</span><span class="o">=</span><span class="s">aAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaA</span>
+</pre></div>
+
+
+<h2>Local development</h2>
+<p>Install the template with the minimal option set:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ cookiecutter gh:aws-samples/cookiecutter-aws-sam-python
+project_name <span class="o">[</span>Name of the project<span class="o">]</span>: python-lambda-tutorial-project
+project_short_description <span class="o">[</span>A short description of the project<span class="o">]</span>:
+include_apigw <span class="o">[</span>y<span class="o">]</span>: n
+include_xray <span class="o">[</span>y<span class="o">]</span>: n
+include_safe_deployment <span class="o">[</span>y<span class="o">]</span>: n
+include_experimental_make <span class="o">[</span>n<span class="o">]</span>: n
+ <span class="o">[</span>INFO<span class="o">]</span>: Removing Makefile from project due to chosen options...
+ <span class="o">[</span>SUCCESS<span class="o">]</span>: Project initialized successfully! You can now jump to python-lambda-tutorial-project folder
+ <span class="o">[</span>INFO<span class="o">]</span>: python-lambda-tutorial-project/README.md contains instructions on how to proceed.
+python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ tree
+.
+├── Pipfile
+├── Pipfile.lock
+└── python-lambda-tutorial-project
+    ├── Pipfile
+    ├── Pipfile.lock
+    ├── README.md
+    ├── first_function
+    │   ├── __init__.py
+    │   └── app.py
+    ├── requirements.txt
+    ├── template.yaml
+    └── tests
+        └── unit
+            ├── __init__.py
+            └── test_handler.py
+
+<span class="m">4</span> directories, <span class="m">11</span> files
+</pre></div>
+
+
+<p>Navigate inside the <code>python-lambda-tutorial-project</code> folder and install the application and development dependencies. Note that this creates a different virtual environment, namely the one with the dependencies for the lambda function.</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ <span class="nb">cd</span> python-lambda-tutorial-project/
+python-lambda-tutorial-mfatrPYM ~/c/p/python-lambda-tutorial-project $ pipenv install
+Creating a virtualenv <span class="k">for</span> this project…
+Pipfile: /Users/jitsejan/code/python-lambda-tutorial/python-lambda-tutorial-project/Pipfile
+Using /Users/jitsejan/.local/share/virtualenvs/python-lambda-tutorial-mfatrPYM/bin/python3.6m <span class="o">(</span><span class="m">3</span>.6.6<span class="o">)</span> to create virtualenv…
+⠹Running virtualenv with interpreter /Users/jitsejan/.local/share/virtualenvs/python-lambda-tutorial-mfatrPYM/bin/python3.6m
+Using real prefix <span class="s1">&#39;/Library/Frameworks/Python.framework/Versions/3.6&#39;</span>
+New python executable in /Users/jitsejan/.local/share/virtualenvs/python-lambda-tutorial-project-scMbNPxZ/bin/python3.6m
+Also creating executable in /Users/jitsejan/.local/share/virtualenvs/python-lambda-tutorial-project-scMbNPxZ/bin/python
+Installing setuptools, pip, wheel...done.
+
+Virtualenv location: /Users/jitsejan/.local/share/virtualenvs/python-lambda-tutorial-project-scMbNPxZ
+Pipfile.lock <span class="o">(</span>26f9f9<span class="o">)</span> out of date, updating to <span class="o">(</span>49fffa<span class="o">)</span>…
+Locking <span class="o">[</span>dev-packages<span class="o">]</span> dependencies…
+Locking <span class="o">[</span>packages<span class="o">]</span> dependencies…
+Updated Pipfile.lock <span class="o">(</span>26f9f9<span class="o">)</span>!
+Installing dependencies from Pipfile.lock <span class="o">(</span>26f9f9<span class="o">)</span>…
+  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ <span class="m">8</span>/8 — <span class="m">00</span>:00:03
+python-lambda-tutorial-mfatrPYM ~/c/p/python-lambda-tutorial-project $ pipenv install -d
+Installing dependencies from Pipfile.lock <span class="o">(</span>26f9f9<span class="o">)</span>…
+  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ <span class="m">17</span>/17 — <span class="m">00</span>:00:04
+</pre></div>
+
+
+<p>The <code>cookiecutter</code> template will create a <code>first_function</code>. The function code is located in <code>first_function/app.py</code>, while the function itself is defined in the <code>template.yaml</code> as <code>FirstFunction</code>. Before we can test the function, we need to prepare the function for deployment. If we run the test without creating the deployment package, the tests will fail. Note that the first time the function is invoked, the <code>lambda:python3.6</code> image will be downloaded first.</p>
+<p>Start the local lambda server:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial sam <span class="nb">local</span> start-lambda                                          
+<span class="m">2018</span>-10-17 <span class="m">12</span>:54:38 Starting the Local Lambda Service. You can now invoke your Lambda Functions defined in your template through the endpoint.
+<span class="m">2018</span>-10-17 <span class="m">12</span>:54:38  * Running on http://127.0.0.1:3001/ <span class="o">(</span>Press CTRL+C to quit<span class="o">)</span>
+</pre></div>
+
+
+<p>Call the <code>FirstFunction</code> with a simple JSON payload:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ <span class="nb">echo</span> <span class="s1">&#39;{&quot;lambda&quot;: &quot;payload&quot;}&#39;</span> <span class="p">|</span> sam <span class="nb">local</span> invoke FirstFunction
+<span class="m">2018</span>-10-17 <span class="m">12</span>:55:37 Reading invoke payload from stdin <span class="o">(</span>you can also pass it from file with --event<span class="o">)</span>
+<span class="m">2018</span>-10-17 <span class="m">12</span>:55:37 Invoking app.lambda_handler <span class="o">(</span>python3.6<span class="o">)</span>
+<span class="m">2018</span>-10-17 <span class="m">12</span>:55:37 Found credentials in shared credentials file: ~/.aws/credentials
+
+Fetching lambci/lambda:python3.6 Docker container image..............................................................................................
+<span class="m">2018</span>-10-17 <span class="m">12</span>:55:48 Mounting /Users/jitsejan/code/python-lambda-tutorial/python-lambda-tutorial-project/first_function/build as /var/task:ro inside runtime container
+START RequestId: 6928ee1b-e1df-4b0c-bd36-c181102fd447 Version: <span class="nv">$LATEST</span>
+Unable to import module <span class="s1">&#39;app&#39;</span>: No module named <span class="s1">&#39;app&#39;</span>
+END RequestId: 6928ee1b-e1df-4b0c-bd36-c181102fd447
+REPORT RequestId: 6928ee1b-e1df-4b0c-bd36-c181102fd447 Duration: <span class="m">4</span> ms Billed Duration: <span class="m">100</span> ms Memory Size: <span class="m">128</span> MB Max Memory Used: <span class="m">19</span> MB
+
+<span class="o">{</span><span class="s2">&quot;errorMessage&quot;</span>: <span class="s2">&quot;Unable to import module &#39;app&#39;&quot;</span><span class="o">}</span>
+</pre></div>
+
+
+<p>To create the deployment, we first create a hashed <code>requirements.txt</code> from the <code>Pipfile</code>:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ pipenv lock -r &gt; requirements.txt
+/usr/local/lib/python2.7/site-packages/pipenv/vendor/vistir/compat.py:109: ResourceWarning: Implicitly cleaning up &lt;TemporaryDirectory <span class="s1">&#39;/var/folders/06/61h5ywpd0936tr9cvk_gc38r0rr60q/T/pipenv-tjo3nI-requirements&#39;</span>&gt;
+  warnings.warn<span class="o">(</span>warn_message, ResourceWarning<span class="o">)</span>
+python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ cat requirements.txt                                           -i https://pypi.python.org/simple
+<span class="nv">boto3</span><span class="o">==</span><span class="m">1</span>.9.25
+<span class="nv">botocore</span><span class="o">==</span><span class="m">1</span>.12.25
+<span class="nv">docutils</span><span class="o">==</span><span class="m">0</span>.14
+<span class="nv">jmespath</span><span class="o">==</span><span class="m">0</span>.9.3
+python-dateutil<span class="o">==</span><span class="m">2</span>.7.3 <span class="p">;</span> python_version &gt;<span class="o">=</span> <span class="s1">&#39;2.7&#39;</span>
+<span class="nv">s3transfer</span><span class="o">==</span><span class="m">0</span>.1.13
+<span class="nv">six</span><span class="o">==</span><span class="m">1</span>.11.0
+<span class="nv">urllib3</span><span class="o">==</span><span class="m">1</span>.23
+</pre></div>
+
+
+<p>Install the dependencies directly to the <code>build</code> folder of the function:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ pip install -r requirements.txt -t first_function/build/
+Looking in indexes: https://pypi.python.org/simple
+...
+Installing collected packages: jmespath, docutils, urllib3, six, python-dateutil, botocore, s3transfer, boto3
+Successfully installed boto3-1.9.25 botocore-1.12.25 docutils-0.14 jmespath-0.9.3 python-dateutil-2.7.3 s3transfer-0.1.13 six-1.11.0 urllib3-1.23
+</pre></div>
+
+
+<p>Finally, copy the <code>app.py</code> for the function to the <code>build</code> folder:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ cp -R first_function/app.py first_function/build/
+</pre></div>
+
+
+<p>We can test the function again and see that in this case we get the expected result as defined in <code>first_function/app.py</code>.</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ <span class="nb">echo</span> <span class="s1">&#39;{&quot;lambda&quot;: &quot;payload&quot;}&#39;</span> <span class="p">|</span> sam <span class="nb">local</span> invoke FirstFunction
+<span class="m">2018</span>-10-17 <span class="m">13</span>:04:10 Reading invoke payload from stdin <span class="o">(</span>you can also pass it from file with --event<span class="o">)</span>
+<span class="m">2018</span>-10-17 <span class="m">13</span>:04:10 Invoking app.lambda_handler <span class="o">(</span>python3.6<span class="o">)</span>
+<span class="m">2018</span>-10-17 <span class="m">13</span>:04:10 Found credentials in shared credentials file: ~/.aws/credentials
+
+Fetching lambci/lambda:python3.6 Docker container image......
+<span class="m">2018</span>-10-17 <span class="m">13</span>:04:12 Mounting /Users/jitsejan/code/python-lambda-tutorial/python-lambda-tutorial-project/first_function/build as /var/task:ro inside runtime container
+START RequestId: 8b3f19d2-9fd9-41bd-9842-c6347e18259f Version: <span class="nv">$LATEST</span>
+END RequestId: 8b3f19d2-9fd9-41bd-9842-c6347e18259f
+REPORT RequestId: 8b3f19d2-9fd9-41bd-9842-c6347e18259f Duration: <span class="m">1149</span> ms Billed Duration: <span class="m">1200</span> ms Memory Size: <span class="m">128</span> MB Max Memory Used: <span class="m">25</span> MB
+
+<span class="o">{</span><span class="s2">&quot;hello&quot;</span>: <span class="s2">&quot;world&quot;</span><span class="o">}</span>
+</pre></div>
+
+
+<p>To make testing simpler, we can write the JSON payload the <code>event.json</code> and call the function with the event file as an argument. </p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ <span class="nb">echo</span> <span class="s1">&#39;{&quot;lambda&quot;: &quot;payload&quot;}&#39;</span> &gt; event.json
+python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ sam <span class="nb">local</span> invoke -e event.json FirstFunction
+<span class="m">2018</span>-10-17 <span class="m">13</span>:10:03 Invoking app.lambda_handler <span class="o">(</span>python3.6<span class="o">)</span>
+<span class="m">2018</span>-10-17 <span class="m">13</span>:10:03 Found credentials in shared credentials file: ~/.aws/credentials
+
+Fetching lambci/lambda:python3.6 Docker container image......
+<span class="m">2018</span>-10-17 <span class="m">13</span>:10:04 Mounting /Users/jitsejan/code/python-lambda-tutorial/python-lambda-tutorial-project/first_function/build as /var/task:ro inside runtime container
+START RequestId: ea8c34a0-c44f-4719-a20a-fdf6613d75d4 Version: <span class="nv">$LATEST</span>
+END RequestId: ea8c34a0-c44f-4719-a20a-fdf6613d75d4
+REPORT RequestId: ea8c34a0-c44f-4719-a20a-fdf6613d75d4 Duration: <span class="m">1161</span> ms Billed Duration: <span class="m">1200</span> ms Memory Size: <span class="m">128</span> MB Max Memory Used: <span class="m">25</span> MB
+
+<span class="o">{</span><span class="s2">&quot;hello&quot;</span>: <span class="s2">&quot;world&quot;</span><span class="o">}</span>
+</pre></div>
+
+
+<p>As we can see in the generated <code>app.py</code>, there is an <code>event</code> and <code>context</code> parameter. Simplify the <code>app.py</code> to the following to test the two parameters:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boto3</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<span class="k">def</span> <span class="nf">runs_on_aws_lambda</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns True if this function is executed on AWS Lambda service.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s1">&#39;AWS_SAM_LOCAL&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span> <span class="ow">and</span> <span class="s1">&#39;LAMBDA_TASK_ROOT&#39;</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span>
+
+<span class="n">session</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        AWS Lambda handler</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">get_message</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">message</span>
+
+
+<span class="k">def</span> <span class="nf">get_message</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span> 
+        <span class="s2">&quot;event&quot;</span><span class="p">:</span> <span class="n">event</span><span class="p">,</span>
+        <span class="s2">&quot;function_name&quot;</span><span class="p">:</span> <span class="n">context</span><span class="o">.</span><span class="n">function_name</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p>Copy the <code>app.py</code> in the <code>build</code> folder and invoke the function again. We can see the output has changed and shows us more content.</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ cp -R first_function/app.py first_function/build/   
+python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ sam <span class="nb">local</span> invoke -e event.json FirstFunction
+<span class="m">2018</span>-10-17 <span class="m">13</span>:18:11 Invoking app.lambda_handler <span class="o">(</span>python3.6<span class="o">)</span>
+<span class="m">2018</span>-10-17 <span class="m">13</span>:18:11 Found credentials in shared credentials file: ~/.aws/credentials
+
+Fetching lambci/lambda:python3.6 Docker container image......
+<span class="m">2018</span>-10-17 <span class="m">13</span>:18:13 Mounting /Users/jitsejan/code/python-lambda-tutorial/python-lambda-tutorial-project/first_function/build as /var/task:ro inside runtime container
+START RequestId: 7160a23c-f8db-4c22-bc95-34d8822b2427 Version: <span class="nv">$LATEST</span>
+END RequestId: 7160a23c-f8db-4c22-bc95-34d8822b2427
+REPORT RequestId: 7160a23c-f8db-4c22-bc95-34d8822b2427 Duration: <span class="m">1003</span> ms Billed Duration: <span class="m">1100</span> ms Memory Size: <span class="m">128</span> MB Max Memory Used: <span class="m">25</span> MB
+
+<span class="o">{</span><span class="s2">&quot;event&quot;</span>: <span class="o">{</span><span class="s2">&quot;lambda&quot;</span>: <span class="s2">&quot;payload&quot;</span><span class="o">}</span>, <span class="s2">&quot;function_name&quot;</span>: <span class="s2">&quot;test&quot;</span><span class="o">}</span>
+</pre></div>
+
+
+<h2>Deployment</h2>
+<p>First and foremost, we need a S3 bucket where we can upload our Lambda functions packaged as ZIP before we deploy anything - If you don't have a S3 bucket to store code artifacts then this is a good time to create one:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ aws s3 mb s3://lambda-artifacts
+make_bucket: lambda-artifacts
+python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ aws s3 ls <span class="p">|</span> grep lambda-artifacts
+<span class="m">2018</span>-10-17 <span class="m">13</span>:25:24 lambda-artifacts
+</pre></div>
+
+
+<p>Run the following command to package our Lambda function to S3:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket lambda-artifacts
+Uploading to dbafe95d37cbdd0d76a83e2c289f2536  <span class="m">7395857</span> / <span class="m">7395857</span>.0  <span class="o">(</span><span class="m">100</span>.00%<span class="o">)</span>
+Successfully packaged artifacts and wrote output template to file packaged.yaml.
+Execute the following <span class="nb">command</span> to deploy the packaged template
+aws cloudformation deploy --template-file /Users/jitsejan/code/python-lambda-tutorial/python-lambda-tutorial-project/packaged.yaml --stack-name &lt;YOUR STACK NAME&gt;
+</pre></div>
+
+
+<p>Next, the following command will create a Cloudformation Stack and deploy your SAM resources.</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ sam deploy --template-file packaged.yaml --stack-name python-lambda-tutorial --capabilities CAPABILITY_IAM
+Waiting <span class="k">for</span> changeset to be created..
+Waiting <span class="k">for</span> stack create/update to <span class="nb">complete</span>
+Successfully created/updated stack - python-lambda-tutorial
+</pre></div>
+
+
+<p>The deployment stack can be checked with CloudFormation too:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ aws cloudformation describe-stacks --stack-name python-lambda-tutorial --query <span class="s1">&#39;Stacks[].Outputs&#39;</span>
+<span class="o">[</span>
+    <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">&quot;OutputKey&quot;</span>: <span class="s2">&quot;FirstFunction&quot;</span>,
+            <span class="s2">&quot;OutputValue&quot;</span>: <span class="s2">&quot;arn:aws:lambda:eu-west-1:848373817713:function:python-lambda-tutorial-FirstFunction-10Z13KCZEJ575&quot;</span>,
+            <span class="s2">&quot;Description&quot;</span>: <span class="s2">&quot;First Lambda Function ARN&quot;</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">]</span>
+</pre></div>
+
+
+<p>We can list the available functions on AWS Lambda and search for <code>FirstFunction</code>:</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ aws lambda list-functions <span class="p">|</span> grep FirstFunction
+            <span class="s2">&quot;FunctionName&quot;</span>: <span class="s2">&quot;python-lambda-tutorial-FirstFunction-10Z13KCZEJ575&quot;</span>,
+            <span class="s2">&quot;FunctionArn&quot;</span>: <span class="s2">&quot;arn:aws:lambda:eu-west-1:848373817713:function:python-lambda-tutorial-FirstFunction-10Z13KCZEJ575&quot;</span>,
+            <span class="s2">&quot;Role&quot;</span>: <span class="s2">&quot;arn:aws:iam::848373817713:role/python-lambda-tutorial-FirstFunctionRole-6V7HKJLXSE52&quot;</span>,
+</pre></div>
+
+
+<h2>Running</h2>
+<p>We can invoke the function on AWS Lambda with the following command, where the function name is copied from the output of the previous command. </p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ aws lambda invoke --invocation-type RequestResponse --function-name python-lambda-tutorial-FirstFunction-10Z13KCZEJ575 outputfile.txt
+<span class="o">{</span>
+    <span class="s2">&quot;StatusCode&quot;</span>: <span class="m">200</span>,
+    <span class="s2">&quot;ExecutedVersion&quot;</span>: <span class="s2">&quot;</span><span class="nv">$LATEST</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>The result is written to <code>output.txt</code> and should contain the event and the function name.</p>
+<div class="highlight"><pre><span></span>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ cat outputfile.txt                                                                                                      
+<span class="o">{</span><span class="s2">&quot;event&quot;</span>: <span class="o">{}</span>, <span class="s2">&quot;function_name&quot;</span>: <span class="s2">&quot;python-lambda-tutorial-FirstFunction-10Z13KCZEJ575&quot;</span><span class="o">}</span>
+</pre></div>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/devops.html" class="tag">DevOps</a>
+                    <a href="./tag/data-architecture.html" class="tag">data architecture</a>
+                    <a href="./tag/serverless.html" class="tag">serverless</a>
+                    <a href="./tag/aws.html" class="tag">AWS</a>
+                    <a href="./tag/data-engineer.html" class="tag">data engineer</a>
+                    <a href="./tag/lambda.html" class="tag">Lambda</a>
+                    <a href="./tag/sam.html" class="tag">SAM</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
 
         </div>
 <footer class="footer">
     <div class="container">
         <center>
             <address id="about" class="vcard body">
-                &copy; <a href="..">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2018
+                &copy; <a href=".">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2018
             </address><!-- /#about -->
         </center>
     </div>
