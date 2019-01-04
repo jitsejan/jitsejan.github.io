@@ -11874,6 +11874,55 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="./creating-dataframe-from-table-storage.html">Creating Pandas dataframe from Azure Table Storage</a></h2>
+      <time datetime="" title="2018-06-08T11:00:00+01:00" pubdate>Fri 08 June 2018</time>
+    </header>
+
+    <div class="article_content">
+        <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">azure.cosmosdb.table.tableservice</span> <span class="kn">import</span> <span class="n">TableService</span>
+
+<span class="n">CONNECTION_STRING</span> <span class="o">=</span> <span class="s2">&quot;DUMMYSTRING&quot;</span>
+<span class="n">SOURCE_TABLE</span> <span class="o">=</span> <span class="s2">&quot;DUMMYTABLE&quot;</span>
+
+<span class="k">def</span> <span class="nf">set_table_service</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Set the Azure Table Storage service &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">TableService</span><span class="p">(</span><span class="n">connection_string</span><span class="o">=</span><span class="n">CONNECTION_STRING</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_dataframe_from_table_storage_table</span><span class="p">(</span><span class="n">table_service</span><span class="p">,</span> <span class="n">filter_query</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Create a dataframe from table storage data &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">get_data_from_table_storage_table</span><span class="p">(</span><span class="n">table_service</span><span class="p">,</span>
+                                                          <span class="n">filter_query</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">get_data_from_table_storage_table</span><span class="p">(</span><span class="n">table_service</span><span class="p">,</span> <span class="n">filter_query</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Retrieve data from Table Storage &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">table_service</span><span class="o">.</span><span class="n">query_entities</span><span class="p">(</span>
+        <span class="n">SOURCE_TABLE</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="n">filter_query</span>
+    <span class="p">):</span>
+        <span class="k">yield</span> <span class="n">record</span>
+
+<span class="n">fq</span> <span class="o">=</span> <span class="s2">&quot;PartitionKey eq &#39;12345&#39;&quot;</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">set_table_service</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">get_data_dataframe_from_table_storage_table</span><span class="p">(</span><span class="n">table_service</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span>
+                                                 <span class="n">filter_query</span><span class="o">=</span><span class="n">fq</span><span class="p">)</span>
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/pandas.html" class="tag">pandas</a>
+            <a href="./tag/azure.html" class="tag">Azure</a>
+            <a href="./tag/dataframe.html" class="tag">dataframe</a>
+            <a href="./tag/generator.html" class="tag">generator</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./creating-model-as-a-service.html">Creating prediction model as a service using Flask and Docker</a></h2>
       <time datetime="" title="2018-05-09T18:07:00+01:00" pubdate>Wed 09 May 2018</time>
     </header>
@@ -12124,33 +12173,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./truffle-in-docker.html">Running Truffle in a Docker container</a></h2>
-      <time datetime="" title="2017-09-29T16:17:00+01:00" pubdate>Fri 29 September 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>This is a short explanation on how to setup a Truffle decentralized app using Docker containers.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./truffle-in-docker.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/truffle.html" class="tag">Truffle</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/container.html" class="tag">container</a>
-            <a href="./tag/dapp.html" class="tag">dapp</a>
-            <a href="./tag/ethereum.html" class="tag">Ethereum</a>
-            <a href="./tag/blockchain.html" class="tag">blockchain</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12197,13 +12219,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <nav class="widget">
         <ul class="tagcloud">
         <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/vuejs.html">
-            VueJS
+            <a href="./tag/expressjs.html">
+            ExpressJS
             </a>
         </li>
         <li class="tag-2">
@@ -12211,14 +12228,9 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             MongoDB
             </a>
         </li>
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
+        <li class="tag-1">
+            <a href="./tag/python.html">
+            Python
             </a>
         </li>
         <li class="tag-2">
@@ -12231,29 +12243,9 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             dataframe
             </a>
         </li>
-        <li class="tag-1">
-            <a href="./tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/expressjs.html">
-            ExpressJS
-            </a>
-        </li>
         <li class="tag-2">
             <a href="./tag/hadoop.html">
             Hadoop
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
             </a>
         </li>
         <li class="tag-2">
@@ -12261,9 +12253,29 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             DevOps
             </a>
         </li>
+        <li class="tag-1">
+            <a href="./tag/notebook.html">
+            notebook
+            </a>
+        </li>
         <li class="tag-2">
-            <a href="./tag/django.html">
-            Django
+            <a href="./tag/container.html">
+            container
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/pandas.html">
+            pandas
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/jupyter.html">
+            Jupyter
             </a>
         </li>
         <li class="tag-2">
@@ -12272,18 +12284,23 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/aws.html">
-            AWS
+            <a href="./tag/ethereum.html">
+            Ethereum
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
+            <a href="./tag/ubuntu.html">
+            Ubuntu
             </a>
         </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
+        <li class="tag-2">
+            <a href="./tag/vuejs.html">
+            VueJS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/s3.html">
+            S3
             </a>
         </li>
         <li class="tag-2">
@@ -12291,9 +12308,14 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             ether
             </a>
         </li>
-        <li class="tag-1">
-            <a href="./tag/notebook.html">
-            notebook
+        <li class="tag-2">
+            <a href="./tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/javascript.html">
+            javascript
             </a>
         </li>
         </ul>
