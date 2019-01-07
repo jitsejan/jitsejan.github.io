@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Home | JJ's World</title>
+        <title>Archives | JJ's World</title>
 
 
 <style type="text/css">
@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="./theme/css/main.css?cb94e6e8">
+            <link rel="stylesheet" href="../theme/css/main.css?cb94e6e8">
 
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -11851,410 +11851,32 @@ jQuery(document).ready(function($) {
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="./pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
-                <li><a href="./pages/python-cheatsheet">Python cheatsheet</a></li>
+                <li><a href="../pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
+                <li><a href="../pages/python-cheatsheet">Python cheatsheet</a></li>
             </ul>
         </div><!-- .navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container index">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-<form class="navbar-form navbar-right" role="search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-9">
-  <article>
-    <header>
-      <h2><a href="./setup-ec-instance.html">Setting up an AWS EC instance</a></h2>
-      <time datetime="" title="2016-08-01T09:33:00+01:00" pubdate>Mon 01 August 2016</time>
-    </header>
+<div class="container list">
+    <article>
+        <h1 style="margin-bottom: 30px;">Tag: dataframes</h1>
 
-    <div class="article_content">
-        <p>A short description of how to set up an instance at AWS EC</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./setup-ec-instance.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/amazon.html" class="tag">Amazon</a>
-            <a href="./tag/ec.html" class="tag">EC</a>
-            <a href="./tag/vps.html" class="tag">VPS</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./change-modified-time-file.html">Change the last modified time of a file</a></h2>
-      <time datetime="" title="2016-07-31T14:52:00+01:00" pubdate>Sun 31 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>This script will change the last modified time of a file in the current directory to 4 days back.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/ksh </span>
-<span class="nv">numDays</span><span class="o">=</span><span class="m">4</span>
-<span class="nv">diff</span><span class="o">=</span><span class="m">86400</span>*<span class="nv">$numDays</span>
-<span class="nb">export</span> diff
-<span class="nv">newDate</span><span class="o">=</span><span class="k">$(</span>perl -e <span class="s1">&#39;use POSIX; print strftime &quot;%Y%m%d%H%M&quot;, localtime time-$ENV{diff};&#39;</span><span class="k">)</span>
-<span class="nv">lastFile</span><span class="o">=</span><span class="k">$(</span>ls -lt <span class="p">|</span> egrep -v ^d <span class="p">|</span> tail -1 <span class="p">|</span> awk <span class="s1">&#39; { print $9 } &#39;</span><span class="k">)</span>
-touch -t <span class="nv">$newDate</span> <span class="nv">$lastFile</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./debugging-in-django.html">Show all debug information in Django</a></h2>
-      <time datetime="" title="2016-07-31T13:51:00+01:00" pubdate>Sun 31 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;</span> {% filter force_escape %} {% debug %} {% endfilter %} <span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/django.html" class="tag">Django</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./webcrawling-with-selenium.html">Webcrawling in Python using Selenium</a></h2>
-      <time datetime="" title="2016-07-30T11:09:00+01:00" pubdate>Sat 30 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>This is a simple script to crawl information from a website when the content is dynamically loaded.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./webcrawling-with-selenium.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/python.html" class="tag">python</a>
-            <a href="./tag/selenium.html" class="tag">selenium</a>
-            <a href="./tag/webcrawl.html" class="tag">webcrawl</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./send-attachment-from-command-line.html">Send attachment from command line</a></h2>
-      <time datetime="" title="2016-07-29T19:09:00+01:00" pubdate>Fri 29 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;Mail with attachment&#39;</span> <span class="p">|</span> mutt -a <span class="s2">&quot;/file/to/add/&quot;</span> -s <span class="s2">&quot;FYI: See attachment&quot;</span> -- name@email.com
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./mount-amazon-ec-local-folder.html">Mount Amazon EC as local folder</a></h2>
-      <time datetime="" title="2016-07-29T19:07:00+01:00" pubdate>Fri 29 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span>jitsejan@MBP $ sshfs ubuntu@ec2-34-56-7-89.eu-central-1.compute.amazonaws.com:/home/ubuntu/ ~/AmazonEC2/ -oauto_cache,reconnect,defer_permissions,noappledouble,negative_vncache
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./simple-webcrawling-python.html">Simple webcrawling in Python</a></h2>
-      <time datetime="" title="2016-07-28T12:45:00+01:00" pubdate>Thu 28 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Simple webcrawling in Python</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./simple-webcrawling-python.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/python.html" class="tag">python</a>
-            <a href="./tag/webcrawl.html" class="tag">webcrawl</a>
-            <a href="./tag/lxml.html" class="tag">lxml</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./create-big-files-with-dd.html">Create big files with dd</a></h2>
-      <time datetime="" title="2016-07-28T10:45:00+01:00" pubdate>Thu 28 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Use dd in Unix to create files with a size of 2.7 GB.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/ksh</span>
-<span class="nv">dir</span><span class="o">=</span>/this/is/my/outputdir/
-<span class="nv">numGig</span><span class="o">=</span><span class="m">2</span>.7
-<span class="nv">factor</span><span class="o">=</span><span class="m">1024</span>
-<span class="nv">memLimit</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$numGig</span>*<span class="nv">$factor</span>*<span class="nv">$factor</span>*<span class="nv">$factor</span> <span class="p">|</span> bc<span class="k">)</span>
-<span class="nb">cd</span> <span class="nv">$dir</span>
-<span class="k">for</span> i in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span> <span class="m">11</span> <span class="m">12</span> <span class="m">13</span> <span class="m">14</span> <span class="p">;</span> <span class="k">do</span>
-   dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>dummy_<span class="nv">$i</span>.xml <span class="nv">count</span><span class="o">=</span><span class="m">204800</span> <span class="nv">bs</span><span class="o">=</span><span class="nv">$factor</span>
-<span class="k">done</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./most-used-history-command.html">Find most used history command</a></h2>
-      <time datetime="" title="2016-07-27T16:55:00+01:00" pubdate>Wed 27 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span>$ awk <span class="s1">&#39;{print $1}&#39;</span> ~/.bash_history <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -n
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-
-  <nav class="pagination row">
-    <div class="col-xs-6 left">
-    </div>
-    <div class="col-xs-6 right">
-        <a class="next" href="./index7.html">Future &#8594;</a>
-    </div>
-  </nav>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm">
-<form class="navbar-form navbar-right" role="search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-3">
-<aside class="page-sidebar">
-    <nav class="widget" id="sidebar-about">
-        <div class="row img-div">
-            <img src="/theme/images/JJ_Montreal.png" />
-        </div>
-        <div class="row">
-        <p>I am a Data Engineer currently working for MarketInvoice in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
-<p>
-While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
-for visualizations as for modern web applications it is the go-to language. 
-</p>
-<p>
-I am using this page as a portfolio and showcase, but mainly as a cheatsheet. That is why you will mainly find shell commands, short scripts or notebooks just for myself to not reinvent the wheel.
-</p>
-
-        </div>  
-    </nav>
-    <hr/>
-    <nav class="widget">
-        <ul class="tagcloud">
-        <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/vuejs.html">
-            VueJS
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ether.html">
-            ether
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/s3.html">
-            S3
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/hadoop.html">
-            Hadoop
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/expressjs.html">
-            ExpressJS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pandas.html">
-            Pandas
-            </a>
-        </li>
+        <ul class="double-list">
+            <li>
+                <a href='/difference-with-sparse-dataframes.html'>
+                    <h2>Calculate differences with sparse date/value dataframes</h2>
+                    <span>07.01.2019</span>
+                </a>
+            </li>
         </ul>
-    </nav>
-    <hr/>
-    <div class="row">
-        <div class="col-md-12">
-            <ul class="social-list">
-                    <li><a href="http://www.facebook.com/jitsejan" title="Facebook" rel="me" target="new"><i class="fa fa-1x fa-facebook"></i></a></li>
-                    <li><a href="http://www.flickr.com/photos/jitsejan" title="Flickr" rel="me" target="new"><i class="fa fa-1x fa-flickr"></i></a></li>
-                    <li><a href="https://play.spotify.com/user/jitsejan" title="Spotify" rel="me" target="new"><i class="fa fa-1x fa-spotify"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jitsejan" title="LinkedIn" rel="me" target="new"><i class="fa fa-1x fa-linkedin"></i></a></li>
-                    <li><a href="http://twitter.com/jitsejan" title="Twitter" rel="me" target="new"><i class="fa fa-1x fa-twitter"></i></a></li>
-                    <li><a href="http://www.github.com/jitsejan" title="Github" rel="me" target="new"><i class="fa fa-1x fa-github"></i></a></li>
-                    <li><a href="http://bitbucket.org/jitsejan" title="Bitbucket" rel="me" target="new"><i class="fa fa-1x fa-bitbucket"></i></a></li>
-                    <li><a href="http://bl.ocks.org/jitsejan" title="Blocks.org" rel="me" target="new"><i class="fa fa-1x fa-bar-chart"></i></a></li>
-                    <li><a href="https://hub.docker.com/r/jitsejan" title="Docker" rel="me" target="new"><i class="fa fa-1x fa-docker"></i></a></li>
-            </ul>
-        </div>
-    </div>
-</aside>  </div>
-  
-  </div>
-
+    </article>
 </div>
-
         </div>
 <footer class="footer">
     <div class="container">
         <center>
             <address id="about" class="vcard body">
-                &copy; <a href=".">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2019
+                &copy; <a href="..">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2019
             </address><!-- /#about -->
         </center>
     </div>

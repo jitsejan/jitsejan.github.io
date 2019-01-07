@@ -11874,6 +11874,32 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="./hadoop-experiment-pig-scripting.html">Hadoop Experiment - Using Pig</a></h2>
+      <time datetime="" title="2017-10-03T09:36:00+01:00" pubdate>Tue 03 October 2017</time>
+    </header>
+
+    <div class="article_content">
+        <p>In my previous posts I have already shown simple examples of using MapReduce and Spark with Pyspark. A missing piece moving from MapReduce to Spark is the usage of Pig scripts. This posts shows an example howto use a Pig script.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="./hadoop-experiment-pig-scripting.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/hadoop.html" class="tag">Hadoop</a>
+            <a href="./tag/pig.html" class="tag">Pig</a>
+            <a href="./tag/docker.html" class="tag">Docker</a>
+            <a href="./tag/cloudera.html" class="tag">Cloudera</a>
+            <a href="./tag/mapreduce.html" class="tag">mapreduce</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./truffle-in-docker.html">Running Truffle in a Docker container</a></h2>
       <time datetime="" title="2017-09-29T16:17:00+01:00" pubdate>Fri 29 September 2017</time>
     </header>
@@ -12105,42 +12131,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./using-pythons-pickle-to-save-and-load-variables.html">Using Pythons pickle to save and load variables</a></h2>
-      <time datetime="" title="2017-06-27T13:45:00+01:00" pubdate>Tue 27 June 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>Recently I was playing with some code that generated big dictionaries and had to manipulate these dictonaries
-several times. I used to save them via Pythons pandas to CSV and load them back from the CSV the next time 
-I was using my script. Luckily I found out an easier way to deal with saving and loading variables, namely by using <a href="https://wiki.python.org/moin/UsingPickle">Pickle</a>.</p>
-<h4>Import</h4>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
-</pre></div>
-
-
-<h4>Saving</h4>
-<div class="highlight"><pre><span></span><span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">picklename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
-</pre></div>
-
-
-<h4>Loading</h4>
-<div class="highlight"><pre><span></span><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="nb">open</span><span class="p">(</span> <span class="n">picklename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span> <span class="p">)</span> <span class="p">)</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/pickle.html" class="tag">pickle</a>
-            <a href="./tag/tool.html" class="tag">tool</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12187,58 +12177,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <nav class="widget">
         <ul class="tagcloud">
         <li class="tag-2">
-            <a href="./tag/expressjs.html">
-            ExpressJS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/hadoop.html">
-            Hadoop
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/aws.html">
-            AWS
+            <a href="./tag/blockchain.html">
+            blockchain
             </a>
         </li>
         <li class="tag-1">
@@ -12247,18 +12187,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="./tag/ethereum.html">
             Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
             </a>
         </li>
         <li class="tag-2">
@@ -12266,9 +12196,19 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             VueJS
             </a>
         </li>
+        <li class="tag-1">
+            <a href="./tag/notebook.html">
+            notebook
+            </a>
+        </li>
         <li class="tag-2">
-            <a href="./tag/s3.html">
-            S3
+            <a href="./tag/docker.html">
+            Docker
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/mongodb.html">
+            MongoDB
             </a>
         </li>
         <li class="tag-2">
@@ -12277,13 +12217,63 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
+            <a href="./tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/python.html">
+            Python
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/s3.html">
+            S3
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/hadoop.html">
+            Hadoop
             </a>
         </li>
         <li class="tag-2">
             <a href="./tag/javascript.html">
             javascript
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/container.html">
+            container
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/devops.html">
+            DevOps
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/expressjs.html">
+            ExpressJS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/pandas.html">
+            Pandas
             </a>
         </li>
         </ul>
