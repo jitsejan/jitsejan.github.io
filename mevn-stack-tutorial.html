@@ -12070,16 +12070,18 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
 <div class="highlight"><pre><span></span> <span class="p">...</span>
  <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/characters&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span>
-    <span class="p">[</span>
-      <span class="p">{</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Mario&quot;</span><span class="p">,</span>
-        <span class="nx">color</span><span class="o">:</span> <span class="s2">&quot;red&quot;</span>
-      <span class="p">},</span>
-      <span class="p">{</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Luigi&quot;</span><span class="p">,</span>
-        <span class="nx">color</span><span class="o">:</span> <span class="s2">&quot;green&quot;</span>
-      <span class="p">}</span>
-    <span class="p">]</span>
+    <span class="p">{</span>
+      <span class="s1">&#39;characters&#39;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Mario&quot;</span><span class="p">,</span>
+          <span class="nx">color</span><span class="o">:</span> <span class="s2">&quot;red&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Luigi&quot;</span><span class="p">,</span>
+          <span class="nx">color</span><span class="o">:</span> <span class="s2">&quot;green&quot;</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
   <span class="p">)</span>
 <span class="p">})</span>
 <span class="p">...</span>
@@ -12096,8 +12098,8 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 <span class="m">100</span>    <span class="m">65</span>  <span class="m">100</span>    <span class="m">65</span>    <span class="m">0</span>     <span class="m">0</span>   <span class="m">1029</span>      <span class="m">0</span> --:--:-- --:--:-- --:--:--  <span class="m">1031</span>
-<span class="o">[</span>
-  <span class="o">{</span>
+<span class="s2">&quot;characters&quot;</span>: <span class="o">[</span>
+   <span class="o">{</span>
     <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;Mario&quot;</span>,
     <span class="s2">&quot;color&quot;</span>: <span class="s2">&quot;red&quot;</span>
   <span class="o">}</span>,
@@ -12118,20 +12120,61 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
 
 <h3>Setup characters component</h3>
 <p>Create a new Vue component to show the characters from the API. Add the content to <code>client/src/components/Characters.vue</code>:</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><span class="err">&lt;</span><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;characters&quot;</span><span class="p">&gt;</span>
     This file will list all the characters.
-  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&quot;character in characters&quot;</span> <span class="na">:key</span><span class="o">=</span><span class="s">&quot;character.name&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;&lt;</span><span class="nt">b</span><span class="p">&gt;</span>{{ character.name }}<span class="p">&lt;/</span><span class="nt">b</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>{{ character.color }}<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="kr">import</span> <span class="nx">CharactersService</span> <span class="nx">from</span> <span class="s1">&#39;@/services/CharactersService&#39;</span>
 <span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
   <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Characters&#39;</span><span class="p">,</span>
   <span class="nx">data</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">{}</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">characters</span><span class="o">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">mounted</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getCharacters</span><span class="p">()</span>
+  <span class="p">},</span>
+  <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">async</span> <span class="nx">getCharacters</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">CharactersService</span><span class="p">.</span><span class="nx">fetchCharacters</span><span class="p">()</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">characters</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">characters</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+    <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>with <code>client/src/services/CharactersService.js</code> contains</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">api</span> <span class="nn">from</span> <span class="s1">&#39;@/services/api&#39;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="p">{</span>
+  <span class="n">fetchCharacters</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">api</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;characters&#39;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>and <code>client/src/services/api.js</code> contains</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">axios</span> <span class="nn">from</span> <span class="s1">&#39;axios&#39;</span>
+
+<span class="n">export</span> <span class="n">default</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">axios</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+    <span class="n">baseURL</span><span class="p">:</span> <span class="sb">`http://localhost:3000`</span>
+  <span class="p">})</span>
+<span class="p">}</span>
 </pre></div>
 
 
@@ -12166,6 +12209,7 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
 <center><img style="max-width:500px; -webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(2px 5px 5px #222);" src="images/main_menu.png" /></center>
 Character page:
 <center><img style="max-width:500px; -webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(2px 5px 5px #222);" src="images/characters_mevn.png" /></center></p>
+<p>For the most code, check the <a href="https://github.com/jitsejan/mevn-stack-tutorial">Github repo</a>.</p>
         </div>
 
         <div class="meta">
