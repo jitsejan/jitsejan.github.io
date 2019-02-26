@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Creating block diagram using Python in Jupyter notebook | JJ's World</title>
+        <title>Using Azure Blob Storage and Parquet | JJ's World</title>
 
 
 <style type="text/css">
@@ -11863,8 +11863,8 @@ jQuery(document).ready(function($) {
     </div>
     <article>
         <header>
-            <h1>Creating block diagram using Python in Jupyter notebook</h1>
-            <time datetime="article.date.isoformat()" pubdate>Mon 18 December 2017</time>
+            <h1>Using Azure Blob Storage and Parquet</h1>
+            <time datetime="article.date.isoformat()" pubdate>Tue 26 February 2019</time>
         </header>
 
         <div class="article_content">
@@ -13020,15 +13020,16 @@ h6:hover .anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Creating-block-diagram">Creating block diagram<a class="anchor-link" href="#Creating-block-diagram">&#182;</a></h1>
+<h2 id="Objective">Objective<a class="anchor-link" href="#Objective">&#182;</a></h2><p>This notebook shows how to interact with Parquet on Azure Blob Storage.</p>
+<p>Please note that it is not possible to write Parquet to Blob Storage using PySpark. I have tried with version 2.2, 2.3 and 2.4 but none of them work (yet). It connects and creates the folder, but no data is written. Azure support was not able to help me, except for advising me to use HDinsights.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Install-the-blockdiag-library">Install the blockdiag library<a class="anchor-link" href="#Install-the-blockdiag-library">&#182;</a></h2><p>We will use the <a href="http://blockdiag.com/en/blockdiag/">blockdiag</a> library to easily create a block diagram to insert in the Jupyter notebook.</p>
-
+<h2 id="Imports">Imports<a class="anchor-link" href="#Imports">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -13037,36 +13038,15 @@ h6:hover .anchor-link {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install blockdiag
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">azure.storage.blob</span> <span class="k">import</span> <span class="n">BlockBlobService</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pyarrow.parquet</span> <span class="k">as</span> <span class="nn">pq</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="k">import</span> <span class="n">BytesIO</span>
+<span class="kn">from</span> <span class="nn">configparser</span> <span class="k">import</span> <span class="n">RawConfigParser</span>
+<span class="kn">from</span> <span class="nn">pyspark</span> <span class="k">import</span> <span class="n">SparkConf</span><span class="p">,</span> <span class="n">SparkContext</span><span class="p">,</span> <span class="n">SQLContext</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Collecting blockdiag
-  Using cached blockdiag-1.5.3-py2.py3-none-any.whl
-Requirement already satisfied: webcolors in /anaconda/lib/python3.6/site-packages (from blockdiag)
-Requirement already satisfied: Pillow in /anaconda/lib/python3.6/site-packages (from blockdiag)
-Requirement already satisfied: setuptools in /anaconda/lib/python3.6/site-packages/setuptools-27.2.0-py3.6.egg (from blockdiag)
-Requirement already satisfied: funcparserlib in /anaconda/lib/python3.6/site-packages (from blockdiag)
-Requirement already satisfied: olefile in /anaconda/lib/python3.6/site-packages (from Pillow-&gt;blockdiag)
-Installing collected packages: blockdiag
-Successfully installed blockdiag-1.5.3
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13074,8 +13054,7 @@ Successfully installed blockdiag-1.5.3
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Diagram-definition">Diagram definition<a class="anchor-link" href="#Diagram-definition">&#182;</a></h2><p>First we create the folder:</p>
-
+<h2 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -13084,28 +13063,10 @@ Successfully installed blockdiag-1.5.3
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>mkdir diagrams
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">BLOB_NAME</span> <span class="o">=</span> <span class="s2">&quot;characters.parquet&quot;</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>mkdir: diagrams: File exists
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13113,8 +13074,7 @@ Successfully installed blockdiag-1.5.3
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>and we create a new file inside the <code>diagrams</code> folder with the definition of the graph:</p>
-
+<h2 id="Setup-Blob">Setup Blob<a class="anchor-link" href="#Setup-Blob">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -13123,41 +13083,17 @@ Successfully installed blockdiag-1.5.3
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> diagrams/block_diagram
-<span class="n">blockdiag</span> <span class="p">{</span>
-  <span class="o">//</span> <span class="n">Define</span> <span class="k">class</span> <span class="err">(</span><span class="nc">list</span> <span class="n">of</span> <span class="n">attributes</span><span class="p">)</span>
-  <span class="k">class</span> <span class="nc">emphasis</span> <span class="p">[</span><span class="n">color</span> <span class="o">=</span> <span class="n">lightblue</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="n">dashed</span><span class="p">];</span>
-  <span class="k">class</span> <span class="nc">redline</span> <span class="p">[</span><span class="n">color</span> <span class="o">=</span> <span class="n">red</span><span class="p">,</span> <span class="n">style</span> <span class="o">=</span> <span class="n">dotted</span><span class="p">];</span>
-
-  <span class="n">Extract</span> <span class="o">-&gt;</span> <span class="n">Transform</span> <span class="o">-&gt;</span> <span class="n">Load</span><span class="p">;</span>
-
-  <span class="o">//</span> <span class="n">Set</span> <span class="k">class</span> <span class="nc">to</span> <span class="n">node</span>
-  <span class="n">Transform</span> <span class="p">[</span><span class="k">class</span> <span class="err">= &quot;</span><span class="nc">emphasis</span><span class="s2">&quot;];</span>
-
-  <span class="o">//</span> <span class="n">Set</span> <span class="k">class</span> <span class="nc">to</span> <span class="n">edge</span>
-  <span class="n">Transform</span> <span class="o">-&gt;</span> <span class="n">Load</span> <span class="p">[</span><span class="k">class</span> <span class="err">= &quot;</span><span class="nc">redline</span><span class="s2">&quot;];</span>
-<span class="p">}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Read the configuration</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">RawConfigParser</span><span class="p">()</span>
+<span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;blobconfig.ini&quot;</span><span class="p">)</span>
+<span class="c1"># Create blob_service</span>
+<span class="n">blob_service</span> <span class="o">=</span> <span class="n">BlockBlobService</span><span class="p">(</span>
+    <span class="n">account_name</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;blob-store&quot;</span><span class="p">][</span><span class="s2">&quot;blob_account_name&quot;</span><span class="p">],</span>
+    <span class="n">account_key</span><span class="o">=</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;blob-store&quot;</span><span class="p">][</span><span class="s2">&quot;blob_account_key&quot;</span><span class="p">],</span>
+<span class="p">)</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Overwriting diagrams/block_diagram
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13165,7 +13101,7 @@ Successfully installed blockdiag-1.5.3
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Convert-the-diagram-to-PNG">Convert the diagram to PNG<a class="anchor-link" href="#Convert-the-diagram-to-PNG">&#182;</a></h2><p>Using the <code>blockdiag</code> library, we can convert the diagram from the definition to a PNG by running the <code>blockdiag</code> command from the command line with the graph definition as first argument:</p>
+<h2 id="Setup-Spark">Setup Spark<a class="anchor-link" href="#Setup-Spark">&#182;</a></h2><p>In order to connect to Azure Blob Storage with Spark, we need to download two JARS (<code>hadoop-azure-2.7.3.jar</code> and <code>azure-storage-6.1.0.jar</code>) and add them to the Spark configuration. I chose these specific versions since they were the only ones working with reading data using Spark 2.4.0. Additionally, the <code>fs.azure</code> needs to be set to the Azure FileSytem and <code>fs.azure.account.key.&lt;youraccountname&gt;.blob.core.windows.net</code> should contain the account key.</p>
 
 </div>
 </div>
@@ -13175,121 +13111,56 @@ Successfully installed blockdiag-1.5.3
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>blockdiag diagrams/block_diagram
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">setup_spark</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Setup Spark to connect to Azure Blob Storage &quot;&quot;&quot;</span>
+    <span class="n">jars</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;spark-2.4.0-bin-hadoop2.7/jars/hadoop-azure-2.7.3.jar&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;spark-2.4.0-bin-hadoop2.7/jars/azure-storage-6.1.0.jar&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="n">conf</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">SparkConf</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">setAppName</span><span class="p">(</span><span class="s2">&quot;Spark Blob Test&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.driver.extraClassPath&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">jars</span><span class="p">))</span>
+        <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;fs.azure&quot;</span><span class="p">,</span> <span class="s2">&quot;org.apache.hadoop.fs.azure.NativeAzureFileSystem&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">set</span><span class="p">(</span>
+            <span class="n">f</span><span class="s2">&quot;fs.azure.account.key.</span><span class="si">{config[&#39;blob-store&#39;][&#39;blob_account_name&#39;]}</span><span class="s2">.blob.core.windows.net&quot;</span><span class="p">,</span>
+            <span class="n">config</span><span class="p">[</span><span class="s2">&quot;blob-store&quot;</span><span class="p">][</span><span class="s2">&quot;blob_account_key&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+    <span class="p">)</span>
+    <span class="n">sc</span> <span class="o">=</span> <span class="n">SparkContext</span><span class="p">(</span><span class="n">conf</span><span class="o">=</span><span class="n">conf</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">SQLContext</span><span class="p">(</span><span class="n">sc</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Display-the-PNG">Display the PNG<a class="anchor-link" href="#Display-the-PNG">&#182;</a></h2><p>By using the display functionality of the Jupyter notebook we can show the generated PNG:</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span>
-<span class="n">Image</span><span class="p">(</span><span class="s2">&quot;diagrams/block_diagram.png&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create Spark context</span>
+<span class="n">sql_context</span> <span class="o">=</span> <span class="n">setup_spark</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[5]:</div>
-
-
-
-
-<div class="output_png output_subarea output_execute_result">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAoAAAAB4CAYAAABik0N+AAAK00lEQVR4nO3d324bxx3F8d/Mzi65
-JOEobWwkEoqiFw18k6fxa/QmgB/DQN6i6U16UfRNemOkSIMigALYDSwrlGiSuzO90K5DrklKSixT
-3PP9AAZM8Q9W4tnRmdnlyqWUnAEAAECG3/cGAAAA4MOiAAIAAIihAAIAAIihAAIAAIihAAIAAIih
-AAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIA
-AIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIih
-AAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIA
-AIihAAIAAIihAAIAAIihAAIAAIihAAIAAIihAAIAAIgJ+96AfXPOxX1vA/YrpSQ7Eerm/5vnp2v3
-P3l8bNzf7/vJP5RJ5z+l5Pa9EfvknIsppX1vBvbEOWcxxszMUntbiXMudksBdDx5fCyff8Z/Xerj
-v2zzBVoxxnYiJD8hgh7yD2XK+Zc/BAzUdR2cc9F7n5pDQs7MktpsEJrIP5Qp558VQMibz+eDqqry
-uq6zGGPWzgb3vV0fAod/tX3z/FQ6/4By/qVXANWWe7HZ5eXlpCiKeZ7nyzzPF2Zm3vvazJxzrrcn
-CJF/mJF/aFPNv5lwAeTEX7TOz89/V5bltCzLSzMz59zcOZfaE8T7eCiA/KNF/qFMMf8t2QJoxiCA
-K2dnZ59UVRXMrmZ+WZZVzrnonOv1zk/+YUb+oU01/2ba5wDKfeIHm7169erhdDo9ms1mk8ViMaiq
-KqSUfM/PBXEpJde9Thy0PHl8LJ3/fW8E9k80/2YmvgJoPX9zcTNnZ2ef5Hk+Hw6HF6PRqOicCNzn
-ZQLyD/IPacL5l14B5BAAzMzs4uLiQTP7G1ZVlccYfUrJ9T0fff/+cDPkH8pU828mWgAV3ljc3Gw2
-GzdL/+2lAPzq4aG+5aVv3w9+G/IPZWr5XyVZAM3evqkcAoBVVVU0O3+IMXr75fyg3s4C2/xzHUBt
-3zw/lc7/vrcD+6eY/5ZsAQRadV2Hdudvlv75xQAZ5B/KlPNPAYS8zqyv10v+QBf5hzLl/FMAAVvb
-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
-"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Convert-to-slides">Convert to slides<a class="anchor-link" href="#Convert-to-slides">&#182;</a></h2><p>Jupyter has the functionality to convert a Jupyter notebook to a fancy looking presentation. By using <code>nbconvert</code> and with the output set to <code>slides</code>, the notebook will be translated to an HTML page, which will be transformed into a beautiful presentation by adding the <a href="https://revealjs.com/#/">RevealJS</a> library.</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>jupyter nbconvert creating_block_diagram.ipynb --to slides
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span>
+    <span class="p">[(</span><span class="s2">&quot;Mario&quot;</span><span class="p">,</span> <span class="s2">&quot;Red&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Luigi&quot;</span><span class="p">,</span> <span class="s2">&quot;Green&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Princess&quot;</span><span class="p">,</span> <span class="s2">&quot;Pink&quot;</span><span class="p">)]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;color&quot;</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 
     </div>
@@ -13306,8 +13177,10 @@ GAogAACAGAogAACAmP8DU1hQZ/aFxWkAAAAASUVORK5CYII=
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>[NbConvertApp] Converting notebook creating_block_diagram.ipynb to slides
-[NbConvertApp] Writing 297425 bytes to creating_block_diagram.slides.html
+<pre>       name  color
+0     Mario    Red
+1     Luigi  Green
+2  Princess   Pink
 </pre>
 </div>
 </div>
@@ -13319,7 +13192,7 @@ GAogAACAGAogAACAmP8DU1hQZ/aFxWkAAAAASUVORK5CYII=
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Check-for-resulting-HTML">Check for resulting HTML<a class="anchor-link" href="#Check-for-resulting-HTML">&#182;</a></h2><p>After conversion we should see both the .ipynb and .html in the directory.</p>
+<p>Using PyArrow with Pandas it is easy to write a dataframe to Blob Storage. Convert the Pandas dataframe into Parquet using a buffer and write the buffer to a blob.</p>
 
 </div>
 </div>
@@ -13329,28 +13202,30 @@ GAogAACAGAogAACAmP8DU1hQZ/aFxWkAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>ls -la creating_block_diagram.slides.html
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">write_pandas_dataframe_to_blob</span><span class="p">(</span><span class="n">blob_service</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">container_name</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Write Pandas dataframe to blob storage &quot;&quot;&quot;</span>
+    <span class="n">buffer</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
+    <span class="n">blob_service</span><span class="o">.</span><span class="n">create_blob_from_bytes</span><span class="p">(</span>
+        <span class="n">container_name</span><span class="o">=</span><span class="n">container_name</span><span class="p">,</span> <span class="n">blob_name</span><span class="o">=</span><span class="n">blob_name</span><span class="p">,</span> <span class="n">blob</span><span class="o">=</span><span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+    <span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>-rw-r--r--  1 jitsejan  staff  297489 Jan 15 00:43 creating_block_diagram.slides.html
-</pre>
 </div>
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Write to blob using pyarrow</span>
+<span class="n">write_pandas_dataframe_to_blob</span><span class="p">(</span><span class="n">blob_service</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;blob-store&#39;</span><span class="p">][</span><span class="s1">&#39;blob_container&#39;</span><span class="p">],</span> <span class="n">BLOB_NAME</span><span class="p">)</span>
+</pre></div>
 
+    </div>
 </div>
 </div>
 
@@ -13358,17 +13233,44 @@ GAogAACAGAogAACAmP8DU1hQZ/aFxWkAAAAASUVORK5CYII=
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Retrieve-RevealJS">Retrieve RevealJS<a class="anchor-link" href="#Retrieve-RevealJS">&#182;</a></h2><p>To use Jupyter slides we need to download RevealJS to the root directory of the notebooks. We do this by cloning the <code>reveal.js</code> Git repository directly in the current folder.</p>
+<p>Reading data back from blob using Pandas is identical. The data is read into a <code>ByteStream</code> from the blob storage.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>git clone https://github.com/hakimel/reveal.js.git
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_pandas_dataframe_from_parquet_on_blob</span><span class="p">(</span><span class="n">blob_service</span><span class="p">,</span> <span class="n">container_name</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Get a dataframe from Parquet file on blob storage &quot;&quot;&quot;</span>
+    <span class="n">byte_stream</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">blob_service</span><span class="o">.</span><span class="n">get_blob_to_stream</span><span class="p">(</span>
+            <span class="n">container_name</span><span class="o">=</span><span class="n">container_name</span><span class="p">,</span> <span class="n">blob_name</span><span class="o">=</span><span class="n">blob_name</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">byte_stream</span>
+        <span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="n">byte_stream</span><span class="p">)</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">byte_stream</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Read from blob using pyarrow</span>
+<span class="n">rdf</span> <span class="o">=</span> <span class="n">get_pandas_dataframe_from_parquet_on_blob</span><span class="p">(</span>
+    <span class="n">blob_service</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;blob-store&#39;</span><span class="p">][</span><span class="s1">&#39;blob_container&#39;</span><span class="p">],</span> <span class="n">BLOB_NAME</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rdf</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 
     </div>
@@ -13385,7 +13287,10 @@ GAogAACAGAogAACAmP8DU1hQZ/aFxWkAAAAASUVORK5CYII=
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>fatal: destination path &#39;reveal.js&#39; already exists and is not an empty directory.
+<pre>       name  color
+0     Mario    Red
+1     Luigi  Green
+2  Princess   Pink
 </pre>
 </div>
 </div>
@@ -13397,17 +13302,37 @@ GAogAACAGAogAACAmP8DU1hQZ/aFxWkAAAAASUVORK5CYII=
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Start-Python-webserver">Start Python webserver<a class="anchor-link" href="#Start-Python-webserver">&#182;</a></h2><p>Use <code>http.server</code> for Python 3 and <code>SimpleHTTPServer</code> when using Python 2 to start the server to view the HTML page.</p>
+<p>Reading the data using Spark for a single file Parquet blob is done using the following function. Note the path that uses the <code>wasbs</code> protocol.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>python -m http.server <span class="m">8000</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_pyspark_dataframe_from_parquet_on_blob</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">sql_context</span><span class="p">,</span> <span class="n">container_name</span><span class="p">,</span> <span class="n">blob_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Get a dataframe from Parquet file on blob storage using PySpark &quot;&quot;&quot;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;wasbs://</span><span class="si">{container_name}</span><span class="s2">@</span><span class="si">{config[&#39;blob-store&#39;][&#39;blob_account_name&#39;]}</span><span class="s2">.blob.core.windows.net/</span><span class="si">{blob_name}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="n">sql_context</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Read from blob using PySpark</span>
+<span class="n">sdf</span> <span class="o">=</span> <span class="n">get_pyspark_dataframe_from_parquet_on_blob</span><span class="p">(</span>
+    <span class="n">config</span><span class="p">,</span> <span class="n">sql_context</span><span class="p">,</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;blob-store&#39;</span><span class="p">][</span><span class="s1">&#39;blob_container&#39;</span><span class="p">],</span> <span class="n">BLOB_NAME</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sdf</span><span class="o">.</span><span class="n">show</span><span class="p">())</span>
 </pre></div>
 
     </div>
@@ -13424,7 +13349,15 @@ GAogAACAGAogAACAmP8DU1hQZ/aFxWkAAAAASUVORK5CYII=
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Serving HTTP on 0.0.0.0 port 8000 (http://0.0.0.0:8000/) ...
+<pre>+--------+-----+-----------------+
+|    name|color|__index_level_0__|
++--------+-----+-----------------+
+|   Mario|  Red|                0|
+|   Luigi|Green|                1|
+|Princess| Pink|                2|
++--------+-----+-----------------+
+
+None
 </pre>
 </div>
 </div>
@@ -13432,14 +13365,6 @@ GAogAACAGAogAACAmP8DU1hQZ/aFxWkAAAAASUVORK5CYII=
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Check port 8000 and open the HTML page containing the slides. In this case the HTML of this notebook will be visible on <a href="http://localhost:8000/creating_block_diagram.slides.html#/">http://localhost:8000/creating_block_diagram.slides.html#/</a>.</p>
-
-</div>
-</div>
 </div>
  
 
@@ -13480,8 +13405,11 @@ GAogAACAGAogAACAmP8DU1hQZ/aFxWkAAAAASUVORK5CYII=
                     <a href="./tag/notebook.html" class="tag">notebook</a>
                     <a href="./tag/python.html" class="tag">Python</a>
                     <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-                    <a href="./tag/blockdiagram.html" class="tag">blockdiagram</a>
-                    <a href="./tag/presentation.html" class="tag">presentation</a>
+                    <a href="./tag/spark.html" class="tag">Spark</a>
+                    <a href="./tag/azure.html" class="tag">Azure</a>
+                    <a href="./tag/blob-pyspark.html" class="tag">Blob. PySpark</a>
+                    <a href="./tag/parquet.html" class="tag">parquet</a>
+                    <a href="./tag/data.html" class="tag">data</a>
             </div>
         </div>
     </article>

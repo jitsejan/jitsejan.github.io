@@ -11874,6 +11874,35 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="../using-azure-blob-and-parquet.html">Using Azure Blob Storage and Parquet</a></h2>
+      <time datetime="" title="2019-02-26T13:07:00+00:00" pubdate>Tue 26 February 2019</time>
+    </header>
+
+    <div class="article_content">
+        <p>My attempt to interact with Parquet files on Azure Blob Storage. Reading and writing Pandas dataframes is straightforward, but only the reading part is working with Spark 2.4.0.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../using-azure-blob-and-parquet.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/spark.html" class="tag">Spark</a>
+            <a href="../tag/azure.html" class="tag">Azure</a>
+            <a href="../tag/blob-pyspark.html" class="tag">Blob. PySpark</a>
+            <a href="../tag/parquet.html" class="tag">parquet</a>
+            <a href="../tag/data.html" class="tag">data</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="../difference-with-sparse-dataframes.html">Calculate differences with sparse date/value dataframes</a></h2>
       <time datetime="" title="2019-01-07T12:54:00+00:00" pubdate>Mon 07 January 2019</time>
     </header>
@@ -12152,48 +12181,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../using-executemany-to-increase-pyodbc-connection.html">Using executemany to increase PyODBC connection</a></h2>
-      <time datetime="" title="2018-07-19T16:13:00+01:00" pubdate>Thu 19 July 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>I recently had to insert data from a Pandas dataframe into a Azure SQL database using <code>pandas.to_sql()</code>. This was performing very poorly and seemed to take ages, but since  PyODBC introduced <a href="https://github.com/mkleehammer/pyodbc/wiki/Features-beyond-the-DB-API#fast_executemany">executemany</a> it is easy to improve the performance: simply add an event listener that activates the <code>executemany</code> for the cursor. For 2300 records I did a small comparison 8.67s and 7.22s versus 5min 57s and 5min 26s, so roughly 50 times faster for this small example dataset.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">pyodbc</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">event</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.pool</span> <span class="kn">import</span> <span class="n">StaticPool</span>
-
-<span class="n">wh_conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;DRIVER={config[name][&#39;driver&#39;]};SERVER={config[name][&#39;server&#39;]},{config[name][&#39;port&#39;]};DATABASE={config[name][&#39;database&#39;]};UID={config[name][&#39;username&#39;]};PWD={config[name][&#39;password&#39;]}&quot;</span><span class="p">)</span>
-<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;mssql+pyodbc://&quot;</span><span class="p">,</span> <span class="n">poolclass</span><span class="o">=</span><span class="n">StaticPool</span><span class="p">,</span> <span class="n">creator</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">wh_conn</span><span class="p">)</span>
-
-<span class="nd">@event.listens_for</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span> <span class="s1">&#39;before_cursor_execute&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">receive_before_cursor_execute</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">statement</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">executemany</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">executemany</span><span class="p">:</span>
-        <span class="n">cursor</span><span class="o">.</span><span class="n">fast_executemany</span> <span class="o">=</span> <span class="bp">True</span>
-
-<span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Table&#39;</span><span class="p">,</span>
-          <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
-          <span class="n">schema</span><span class="o">=</span><span class="s1">&#39;Schema&#39;</span><span class="p">,</span>
-          <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
-          <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">)</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/pandas.html" class="tag">pandas</a>
-            <a href="../tag/azure.html" class="tag">Azure</a>
-            <a href="../tag/dataframe.html" class="tag">dataframe</a>
-            <a href="../tag/pyodbc.html" class="tag">PyODBC</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12239,78 +12226,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <nav class="widget">
         <ul class="tagcloud">
         <li class="tag-2">
-            <a href="../tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/s3.html">
-            S3
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="../tag/vuejs.html">
             VueJS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/expressjs.html">
-            ExpressJS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/javascript.html">
-            javascript
             </a>
         </li>
         <li class="tag-1">
@@ -12319,8 +12236,48 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/ether.html">
-            ether
+            <a href="../tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/s3.html">
+            S3
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/python.html">
+            Python
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/notebook.html">
+            notebook
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/azure.html">
+            Azure
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/shell.html">
+            shell
             </a>
         </li>
         <li class="tag-2">
@@ -12329,13 +12286,43 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
+            <a href="../tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ether.html">
+            ether
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/docker.html">
+            Docker
+            </a>
+        </li>
+        <li class="tag-2">
             <a href="../tag/pandas.html">
             Pandas
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/hadoop.html">
-            Hadoop
+            <a href="../tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/spark.html">
+            Spark
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/devops.html">
+            DevOps
             </a>
         </li>
         </ul>
