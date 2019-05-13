@@ -11874,6 +11874,40 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="./create-spark-dataframe-column-with-lag.html">Create Spark dataframe column with lag</a></h2>
+      <time datetime="" title="2017-12-14T21:25:00+00:00" pubdate>Thu 14 December 2017</time>
+    </header>
+
+    <div class="article_content">
+        <p>Create a lagged column in a PySpark dataframe:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">monotonically_increasing_id</span><span class="p">,</span> <span class="n">lag</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.window</span> <span class="kn">import</span> <span class="n">Window</span>
+
+<span class="c1"># Add ID to be used by the window function</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">monotonically_increasing_id</span><span class="p">())</span>
+<span class="c1"># Set the window</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+<span class="c1"># Create the lagged value</span>
+<span class="n">value_lag</span> <span class="o">=</span> <span class="n">lag</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="c1"># Add the lagged values to a new column</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;prev_value&#39;</span><span class="p">,</span> <span class="n">value_lag</span><span class="p">)</span>
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/lag.html" class="tag">lag</a>
+            <a href="./tag/pyspark.html" class="tag">pyspark</a>
+            <a href="./tag/dataframe.html" class="tag">dataframe</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./mevn-stack-tutorial.html">MEVN Stack - Setting up MongoDB, Express and VueJS</a></h2>
       <time datetime="" title="2017-12-05T00:36:28+00:00" pubdate>Tue 05 December 2017</time>
     </header>
@@ -12113,32 +12147,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./using-scrapy-in-jupyter-notebook.html">Using Scrapy in Jupyter notebook</a></h2>
-      <time datetime="" title="2017-08-02T15:23:00+01:00" pubdate>Wed 02 August 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>This notebook makes use of the Scrapy library to scrape data from a website. Following the basic example, we create a QuotesSpider and call the CrawlerProcess with this spider to retrieve quotes from http://quotes.toscrape.com.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./using-scrapy-in-jupyter-notebook.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/notebook.html" class="tag">notebook</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="./tag/scrapy.html" class="tag">Scrapy</a>
-            <a href="./tag/crawling.html" class="tag">crawling</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12184,6 +12192,11 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
+        <li class="tag-2">
+            <a href="./tag/data-engineer.html">
+            data engineer
+            </a>
+        </li>
         <li class="tag-1">
             <a href="./tag/notebook.html">
             notebook
@@ -12195,33 +12208,18 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pandas.html">
-            Pandas
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="./tag/dataframe.html">
             dataframe
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/ether.html">
-            ether
+            <a href="./tag/aws.html">
+            AWS
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/vuejs.html">
-            VueJS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
+            <a href="./tag/azure.html">
+            Azure
             </a>
         </li>
         <li class="tag-2">
@@ -12234,19 +12232,14 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             Python
             </a>
         </li>
-        <li class="tag-1">
-            <a href="./tag/jupyter.html">
-            Jupyter
+        <li class="tag-2">
+            <a href="./tag/ubuntu.html">
+            Ubuntu
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/azure.html">
-            Azure
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
+            <a href="./tag/container.html">
+            container
             </a>
         </li>
         <li class="tag-2">
@@ -12255,18 +12248,28 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
+            <a href="./tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/jupyter.html">
+            Jupyter
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-2">
             <a href="./tag/ethereum.html">
             Ethereum
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/s3.html">
-            S3
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/aws.html">
-            AWS
+            <a href="./tag/devops.html">
+            DevOps
             </a>
         </li>
         <li class="tag-2">
@@ -12275,13 +12278,18 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
+            <a href="./tag/pandas.html">
+            Pandas
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/devops.html">
-            DevOps
+            <a href="./tag/ether.html">
+            ether
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/s3.html">
+            S3
             </a>
         </li>
         </ul>

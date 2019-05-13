@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Using ButterCMS in a Jupyter notebook with VueJS | JJ's World</title>
+        <title>Creating a Lambda function with Terraform to upload a Looker view | JJ's World</title>
 
 
 <style type="text/css">
@@ -11863,2078 +11863,468 @@ jQuery(document).ready(function($) {
     </div>
     <article>
         <header>
-            <h1>Using ButterCMS in a Jupyter notebook with VueJS</h1>
-            <time datetime="article.date.isoformat()" pubdate>Thu 14 June 2018</time>
+            <h1>Creating a Lambda function with Terraform to upload a Looker view</h1>
+            <time datetime="article.date.isoformat()" pubdate>Mon 13 May 2019</time>
         </header>
 
         <div class="article_content">
-            <style type="text/css">/*!
-*
-* IPython notebook
-*
-*/
-/* CSS font colors for translated ANSI escape sequences */
-/* The color values are a mix of
-   http://www.xcolors.net/dl/baskerville-ivorylight and
-   http://www.xcolors.net/dl/euphrasia */
-.ansi-black-fg {
-  color: #3E424D;
-}
-.ansi-black-bg {
-  background-color: #3E424D;
-}
-.ansi-black-intense-fg {
-  color: #282C36;
-}
-.ansi-black-intense-bg {
-  background-color: #282C36;
-}
-.ansi-red-fg {
-  color: #E75C58;
-}
-.ansi-red-bg {
-  background-color: #E75C58;
-}
-.ansi-red-intense-fg {
-  color: #B22B31;
-}
-.ansi-red-intense-bg {
-  background-color: #B22B31;
-}
-.ansi-green-fg {
-  color: #00A250;
-}
-.ansi-green-bg {
-  background-color: #00A250;
-}
-.ansi-green-intense-fg {
-  color: #007427;
-}
-.ansi-green-intense-bg {
-  background-color: #007427;
-}
-.ansi-yellow-fg {
-  color: #DDB62B;
-}
-.ansi-yellow-bg {
-  background-color: #DDB62B;
-}
-.ansi-yellow-intense-fg {
-  color: #B27D12;
-}
-.ansi-yellow-intense-bg {
-  background-color: #B27D12;
-}
-.ansi-blue-fg {
-  color: #208FFB;
-}
-.ansi-blue-bg {
-  background-color: #208FFB;
-}
-.ansi-blue-intense-fg {
-  color: #0065CA;
-}
-.ansi-blue-intense-bg {
-  background-color: #0065CA;
-}
-.ansi-magenta-fg {
-  color: #D160C4;
-}
-.ansi-magenta-bg {
-  background-color: #D160C4;
-}
-.ansi-magenta-intense-fg {
-  color: #A03196;
-}
-.ansi-magenta-intense-bg {
-  background-color: #A03196;
-}
-.ansi-cyan-fg {
-  color: #60C6C8;
-}
-.ansi-cyan-bg {
-  background-color: #60C6C8;
-}
-.ansi-cyan-intense-fg {
-  color: #258F8F;
-}
-.ansi-cyan-intense-bg {
-  background-color: #258F8F;
-}
-.ansi-white-fg {
-  color: #C5C1B4;
-}
-.ansi-white-bg {
-  background-color: #C5C1B4;
-}
-.ansi-white-intense-fg {
-  color: #A1A6B2;
-}
-.ansi-white-intense-bg {
-  background-color: #A1A6B2;
-}
-.ansi-default-inverse-fg {
-  color: #FFFFFF;
-}
-.ansi-default-inverse-bg {
-  background-color: #000000;
-}
-.ansi-bold {
-  font-weight: bold;
-}
-.ansi-underline {
-  text-decoration: underline;
-}
-/* The following styles are deprecated an will be removed in a future version */
-.ansibold {
-  font-weight: bold;
-}
-.ansi-inverse {
-  outline: 0.5px dotted;
-}
-/* use dark versions for foreground, to improve visibility */
-.ansiblack {
-  color: black;
-}
-.ansired {
-  color: darkred;
-}
-.ansigreen {
-  color: darkgreen;
-}
-.ansiyellow {
-  color: #c4a000;
-}
-.ansiblue {
-  color: darkblue;
-}
-.ansipurple {
-  color: darkviolet;
-}
-.ansicyan {
-  color: steelblue;
-}
-.ansigray {
-  color: gray;
-}
-/* and light for background, for the same reason */
-.ansibgblack {
-  background-color: black;
-}
-.ansibgred {
-  background-color: red;
-}
-.ansibggreen {
-  background-color: green;
-}
-.ansibgyellow {
-  background-color: yellow;
-}
-.ansibgblue {
-  background-color: blue;
-}
-.ansibgpurple {
-  background-color: magenta;
-}
-.ansibgcyan {
-  background-color: cyan;
-}
-.ansibggray {
-  background-color: gray;
-}
-div.cell {
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  border-radius: 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  border-width: 1px;
-  border-style: solid;
-  border-color: transparent;
-  width: 100%;
-  padding: 5px;
-  /* This acts as a spacer between cells, that is outside the border */
-  margin: 0px;
-  outline: none;
-  position: relative;
-  overflow: visible;
-}
-div.cell:before {
-  position: absolute;
-  display: block;
-  top: -1px;
-  left: -1px;
-  width: 5px;
-  height: calc(100% +  2px);
-  content: '';
-  background: transparent;
-}
-div.cell.jupyter-soft-selected {
-  border-left-color: #E3F2FD;
-  border-left-width: 1px;
-  padding-left: 5px;
-  border-right-color: #E3F2FD;
-  border-right-width: 1px;
-  background: #E3F2FD;
-}
-@media print {
-  div.cell.jupyter-soft-selected {
-    border-color: transparent;
-  }
-}
-div.cell.selected,
-div.cell.selected.jupyter-soft-selected {
-  border-color: #ababab;
-}
-div.cell.selected:before,
-div.cell.selected.jupyter-soft-selected:before {
-  position: absolute;
-  display: block;
-  top: -1px;
-  left: -1px;
-  width: 5px;
-  height: calc(100% +  2px);
-  content: '';
-  background: #42A5F5;
-}
-@media print {
-  div.cell.selected,
-  div.cell.selected.jupyter-soft-selected {
-    border-color: transparent;
-  }
-}
-.edit_mode div.cell.selected {
-  border-color: #66BB6A;
-}
-.edit_mode div.cell.selected:before {
-  position: absolute;
-  display: block;
-  top: -1px;
-  left: -1px;
-  width: 5px;
-  height: calc(100% +  2px);
-  content: '';
-  background: #66BB6A;
-}
-@media print {
-  .edit_mode div.cell.selected {
-    border-color: transparent;
-  }
-}
-.prompt {
-  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
-  min-width: 14ex;
-  /* This padding is tuned to match the padding on the CodeMirror editor. */
-  padding: 0.4em;
-  margin: 0px;
-  font-family: monospace;
-  text-align: right;
-  /* This has to match that of the the CodeMirror class line-height below */
-  line-height: 1.21429em;
-  /* Don't highlight prompt number selection */
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  /* Use default cursor */
-  cursor: default;
-}
-@media (max-width: 540px) {
-  .prompt {
-    text-align: left;
-  }
-}
-div.inner_cell {
-  min-width: 0;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  /* Old browsers */
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-  /* Modern browsers */
-  flex: 1;
-}
-/* input_area and input_prompt must match in top border and margin for alignment */
-div.input_area {
-  border: 1px solid #cfcfcf;
-  border-radius: 2px;
-  background: #f7f7f7;
-  line-height: 1.21429em;
-}
-/* This is needed so that empty prompt areas can collapse to zero height when there
-   is no content in the output_subarea and the prompt. The main purpose of this is
-   to make sure that empty JavaScript output_subareas have no height. */
-div.prompt:empty {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-div.unrecognized_cell {
-  padding: 5px 5px 5px 0px;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-div.unrecognized_cell .inner_cell {
-  border-radius: 2px;
-  padding: 5px;
-  font-weight: bold;
-  color: red;
-  border: 1px solid #cfcfcf;
-  background: #eaeaea;
-}
-div.unrecognized_cell .inner_cell a {
-  color: inherit;
-  text-decoration: none;
-}
-div.unrecognized_cell .inner_cell a:hover {
-  color: inherit;
-  text-decoration: none;
-}
-@media (max-width: 540px) {
-  div.unrecognized_cell > div.prompt {
-    display: none;
-  }
-}
-div.code_cell {
-  /* avoid page breaking on code cells when printing */
-}
-@media print {
-  div.code_cell {
-    page-break-inside: avoid;
-  }
-}
-/* any special styling for code cells that are currently running goes here */
-div.input {
-  page-break-inside: avoid;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-@media (max-width: 540px) {
-  div.input {
-    /* Old browsers */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-box-align: stretch;
-    display: -moz-box;
-    -moz-box-orient: vertical;
-    -moz-box-align: stretch;
-    display: box;
-    box-orient: vertical;
-    box-align: stretch;
-    /* Modern browsers */
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-/* input_area and input_prompt must match in top border and margin for alignment */
-div.input_prompt {
-  color: #303F9F;
-  border-top: 1px solid transparent;
-}
-div.input_area > div.highlight {
-  margin: 0.4em;
-  border: none;
-  padding: 0px;
-  background-color: transparent;
-}
-div.input_area > div.highlight > pre {
-  margin: 0px;
-  border: none;
-  padding: 0px;
-  background-color: transparent;
-}
-/* The following gets added to the <head> if it is detected that the user has a
- * monospace font with inconsistent normal/bold/italic height.  See
- * notebookmain.js.  Such fonts will have keywords vertically offset with
- * respect to the rest of the text.  The user should select a better font.
- * See: https://github.com/ipython/ipython/issues/1503
- *
- * .CodeMirror span {
- *      vertical-align: bottom;
- * }
- */
-.CodeMirror {
-  line-height: 1.21429em;
-  /* Changed from 1em to our global default */
-  font-size: 14px;
-  height: auto;
-  /* Changed to auto to autogrow */
-  background: none;
-  /* Changed from white to allow our bg to show through */
-}
-.CodeMirror-scroll {
-  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
-  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
-  overflow-y: hidden;
-  overflow-x: auto;
-}
-.CodeMirror-lines {
-  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
-  /* we have set a different line-height and want this to scale with that. */
-  /* Note that this should set vertical padding only, since CodeMirror assumes
-       that horizontal padding will be set on CodeMirror pre */
-  padding: 0.4em 0;
-}
-.CodeMirror-linenumber {
-  padding: 0 8px 0 4px;
-}
-.CodeMirror-gutters {
-  border-bottom-left-radius: 2px;
-  border-top-left-radius: 2px;
-}
-.CodeMirror pre {
-  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
-    use .CodeMirror-lines for vertical */
-  padding: 0 0.4em;
-  border: 0;
-  border-radius: 0;
-}
-.CodeMirror-cursor {
-  border-left: 1.4px solid black;
-}
-@media screen and (min-width: 2138px) and (max-width: 4319px) {
-  .CodeMirror-cursor {
-    border-left: 2px solid black;
-  }
-}
-@media screen and (min-width: 4320px) {
-  .CodeMirror-cursor {
-    border-left: 4px solid black;
-  }
-}
-/*
-
-Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
-Adapted from GitHub theme
-
-*/
-.highlight-base {
-  color: #000;
-}
-.highlight-variable {
-  color: #000;
-}
-.highlight-variable-2 {
-  color: #1a1a1a;
-}
-.highlight-variable-3 {
-  color: #333333;
-}
-.highlight-string {
-  color: #BA2121;
-}
-.highlight-comment {
-  color: #408080;
-  font-style: italic;
-}
-.highlight-number {
-  color: #080;
-}
-.highlight-atom {
-  color: #88F;
-}
-.highlight-keyword {
-  color: #008000;
-  font-weight: bold;
-}
-.highlight-builtin {
-  color: #008000;
-}
-.highlight-error {
-  color: #f00;
-}
-.highlight-operator {
-  color: #AA22FF;
-  font-weight: bold;
-}
-.highlight-meta {
-  color: #AA22FF;
-}
-/* previously not defined, copying from default codemirror */
-.highlight-def {
-  color: #00f;
-}
-.highlight-string-2 {
-  color: #f50;
-}
-.highlight-qualifier {
-  color: #555;
-}
-.highlight-bracket {
-  color: #997;
-}
-.highlight-tag {
-  color: #170;
-}
-.highlight-attribute {
-  color: #00c;
-}
-.highlight-header {
-  color: blue;
-}
-.highlight-quote {
-  color: #090;
-}
-.highlight-link {
-  color: #00c;
-}
-/* apply the same style to codemirror */
-.cm-s-ipython span.cm-keyword {
-  color: #008000;
-  font-weight: bold;
-}
-.cm-s-ipython span.cm-atom {
-  color: #88F;
-}
-.cm-s-ipython span.cm-number {
-  color: #080;
-}
-.cm-s-ipython span.cm-def {
-  color: #00f;
-}
-.cm-s-ipython span.cm-variable {
-  color: #000;
-}
-.cm-s-ipython span.cm-operator {
-  color: #AA22FF;
-  font-weight: bold;
-}
-.cm-s-ipython span.cm-variable-2 {
-  color: #1a1a1a;
-}
-.cm-s-ipython span.cm-variable-3 {
-  color: #333333;
-}
-.cm-s-ipython span.cm-comment {
-  color: #408080;
-  font-style: italic;
-}
-.cm-s-ipython span.cm-string {
-  color: #BA2121;
-}
-.cm-s-ipython span.cm-string-2 {
-  color: #f50;
-}
-.cm-s-ipython span.cm-meta {
-  color: #AA22FF;
-}
-.cm-s-ipython span.cm-qualifier {
-  color: #555;
-}
-.cm-s-ipython span.cm-builtin {
-  color: #008000;
-}
-.cm-s-ipython span.cm-bracket {
-  color: #997;
-}
-.cm-s-ipython span.cm-tag {
-  color: #170;
-}
-.cm-s-ipython span.cm-attribute {
-  color: #00c;
-}
-.cm-s-ipython span.cm-header {
-  color: blue;
-}
-.cm-s-ipython span.cm-quote {
-  color: #090;
-}
-.cm-s-ipython span.cm-link {
-  color: #00c;
-}
-.cm-s-ipython span.cm-error {
-  color: #f00;
-}
-.cm-s-ipython span.cm-tab {
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
-  background-position: right;
-  background-repeat: no-repeat;
-}
-div.output_wrapper {
-  /* this position must be relative to enable descendents to be absolute within it */
-  position: relative;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  z-index: 1;
-}
-/* class for the output area when it should be height-limited */
-div.output_scroll {
-  /* ideally, this would be max-height, but FF barfs all over that */
-  height: 24em;
-  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
-  width: 100%;
-  overflow: auto;
-  border-radius: 2px;
-  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
-  display: block;
-}
-/* output div while it is collapsed */
-div.output_collapsed {
-  margin: 0px;
-  padding: 0px;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-div.out_prompt_overlay {
-  height: 100%;
-  padding: 0px 0.4em;
-  position: absolute;
-  border-radius: 2px;
-}
-div.out_prompt_overlay:hover {
-  /* use inner shadow to get border that is computed the same on WebKit/FF */
-  -webkit-box-shadow: inset 0 0 1px #000;
-  box-shadow: inset 0 0 1px #000;
-  background: rgba(240, 240, 240, 0.5);
-}
-div.output_prompt {
-  color: #D84315;
-}
-/* This class is the outer container of all output sections. */
-div.output_area {
-  padding: 0px;
-  page-break-inside: avoid;
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-div.output_area .MathJax_Display {
-  text-align: left !important;
-}
-div.output_area 
-div.output_area 
-div.output_area img,
-div.output_area svg {
-  max-width: 100%;
-  height: auto;
-}
-div.output_area img.unconfined,
-div.output_area svg.unconfined {
-  max-width: none;
-}
-div.output_area .mglyph > img {
-  max-width: none;
-}
-/* This is needed to protect the pre formating from global settings such
-   as that of bootstrap */
-.output {
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: vertical;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: vertical;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-}
-@media (max-width: 540px) {
-  div.output_area {
-    /* Old browsers */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-box-align: stretch;
-    display: -moz-box;
-    -moz-box-orient: vertical;
-    -moz-box-align: stretch;
-    display: box;
-    box-orient: vertical;
-    box-align: stretch;
-    /* Modern browsers */
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-}
-div.output_area pre {
-  margin: 0;
-  padding: 1px 0 1px 0;
-  border: 0;
-  vertical-align: baseline;
-  color: black;
-  background-color: transparent;
-  border-radius: 0;
-}
-/* This class is for the output subarea inside the output_area and after
-   the prompt div. */
-div.output_subarea {
-  overflow-x: auto;
-  padding: 0.4em;
-  /* Old browsers */
-  -webkit-box-flex: 1;
-  -moz-box-flex: 1;
-  box-flex: 1;
-  /* Modern browsers */
-  flex: 1;
-  max-width: calc(100% - 14ex);
-}
-div.output_scroll div.output_subarea {
-  overflow-x: visible;
-}
-/* The rest of the output_* classes are for special styling of the different
-   output types */
-/* all text output has this class: */
-div.output_text {
-  text-align: left;
-  color: #000;
-  /* This has to match that of the the CodeMirror class line-height below */
-  line-height: 1.21429em;
-}
-/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
-div.output_stderr {
-  background: #fdd;
-  /* very light red background for stderr */
-}
-div.output_latex {
-  text-align: left;
-}
-/* Empty output_javascript divs should have no height */
-div.output_javascript:empty {
-  padding: 0;
-}
-.js-error {
-  color: darkred;
-}
-/* raw_input styles */
-div.raw_input_container {
-  line-height: 1.21429em;
-  padding-top: 5px;
-}
-pre.raw_input_prompt {
-  /* nothing needed here. */
-}
-input.raw_input {
-  font-family: monospace;
-  font-size: inherit;
-  color: inherit;
-  width: auto;
-  /* make sure input baseline aligns with prompt */
-  vertical-align: baseline;
-  /* padding + margin = 0.5em between prompt and cursor */
-  padding: 0em 0.25em;
-  margin: 0em 0.25em;
-}
-input.raw_input:focus {
-  box-shadow: none;
-}
-p.p-space {
-  margin-bottom: 10px;
-}
-div.output_unrecognized {
-  padding: 5px;
-  font-weight: bold;
-  color: red;
-}
-div.output_unrecognized a {
-  color: inherit;
-  text-decoration: none;
-}
-div.output_unrecognized a:hover {
-  color: inherit;
-  text-decoration: none;
-}
-.rendered_html {
-  color: #000;
-  /* any extras will just be numbers: */
-}
+            <h2>Objective</h2>
+<p>Using the <a href="https://www.terraform.io/">Terraform</a> tool, I will create a simple example where I upload the output from a look from our BI tool <a href="https://looker.com/">Looker</a> to <a href="https://aws.amazon.com/s3/">AWS S3</a> in CSV format. By automating the export of a Looker query to S3, we could make certain data publicly available with a regular update to make sure the data contains the latest changes.</p>
+<h2>Introduction</h2>
+<p>Last week I've introduced <a href="terraform.io">Terraform</a> to the company. I have worked with <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/">Azure Resource Manager</a> before, both in my previous job and one of the first tasks I had here at MI and I have some exposure to AWS <a href="https://aws.amazon.com/cloudformation/">CloudFormation</a>. Since the data platform I have created is cross-platform (a hybrid solution with both Azure and AWS), I thought it would be wise to not use ARM nor CloudFormation, but go a level higher by using Terraform. Terraform supports many cloud providers and can help to define the infrastructure of both Azure and AWS in a few configuration files (#InfrastructureAsCode). By using Terraform we make sure all services are added to the configuration and checked in to version control. In case something breaks, or in the worst case we have a disaster, we can easily recreate the platform with Terraform.</p>
+<h2>Structure</h2>
+<p>The structure of this project will look like this: </p>
+<div class="highlight"><pre><span></span>├── deploy.sh
+├── initial_run.py
+├── main.tf
+├── sources
+│   └── lambda-functions
+│       └── looker-upload
+│           ├── lambda.py
+│           └── requirements.txt
+├── terraform.tfvars
+└── variables.tf
+</pre></div>
 
 
-
-.rendered_html :link {
-  text-decoration: underline;
-}
-.rendered_html :visited {
-  text-decoration: underline;
-}
+<h2>Requirements</h2>
+<h3>Terraform</h3>
+<p>Currently I have <a href="https://learn.hashicorp.com/terraform/getting-started/install.html">installed Terraform</a> on my MacBooks and my VPS. For Mac the installation is straightforward using <a href="https://brew.sh/">brew</a>:</p>
+<div class="highlight"><pre><span></span>brew install terraform
+</pre></div>
 
 
+<p>For Ubuntu we need to download the ZIP-file, extract it and add it manually:</p>
+<div class="highlight"><pre><span></span>sudo apt-get install unzip
+wget https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
+unzip terraform_0.11.13_linux_amd64.zip
+sudo mv terraform /usr/local/bin
+</pre></div>
 
 
+<div class="highlight"><pre><span></span>╭─ ~/code/data-engineer-solutions
+╰─ terraform version
+Terraform v0.11.13
+</pre></div>
 
 
-.rendered_html h1:first-child {
-  margin-top: 0.538em;
-}
-.rendered_html h2:first-child {
-  margin-top: 0.636em;
-}
-.rendered_html h3:first-child {
-  margin-top: 0.777em;
-}
-.rendered_html h4:first-child {
-  margin-top: 1em;
-}
-.rendered_html h5:first-child {
-  margin-top: 1em;
-}
-.rendered_html h6:first-child {
-  margin-top: 1em;
-}
-.rendered_html ul:not(.list-inline),
-.rendered_html ol:not(.list-inline) {
-  padding-left: 2em;
-}
-
-
-
-
-
-
-
-
-.rendered_html * + ul {
-  margin-top: 1em;
-}
-.rendered_html * + ol {
-  margin-top: 1em;
-}
-
-
-
-
-
-.rendered_html pre,
-
-
-
-
-.rendered_html tr,
-.rendered_html th,
-
-
-.rendered_html tbody tr:nth-child(odd) {
-  background: #f5f5f5;
-}
-.rendered_html tbody tr:hover {
-  background: rgba(66, 165, 245, 0.2);
-}
-.rendered_html * + table {
-  margin-top: 1em;
-}
-
-.rendered_html * + p {
-  margin-top: 1em;
-}
-
-.rendered_html * + img {
-  margin-top: 1em;
-}
-.rendered_html img,
-
-.rendered_html img.unconfined,
-
-
-.rendered_html * + .alert {
-  margin-top: 1em;
-}
-[dir="rtl"] 
-div.text_cell {
-  /* Old browsers */
-  display: -webkit-box;
-  -webkit-box-orient: horizontal;
-  -webkit-box-align: stretch;
-  display: -moz-box;
-  -moz-box-orient: horizontal;
-  -moz-box-align: stretch;
-  display: box;
-  box-orient: horizontal;
-  box-align: stretch;
-  /* Modern browsers */
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-@media (max-width: 540px) {
-  div.text_cell > div.prompt {
-    display: none;
-  }
-}
-div.text_cell_render {
-  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
-  outline: none;
-  resize: none;
-  width: inherit;
-  border-style: none;
-  padding: 0.5em 0.5em 0.5em 0.4em;
-  color: #000;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-a.anchor-link:link {
-  text-decoration: none;
-  padding: 0px 20px;
-  visibility: hidden;
-}
-h1:hover .anchor-link,
-h2:hover .anchor-link,
-h3:hover .anchor-link,
-h4:hover .anchor-link,
-h5:hover .anchor-link,
-h6:hover .anchor-link {
-  visibility: visible;
-}
-.text_cell.rendered .input_area {
-  display: none;
-}
-.text_cell.rendered 
-.text_cell.rendered .rendered_html tr,
-.text_cell.rendered .rendered_html th,
-.text_cell.rendered 
-.text_cell.unrendered .text_cell_render {
-  display: none;
-}
-.text_cell .dropzone .input_area {
-  border: 2px dashed #bababa;
-  margin: -1px;
-}
-.cm-header-1,
-.cm-header-2,
-.cm-header-3,
-.cm-header-4,
-.cm-header-5,
-.cm-header-6 {
-  font-weight: bold;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.cm-header-1 {
-  font-size: 185.7%;
-}
-.cm-header-2 {
-  font-size: 157.1%;
-}
-.cm-header-3 {
-  font-size: 128.6%;
-}
-.cm-header-4 {
-  font-size: 110%;
-}
-.cm-header-5 {
-  font-size: 100%;
-  font-style: italic;
-}
-.cm-header-6 {
-  font-size: 100%;
-  font-style: italic;
-}
-</style>
-<style type="text/css">.highlight .hll { background-color: #ffffcc }
-.highlight  { background: #f8f8f8; }
-.highlight .c { color: #408080; font-style: italic } /* Comment */
-.highlight .err { border: 1px solid #FF0000 } /* Error */
-.highlight .k { color: #008000; font-weight: bold } /* Keyword */
-.highlight .o { color: #666666 } /* Operator */
-.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
-.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
-.highlight .gd { color: #A00000 } /* Generic.Deleted */
-.highlight .ge { font-style: italic } /* Generic.Emph */
-.highlight .gr { color: #FF0000 } /* Generic.Error */
-.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.highlight .gi { color: #00A000 } /* Generic.Inserted */
-.highlight .go { color: #888888 } /* Generic.Output */
-.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.highlight .gs { font-weight: bold } /* Generic.Strong */
-.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.highlight .gt { color: #0044DD } /* Generic.Traceback */
-.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.highlight .kp { color: #008000 } /* Keyword.Pseudo */
-.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.highlight .kt { color: #B00040 } /* Keyword.Type */
-.highlight .m { color: #666666 } /* Literal.Number */
-.highlight .s { color: #BA2121 } /* Literal.String */
-.highlight .na { color: #7D9029 } /* Name.Attribute */
-.highlight .nb { color: #008000 } /* Name.Builtin */
-.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.highlight .no { color: #880000 } /* Name.Constant */
-.highlight .nd { color: #AA22FF } /* Name.Decorator */
-.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
-.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.highlight .nf { color: #0000FF } /* Name.Function */
-.highlight .nl { color: #A0A000 } /* Name.Label */
-.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
-.highlight .nv { color: #19177C } /* Name.Variable */
-.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.highlight .w { color: #bbbbbb } /* Text.Whitespace */
-.highlight .mb { color: #666666 } /* Literal.Number.Bin */
-.highlight .mf { color: #666666 } /* Literal.Number.Float */
-.highlight .mh { color: #666666 } /* Literal.Number.Hex */
-.highlight .mi { color: #666666 } /* Literal.Number.Integer */
-.highlight .mo { color: #666666 } /* Literal.Number.Oct */
-.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
-.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
-.highlight .sc { color: #BA2121 } /* Literal.String.Char */
-.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
-.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
-.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
-.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.highlight .sx { color: #008000 } /* Literal.String.Other */
-.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
-.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
-.highlight .ss { color: #19177C } /* Literal.String.Symbol */
-.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
-.highlight .fm { color: #0000FF } /* Name.Function.Magic */
-.highlight .vc { color: #19177C } /* Name.Variable.Class */
-.highlight .vg { color: #19177C } /* Name.Variable.Global */
-.highlight .vi { color: #19177C } /* Name.Variable.Instance */
-.highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
-<style type="text/css">
-/* Temporary definitions which will become obsolete with Notebook release 5.0 */
-.ansi-black-fg { color: #3E424D; }
-.ansi-black-bg { background-color: #3E424D; }
-.ansi-black-intense-fg { color: #282C36; }
-.ansi-black-intense-bg { background-color: #282C36; }
-.ansi-red-fg { color: #E75C58; }
-.ansi-red-bg { background-color: #E75C58; }
-.ansi-red-intense-fg { color: #B22B31; }
-.ansi-red-intense-bg { background-color: #B22B31; }
-.ansi-green-fg { color: #00A250; }
-.ansi-green-bg { background-color: #00A250; }
-.ansi-green-intense-fg { color: #007427; }
-.ansi-green-intense-bg { background-color: #007427; }
-.ansi-yellow-fg { color: #DDB62B; }
-.ansi-yellow-bg { background-color: #DDB62B; }
-.ansi-yellow-intense-fg { color: #B27D12; }
-.ansi-yellow-intense-bg { background-color: #B27D12; }
-.ansi-blue-fg { color: #208FFB; }
-.ansi-blue-bg { background-color: #208FFB; }
-.ansi-blue-intense-fg { color: #0065CA; }
-.ansi-blue-intense-bg { background-color: #0065CA; }
-.ansi-magenta-fg { color: #D160C4; }
-.ansi-magenta-bg { background-color: #D160C4; }
-.ansi-magenta-intense-fg { color: #A03196; }
-.ansi-magenta-intense-bg { background-color: #A03196; }
-.ansi-cyan-fg { color: #60C6C8; }
-.ansi-cyan-bg { background-color: #60C6C8; }
-.ansi-cyan-intense-fg { color: #258F8F; }
-.ansi-cyan-intense-bg { background-color: #258F8F; }
-.ansi-white-fg { color: #C5C1B4; }
-.ansi-white-bg { background-color: #C5C1B4; }
-.ansi-white-intense-fg { color: #A1A6B2; }
-.ansi-white-intense-bg { background-color: #A1A6B2; }
-
-.ansi-bold { font-weight: bold; }
-</style>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="ButterCMS">ButterCMS<a class="anchor-link" href="#ButterCMS">&#182;</a></h1><h2 id="Goal">Goal<a class="anchor-link" href="#Goal">&#182;</a></h2><p>The goal of this notebook is to get myself familiar with ButterCMS, a headless CMS that can be easily integrated with any platform in any language. In the past I've experienced with Joomla, Drupal and WordPress (and Blogger long time ago), where I have <strike>lost</strike> invested a lot of time in simply getting the CMS in place, extending the CMS with more functionality and migrating data between servers. Since I am investigating different ways of using microservices, becoming less platform dependent and overall learning new tools, I use this notebook to show a simple example of ButterCMS in Jupyter.</p>
-<h2 id="About">About<a class="anchor-link" href="#About">&#182;</a></h2><center>
-    <img src="http://files.jitsejan.com/logos/buttercms.PNG" width=150 />
-</center><blockquote><p>Add a blog or CMS to your site in minutes
-Drop-in our Headless CMS and get back to more interesting problems.</p>
-</blockquote>
-<h2 id="Links">Links<a class="anchor-link" href="#Links">&#182;</a></h2><ul>
-<li><a href="https://buttercms.com/">Homepage</a></li>
-<li><a href="https://buttercms.com/docs/api-client/python">Python client</a></li>
-<li><a href="https://buttercms.com/docs/api-client/vuejs">VueJS client</a></li>
+<h3>Other</h3>
+<ul>
+<li>You should have an AWS account and have the credentials available in the default  <code>~/.aws/credentials</code>. </li>
+<li>You should have [Download Python | Python.org](https://www.python.org/downloads/. I am using version 3.7.3 at the moment of writing.</li>
+<li>You should have <a href="https://www.docker.com/products/docker-desktop">Docker Desktop for Mac and Windows | Docker</a> installed.</li>
 </ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Prerequisites">Prerequisites<a class="anchor-link" href="#Prerequisites">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>pip install buttercms-python
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Requirement already satisfied: buttercms-python in /home/jitsejan/miniconda3/lib/python3.6/site-packages (1.1)
-Requirement already satisfied: requests in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from buttercms-python) (2.18.4)
-Requirement already satisfied: chardet&lt;3.1.0,&gt;=3.0.2 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (3.0.4)
-Requirement already satisfied: idna&lt;2.7,&gt;=2.5 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (2.6)
-Requirement already satisfied: urllib3&lt;1.23,&gt;=1.21.1 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (1.22)
-Requirement already satisfied: certifi&gt;=2017.4.17 in /home/jitsejan/miniconda3/lib/python3.6/site-packages (from requests-&gt;buttercms-python) (2018.4.16)
-<span class="ansi-yellow-fg">You are using pip version 10.0.0, however version 10.0.1 is available.
-You should consider upgrading via the &#39;pip install --upgrade pip&#39; command.</span>
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;buttercmskey&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;1b13611e144e11bbce5b484f4064e39638b223a1&#39;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="http://files.jitsejan.com/screenshots/butterCMS.png" /></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Python-implementation">Python implementation<a class="anchor-link" href="#Python-implementation">&#182;</a></h2><p><img src="http://files.jitsejan.com/logos/python.PNG" width=150/></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">butter_cms</span> <span class="k">import</span> <span class="n">ButterCMS</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">ButterCMS</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s1">&#39;buttercmskey&#39;</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">client</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[4]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;butter_cms.ButterCMS at 0x7f3edc72f630&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">client</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">all</span><span class="p">({</span><span class="s1">&#39;page_size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>{
-    &#34;data&#34;: [
-        {
-            &#34;url&#34;: &#34;jupyter-notebook&#34;,
-            &#34;created&#34;: &#34;2018-06-14T11:53:54.533383Z&#34;,
-            &#34;published&#34;: &#34;2018-06-14T11:50:00Z&#34;,
-            &#34;author&#34;: {
-                &#34;first_name&#34;: &#34;Jitse-Jan&#34;,
-                &#34;last_name&#34;: &#34;van Waterschoot&#34;,
-                &#34;email&#34;: &#34;code@jitsejan.com&#34;,
-                &#34;slug&#34;: &#34;jitse-jan-van-waterschoot&#34;,
-                &#34;bio&#34;: &#34;&#34;,
-                &#34;title&#34;: &#34;&#34;,
-                &#34;linkedin_url&#34;: &#34;&#34;,
-                &#34;facebook_url&#34;: &#34;&#34;,
-                &#34;instagram_url&#34;: &#34;&#34;,
-                &#34;pinterest_url&#34;: &#34;&#34;,
-                &#34;twitter_handle&#34;: &#34;&#34;,
-                &#34;profile_image&#34;: &#34;&#34;
-            },
-            &#34;categories&#34;: [
-                {
-                    &#34;name&#34;: &#34;development&#34;,
-                    &#34;slug&#34;: &#34;development&#34;
-                }
-            ],
-            &#34;tags&#34;: [
-                {
-                    &#34;name&#34;: &#34;&#34;,
-                    &#34;slug&#34;: &#34;&#34;
-                },
-                {
-                    &#34;name&#34;: &#34;buttercms&#34;,
-                    &#34;slug&#34;: &#34;buttercms&#34;
-                },
-                {
-                    &#34;name&#34;: &#34;python&#34;,
-                    &#34;slug&#34;: &#34;python&#34;
-                },
-                {
-                    &#34;name&#34;: &#34;vuejs&#34;,
-                    &#34;slug&#34;: &#34;vuejs&#34;
-                }
-            ],
-            &#34;featured_image&#34;: &#34;https://cdn.buttercms.com/eBXUxLoCR4CKQMUnhjur&#34;,
-            &#34;slug&#34;: &#34;jupyter-notebook&#34;,
-            &#34;title&#34;: &#34;Jupyter notebook&#34;,
-            &#34;body&#34;: &#34;&lt;p&gt;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&amp;nbsp;&lt;/p&gt;&#34;,
-            &#34;summary&#34;: &#34;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&#34;,
-            &#34;seo_title&#34;: &#34;Jupyter notebook&#34;,
-            &#34;meta_description&#34;: &#34;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&#34;,
-            &#34;status&#34;: &#34;published&#34;
-        },
-        {
-            &#34;url&#34;: &#34;example-post&#34;,
-            &#34;created&#34;: &#34;2018-06-14T11:47:08.121702Z&#34;,
-            &#34;published&#34;: &#34;2018-06-14T11:47:08.121391Z&#34;,
-            &#34;author&#34;: {
-                &#34;first_name&#34;: &#34;Jitse-Jan&#34;,
-                &#34;last_name&#34;: &#34;van Waterschoot&#34;,
-                &#34;email&#34;: &#34;code@jitsejan.com&#34;,
-                &#34;slug&#34;: &#34;jitse-jan-van-waterschoot&#34;,
-                &#34;bio&#34;: &#34;&#34;,
-                &#34;title&#34;: &#34;&#34;,
-                &#34;linkedin_url&#34;: &#34;&#34;,
-                &#34;facebook_url&#34;: &#34;&#34;,
-                &#34;instagram_url&#34;: &#34;&#34;,
-                &#34;pinterest_url&#34;: &#34;&#34;,
-                &#34;twitter_handle&#34;: &#34;&#34;,
-                &#34;profile_image&#34;: &#34;&#34;
-            },
-            &#34;categories&#34;: [
-                {
-                    &#34;name&#34;: &#34;Example Category&#34;,
-                    &#34;slug&#34;: &#34;example-category&#34;
-                }
-            ],
-            &#34;tags&#34;: [
-                {
-                    &#34;name&#34;: &#34;Example Tag&#34;,
-                    &#34;slug&#34;: &#34;example-tag&#34;
-                }
-            ],
-            &#34;featured_image&#34;: &#34;https://d2devwt40at1e2.cloudfront.net/api/file/tdt3s1OHRO6wfQOpmAHw&#34;,
-            &#34;slug&#34;: &#34;example-post&#34;,
-            &#34;title&#34;: &#34;Example Post&#34;,
-            &#34;body&#34;: &#34;&lt;p&gt;Welcome to ButterCMS! This an example blog post written using Butter.&lt;/p&gt;\n&lt;h3&gt;What&#39;s happening here?&lt;/h3&gt;\n&lt;p&gt;If you&#39;re viewing this post from your website or command line, you&#39;ve successfully made a request to&amp;nbsp;the &lt;a href=\&#34;https://buttercms.com/docs/api\&#34;&gt;Butter API&lt;/a&gt;. If you haven&#39;t already, make sure you have our &lt;a href=\&#34;https://buttercms.com/docs/\&#34;&gt;development guides&lt;/a&gt; pulled up for step-by-step instructions on setting up Butter.&lt;/p&gt;\n&lt;h3&gt;How does&amp;nbsp;editing work?&lt;/h3&gt;\n&lt;p&gt;Butter&#39;s WYSIWYG editor supports standard text formatting including headings, links, quotes, code, text alignment, and more. You can upload, crop, and resize images which are automatically hosted and delivered through a CDN (see below). You can also edit HTML directly when needed.&lt;/p&gt;\n&lt;figure class=\&#34;image\&#34;&gt;&lt;img src=\&#34;https://d2wzhk7xhrnk1x.cloudfront.net/rgPM9aHoSSKnjk44TQlD_butter-blog-post.jpg\&#34; alt=\&#34;Delivered to you via CDN\&#34; /&gt;\n&lt;figcaption&gt;Delivered to you via CDN&lt;/figcaption&gt;\n&lt;/figure&gt;\n&lt;h3&gt;Can I use Butter as a full CMS for&amp;nbsp;things other than a&amp;nbsp;blog?&lt;/h3&gt;\n&lt;p&gt;Yes. Butter can be used as a full CMS for managing dynamic content and creating pages across your entire website or app. Check out our &lt;a href=\&#34;https://buttercms.com/docs/\&#34;&gt;development guides&lt;/a&gt; for step-by-step tutorials on setting this up.&lt;/p&gt;\n&#34;,
-            &#34;summary&#34;: &#34;This is an example blog post. Pretty neat huh?&#34;,
-            &#34;seo_title&#34;: &#34;Example Post SEO Optimized Title&#34;,
-            &#34;meta_description&#34;: &#34;This is our example blog posts SEO optimized meta description.&#34;,
-            &#34;status&#34;: &#34;published&#34;
-        }
-    ],
-    &#34;meta&#34;: {
-        &#34;next_page&#34;: null,
-        &#34;count&#34;: 2,
-        &#34;previous_page&#34;: null
-    }
+<h2>Implementation</h2>
+<p>The core of the infrastructure is defined in <code>main.tf</code>. The first element is the provider that is being used.</p>
+<div class="highlight"><pre><span></span># The AWS provider
+provider &quot;aws&quot; {
+  region = &quot;<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">region</span><span class="cp">}</span>&quot;
 }
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">posts</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">posts</span><span class="o">.</span><span class="n">all</span><span class="p">({</span><span class="s1">&#39;page_size&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;page&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">})</span>
 </pre></div>
 
-    </div>
-</div>
-</div>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">posts</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<p>Secondly, we need to create the policy and the role for executing the Looker Lambda function. The role should be able to start a Lambda function, creating CloudWatch logs, get parameters from SSM and interact with S3. The resources are not limited in this example, but of course it is good practice to keep the permissions of a role limited and reduce the blast radius.</p>
+<div class="highlight"><pre><span></span># Define the policy for the role
+resource &quot;aws_iam_role_policy&quot; &quot;policy-lambda&quot; {
+  name = &quot;dev-jwat-policy-lambda&quot;
+  role = &quot;<span class="cp">${</span><span class="n">aws_iam_role</span><span class="o">.</span><span class="n">role</span><span class="o">-</span><span class="k">lambda</span><span class="o">.</span><span class="n">id</span><span class="cp">}</span>&quot;
+
+  policy = <span class="err">&lt;</span><span class="nt">&lt;EOF</span>
+<span class="err">{</span>
+  <span class="err">&quot;Version&quot;:</span> <span class="err">&quot;2012-10-17&quot;,</span>
+  <span class="err">&quot;Statement&quot;:</span> <span class="err">[</span>
+    <span class="err">{</span>
+      <span class="err">&quot;Effect&quot;:</span> <span class="err">&quot;Allow&quot;,</span>
+      <span class="err">&quot;Action&quot;:</span> <span class="err">[</span>
+        <span class="err">&quot;lambda:InvokeFunction&quot;,</span>
+        <span class="err">&quot;logs:CreateLogGroup&quot;,</span>
+        <span class="err">&quot;logs:CreateLogStream&quot;,</span>
+        <span class="err">&quot;logs:PutLogEvents&quot;,</span>
+        <span class="err">&quot;ssm:GetParameter&quot;,</span>
+        <span class="err">&quot;s3:PutObject&quot;,</span>
+        <span class="err">&quot;s3:ListBucket&quot;,</span>
+        <span class="err">&quot;s3:GetObject&quot;</span>
+      <span class="err">],</span>
+      <span class="err">&quot;Resource&quot;:</span> <span class="err">[</span>
+        <span class="err">&quot;*&quot;</span>
+      <span class="err">]</span>
+    <span class="err">}</span>
+  <span class="err">]</span>
+<span class="err">}</span>
+<span class="err">EOF</span>
+<span class="err">}</span>
+
+<span class="err">#</span> <span class="err">Define</span> <span class="err">the</span> <span class="err">role</span>
+<span class="err">resource</span> <span class="err">&quot;aws_iam_role&quot;</span> <span class="err">&quot;role-lambda&quot;</span> <span class="err">{</span>
+  <span class="na">name        =</span> <span class="err">&quot;dev-jwat-role-lambda&quot;</span>
+  <span class="na">description =</span> <span class="err">&quot;Role</span> <span class="err">to</span> <span class="err">execute</span> <span class="err">all</span> <span class="err">Lambda</span> <span class="err">related</span> <span class="err">tasks.&quot;</span>
+
+  <span class="na">assume_role_policy =</span> <span class="err">&lt;&lt;EOF</span>
+<span class="err">{</span>
+  <span class="err">&quot;Version&quot;:</span> <span class="err">&quot;2012-10-17&quot;,</span>
+  <span class="err">&quot;Statement&quot;:</span> <span class="err">[</span>
+    <span class="err">{</span>
+      <span class="err">&quot;Action&quot;:</span> <span class="err">&quot;sts:AssumeRole&quot;,</span>
+      <span class="err">&quot;Principal&quot;:</span> <span class="err">{</span>
+        <span class="err">&quot;Service&quot;:</span> <span class="err">&quot;lambda.amazonaws.com&quot;</span>
+      <span class="err">},</span>
+      <span class="err">&quot;Effect&quot;:</span> <span class="err">&quot;Allow&quot;,</span>
+      <span class="err">&quot;Sid&quot;:</span> <span class="err">&quot;&quot;</span>
+    <span class="err">}</span>
+  <span class="err">]</span>
+<span class="err">}</span>
+<span class="err">EOF</span>
+<span class="err">}</span>
 </pre></div>
 
-    </div>
-</div>
-</div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[7]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;url&#39;: &#39;jupyter-notebook&#39;,
- &#39;created&#39;: &#39;2018-06-14T11:53:54.533383Z&#39;,
- &#39;published&#39;: &#39;2018-06-14T11:50:00Z&#39;,
- &#39;author&#39;: {&#39;first_name&#39;: &#39;Jitse-Jan&#39;,
-  &#39;last_name&#39;: &#39;van Waterschoot&#39;,
-  &#39;email&#39;: &#39;code@jitsejan.com&#39;,
-  &#39;slug&#39;: &#39;jitse-jan-van-waterschoot&#39;,
-  &#39;bio&#39;: &#39;&#39;,
-  &#39;title&#39;: &#39;&#39;,
-  &#39;linkedin_url&#39;: &#39;&#39;,
-  &#39;facebook_url&#39;: &#39;&#39;,
-  &#39;instagram_url&#39;: &#39;&#39;,
-  &#39;pinterest_url&#39;: &#39;&#39;,
-  &#39;twitter_handle&#39;: &#39;&#39;,
-  &#39;profile_image&#39;: &#39;&#39;},
- &#39;categories&#39;: [{&#39;name&#39;: &#39;development&#39;, &#39;slug&#39;: &#39;development&#39;}],
- &#39;tags&#39;: [{&#39;name&#39;: &#39;&#39;, &#39;slug&#39;: &#39;&#39;},
-  {&#39;name&#39;: &#39;buttercms&#39;, &#39;slug&#39;: &#39;buttercms&#39;},
-  {&#39;name&#39;: &#39;python&#39;, &#39;slug&#39;: &#39;python&#39;},
-  {&#39;name&#39;: &#39;vuejs&#39;, &#39;slug&#39;: &#39;vuejs&#39;}],
- &#39;featured_image&#39;: &#39;https://cdn.buttercms.com/eBXUxLoCR4CKQMUnhjur&#39;,
- &#39;slug&#39;: &#39;jupyter-notebook&#39;,
- &#39;title&#39;: &#39;Jupyter notebook&#39;,
- &#39;body&#39;: &#39;&lt;p&gt;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&amp;nbsp;&lt;/p&gt;&#39;,
- &#39;summary&#39;: &#39;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&#39;,
- &#39;seo_title&#39;: &#39;Jupyter notebook&#39;,
- &#39;meta_description&#39;: &#39;I am working on a Jupyter notebook to show how to work with ButterCMS, VuejS and Python and how it all smoothly works together.&#39;,
- &#39;status&#39;: &#39;published&#39;}</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">title</span> <span class="o">=</span> <span class="n">posts</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span>
-<span class="n">title</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[8]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;Jupyter notebook&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Javascript-implementation">Javascript implementation<a class="anchor-link" href="#Javascript-implementation">&#182;</a></h2><p><img src="http://files.jitsejan.com/logos/javascript.PNG" width=150 /></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-<span class="nx">require</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
-    <span class="nx">paths</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">buttercms</span><span class="o">:</span> <span class="s2">&quot;https://cdnjs.buttercms.com/buttercms-1.1.1.min&quot;</span><span class="p">,</span>
-    <span class="p">},</span>
-    <span class="nx">shim</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">buttercms</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">exports</span><span class="o">:</span> <span class="s2">&quot;ButterCMS&quot;</span>
-        <span class="p">},</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
-<div id="1ed66bd2-473c-4757-8bcd-844e4c1b2e01"></div>
-<div class="output_subarea output_javascript ">
-<script type="text/javascript">
-var element = $('#1ed66bd2-473c-4757-8bcd-844e4c1b2e01');
-require.config({
-    paths: {
-        buttercms: "https://cdnjs.buttercms.com/buttercms-1.1.1.min",
-    },
-    shim: {
-        buttercms: {
-            exports: "ButterCMS"
-        },
-    }
-});
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;buttercms&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ButterCMS</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">butter</span> <span class="o">=</span> <span class="nx">Butter</span><span class="p">(</span><span class="s1">&#39;1b13611e144e11bbce5b484f4064e39638b223a1&#39;</span><span class="p">);</span>
-    <span class="nx">butter</span><span class="p">.</span><span class="nx">post</span><span class="p">.</span><span class="nx">list</span><span class="p">({</span><span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">page_size</span><span class="o">:</span> <span class="mi">10</span><span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;body&#39;</span><span class="p">])</span>
-    <span class="p">})</span>
-<span class="p">});</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
-<div id="ad162e79-1f4a-4da0-8858-9a53880d50f0"></div>
-<div class="output_subarea output_javascript ">
-<script type="text/javascript">
-var element = $('#ad162e79-1f4a-4da0-8858-9a53880d50f0');
-require(['buttercms'], function(ButterCMS) {
-    var butter = Butter('1b13611e144e11bbce5b484f4064e39638b223a1');
-    butter.post.list({page: 1, page_size: 10}).then(function(response) {
-        console.log(response['data']['data'][0]['title'])
-        console.log(response['data']['data'][0]['body'])
-    })
-});
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="VueJS-implementation">VueJS implementation<a class="anchor-link" href="#VueJS-implementation">&#182;</a></h2><p><img src="http://files.jitsejan.com/logos/vuejs.PNG" width=150 /></p>
-<p>Finally an attempt to integrate VueJS with Jupyter using data from the ButterCMS. Following <a href="https://vuejs.org/v2/cookbook/serverless-blog.html">this guide</a> we are able to add the blog posts to the body of this notebook.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-<span class="nx">require</span><span class="p">.</span><span class="nx">config</span><span class="p">({</span>
-    <span class="nx">paths</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">buttercms</span><span class="o">:</span> <span class="s2">&quot;https://cdnjs.buttercms.com/buttercms-1.1.1.min&quot;</span><span class="p">,</span>
-        <span class="nx">vue</span><span class="o">:</span> <span class="s2">&quot;https://cdn.jsdelivr.net/npm/vue/dist/vue&quot;</span>
-    <span class="p">},</span>
-    <span class="nx">shim</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">buttercms</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">exports</span><span class="o">:</span> <span class="s2">&quot;ButterCMS&quot;</span>
-        <span class="p">},</span>
-        <span class="nx">vue</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">exports</span><span class="o">:</span> <span class="s2">&quot;Vue&quot;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
-<div id="5884095d-a5ed-4e58-b06f-de64c5728583"></div>
-<div class="output_subarea output_javascript ">
-<script type="text/javascript">
-var element = $('#5884095d-a5ed-4e58-b06f-de64c5728583');
-require.config({
-    paths: {
-        buttercms: "https://cdnjs.buttercms.com/buttercms-1.1.1.min",
-        vue: "https://cdn.jsdelivr.net/npm/vue/dist/vue"
-    },
-    shim: {
-        buttercms: {
-            exports: "ButterCMS"
-        },
-        vue: {
-            exports: "Vue"
-        }
-    }
-});
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/x-template&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;blog-home-template&quot;</span><span class="p">&gt;</span>
-    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;blog-home&quot;</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="p">{{</span> <span class="nx">page_title</span> <span class="p">}}</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
-        <span class="c">&lt;!--</span> <span class="nx">Create</span> <span class="sb">`v-for`</span> <span class="nx">and</span> <span class="nx">apply</span> <span class="nx">a</span> <span class="sb">`key`</span> <span class="k">for</span> <span class="nx">Vue</span><span class="p">.</span> <span class="nx">Here</span> <span class="nx">we</span> <span class="nx">are</span> <span class="nx">using</span> <span class="nx">a</span> <span class="nx">combination</span> <span class="k">of</span> <span class="nx">the</span> <span class="nx">slug</span> <span class="nx">and</span> <span class="nx">index</span><span class="p">.</span> <span class="o">--&gt;</span>
-        <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">v</span><span class="o">-</span><span class="k">for</span><span class="o">=</span><span class="s2">&quot;(post,index) in posts&quot;</span> <span class="o">:</span><span class="nx">key</span><span class="o">=</span><span class="s2">&quot;post.slug + &#39;_&#39; + index&quot;</span><span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="nx">article</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&quot;media&quot;</span><span class="o">&gt;</span>
-                <span class="o">&lt;</span><span class="nx">figure</span><span class="o">&gt;</span>
-                  <span class="c">&lt;!--</span> <span class="nx">Bind</span> <span class="nx">results</span> <span class="nx">using</span> <span class="nx">a</span> <span class="sb">`:`</span> <span class="o">--&gt;</span>
-                  <span class="c">&lt;!--</span> <span class="nx">Use</span> <span class="nx">a</span> <span class="sb">`v-if`</span><span class="o">/</span><span class="sb">`else`</span> <span class="k">if</span> <span class="nx">their</span> <span class="nx">is</span> <span class="nx">a</span> <span class="sb">`featured_image`</span> <span class="o">--&gt;</span>
-                  <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">v</span><span class="o">-</span><span class="k">if</span><span class="o">=</span><span class="s2">&quot;post.featured_image&quot;</span> <span class="o">:</span><span class="nx">src</span><span class="o">=</span><span class="s2">&quot;post.featured_image&quot;</span> <span class="nx">alt</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">&gt;</span>
-                  <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">v</span><span class="o">-</span><span class="k">else</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&quot;http://via.placeholder.com/250x250&quot;</span> <span class="nx">alt</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">&gt;</span>
-                <span class="o">&lt;</span><span class="err">/figure&gt;</span>
-                <span class="o">&lt;</span><span class="nx">h2</span><span class="o">&gt;</span><span class="p">{{</span> <span class="nx">post</span><span class="p">.</span><span class="nx">title</span> <span class="p">}}</span><span class="o">&lt;</span><span class="err">/h2&gt;</span>
-                <span class="o">&lt;</span><span class="nx">p</span><span class="o">&gt;</span><span class="p">{{</span> <span class="nx">post</span><span class="p">.</span><span class="nx">summary</span> <span class="p">}}</span><span class="o">&lt;</span><span class="err">/p&gt;</span>
-            <span class="o">&lt;</span><span class="err">/article&gt;</span>
-        <span class="o">&lt;</span><span class="err">/div&gt;</span>
-    <span class="o">&lt;</span><span class="err">/div&gt;</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<script type="text/x-template" id="blog-home-template">
-    <div id="blog-home">
-        <h1>{{ page_title }}</h1>
-        <!-- Create `v-for` and apply a `key` for Vue. Here we are using a combination of the slug and index. -->
-        <div v-for="(post,index) in posts" :key="post.slug + '_' + index">
-            <article class="media">
-                <figure>
-                  <!-- Bind results using a `:` -->
-                  <!-- Use a `v-if`/`else` if their is a `featured_image` -->
-                  <img v-if="post.featured_image" :src="post.featured_image" alt="">
-                  <img v-else src="http://via.placeholder.com/250x250" alt="">
-                </figure>
-                <h2>{{ post.title }}</h2>
-                <p>{{ post.summary }}</p>
-            </article>
-        </div>
-    </div>
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;vue-app&quot;</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">blog-home</span> <span class="na">:posts</span><span class="o">=</span><span class="s">&quot;blogPosts&quot;</span><span class="p">/&gt;</span>
-<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<div id="vue-app">
-  <blog-home :posts="blogPosts"/>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="nx">javascript</span>
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;buttercms&#39;</span><span class="p">,</span> <span class="s1">&#39;vue&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ButterCMS</span><span class="p">,</span> <span class="nx">Vue</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Vue</span><span class="p">.</span><span class="nx">version</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">butter</span> <span class="o">=</span> <span class="nx">Butter</span><span class="p">(</span><span class="s1">&#39;1b13611e144e11bbce5b484f4064e39638b223a1&#39;</span><span class="p">);</span>
-    
-    <span class="kd">var</span> <span class="nx">BlogHome</span> <span class="o">=</span> <span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;blog-home&#39;</span><span class="p">,</span> <span class="p">{</span>
-      <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;#blog-home-template&#39;</span><span class="p">,</span>
-      <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">data</span><span class="o">:</span> <span class="nb">Array</span><span class="p">,</span>
-      <span class="p">},</span>
-      <span class="nx">data</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="p">{</span>
-            <span class="nx">page_title</span><span class="o">:</span> <span class="s1">&#39;Blog&#39;</span><span class="p">,</span>
-            <span class="nx">posts</span><span class="o">:</span> <span class="p">[]</span>
-          <span class="p">}</span>
-      <span class="p">},</span>
-      <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
-          <span class="nx">getPosts</span><span class="p">()</span> <span class="p">{</span>
-            <span class="nx">butter</span><span class="p">.</span><span class="nx">post</span><span class="p">.</span><span class="nx">list</span><span class="p">({</span>
-              <span class="nx">page</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-              <span class="nx">page_size</span><span class="o">:</span> <span class="mi">10</span>
-            <span class="p">}).</span><span class="nx">then</span><span class="p">((</span><span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-              <span class="k">this</span><span class="p">.</span><span class="nx">posts</span> <span class="o">=</span> <span class="nx">res</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">data</span>
-            <span class="p">})</span>
-          <span class="p">}</span>
-      <span class="p">},</span>
-      <span class="nx">created</span><span class="p">()</span> <span class="p">{</span>
-          <span class="k">this</span><span class="p">.</span><span class="nx">getPosts</span><span class="p">()</span>
-      <span class="p">}</span>
-    <span class="p">})</span>
-
-    <span class="kd">var</span> <span class="nx">vueApp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-      <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#vue-app&#39;</span><span class="p">,</span>
-      <span class="nx">components</span><span class="o">:</span> <span class="p">{</span><span class="nx">BlogHome</span><span class="o">:</span> <span class="nx">BlogHome</span><span class="p">},</span>
-      <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
-          <span class="nx">blogPosts</span><span class="o">:</span> <span class="p">[]</span>
-      <span class="p">}</span>
-    <span class="p">})</span>
-
-<span class="p">});</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-
-<div id="9a0f8f04-ffdf-4f59-adc4-6b1c3c6f5ec0"></div>
-<div class="output_subarea output_javascript ">
-<script type="text/javascript">
-var element = $('#9a0f8f04-ffdf-4f59-adc4-6b1c3c6f5ec0');
-require(['buttercms', 'vue'], function(ButterCMS, Vue) {
-    console.log(Vue.version);
-    var butter = Butter('1b13611e144e11bbce5b484f4064e39638b223a1');
-    
-    var BlogHome = Vue.component('blog-home', {
-      template: '#blog-home-template',
-      props: {
-        data: Array,
-      },
-      data: function () {
-        return {
-            page_title: 'Blog',
-            posts: []
-          }
-      },
-      methods: {
-          getPosts() {
-            butter.post.list({
-              page: 1,
-              page_size: 10
-            }).then((res) => {
-              this.posts = res.data.data
-            })
-          }
-      },
-      created() {
-          this.getPosts()
-      }
-    })
-
-    var vueApp = new Vue({
-      el: '#vue-app',
-      components: {BlogHome: BlogHome},
-      data: {
-          blogPosts: []
-      }
-    })
-
-});
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-<span class="p">#</span><span class="nn">blog-home</span> <span class="nt">article</span><span class="p">{</span>
-    <span class="k">width</span><span class="p">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
-    <span class="k">float</span><span class="p">:</span> <span class="kc">left</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="p">#</span><span class="nn">blog-home</span> <span class="nt">article</span> <span class="nt">figure</span> <span class="nt">img</span><span class="p">{</span>
-    <span class="k">height</span><span class="p">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<style>
-#blog-home article{
-    width: 50%;
-    float: left;
+<p>The Lambda function needs the files for executing the function in a ZIP archive. This should contain both the function itself and it's dependencies. The <code>filename</code> links to the ZIP file that is created by my deployment script. The deployment script makes sure that the Python dependencies are being build for the Amazon image the Lambda function is running on instead of complying it for my Mac. When a Python library (such as <code>pandas</code>) is compiled for Mac it is likely not to work for the Amazon image because <code>pandas</code> depends on many C libraries which are OS specific.</p>
+<div class="highlight"><pre><span></span># Define the Lambda function
+resource &quot;aws_lambda_function&quot; &quot;lambda-function&quot; {
+  function_name = &quot;dev-lambda-looker-upload&quot;
+  description   = &quot;Lambda function for uploading a Looker view&quot;
+  handler       = &quot;<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">handler</span><span class="cp">}</span>&quot;
+  runtime       = &quot;<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">runtime</span><span class="cp">}</span>&quot;
+
+  filename = &quot;sources/lambda-functions/looker-upload/lambda.zip&quot;
+  role     = &quot;<span class="cp">${</span><span class="n">aws_iam_role</span><span class="o">.</span><span class="n">role</span><span class="o">-</span><span class="k">lambda</span><span class="o">.</span><span class="n">arn</span><span class="cp">}</span>&quot;
+
+  tags = {
+    Environment = &quot;Development&quot;
+    Owner       = &quot;Jitse-Jan&quot;
+  }
 }
-#blog-home article figure img{
-    height: 50px;
-}
-</style>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Result">Result<a class="anchor-link" href="#Result">&#182;</a></h2><p>To put everything together I have created a JSfiddle and embedded the result below.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;100%&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;500&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;//jsfiddle.net/z4hapsLt/13/embedded/&quot;</span> <span class="na">allowfullscreen</span><span class="o">=</span><span class="s">&quot;allowfullscreen&quot;</span> <span class="na">allowpaymentrequest</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </pre></div>
 
-    </div>
-</div>
-</div>
 
-<div class="output_wrapper">
-<div class="output">
+<p>The deployment script <code>deploy.sh</code> contains the following steps:</p>
+<ol>
+<li>Create packages for the Lambda functions</li>
+<li>Deploy the infrastructure</li>
+<li>Run the initial script</li>
+</ol>
+<p>It will first iterate through the Lambda function directory to find the different functions. For each function it will pick up the <code>requirements.txt</code> to determine the libraries to be installed. They will be installed inside the Docker container for the Lambda image and added to <code>lambda.zip</code>.  The <code>__pycache__</code>files are removed to reduce the size of the Lambda package, since its size is limited to 350 MB uncompressed. After adding the library artifacts to the ZIP file, the main function <code>lambda.py</code> is added to the ZIP file. We run the <code>terraform apply</code> to apply the changes to the infrastructure and finally run a Python script. The Python script is limited to running the Lambda functions.</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+<span class="c1"># deploy.sh</span>
+<span class="nb">export</span> <span class="nv">PKG_DIR</span><span class="o">=</span><span class="s2">&quot;python&quot;</span>
+<span class="nb">export</span> <span class="nv">PY_VERSION</span><span class="o">=</span><span class="s2">&quot;python3.7&quot;</span>
+
+<span class="nv">SCRIPT_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span> <span class="nb">cd</span> <span class="s2">&quot;</span><span class="k">$(</span> dirname <span class="s2">&quot;</span><span class="si">${</span><span class="nv">BASH_SOURCE</span><span class="p">[0]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">)</span><span class="s2">&quot;</span> <span class="o">&amp;&amp;</span> <span class="nb">pwd</span> <span class="k">)</span><span class="s2">&quot;</span>
+<span class="nv">LAMBDA_DIR</span><span class="o">=</span><span class="s2">&quot;sources/lambda-functions&quot;</span>
+<span class="nv">FULL_DIR</span><span class="o">=</span><span class="si">${</span><span class="nv">SCRIPT_DIR</span><span class="si">}</span>/<span class="si">${</span><span class="nv">LAMBDA_DIR</span><span class="si">}</span>
+<span class="k">for</span> fldr in <span class="si">${</span><span class="nv">FULL_DIR</span><span class="si">}</span>/*
+<span class="k">do</span>
+    <span class="nb">printf</span> <span class="s2">&quot;\033[1;35m&gt;&gt; Zipping </span><span class="si">${</span><span class="nv">fldr</span><span class="si">}</span><span class="s2"> \033[0m\n&quot;</span>
+    <span class="nb">cd</span> <span class="si">${</span><span class="nv">fldr</span><span class="si">}</span> <span class="o">&amp;&amp;</span> rm -rf <span class="si">${</span><span class="nv">PKG_DIR</span><span class="si">}</span> <span class="o">&amp;&amp;</span> mkdir -p <span class="si">${</span><span class="nv">PKG_DIR</span><span class="si">}</span>
+    docker run --rm -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/foo -w /foo lambci/lambda:build-<span class="si">${</span><span class="nv">PY_VERSION</span><span class="si">}</span> <span class="se">\</span>
+    pip install -r requirements.txt -t <span class="si">${</span><span class="nv">PKG_DIR</span><span class="si">}</span> --no-deps
+    <span class="nb">cd</span> <span class="si">${</span><span class="nv">fldr</span><span class="si">}</span>/<span class="si">${</span><span class="nv">PKG_DIR</span><span class="si">}</span>
+    find . -type d -name <span class="s1">&#39;__pycache__&#39;</span> -print0 <span class="p">|</span> xargs -0 rm -rf
+    rm <span class="si">${</span><span class="nv">fldr</span><span class="si">}</span>/lambda.zip <span class="o">&amp;&amp;</span> zip --quiet -r <span class="si">${</span><span class="nv">fldr</span><span class="si">}</span>/lambda.zip .
+    <span class="nb">cd</span> <span class="si">${</span><span class="nv">fldr</span><span class="si">}</span> <span class="o">&amp;&amp;</span> zip --quiet -r <span class="si">${</span><span class="nv">fldr</span><span class="si">}</span>/lambda.zip lambda.py
+    rm -rf <span class="si">${</span><span class="nv">fldr</span><span class="si">}</span>/<span class="si">${</span><span class="nv">PKG_DIR</span><span class="si">}</span>
+<span class="k">done</span>
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">SCRIPT_DIR</span><span class="si">}</span>
+
+terraform apply
+
+<span class="si">${</span><span class="nv">PY_VERSION</span><span class="si">}</span> initial_run.py
+</pre></div>
 
 
-<div class="output_area">
+<p>Note that for running the Python script <code>boto3</code> should be installed.</p>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; initial_run.py &quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">boto3</span>
 
-    <div class="prompt"></div>
+<span class="n">PREFIX</span> <span class="o">=</span> <span class="s1">&#39;dev-&#39;</span>
+
+<span class="n">lambda_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">&quot;lambda&quot;</span><span class="p">,</span> <span class="s2">&quot;eu-west-2&quot;</span><span class="p">)</span>
+
+<span class="c1"># Trigger the Lambda functions</span>
+<span class="k">for</span> <span class="n">function</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="n">fun</span><span class="p">[</span><span class="s2">&quot;FunctionName&quot;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">fun</span> <span class="ow">in</span> <span class="n">lambda_client</span><span class="o">.</span><span class="n">list_functions</span><span class="p">()[</span><span class="s2">&quot;Functions&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">fun</span><span class="p">[</span><span class="s2">&quot;FunctionName&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">PREFIX</span><span class="p">)</span>
+<span class="p">]:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;&gt; Running function `</span><span class="si">%s</span><span class="s2">`.&quot;</span> <span class="o">%</span> <span class="n">function</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">lambda_client</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">FunctionName</span><span class="o">=</span><span class="n">function</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;&lt; Response: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">response</span><span class="p">)</span>
+</pre></div>
 
 
-
-<div class="output_html rendered_html output_subarea ">
-<iframe width="100%" height="500" src="//jsfiddle.net/z4hapsLt/13/embedded/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
- 
-
-
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: 'center'," +
-        "    displayIndent: '0em'," +
-        "    showMathMenu: true," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['$','$'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        " linebreaks: { automatic: true, width: '95% container' }, " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
-        "    } " +
-        "}); ";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+<p>In order to run the Lambda function at a given interval, we use a cron expression in a CloudWatch event rule. We will run the schedule at midnight every day.</p>
+<div class="highlight"><pre><span></span># Define the CloudWatch schedule
+resource &quot;aws_cloudwatch_event_rule&quot; &quot;cloudwatch-event-rule-midnight-run&quot; {
+  name                = &quot;dev-cloudwatch-event-rule-midnight-run-looker-upload&quot;
+  description         = &quot;Cloudwatch event rule to run every day at midnight for the Looker upload.&quot;
+  schedule_expression = &quot;<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">schedule_midnight</span><span class="cp">}</span>&quot;
 }
-</script>
+</pre></div>
 
+
+<p>The Lambda function and CloudWatch event rule should be attached to get things working.</p>
+<div class="highlight"><pre><span></span># Define the CloudWatch target
+resource &quot;aws_cloudwatch_event_target&quot; &quot;cloudwatch-event-target&quot; {
+  rule = &quot;dev-cloudwatch-event-rule-midnight-run-looker-upload&quot;
+  arn  = &quot;arn:aws:lambda:<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">region</span><span class="cp">}</span>:848373817713:function:dev-lambda-looker-upload&quot;
+}
+</pre></div>
+
+
+<p>Finally we need to make sure that CloudWatch is allowed to run the Lambda function. </p>
+<div class="highlight"><pre><span></span># Define the Lambda permission to run Lambda from CloudWatch
+resource &quot;aws_lambda_permission&quot; &quot;lambda-permission-cloudwatch&quot; {
+  statement_id  = &quot;AllowExecutionFromCloudWatch&quot;
+  action        = &quot;lambda:InvokeFunction&quot;
+  function_name = &quot;dev-lambda-looker-upload&quot;
+  principal     = &quot;events.amazonaws.com&quot;
+  source_arn    = &quot;arn:aws:events:<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">region</span><span class="cp">}</span>:848373817713:rule/dev-cloudwatch-event-rule-midnight-run-looker-upload&quot;
+}
+</pre></div>
+
+
+<p>The result of the Lambda function will be written to a S3 bucket. In the definition we make sure the bucket is public and we enable versioning. </p>
+<div class="highlight"><pre><span></span># Define the public bucket
+resource &quot;aws_s3_bucket&quot; &quot;bucket-lambda-deployments&quot; {
+  bucket = &quot;dev-jwat&quot;
+  region = &quot;<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">region</span><span class="cp">}</span>&quot;
+  acl    = &quot;public-read&quot;
+
+  versioning = {
+    enabled = true
+  }
+
+  tags = {
+    Environment = &quot;Development&quot;
+    Owner       = &quot;Jitse-Jan&quot;
+  }
+}
+</pre></div>
+
+
+<p>Variables for a Terraform deployment can be stored in different ways. Terraform will automatically pick up all <code>*.tf</code> and <code>.tfvars</code> and add it to the deployment. Most commonly the two files <code>terraform.tfvars</code>and <code>variables.tf</code> are used. The first one defines the specific values of the parameters, while the latter often contains the type and the default. In this example it I have defined the following.  The value of  <code>region</code> is inside the first file, while the type <code>{}</code> (string) is defined in the second file.  </p>
+<p><code>terraform.tfvars</code></p>
+<div class="highlight"><pre><span></span>region = &quot;eu-west-2&quot;
+</pre></div>
+
+
+<p><code>variables.tf</code></p>
+<div class="highlight"><pre><span></span>variable &quot;handler&quot; {
+  default = &quot;lambda.handler&quot;
+}
+
+variable &quot;region&quot; {}
+
+variable &quot;runtime&quot; {
+  default = &quot;python3.7&quot;
+}
+
+variable &quot;schedule_midnight&quot; {
+  default = &quot;cron(0 0 * * ? *)&quot;
+}
+</pre></div>
+
+
+<h2>Execution</h2>
+<h3>Terraform initialization</h3>
+<div class="highlight"><pre><span></span>╭─ ~/code/terraform-aws-lambda-looker $
+╰─ terraform init
+
+Initializing provider plugins...
+- Checking <span class="k">for</span> available provider plugins on https://releases.hashicorp.com...
+- Downloading plugin <span class="k">for</span> provider <span class="s2">&quot;aws&quot;</span> <span class="o">(</span><span class="m">2</span>.10.0<span class="o">)</span>...
+
+The following providers <span class="k">do</span> not have any version constraints in configuration,
+so the latest version was installed.
+
+To prevent automatic upgrades to new major versions that may contain breaking
+changes, it is recommended to add <span class="nv">version</span> <span class="o">=</span> <span class="s2">&quot;...&quot;</span> constraints to the
+corresponding provider blocks in configuration, with the constraint strings
+suggested below.
+
+* provider.aws: <span class="nv">version</span> <span class="o">=</span> <span class="s2">&quot;~&gt; 2.10&quot;</span>
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running <span class="s2">&quot;terraform plan&quot;</span> to see
+any changes that are required <span class="k">for</span> your infrastructure. All Terraform commands
+should now work.
+
+If you ever <span class="nb">set</span> or change modules or backend configuration <span class="k">for</span> Terraform,
+rerun this <span class="nb">command</span> to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to <span class="k">do</span> so <span class="k">if</span> necessary.
+</pre></div>
+
+
+<h3>Terraform plan</h3>
+<div class="highlight"><pre><span></span>╭─ ~/code/terraform-aws-lambda-looker $
+╰─ terraform plan
+Refreshing Terraform state in-memory prior to plan...
+The refreshed state will be used to calculate this plan, but will not be
+persisted to <span class="nb">local</span> or remote state storage.
+
+
+------------------------------------------------------------------------
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  + aws_cloudwatch_event_rule.cloudwatch-event-rule-midnight-run
+      id:                             &lt;computed&gt;
+      arn:                            &lt;computed&gt;
+      description:                    <span class="s2">&quot;Cloudwatch event rule to run every day at midnight for the Looker upload.&quot;</span>
+      is_enabled:                     <span class="s2">&quot;true&quot;</span>
+      name:                           <span class="s2">&quot;dev-cloudwatch-event-rule-midnight-run-looker-upload&quot;</span>
+      schedule_expression:            <span class="s2">&quot;cron(0 0 * * ? *)&quot;</span>
+
+  + aws_cloudwatch_event_target.cloudwatch-event-target
+      id:                             &lt;computed&gt;
+      arn:                            <span class="s2">&quot;arn:aws:lambda:eu-west-1:848373817713:function:dev-lambda-looker-upload&quot;</span>
+      rule:                           <span class="s2">&quot;dev-cloudwatch-event-rule-midnight-run&quot;</span>
+      target_id:                      &lt;computed&gt;
+
+  + aws_iam_role.role-lambda
+      id:                             &lt;computed&gt;
+      arn:                            &lt;computed&gt;
+      assume_role_policy:             <span class="s2">&quot;{\n  \&quot;Version\&quot;: \&quot;2012-10-17\&quot;,\n  \&quot;Statement\&quot;: [\n    {\n      \&quot;Action\&quot;: \&quot;sts:AssumeRole\&quot;,\n      \&quot;Principal\&quot;: {\n        \&quot;Service\&quot;: \&quot;lambda.amazonaws.com\&quot;\n      },\n      \&quot;Effect\&quot;: \&quot;Allow\&quot;,\n      \&quot;Sid\&quot;: \&quot;\&quot;\n    }\n  ]\n}\n&quot;</span>
+      create_date:                    &lt;computed&gt;
+      description:                    <span class="s2">&quot;Role to execute all Lambda related tasks.&quot;</span>
+      force_detach_policies:          <span class="s2">&quot;false&quot;</span>
+      max_session_duration:           <span class="s2">&quot;3600&quot;</span>
+      name:                           <span class="s2">&quot;dev-jwat-role-lambda&quot;</span>
+      path:                           <span class="s2">&quot;/&quot;</span>
+      unique_id:                      &lt;computed&gt;
+
+  + aws_iam_role_policy.policy-lambda
+      id:                             &lt;computed&gt;
+      name:                           <span class="s2">&quot;dev-jwat-policy-lambda&quot;</span>
+      policy:                         <span class="s2">&quot;{\n  \&quot;Version\&quot;: \&quot;2012-10-17\&quot;,\n  \&quot;Statement\&quot;: [\n    {\n      \&quot;Effect\&quot;: \&quot;Allow\&quot;,\n      \&quot;Action\&quot;: [\n        \&quot;lambda:InvokeFunction\&quot;,\n        \&quot;logs:CreateLogGroup\&quot;,\n        \&quot;logs:CreateLogStream\&quot;,\n        \&quot;logs:PutLogEvents\&quot;,\n        \&quot;ssm:GetParameter\&quot;,\n        \&quot;s3:PutObject\&quot;,\n        \&quot;s3:ListBucket\&quot;,\n        \&quot;s3:GetObject\&quot;\n      ],\n      \&quot;Resource\&quot;: [\n        \&quot;*\&quot;\n      ]\n    }\n  ]\n}\n&quot;</span>
+      role:                           <span class="s2">&quot;</span><span class="si">${</span><span class="nv">aws_iam_role</span><span class="p">.role-lambda.id</span><span class="si">}</span><span class="s2">&quot;</span>
+
+  + aws_lambda_function.lambda-function
+      id:                             &lt;computed&gt;
+      arn:                            &lt;computed&gt;
+      description:                    <span class="s2">&quot;Lambda function for uploading a Looker view&quot;</span>
+      filename:                       <span class="s2">&quot;sources/lambda-functions/looker-upload/lambda.zip&quot;</span>
+      function_name:                  <span class="s2">&quot;dev-lambda-looker-upload&quot;</span>
+      handler:                        <span class="s2">&quot;lambda.handler&quot;</span>
+      invoke_arn:                     &lt;computed&gt;
+      last_modified:                  &lt;computed&gt;
+      memory_size:                    <span class="s2">&quot;128&quot;</span>
+      publish:                        <span class="s2">&quot;false&quot;</span>
+      qualified_arn:                  &lt;computed&gt;
+      reserved_concurrent_executions: <span class="s2">&quot;-1&quot;</span>
+      role:                           <span class="s2">&quot;</span><span class="si">${</span><span class="nv">aws_iam_role</span><span class="p">.role-lambda.arn</span><span class="si">}</span><span class="s2">&quot;</span>
+      runtime:                        <span class="s2">&quot;python3.7&quot;</span>
+      source_code_hash:               &lt;computed&gt;
+      source_code_size:               &lt;computed&gt;
+      tags.%:                         <span class="s2">&quot;2&quot;</span>
+      tags.Environment:               <span class="s2">&quot;Development&quot;</span>
+      tags.Owner:                     <span class="s2">&quot;Jitse-Jan&quot;</span>
+      timeout:                        <span class="s2">&quot;3&quot;</span>
+      tracing_config.#:               &lt;computed&gt;
+      version:                        &lt;computed&gt;
+
+  + aws_lambda_permission.lambda-permission-cloudwatch
+      id:                             &lt;computed&gt;
+      action:                         <span class="s2">&quot;lambda:InvokeFunction&quot;</span>
+      function_name:                  <span class="s2">&quot;dev-lambda-looker-upload&quot;</span>
+      principal:                      <span class="s2">&quot;events.amazonaws.com&quot;</span>
+      source_arn:                     <span class="s2">&quot;arn:aws:events:eu-west-1:848373817713:rule/dev-cloudwatch-event-rule-midnight-run-looker-upload&quot;</span>
+      statement_id:                   <span class="s2">&quot;AllowExecutionFromCloudWatch&quot;</span>
+
+  + aws_s3_bucket.bucket-lambda-deployments
+      id:                             &lt;computed&gt;
+      acceleration_status:            &lt;computed&gt;
+      acl:                            <span class="s2">&quot;public-read&quot;</span>
+      arn:                            &lt;computed&gt;
+      bucket:                         <span class="s2">&quot;dev-jwat&quot;</span>
+      bucket_domain_name:             &lt;computed&gt;
+      bucket_regional_domain_name:    &lt;computed&gt;
+      force_destroy:                  <span class="s2">&quot;false&quot;</span>
+      hosted_zone_id:                 &lt;computed&gt;
+      region:                         <span class="s2">&quot;eu-west-2&quot;</span>
+      request_payer:                  &lt;computed&gt;
+      tags.%:                         <span class="s2">&quot;2&quot;</span>
+      tags.Environment:               <span class="s2">&quot;Development&quot;</span>
+      tags.Owner:                     <span class="s2">&quot;Jitse-Jan&quot;</span>
+      versioning.#:                   <span class="s2">&quot;1&quot;</span>
+      versioning.0.enabled:           <span class="s2">&quot;true&quot;</span>
+      versioning.0.mfa_delete:        <span class="s2">&quot;false&quot;</span>
+      website_domain:                 &lt;computed&gt;
+      website_endpoint:               &lt;computed&gt;
+
+
+Plan: <span class="m">7</span> to add, <span class="m">0</span> to change, <span class="m">0</span> to destroy.
+
+------------------------------------------------------------------------
+
+Note: You didn<span class="s1">&#39;t specify an &quot;-out&quot; parameter to save this plan, so Terraform</span>
+<span class="s1">can&#39;</span>t guarantee that exactly these actions will be performed <span class="k">if</span>
+<span class="s2">&quot;terraform apply&quot;</span> is subsequently run.
+</pre></div>
+
+
+<h3>Terraform deploy</h3>
+<div class="highlight"><pre><span></span>╭─ ~/code/terraform-aws-lambda-looker $ 
+╰─ ./deploy.sh
+<span class="o">[</span><span class="m">1</span>/3<span class="o">]</span> Creating packages <span class="k">for</span> Lambda
+&gt; Checking <span class="k">for</span> Lambda functions in /Users/j.waterschoot/code/terraform-aws-lambda-looker/sources/lambda-functions
+&gt;&gt; Zipping /Users/j.waterschoot/code/terraform-aws-lambda-looker/sources/lambda-functions/looker-upload
+Collecting <span class="nv">certifi</span><span class="o">==</span><span class="m">2019</span>.3.9 <span class="o">(</span>from -r requirements.txt <span class="o">(</span>line <span class="m">1</span><span class="o">))</span>
+  Downloading https://files.pythonhosted.org/packages/60/75/f692a584e85b7eaba0e03827b3d51f45f571c2e793dd731e598828d380aa/certifi-2019.3.9-py2.py3-none-any.whl <span class="o">(</span>158kB<span class="o">)</span>
+Collecting <span class="nv">lookerapi</span><span class="o">==</span><span class="m">3</span>.0.0 <span class="o">(</span>from -r requirements.txt <span class="o">(</span>line <span class="m">2</span><span class="o">))</span>
+  Downloading https://files.pythonhosted.org/packages/5e/b5/49ecd3c4c86803e62e24ee206681e64820e24ab289b3d8496db98a073c60/lookerapi-3.0.0-py3-none-any.whl <span class="o">(</span>687kB<span class="o">)</span>
+Collecting python-dateutil<span class="o">==</span><span class="m">2</span>.8.0 <span class="o">(</span>from -r requirements.txt <span class="o">(</span>line <span class="m">3</span><span class="o">))</span>
+  Downloading https://files.pythonhosted.org/packages/41/17/c62faccbfbd163c7f57f3844689e3a78bae1f403648a6afb1d0866d87fbb/python_dateutil-2.8.0-py2.py3-none-any.whl <span class="o">(</span>226kB<span class="o">)</span>
+Collecting <span class="nv">six</span><span class="o">==</span><span class="m">1</span>.12.0 <span class="o">(</span>from -r requirements.txt <span class="o">(</span>line <span class="m">4</span><span class="o">))</span>
+  Downloading https://files.pythonhosted.org/packages/73/fb/00a976f728d0d1fecfe898238ce23f502a721c0ac0ecfedb80e0d88c64e9/six-1.12.0-py2.py3-none-any.whl
+Collecting <span class="nv">urllib3</span><span class="o">==</span><span class="m">1</span>.24.2 <span class="o">(</span>from -r requirements.txt <span class="o">(</span>line <span class="m">5</span><span class="o">))</span>
+  Downloading https://files.pythonhosted.org/packages/df/1c/59cca3abf96f991f2ec3131a4ffe72ae3d9ea1f5894abe8a9c5e3c77cfee/urllib3-1.24.2-py2.py3-none-any.whl <span class="o">(</span>131kB<span class="o">)</span>
+Installing collected packages: certifi, lookerapi, python-dateutil, six, urllib3
+Successfully installed certifi-2019.3.9 lookerapi-3.0.0 python-dateutil-2.8.0 six-1.12.0 urllib3-1.24.2
+You are using pip version <span class="m">19</span>.0.3, however version <span class="m">19</span>.1.1 is available.
+You should consider upgrading via the <span class="s1">&#39;pip install --upgrade pip&#39;</span> command.
+<span class="o">[</span><span class="m">2</span>/3<span class="o">]</span> Deploying on AWS
+aws_s3_bucket.bucket-lambda-deployments: Refreshing state... <span class="o">(</span>ID: dev-jwat<span class="o">)</span>
+aws_cloudwatch_event_target.cloudwatch-event-target: Refreshing state... <span class="o">(</span>ID: dev-cloudwatch-event-rule-midnight-run-...d-terraform-20190513083217509800000001<span class="o">)</span>
+aws_iam_role.role-lambda: Refreshing state... <span class="o">(</span>ID: dev-jwat-role-lambda<span class="o">)</span>
+aws_lambda_permission.lambda-permission-cloudwatch: Refreshing state... <span class="o">(</span>ID: AllowExecutionFromCloudWatch<span class="o">)</span>
+aws_cloudwatch_event_rule.cloudwatch-event-rule-midnight-run: Refreshing state... <span class="o">(</span>ID: dev-cloudwatch-event-rule-midnight-run-looker-upload<span class="o">)</span>
+aws_lambda_function.lambda-function: Refreshing state... <span class="o">(</span>ID: dev-lambda-looker-upload<span class="o">)</span>
+aws_iam_role_policy.policy-lambda: Refreshing state... <span class="o">(</span>ID: dev-jwat-role-lambda:dev-jwat-policy-lambda<span class="o">)</span>
+
+Apply complete! Resources: <span class="m">0</span> added, <span class="m">0</span> changed, <span class="m">0</span> destroyed.
+<span class="o">[</span><span class="m">3</span>/3<span class="o">]</span> Executing the initial run script
+&gt; Running <span class="k">function</span> <span class="sb">`</span>dev-lambda-looker-upload<span class="sb">`</span>.
+&lt; Response: <span class="o">{</span><span class="s1">&#39;ResponseMetadata&#39;</span>: <span class="o">{</span><span class="s1">&#39;RequestId&#39;</span>: <span class="s1">&#39;1d492f55-78c4-47c2-921a-a27cf784d4b0&#39;</span>, <span class="s1">&#39;HTTPStatusCode&#39;</span>: <span class="m">200</span>, <span class="s1">&#39;HTTPHeaders&#39;</span>: <span class="o">{</span><span class="s1">&#39;date&#39;</span>: <span class="s1">&#39;Mon, 13 May 2019 08:40:36 GMT&#39;</span>, <span class="s1">&#39;content-type&#39;</span>: <span class="s1">&#39;application/json&#39;</span>, <span class="s1">&#39;content-length&#39;</span>: <span class="s1">&#39;123&#39;</span>, <span class="s1">&#39;connection&#39;</span>: <span class="s1">&#39;keep-alive&#39;</span>, <span class="s1">&#39;x-amzn-requestid&#39;</span>: <span class="s1">&#39;1d492f55-78c4-47c2-921a-a27cf784d4b0&#39;</span>, <span class="s1">&#39;x-amz-function-error&#39;</span>: <span class="s1">&#39;Unhandled&#39;</span>, <span class="s1">&#39;x-amzn-remapped-content-length&#39;</span>: <span class="s1">&#39;0&#39;</span>, <span class="s1">&#39;x-amz-executed-version&#39;</span>: <span class="s1">&#39;$LATEST&#39;</span>, <span class="s1">&#39;x-amzn-trace-id&#39;</span>: <span class="s1">&#39;root=1-5cd92d84-d306a2215d6228179c96cb04;sampled=0&#39;</span><span class="o">}</span>, <span class="s1">&#39;RetryAttempts&#39;</span>: <span class="m">0</span><span class="o">}</span>, <span class="s1">&#39;StatusCode&#39;</span>: <span class="m">200</span>, <span class="s1">&#39;FunctionError&#39;</span>: <span class="s1">&#39;Unhandled&#39;</span>, <span class="s1">&#39;ExecutedVersion&#39;</span>: <span class="s1">&#39;$LATEST&#39;</span>, <span class="s1">&#39;Payload&#39;</span>: &lt;botocore.response.StreamingBody object at 0x10ea5ceb8&gt;<span class="o">}</span>
+</pre></div>
+
+
+<h2>Validation</h2>
+<h3>Lambda functions</h3>
+<p><img alt="Lambda function overview" src="./images/lambda_overview.png"></p>
+<h3>Lambda function detail</h3>
+<p><img alt="Lambda function" src="./images/lambda_function_overview.png"></p>
+<h3>Cloudwatch event</h3>
+<p><img alt="Cloudwatch event" src="./images/cloudwatch_event.png"></p>
+<h3>Cloudwatch rule</h3>
+<p><img alt="Cloudwatch rule" src="./images/cloudwatch_rule.png"></p>
+<h2>Conclusion</h2>
+<p>It is straightforward to deploy a Lambda function using Terraform and keep the infrastructure in version control. See <a href="https://github.com/jitsejan/terraform-aws-lambda-looker">GitHub</a> for the final result.</p>
         </div>
 
         <div class="meta">
             <div>
-                    <a href="./tag/notebook.html" class="tag">notebook</a>
-                    <a href="./tag/python.html" class="tag">Python</a>
-                    <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-                    <a href="./tag/vuejs.html" class="tag">VueJS</a>
-                    <a href="./tag/buttercms.html" class="tag">ButterCMS</a>
-                    <a href="./tag/javascript.html" class="tag">javascript</a>
+                    <a href="./tag/devops.html" class="tag">DevOps</a>
+                    <a href="./tag/aws.html" class="tag">AWS</a>
+                    <a href="./tag/data-engineer.html" class="tag">data engineer</a>
+                    <a href="./tag/terraformn.html" class="tag">Terraformn</a>
+                    <a href="./tag/lambda.html" class="tag">Lambda</a>
+                    <a href="./tag/iac.html" class="tag">IaC</a>
             </div>
         </div>
     </article>
