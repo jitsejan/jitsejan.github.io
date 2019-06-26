@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Home | JJ's World</title>
+        <title>Creating an Ansible playbook to provision my Ubuntu VPS | JJ's World</title>
 
 
 <style type="text/css">
@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="../theme/css/main.css?cb94e6e8">
+            <link rel="stylesheet" href="./theme/css/main.css?cb94e6e8">
 
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -11851,293 +11851,368 @@ jQuery(document).ready(function($) {
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
-                <li><a href="../pages/python-cheatsheet">Python cheatsheet</a></li>
+                <li><a href="./pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
+                <li><a href="./pages/python-cheatsheet">Python cheatsheet</a></li>
             </ul>
         </div><!-- .navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container index">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-9">
-  <article>
-    <header>
-      <h2><a href="../mount-amazon-ec-local-folder.html">Mount Amazon EC as local folder</a></h2>
-      <time datetime="" title="2016-07-29T19:07:00+01:00" pubdate>Fri 29 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span>jitsejan@MBP $ sshfs ubuntu@ec2-34-56-7-89.eu-central-1.compute.amazonaws.com:/home/ubuntu/ ~/AmazonEC2/ -oauto_cache,reconnect,defer_permissions,noappledouble,negative_vncache
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../simple-webcrawling-python.html">Simple webcrawling in Python</a></h2>
-      <time datetime="" title="2016-07-28T12:45:00+01:00" pubdate>Thu 28 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Simple webcrawling in Python</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../simple-webcrawling-python.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/python.html" class="tag">python</a>
-            <a href="../tag/webcrawl.html" class="tag">webcrawl</a>
-            <a href="../tag/lxml.html" class="tag">lxml</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../create-big-files-with-dd.html">Create big files with dd</a></h2>
-      <time datetime="" title="2016-07-28T10:45:00+01:00" pubdate>Thu 28 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Use dd in Unix to create files with a size of 2.7 GB.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/ksh</span>
-<span class="nv">dir</span><span class="o">=</span>/this/is/my/outputdir/
-<span class="nv">numGig</span><span class="o">=</span><span class="m">2</span>.7
-<span class="nv">factor</span><span class="o">=</span><span class="m">1024</span>
-<span class="nv">memLimit</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$numGig</span>*<span class="nv">$factor</span>*<span class="nv">$factor</span>*<span class="nv">$factor</span> <span class="p">|</span> bc<span class="k">)</span>
-<span class="nb">cd</span> <span class="nv">$dir</span>
-<span class="k">for</span> i in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span> <span class="m">11</span> <span class="m">12</span> <span class="m">13</span> <span class="m">14</span> <span class="p">;</span> <span class="k">do</span>
-   dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>dummy_<span class="nv">$i</span>.xml <span class="nv">count</span><span class="o">=</span><span class="m">204800</span> <span class="nv">bs</span><span class="o">=</span><span class="nv">$factor</span>
-<span class="k">done</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../most-used-history-command.html">Find most used history command</a></h2>
-      <time datetime="" title="2016-07-27T16:55:00+01:00" pubdate>Wed 27 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span>$ awk <span class="s1">&#39;{print $1}&#39;</span> ~/.bash_history <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -n
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-
-  <nav class="pagination row">
-    <div class="col-xs-6 left">
-    </div>
-    <div class="col-xs-6 right">
-        <a class="next" href="../category/posts8.html">Future &#8594;</a>
-    </div>
-  </nav>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-3">
-<aside class="page-sidebar">
-    <nav class="widget" id="sidebar-about">
-        <div class="row img-div">
-            <img src="/theme/images/JJ_Montreal.png" />
-        </div>
-        <div class="row">
-        <p>I am a Data Engineer currently working for MarketInvoice in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
-<p>
-While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
-for visualizations as for modern web applications it is the go-to language. 
-</p>
-<p>
-I am using this page as a portfolio and showcase, but mainly as a cheatsheet. That is why you will mainly find shell commands, short scripts or notebooks just for myself to not reinvent the wheel.
-</p>
-
-        </div>  
-    </nav>
-    <hr/>
-    <nav class="widget">
-        <ul class="tagcloud">
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/pandas.html">
-            Pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/vps.html">
-            VPS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ether.html">
-            ether
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/azure.html">
-            Azure
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        </ul>
-    </nav>
-    <hr/>
+<div class="container post">
     <div class="row">
-        <div class="col-md-12">
-            <ul class="social-list">
-                    <li><a href="http://www.flickr.com/photos/jitsejan" title="Flickr" rel="me" target="new"><i class="fa fa-1x fa-flickr"></i></a></li>
-                    <li><a href="https://play.spotify.com/user/jitsejan" title="Spotify" rel="me" target="new"><i class="fa fa-1x fa-spotify"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jitsejan" title="LinkedIn" rel="me" target="new"><i class="fa fa-1x fa-linkedin"></i></a></li>
-                    <li><a href="http://twitter.com/jitsejan" title="Twitter" rel="me" target="new"><i class="fa fa-1x fa-twitter"></i></a></li>
-                    <li><a href="http://www.github.com/jitsejan" title="Github" rel="me" target="new"><i class="fa fa-1x fa-github"></i></a></li>
-                    <li><a href="http://bitbucket.org/jitsejan" title="Bitbucket" rel="me" target="new"><i class="fa fa-1x fa-bitbucket"></i></a></li>
-                    <li><a href="http://bl.ocks.org/jitsejan" title="Blocks.org" rel="me" target="new"><i class="fa fa-1x fa-bar-chart"></i></a></li>
-                    <li><a href="https://hub.docker.com/r/jitsejan" title="Docker" rel="me" target="new"><i class="fa fa-1x fa-docker"></i></a></li>
-            </ul>
-        </div>
+        <a href="javascript:history.back()">Go back</a>
     </div>
-</aside>  </div>
-  
-  </div>
+    <article>
+        <header>
+            <h1>Creating an Ansible playbook to provision my Ubuntu VPS</h1>
+            <time datetime="article.date.isoformat()" pubdate>Wed 26 June 2019</time>
+        </header>
 
+        <div class="article_content">
+            <h1>Provisioning my VPS with Ansible</h1>
+<h2>Objective</h2>
+<p>Clean installation on Ubuntu 18.04 with the following requirements:</p>
+<ul>
+<li>Create user account for myself from the root account</li>
+<li>Install basic applications (<code>curl</code>, <code>java</code>, etc)</li>
+<li>Install <a href="https://jupyter.org/">Jupyter</a> notebooks</li>
+<li>Install <a href="https://spark.apache.org/">Spark</a></li>
+<li>Install <a href="https://www.nginx.com/">nginx</a></li>
+</ul>
+<h2>Introduction</h2>
+<p>The goal is to provision my VPS at SSDNodes with all the tools I need to develop Spark and Python code in Jupyter notebooks. While in previous installations I have been using both <a href="https://github.com/jitsejan/notebooks">Docker</a> and <a href="https://github.com/jitsejan/kubernetes-vps">Kubernetes</a> to make it easy to spin up the Spark notebooks, it would still require me to install Docker, Kubernetes and all relevant software after manually creating the user account and doing all the <em>boring</em> work. Plus, installation of Kubernetes is <strong>always</strong> a challenge and a lengthy process. Since I don't need any containerization now, I would expect that a clean installation without Docker and Kubernetes should be more than enough to get my development environment up and running. </p>
+<p>At work I have introduced <a href="https://www.terraform.io">Terraform</a> to deploy our data platform on <a href="https://aws.amazon.com">AWS</a> (and a few resources on <a href="https://azure.microsoft.com">Azure</a>). While Terraform works great for setting up the services for all our data pipelines, APIs and machine learning models, I wanted to understand more about <a href="https://www.ansible.com/">Ansible</a> to see if it would be useful too. In short, Terraform should be used for setting up resources and services and Ansible should be used to provision single (or multiple) instances. For example, you would create an EC2 instance automatically with Terraform and install all relevant applications on the EC2 machine with Ansible. </p>
+<p><img src="https://getvectorlogo.com/wp-content/uploads/2019/01/red-hat-ansible-vector-logo.png" /></p>
+<blockquote>
+<p><strong>WHY ANSIBLE?</strong><br>
+Working in IT, you're likely doing the same tasks over and over. What if you could solve problems once and then automate your solutions going forward? Ansible is here to help.  </p>
+</blockquote>
+<h2>Preparation</h2>
+<p>Installation of Ansible on Mac (and Linux) is easy with <a href="https://brew.sh">Brew</a>.</p>
+<div class="highlight"><pre><span></span>$ brew install ansible
+</pre></div>
+
+
+<p>After installation we can verify if Ansible is available by checking the version. In my case I have installed version <strong>2.8.1</strong>. </p>
+<div class="highlight"><pre><span></span>$ ansible --version
+ansible <span class="m">2</span>.8.1
+  config <span class="nv">file</span> <span class="o">=</span> /Users/jitsejan/.ansible.cfg
+  configured module search <span class="nv">path</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;/Users/jitsejan/.ansible/plugins/modules&#39;</span>, <span class="s1">&#39;/usr/share/ansible/plugins/modules&#39;</span><span class="o">]</span>
+  ansible python module <span class="nv">location</span> <span class="o">=</span> /usr/local/Cellar/ansible/2.8.1_1/libexec/lib/python3.7/site-packages/ansible
+  executable <span class="nv">location</span> <span class="o">=</span> /usr/local/bin/ansible
+  python <span class="nv">version</span> <span class="o">=</span> <span class="m">3</span>.7.3 <span class="o">(</span>default, Jun <span class="m">19</span> <span class="m">2019</span>, <span class="m">07</span>:38:49<span class="o">)</span> <span class="o">[</span>Clang <span class="m">10</span>.0.1 <span class="o">(</span>clang-1001.0.46.4<span class="o">)]</span>
+</pre></div>
+
+
+<p>Finally, you need to make sure the machine you want to provision is defined in the Ansible configuration <code>/etc/ansible/hosts</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">[ssdnodes]</span>
+<span class="na">development.jitsejan.com</span>
+</pre></div>
+
+
+<p>To make it easier to connect to the host, it is smart to create a key pair on the local computer and copy it to the host. This way you do not need to provide login details when you run the Ansible tool. Create the keypair with <code>ssh-keygen</code>:</p>
+<div class="highlight"><pre><span></span>$ ssh-keygen -t rsa -b <span class="m">4096</span>
+</pre></div>
+
+
+<p>Copy the key to the host to be deployed. It will ask you to provide the password for the root, but it will be the only time we need the password.</p>
+<div class="highlight"><pre><span></span>$ ssh-copy-id root@development.jitsejan.com
+</pre></div>
+
+
+<p>And that is all there is to it to get started with Ansible.</p>
+<h2>Structure</h2>
+<p>The directory of the repository at the time of writing looks like the following. Please note that this <em>might</em> not be the best structure, but it gave me a good head-start to work with the file structure, local and global variables and templating.</p>
+<div class="highlight"><pre><span></span>├── README.md
+├── provision_vps.yaml
+└── roles
+    ├── base
+    │   ├── tasks
+    │   │   └── main.yml
+    │   └── vars
+    │       └── main.yml
+    ├── common
+    │   └── tasks
+    │       └── main.yml
+    ├── jupyter
+    │   ├── defaults
+    │   │   └── main.yml
+    │   ├── files
+    │   │   ├── custom.css
+    │   │   └── requirements.txt
+    │   ├── tasks
+    │   │   └── main.yml
+    │   ├── templates
+    │   │   ├── etc
+    │   │   │   └── systemd
+    │   │   │       └── system
+    │   │   │           └── jupyter.service
+    │   │   └── jupyterhub_config.py.j2
+    │   └── vars
+    │       └── main.yml
+    ├── nginx
+    │   ├── tasks
+    │   │   └── main.yml
+    │   └── templates
+    │       └── nginx.conf.j2
+    └── spark
+        ├── tasks
+        │   └── main.yml
+        └── vars
+            └── main.yml
+</pre></div>
+
+
+<h2>Breakdown</h2>
+<h3>Playbook</h3>
+<p>The core of an Ansible deployment is a playbook (or multiple). The playbook contains all the different items that should be deployed. In Ansible these items are divided by <em>roles</em>, each role can relate to a tool, a service, a user or anything else that makes sense to group together. In my repository I have called the playbook `provision_vps.yaml'. The file is small, since I have used multiple roles to be loaded when running the playbook. </p>
+<p>The first part of the file contains the host and the user you want to run the deployment with. I have only specified one host, since I only have one VPS to deploy. </p>
+<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">hosts</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ssdnodes</span>
+  <span class="l l-Scalar l-Scalar-Plain">remote_user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+</pre></div>
+
+
+<p>For each host, we can define <em>global</em> variables by defining them in the playbook under <code>vars</code>. This makes the variables available in all the different roles. If the variable is only to be used within a role, it is smarter to define it at the role level. In my case I want to deploy a Jupyter notebook and therefore I should define the parameters on playbook level, so the variables become available for both the Jupyter and nginx installation. I define the domain, the name and port to host the notebook from, and I supply the location of the SSL certificate and key.</p>
+<div class="highlight"><pre><span></span>  <span class="l l-Scalar l-Scalar-Plain">vars</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">jupyter_domain</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev.jitsejan.com</span>
+    <span class="l l-Scalar l-Scalar-Plain">jupyter_name</span><span class="p p-Indicator">:</span> <span class="s">&#39;dev&#39;</span>
+    <span class="l l-Scalar l-Scalar-Plain">jupyter_port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8181</span>
+    <span class="l l-Scalar l-Scalar-Plain">key_out</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/jupyter/.jupyter/jupyter.key</span>
+    <span class="l l-Scalar l-Scalar-Plain">cert_out</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/jupyter/.jupyter/jupyter.cert</span>
+</pre></div>
+
+
+<p>If you want to prompt the user for input for certain variables you can use <code>vars_prompt</code>. In my playbook I want to ask the user (me) for the username and password to create an account on the Ubuntu box for me. It will ask to confirm both the user and password before it continues to run the playbook.</p>
+<div class="highlight"><pre><span></span>  <span class="l l-Scalar l-Scalar-Plain">vars_prompt</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">&quot;user_name&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">prompt</span><span class="p p-Indicator">:</span> <span class="s">&quot;Enter</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">new</span><span class="nv"> </span><span class="s">user&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">private</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+      <span class="l l-Scalar l-Scalar-Plain">confirm</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">&quot;user_password&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">prompt</span><span class="p p-Indicator">:</span> <span class="s">&quot;Enter</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">password</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">new</span><span class="nv"> </span><span class="s">user&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">private</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+      <span class="l l-Scalar l-Scalar-Plain">encrypt</span><span class="p p-Indicator">:</span> <span class="s">&quot;sha512_crypt&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">confirm</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+      <span class="l l-Scalar l-Scalar-Plain">salt_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">7</span>
+</pre></div>
+
+
+<p>Finally, I define the <code>roles</code> to be executed as part of the playbook. This is the part where you can easily add new roles when you want to add more services to your machine.</p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">roles</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">base</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">common</span>
+  <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> 
+      <span class="nv">role</span><span class="p p-Indicator">:</span> <span class="s">&#39;spark&#39;</span><span class="p p-Indicator">,</span>
+      <span class="nv">spark_version</span><span class="p p-Indicator">:</span> <span class="s">&#39;2.2.1&#39;</span><span class="p p-Indicator">,</span>
+      <span class="nv">hadoop_version</span><span class="p p-Indicator">:</span> <span class="s">&#39;2.7&#39;</span>
+    <span class="p p-Indicator">}</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
+  <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span>
+      <span class="nv">role</span><span class="p p-Indicator">:</span> <span class="s">&#39;nginx&#39;</span><span class="p p-Indicator">,</span>
+      <span class="nv">app_ip</span><span class="p p-Indicator">:</span> <span class="nv">localhost</span><span class="p p-Indicator">,</span>
+    <span class="p p-Indicator">}</span>
+</pre></div>
+
+
+<p>As you can see, you can call the role as simple parameter, or call the role by specifying the role and any additional variable. For the Spark role we supply the Spark and Hadoop version. For the Nginx role we indicate that our app will only run on localhost. (We use Nginx as proxy to make it accessible on a public address).</p>
+<h3>Roles</h3>
+<p>I have divided the roles along the way and I do not guarantee this is the most logical way of doing things. It makes sense for me now, so I am just going to go with it. The goal is to have building blocks to make the final application run smoothly with all dependencies in the right place.</p>
+<h4>Base role</h4>
+<p>The first role I created is the <strong>base</strong> role which will take care of the following:
+- Check if all necessary packages are installed.
+- Create the personal user account based on the prompt of the playbook.
+- Add the user to sudo and create a password less login on the local computer.</p>
+<p>The tasks to be executed are defined inside the role in the <code>tasks</code> folder. Ansible expect the <code>main.yml</code> inside this folder to have all the steps for the role. Variables can be defined in two folders, either in <code>vars/main.yml</code> or in <code>defaults/main.yml</code>. The defaults, as the name says, contains the default value for certain variables. These can be overwritten by variables defines in the <code>vars</code> folder. Note that some of the variables are passed through from the playbook and are not defined on this level. </p>
+<p>To install a package the <code>apt</code> module can be used. Variables are passed in using the double curly brackets (<code>{{ }}</code>).  The following is part of <code>roles/base/tasks/main.yml</code>. I will leave the rest out to keep this article short.</p>
+<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure necessary packages are installed</span>
+  <span class="l l-Scalar l-Scalar-Plain">apt</span><span class="p p-Indicator">:</span> 
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">base_pkgs</span><span class="nv"> </span><span class="s">}}&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">state</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class="l l-Scalar l-Scalar-Plain">update_cache</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+<span class="nn">...</span>
+</pre></div>
+
+
+<p>To keep things simple, I have only defined one package to be installed in <code>roles/base/vars/main.yml</code>. I prefer <code>mosh</code> over <code>ssh</code> since my internet is often buggy and I don't like to keep on reconnecting with ssh. </p>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">base_pkgs</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mosh</span>
+</pre></div>
+
+
+<h4>Common role</h4>
+<p>The  <strong>common</strong> role currently only installs <code>openjdk-8-jdk</code>, <code>openjdk-8-jre-headless</code> and exports the <code>JAVA_HOME</code> variable. Java 8 is needed to make Spark work, since it is not compatible (yet) with Java 11. </p>
+<h4>Jupyter role</h4>
+<p>At this point it gets more interesting. To deploy Jupyter on the VPS some more advanced steps are needed. Just to recap, the structure of the Jupyter role looks like this:</p>
+<div class="highlight"><pre><span></span>├── defaults
+│   └── main.yml
+├── files
+│   ├── custom.css
+│   └── requirements.txt
+├── tasks
+│   └── main.yml
+├── templates
+│   ├── etc
+│   │   └── systemd
+│   │       └── system
+│   │           └── jupyter.service
+│   └── jupyterhub_config.py.j2
+└── vars
+    └── main.yml
+</pre></div>
+
+
+<p>The <code>defaults</code>  contain the default values for the Jupyter deployment.  The <code>main.yml</code> has the following content, which basically tells the system that for the notebook server I want to use Python 3 as default and only run it from localhost. </p>
+<div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_python_executable</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">python3</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_package_manager</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pip3</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_package_manager_become</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_package_state</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_password</span><span class="p p-Indicator">:</span> <span class="s">&#39;sha1:b3af1b4adee9:9e86cb52435cc24db0b487451c10f6d348734645&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_open_browser</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_ip</span><span class="p p-Indicator">:</span> <span class="s">&#39;localhost&#39;</span>
+</pre></div>
+
+
+<p>Under the <code>files</code> folder you can put the files you wish to copy to the VPS. In my case I want to copy the <code>custom.css</code> and <code>requirements.txt</code> to the VPS. The CSS file contains the custom layout I like for my notebooks, the requirements file obviously contains the Python packages I wish to use.</p>
+<p>The <code>tasks/main.yml</code>  is pretty lengthy, so I will summarize what it does:</p>
+<ul>
+<li>Ensure important Jupyter dependencies are installed</li>
+<li>Create a Jupyter user and group</li>
+<li>Create the folder for the data and the virtual environment</li>
+<li>Copy the <code>requirements.txt</code> and install the libraries</li>
+<li>Create the Jupyter configuration</li>
+<li>Create the SSL certificates</li>
+<li>Copy the custom CSS file to the server</li>
+<li>Make and run the <em>jupyter.service</em></li>
+</ul>
+<p>One of the nifty things of Ansible is conditional execution, only run certain tasks if a condition is met. For example, I will not recreate the virtual environment if it already exists, as shown in the code snippet below.</p>
+<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Check to see if the Jupyter environment exists</span>
+  <span class="l l-Scalar l-Scalar-Plain">stat</span><span class="p p-Indicator">:</span> 
+    <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/data/jupyter</span>
+  <span class="l l-Scalar l-Scalar-Plain">register</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">environment_exists</span>
+  <span class="l l-Scalar l-Scalar-Plain">become_user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
+</pre></div>
+
+
+<p>When the folder exists already, it will register <code>environment_exists</code> that can be used under the <code>when</code> condition with <code>environment_exists.stat.exists == False</code>.</p>
+<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">block</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Install virtual environment</span>
+    <span class="l l-Scalar l-Scalar-Plain">pip</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">virtualenv</span>
+      <span class="l l-Scalar l-Scalar-Plain">executable</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pip3</span>
+      <span class="l l-Scalar l-Scalar-Plain">state</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Create virtualenv root directory</span>
+    <span class="l l-Scalar l-Scalar-Plain">file</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/data/jupyter</span>
+      <span class="l l-Scalar l-Scalar-Plain">state</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">directory</span>
+      <span class="l l-Scalar l-Scalar-Plain">owner</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
+      <span class="l l-Scalar l-Scalar-Plain">group</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
+      <span class="l l-Scalar l-Scalar-Plain">mode</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0755</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Set up virtual environment</span>
+    <span class="l l-Scalar l-Scalar-Plain">shell</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">virtualenv -p python3 /data/jupyter</span>
+    <span class="l l-Scalar l-Scalar-Plain">become_user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
+    <span class="l l-Scalar l-Scalar-Plain">changed_when</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+  <span class="l l-Scalar l-Scalar-Plain">when</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">environment_exists.stat.exists == False</span>
+</pre></div>
+
+
+<p>In the <code>templates</code> folder I have used two different approaches. The first one is to <em>replicate</em> the location of the folder on the server by creating a similar directory structure.  The <code>jupyter.service</code> will be placed under <code>/etc/systemd/system/</code>. The second approach is the preferred method and doesn't create the <em>annoying</em> directory structure. It uses <a href="http://jinja.pocoo.org/">Jinja</a> templates to easily configure files dynamically with variables. I have defined the structure of a <code>jupyterhub_config.py</code> with variables that will be filled in automatically by Ansible. As you might remember, some of these variables are part of the defaults of this role, while some other where defined on playbook level.</p>
+<div class="highlight"><pre><span></span><span class="c1"># jupyterhub_config.py</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">open_browser</span> <span class="o">=</span> <span class="p">{{</span> <span class="n">jupyter_open_browser</span> <span class="p">}}</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">ip</span> <span class="o">=</span> <span class="s1">&#39;{{ jupyter_ip }}&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="p">{{</span> <span class="n">jupyter_port</span> <span class="p">}}</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;{{ jupyter_password }}&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">allow_origin</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">allow_remote_access</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">certfile</span> <span class="o">=</span> <span class="s1">&#39;{{ cert_out }}&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">keyfile</span> <span class="o">=</span> <span class="s1">&#39;{{ key_out }}&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">notebook_dir</span> <span class="o">=</span> <span class="s1">&#39;/data/notebooks/&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>
+</pre></div>
+
+
+<p>In the <code>vars/main.yml</code> I have only defined the Jupyter packages that I wish to install, the location of the Jupyter configuration and the variables to create the SSL certificate for the server.</p>
+<h4>Nginx role</h4>
+<p>The role for Nginx is relatively simple and only contains a couple of steps.</p>
+<ol>
+<li>Install Nginx</li>
+<li>Add reverse proxy for the Jupyter server</li>
+<li>Create the symlink to add the proxy to available websites</li>
+<li>Restart Nginx</li>
+</ol>
+<p>To easily create the Nginx configuration file, I have created a template that will set the domain name, the port and the certificates. Since I am not aiming to use Nginx to host anything else, I haven't created any additional templates yet.</p>
+<h4>Spark role</h4>
+<p>Currently the Spark role is the final step of my playbook. This role will install Spark and download all necessary JAR files I need to work on my Data Engineering tasks. </p>
+<h2>Todo</h2>
+<p>There are a few things that I might still modify in my approach, since I have noticed that I could parameterize more steps in the playbook. An annoying issue is that the Jupyter server does not pick the right environment variables, so I need to think of a good way to set them before running the notebooks. Right now my workaround is to hardcode the paths to <code>SPARK_HOME</code> and <code>JAVA_HOME</code> inside the notebook itself. Secondly, the certificate that I create in this playbook is not trusted by the browser, because it is self-signed. I have used <code>openssl</code>, but I should look into <code>letsencrypt</code> or use the <code>acme</code> tool that Ansible provides. </p>
+<h2>Conclusion</h2>
+<p>Ansible is a fantastic tool to automate the provisioning of a VPS (or any other fresh Ubuntu installation). It took me often over several hours, and with Kubernetes days, to setup the Ubuntu box, but using Ansible I simply enter the username and password and after 10 minutes the system is ready. Another great benefit is the use of Jinja templates, which should be very familiar for a Python developer. My goal is to add more roles and keep everything up to date in my <a href="https://github.com/jitsejan/vps-provision">GitHub repo</a>.</p>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/devops.html" class="tag">DevOps</a>
+                    <a href="./tag/ansible.html" class="tag">Ansible</a>
+                    <a href="./tag/data-engineer.html" class="tag">data engineer</a>
+                    <a href="./tag/vps.html" class="tag">VPS</a>
+                    <a href="./tag/ubuntu.html" class="tag">Ubuntu</a>
+                    <a href="./tag/spark.html" class="tag">Spark</a>
+                    <a href="./tag/jupyter.html" class="tag">Jupyter</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
 
         </div>
 <footer class="footer">
     <div class="container">
         <center>
             <address id="about" class="vcard body">
-                &copy; <a href="..">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2019
+                &copy; <a href=".">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2019
             </address><!-- /#about -->
         </center>
     </div>

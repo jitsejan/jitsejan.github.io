@@ -11950,21 +11950,21 @@ jitsejan/truffle-application   latest              1987e7928f6b        <span cla
 
 <h3>Docker compose</h3>
 <p>The <code>docker-compose.yml</code> contains the information to start the two images, map the ports and start the testrpc network. It will try to retrieve the two Docker images locally and otherwise retrieve them from hub.docker.com. The testrpc is started with host 0.0.0.0 in order for the truffle3 container to access the network.</p>
-<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;2&#39;</span>
-<span class="nt">services</span><span class="p">:</span>
-  <span class="nt">testrpc</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jitsejan/testrpc</span>
-    <span class="nt">command</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bash -c &quot;testrpc -h 0.0.0.0&quot;</span>
-    <span class="nt">ports</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="s">&#39;2&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">services</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">testrpc</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jitsejan/testrpc</span>
+    <span class="l l-Scalar l-Scalar-Plain">command</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">bash -c &quot;testrpc -h 0.0.0.0&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;7000:8545&quot;</span>
-  <span class="nt">truffle3</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jitsejan/truffle-application</span>
-    <span class="nt">command</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bash</span>
-    <span class="nt">stdin_open</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-    <span class="nt">tty</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-    <span class="nt">ports</span><span class="p">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">truffle3</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">image</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jitsejan/truffle-application</span>
+    <span class="l l-Scalar l-Scalar-Plain">command</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">bash</span>
+    <span class="l l-Scalar l-Scalar-Plain">stdin_open</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">tty</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">ports</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;7001:8080&quot;</span>
-    <span class="nt">volumes</span><span class="p">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">volumes</span><span class="p p-Indicator">:</span>
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./:/code</span>
 </pre></div>
 
