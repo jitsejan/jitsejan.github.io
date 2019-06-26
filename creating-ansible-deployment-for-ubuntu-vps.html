@@ -12017,10 +12017,12 @@ ansible <span class="m">2</span>.8.1
 <h3>Roles</h3>
 <p>I have divided the roles along the way and I do not guarantee this is the most logical way of doing things. It makes sense for me now, so I am just going to go with it. The goal is to have building blocks to make the final application run smoothly with all dependencies in the right place.</p>
 <h4>Base role</h4>
-<p>The first role I created is the <strong>base</strong> role which will take care of the following:
-- Check if all necessary packages are installed.
-- Create the personal user account based on the prompt of the playbook.
-- Add the user to sudo and create a password less login on the local computer.</p>
+<p>The first role I created is the <strong>base</strong> role which will take care of the following:</p>
+<ul>
+<li>Check if all necessary packages are installed.</li>
+<li>Create the personal user account based on the prompt of the playbook.</li>
+<li>Add the user to sudo and create a password less login on the local computer.</li>
+</ul>
 <p>The tasks to be executed are defined inside the role in the <code>tasks</code> folder. Ansible expect the <code>main.yml</code> inside this folder to have all the steps for the role. Variables can be defined in two folders, either in <code>vars/main.yml</code> or in <code>defaults/main.yml</code>. The defaults, as the name says, contains the default value for certain variables. These can be overwritten by variables defines in the <code>vars</code> folder. Note that some of the variables are passed through from the playbook and are not defined on this level. </p>
 <p>To install a package the <code>apt</code> module can be used. Variables are passed in using the double curly brackets (<code>{{ }}</code>).  The following is part of <code>roles/base/tasks/main.yml</code>. I will leave the rest out to keep this article short.</p>
 <div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure necessary packages are installed</span>
