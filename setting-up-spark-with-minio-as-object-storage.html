@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Setting up Spark with Minio as object storage | JJ's World</title>
+        <title>Setting up Spark with minIO as object storage | JJ's World</title>
 
 
 <style type="text/css">
@@ -11863,13 +11863,12 @@ jQuery(document).ready(function($) {
     </div>
     <article>
         <header>
-            <h1>Setting up Spark with Minio as object storage</h1>
+            <h1>Setting up Spark with minIO as object storage</h1>
             <time datetime="article.date.isoformat()" pubdate>Sun 30 June 2019</time>
         </header>
 
         <div class="article_content">
-            <p>read and write Parquet and other file formats.</p>
-<h2>Objective</h2>
+            <h2>Objective</h2>
 <ul>
 <li>Install <a href="https://spark.apache.org/">Spark</a></li>
 <li>Install <a href="https://hadoop.apache.org/">Hadoop</a></li>
@@ -11885,8 +11884,8 @@ is compatible with the AWS S3 API.</p>
 <p>The <a href="https://github.com/jitsejan/vps-provision">Ansible configuration</a> from my <a href="https://www.jitsejan.com/creating-ansible-deployment-for-ubuntu-vps.html">previous blog post</a> already 
 installed an older version of Spark. During my several attempts to get minIO working with Spark, I had to try different Hadoop versions, Spark and AWS libraries to make the installation work.
 I used the latest version from the Spark <a href="https://spark.apache.org/downloads.html">download page</a>, which at the time of writing is <code>2.4.3</code>. Since I have to use the <a href="https://hadoop.apache.org/releases.html">latest</a> Hadoop
-version (3.1.2), I have to get the Spark download without Hadoop. The current Spark only support Hadoop version 2.7 or lower. For all the AWS libraries that are needed, I could only get the integration to
-work with version 1.11.534.</p>
+version (<code>3.1.2</code>), I have to get the Spark download without Hadoop. The current Spark only support Hadoop version 2.7 or lower. For all the AWS libraries that are needed, I could only get the integration to
+work with version <code>1.11.534</code>.</p>
 <p>The following Java libraries are needed to get minIO working with Spark:</p>
 <ul>
 <li><a href="https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.1.2/hadoop-aws-3.1.2.jar">hadoop-aws-3.1.2.jar</a></li>
@@ -11898,27 +11897,27 @@ work with version 1.11.534.</p>
 <li><a href="https://repo1.maven.org/maven2/org/apache/httpcomponents/httpclient/4.5.3/httpclient-4.5.3.jar">httpclient-4.5.3.jar</a></li>
 <li><a href="https://repo1.maven.org/maven2/joda-time/joda-time/2.9.9/joda-time-2.9.9.jar">joda-time-2.9.9.jar</a></li>
 </ul>
-<p>To run the minIO server, I first create a <code>minio</code> user and <code>minio</code> group. Additionally I create the data folder that minIO will store the data. After preparing
-the environment I install minIO and add it as a service <code>/etc/systemd/system/minio.service</code>. </p>
+<p>To run the minIO server, I first create a <code>minIO</code> user and <code>minIO</code> group. Additionally I create the data folder that minIO will store the data. After preparing
+the environment I install minIO and add it as a service <code>/etc/systemd/system/minIO.service</code>. </p>
 <div class="highlight"><pre><span></span><span class="o">[</span>Unit<span class="o">]</span>
-<span class="nv">Description</span><span class="o">=</span>Minio
-<span class="nv">Documentation</span><span class="o">=</span>https://docs.minio.io
+<span class="nv">Description</span><span class="o">=</span>minIO
+<span class="nv">Documentation</span><span class="o">=</span>https://docs.minIO.io
 <span class="nv">Wants</span><span class="o">=</span>network-online.target
 <span class="nv">After</span><span class="o">=</span>network-online.target
-<span class="nv">AssertFileIsExecutable</span><span class="o">=</span>/usr/local/bin/minio
+<span class="nv">AssertFileIsExecutable</span><span class="o">=</span>/usr/local/bin/minIO
 
 <span class="o">[</span>Service<span class="o">]</span>
 <span class="nv">WorkingDirectory</span><span class="o">=</span>/usr/local/
 
-<span class="nv">User</span><span class="o">=</span>minio
-<span class="nv">Group</span><span class="o">=</span>minio
+<span class="nv">User</span><span class="o">=</span>minIO
+<span class="nv">Group</span><span class="o">=</span>minIO
 
 <span class="nv">PermissionsStartOnly</span><span class="o">=</span><span class="nb">true</span>
 
-<span class="nv">EnvironmentFile</span><span class="o">=</span>/etc/default/minio
-<span class="nv">ExecStartPre</span><span class="o">=</span>/bin/bash -c <span class="s2">&quot;[ -n \&quot;</span><span class="si">${</span><span class="nv">MINIO_VOLUMES</span><span class="si">}</span><span class="s2">\&quot; ] || echo \&quot;Variable MINIO_VOLUMES not set in /etc/default/minio\&quot;&quot;</span>
+<span class="nv">EnvironmentFile</span><span class="o">=</span>/etc/default/minIO
+<span class="nv">ExecStartPre</span><span class="o">=</span>/bin/bash -c <span class="s2">&quot;[ -n \&quot;</span><span class="si">${</span><span class="nv">minIO_VOLUMES</span><span class="si">}</span><span class="s2">\&quot; ] || echo \&quot;Variable minIO_VOLUMES not set in /etc/default/minIO\&quot;&quot;</span>
 
-<span class="nv">ExecStart</span><span class="o">=</span>/usr/local/bin/minio server <span class="nv">$MINIO_OPTS</span> <span class="nv">$MINIO_VOLUMES</span>
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/local/bin/minIO server <span class="nv">$minIO_OPTS</span> <span class="nv">$minIO_VOLUMES</span>
 
 <span class="c1"># Let systemd restart this service only if it has ended with the clean exit code or signal.</span>
 <span class="nv">Restart</span><span class="o">=</span>on-success
@@ -11932,7 +11931,7 @@ the environment I install minIO and add it as a service <code>/etc/systemd/syste
 <span class="c1"># Disable timeout logic and wait until process is stopped</span>
 <span class="nv">TimeoutStopSec</span><span class="o">=</span><span class="m">0</span>
 
-<span class="c1"># SIGTERM signal is used to stop Minio</span>
+<span class="c1"># SIGTERM signal is used to stop minIO</span>
 <span class="nv">KillSignal</span><span class="o">=</span>SIGTERM
 
 <span class="nv">SendSIGKILL</span><span class="o">=</span>no
@@ -11945,25 +11944,25 @@ the environment I install minIO and add it as a service <code>/etc/systemd/syste
 </pre></div>
 
 
-<p>The minIO environment file located at <code>/etc/default/minio</code> contains the configuration for the volume, the port and the credentials.</p>
-<div class="highlight"><pre><span></span># Minio local/remote volumes.
-MINIO_VOLUMES=&quot;/minio-data/&quot;
-# Minio cli options.
-MINIO_OPTS=&quot;--address :9091 &quot;
+<p>The minIO environment file located at <code>/etc/default/minIO</code> contains the configuration for the volume, the port and the credentials.</p>
+<div class="highlight"><pre><span></span># minIO local/remote volumes.
+minIO_VOLUMES=&quot;/minIO-data/&quot;
+# minIO cli options.
+minIO_OPTS=&quot;--address :9091 &quot;
 
-MINIO_ACCESS_KEY=&quot;mykey&quot;
-MINIO_SECRET_KEY=&quot;mysecret&quot;
+minIO_ACCESS_KEY=&quot;mykey&quot;
+minIO_SECRET_KEY=&quot;mysecret&quot;
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>$ minio version
+<div class="highlight"><pre><span></span>$ minIO version
 Version: <span class="m">2019</span>-06-27T21:13:50Z
 Release-Tag: RELEASE.2019-06-27T21-13-50Z
 Commit-ID: 36c19f1d653adf3ef70128eb3be1a35b6b032731
 </pre></div>
 
 
-<p>For the complete configuration, check the <a href="https://github.com/jitsejan/vps-provision/tree/master/roles/minio">role</a> in Github.</p>
+<p>For the complete configuration, check the <a href="https://github.com/jitsejan/vps-provision/tree/master/roles/minIO">role</a> in Github.</p>
 <h2>Code</h2>
 <p>The important bit is setting the right environment variables. Make sure the following variables are set:</p>
 <div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">HADOOP_HOME</span><span class="o">=</span>/opt/hadoop
@@ -11981,10 +11980,10 @@ sure the <code>path.style.access</code> is set to <code>True</code>. </p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark</span> <span class="kn">import</span> <span class="n">SparkContext</span><span class="p">,</span> <span class="n">SparkConf</span><span class="p">,</span> <span class="n">SQLContext</span>
 <span class="n">conf</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">SparkConf</span><span class="p">()</span>
-    <span class="o">.</span><span class="n">setAppName</span><span class="p">(</span><span class="s2">&quot;Spark Minio Test&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">setAppName</span><span class="p">(</span><span class="s2">&quot;Spark minIO Test&quot;</span><span class="p">)</span>
     <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.endpoint&quot;</span><span class="p">,</span> <span class="s2">&quot;http://localhost:9091&quot;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.access.key&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MINIO_ACCESS_KEY&#39;</span><span class="p">))</span>
-    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.secret.key&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;MINIO_SECRET_KEY&#39;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.access.key&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;minIO_ACCESS_KEY&#39;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.secret.key&quot;</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;minIO_SECRET_KEY&#39;</span><span class="p">))</span>
     <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.path.style.access&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
     <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.impl&quot;</span><span class="p">,</span> <span class="s2">&quot;org.apache.hadoop.fs.s3a.S3AFileSystem&quot;</span><span class="p">)</span>
 <span class="p">)</span>
@@ -12007,7 +12006,7 @@ we are able to write a dataframe to minIO. </p>
 <p>Currently there seems to be an issue with reading <strong>small</strong> files, it will give a Parquet error that the files are not big enough to read. It seems
 more like a library issue, so I should just make sure I only work on big data.</p>
 <h2>Credits</h2>
-<p>Thanks to <a href="https://github.com/atosatto/ansible-minio">atosatto</a> for the Ansible role and <a href="https://github.com/minio/cookbook/blob/master/docs/apache-spark-with-minio.md">minio</a>
+<p>Thanks to <a href="https://github.com/atosatto/ansible-minIO">atosatto</a> for the Ansible role and <a href="https://github.com/minIO/cookbook/blob/master/docs/apache-spark-with-minIO.md">minIO</a>
 for the great example.</p>
         </div>
 
@@ -12019,7 +12018,7 @@ for the great example.</p>
                     <a href="./tag/vps.html" class="tag">VPS</a>
                     <a href="./tag/ubuntu.html" class="tag">Ubuntu</a>
                     <a href="./tag/spark.html" class="tag">Spark</a>
-                    <a href="./tag/minio.html" class="tag">Minio</a>
+                    <a href="./tag/minio.html" class="tag">minIO</a>
                     <a href="./tag/object-storage.html" class="tag">object storage</a>
             </div>
         </div>
