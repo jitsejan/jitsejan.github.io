@@ -11895,6 +11895,27 @@ jQuery(document).ready(function($) {
 <h2>Convert PySpark row to dictionary</h2>
 <div class="highlight"><pre><span></span><span class="n">row</span><span class="o">.</span><span class="n">asDict</span><span class="p">(</span><span class="n">recursive</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
+
+
+<h2>Join two dataframes</h2>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">as</span> <span class="nn">F</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df_01</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;dfone&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_02</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;dftwo&#39;</span><span class="p">),</span>
+                               <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;dfone.id&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;dftwo.id&#39;</span><span class="p">)],</span>
+                               <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>Select fields from dataframe</h2>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;amount&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+
+<h2>Expand JSON</h2>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">,</span>
+              <span class="n">F</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;_json_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
+                          <span class="n">json_schema</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
         </div>
 
     </article>

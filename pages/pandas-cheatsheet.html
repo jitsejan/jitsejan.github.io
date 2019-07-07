@@ -12091,6 +12091,20 @@ jQuery(document).ready(function($) {
                                   <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;right_id&#39;</span><span class="p">,</span>
                                   <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
 </pre></div>
+
+
+<h2>Calculate difference between two consecutive rows</h2>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">]</span>\
+    <span class="o">.</span><span class="n">diff</span><span class="p">()</span>\
+    <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>Filter each column larger than threshold</h2>
+<div class="highlight"><pre><span></span><span class="n">THRESHOLD</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="n">THRESHOLD</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;total&#39;</span><span class="p">,</span>
+                                             <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
         </div>
 
     </article>
