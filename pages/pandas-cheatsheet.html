@@ -11878,26 +11878,25 @@ jQuery(document).ready(function($) {
 <h2>Convert with dataframes</h2>
 <h3>Create dataframe from a dictionary</h3>
 <div class="highlight"><pre><span></span><span class="n">character_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span>
-</pre></div>
-
-
-<h3>Create dictionary from dataframe</h3>
-<div class="highlight"><pre><span></span><span class="n">characters</span> <span class="o">=</span> <span class="n">character_df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+<span class="n">characters</span> <span class="o">=</span> <span class="n">character_df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
 </pre></div>
 
 
 <h3>Convert CSV to dataframe</h3>
 <div class="highlight"><pre><span></span><span class="n">character_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_csv</span><span class="p">(</span><span class="s2">&quot;characters.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<h3>Convert dataframe to CSV</h3>
-<div class="highlight"><pre><span></span><span class="n">character_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;characters.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">character_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;characters.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
 </pre></div>
 
 
 <h3>Convert dataframe to JSON</h3>
-<div class="highlight"><pre><span></span><span class="n">character_df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s1">&#39;cahracters.json&#39;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">character_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="s1">&#39;characters.json&#39;</span><span class="p">)</span>
+<span class="n">character_df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s1">&#39;characters.json&#39;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Convert dataframe to pickle</h3>
+<div class="highlight"><pre><span></span><span class="n">character_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;characters.pandas&#39;</span><span class="p">)</span>
+<span class="n">character_df</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;characters.pandas&#39;</span><span class="p">)</span>
 </pre></div>
 
 
@@ -11945,7 +11944,7 @@ jQuery(document).ready(function($) {
 
 <h3>Drop a row</h3>
 <p>Drop all rows where the name is NaN.</p>
-<div class="highlight"><pre><span></span><span class="n">character_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">character_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 
 
@@ -12083,6 +12082,14 @@ jQuery(document).ready(function($) {
 <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">empty_cols</span><span class="p">,</span>
         <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>Merge two dataframe</h2>
+<div class="highlight"><pre><span></span><span class="n">combined_data_df</span> <span class="o">=</span> <span class="n">first_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">second_df</span><span class="p">,</span>
+                                  <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;left_id&#39;</span><span class="p">,</span>
+                                  <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;right_id&#39;</span><span class="p">,</span>
+                                  <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
 </pre></div>
         </div>
 
