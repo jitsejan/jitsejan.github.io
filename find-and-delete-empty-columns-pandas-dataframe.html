@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Archives | JJ's World</title>
+        <title>Find and delete empty columns in Pandas dataframe | JJ's World</title>
 
 
 <style type="text/css">
@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="../theme/css/main.css?cb94e6e8">
+            <link rel="stylesheet" href="./theme/css/main.css?cb94e6e8">
 
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -11851,51 +11851,93 @@ jQuery(document).ready(function($) {
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
-                <li><a href="../pages/python-cheatsheet">Python cheatsheet</a></li>
-                <li><a href="../pages/spark-cheatsheet">Spark cheatsheet</a></li>
+                <li><a href="./pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
+                <li><a href="./pages/python-cheatsheet">Python cheatsheet</a></li>
+                <li><a href="./pages/spark-cheatsheet">Spark cheatsheet</a></li>
             </ul>
         </div><!-- .navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container list">
+<div class="container post">
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
     <article>
-        <h1 style="margin-bottom: 30px;">Tag: Django</h1>
+        <header>
+            <h1>Find and delete empty columns in Pandas dataframe</h1>
+            <time datetime="article.date.isoformat()" pubdate>Sun 07 July 2019</time>
+        </header>
 
-        <ul class="double-list">
-            <li>
-                <a href='/add-flickr-photosets-django.html'>
-                    <h2>Add Flickr photosets to a Django site</h2>
-                    <span>05.10.2016</span>
-                </a>
-            </li>
-            <li>
-                <a href='/move-django-between-servers.html'>
-                    <h2>Move Django database between servers</h2>
-                    <span>04.10.2016</span>
-                </a>
-            </li>
-            <li>
-                <a href='/install-django-ubuntu-1404-virtualenv-nginx-gunicorn-and-postgres.html'>
-                    <h2>Install Django on Ubuntu 14.04 with virtualenv, Nginx, Gunicorn and postgres</h2>
-                    <span>04.10.2016</span>
-                </a>
-            </li>
-            <li>
-                <a href='/debugging-in-django.html'>
-                    <h2>Show all debug information in Django</h2>
-                    <span>31.07.2016</span>
-                </a>
-            </li>
-        </ul>
+        <div class="article_content">
+            <div class="highlight"><pre><span></span><span class="c1"># Find the columns where each value is null</span>
+<span class="n">empty_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
+<span class="c1"># Drop these columns from the dataframe</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">empty_cols</span><span class="p">,</span>
+        <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/pandas.html" class="tag">pandas</a>
+            </div>
+        </div>
     </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
+
         </div>
 <footer class="footer">
     <div class="container">
         <center>
             <address id="about" class="vcard body">
-                &copy; <a href="..">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2019
+                &copy; <a href=".">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2019
             </address><!-- /#about -->
         </center>
     </div>

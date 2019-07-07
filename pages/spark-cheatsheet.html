@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Archives | JJ's World</title>
+        <title>Pandas cheatsheet | JJ's World</title>
 
 
 <style type="text/css">
@@ -11858,37 +11858,49 @@ jQuery(document).ready(function($) {
         </div><!-- .navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container list">
+<div class="container post">
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
     <article>
-        <h1 style="margin-bottom: 30px;">Tag: Django</h1>
+        <header>
+            <h1>Pandas cheatsheet</h1>
+                <time datetime="page.date.isoformat()" pubdate>Sun 07 July 2019</time>
+        </header>
 
-        <ul class="double-list">
-            <li>
-                <a href='/add-flickr-photosets-django.html'>
-                    <h2>Add Flickr photosets to a Django site</h2>
-                    <span>05.10.2016</span>
-                </a>
-            </li>
-            <li>
-                <a href='/move-django-between-servers.html'>
-                    <h2>Move Django database between servers</h2>
-                    <span>04.10.2016</span>
-                </a>
-            </li>
-            <li>
-                <a href='/install-django-ubuntu-1404-virtualenv-nginx-gunicorn-and-postgres.html'>
-                    <h2>Install Django on Ubuntu 14.04 with virtualenv, Nginx, Gunicorn and postgres</h2>
-                    <span>04.10.2016</span>
-                </a>
-            </li>
-            <li>
-                <a href='/debugging-in-django.html'>
-                    <h2>Show all debug information in Django</h2>
-                    <span>31.07.2016</span>
-                </a>
-            </li>
-        </ul>
+        <div class="article_content">
+            <p>Import PySpark</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyspark</span>
+</pre></div>
+
+
+<h2>Setup SparkSession</h2>
+<div class="highlight"><pre><span></span><span class="n">spark</span> <span class="o">=</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+        <span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;local[*]&quot;</span><span class="p">)</span> \
+        <span class="o">.</span><span class="n">enableHiveSupport</span><span class="p">()</span> \
+        <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+</pre></div>
+
+
+<h2>Read data</h2>
+<div class="highlight"><pre><span></span><span class="n">json_sdf</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;mydata.json&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>Convert RDD to Pandas DataFrame</h2>
+<div class="highlight"><pre><span></span><span class="n">json_pdf</span> <span class="o">=</span> <span class="n">json_sdf</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
+</pre></div>
+
+
+<h2>Convert PySpark row to dictionary</h2>
+<div class="highlight"><pre><span></span><span class="n">row</span><span class="o">.</span><span class="n">asDict</span><span class="p">(</span><span class="n">recursive</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+        </div>
+
     </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
         </div>
 <footer class="footer">

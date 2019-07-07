@@ -11853,6 +11853,7 @@ jQuery(document).ready(function($) {
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="../pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
                 <li><a href="../pages/python-cheatsheet">Python cheatsheet</a></li>
+                <li><a href="../pages/spark-cheatsheet">Spark cheatsheet</a></li>
             </ul>
         </div><!-- .navbar-collapse -->
     </div><!-- .container -->
@@ -11895,6 +11896,11 @@ jQuery(document).ready(function($) {
 </pre></div>
 
 
+<h3>Convert dataframe to JSON</h3>
+<div class="highlight"><pre><span></span><span class="n">character_df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s1">&#39;cahracters.json&#39;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+</pre></div>
+
+
 <h3>Convert database query to dataframe</h3>
 <div class="highlight"><pre><span></span><span class="n">db</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;postgresql://</span><span class="si">%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1">@</span><span class="si">%s</span><span class="s1">:</span><span class="si">%d</span><span class="s1">/characters&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">POSTGRES_USER</span><span class="p">,</span> <span class="n">POSTGRES_PASS</span><span class="p">,</span> <span class="n">POSTGRES_HOST</span><span class="p">,</span> <span class="n">POSTGRES_PORT</span><span class="p">))</span>
 <span class="n">character_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM &quot;character_collection&quot;&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
@@ -11924,6 +11930,11 @@ jQuery(document).ready(function($) {
 
 <h3>Rename a column</h3>
 <div class="highlight"><pre><span></span><span class="n">character_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;character_name&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Or replace characters:</p>
+<div class="highlight"><pre><span></span><span class="n">character_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">character_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
 </pre></div>
 
 
@@ -12013,6 +12024,11 @@ jQuery(document).ready(function($) {
 </pre></div>
 
 
+<h3>Get maximum 10</h3>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;category&#39;</span><span class="p">])[</span><span class="s1">&#39;viewers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+
 <h3>Create category based on values</h3>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_category</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;maximum&#39;</span><span class="p">]</span><span class="o">/</span><span class="mi">3</span><span class="p">):</span>
@@ -12028,6 +12044,45 @@ jQuery(document).ready(function($) {
 
 <h3>Apply lambda function</h3>
 <div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;inverse_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;number&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+
+
+<h3>Sort values</h3>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Normalize a JSON column</h3>
+<div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;json_col&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<h3>Select data</h3>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+</pre></div>
+
+
+<p>or</p>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;name.notnull()&#39;</span><span class="p">,</span>
+         <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Expand cell with list to rows</h3>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;list_cells&#39;</span><span class="p">]</span>\
+    <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">stack</span><span class="p">()</span>\
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>\
+    <span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="s1">&#39;list_cell&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>Find and drop empty columns</h2>
+<div class="highlight"><pre><span></span><span class="n">empty_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">empty_cols</span><span class="p">,</span>
+        <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
         </div>
 
