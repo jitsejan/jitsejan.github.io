@@ -11869,8 +11869,7 @@ jQuery(document).ready(function($) {
         </header>
 
         <div class="article_content">
-            <h1>Abstracting Lambda functions</h1>
-<h2>Objective</h2>
+            <h2>Objective</h2>
 <ul>
 <li>Understand Python's <em>abstract classes</em></li>
 <li>Implement a few <em>concrete classes</em></li>
@@ -11879,7 +11878,7 @@ jQuery(document).ready(function($) {
 </ul>
 <h2>Introduction</h2>
 <p>In this article I want to touch on different things. I have been working with <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> and <a href="https://www.terraform.io">Terraform</a> for a while now and I am constantly trying to improve my knowledge. By making a small project I hope to give a good idea of a minimal Terraform deployment for people that are new to Terraform. </p>
-<p>In previous years I have been working as a Software Engineer where code was written in a more consistent way and software practices were followed according to the different <em>Software Design Patterns</em> (<a href="https://www.gofpatterns.com">Gang of Four Patterns</a>) . I have noticed that in my current team everybody understands Python and PySpark, but often code is simply written as a sequential script rather than a proper structure with appropriate classes. This was not a problem when my team was still small, but since we are scaling here at MarketInvoice, more people are working on the code base. For example, we have a variety of AWS Lambda functions that crawl data from third parties (i.e. Jira, PagerDuty) which are all written as standalone functions with (a lot) of overlapping code. The idea is to create a common class with shared functionality which can then be used by the different crawlers and avoid repeating writing the same code over and over again (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">Don't repeat yourself - Wikipedia</a>). By utilizing these software principles, I am sure my team will become more productive and can spend more time on adding more interesting data to our data platform and reduce fixing bugs.</p>
+<p>In previous years I have been working as a Software Engineer where code was written in a more consistent way and software practices were followed according to the different <em>Software Design Patterns</em> (<a href="https://www.gofpatterns.com">Gang of Four Patterns</a>). I have noticed that in my current team everybody understands Python and PySpark, but often code is simply written as a sequential script rather than a proper structure with appropriate classes. This was not a problem when my team was still small, but since we are scaling here at MarketInvoice, more people are working on the code base. For example, we have a variety of AWS Lambda functions that crawl data from third parties (i.e. Jira, PagerDuty) which are all written as standalone functions with (a lot) of overlapping code. The idea is to create a common class with shared functionality which can then be used by the different crawlers and avoid repeating writing the same code over and over again (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">Don't repeat yourself - Wikipedia</a>). By utilizing these software principles, I am sure my team will become more productive and can spend more time on adding more interesting data to our data platform and reduce fixing bugs.</p>
 <h2>Initialization</h2>
 <p>First I create the Git repository for this tutorial on Github. After creating the repo, I clone it to my code directory.</p>
 <div class="highlight"><pre><span></span>~/code $ git clone https://github.com/jitsejan/abstract-lambdas-terraform.git
