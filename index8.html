@@ -11875,6 +11875,33 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="./move-django-between-servers.html">Move Django database between servers</a></h2>
+      <time datetime="" title="2016-10-04T10:05:00+01:00" pubdate>Tue 04 October 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>Save the database on the old server.</p>
+<div class="highlight"><pre><span></span><span class="o">(</span>oldenv<span class="o">)</span>jitsejan@oldvps:/opt/oldenv/django_project$ sudo python manage.py dumpdata blog &gt; blog.json
+</pre></div>
+
+
+<p>Load the data on the new server. Make sure the models for both blogs are identical.</p>
+<div class="highlight"><pre><span></span><span class="o">(</span>env<span class="o">)</span>jitsejan@jjsvps:/opt/env/django_project$ sudo python manage.py loaddata blog.json
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/django.html" class="tag">Django</a>
+            <a href="./tag/python.html" class="tag">Python</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./install-django-ubuntu-1404-virtualenv-nginx-gunicorn-and-postgres.html">Install Django on Ubuntu 14.04 with virtualenv, Nginx, Gunicorn and postgres</a></h2>
       <time datetime="" title="2016-10-04T09:46:00+01:00" pubdate>Tue 04 October 2016</time>
     </header>
@@ -12099,27 +12126,6 @@ touch -t <span class="nv">$newDate</span> <span class="nv">$lastFile</span>
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./debugging-in-django.html">Show all debug information in Django</a></h2>
-      <time datetime="" title="2016-07-31T13:51:00+01:00" pubdate>Sun 31 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;</span> {% filter force_escape %} {% debug %} {% endfilter %} <span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/django.html" class="tag">Django</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12165,29 +12171,9 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/aws.html">
-            AWS
+        <li class="tag-1">
+            <a href="./tag/jupyter.html">
+            Jupyter
             </a>
         </li>
         <li class="tag-2">
@@ -12196,28 +12182,38 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/azure.html">
-            Azure
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="./tag/docker.html">
             Docker
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/data-engineer.html">
-            data engineer
+            <a href="./tag/ether.html">
+            ether
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/container.html">
-            container
+            <a href="./tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/lambda.html">
+            Lambda
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/notebook.html">
+            notebook
             </a>
         </li>
         <li class="tag-2">
@@ -12231,13 +12227,28 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
+            <a href="./tag/container.html">
+            container
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/spark.html">
+            Spark
+            </a>
+        </li>
+        <li class="tag-2">
             <a href="./tag/ubuntu.html">
             Ubuntu
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
+            <a href="./tag/devops.html">
+            DevOps
             </a>
         </li>
         <li class="tag-2">
@@ -12246,23 +12257,18 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/jupyter.html">
-            Jupyter
+            <a href="./tag/shell.html">
+            shell
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/ether.html">
-            ether
+            <a href="./tag/pandas.html">
+            pandas
             </a>
         </li>
-        <li class="tag-1">
-            <a href="./tag/notebook.html">
-            notebook
+        <li class="tag-2">
+            <a href="./tag/data-engineer.html">
+            data engineer
             </a>
         </li>
         </ul>
