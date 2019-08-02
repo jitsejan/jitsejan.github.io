@@ -11875,6 +11875,33 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="./change-modified-time-file.html">Change the last modified time of a file</a></h2>
+      <time datetime="" title="2016-07-31T14:52:00+01:00" pubdate>Sun 31 July 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>This script will change the last modified time of a file in the current directory to 4 days back.</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/ksh </span>
+<span class="nv">numDays</span><span class="o">=</span><span class="m">4</span>
+<span class="nv">diff</span><span class="o">=</span><span class="m">86400</span>*<span class="nv">$numDays</span>
+<span class="nb">export</span> diff
+<span class="nv">newDate</span><span class="o">=</span><span class="k">$(</span>perl -e <span class="s1">&#39;use POSIX; print strftime &quot;%Y%m%d%H%M&quot;, localtime time-$ENV{diff};&#39;</span><span class="k">)</span>
+<span class="nv">lastFile</span><span class="o">=</span><span class="k">$(</span>ls -lt <span class="p">|</span> egrep -v ^d <span class="p">|</span> tail -1 <span class="p">|</span> awk <span class="s1">&#39; { print $9 } &#39;</span><span class="k">)</span>
+touch -t <span class="nv">$newDate</span> <span class="nv">$lastFile</span>
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/shell.html" class="tag">shell</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./debugging-in-django.html">Show all debug information in Django</a></h2>
       <time datetime="" title="2016-07-31T13:51:00+01:00" pubdate>Sun 31 July 2016</time>
     </header>
@@ -12076,33 +12103,23 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <nav class="widget">
         <ul class="tagcloud">
         <li class="tag-2">
-            <a href="./tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="./tag/ether.html">
             ether
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/spark.html">
-            Spark
+            <a href="./tag/shell.html">
+            shell
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
+            <a href="./tag/ubuntu.html">
+            Ubuntu
             </a>
         </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
+        <li class="tag-2">
+            <a href="./tag/lambda.html">
+            Lambda
             </a>
         </li>
         <li class="tag-2">
@@ -12116,8 +12133,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/aws.html">
-            AWS
+            <a href="./tag/javascript.html">
+            javascript
             </a>
         </li>
         <li class="tag-1">
@@ -12126,28 +12143,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="./tag/data-engineer.html">
             data engineer
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
+            <a href="./tag/docker.html">
+            Docker
             </a>
         </li>
         <li class="tag-1">
@@ -12156,8 +12158,23 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/lambda.html">
-            Lambda
+            <a href="./tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/container.html">
+            container
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/python.html">
+            Python
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/blockchain.html">
+            blockchain
             </a>
         </li>
         <li class="tag-2">
@@ -12166,13 +12183,23 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
+            <a href="./tag/spark.html">
+            Spark
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/devops.html">
+            DevOps
+            </a>
+        </li>
+        <li class="tag-2">
             <a href="./tag/ethereum.html">
             Ethereum
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/container.html">
-            container
+            <a href="./tag/dataframe.html">
+            dataframe
             </a>
         </li>
         </ul>
