@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Home | JJ's World</title>
+        <title>Moving from `unittest` to `pytest` | JJ's World</title>
 
 
 <style type="text/css">
@@ -11858,447 +11858,556 @@ jQuery(document).ready(function($) {
         </div><!-- .navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container index">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-<form class="navbar-form navbar-right" role="search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-9">
-  <article>
-    <header>
-      <h2><a href="./hadoop-experiment-pig-scripting.html">Hadoop Experiment - Using Pig</a></h2>
-      <time datetime="" title="2017-10-03T09:36:00+01:00" pubdate>Tue 03 October 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>In my previous posts I have already shown simple examples of using MapReduce and Spark with Pyspark. A missing piece moving from MapReduce to Spark is the usage of Pig scripts. This posts shows an example howto use a Pig script.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./hadoop-experiment-pig-scripting.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/hadoop.html" class="tag">Hadoop</a>
-            <a href="./tag/pig.html" class="tag">Pig</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/cloudera.html" class="tag">Cloudera</a>
-            <a href="./tag/mapreduce.html" class="tag">mapreduce</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./truffle-in-docker.html">Running Truffle in a Docker container</a></h2>
-      <time datetime="" title="2017-09-29T16:17:00+01:00" pubdate>Fri 29 September 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>This is a short explanation on how to setup a Truffle decentralized app using Docker containers.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./truffle-in-docker.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/truffle.html" class="tag">Truffle</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/container.html" class="tag">container</a>
-            <a href="./tag/dapp.html" class="tag">dapp</a>
-            <a href="./tag/ethereum.html" class="tag">Ethereum</a>
-            <a href="./tag/blockchain.html" class="tag">blockchain</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./hadoop-experiment-spark-with-pyspark-in-jupyter.html">Hadoop Experiment - Spark with Pyspark in a Jupyter notebook</a></h2>
-      <time datetime="" title="2017-09-22T16:17:00+01:00" pubdate>Fri 22 September 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>Last time I started to experiment with Hadoop and simple scripts using MapReduce and Pig on a Cloudera Docker container. Now lets start playing with Spark, since this is the goto language for machine learning on Hadoop.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./hadoop-experiment-spark-with-pyspark-in-jupyter.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/hadoop.html" class="tag">Hadoop</a>
-            <a href="./tag/spark.html" class="tag">Spark</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/container.html" class="tag">container</a>
-            <a href="./tag/mapreduce.html" class="tag">mapreduce</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./hadoop-experiment-mapreduce-on-cloudera.html">Hadoop Experiment - MapReduce on Cloudera</a></h2>
-      <time datetime="" title="2017-09-08T15:17:00+01:00" pubdate>Fri 08 September 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>This post describes my first experiment with the Cloudera environment by trying to use the basic MapReduce method on a simple dataset.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./hadoop-experiment-mapreduce-on-cloudera.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/hadoop.html" class="tag">Hadoop</a>
-            <a href="./tag/cloudera.html" class="tag">Cloudera</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/container.html" class="tag">container</a>
-            <a href="./tag/virtualization.html" class="tag">virtualization</a>
-            <a href="./tag/mapreduce.html" class="tag">mapreduce</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./getting-started-with-hortonworks-sandbox.html">Getting started with the Hortonworks Hadoop Sandbox</a></h2>
-      <time datetime="" title="2017-09-01T12:16:00+01:00" pubdate>Fri 01 September 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>Using the Docker HDP image from <a href="https://hortonworks.com/downloads/#sandbox">Hortonworks</a>, it is easy to spin up an Hadoop environment onto your machine.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./getting-started-with-hortonworks-sandbox.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/hadoop.html" class="tag">Hadoop</a>
-            <a href="./tag/hortonworks.html" class="tag">Hortonworks</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/container.html" class="tag">container</a>
-            <a href="./tag/virtualization.html" class="tag">virtualization</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./using-anaconda-with-docker.html">Using Anaconda with Docker</a></h2>
-      <time datetime="" title="2017-08-31T16:30:00+01:00" pubdate>Thu 31 August 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>This post is a short explanation on how to get up and running with Docker and Anaconda.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./using-anaconda-with-docker.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/notebook.html" class="tag">notebook</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="./tag/docker.html" class="tag">Docker</a>
-            <a href="./tag/container.html" class="tag">container</a>
-            <a href="./tag/virtualization.html" class="tag">virtualization</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./using-scrapy-in-jupyter-notebook.html">Using Scrapy in Jupyter notebook</a></h2>
-      <time datetime="" title="2017-08-02T15:23:00+01:00" pubdate>Wed 02 August 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>This notebook makes use of the Scrapy library to scrape data from a website. Following the basic example, we create a QuotesSpider and call the CrawlerProcess with this spider to retrieve quotes from http://quotes.toscrape.com.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./using-scrapy-in-jupyter-notebook.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/notebook.html" class="tag">notebook</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="./tag/scrapy.html" class="tag">Scrapy</a>
-            <a href="./tag/crawling.html" class="tag">crawling</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./extend-dictionary-cell-in-pandas.html">Extend dictionary cell to columns in Pandas dataframe</a></h2>
-      <time datetime="" title="2017-08-01T23:18:00+01:00" pubdate>Tue 01 August 2017</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;meta&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;meta&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/pandas.html" class="tag">Pandas</a>
-            <a href="./tag/conversion.html" class="tag">conversion</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./python-and-javascript-in-flask.html">Using Python and Javascript together with Flask</a></h2>
-      <time datetime="" title="2017-08-01T16:38:00+01:00" pubdate>Tue 01 August 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>In this project I am experimenting with sending data between Javascript and Python using the web framework Flask. Additionally I will use matplotlib to generate a dynamic graph based on the provided user input data.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./python-and-javascript-in-flask.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/javascript.html" class="tag">Javascript</a>
-            <a href="./tag/flask.html" class="tag">Flask</a>
-            <a href="./tag/matplotlib.html" class="tag">matplotlib</a>
-            <a href="./tag/web.html" class="tag">web</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./creating-api-using-eve-and-mongodb.html">Create an API using Eve in Python</a></h2>
-      <time datetime="" title="2017-07-25T13:28:00+01:00" pubdate>Tue 25 July 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>A simple instruction to create an API for an existing MongoDB database using <a href="http://python-eve.org/">Eve</a>.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./creating-api-using-eve-and-mongodb.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/api.html" class="tag">API</a>
-            <a href="./tag/mongodb.html" class="tag">MongoDB</a>
-            <a href="./tag/eve.html" class="tag">Eve</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-
-  <nav class="pagination row">
-    <div class="col-xs-6 left">
-        <a class="prev" href="./index5.html">&#8592; Past</a>
-    </div>
-    <div class="col-xs-6 right">
-        <a class="next" href="./index3.html">Future &#8594;</a>
-    </div>
-  </nav>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm">
-<form class="navbar-form navbar-right" role="search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-3">
-<aside class="page-sidebar">
-    <nav class="widget" id="sidebar-about">
-        <div class="row img-div">
-            <img src="/theme/images/JJ_Montreal.png" />
-        </div>
-        <div class="row">
-        <p>I am a Data Engineer currently working for MarketInvoice in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
-<p>
-While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
-for visualizations as for modern web applications it is the go-to language. 
-</p>
-<p>
-I am using this page as a portfolio and showcase, but mainly as a cheatsheet. That is why you will mainly find shell commands, short scripts or notebooks just for myself to not reinvent the wheel.
-</p>
-
-        </div>  
-    </nav>
-    <hr/>
-    <nav class="widget">
-        <ul class="tagcloud">
-        <li class="tag-2">
-            <a href="./tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/lambda.html">
-            Lambda
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/vps.html">
-            VPS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ether.html">
-            ether
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        </ul>
-    </nav>
-    <hr/>
+<div class="container post">
     <div class="row">
-        <div class="col-md-12">
-            <ul class="social-list">
-                    <li><a href="http://www.flickr.com/photos/jitsejan" title="Flickr" rel="me" target="new"><i class="fa fa-1x fa-flickr"></i></a></li>
-                    <li><a href="https://play.spotify.com/user/jitsejan" title="Spotify" rel="me" target="new"><i class="fa fa-1x fa-spotify"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jitsejan" title="LinkedIn" rel="me" target="new"><i class="fa fa-1x fa-linkedin"></i></a></li>
-                    <li><a href="http://twitter.com/jitsejan" title="Twitter" rel="me" target="new"><i class="fa fa-1x fa-twitter"></i></a></li>
-                    <li><a href="http://www.github.com/jitsejan" title="Github" rel="me" target="new"><i class="fa fa-1x fa-github"></i></a></li>
-                    <li><a href="http://bitbucket.org/jitsejan" title="Bitbucket" rel="me" target="new"><i class="fa fa-1x fa-bitbucket"></i></a></li>
-                    <li><a href="http://bl.ocks.org/jitsejan" title="Blocks.org" rel="me" target="new"><i class="fa fa-1x fa-bar-chart"></i></a></li>
-                    <li><a href="https://hub.docker.com/r/jitsejan" title="Docker" rel="me" target="new"><i class="fa fa-1x fa-docker"></i></a></li>
-            </ul>
-        </div>
+        <a href="javascript:history.back()">Go back</a>
     </div>
-</aside>  </div>
-  
-  </div>
+    <article>
+        <header>
+            <h1>Moving from `unittest` to `pytest`</h1>
+            <time datetime="article.date.isoformat()" pubdate>Thu 17 October 2019</time>
+        </header>
 
+        <div class="article_content">
+            <p>In my two previous articles <a href="https://www.jitsejan.com/unittesting-in-jupyter-notebook.html">Unittesting in a Jupyter notebook</a> and <a href="https://www.jitsejan.com/mocking-in-unittests-in-python.html">Mocking in unittests in Python</a> I have discussed the use of <code>unittest</code> and <code>mock</code> to run tests for a simple <code>Castle</code> and <code>Character</code> class. For the code behind this article please check <a href="https://github.com/jitsejan/blog-testing">Github</a>.</p>
+<h2>The classes</h2>
+<p>Let's recap the classes first. </p>
+<h3>Castle class</h3>
+<p>The Castle class has a name, boss and world property and a simple method to determine if a character has access bases on his powerup. Note that the classes have been cleaned up since the last article.</p>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; jj_classes/castle.py &quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">Castle</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Defines the Castle class &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Initialize the class &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_boss</span> <span class="o">=</span> <span class="s2">&quot;Bowser&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_world</span> <span class="o">=</span> <span class="s2">&quot;Grass Land&quot;</span>
+
+    <span class="k">def</span> <span class="nf">has_access</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Check if character has access &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">==</span> <span class="s2">&quot;Super Mushroom&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_boss</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the boss &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">boss</span>
+
+    <span class="k">def</span> <span class="nf">get_world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the world &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">world</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Name of the castle &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">boss</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Boss of the castle &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_boss</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; World of the castle &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span>
+</pre></div>
+
+
+<h3>Character class</h3>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; jj_classes/character.py &quot;&quot;&quot;</span>
+
+
+<span class="k">class</span> <span class="nc">Character</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Defines the character class &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Initialize the class &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_powerup</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_powerup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the powerup &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">powerup</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Name of the character &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">powerup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Powerup of the character &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_powerup</span>
+
+    <span class="nd">@powerup.setter</span>
+    <span class="k">def</span> <span class="nf">powerup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">powerup</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Sets the powerup &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_powerup</span> <span class="o">=</span> <span class="n">powerup</span>
+</pre></div>
+
+
+<h2>Unittests</h2>
+<p>In the previous articles, I've written two tests sets, one for Character and one for Character and Castle. Looking back at the tests now, I noticed that the Character/Castle testset is not very tidy so at the end I will simply have a set to test the <code>Character</code> class and one to test the <code>Castle</code> class.</p>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; tests/charactertestclass.py &quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">unittest.mock</span> <span class="kn">as</span> <span class="nn">mock</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">jj_classes.castle</span> <span class="kn">import</span> <span class="n">Castle</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;{os.path.dirname(os.path.abspath(__file__))}/../&quot;</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">jj_classes.castle</span> <span class="kn">import</span> <span class="n">Castle</span>
+<span class="kn">from</span> <span class="nn">jj_classes.character</span> <span class="kn">import</span> <span class="n">Character</span>
+
+
+<span class="k">class</span> <span class="nc">CharacterTestClass</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Defines the tests for the Character class &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Set the castle for the test cases &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">(</span><span class="s2">&quot;Bowsers Castle&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_mock_access_denied</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Access denied for star powerup &quot;&quot;&quot;</span>
+        <span class="n">mock_character</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">powerup</span><span class="o">=</span><span class="s2">&quot;Starman&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="n">mock_character</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">test_mock_access_granted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Access granted for mushroom powerup &quot;&quot;&quot;</span>
+        <span class="n">mock_character</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">powerup</span><span class="o">=</span><span class="s2">&quot;Super Mushroom&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="n">mock_character</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">test_default_castle_boss</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Verifty the default boss is Bowser &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Bowser&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_default_castle_world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Verify the default world is Grass Land &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">(),</span> <span class="s2">&quot;Grass Land&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Mock a class method</span>
+    <span class="nd">@mock.patch.object</span><span class="p">(</span><span class="n">Castle</span><span class="p">,</span> <span class="s2">&quot;get_boss&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_mock_castle_boss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mock_get_boss</span><span class="p">):</span>
+        <span class="n">mock_get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Hammer Bro&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Hammer Bro&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">(),</span> <span class="s2">&quot;Grass Land&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Mock an instance</span>
+    <span class="nd">@mock.patch</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.Castle&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_mock_castle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">MockCastle</span><span class="p">):</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="n">MockCastle</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Toad&quot;</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">get_world</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Desert Land&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Toad&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">(),</span> <span class="s2">&quot;Desert Land&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Mock an instance method</span>
+    <span class="k">def</span> <span class="nf">test_mock_castle_instance_method</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Boss is still Bowser</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Koopa Troopa&quot;</span><span class="p">)</span>
+        <span class="c1"># Set a return_value for the get_boss method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="s2">&quot;Koopa Troopa&quot;</span><span class="p">)</span>
+        <span class="c1"># Boss is Koopa Troopa now</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Koopa Troopa&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_castle_with_more_bosses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">multi_boss_castle</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+        <span class="c1"># Set a list as side_effect for the get_boss method</span>
+        <span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Goomba&quot;</span><span class="p">,</span> <span class="s2">&quot;Boo&quot;</span><span class="p">]</span>
+        <span class="c1"># First value is Goomba</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Goomba&quot;</span><span class="p">)</span>
+        <span class="c1"># Second value is Boo</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Boo&quot;</span><span class="p">)</span>
+        <span class="c1"># Third value does not exist and raises a StopIteration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">StopIteration</span><span class="p">,</span> <span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_calls_to_castle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">has_access</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;No access&quot;</span>
+        <span class="c1"># We should retrieve no access for everybody</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="s2">&quot;Let me in&quot;</span><span class="p">),</span> <span class="s2">&quot;No access&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="s2">&quot;Let me in, please&quot;</span><span class="p">),</span> <span class="s2">&quot;No access&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="s2">&quot;Let me in, please sir!&quot;</span><span class="p">),</span> <span class="s2">&quot;No access&quot;</span><span class="p">)</span>
+        <span class="c1"># Verify the length of the arguments list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="o">.</span><span class="n">call_args_list</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; tests/charactercastletestclass.py &quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">unittest.mock</span> <span class="kn">as</span> <span class="nn">mock</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">jj_classes.castle</span> <span class="kn">import</span> <span class="n">Castle</span>
+<span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;{os.path.dirname(os.path.abspath(__file__))}/../&quot;</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">jj_classes.castle</span> <span class="kn">import</span> <span class="n">Castle</span>
+<span class="kn">from</span> <span class="nn">jj_classes.character</span> <span class="kn">import</span> <span class="n">Character</span>
+
+
+<span class="k">class</span> <span class="nc">CharacterCastleTestClass</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Defines the tests for the Character and Castle class together &quot;&quot;&quot;</span>
+
+    <span class="nd">@mock.patch</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.Castle&quot;</span><span class="p">)</span>
+    <span class="nd">@mock.patch</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.Character&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_mock_castle_and_character</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">MockCharacter</span><span class="p">,</span> <span class="n">MockCastle</span><span class="p">):</span>
+        <span class="c1"># Note the order of the arguments of this test</span>
+        <span class="n">MockCastle</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Mocked Castle&quot;</span>
+        <span class="n">MockCharacter</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Mocked Character&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Castle</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;Mocked Castle&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">Character</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;Mocked Character&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_fake_powerup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">character</span> <span class="o">=</span> <span class="n">Character</span><span class="p">(</span><span class="s2">&quot;Sentinel Character&quot;</span><span class="p">)</span>
+        <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+        <span class="n">character</span><span class="o">.</span><span class="n">powerup</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">sentinel</span><span class="o">.</span><span class="n">fake_superpower</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">character</span><span class="o">.</span><span class="n">powerup</span><span class="p">(),</span> <span class="n">mock</span><span class="o">.</span><span class="n">sentinel</span><span class="o">.</span><span class="n">fake_superpower</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_castle_with_more_powerups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">(</span><span class="s2">&quot;Beautiful Castle&quot;</span><span class="p">)</span>
+        <span class="n">multi_characters</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+        <span class="c1"># Set a list as side_effect for the get_boss method</span>
+        <span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;mushroom&quot;</span><span class="p">,</span> <span class="s2">&quot;star&quot;</span><span class="p">]</span>
+        <span class="c1"># First value is mushroom</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">(),</span> <span class="s2">&quot;mushroom&quot;</span><span class="p">)</span>
+        <span class="c1"># Second value is star</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">(),</span> <span class="s2">&quot;star&quot;</span><span class="p">)</span>
+        <span class="c1"># Third value does not exist and raises a StopIteration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">StopIteration</span><span class="p">,</span> <span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<h2>Rewriting the tests to use <code>pytest</code></h2>
+<p>In order to increase readability and reduce repetition, I favor <code>pytest</code> over <code>unittest</code>. PyTest offers some nice features to make writing tests faster and cleaner. </p>
+<h3>Main differences</h3>
+<h4>Assert</h4>
+<p>With <code>unittest</code> we always use <code>self.assertEqual</code> and the other variations. With <code>pytest</code> only <code>assert</code> is used.</p>
+<div class="highlight"><pre><span></span><span class="c1"># unittest</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;five&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># pytest</span>
+<span class="k">assert</span> <span class="mi">5</span> <span class="o">==</span> <span class="n">five</span>
+</pre></div>
+
+
+<p>Capturing errors is easier with PyTest, you can even assert the raised message in the same go.</p>
+<div class="highlight"><pre><span></span><span class="c1"># unittest</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">StopIteration</span><span class="p">,</span> <span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># pytest</span>
+<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">StopIteration</span><span class="p">):</span>
+        <span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">()</span>
+
+<span class="n">expected_error</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;__init__\(\) missing 1 required positional argument: \&#39;name\&#39;&quot;</span>
+<span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="n">expected_error</span><span class="p">):</span>
+        <span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">()</span>
+</pre></div>
+
+
+<h4>Mock</h4>
+<div class="highlight"><pre><span></span><span class="c1"># unittest</span>
+<span class="c1"># Mock a class method</span>
+<span class="nd">@mock.patch.object</span><span class="p">(</span><span class="n">Castle</span><span class="p">,</span> <span class="s2">&quot;get_boss&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">test_mock_castle_boss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mock_get_boss</span><span class="p">):</span>
+    <span class="n">mock_get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Hammer Bro&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Hammer Bro&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Make sure that for the mock functionality in PyTest the package <code>pytest-mock</code> is installed.</p>
+<div class="highlight"><pre><span></span><span class="c1"># pytest</span>
+<span class="c1"># Mock a class method</span>
+<span class="k">def</span> <span class="nf">test_mock_castle_boss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mocker</span><span class="p">,</span> <span class="n">castle</span><span class="p">):</span>
+    <span class="n">mock_get_boss</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Castle</span><span class="p">,</span> <span class="s2">&quot;get_boss&quot;</span><span class="p">)</span>
+    <span class="n">mock_get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Hammer Bro&quot;</span>
+    <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Hammer Bro&quot;</span>
+</pre></div>
+
+
+<h4>Fixtures</h4>
+<p>PyTest has the functionality to add fixtures to your tests. They are normally placed in <code>conftest.py</code> in your tests folder where it will be automatically be picked up. For the sake of example, I have added the fixture to the same file as the test itself. In case of defining <code>castle</code> in each test like for <code>unittest</code>, we create a fixture for <code>castle</code> once and add it as an argument to the tests.</p>
+<div class="highlight"><pre><span></span><span class="c1"># unittest</span>
+
+<span class="k">def</span> <span class="nf">test_get_boss_returns_bowser</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Test that the get_boss returns Bowser &quot;&quot;&quot;</span>
+    <span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">(</span><span class="s2">&quot;My Fixture Castle&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Bowser&#39;</span>
+
+<span class="k">def</span> <span class="nf">test_get_world_returns_grass_land</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Test that the get_boss returns Grass Land &quot;&quot;&quot;</span>
+    <span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">(</span><span class="s2">&quot;My Fixture Castle&quot;</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Grass Land&#39;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># pytest</span>
+<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s1">&#39;session&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">castle</span><span class="p">():</span>
+    <span class="n">returns</span> <span class="n">Castle</span><span class="p">(</span><span class="s2">&quot;My Fixture Castle&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">test_get_boss_returns_bowser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">castle</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Test that the get_boss returns Bowser &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Bowser&#39;</span>
+
+<span class="k">def</span> <span class="nf">test_get_world_returns_grass_land</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">castle</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Test that the get_boss returns Grass Land &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Grass Land&#39;</span>
+</pre></div>
+
+
+<h2>Conclusion</h2>
+<p>In the end I have cleaned up my tests to only use <code>pytest</code> and I have introduced the fixture file <code>conftest.py</code> to reduce the complexity of the test files.</p>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; tests/conftest.py &quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="n">CASTLE_NAME</span> <span class="o">=</span> <span class="s2">&quot;Castle Name&quot;</span>
+<span class="n">CHARACTER_NAME</span> <span class="o">=</span> <span class="s2">&quot;Character Name&quot;</span>
+
+<span class="kn">from</span> <span class="nn">jj_classes.castle</span> <span class="kn">import</span> <span class="n">Castle</span>
+<span class="kn">from</span> <span class="nn">jj_classes.character</span> <span class="kn">import</span> <span class="n">Character</span>
+
+<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">castle</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">Castle</span><span class="p">(</span><span class="n">CASTLE_NAME</span><span class="p">)</span>
+
+<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">character</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">Character</span><span class="p">(</span><span class="n">CHARACTER_NAME</span><span class="p">)</span>
+</pre></div>
+
+
+<p>And the tests look like the following:</p>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; tests/test_castle_class.py &quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">jj_classes.castle</span> <span class="kn">import</span> <span class="n">Castle</span>
+
+<span class="k">class</span> <span class="nc">TestCastleClass</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Defines the tests for the Castle class &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">test_init_sets_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that init sets the name &quot;&quot;&quot;</span>
+        <span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">(</span><span class="s1">&#39;Test name&#39;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Test name&quot;</span>
+
+    <span class="k">def</span> <span class="nf">test_init_error_when_no_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that init fails without the name &quot;&quot;&quot;</span>
+        <span class="n">expected_error</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;__init__\(\) missing 1 required positional argument: \&#39;name\&#39;&quot;</span>
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="n">expected_error</span><span class="p">):</span>
+            <span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">test_has_access_true_with_super_mushroom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">castle</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that has_access returns True for Super Mushroom &quot;&quot;&quot;</span>
+        <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">&#39;Super Mushroom&#39;</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="n">character</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">test_has_access_false_without_super_mushroom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">castle</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that has_access returns False for other powerups &quot;&quot;&quot;</span>
+        <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">&#39;Not a mushroom&#39;</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="n">character</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">False</span>
+
+    <span class="k">def</span> <span class="nf">test_get_boss_returns_bowser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">castle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that the get_boss returns Bowser &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Bowser&#39;</span>
+
+    <span class="k">def</span> <span class="nf">test_get_world_returns_grass_land</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">castle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that the get_boss returns Grass Land &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Grass Land&#39;</span>
+
+    <span class="c1"># Mock a class method</span>
+    <span class="k">def</span> <span class="nf">test_mock_castle_boss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mocker</span><span class="p">,</span> <span class="n">castle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that the mocked get_boss returns overwritten value &quot;&quot;&quot;</span>
+        <span class="n">mock_get_boss</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Castle</span><span class="p">,</span> <span class="s2">&quot;get_boss&quot;</span><span class="p">)</span>
+        <span class="n">mock_get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Hammer Bro&quot;</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Hammer Bro&quot;</span>
+
+    <span class="c1"># Mock an instance</span>
+    <span class="k">def</span> <span class="nf">test_mock_castle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mocker</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that the mocked instance returns overwritten values &quot;&quot;&quot;</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.Castle&quot;</span><span class="p">)</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Toad&quot;</span>
+        <span class="n">instance</span><span class="o">.</span><span class="n">get_world</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Desert Land&quot;</span>
+        <span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Toad&quot;</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Desert Land&quot;</span>
+
+    <span class="c1"># Mock an instance method</span>
+    <span class="k">def</span> <span class="nf">test_mock_castle_instance_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mocker</span><span class="p">,</span> <span class="n">castle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that overwriting the instance method worked &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">()</span> <span class="o">!=</span> <span class="s2">&quot;Koopa Troopa&quot;</span>
+        <span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">Mock</span><span class="p">(</span><span class="n">return_value</span><span class="o">=</span><span class="s2">&quot;Koopa Troopa&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Koopa Troopa&quot;</span>
+
+    <span class="k">def</span> <span class="nf">test_castle_with_more_bosses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mocker</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that get_boss gets overwritten several times &quot;&quot;&quot;</span>
+        <span class="n">multi_boss_castle</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+        <span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Goomba&quot;</span><span class="p">,</span> <span class="s2">&quot;Boo&quot;</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Goomba&quot;</span>
+        <span class="k">assert</span> <span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Boo&quot;</span>
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">StopIteration</span><span class="p">):</span>
+            <span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">test_calls_to_castle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mocker</span><span class="p">,</span> <span class="n">castle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that has_access gets called 3 times &quot;&quot;&quot;</span>
+        <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+        <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;No access&quot;</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="s2">&quot;Let me in&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;No access&quot;</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="s2">&quot;Let me in, please&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;No access&quot;</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="s2">&quot;Let me in, please sir!&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;No access&quot;</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="o">.</span><span class="n">call_args_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; tests/test_character_class.py &quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">from</span> <span class="nn">jj_classes.character</span> <span class="kn">import</span> <span class="n">Character</span>
+
+<span class="k">class</span> <span class="nc">TestCharacterClass</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Defines the tests for the Character class &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">test_init_sets_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that init sets the name &quot;&quot;&quot;</span>
+        <span class="n">character</span> <span class="o">=</span> <span class="n">Character</span><span class="p">(</span><span class="s1">&#39;Test name&#39;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">character</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Test name&quot;</span>
+
+    <span class="k">def</span> <span class="nf">test_init_error_when_no_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that init fails without the name &quot;&quot;&quot;</span>
+        <span class="n">expected_error</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;__init__\(\) missing 1 required positional argument: \&#39;name\&#39;&quot;</span>
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="n">expected_error</span><span class="p">):</span>
+            <span class="n">character</span> <span class="o">=</span> <span class="n">Character</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">test_get_powerup_returns_correct_value_when_not_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that the get_powerup returns the right value when not set &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">character</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">test_get_powerup_returns_correct_value_when_set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that the get_powerup returns the right value when set &quot;&quot;&quot;</span>
+        <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s2">&quot;Fire Flower&quot;</span>
+        <span class="k">assert</span> <span class="n">character</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;Fire Flower&quot;</span>
+
+    <span class="k">def</span> <span class="nf">test_fake_powerup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mocker</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that the powerup can be mocked &quot;&quot;&quot;</span>
+        <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+        <span class="n">character</span><span class="o">.</span><span class="n">powerup</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">sentinel</span><span class="o">.</span><span class="n">fake_superpower</span>
+        <span class="k">assert</span> <span class="n">character</span><span class="o">.</span><span class="n">powerup</span><span class="p">()</span> <span class="o">==</span> <span class="n">mocker</span><span class="o">.</span><span class="n">sentinel</span><span class="o">.</span><span class="n">fake_superpower</span>
+
+    <span class="k">def</span> <span class="nf">test_characters_with_more_powerups</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mocker</span><span class="p">,</span> <span class="n">castle</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that get_powerup gets overwritten several times &quot;&quot;&quot;</span>
+        <span class="n">multi_characters</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">Mock</span><span class="p">()</span>
+        <span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;mushroom&quot;</span><span class="p">,</span> <span class="s2">&quot;star&quot;</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;mushroom&quot;</span>
+        <span class="k">assert</span> <span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;star&quot;</span>
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">StopIteration</span><span class="p">):</span>
+            <span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>$ pytest -v
+<span class="o">=================================================================================================</span> <span class="nb">test</span> session <span class="nv">starts</span> <span class="o">==================================================================================================</span>
+platform darwin -- Python <span class="m">3</span>.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jitsejan/.local/share/virtualenvs/blog-testing-KMgUXSdn/bin/python3.7m
+cachedir: .pytest_cache
+rootdir: /Users/jitsejan/code/blog-testing
+plugins: mock-1.11.1
+collected <span class="m">17</span> items                                                                                                                                                                                                     
+
+tests/test_castle_class.py::TestCastleClass::test_init_sets_name PASSED                                                                                                                                          <span class="o">[</span>  <span class="m">5</span>%<span class="o">]</span>
+tests/test_castle_class.py::TestCastleClass::test_init_error_when_no_name PASSED                                                                                                                                 <span class="o">[</span> <span class="m">11</span>%<span class="o">]</span>
+tests/test_castle_class.py::TestCastleClass::test_has_access_true_with_super_mushroom PASSED                                                                                                                     <span class="o">[</span> <span class="m">17</span>%<span class="o">]</span>
+tests/test_castle_class.py::TestCastleClass::test_has_access_false_without_super_mushroom PASSED                                                                                                                 <span class="o">[</span> <span class="m">23</span>%<span class="o">]</span>
+tests/test_castle_class.py::TestCastleClass::test_get_boss_returns_bowser PASSED                                                                                                                                 <span class="o">[</span> <span class="m">29</span>%<span class="o">]</span>
+tests/test_castle_class.py::TestCastleClass::test_get_world_returns_grass_land PASSED                                                                                                                            <span class="o">[</span> <span class="m">35</span>%<span class="o">]</span>
+tests/test_castle_class.py::TestCastleClass::test_mock_castle_boss PASSED                                                                                                                                        <span class="o">[</span> <span class="m">41</span>%<span class="o">]</span>
+tests/test_castle_class.py::TestCastleClass::test_mock_castle PASSED                                                                                                                                             <span class="o">[</span> <span class="m">47</span>%<span class="o">]</span>
+tests/test_castle_class.py::TestCastleClass::test_mock_castle_instance_method PASSED                                                                                                                             <span class="o">[</span> <span class="m">52</span>%<span class="o">]</span>
+tests/test_castle_class.py::TestCastleClass::test_castle_with_more_bosses PASSED                                                                                                                                 <span class="o">[</span> <span class="m">58</span>%<span class="o">]</span>
+tests/test_castle_class.py::TestCastleClass::test_calls_to_castle PASSED                                                                                                                                         <span class="o">[</span> <span class="m">64</span>%<span class="o">]</span>
+tests/test_character_class.py::TestCharacterClass::test_init_sets_name PASSED                                                                                                                                    <span class="o">[</span> <span class="m">70</span>%<span class="o">]</span>
+tests/test_character_class.py::TestCharacterClass::test_init_error_when_no_name PASSED                                                                                                                           <span class="o">[</span> <span class="m">76</span>%<span class="o">]</span>
+tests/test_character_class.py::TestCharacterClass::test_get_powerup_returns_correct_value_when_not_set PASSED                                                                                                    <span class="o">[</span> <span class="m">82</span>%<span class="o">]</span>
+tests/test_character_class.py::TestCharacterClass::test_get_powerup_returns_correct_value_when_set PASSED                                                                                                        <span class="o">[</span> <span class="m">88</span>%<span class="o">]</span>
+tests/test_character_class.py::TestCharacterClass::test_fake_powerup PASSED                                                                                                                                      <span class="o">[</span> <span class="m">94</span>%<span class="o">]</span>
+tests/test_character_class.py::TestCharacterClass::test_characters_with_more_powerups PASSED                                                                                                                     <span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
+
+<span class="o">==================================================================================================</span> <span class="m">17</span> passed in <span class="m">0</span>.10s <span class="o">==================================================================================================</span>
+</pre></div>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/testing.html" class="tag">testing</a>
+                    <a href="./tag/unittest.html" class="tag">unittest</a>
+                    <a href="./tag/pytest.html" class="tag">pytest</a>
+                    <a href="./tag/mock.html" class="tag">mock</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
 
         </div>
 <footer class="footer">
