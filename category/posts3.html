@@ -11875,6 +11875,48 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="../using-executemany-to-increase-pyodbc-connection.html">Using executemany to increase PyODBC connection</a></h2>
+      <time datetime="" title="2018-07-19T16:13:00+01:00" pubdate>Thu 19 July 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>I recently had to insert data from a Pandas dataframe into a Azure SQL database using <code>pandas.to_sql()</code>. This was performing very poorly and seemed to take ages, but since  PyODBC introduced <a href="https://github.com/mkleehammer/pyodbc/wiki/Features-beyond-the-DB-API#fast_executemany">executemany</a> it is easy to improve the performance: simply add an event listener that activates the <code>executemany</code> for the cursor. For 2300 records I did a small comparison 8.67s and 7.22s versus 5min 57s and 5min 26s, so roughly 50 times faster for this small example dataset.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pyodbc</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">event</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.pool</span> <span class="kn">import</span> <span class="n">StaticPool</span>
+
+<span class="n">wh_conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;DRIVER={config[name][&#39;driver&#39;]};SERVER={config[name][&#39;server&#39;]},{config[name][&#39;port&#39;]};DATABASE={config[name][&#39;database&#39;]};UID={config[name][&#39;username&#39;]};PWD={config[name][&#39;password&#39;]}&quot;</span><span class="p">)</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;mssql+pyodbc://&quot;</span><span class="p">,</span> <span class="n">poolclass</span><span class="o">=</span><span class="n">StaticPool</span><span class="p">,</span> <span class="n">creator</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">wh_conn</span><span class="p">)</span>
+
+<span class="nd">@event.listens_for</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span> <span class="s1">&#39;before_cursor_execute&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">receive_before_cursor_execute</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">statement</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">executemany</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">executemany</span><span class="p">:</span>
+        <span class="n">cursor</span><span class="o">.</span><span class="n">fast_executemany</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Table&#39;</span><span class="p">,</span>
+          <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
+          <span class="n">schema</span><span class="o">=</span><span class="s1">&#39;Schema&#39;</span><span class="p">,</span>
+          <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+          <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">)</span>
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/pandas.html" class="tag">pandas</a>
+            <a href="../tag/azure.html" class="tag">Azure</a>
+            <a href="../tag/dataframe.html" class="tag">dataframe</a>
+            <a href="../tag/pyodbc.html" class="tag">PyODBC</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="../using-buttermcs-in-jupyter.html">Using ButterCMS in a Jupyter notebook with VueJS</a></h2>
       <time datetime="" title="2018-06-14T16:07:00+01:00" pubdate>Thu 14 June 2018</time>
     </header>
@@ -12149,32 +12191,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../using-vuejs-in-jupyter-notebook.html">Using Vue.js in a Jupyter notebook</a></h2>
-      <time datetime="" title="2017-10-05T22:47:00+01:00" pubdate>Thu 05 October 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>Another experiment: using the progressive JavaScript Framework <a href="https://vuejs.org">Vue.js</a> in a Jupyter notebook.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../using-vuejs-in-jupyter-notebook.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-            <a href="../tag/vuejs.html" class="tag">VueJS</a>
-            <a href="../tag/javascript.html" class="tag">JavaScript</a>
-            <a href="../tag/frontend.html" class="tag">frontend</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12221,8 +12237,48 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <nav class="widget">
         <ul class="tagcloud">
         <li class="tag-2">
-            <a href="../tag/aws.html">
-            AWS
+            <a href="../tag/devops.html">
+            DevOps
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/container.html">
+            container
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/spark.html">
+            Spark
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/jupyter.html">
+            Jupyter
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ether.html">
+            ether
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/python.html">
+            Python
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/pandas.html">
+            pandas
             </a>
         </li>
         <li class="tag-2">
@@ -12236,6 +12292,16 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
+            <a href="../tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/data-engineer.html">
+            data engineer
+            </a>
+        </li>
+        <li class="tag-2">
             <a href="../tag/lambda.html">
             Lambda
             </a>
@@ -12246,8 +12312,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/data-engineer.html">
-            data engineer
+            <a href="../tag/aws.html">
+            AWS
             </a>
         </li>
         <li class="tag-1">
@@ -12256,68 +12322,18 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/vps.html">
-            VPS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="../tag/docker.html">
             Docker
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/pandas.html">
-            pandas
+            <a href="../tag/vps.html">
+            VPS
             </a>
         </li>
         <li class="tag-2">
             <a href="../tag/javascript.html">
             javascript
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ether.html">
-            ether
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/mongodb.html">
-            MongoDB
             </a>
         </li>
         </ul>
