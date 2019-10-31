@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="./theme/css/main.css?cb94e6e8">
+            <link rel="stylesheet" href="./theme/css/main.css?f638e855">
 
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -11873,6 +11873,107 @@ jQuery(document).ready(function($) {
 </form>
   </div>
   <div class="col-md-9">
+  <article>
+    <header>
+      <h2><a href="./add-spacers-dock-osx.html">Add spacers in your OSX dock</a></h2>
+      <time datetime="" title="2016-08-02T13:54:00+01:00" pubdate>Tue 02 August 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>Run this command in the terminal to add a spacer</p>
+<div class="highlight"><pre><span></span>jitsejan@MBP $ defaults write com.apple.dock persistent-apps -array-add <span class="s1">&#39;{tile-data={}; tile-type=&quot;spacer-tile&quot;;}&#39;</span>
+</pre></div>
+
+
+<p>and restart the dock by running</p>
+<div class="highlight"><pre><span></span>jitsejan@MBP $ killall Dock
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/shell.html" class="tag">shell</a>
+            <a href="./tag/mac.html" class="tag">mac</a>
+            <a href="./tag/osx.html" class="tag">osx</a>
+            <a href="./tag/dock.html" class="tag">dock</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./setup-ec-instance.html">Setting up an AWS EC instance</a></h2>
+      <time datetime="" title="2016-08-01T09:33:00+01:00" pubdate>Mon 01 August 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>A short description of how to set up an instance at AWS EC</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="./setup-ec-instance.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/amazon.html" class="tag">Amazon</a>
+            <a href="./tag/ec.html" class="tag">EC</a>
+            <a href="./tag/vps.html" class="tag">VPS</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./change-modified-time-file.html">Change the last modified time of a file</a></h2>
+      <time datetime="" title="2016-07-31T14:52:00+01:00" pubdate>Sun 31 July 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>This script will change the last modified time of a file in the current directory to 4 days back.</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/ksh </span>
+<span class="nv">numDays</span><span class="o">=</span><span class="m">4</span>
+<span class="nv">diff</span><span class="o">=</span><span class="m">86400</span>*<span class="nv">$numDays</span>
+<span class="nb">export</span> diff
+<span class="nv">newDate</span><span class="o">=</span><span class="k">$(</span>perl -e <span class="s1">&#39;use POSIX; print strftime &quot;%Y%m%d%H%M&quot;, localtime time-$ENV{diff};&#39;</span><span class="k">)</span>
+<span class="nv">lastFile</span><span class="o">=</span><span class="k">$(</span>ls -lt <span class="p">|</span> egrep -v ^d <span class="p">|</span> tail -1 <span class="p">|</span> awk <span class="s1">&#39; { print $9 } &#39;</span><span class="k">)</span>
+touch -t <span class="nv">$newDate</span> <span class="nv">$lastFile</span>
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/shell.html" class="tag">shell</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./debugging-in-django.html">Show all debug information in Django</a></h2>
+      <time datetime="" title="2016-07-31T13:51:00+01:00" pubdate>Sun 31 July 2016</time>
+    </header>
+
+    <div class="article_content">
+        <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;</span> {% filter force_escape %} {% debug %} {% endfilter %} <span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/django.html" class="tag">Django</a>
+            <a href="./tag/python.html" class="tag">Python</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
   <article>
     <header>
       <h2><a href="./webcrawling-with-selenium.html">Webcrawling in Python using Selenium</a></h2>
@@ -12055,78 +12156,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <nav class="widget">
         <ul class="tagcloud">
         <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/azure.html">
-            Azure
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
+            <a href="./tag/lambda.html">
+            Lambda
             </a>
         </li>
         <li class="tag-2">
@@ -12135,8 +12166,38 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/devops.html">
-            DevOps
+            <a href="./tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/pandas.html">
+            pandas
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/python.html">
+            Python
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/spark.html">
+            Spark
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/aws.html">
+            AWS
             </a>
         </li>
         <li class="tag-1">
@@ -12145,13 +12206,53 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
+            <a href="./tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/container.html">
+            container
+            </a>
+        </li>
+        <li class="tag-2">
             <a href="./tag/ether.html">
             ether
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/docker.html">
+            Docker
             </a>
         </li>
         <li class="tag-1">
             <a href="./tag/notebook.html">
             notebook
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/devops.html">
+            DevOps
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/data-engineer.html">
+            data engineer
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ubuntu.html">
+            Ubuntu
             </a>
         </li>
         </ul>
