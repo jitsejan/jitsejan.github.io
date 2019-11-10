@@ -11875,6 +11875,34 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="./notes-on-kubernetes.html">Notes on Kubernetes</a></h2>
+      <time datetime="" title="2018-08-13T14:54:00+01:00" pubdate>Mon 13 August 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>After numerous restarts and resets of my VPS and executing over 20 different tutorials, I finally have my receipe to get my single node Kubernetes cluster with a proper load balancer working. Please note that the last version of my Kubernetes experiment can be found on my <a href="https://github.com/jitsejan/kubernetes-dev">Git repo</a>. Remember that this repository mainly contains a variety of YAML files that got the system working. What worked for me, might not work for anyone else.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="./notes-on-kubernetes.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/devops.html" class="tag">DevOps</a>
+            <a href="./tag/kubernetes.html" class="tag">Kubernetes</a>
+            <a href="./tag/docker.html" class="tag">Docker</a>
+            <a href="./tag/traefik.html" class="tag">Traefik</a>
+            <a href="./tag/loadbalancer.html" class="tag">LoadBalancer</a>
+            <a href="./tag/helm.html" class="tag">helm</a>
+            <a href="./tag/weave.html" class="tag">weave</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./using-executemany-to-increase-pyodbc-connection.html">Using executemany to increase PyODBC connection</a></h2>
       <time datetime="" title="2018-07-19T16:13:00+01:00" pubdate>Thu 19 July 2018</time>
     </header>
@@ -12164,33 +12192,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./using-pythons-filter-on-dataframe.html">Using Pythons filter to select columns in dataframe</a></h2>
-      <time datetime="" title="2017-11-09T23:45:00+00:00" pubdate>Thu 09 November 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>A simple trick to select columns from a dataframe:</p>
-<div class="highlight"><pre><span></span><span class="c1"># Create the filter condition</span>
-<span class="n">condition</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">DESIRED_COLUMNS</span>
-<span class="c1"># Filter the dataframe</span>
-<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="o">*</span><span class="nb">filter</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/filter.html" class="tag">filter</a>
-            <a href="./tag/tool.html" class="tag">tool</a>
-            <a href="./tag/lambda.html" class="tag">lambda</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12236,14 +12237,39 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
+        <li class="tag-2">
+            <a href="./tag/devops.html">
+            DevOps
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/lambda.html">
+            Lambda
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ether.html">
+            ether
+            </a>
+        </li>
         <li class="tag-1">
             <a href="./tag/python.html">
             Python
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
+            <a href="./tag/docker.html">
+            Docker
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ethereum.html">
+            Ethereum
             </a>
         </li>
         <li class="tag-2">
@@ -12257,8 +12283,23 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
+            <a href="./tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/vps.html">
+            VPS
             </a>
         </li>
         <li class="tag-1">
@@ -12267,28 +12308,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ether.html">
-            ether
+            <a href="./tag/ubuntu.html">
+            Ubuntu
             </a>
         </li>
         <li class="tag-2">
             <a href="./tag/pandas.html">
             pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
             </a>
         </li>
         <li class="tag-2">
@@ -12302,38 +12328,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/vps.html">
-            VPS
+            <a href="./tag/javascript.html">
+            javascript
             </a>
         </li>
-        <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/lambda.html">
-            Lambda
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/dataframe.html">
-            dataframe
+        <li class="tag-1">
+            <a href="./tag/jupyter.html">
+            Jupyter
             </a>
         </li>
         </ul>
