@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>JJ's World - posts category | JJ's World</title>
+        <title>Using Python with Jinja and PDFkit to generate a resume | JJ's World</title>
 
 
 <style type="text/css">
@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="../theme/css/main.css?f638e855">
+            <link rel="stylesheet" href="./theme/css/main.css?f638e855">
 
 
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -11851,445 +11851,219 @@ jQuery(document).ready(function($) {
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
-                <li><a href="../pages/python-cheatsheet">Python cheatsheet</a></li>
-                <li><a href="../pages/spark-cheatsheet">Spark cheatsheet</a></li>
+                <li><a href="./pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
+                <li><a href="./pages/python-cheatsheet">Python cheatsheet</a></li>
+                <li><a href="./pages/spark-cheatsheet">Spark cheatsheet</a></li>
             </ul>
         </div><!-- .navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container index">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-9">
-  <article>
-    <header>
-      <h2><a href="../getting-started-with-datascience.html">Getting started with data science in Python</a></h2>
-      <time datetime="" title="2016-08-03T14:55:00+01:00" pubdate>Wed 03 August 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>A short summary of my first attempts to start with data science.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../getting-started-with-datascience.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/anaconda.html" class="tag">anaconda</a>
-            <a href="../tag/datascience.html" class="tag">datascience</a>
-            <a href="../tag/pandas.html" class="tag">pandas</a>
-            <a href="../tag/seaborn.html" class="tag">seaborn</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../add-spacers-dock-osx.html">Add spacers in your OSX dock</a></h2>
-      <time datetime="" title="2016-08-02T13:54:00+01:00" pubdate>Tue 02 August 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Run this command in the terminal to add a spacer</p>
-<div class="highlight"><pre><span></span>jitsejan@MBP $ defaults write com.apple.dock persistent-apps -array-add <span class="s1">&#39;{tile-data={}; tile-type=&quot;spacer-tile&quot;;}&#39;</span>
-</pre></div>
-
-
-<p>and restart the dock by running</p>
-<div class="highlight"><pre><span></span>jitsejan@MBP $ killall Dock
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-            <a href="../tag/mac.html" class="tag">mac</a>
-            <a href="../tag/osx.html" class="tag">osx</a>
-            <a href="../tag/dock.html" class="tag">dock</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../setup-ec-instance.html">Setting up an AWS EC instance</a></h2>
-      <time datetime="" title="2016-08-01T09:33:00+01:00" pubdate>Mon 01 August 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>A short description of how to set up an instance at AWS EC</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../setup-ec-instance.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/amazon.html" class="tag">Amazon</a>
-            <a href="../tag/ec.html" class="tag">EC</a>
-            <a href="../tag/vps.html" class="tag">VPS</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../change-modified-time-file.html">Change the last modified time of a file</a></h2>
-      <time datetime="" title="2016-07-31T14:52:00+01:00" pubdate>Sun 31 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>This script will change the last modified time of a file in the current directory to 4 days back.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/ksh </span>
-<span class="nv">numDays</span><span class="o">=</span><span class="m">4</span>
-<span class="nv">diff</span><span class="o">=</span><span class="m">86400</span>*<span class="nv">$numDays</span>
-<span class="nb">export</span> diff
-<span class="nv">newDate</span><span class="o">=</span><span class="k">$(</span>perl -e <span class="s1">&#39;use POSIX; print strftime &quot;%Y%m%d%H%M&quot;, localtime time-$ENV{diff};&#39;</span><span class="k">)</span>
-<span class="nv">lastFile</span><span class="o">=</span><span class="k">$(</span>ls -lt <span class="p">|</span> egrep -v ^d <span class="p">|</span> tail -1 <span class="p">|</span> awk <span class="s1">&#39; { print $9 } &#39;</span><span class="k">)</span>
-touch -t <span class="nv">$newDate</span> <span class="nv">$lastFile</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../debugging-in-django.html">Show all debug information in Django</a></h2>
-      <time datetime="" title="2016-07-31T13:51:00+01:00" pubdate>Sun 31 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;</span> {% filter force_escape %} {% debug %} {% endfilter %} <span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/django.html" class="tag">Django</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../webcrawling-with-selenium.html">Webcrawling in Python using Selenium</a></h2>
-      <time datetime="" title="2016-07-30T11:09:00+01:00" pubdate>Sat 30 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>This is a simple script to crawl information from a website when the content is dynamically loaded.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../webcrawling-with-selenium.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/python.html" class="tag">python</a>
-            <a href="../tag/selenium.html" class="tag">selenium</a>
-            <a href="../tag/webcrawl.html" class="tag">webcrawl</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../send-attachment-from-command-line.html">Send attachment from command line</a></h2>
-      <time datetime="" title="2016-07-29T19:09:00+01:00" pubdate>Fri 29 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;Mail with attachment&#39;</span> <span class="p">|</span> mutt -a <span class="s2">&quot;/file/to/add/&quot;</span> -s <span class="s2">&quot;FYI: See attachment&quot;</span> -- name@email.com
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../mount-amazon-ec-local-folder.html">Mount Amazon EC as local folder</a></h2>
-      <time datetime="" title="2016-07-29T19:07:00+01:00" pubdate>Fri 29 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span>jitsejan@MBP $ sshfs ubuntu@ec2-34-56-7-89.eu-central-1.compute.amazonaws.com:/home/ubuntu/ ~/AmazonEC2/ -oauto_cache,reconnect,defer_permissions,noappledouble,negative_vncache
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../simple-webcrawling-python.html">Simple webcrawling in Python</a></h2>
-      <time datetime="" title="2016-07-28T12:45:00+01:00" pubdate>Thu 28 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Simple webcrawling in Python</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../simple-webcrawling-python.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/python.html" class="tag">python</a>
-            <a href="../tag/webcrawl.html" class="tag">webcrawl</a>
-            <a href="../tag/lxml.html" class="tag">lxml</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../create-big-files-with-dd.html">Create big files with dd</a></h2>
-      <time datetime="" title="2016-07-28T10:45:00+01:00" pubdate>Thu 28 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Use dd in Unix to create files with a size of 2.7 GB.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/ksh</span>
-<span class="nv">dir</span><span class="o">=</span>/this/is/my/outputdir/
-<span class="nv">numGig</span><span class="o">=</span><span class="m">2</span>.7
-<span class="nv">factor</span><span class="o">=</span><span class="m">1024</span>
-<span class="nv">memLimit</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$numGig</span>*<span class="nv">$factor</span>*<span class="nv">$factor</span>*<span class="nv">$factor</span> <span class="p">|</span> bc<span class="k">)</span>
-<span class="nb">cd</span> <span class="nv">$dir</span>
-<span class="k">for</span> i in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span> <span class="m">11</span> <span class="m">12</span> <span class="m">13</span> <span class="m">14</span> <span class="p">;</span> <span class="k">do</span>
-   dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>dummy_<span class="nv">$i</span>.xml <span class="nv">count</span><span class="o">=</span><span class="m">204800</span> <span class="nv">bs</span><span class="o">=</span><span class="nv">$factor</span>
-<span class="k">done</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-
-  <nav class="pagination row">
-    <div class="col-xs-6 left">
-        <a class="prev" href="../category/posts10.html">&#8592; Past</a>
-    </div>
-    <div class="col-xs-6 right">
-        <a class="next" href="../category/posts8.html">Future &#8594;</a>
-    </div>
-  </nav>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-3">
-<aside class="page-sidebar">
-    <nav class="widget" id="sidebar-about">
-        <div class="row img-div">
-            <img src="/theme/images/JJ_Montreal.png" />
-        </div>
-        <div class="row">
-        <p>I am a Data Engineer currently working for <a href="https://marketfinance.com">MarketFinance</a> in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
-<p>
-While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
-for visualizations as for modern web applications it is the go-to language. 
-</p>
-<p>
-I am using this page as a portfolio and showcase, but mainly as a cheatsheet. That is why you will mainly find shell commands, short scripts or notebooks just for myself to not reinvent the wheel.
-</p>
-
-        </div>  
-    </nav>
-    <hr/>
-    <nav class="widget">
-        <ul class="tagcloud">
-        <li class="tag-2">
-            <a href="../tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/vps.html">
-            VPS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ether.html">
-            ether
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/lambda.html">
-            Lambda
-            </a>
-        </li>
-        </ul>
-    </nav>
-    <hr/>
+<div class="container post">
     <div class="row">
-        <div class="col-md-12">
-            <ul class="social-list">
-                    <li><a href="http://www.flickr.com/photos/jitsejan" title="Flickr" rel="me" target="new"><i class="fa fa-1x fa-flickr"></i></a></li>
-                    <li><a href="https://play.spotify.com/user/jitsejan" title="Spotify" rel="me" target="new"><i class="fa fa-1x fa-spotify"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jitsejan" title="LinkedIn" rel="me" target="new"><i class="fa fa-1x fa-linkedin"></i></a></li>
-                    <li><a href="http://twitter.com/jitsejan" title="Twitter" rel="me" target="new"><i class="fa fa-1x fa-twitter"></i></a></li>
-                    <li><a href="http://www.github.com/jitsejan" title="Github" rel="me" target="new"><i class="fa fa-1x fa-github"></i></a></li>
-                    <li><a href="http://bitbucket.org/jitsejan" title="Bitbucket" rel="me" target="new"><i class="fa fa-1x fa-bitbucket"></i></a></li>
-                    <li><a href="http://bl.ocks.org/jitsejan" title="Blocks.org" rel="me" target="new"><i class="fa fa-1x fa-bar-chart"></i></a></li>
-                    <li><a href="https://hub.docker.com/r/jitsejan" title="Docker" rel="me" target="new"><i class="fa fa-1x fa-docker"></i></a></li>
-            </ul>
-        </div>
+        <a href="javascript:history.back()">Go back</a>
     </div>
-</aside>  </div>
-  
-  </div>
+    <article>
+        <header>
+            <h1>Using Python with Jinja and PDFkit to generate a resume</h1>
+            <time datetime="article.date.isoformat()" pubdate>Sun 10 November 2019</time>
+        </header>
 
+        <div class="article_content">
+            <p>This project contains a simple example on how to build a resume with Python using Jinja, HTML, Bootstrap and a data file. In the past I have always created my resume with Latex, but to make life a little easier I chose to switch to a combination of Python and HTML. Maintaining a Latex document is cumbersome and it is difficult to divide the data from the style. By using Jinja it is straightforward to separate the resume data from the actual layout. And the most important part, I can stick to Python!</p>
+<h2>Library overview</h2>
+<ul>
+<li><a href="https://palletsprojects.com/p/flask/">flask</a> - Application to render the Jinja templates with.</li>
+<li><a href="https://palletsprojects.com/p/jinja/">jinja</a> - Library to create templates and populate fields with Python variables.</li>
+<li><a href="https://pypi.org/project/pdfkit/">pdfkit</a> - Tool to write HTML to PDF with Python.</li>
+<li><a href="https://pypi.org/project/PyYAML/">pyyaml</a> - Library to read and write Yaml files with Python.</li>
+</ul>
+<h2>Getting started</h2>
+<p>Clone this repository and navigate inside the folder.</p>
+<div class="highlight"><pre><span></span>~/code/ $ git clone https://github.com/jitsejan/jinja-resume-template.git
+~/code/ $ <span class="nb">cd</span> jinja-resume-template
+</pre></div>
+
+
+<p>Create the virtual environment with <a href="https://pipenv.kennethreitz.org/en/latest/">pipenv</a> to run the project in.</p>
+<div class="highlight"><pre><span></span>~/code/jinja-resume-template $ pipenv shell
+Creating a virtualenv <span class="k">for</span> this project…
+Pipfile: /Users/jitsejan/code/jinja-resume-template/Pipfile
+Using /Library/Frameworks/Python.framework/Versions/3.7/bin/python3 <span class="o">(</span><span class="m">3</span>.7.4<span class="o">)</span> to create virtualenv…
+⠇ Creating virtual environment...Already using interpreter /Library/Frameworks/Python.framework/Versions/3.7/bin/python3
+Using base prefix <span class="s1">&#39;/Library/Frameworks/Python.framework/Versions/3.7&#39;</span>
+New python executable in /Users/jitsejan/.local/share/virtualenvs/jinja-resume-template-97zV94Wt/bin/python3
+Also creating executable in /Users/jitsejan/.local/share/virtualenvs/jinja-resume-template-97zV94Wt/bin/python
+Installing setuptools, pip, wheel...
+<span class="k">done</span>.
+Running virtualenv with interpreter /Library/Frameworks/Python.framework/Versions/3.7/bin/python3
+
+✔ Successfully created virtual environment!
+Virtualenv location: /Users/jitsejan/.local/share/virtualenvs/jinja-resume-template-97zV94Wt
+Launching subshell in virtual environment…
+ . /Users/jitsejan/.local/share/virtualenvs/jinja-resume-template-97zV94Wt/bin/activate
+</pre></div>
+
+
+<p>Install the dependencies:</p>
+<div class="highlight"><pre><span></span>jinja-resume-template-97zV94Wt ~/code/jinja-resume-template $ pipenv install
+Pipfile.lock not found, creating…
+Locking <span class="o">[</span>dev-packages<span class="o">]</span> dependencies…
+Locking <span class="o">[</span>packages<span class="o">]</span> dependencies…
+✔ Success!
+Updated Pipfile.lock <span class="o">(</span><span class="m">546278</span><span class="o">)</span>!
+Installing dependencies from Pipfile.lock <span class="o">(</span><span class="m">546278</span><span class="o">)</span>…
+  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ <span class="m">8</span>/8 — <span class="m">00</span>:00:10
+</pre></div>
+
+
+<h2>Creating the PDF</h2>
+<p>Execute the script <code>run.py</code> to generate the PDF:</p>
+<div class="highlight"><pre><span></span>jinja-resume-template-97zV94Wt ~/code/jinja-resume-template $ pipenv run python run.py
+Loading pages <span class="o">(</span><span class="m">1</span>/6<span class="o">)</span>
+Counting pages <span class="o">(</span><span class="m">2</span>/6<span class="o">)</span>
+Resolving links <span class="o">(</span><span class="m">4</span>/6<span class="o">)</span>
+Loading headers and footers <span class="o">(</span><span class="m">5</span>/6<span class="o">)</span>
+Printing pages <span class="o">(</span><span class="m">6</span>/6<span class="o">)</span>
+Done
+</pre></div>
+
+
+<h2>Information</h2>
+<p>Jinja helps to create structures like this:</p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{ personal.get(&#39;name&#39;).get(&#39;first&#39;) }} {{ personal.get(&#39;name&#39;).get(&#39;last&#39;) }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>{{ occupation }}<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>Everything between <code>{{</code> and <code>}}</code> is interpreted as Python. The input of the template is a dictionary with the keys <code>personal</code> and <code>occupation</code>, which are all defined in <code>data.yml</code>. All the variables defined in the YAML file can be used in the template. </p>
+<div class="highlight"><pre><span></span><span class="nt">personal</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> 
+    <span class="nt">first</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Pete</span>
+    <span class="nt">last</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Peterson</span>
+<span class="nt">occupation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Resume builder</span>
+</pre></div>
+
+
+<p>The following Python script will load the YAML and the HTML and save the populated template to <code>output_text</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_get_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Load the data from the YAML file &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">DATA_FILE</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">yaml</span><span class="o">.</span><span class="n">YAMLError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">_get_template</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Retrieve the template &quot;&quot;&quot;</span>
+    <span class="n">template_loader</span> <span class="o">=</span> <span class="n">jinja2</span><span class="o">.</span><span class="n">FileSystemLoader</span><span class="p">(</span><span class="n">searchpath</span><span class="o">=</span><span class="s2">&quot;templates&quot;</span><span class="p">)</span>
+    <span class="n">template_env</span> <span class="o">=</span> <span class="n">jinja2</span><span class="o">.</span><span class="n">Environment</span><span class="p">(</span><span class="n">loader</span><span class="o">=</span><span class="n">template_loader</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">template_env</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="n">TEMPLATE_FILE</span><span class="p">)</span>
+
+<span class="c1"># Loads YAML file</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">_get_data</span><span class="p">()</span>
+<span class="c1"># Loads HTML file</span>
+<span class="n">template</span> <span class="o">=</span> <span class="n">_get_template</span><span class="p">()</span>
+<span class="c1"># Fills in the variables in the HTML file</span>
+<span class="n">output_text</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Jinja for-loop</h3>
+<p>With Jinja it is also easy to loop through lists and dictionaries. Below I have defined the <code>languages</code> variable with two elements where each element has a <code>description</code>. </p>
+<div class="highlight"><pre><span></span><span class="nt">languages</span><span class="p">:</span>
+  <span class="nt">English</span><span class="p">:</span>
+    <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Full professional proficiency</span>
+  <span class="nt">Italian</span><span class="p">:</span>
+    <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Elementary proficiency</span>
+</pre></div>
+
+
+<p>In the HTML we use <code>{%</code> and <code>%}</code> to indicate Python code is executed. </p>
+<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+{% for dict_item in languages %}
+    <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>{{dict_item}}: {{ languages[dict_item][&#39;description&#39;] }}<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>  
+{% endfor %}  
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</pre></div>
+
+
+<p>In the above case I use it for a <code>for</code>-loop, but the same syntax is used for conditionals too. For example, you could write a condition like the following:</p>
+<div class="highlight"><pre><span></span>{% if social.get(&#39;github&#39;) not None %}
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;social&quot;</span><span class="p">&gt;</span>{{ social.get(&#39;github&#39;) }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+{% endif %}
+</pre></div>
+
+
+<p>For further Jinja tricks, take a look at their <a href="https://jinja.palletsprojects.com/en/2.10.x/">documentation</a>. Take a look at my <a href="https://github.com/jitsejan/jinja-resume-template">Github repo</a> for the code, clone it and play with the template.</p>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/pdf.html" class="tag">PDF</a>
+                    <a href="./tag/jinja.html" class="tag">Jinja</a>
+                    <a href="./tag/template.html" class="tag">template</a>
+                    <a href="./tag/resume.html" class="tag">resume</a>
+                    <a href="./tag/automation.html" class="tag">automation</a>
+                    <a href="./tag/flask.html" class="tag">Flask</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
 
         </div>
 <footer class="footer">
     <div class="container">
         <center>
             <address id="about" class="vcard body">
-                &copy; <a href="..">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2019
+                &copy; <a href=".">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2019
             </address><!-- /#about -->
         </center>
     </div>

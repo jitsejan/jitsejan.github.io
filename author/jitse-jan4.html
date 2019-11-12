@@ -11875,6 +11875,33 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="../using-pythons-filter-on-dataframe.html">Using Pythons filter to select columns in dataframe</a></h2>
+      <time datetime="" title="2017-11-09T23:45:00+00:00" pubdate>Thu 09 November 2017</time>
+    </header>
+
+    <div class="article_content">
+        <p>A simple trick to select columns from a dataframe:</p>
+<div class="highlight"><pre><span></span><span class="c1"># Create the filter condition</span>
+<span class="n">condition</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">DESIRED_COLUMNS</span>
+<span class="c1"># Filter the dataframe</span>
+<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="o">*</span><span class="nb">filter</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/filter.html" class="tag">filter</a>
+            <a href="../tag/tool.html" class="tag">tool</a>
+            <a href="../tag/lambda.html" class="tag">lambda</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="../using-vuejs-in-jupyter-notebook.html">Using Vue.js in a Jupyter notebook</a></h2>
       <time datetime="" title="2017-10-05T22:47:00+01:00" pubdate>Thu 05 October 2017</time>
     </header>
@@ -12107,32 +12134,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../python-and-javascript-in-flask.html">Using Python and Javascript together with Flask</a></h2>
-      <time datetime="" title="2017-08-01T16:38:00+01:00" pubdate>Tue 01 August 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>In this project I am experimenting with sending data between Javascript and Python using the web framework Flask. Additionally I will use matplotlib to generate a dynamic graph based on the provided user input data.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../python-and-javascript-in-flask.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/javascript.html" class="tag">Javascript</a>
-            <a href="../tag/flask.html" class="tag">Flask</a>
-            <a href="../tag/matplotlib.html" class="tag">matplotlib</a>
-            <a href="../tag/web.html" class="tag">web</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12178,34 +12179,9 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-1">
-            <a href="../tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/lambda.html">
-            Lambda
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/devops.html">
-            DevOps
-            </a>
-        </li>
         <li class="tag-2">
             <a href="../tag/aws.html">
             AWS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ether.html">
-            ether
             </a>
         </li>
         <li class="tag-2">
@@ -12214,8 +12190,38 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
+            <a href="../tag/docker.html">
+            Docker
+            </a>
+        </li>
+        <li class="tag-2">
             <a href="../tag/vps.html">
             VPS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/data-engineer.html">
+            data engineer
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/notebook.html">
+            notebook
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/jupyter.html">
+            Jupyter
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ethereum.html">
+            Ethereum
             </a>
         </li>
         <li class="tag-2">
@@ -12229,43 +12235,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="../tag/blockchain.html">
             blockchain
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/javascript.html">
-            javascript
             </a>
         </li>
         <li class="tag-2">
@@ -12274,8 +12245,38 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
+            <a href="../tag/devops.html">
+            DevOps
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-2">
             <a href="../tag/container.html">
             container
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ether.html">
+            ether
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/python.html">
+            Python
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/lambda.html">
+            Lambda
             </a>
         </li>
         </ul>
