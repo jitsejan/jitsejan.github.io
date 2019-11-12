@@ -24120,61 +24120,61 @@ added 28 packages in 2.103s
 <div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> server/app.js
-<span class="n">var</span> <span class="n">express</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">path</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">favicon</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;serve-favicon&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;morgan&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">cookieParser</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;cookie-parser&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">bodyParser</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;body-parser&#39;</span><span class="p">);</span>
-<span class="o">//</span> <span class="n">Mongoose</span> <span class="n">connection</span>
-<span class="n">var</span> <span class="n">mongoose</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">);</span>
-<span class="n">mongoose</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;mongodb://localhost:27017/nintendo&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">db</span> <span class="o">=</span> <span class="n">mongoose</span><span class="o">.</span><span class="n">connection</span><span class="p">;</span>
-<span class="n">db</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="n">console</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">console</span><span class="p">,</span> <span class="s2">&quot;Connection error&quot;</span><span class="p">));</span>
-<span class="n">db</span><span class="o">.</span><span class="n">once</span><span class="p">(</span><span class="s2">&quot;open&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">callback</span><span class="p">){</span>
-  <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Connection successful&quot;</span><span class="p">)</span>
-<span class="p">});</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> server/app.js
+var express = require(&#39;express&#39;);
+var path = require(&#39;path&#39;);
+var favicon = require(&#39;serve-favicon&#39;);
+var logger = require(&#39;morgan&#39;);
+var cookieParser = require(&#39;cookie-parser&#39;);
+var bodyParser = require(&#39;body-parser&#39;);
+// Mongoose connection
+var mongoose = require(&#39;mongoose&#39;);
+mongoose.connect(&#39;mongodb://localhost:27017/nintendo&#39;);
+var db = mongoose.connection;
+db.on(&quot;error&quot;, console.error.bind(console, &quot;Connection error&quot;));
+db.once(&quot;open&quot;, function(callback){
+  console.log(&quot;Connection successful&quot;)
+});
 
-<span class="n">var</span> <span class="n">index</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;./routes/index&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">users</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;./routes/users&#39;</span><span class="p">);</span>
+var index = require(&#39;./routes/index&#39;);
+var users = require(&#39;./routes/users&#39;);
 
-<span class="n">var</span> <span class="n">app</span> <span class="o">=</span> <span class="n">express</span><span class="p">();</span>
+var app = express();
 
-<span class="o">//</span> <span class="n">view</span> <span class="n">engine</span> <span class="n">setup</span>
-<span class="n">app</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;views&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__dirname</span><span class="p">,</span> <span class="s1">&#39;views&#39;</span><span class="p">));</span>
-<span class="n">app</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;view engine&#39;</span><span class="p">,</span> <span class="s1">&#39;ejs&#39;</span><span class="p">);</span>
+// view engine setup
+app.set(&#39;views&#39;, path.join(__dirname, &#39;views&#39;));
+app.set(&#39;view engine&#39;, &#39;ejs&#39;);
 
-<span class="o">//</span> <span class="n">uncomment</span> <span class="n">after</span> <span class="n">placing</span> <span class="n">your</span> <span class="n">favicon</span> <span class="ow">in</span> <span class="o">/</span><span class="n">public</span>
-<span class="o">//</span><span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">favicon</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__dirname</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">,</span> <span class="s1">&#39;favicon.ico&#39;</span><span class="p">)));</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">logger</span><span class="p">(</span><span class="s1">&#39;dev&#39;</span><span class="p">));</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">bodyParser</span><span class="o">.</span><span class="n">json</span><span class="p">());</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">bodyParser</span><span class="o">.</span><span class="n">urlencoded</span><span class="p">({</span> <span class="n">extended</span><span class="p">:</span> <span class="n">false</span> <span class="p">}));</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">cookieParser</span><span class="p">());</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">express</span><span class="o">.</span><span class="n">static</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__dirname</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">)));</span>
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, &#39;public&#39;, &#39;favicon.ico&#39;)));
+app.use(logger(&#39;dev&#39;));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, &#39;public&#39;)));
 
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;/users&#39;</span><span class="p">,</span> <span class="n">users</span><span class="p">);</span>
+app.use(&#39;/&#39;, index);
+app.use(&#39;/users&#39;, users);
 
-<span class="o">//</span> <span class="n">catch</span> <span class="mi">404</span> <span class="ow">and</span> <span class="n">forward</span> <span class="n">to</span> <span class="n">error</span> <span class="n">handler</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="nb">next</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">var</span> <span class="n">err</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Error</span><span class="p">(</span><span class="s1">&#39;Not Found&#39;</span><span class="p">);</span>
-  <span class="n">err</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="mi">404</span><span class="p">;</span>
-  <span class="nb">next</span><span class="p">(</span><span class="n">err</span><span class="p">);</span>
-<span class="p">});</span>
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error(&#39;Not Found&#39;);
+  err.status = 404;
+  next(err);
+});
 
-<span class="o">//</span> <span class="n">error</span> <span class="n">handler</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="nb">next</span><span class="p">)</span> <span class="p">{</span>
-  <span class="o">//</span> <span class="nb">set</span> <span class="nb">locals</span><span class="p">,</span> <span class="n">only</span> <span class="n">providing</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">development</span>
-  <span class="n">res</span><span class="o">.</span><span class="n">locals</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">err</span><span class="o">.</span><span class="n">message</span><span class="p">;</span>
-  <span class="n">res</span><span class="o">.</span><span class="n">locals</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;env&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;development&#39;</span> <span class="err">?</span> <span class="n">err</span> <span class="p">:</span> <span class="p">{};</span>
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get(&#39;env&#39;) === &#39;development&#39; ? err : {};
 
-  <span class="o">//</span> <span class="n">render</span> <span class="n">the</span> <span class="n">error</span> <span class="n">page</span>
-  <span class="n">res</span><span class="o">.</span><span class="n">status</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">status</span> <span class="o">||</span> <span class="mi">500</span><span class="p">);</span>
-  <span class="n">res</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">);</span>
-<span class="p">});</span>
+  // render the error page
+  res.status(err.status || 500);
+  res.render(&#39;error&#39;);
+});
 
-<span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="n">app</span><span class="p">;</span>
+module.exports = app;
 </pre></div>
 
     </div>
@@ -24355,26 +24355,26 @@ Success!
 <div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> server/models/game.js
-<span class="n">var</span> <span class="n">mongoose</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&quot;mongoose&quot;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">Schema</span> <span class="o">=</span> <span class="n">mongoose</span><span class="o">.</span><span class="n">Schema</span><span class="p">;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> server/models/game.js
+var mongoose = require(&quot;mongoose&quot;);
+var Schema = mongoose.Schema;
 
-<span class="n">var</span> <span class="n">GameSchema</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Schema</span><span class="p">({</span>
-  <span class="n">console</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nb">type</span><span class="p">:</span> <span class="n">String</span>
-  <span class="p">},</span>
-  <span class="n">name</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nb">type</span><span class="p">:</span> <span class="n">String</span>
-  <span class="p">},</span>
-  <span class="n">image</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nb">type</span><span class="p">:</span> <span class="n">String</span>
-  <span class="p">},</span>
-  <span class="n">sales</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nb">type</span><span class="p">:</span> <span class="n">String</span>
-  <span class="p">}</span>
-<span class="p">});</span>
+var GameSchema = new Schema({
+  console: {
+    type: String
+  },
+  name: {
+    type: String
+  },
+  image: {
+    type: String
+  },
+  sales: {
+    type: String
+  }
+});
 
-<span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="n">mongoose</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="s2">&quot;Game&quot;</span><span class="p">,</span> <span class="n">GameSchema</span><span class="p">);</span>
+module.exports = mongoose.model(&quot;Game&quot;, GameSchema);
 </pre></div>
 
     </div>
@@ -24555,21 +24555,21 @@ module.exports = router;
 <div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> server/routes/games.js
-<span class="n">var</span> <span class="n">express</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">router</span> <span class="o">=</span> <span class="n">express</span><span class="o">.</span><span class="n">Router</span><span class="p">();</span>
-<span class="n">var</span> <span class="n">Game</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&quot;../models/game&quot;</span><span class="p">);</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> server/routes/games.js
+var express = require(&#39;express&#39;);
+var router = express.Router();
+var Game = require(&quot;../models/game&quot;);
 
-<span class="n">router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="n">Game</span><span class="o">.</span><span class="n">find</span><span class="p">({},</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">function</span> <span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">games</span><span class="p">){</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span> <span class="n">game</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span> <span class="p">}</span>
-    <span class="n">res</span><span class="o">.</span><span class="n">send</span><span class="p">({</span>
-      <span class="n">games</span><span class="p">:</span> <span class="n">games</span>
-    <span class="p">})</span>
-  <span class="p">})</span><span class="o">.</span><span class="n">sort</span><span class="p">({</span><span class="n">_id</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">})</span>
-<span class="p">})</span>
+router.get(&#39;/&#39;, (req, res) =&gt; {
+  Game.find({}, &#39;&#39;, function (error, games){
+    if (error) { game.error(error); }
+    res.send({
+      games: games
+    })
+  }).sort({_id:-1})
+})
 
-<span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="n">router</span><span class="p">;</span>
+module.exports = router;
 </pre></div>
 
     </div>
@@ -26619,28 +26619,28 @@ module.exports = router;
 <div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> server/routes/games.js
-<span class="n">var</span> <span class="n">express</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">router</span> <span class="o">=</span> <span class="n">express</span><span class="o">.</span><span class="n">Router</span><span class="p">();</span>
-<span class="n">var</span> <span class="n">Game</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&quot;../models/game&quot;</span><span class="p">);</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> server/routes/games.js
+var express = require(&#39;express&#39;);
+var router = express.Router();
+var Game = require(&quot;../models/game&quot;);
 
-<span class="n">router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="n">Game</span><span class="o">.</span><span class="n">find</span><span class="p">({},</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">function</span> <span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">games</span><span class="p">){</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span> <span class="n">game</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span> <span class="p">}</span>
-    <span class="n">res</span><span class="o">.</span><span class="n">send</span><span class="p">({</span>
-      <span class="n">games</span><span class="p">:</span> <span class="n">games</span>
-    <span class="p">})</span>
-  <span class="p">})</span><span class="o">.</span><span class="n">sort</span><span class="p">({</span><span class="n">_id</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">})</span>
-<span class="p">})</span>
-<span class="n">router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/:id&#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="n">var</span> <span class="n">db</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">db</span><span class="p">;</span>
-  <span class="n">Game</span><span class="o">.</span><span class="n">findById</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">function</span> <span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">game</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span> <span class="n">console</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span> <span class="p">}</span>
-    <span class="n">res</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">game</span><span class="p">)</span>
-  <span class="p">})</span>
-<span class="p">})</span>
+router.get(&#39;/&#39;, (req, res) =&gt; {
+  Game.find({}, &#39;&#39;, function (error, games){
+    if (error) { game.error(error); }
+    res.send({
+      games: games
+    })
+  }).sort({_id:-1})
+})
+router.get(&#39;/:id&#39;, (req, res) =&gt; {
+  var db = req.db;
+  Game.findById(req.params.id, &#39;&#39;, function (error, game) {
+    if (error) { console.error(error); }
+    res.send(game)
+  })
+})
 
-<span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="n">router</span><span class="p">;</span>
+module.exports = router;
 </pre></div>
 
     </div>
@@ -26911,34 +26911,34 @@ drwxrwxr-x 239 jitsejan jitsejan 12288 Jan 15 19:03 <span class="ansi-blue-inten
 <div class="prompt input_prompt">In&nbsp;[66]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> client/init_expect_script.sh
-<span class="ch">#!/usr/bin/expect -f</span>
-<span class="n">spawn</span> <span class="n">npx</span> <span class="n">vue</span> <span class="n">init</span> <span class="n">webpack</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> client/init_expect_script.sh
+#!/usr/bin/expect -f
+spawn npx vue init webpack
 
-<span class="n">expect</span> <span class="s2">&quot;Generate project in current directory?&quot;</span> <span class="p">{</span> <span class="n">send</span> <span class="s2">&quot;Y</span><span class="se">\r</span><span class="s2">&quot;</span> <span class="p">}</span>
-<span class="n">expect</span> <span class="s2">&quot;Project name&quot;</span>
-<span class="n">send</span> <span class="s2">&quot;vueclient</span><span class="se">\r</span><span class="s2">&quot;</span>
-<span class="n">expect</span> <span class="s2">&quot;Project description&quot;</span>
-<span class="n">send</span> <span class="s2">&quot;An experiment with Jupyter and MEVN</span><span class="se">\r</span><span class="s2">&quot;</span>
-<span class="n">expect</span> <span class="s2">&quot;Author&quot;</span>
-<span class="n">send</span> <span class="s2">&quot;Jupyter</span><span class="se">\r\n</span><span class="s2">&quot;</span>
-<span class="n">expect</span> <span class="s2">&quot;Vue build&quot;</span>
-<span class="n">send</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
-<span class="n">expect</span> <span class="s2">&quot;Install vue-router?&quot;</span>
-<span class="n">send</span> <span class="s2">&quot;Y</span><span class="se">\r</span><span class="s2">&quot;</span>
-<span class="n">expect</span> <span class="s2">&quot;Use ESLint to lint your code?&quot;</span>
-<span class="n">send</span> <span class="s2">&quot;Y</span><span class="se">\r</span><span class="s2">&quot;</span>
-<span class="n">expect</span> <span class="s2">&quot;Pick an ESLint preset&quot;</span>
-<span class="n">send</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
-<span class="n">expect</span> <span class="s2">&quot;Set up unit tests&quot;</span>
-<span class="n">send</span> <span class="s2">&quot;Y</span><span class="se">\r</span><span class="s2">&quot;</span>
-<span class="n">expect</span> <span class="s2">&quot;Pick a test runner&quot;</span>
-<span class="n">send</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
-<span class="n">expect</span> <span class="s2">&quot;Setup e2e tests with Nightwatch?&quot;</span>
-<span class="n">send</span> <span class="s2">&quot;Y</span><span class="se">\r</span><span class="s2">&quot;</span>
-<span class="n">expect</span> <span class="s2">&quot;Should we run `npm install` for you after the project has been created? (recommended)&quot;</span>
-<span class="n">send</span> <span class="s2">&quot;</span><span class="se">\r\n</span><span class="s2">&quot;</span>
-<span class="n">interact</span>
+expect &quot;Generate project in current directory?&quot; { send &quot;Y\r&quot; }
+expect &quot;Project name&quot;
+send &quot;vueclient\r&quot;
+expect &quot;Project description&quot;
+send &quot;An experiment with Jupyter and MEVN\r&quot;
+expect &quot;Author&quot;
+send &quot;Jupyter\r\n&quot;
+expect &quot;Vue build&quot;
+send &quot;\r\n&quot;
+expect &quot;Install vue-router?&quot;
+send &quot;Y\r&quot;
+expect &quot;Use ESLint to lint your code?&quot;
+send &quot;Y\r&quot;
+expect &quot;Pick an ESLint preset&quot;
+send &quot;\r\n&quot;
+expect &quot;Set up unit tests&quot;
+send &quot;Y\r&quot;
+expect &quot;Pick a test runner&quot;
+send &quot;\r\n&quot;
+expect &quot;Setup e2e tests with Nightwatch?&quot;
+send &quot;Y\r&quot;
+expect &quot;Should we run `npm install` for you after the project has been created? (recommended)&quot;
+send &quot;\r\n&quot;
+interact
 </pre></div>
 
     </div>
@@ -27661,21 +27661,21 @@ You should consider upgrading via the &#39;pip install --upgrade pip&#39; comman
 <div class="prompt input_prompt">In&nbsp;[87]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> client/src/components/Games.vue
-<span class="o">&lt;</span><span class="n">template</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;games&quot;</span><span class="o">&gt;</span>
-    <span class="n">This</span> <span class="n">page</span> <span class="n">will</span> <span class="nb">list</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">games</span><span class="o">.</span>
-  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">template</span><span class="o">&gt;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> client/src/components/Games.vue
+&lt;template&gt;
+  &lt;div class=&quot;games&quot;&gt;
+    This page will list all the games.
+  &lt;/div&gt;
+&lt;/template&gt;
 
-<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
-<span class="n">export</span> <span class="n">default</span> <span class="p">{</span>
-  <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Games&#39;</span><span class="p">,</span>
-  <span class="n">data</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">{}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+&lt;script&gt;
+export default {
+  name: &#39;Games&#39;,
+  data () {
+    return {}
+  }
+}
+&lt;/script&gt;
 </pre></div>
 
     </div>
@@ -27815,28 +27815,28 @@ export default new Router({
 <div class="prompt input_prompt">In&nbsp;[90]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> client/src/router/index.js
-<span class="kn">import</span> <span class="nn">Vue</span> <span class="kn">from</span> <span class="s1">&#39;vue&#39;</span>
-<span class="kn">import</span> <span class="nn">Router</span> <span class="kn">from</span> <span class="s1">&#39;vue-router&#39;</span>
-<span class="kn">import</span> <span class="nn">HelloWorld</span> <span class="kn">from</span> <span class="s1">&#39;@/components/HelloWorld&#39;</span>
-<span class="kn">import</span> <span class="nn">Games</span> <span class="kn">from</span> <span class="s1">&#39;@/components/Games&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> client/src/router/index.js
+import Vue from &#39;vue&#39;
+import Router from &#39;vue-router&#39;
+import HelloWorld from &#39;@/components/HelloWorld&#39;
+import Games from &#39;@/components/Games&#39;
 
-<span class="n">Vue</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">Router</span><span class="p">)</span>
+Vue.use(Router)
 
-<span class="n">export</span> <span class="n">default</span> <span class="n">new</span> <span class="n">Router</span><span class="p">({</span>
-  <span class="n">routes</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="n">path</span><span class="p">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
-      <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;HelloWorld&#39;</span><span class="p">,</span>
-      <span class="n">component</span><span class="p">:</span> <span class="n">HelloWorld</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="n">path</span><span class="p">:</span> <span class="s1">&#39;/games&#39;</span><span class="p">,</span>
-      <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Games&#39;</span><span class="p">,</span>
-      <span class="n">component</span><span class="p">:</span> <span class="n">Games</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
-<span class="p">})</span>
+export default new Router({
+  routes: [
+    {
+      path: &#39;/&#39;,
+      name: &#39;HelloWorld&#39;,
+      component: HelloWorld
+    },
+    {
+      path: &#39;/games&#39;,
+      name: &#39;Games&#39;,
+      component: Games
+    }
+  ]
+})
 </pre></div>
 
     </div>
@@ -28015,14 +28015,14 @@ added 3 packages in 10.18s
 <div class="prompt input_prompt">In&nbsp;[95]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> client/src/services/api.js
-<span class="kn">import</span> <span class="nn">axios</span> <span class="kn">from</span> <span class="s1">&#39;axios&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> client/src/services/api.js
+import axios from &#39;axios&#39;
 
-<span class="n">export</span> <span class="n">default</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="n">axios</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
-    <span class="n">baseURL</span><span class="p">:</span> <span class="err">`</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">prod</span><span class="o">.</span><span class="n">jitsejan</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">3000</span><span class="err">`</span>
-  <span class="p">})</span>
-<span class="p">}</span>
+export default() =&gt; {
+  return axios.create({
+    baseURL: `http://prod.jitsejan.com:3000`
+  })
+}
 </pre></div>
 
     </div>
@@ -28060,14 +28060,14 @@ added 3 packages in 10.18s
 <div class="prompt input_prompt">In&nbsp;[96]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> client/src/services/GamesService.js
-<span class="kn">import</span> <span class="nn">api</span> <span class="kn">from</span> <span class="s1">&#39;@/services/api&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> client/src/services/GamesService.js
+import api from &#39;@/services/api&#39;
 
-<span class="n">export</span> <span class="n">default</span> <span class="p">{</span>
-  <span class="n">fetchGames</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">api</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;games&#39;</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+export default {
+  fetchGames () {
+    return api().get(&#39;games&#39;)
+  }
+}
 </pre></div>
 
     </div>
@@ -28141,41 +28141,41 @@ added 3 packages in 10.18s
 <div class="prompt input_prompt">In&nbsp;[97]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> client/src/components/Games.vue
-<span class="o">&lt;</span><span class="n">template</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;games&quot;</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;games-div&quot;</span> <span class="n">v</span><span class="o">-</span><span class="k">for</span><span class="o">=</span><span class="s2">&quot;game in games&quot;</span> <span class="p">:</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;game._id&quot;</span><span class="o">&gt;</span>
-      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="n">span</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="p">{{</span> <span class="n">game</span><span class="o">.</span><span class="n">name</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;&lt;</span><span class="n">br</span> <span class="o">/&gt;</span>
-        <span class="o">&lt;</span><span class="n">span</span><span class="o">&gt;</span><span class="p">{{</span> <span class="n">game</span><span class="o">.</span><span class="n">console</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;&lt;</span><span class="n">br</span> <span class="o">/&gt;</span>
-        <span class="o">&lt;</span><span class="n">span</span><span class="o">&gt;</span><span class="p">{{</span> <span class="n">game</span><span class="o">.</span><span class="n">sales</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
-        <span class="o">&lt;</span><span class="n">a</span> <span class="p">:</span><span class="n">href</span><span class="o">=</span><span class="s2">&quot;&#39;/ui/#/games/&#39; + game._id&quot;</span><span class="o">&gt;</span><span class="n">Details</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span>
-      <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
-  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">template</span><span class="o">&gt;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> client/src/components/Games.vue
+&lt;template&gt;
+  &lt;div class=&quot;games&quot;&gt;
+    &lt;div class=&quot;games-div&quot; v-for=&quot;game in games&quot; :key=&quot;game._id&quot;&gt;
+      &lt;p&gt;
+        &lt;span&gt;&lt;b&gt;{{ game.name }}&lt;/b&gt;&lt;/span&gt;&lt;br /&gt;
+        &lt;span&gt;{{ game.console }}&lt;/span&gt;&lt;br /&gt;
+        &lt;span&gt;{{ game.sales }}&lt;/span&gt;
+        &lt;a :href=&quot;&#39;/ui/#/games/&#39; + game._id&quot;&gt;Details&lt;/a&gt;
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
 
-<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
-<span class="kn">import</span> <span class="nn">GamesService</span> <span class="kn">from</span> <span class="s1">&#39;@/services/GamesService&#39;</span>
+&lt;script&gt;
+import GamesService from &#39;@/services/GamesService&#39;
 
-<span class="n">export</span> <span class="n">default</span> <span class="p">{</span>
-  <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Games&#39;</span><span class="p">,</span>
-  <span class="n">data</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">{</span>
-      <span class="n">games</span><span class="p">:</span> <span class="p">[]</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="n">mounted</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="n">this</span><span class="o">.</span><span class="n">getGames</span><span class="p">()</span>
-  <span class="p">},</span>
-  <span class="n">methods</span><span class="p">:</span> <span class="p">{</span>
-    <span class="k">async</span> <span class="n">getGames</span> <span class="p">()</span> <span class="p">{</span>
-      <span class="n">const</span> <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">GamesService</span><span class="o">.</span><span class="n">fetchGames</span><span class="p">()</span>
-      <span class="n">this</span><span class="o">.</span><span class="n">games</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">games</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+export default {
+  name: &#39;Games&#39;,
+  data () {
+    return {
+      games: []
+    }
+  },
+  mounted () {
+    this.getGames()
+  },
+  methods: {
+    async getGames () {
+      const response = await GamesService.fetchGames()
+      this.games = response.data.games
+    }
+  }
+}
+&lt;/script&gt;
 </pre></div>
 
     </div>
@@ -28408,65 +28408,65 @@ added 2 packages in 1.115s
 <div class="prompt input_prompt">In&nbsp;[102]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> server/app.js
-<span class="n">var</span> <span class="n">express</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">path</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">favicon</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;serve-favicon&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;morgan&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">cookieParser</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;cookie-parser&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">bodyParser</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;body-parser&#39;</span><span class="p">);</span>
-<span class="o">//</span> <span class="n">Mongoose</span> <span class="n">connection</span>
-<span class="n">var</span> <span class="n">mongoose</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">);</span>
-<span class="n">mongoose</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;mongodb://localhost:27017/nintendo&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">db</span> <span class="o">=</span> <span class="n">mongoose</span><span class="o">.</span><span class="n">connection</span><span class="p">;</span>
-<span class="n">db</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="n">console</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">console</span><span class="p">,</span> <span class="s2">&quot;Connection error&quot;</span><span class="p">));</span>
-<span class="n">db</span><span class="o">.</span><span class="n">once</span><span class="p">(</span><span class="s2">&quot;openUri&quot;</span><span class="p">,</span> <span class="n">function</span><span class="p">(</span><span class="n">callback</span><span class="p">){</span>
-  <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Connection successful&quot;</span><span class="p">)</span>
-<span class="p">});</span>
-<span class="n">var</span> <span class="n">cors</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&quot;cors&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> server/app.js
+var express = require(&#39;express&#39;);
+var path = require(&#39;path&#39;);
+var favicon = require(&#39;serve-favicon&#39;);
+var logger = require(&#39;morgan&#39;);
+var cookieParser = require(&#39;cookie-parser&#39;);
+var bodyParser = require(&#39;body-parser&#39;);
+// Mongoose connection
+var mongoose = require(&#39;mongoose&#39;);
+mongoose.connect(&#39;mongodb://localhost:27017/nintendo&#39;);
+var db = mongoose.connection;
+db.on(&quot;error&quot;, console.error.bind(console, &quot;Connection error&quot;));
+db.once(&quot;openUri&quot;, function(callback){
+  console.log(&quot;Connection successful&quot;)
+});
+var cors = require(&quot;cors&quot;)
 
-<span class="n">var</span> <span class="n">index</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;./routes/index&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">users</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;./routes/users&#39;</span><span class="p">);</span>
-<span class="n">var</span> <span class="n">games</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;./routes/games&#39;</span><span class="p">);</span>
+var index = require(&#39;./routes/index&#39;);
+var users = require(&#39;./routes/users&#39;);
+var games = require(&#39;./routes/games&#39;);
 
-<span class="n">var</span> <span class="n">app</span> <span class="o">=</span> <span class="n">express</span><span class="p">();</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">cors</span><span class="p">());</span>
+var app = express();
+app.use(cors());
 
-<span class="o">//</span> <span class="n">view</span> <span class="n">engine</span> <span class="n">setup</span>
-<span class="n">app</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;views&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__dirname</span><span class="p">,</span> <span class="s1">&#39;views&#39;</span><span class="p">));</span>
-<span class="n">app</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;view engine&#39;</span><span class="p">,</span> <span class="s1">&#39;ejs&#39;</span><span class="p">);</span>
+// view engine setup
+app.set(&#39;views&#39;, path.join(__dirname, &#39;views&#39;));
+app.set(&#39;view engine&#39;, &#39;ejs&#39;);
 
-<span class="o">//</span> <span class="n">uncomment</span> <span class="n">after</span> <span class="n">placing</span> <span class="n">your</span> <span class="n">favicon</span> <span class="ow">in</span> <span class="o">/</span><span class="n">public</span>
-<span class="o">//</span><span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">favicon</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__dirname</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">,</span> <span class="s1">&#39;favicon.ico&#39;</span><span class="p">)));</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">logger</span><span class="p">(</span><span class="s1">&#39;dev&#39;</span><span class="p">));</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">bodyParser</span><span class="o">.</span><span class="n">json</span><span class="p">());</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">bodyParser</span><span class="o">.</span><span class="n">urlencoded</span><span class="p">({</span> <span class="n">extended</span><span class="p">:</span> <span class="n">false</span> <span class="p">}));</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">cookieParser</span><span class="p">());</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">express</span><span class="o">.</span><span class="n">static</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">__dirname</span><span class="p">,</span> <span class="s1">&#39;public&#39;</span><span class="p">)));</span>
+// uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, &#39;public&#39;, &#39;favicon.ico&#39;)));
+app.use(logger(&#39;dev&#39;));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, &#39;public&#39;)));
 
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">index</span><span class="p">);</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;/users&#39;</span><span class="p">,</span> <span class="n">users</span><span class="p">);</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;/games&#39;</span><span class="p">,</span> <span class="n">games</span><span class="p">);</span>
+app.use(&#39;/&#39;, index);
+app.use(&#39;/users&#39;, users);
+app.use(&#39;/games&#39;, games);
 
-<span class="o">//</span> <span class="n">catch</span> <span class="mi">404</span> <span class="ow">and</span> <span class="n">forward</span> <span class="n">to</span> <span class="n">error</span> <span class="n">handler</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="nb">next</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">var</span> <span class="n">err</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Error</span><span class="p">(</span><span class="s1">&#39;Not Found&#39;</span><span class="p">);</span>
-  <span class="n">err</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="mi">404</span><span class="p">;</span>
-  <span class="nb">next</span><span class="p">(</span><span class="n">err</span><span class="p">);</span>
-<span class="p">});</span>
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error(&#39;Not Found&#39;);
+  err.status = 404;
+  next(err);
+});
 
-<span class="o">//</span> <span class="n">error</span> <span class="n">handler</span>
-<span class="n">app</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">res</span><span class="p">,</span> <span class="nb">next</span><span class="p">)</span> <span class="p">{</span>
-  <span class="o">//</span> <span class="nb">set</span> <span class="nb">locals</span><span class="p">,</span> <span class="n">only</span> <span class="n">providing</span> <span class="n">error</span> <span class="ow">in</span> <span class="n">development</span>
-  <span class="n">res</span><span class="o">.</span><span class="n">locals</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">err</span><span class="o">.</span><span class="n">message</span><span class="p">;</span>
-  <span class="n">res</span><span class="o">.</span><span class="n">locals</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="n">req</span><span class="o">.</span><span class="n">app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;env&#39;</span><span class="p">)</span> <span class="o">===</span> <span class="s1">&#39;development&#39;</span> <span class="err">?</span> <span class="n">err</span> <span class="p">:</span> <span class="p">{};</span>
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get(&#39;env&#39;) === &#39;development&#39; ? err : {};
 
-  <span class="o">//</span> <span class="n">render</span> <span class="n">the</span> <span class="n">error</span> <span class="n">page</span>
-  <span class="n">res</span><span class="o">.</span><span class="n">status</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">status</span> <span class="o">||</span> <span class="mi">500</span><span class="p">);</span>
-  <span class="n">res</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">);</span>
-<span class="p">});</span>
+  // render the error page
+  res.status(err.status || 500);
+  res.render(&#39;error&#39;);
+});
 
-<span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="n">app</span><span class="p">;</span>
+module.exports = app;
 </pre></div>
 
     </div>
@@ -28669,37 +28669,37 @@ added 2 packages in 1.115s
 <div class="prompt input_prompt">In&nbsp;[106]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> client/src/components/GamesDetail.vue
-<span class="o">&lt;</span><span class="n">template</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;games-detail&quot;</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Details</span> <span class="k">for</span> <span class="p">{{</span> <span class="n">data</span><span class="o">.</span><span class="n">name</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">img</span> <span class="p">:</span><span class="n">src</span><span class="o">=</span><span class="s2">&quot;&#39;/static/&#39; + data.image&quot;</span> <span class="o">/&gt;&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
-    <span class="n">Console</span><span class="p">:</span> <span class="p">{{</span> <span class="n">data</span><span class="o">.</span><span class="n">console</span> <span class="p">}}</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
-    <span class="n">Sales</span><span class="p">:</span> <span class="p">{{</span> <span class="n">data</span><span class="o">.</span><span class="n">sales</span><span class="p">}}</span> <span class="n">million</span><span class="o">&lt;</span><span class="n">br</span><span class="o">/&gt;</span>
-  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">template</span><span class="o">&gt;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> client/src/components/GamesDetail.vue
+&lt;template&gt;
+  &lt;div class=&quot;games-detail&quot;&gt;
+    &lt;h1&gt;Details for {{ data.name }}&lt;/h1&gt;
+    &lt;img :src=&quot;&#39;/static/&#39; + data.image&quot; /&gt;&lt;br/&gt;
+    Console: {{ data.console }}&lt;br/&gt;
+    Sales: {{ data.sales}} million&lt;br/&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
 
-<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
-<span class="kn">import</span> <span class="nn">api</span> <span class="kn">from</span> <span class="s1">&#39;@/services/api&#39;</span>
+&lt;script&gt;
+import api from &#39;@/services/api&#39;
 
-<span class="n">export</span> <span class="n">default</span> <span class="p">{</span>
-  <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;GamesDetail&#39;</span><span class="p">,</span>
-  <span class="n">data</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">{</span>
-      <span class="n">data</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="n">created</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="n">api</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;games/&#39;</span> <span class="o">+</span> <span class="n">this</span><span class="o">.</span><span class="err">$</span><span class="n">route</span><span class="o">.</span><span class="n">params</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
-      <span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="n">this</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">data</span>
-      <span class="p">})</span>
-      <span class="o">.</span><span class="n">catch</span><span class="p">(</span><span class="n">e</span> <span class="o">=&gt;</span> <span class="p">{</span>
-        <span class="n">this</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
-      <span class="p">})</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+export default {
+  name: &#39;GamesDetail&#39;,
+  data () {
+    return {
+      data: &#39;&#39;
+    }
+  },
+  created () {
+    api().get(&#39;games/&#39; + this.$route.params.id)
+      .then(response =&gt; {
+        this.data = response.data
+      })
+      .catch(e =&gt; {
+        this.errors.push(e)
+      })
+  }
+}
+&lt;/script&gt;
 </pre></div>
 
     </div>
@@ -28747,34 +28747,34 @@ added 2 packages in 1.115s
 <div class="prompt input_prompt">In&nbsp;[107]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> client/src/router/index.js
-<span class="kn">import</span> <span class="nn">Vue</span> <span class="kn">from</span> <span class="s1">&#39;vue&#39;</span>
-<span class="kn">import</span> <span class="nn">Router</span> <span class="kn">from</span> <span class="s1">&#39;vue-router&#39;</span>
-<span class="kn">import</span> <span class="nn">HelloWorld</span> <span class="kn">from</span> <span class="s1">&#39;@/components/HelloWorld&#39;</span>
-<span class="kn">import</span> <span class="nn">Games</span> <span class="kn">from</span> <span class="s1">&#39;@/components/Games&#39;</span>
-<span class="kn">import</span> <span class="nn">GamesDetail</span> <span class="kn">from</span> <span class="s1">&#39;@/components/GamesDetail&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> client/src/router/index.js
+import Vue from &#39;vue&#39;
+import Router from &#39;vue-router&#39;
+import HelloWorld from &#39;@/components/HelloWorld&#39;
+import Games from &#39;@/components/Games&#39;
+import GamesDetail from &#39;@/components/GamesDetail&#39;
 
-<span class="n">Vue</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="n">Router</span><span class="p">)</span>
+Vue.use(Router)
 
-<span class="n">export</span> <span class="n">default</span> <span class="n">new</span> <span class="n">Router</span><span class="p">({</span>
-  <span class="n">routes</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="n">path</span><span class="p">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
-      <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;HelloWorld&#39;</span><span class="p">,</span>
-      <span class="n">component</span><span class="p">:</span> <span class="n">HelloWorld</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="n">path</span><span class="p">:</span> <span class="s1">&#39;/games&#39;</span><span class="p">,</span>
-      <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Games&#39;</span><span class="p">,</span>
-      <span class="n">component</span><span class="p">:</span> <span class="n">Games</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="n">path</span><span class="p">:</span> <span class="s1">&#39;/games/:id&#39;</span><span class="p">,</span>
-      <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;GamesDetail&#39;</span><span class="p">,</span>
-      <span class="n">component</span><span class="p">:</span> <span class="n">GamesDetail</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
-<span class="p">})</span>
+export default new Router({
+  routes: [
+    {
+      path: &#39;/&#39;,
+      name: &#39;HelloWorld&#39;,
+      component: HelloWorld
+    },
+    {
+      path: &#39;/games&#39;,
+      name: &#39;Games&#39;,
+      component: Games
+    },
+    {
+      path: &#39;/games/:id&#39;,
+      name: &#39;GamesDetail&#39;,
+      component: GamesDetail
+    }
+  ]
+})
 </pre></div>
 
     </div>
@@ -28969,31 +28969,31 @@ added 2 packages in 1.115s
 <div class="prompt input_prompt">In&nbsp;[112]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%file</span> client/src/App.vue
-<span class="o">&lt;</span><span class="n">template</span><span class="o">&gt;</span>
-  <span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;app&quot;</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">router</span><span class="o">-</span><span class="n">link</span> <span class="p">:</span><span class="n">to</span><span class="o">=</span><span class="s2">&quot;{ name: &#39;HelloWorld&#39; }&quot;</span><span class="o">&gt;</span><span class="n">Home</span><span class="o">&lt;/</span><span class="n">router</span><span class="o">-</span><span class="n">link</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">router</span><span class="o">-</span><span class="n">link</span> <span class="p">:</span><span class="n">to</span><span class="o">=</span><span class="s2">&quot;{ name: &#39;Games&#39;}&quot;</span><span class="o">&gt;</span><span class="n">Games</span><span class="o">&lt;/</span><span class="n">router</span><span class="o">-</span><span class="n">link</span><span class="o">&gt;</span>
-    <span class="o">&lt;</span><span class="n">router</span><span class="o">-</span><span class="n">view</span><span class="o">/&gt;</span>
-  <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
-<span class="o">&lt;/</span><span class="n">template</span><span class="o">&gt;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%</span><span class="k">file</span> client/src/App.vue
+&lt;template&gt;
+  &lt;div id=&quot;app&quot;&gt;
+    &lt;router-link :to=&quot;{ name: &#39;HelloWorld&#39; }&quot;&gt;Home&lt;/router-link&gt;
+    &lt;router-link :to=&quot;{ name: &#39;Games&#39;}&quot;&gt;Games&lt;/router-link&gt;
+    &lt;router-view/&gt;
+  &lt;/div&gt;
+&lt;/template&gt;
 
-<span class="o">&lt;</span><span class="n">script</span><span class="o">&gt;</span>
-<span class="n">export</span> <span class="n">default</span> <span class="p">{</span>
-  <span class="n">name</span><span class="p">:</span> <span class="s1">&#39;app&#39;</span>
-<span class="p">}</span>
-<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+&lt;script&gt;
+export default {
+  name: &#39;app&#39;
+}
+&lt;/script&gt;
 
-<span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span>
-<span class="c1">#app {</span>
-  <span class="n">font</span><span class="o">-</span><span class="n">family</span><span class="p">:</span> <span class="s1">&#39;Avenir&#39;</span><span class="p">,</span> <span class="n">Helvetica</span><span class="p">,</span> <span class="n">Arial</span><span class="p">,</span> <span class="n">sans</span><span class="o">-</span><span class="n">serif</span><span class="p">;</span>
-  <span class="o">-</span><span class="n">webkit</span><span class="o">-</span><span class="n">font</span><span class="o">-</span><span class="n">smoothing</span><span class="p">:</span> <span class="n">antialiased</span><span class="p">;</span>
-  <span class="o">-</span><span class="n">moz</span><span class="o">-</span><span class="n">osx</span><span class="o">-</span><span class="n">font</span><span class="o">-</span><span class="n">smoothing</span><span class="p">:</span> <span class="n">grayscale</span><span class="p">;</span>
-  <span class="n">text</span><span class="o">-</span><span class="n">align</span><span class="p">:</span> <span class="n">center</span><span class="p">;</span>
-  <span class="n">color</span><span class="p">:</span> <span class="c1">#2c3e50;</span>
-  <span class="n">margin</span><span class="o">-</span><span class="n">top</span><span class="p">:</span> <span class="mi">60</span><span class="n">px</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span>
+&lt;style&gt;
+#app {
+  font-family: &#39;Avenir&#39;, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+&lt;/style&gt;
 </pre></div>
 
     </div>
