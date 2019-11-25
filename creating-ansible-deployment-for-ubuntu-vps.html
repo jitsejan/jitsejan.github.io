@@ -11966,49 +11966,49 @@ ansible <span class="m">2</span>.8.1
 <h3>Playbook</h3>
 <p>The core of an Ansible deployment is a playbook (or multiple). The playbook contains all the different items that should be deployed. In Ansible these items are divided by <em>roles</em>, each role can relate to a tool, a service, a user or anything else that makes sense to group together. In my repository I have called the playbook `provision_vps.yaml'. The file is small, since I have used multiple roles to be loaded when running the playbook. </p>
 <p>The first part of the file contains the host and the user you want to run the deployment with. I have only specified one host, since I only have one VPS to deploy. </p>
-<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">hosts</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ssdnodes</span>
-  <span class="nt">remote_user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
+<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">hosts</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">ssdnodes</span>
+  <span class="l l-Scalar l-Scalar-Plain">remote_user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
 </pre></div>
 
 
 <p>For each host, we can define <em>global</em> variables by defining them in the playbook under <code>vars</code>. This makes the variables available in all the different roles. If the variable is only to be used within a role, it is smarter to define it at the role level. In my case I want to deploy a Jupyter notebook and therefore I should define the parameters on playbook level, so the variables become available for both the Jupyter and nginx installation. I define the domain, the name and port to host the notebook from, and I supply the location of the SSL certificate and key.</p>
-<div class="highlight"><pre><span></span>  <span class="nt">vars</span><span class="p">:</span>
-    <span class="nt">jupyter_domain</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dev.jitsejan.com</span>
-    <span class="nt">jupyter_name</span><span class="p">:</span> <span class="s">&#39;dev&#39;</span>
-    <span class="nt">jupyter_port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8181</span>
-    <span class="nt">key_out</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/jupyter/.jupyter/jupyter.key</span>
-    <span class="nt">cert_out</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/jupyter/.jupyter/jupyter.cert</span>
+<div class="highlight"><pre><span></span>  <span class="l l-Scalar l-Scalar-Plain">vars</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">jupyter_domain</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">dev.jitsejan.com</span>
+    <span class="l l-Scalar l-Scalar-Plain">jupyter_name</span><span class="p p-Indicator">:</span> <span class="s">&#39;dev&#39;</span>
+    <span class="l l-Scalar l-Scalar-Plain">jupyter_port</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">8181</span>
+    <span class="l l-Scalar l-Scalar-Plain">key_out</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/jupyter/.jupyter/jupyter.key</span>
+    <span class="l l-Scalar l-Scalar-Plain">cert_out</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/jupyter/.jupyter/jupyter.cert</span>
 </pre></div>
 
 
 <p>If you want to prompt the user for input for certain variables you can use <code>vars_prompt</code>. In my playbook I want to ask the user (me) for the username and password to create an account on the Ubuntu box for me. It will ask to confirm both the user and password before it continues to run the playbook.</p>
-<div class="highlight"><pre><span></span>  <span class="nt">vars_prompt</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;user_name&quot;</span>
-      <span class="nt">prompt</span><span class="p">:</span> <span class="s">&quot;Enter</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">new</span><span class="nv"> </span><span class="s">user&quot;</span>
-      <span class="nt">private</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
-      <span class="nt">confirm</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
-    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;user_password&quot;</span>
-      <span class="nt">prompt</span><span class="p">:</span> <span class="s">&quot;Enter</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">password</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">new</span><span class="nv"> </span><span class="s">user&quot;</span>
-      <span class="nt">private</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
-      <span class="nt">encrypt</span><span class="p">:</span> <span class="s">&quot;sha512_crypt&quot;</span>
-      <span class="nt">confirm</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
-      <span class="nt">salt_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">7</span>
+<div class="highlight"><pre><span></span>  <span class="l l-Scalar l-Scalar-Plain">vars_prompt</span><span class="p p-Indicator">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">&quot;user_name&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">prompt</span><span class="p p-Indicator">:</span> <span class="s">&quot;Enter</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">new</span><span class="nv"> </span><span class="s">user&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">private</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+      <span class="l l-Scalar l-Scalar-Plain">confirm</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">&quot;user_password&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">prompt</span><span class="p p-Indicator">:</span> <span class="s">&quot;Enter</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">password</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">new</span><span class="nv"> </span><span class="s">user&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">private</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+      <span class="l l-Scalar l-Scalar-Plain">encrypt</span><span class="p p-Indicator">:</span> <span class="s">&quot;sha512_crypt&quot;</span>
+      <span class="l l-Scalar l-Scalar-Plain">confirm</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+      <span class="l l-Scalar l-Scalar-Plain">salt_size</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">7</span>
 </pre></div>
 
 
 <p>Finally, I define the <code>roles</code> to be executed as part of the playbook. This is the part where you can easily add new roles when you want to add more services to your machine.</p>
-<div class="highlight"><pre><span></span><span class="nt">roles</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">roles</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">base</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">common</span>
   <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> 
-<span class="nt">      role</span><span class="p">:</span> <span class="s">&#39;spark&#39;</span><span class="p p-Indicator">,</span>
-<span class="nt">      spark_version</span><span class="p">:</span> <span class="s">&#39;2.2.1&#39;</span><span class="p p-Indicator">,</span>
-<span class="nt">      hadoop_version</span><span class="p">:</span> <span class="s">&#39;2.7&#39;</span>
+      <span class="nv">role</span><span class="p p-Indicator">:</span> <span class="s">&#39;spark&#39;</span><span class="p p-Indicator">,</span>
+      <span class="nv">spark_version</span><span class="p p-Indicator">:</span> <span class="s">&#39;2.2.1&#39;</span><span class="p p-Indicator">,</span>
+      <span class="nv">hadoop_version</span><span class="p p-Indicator">:</span> <span class="s">&#39;2.7&#39;</span>
     <span class="p p-Indicator">}</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
   <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span>
-<span class="nt">      role</span><span class="p">:</span> <span class="s">&#39;nginx&#39;</span><span class="p p-Indicator">,</span>
-<span class="nt">      app_ip</span><span class="p">:</span> <span class="nv">localhost</span><span class="p p-Indicator">,</span>
+      <span class="nv">role</span><span class="p p-Indicator">:</span> <span class="s">&#39;nginx&#39;</span><span class="p p-Indicator">,</span>
+      <span class="nv">app_ip</span><span class="p p-Indicator">:</span> <span class="nv">localhost</span><span class="p p-Indicator">,</span>
     <span class="p p-Indicator">}</span>
 </pre></div>
 
@@ -12025,17 +12025,17 @@ ansible <span class="m">2</span>.8.1
 </ul>
 <p>The tasks to be executed are defined inside the role in the <code>tasks</code> folder. Ansible expect the <code>main.yml</code> inside this folder to have all the steps for the role. Variables can be defined in two folders, either in <code>vars/main.yml</code> or in <code>defaults/main.yml</code>. The defaults, as the name says, contains the default value for certain variables. These can be overwritten by variables defines in the <code>vars</code> folder. Note that some of the variables are passed through from the playbook and are not defined on this level. </p>
 <p>To install a package the <code>apt</code> module can be used. Variables are passed in using the double curly brackets (<code>{{ }}</code>).  The following is part of <code>roles/base/tasks/main.yml</code>. I will leave the rest out to keep this article short.</p>
-<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure necessary packages are installed</span>
-  <span class="nt">apt</span><span class="p">:</span> 
-    <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">base_pkgs</span><span class="nv"> </span><span class="s">}}&quot;</span>
-    <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
-    <span class="nt">update_cache</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
+<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure necessary packages are installed</span>
+  <span class="l l-Scalar l-Scalar-Plain">apt</span><span class="p p-Indicator">:</span> 
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">base_pkgs</span><span class="nv"> </span><span class="s">}}&quot;</span>
+    <span class="l l-Scalar l-Scalar-Plain">state</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
+    <span class="l l-Scalar l-Scalar-Plain">update_cache</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
 <span class="nn">...</span>
 </pre></div>
 
 
 <p>To keep things simple, I have only defined one package to be installed in <code>roles/base/vars/main.yml</code>. I prefer <code>mosh</code> over <code>ssh</code> since my internet is often buggy and I don't like to keep on reconnecting with ssh. </p>
-<div class="highlight"><pre><span></span><span class="nt">base_pkgs</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">base_pkgs</span><span class="p p-Indicator">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mosh</span>
 </pre></div>
 
@@ -12064,13 +12064,13 @@ ansible <span class="m">2</span>.8.1
 
 <p>The <code>defaults</code>  contain the default values for the Jupyter deployment.  The <code>main.yml</code> has the following content, which basically tells the system that for the notebook server I want to use Python 3 as default and only run it from localhost. </p>
 <div class="highlight"><pre><span></span><span class="nn">---</span>
-<span class="nt">jupyter_python_executable</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python3</span>
-<span class="nt">jupyter_package_manager</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pip3</span>
-<span class="nt">jupyter_package_manager_become</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
-<span class="nt">jupyter_package_state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
-<span class="nt">jupyter_password</span><span class="p">:</span> <span class="s">&#39;sha1:b3af1b4adee9:9e86cb52435cc24db0b487451c10f6d348734645&#39;</span>
-<span class="nt">jupyter_open_browser</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="nt">jupyter_ip</span><span class="p">:</span> <span class="s">&#39;localhost&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_python_executable</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">python3</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_package_manager</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pip3</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_package_manager_become</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_package_state</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_password</span><span class="p p-Indicator">:</span> <span class="s">&#39;sha1:b3af1b4adee9:9e86cb52435cc24db0b487451c10f6d348734645&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_open_browser</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="l l-Scalar l-Scalar-Plain">jupyter_ip</span><span class="p p-Indicator">:</span> <span class="s">&#39;localhost&#39;</span>
 </pre></div>
 
 
@@ -12087,33 +12087,33 @@ ansible <span class="m">2</span>.8.1
 <li>Make and run the <em>jupyter.service</em></li>
 </ul>
 <p>One of the nifty things of Ansible is conditional execution, only run certain tasks if a condition is met. For example, I will not recreate the virtual environment if it already exists, as shown in the code snippet below.</p>
-<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Check to see if the Jupyter environment exists</span>
-  <span class="nt">stat</span><span class="p">:</span> 
-    <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/data/jupyter</span>
-  <span class="nt">register</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">environment_exists</span>
-  <span class="nt">become_user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
+<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Check to see if the Jupyter environment exists</span>
+  <span class="l l-Scalar l-Scalar-Plain">stat</span><span class="p p-Indicator">:</span> 
+    <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/data/jupyter</span>
+  <span class="l l-Scalar l-Scalar-Plain">register</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">environment_exists</span>
+  <span class="l l-Scalar l-Scalar-Plain">become_user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
 </pre></div>
 
 
 <p>When the folder exists already, it will register <code>environment_exists</code> that can be used under the <code>when</code> condition with <code>environment_exists.stat.exists == False</code>.</p>
-<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">block</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install virtual environment</span>
-    <span class="nt">pip</span><span class="p">:</span>
-      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">virtualenv</span>
-      <span class="nt">executable</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pip3</span>
-      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
-  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Create virtualenv root directory</span>
-    <span class="nt">file</span><span class="p">:</span>
-      <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/data/jupyter</span>
-      <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">directory</span>
-      <span class="nt">owner</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
-      <span class="nt">group</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
-      <span class="nt">mode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0755</span>
-  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Set up virtual environment</span>
-    <span class="nt">shell</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">virtualenv -p python3 /data/jupyter</span>
-    <span class="nt">become_user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
-    <span class="nt">changed_when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
-  <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">environment_exists.stat.exists == False</span>
+<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">block</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Install virtual environment</span>
+    <span class="l l-Scalar l-Scalar-Plain">pip</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">virtualenv</span>
+      <span class="l l-Scalar l-Scalar-Plain">executable</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">pip3</span>
+      <span class="l l-Scalar l-Scalar-Plain">state</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">latest</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Create virtualenv root directory</span>
+    <span class="l l-Scalar l-Scalar-Plain">file</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">path</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">/data/jupyter</span>
+      <span class="l l-Scalar l-Scalar-Plain">state</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">directory</span>
+      <span class="l l-Scalar l-Scalar-Plain">owner</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
+      <span class="l l-Scalar l-Scalar-Plain">group</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
+      <span class="l l-Scalar l-Scalar-Plain">mode</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">0755</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Set up virtual environment</span>
+    <span class="l l-Scalar l-Scalar-Plain">shell</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">virtualenv -p python3 /data/jupyter</span>
+    <span class="l l-Scalar l-Scalar-Plain">become_user</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
+    <span class="l l-Scalar l-Scalar-Plain">changed_when</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
+  <span class="l l-Scalar l-Scalar-Plain">when</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">environment_exists.stat.exists == False</span>
 </pre></div>
 
 
