@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Home | JJ's World</title>
+        <title>Run methods dynamically by name | JJ's World</title>
 
 
 <style type="text/css">
@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="../theme/css/main.css?f638e855">
+            <link rel="stylesheet" href="./theme/css/main.css?f638e855">
 
 
     </head>
@@ -11843,509 +11843,361 @@ jQuery(document).ready(function($) {
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
-                <li><a href="../pages/python-cheatsheet">Python cheatsheet</a></li>
-                <li><a href="../pages/spark-cheatsheet">Spark cheatsheet</a></li>
+                <li><a href="./pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
+                <li><a href="./pages/python-cheatsheet">Python cheatsheet</a></li>
+                <li><a href="./pages/spark-cheatsheet">Spark cheatsheet</a></li>
             </ul>
         </div><!-- .navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container index">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-9">
-  <article>
-    <header>
-      <h2><a href="../interacting-with-aws-glue.html">Interacting with AWS Glue</a></h2>
-      <time datetime="" title="2019-04-02T12:44:00+01:00" pubdate>Tue 02 April 2019</time>
-    </header>
-
-    <div class="article_content">
-        <p>In this notebook I interact with <a href="https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html">AWS Glue</a> using <code>boto3</code>.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../interacting-with-aws-glue.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-            <a href="../tag/aws.html" class="tag">AWS</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="../tag/glue.html" class="tag">Glue</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../date-range-with-python.html">Creating a data range with Python</a></h2>
-      <time datetime="" title="2019-03-08T14:45:00+00:00" pubdate>Fri 08 March 2019</time>
-    </header>
-
-    <div class="article_content">
-        <p>In this notebook I create a date range with a precision of days and a date range with a precision of a month using <code>datetime</code> with <code>timedelta</code>. This has helped me for automating filtering tasks, where I had to query data each day for a certain period and write te results to timestamped files.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../date-range-with-python.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="../tag/date.html" class="tag">date</a>
-            <a href="../tag/generation.html" class="tag">generation</a>
-            <a href="../tag/daterange.html" class="tag">daterange</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../using-azure-blob-and-parquet.html">Using Azure Blob Storage and Parquet</a></h2>
-      <time datetime="" title="2019-02-26T13:07:00+00:00" pubdate>Tue 26 February 2019</time>
-    </header>
-
-    <div class="article_content">
-        <p>My attempt to interact with Parquet files on Azure Blob Storage. Reading and writing Pandas dataframes is straightforward, but only the reading part is working with Spark 2.4.0.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../using-azure-blob-and-parquet.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="../tag/spark.html" class="tag">Spark</a>
-            <a href="../tag/azure.html" class="tag">Azure</a>
-            <a href="../tag/blob-pyspark.html" class="tag">Blob. PySpark</a>
-            <a href="../tag/parquet.html" class="tag">parquet</a>
-            <a href="../tag/data.html" class="tag">data</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../difference-with-sparse-dataframes.html">Calculate differences with sparse date/value dataframes</a></h2>
-      <time datetime="" title="2019-01-07T12:54:00+00:00" pubdate>Mon 07 January 2019</time>
-    </header>
-
-    <div class="article_content">
-        <p>This notebook contains a small example that interpolates the values for a sparse dataframe and calculates the difference with a smaller dataframe.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../difference-with-sparse-dataframes.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="../tag/interpolation.html" class="tag">interpolation</a>
-            <a href="../tag/pandas.html" class="tag">Pandas</a>
-            <a href="../tag/dataframes.html" class="tag">dataframes</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../using-spark-to-read-from-s3.html">Using Spark to read from S3</a></h2>
-      <time datetime="" title="2019-01-04T16:31:00+00:00" pubdate>Fri 04 January 2019</time>
-    </header>
-
-    <div class="article_content">
-        <p>A short example on how to interact with S3 from Pyspark.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../using-spark-to-read-from-s3.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="../tag/spark.html" class="tag">Spark</a>
-            <a href="../tag/pyspark.html" class="tag">pyspark</a>
-            <a href="../tag/aws.html" class="tag">AWS</a>
-            <a href="../tag/s3.html" class="tag">S3</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../developing-glue-scripts-on-mac-osx.html">Developing AWS Glue scripts on Mac OSX</a></h2>
-      <time datetime="" title="2018-11-21T17:40:00+00:00" pubdate>Wed 21 November 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>In this short tutorial I show how I developed my first Glue scripts for the AWS platform.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../developing-glue-scripts-on-mac-osx.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/devops.html" class="tag">DevOps</a>
-            <a href="../tag/data-architecture.html" class="tag">data architecture</a>
-            <a href="../tag/glue.html" class="tag">Glue</a>
-            <a href="../tag/aws.html" class="tag">AWS</a>
-            <a href="../tag/data-engineer.html" class="tag">data engineer</a>
-            <a href="../tag/spark.html" class="tag">Spark</a>
-            <a href="../tag/zeppelin.html" class="tag">Zeppelin</a>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../aws-lambda-development-with-sam.html">AWS Lambda development - Python & SAM</a></h2>
-      <time datetime="" title="2018-10-23T10:40:00+01:00" pubdate>Tue 23 October 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>This tutorial explains how to write a lambda functions in Python, test it locally, deploy it to AWS and test it in the cloud using Amazon's SAM. The <code>README.md</code> inside the <a href="https://github.com/aws-samples/cookiecutter-aws-sam-python"><code>cookiecutter</code></a> template folder is used as the base of this tutorial.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../aws-lambda-development-with-sam.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/devops.html" class="tag">DevOps</a>
-            <a href="../tag/data-architecture.html" class="tag">data architecture</a>
-            <a href="../tag/serverless.html" class="tag">serverless</a>
-            <a href="../tag/aws.html" class="tag">AWS</a>
-            <a href="../tag/data-engineer.html" class="tag">data engineer</a>
-            <a href="../tag/lambda.html" class="tag">Lambda</a>
-            <a href="../tag/sam.html" class="tag">SAM</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../none-shall-paas.html">None shall PAAS</a></h2>
-      <time datetime="" title="2018-10-17T14:00:00+01:00" pubdate>Wed 17 October 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>This article was originally posted on the <a href="https://blog.marketinvoice.com/2018/10/02/none-shall-paas-unlocking-the-data-warehouse/">MarketInvoice blog</a>.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../none-shall-paas.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/devops.html" class="tag">DevOps</a>
-            <a href="../tag/data-architecture.html" class="tag">data architecture</a>
-            <a href="../tag/serverless.html" class="tag">serverless</a>
-            <a href="../tag/aws.html" class="tag">AWS</a>
-            <a href="../tag/azure.html" class="tag">Azure</a>
-            <a href="../tag/data-engineer.html" class="tag">data engineer</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../write-dataframe-to-csv-on-s3.html">Write a Pandas dataframe to CSV on S3</a></h2>
-      <time datetime="" title="2018-10-05T11:00:00+01:00" pubdate>Fri 05 October 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>Write a <code>pandas</code> dataframe to a single CSV file on S3.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boto3</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
-
-<span class="n">DESTINATION</span> <span class="o">=</span> <span class="s1">&#39;my-bucket&#39;</span>
-
-<span class="k">def</span> <span class="nf">_write_dataframe_to_csv_on_s3</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Write a dataframe to a CSV on S3 &quot;&quot;&quot;</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Writing {} records to {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataframe</span><span class="p">),</span> <span class="n">filename</span><span class="p">))</span>
-    <span class="c1"># Create buffer</span>
-    <span class="n">csv_buffer</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
-    <span class="c1"># Write dataframe to buffer</span>
-    <span class="n">dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_buffer</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="c1"># Create S3 object</span>
-    <span class="n">s3_resource</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s2">&quot;s3&quot;</span><span class="p">)</span>
-    <span class="c1"># Write buffer to S3 object</span>
-    <span class="n">s3_resource</span><span class="o">.</span><span class="n">Object</span><span class="p">(</span><span class="n">DESTINATION</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">Body</span><span class="o">=</span><span class="n">csv_buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
-
-<span class="n">_write_dataframe_to_csv_on_s3</span><span class="p">(</span><span class="n">my_df</span><span class="p">,</span> <span class="s1">&#39;my-folder&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<p><a href="https://gist.github.com/jitsejan/e24c6f9b288a839f40edd1ce944a747e">Gist</a></p>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/pandas.html" class="tag">pandas</a>
-            <a href="../tag/csv.html" class="tag">CSV</a>
-            <a href="../tag/dataframe.html" class="tag">dataframe</a>
-            <a href="../tag/aws.html" class="tag">AWS</a>
-            <a href="../tag/s3.html" class="tag">S3</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../write-dataframe-to-parquet-on-s3.html">Write a Pandas dataframe to Parquet on S3</a></h2>
-      <time datetime="" title="2018-10-05T11:00:00+01:00" pubdate>Fri 05 October 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>Write a <code>pandas</code> dataframe to a single Parquet file on S3.</p>
-<div class="highlight"><pre><span></span><span class="c1"># Note: make sure `s3fs` is installed in order to make Pandas use S3.</span>
-<span class="c1">#       Credentials for AWS in the normal location ~/.aws/credentials</span>
-<span class="n">DESTINATION</span> <span class="o">=</span> <span class="s1">&#39;my-bucket&#39;</span>
-
-<span class="k">def</span> <span class="nf">_write_dataframe_to_parquet_on_s3</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Write a dataframe to a Parquet on S3 &quot;&quot;&quot;</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Writing {} records to {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataframe</span><span class="p">),</span> <span class="n">filename</span><span class="p">))</span>
-    <span class="n">output_file</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;s3://{DESTINATION}/{filename}/data.parquet&quot;</span>
-    <span class="n">dataframe</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
-
-<span class="n">_write_dataframe_to_parquet_on_s3</span><span class="p">(</span><span class="n">my_df</span><span class="p">,</span> <span class="s1">&#39;my-folder&#39;</span><span class="p">)</span>
-</pre></div>
-
-
-<p><a href="https://gist.github.com/jitsejan/557124bcbaf0780ab4efc6054199550a">Gist</a></p>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/pandas.html" class="tag">pandas</a>
-            <a href="../tag/parquet.html" class="tag">Parquet</a>
-            <a href="../tag/dataframe.html" class="tag">dataframe</a>
-            <a href="../tag/aws.html" class="tag">AWS</a>
-            <a href="../tag/s3.html" class="tag">S3</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-
-  <nav class="pagination row">
-    <div class="col-xs-6 left">
-        <a class="prev" href="../category/posts3.html">&#8592; Past</a>
-    </div>
-    <div class="col-xs-6 right">
-        <a class="next" href="../category/posts.html">Future &#8594;</a>
-    </div>
-  </nav>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-3">
-<aside class="page-sidebar">
-    <nav class="widget" id="sidebar-about">
-        <div class="row img-div">
-            <img src="/theme/images/JJ_Montreal.png" />
-        </div>
-        <div class="row">
-        <p>I am a Data Engineer currently working for <a href="https://marketfinance.com">MarketFinance</a> in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
-<p>
-While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
-for visualizations as for modern web applications it is the go-to language. 
-</p>
-<p>
-I am using this page as a portfolio and showcase, but mainly as a cheatsheet. That is why you will mainly find shell commands, short scripts or notebooks just for myself to not reinvent the wheel.
-</p>
-
-        </div>  
-    </nav>
-    <hr/>
-    <nav class="widget">
-        <ul class="tagcloud">
-        <li class="tag-2">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/lambda.html">
-            Lambda
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/vps.html">
-            VPS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ether.html">
-            ether
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/container.html">
-            container
-            </a>
-        </li>
-        </ul>
-    </nav>
-    <hr/>
+<div class="container post">
     <div class="row">
-        <div class="col-md-12">
-            <ul class="social-list">
-                    <li><a href="http://www.flickr.com/photos/jitsejan" title="Flickr" rel="me" target="new"><i class="fa fa-1x fa-flickr"></i></a></li>
-                    <li><a href="https://play.spotify.com/user/jitsejan" title="Spotify" rel="me" target="new"><i class="fa fa-1x fa-spotify"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jitsejan" title="LinkedIn" rel="me" target="new"><i class="fa fa-1x fa-linkedin"></i></a></li>
-                    <li><a href="http://twitter.com/jitsejan" title="Twitter" rel="me" target="new"><i class="fa fa-1x fa-twitter"></i></a></li>
-                    <li><a href="http://www.github.com/jitsejan" title="Github" rel="me" target="new"><i class="fa fa-1x fa-github"></i></a></li>
-                    <li><a href="http://bitbucket.org/jitsejan" title="Bitbucket" rel="me" target="new"><i class="fa fa-1x fa-bitbucket"></i></a></li>
-                    <li><a href="http://bl.ocks.org/jitsejan" title="Blocks.org" rel="me" target="new"><i class="fa fa-1x fa-bar-chart"></i></a></li>
-                    <li><a href="https://hub.docker.com/r/jitsejan" title="Docker" rel="me" target="new"><i class="fa fa-1x fa-docker"></i></a></li>
-            </ul>
-        </div>
+        <a href="javascript:history.back()">Go back</a>
     </div>
-    <iframe src="https://rcm-eu.amazon-adsystem.com/e/cm?o=2&p=12&l=ur1&category=consumerelectronics&banner=154BTPQKM87HBT4TD802&f=ifr&linkID=5855639ed929a875d305006b63834633&t=jitsejan-21&tracking_id=jitsejan-21" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
-</aside>  </div>
-  
-  </div>
+    <article>
+        <header>
+            <h1>Run methods dynamically by name</h1>
+            <time datetime="article.date.isoformat()" pubdate>Fri 06 December 2019</time>
+        </header>
 
+        <div class="article_content">
+            <p>In this project I want to verify the availability of the APIs that we use to ingest data into our data platform. In the example I will use Jira, Workable and HiBob since they offer clean APIs without too much configuration. First I will create a test suite to verify the availability and once this works move it to a Lambda function that could be scheduled with CloudWatch on a fixed schedule.</p>
+<h2>Prerequisites</h2>
+<p>Make sure the following environment variables are set. Change it to the correct profile and region for the AWS account you want to run the tests for. The profile should be available in <code>~/.aws/credentials</code>.</p>
+<ul>
+<li><code>AWS_PROFILE=prod</code></li>
+<li><code>AWS_DEFAULT_REGION=eu-west-1</code></li>
+<li><code>ENV=prod</code></li>
+</ul>
+<h2>Testing</h2>
+<p>One of the main reasons I switched from <code>unittest</code> to <code>pytest</code> is the ease of use of <em>fixtures</em>. You can define the functions or variables that you will need throughout the whole test set. </p>
+<h3>Fixture class</h3>
+<p>In this case I define a <code>FixtureClass</code> that contains a function to retrieve the parameters from AWS <em>SSM</em>, a key-value store where we store our API keys and other secrets. Note that in the following function I only retrieve the parameters for the base path <code>/</code>. The class has a Boto3 <code>session</code> and <code>ssm_client</code>.</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FixtureClass</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Defines the FixtureClass &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">get_ssm_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Returns the SSM parameters &quot;&quot;&quot;</span>
+        <span class="n">paginator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm_client</span><span class="o">.</span><span class="n">get_paginator</span><span class="p">(</span><span class="s2">&quot;get_parameters_by_path&quot;</span><span class="p">)</span>
+        <span class="n">iterator</span> <span class="o">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">paginate</span><span class="p">(</span><span class="n">Path</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">WithDecryption</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">page</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Parameters&quot;</span><span class="p">,</span> <span class="p">[]):</span>
+                <span class="n">params</span><span class="p">[</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Value&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">params</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">session</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">boto3</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">ssm_client</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">&quot;ssm&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Set the fixture</h3>
+<p>Now I can create an instance of the FixtureClass and add the <code>ssm_parameters</code> as fixture for my tests. Define them either on <code>conftest.py</code> next to your test files, or add them on top of the file where you will write the tests.</p>
+<div class="highlight"><pre><span></span><span class="n">fc</span> <span class="o">=</span> <span class="n">FixtureClass</span><span class="p">()</span>
+
+<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">ssm_parameters</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">fc</span><span class="o">.</span><span class="n">get_ssm_parameters</span><span class="p">()</span>
+</pre></div>
+
+
+<h3>Add fixture to test class</h3>
+<p>In order to make the fixture available for all the tests I add the fixture as attribute to the test class. By using <code>autouse=True</code> the fixtures become available in the <code>setup_class</code> method. This method is only called once per execution of the tests.</p>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; testsourceavailability.py &quot;&quot;&quot;</span>
+<span class="k">class</span> <span class="nc">TestSourceAvailability</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Defines the tests to verify the source availability &quot;&quot;&quot;</span>
+
+    <span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">setup_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ssm_parameters</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Setup the test class &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ssm_parameters</span> <span class="o">=</span> <span class="n">ssm_parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_get_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Create the tests</h3>
+<p>Below I have defined five different tests to validate the availability of three different sources. Three of the tests are to verify the availability (good weather) and two of them ensure that the API does not work with the wrong parameters (bad weather).</p>
+<ul>
+<li>HiBob (tool used by HR)</li>
+<li>Jira (tool used by Tech)</li>
+<li>Workable (tool used by Recruiting)</li>
+</ul>
+<p>Every tests consists of the following steps:</p>
+<ol>
+<li>Retrieve the parameters from SSM</li>
+<li>Set the arguments for the API call</li>
+<li>Assert the status code of the API call</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="c1"># Append to previous TestSourceAvailability file.</span>
+        <span class="k">def</span> <span class="nf">test_hibob_is_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that the HiBob API is available &quot;&quot;&quot;</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;HIBOB_API_KEY&quot;</span><span class="p">)</span>
+        <span class="n">api_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;HIBOB_API_URL&quot;</span><span class="p">)</span>
+
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">api_url</span><span class="p">,</span>
+            <span class="s1">&#39;headers&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="n">api_key</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+
+    <span class="k">def</span> <span class="nf">test_jira_is_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that the Jira API is available &quot;&quot;&quot;</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;JIRA_API_KEY&quot;</span><span class="p">)</span>
+        <span class="n">api_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;JIRA_URL&quot;</span><span class="p">)</span>
+        <span class="n">jira_user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;JIRA_USER&quot;</span><span class="p">)</span>
+
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{api_url}/rest/api/2/project&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;auth&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">jira_user</span><span class="p">,</span> <span class="n">api_key</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+
+    <span class="k">def</span> <span class="nf">test_jira_is_unavailable_without_api_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that the Jira API is unavailable without API key &quot;&quot;&quot;</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">api_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;JIRA_URL&quot;</span><span class="p">)</span>
+        <span class="n">jira_user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;JIRA_USER&quot;</span><span class="p">)</span>
+
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{api_url}/rest/api/2/project&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;auth&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">jira_user</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span>
+
+    <span class="k">def</span> <span class="nf">test_workable_api_is_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that the Workable API is available &quot;&quot;&quot;</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;WORKABLE_API_KEY&quot;</span><span class="p">)</span>
+        <span class="n">api_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;WORKABLE_API_URL&quot;</span><span class="p">)</span>
+
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{api_url}jobs&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;headers&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_key</span><span class="p">)},</span>
+            <span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;include_fields&quot;</span><span class="p">:</span> <span class="s2">&quot;description&quot;</span><span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+
+    <span class="k">def</span> <span class="nf">test_workable_api_is_not_available_for_wrong_credentials</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Test that the Workable API is not available for wrong credentials &quot;&quot;&quot;</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;fake_key&quot;</span>
+        <span class="n">api_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;WORKABLE_API_URL&quot;</span><span class="p">)</span>
+
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{api_url}jobs&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;headers&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_key</span><span class="p">)},</span>
+            <span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;include_fields&quot;</span><span class="p">:</span> <span class="s2">&quot;description&quot;</span><span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span>
+</pre></div>
+
+
+<h3>Execution of the tests</h3>
+<p>Make sure<code>pytest</code> is installed on your machine. Run the file we've created before and add verbosity if you wish. Note that I use Python 3.7 and pytest 5.3.1. In my case all tests are green, so we can continue!</p>
+<div class="highlight"><pre><span></span>$ pytest testsourceavailability.py -v
+<span class="o">=============================</span> <span class="nb">test</span> session <span class="nv">starts</span> <span class="o">==============================</span>
+platform darwin -- Python <span class="m">3</span>.7.4, pytest-5.3.1, py-1.8.0, pluggy-0.13.1 -- /Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7
+cachedir: .pytest_cache
+rootdir: /Users/jitsejan/Documents
+collected <span class="m">5</span> items
+
+testsourceavailability.py::TestSourceAvailability::test_hibob_is_available PASSED <span class="o">[</span> <span class="m">20</span>%<span class="o">]</span>
+testsourceavailability.py::TestSourceAvailability::test_jira_is_available PASSED <span class="o">[</span> <span class="m">40</span>%<span class="o">]</span>
+testsourceavailability.py::TestSourceAvailability::test_jira_is_unavailable_without_api_key PASSED <span class="o">[</span> <span class="m">60</span>%<span class="o">]</span>
+testsourceavailability.py::TestSourceAvailability::test_workable_api_is_available PASSED <span class="o">[</span> <span class="m">80</span>%<span class="o">]</span>
+testsourceavailability.py::TestSourceAvailability::test_workable_api_is_not_available_for_wrong_credentials PASSED <span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
+</pre></div>
+
+
+<h2>Lambda function</h2>
+<p>Because I do not only want to verify availability at the test stage, I will create a Lambda function that I can schedule to periodically check that the APIs are still available. </p>
+<h3>AvailabilityChecker class</h3>
+<p>The class is initialized with the <code>ssm_client</code> to access the parameters stored in SSM and again the <code>requests.Session</code> that is used to call the API. The function to get the parameter by key has the same name, but the underlying logic is of course different compared to the one I used in the tests before with a fixture. By keeping the function name the same it is slightly easier to copy the tests to this Lambda function.</p>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; availabilitychecker.py &quot;&quot;&quot;</span>
+<span class="k">class</span> <span class="nc">AvailabilityChecker</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ssm_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">&quot;ssm&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_get_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return the SSM parameter &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm_client</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">WithDecryption</span><span class="o">=</span><span class="bp">True</span><span class="p">)[</span><span class="s2">&quot;Parameter&quot;</span><span class="p">][</span><span class="s2">&quot;Value&quot;</span><span class="p">]</span>
+</pre></div>
+
+
+<h4>Verify functions</h4>
+<p>I will only add the good weather tests from the previous test set, hence I will verify HiBob, Jira and Workable, but I don't check for the negative cases.</p>
+<div class="highlight"><pre><span></span><span class="c1"># continue availabilitychecker.py</span>
+        <span class="k">def</span> <span class="nf">verify_hibob_is_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Verify that the HiBob API is available &quot;&quot;&quot;</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;HIBOB_API_KEY&quot;</span><span class="p">)</span>
+        <span class="n">api_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;HIBOB_API_URL&quot;</span><span class="p">)</span>
+
+        <span class="n">arguments</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">api_url</span><span class="p">,</span>
+            <span class="s1">&#39;headers&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="n">api_key</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">arguments</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+
+    <span class="k">def</span> <span class="nf">verify_jira_is_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Verify that the Jira API is available &quot;&quot;&quot;</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;JIRA_API_KEY&quot;</span><span class="p">)</span>
+        <span class="n">api_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;JIRA_URL&quot;</span><span class="p">)</span>
+        <span class="n">jira_user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;JIRA_USER&quot;</span><span class="p">)</span>
+
+        <span class="n">arguments</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{api_url}/rest/api/2/project&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;auth&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">jira_user</span><span class="p">,</span> <span class="n">api_key</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">arguments</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+
+    <span class="k">def</span> <span class="nf">verify_workable_api_is_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Verify that the Workable API is available &quot;&quot;&quot;</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;WORKABLE_API_KEY&quot;</span><span class="p">)</span>
+        <span class="n">api_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;WORKABLE_API_URL&quot;</span><span class="p">)</span>
+
+        <span class="n">arguments</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{api_url}jobs&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;headers&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
+            <span class="p">},</span>
+            <span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                <span class="s2">&quot;include_fields&quot;</span><span class="p">:</span> <span class="s2">&quot;description&quot;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">arguments</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
+</pre></div>
+
+
+<h4>Retrieve verify methods automatically</h4>
+<p>Because in reality this file is way larger since I need to test way more sources, I do not want to write out all the verify functions explicitly in my Lambda function like below.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="n">avc</span> <span class="o">=</span> <span class="n">AvailabilityChecker</span><span class="p">()</span>
+    <span class="n">avc</span><span class="o">.</span><span class="n">verify_hibob_is_available</span><span class="p">()</span>
+    <span class="n">avc</span><span class="o">.</span><span class="n">verify_jira_is_available</span><span class="p">()</span>
+    <span class="n">avc</span><span class="o">.</span><span class="n">verify_workable_is_available</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Instead, I want to dynamically retrieve these functions by iterating through the methods of the class.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_get_verify_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Return verify functions inside this class &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">func</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">))</span> <span class="ow">and</span> <span class="n">func</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;verify&quot;</span><span class="p">)]</span>
+</pre></div>
+
+
+<p>This method will loop through the callable functions, check if it starts with <code>verify</code> and return a list of functions. </p>
+<h4>Final Lambda</h4>
+<p>I have updated the <code>lambda_handler</code> to retrieve the functions, iterate through them and execute the method to validate for the different sources if the API is available. Of course this code is a bit longer, but when I add more <code>verify</code> functions to the class, I do not have to change any other code!</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="n">avc</span> <span class="o">=</span> <span class="n">AvailabilityChecker</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">avc</span><span class="o">.</span><span class="n">_get_verify_functions</span><span class="p">():</span>
+        <span class="n">is_available</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">avc</span><span class="p">,</span> <span class="n">method</span><span class="p">)()</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_available</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;[NOK] Please check availability for `{source}`.&quot;</span><span class="p">)</span>            
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;[OK] `{source}`&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Running it will give the results for the three sources.</p>
+<div class="highlight"><pre><span></span>$ python availabilitychecker.py
+<span class="o">[</span>OK<span class="o">]</span> <span class="sb">`</span>Hibob<span class="sb">`</span>
+<span class="o">[</span>OK<span class="o">]</span> <span class="sb">`</span>Jira<span class="sb">`</span>
+<span class="o">[</span>OK<span class="o">]</span> <span class="sb">`</span>Workable Api<span class="sb">`</span>
+</pre></div>
+
+
+<p>Check the <a href="https://gist.github.com/jitsejan/c12a076f3950c0e1be4b55831d291f91">Gist</a> for the final code. Hope it helps :) </p>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/pytest.html" class="tag">pytest</a>
+                    <a href="./tag/dynamic.html" class="tag">dynamic</a>
+                    <a href="./tag/testing.html" class="tag">testing</a>
+                    <a href="./tag/availability.html" class="tag">availability</a>
+                    <a href="./tag/aws.html" class="tag">AWS</a>
+                    <a href="./tag/boto3.html" class="tag">boto3</a>
+                    <a href="./tag/api.html" class="tag">API</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
 
         </div>
 <footer class="footer">
     <div class="container">
         <center>
             <address id="about" class="vcard body">
-                &copy; <a href="..">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2019
+                &copy; <a href=".">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2019
             </address><!-- /#about -->
         </center>
     </div>
