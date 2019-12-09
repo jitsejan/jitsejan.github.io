@@ -11814,10 +11814,10 @@ jQuery(document).ready(function($) {
 </script>
 
 
-        <link rel="alternate" type="application/atom+xml" title="JJ's World blog atom feed" href="/feeds/all.atom.xml" />
-        <link href='//fonts.googleapis.com/css?family=Raleway:300,400,700' rel='stylesheet' type='text/css'>
+        <link rel="alternate" href="/feeds/all.atom.xml" type="application/atom+xml" title="JJ's World blog atom feed"  />
+        <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Raleway:300,400,700' type='text/css'>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
         <link rel="stylesheet" href="/theme/tipuesearch/css/tipuesearch.css">
 
@@ -11930,11 +11930,11 @@ Done
 
 
 <p>Everything between <code>{{</code> and <code>}}</code> is interpreted as Python. The input of the template is a dictionary with the keys <code>personal</code> and <code>occupation</code>, which are all defined in <code>data.yml</code>. All the variables defined in the YAML file can be used in the template. </p>
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">personal</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> 
-    <span class="l l-Scalar l-Scalar-Plain">first</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Pete</span>
-    <span class="l l-Scalar l-Scalar-Plain">last</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Peterson</span>
-<span class="l l-Scalar l-Scalar-Plain">occupation</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Resume builder</span>
+<div class="highlight"><pre><span></span><span class="nt">personal</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> 
+    <span class="nt">first</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Pete</span>
+    <span class="nt">last</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Peterson</span>
+<span class="nt">occupation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Resume builder</span>
 </pre></div>
 
 
@@ -11964,11 +11964,11 @@ Done
 
 <h3>Jinja for-loop</h3>
 <p>With Jinja it is also easy to loop through lists and dictionaries. Below I have defined the <code>languages</code> variable with two elements where each element has a <code>description</code>. </p>
-<div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">languages</span><span class="p p-Indicator">:</span>
-  <span class="l l-Scalar l-Scalar-Plain">English</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Full professional proficiency</span>
-  <span class="l l-Scalar l-Scalar-Plain">Italian</span><span class="p p-Indicator">:</span>
-    <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Elementary proficiency</span>
+<div class="highlight"><pre><span></span><span class="nt">languages</span><span class="p">:</span>
+  <span class="nt">English</span><span class="p">:</span>
+    <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Full professional proficiency</span>
+  <span class="nt">Italian</span><span class="p">:</span>
+    <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Elementary proficiency</span>
 </pre></div>
 
 
