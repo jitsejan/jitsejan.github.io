@@ -11841,13 +11841,13 @@ jQuery(document).ready(function($) {
             </button>
             <a class="navbar-brand" href="/" title="Home" class="title">JJ's World</a></li>
         </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse">
+        <!-- <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="./pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
                 <li><a href="./pages/python-cheatsheet">Python cheatsheet</a></li>
                 <li><a href="./pages/spark-cheatsheet">Spark cheatsheet</a></li>
             </ul>
-        </div><!-- .navbar-collapse -->
+        </div>.navbar-collapse -->
     </div><!-- .container -->
 </nav>
 <div class="container index">
@@ -11864,70 +11864,71 @@ jQuery(document).ready(function($) {
   </div>
 </form>
   </div>
-  <div class="row">
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="./interacting-with-parquet-on-s3.html">Interacting with Parquet on S3 with PyArrow and s3fs</a></h2>
-          <time datetime="" title="2018-08-17T17:30:00+01:00" pubdate>Fri 17 August 2018</time>
-        </header>
+  <div class="col-md-9">
+  <article>
+    <header>
+      <h2><a href="./interacting-with-parquet-on-s3.html">Interacting with Parquet on S3 with PyArrow and s3fs</a></h2>
+      <time datetime="" title="2018-08-17T17:30:00+01:00" pubdate>Fri 17 August 2018</time>
+    </header>
 
-        <div class="article_content">
-            <p>A simple example on interaction with Parquet files on AWS S3.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="./interacting-with-parquet-on-s3.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="./tag/notebook.html" class="tag">notebook</a>
-                <a href="./tag/python.html" class="tag">Python</a>
-                <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-                <a href="./tag/s3.html" class="tag">S3</a>
-                <a href="./tag/pyarrow.html" class="tag">pyarrow</a>
-                <a href="./tag/s3fs.html" class="tag">s3fs</a>
-                <a href="./tag/parquet.html" class="tag">Parquet</a>
-          </div>
-        </div>
-      </article>
+    <div class="article_content">
+        <p>A simple example on interaction with Parquet files on AWS S3.</p>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="./notes-on-kubernetes.html">Notes on Kubernetes</a></h2>
-          <time datetime="" title="2018-08-13T14:54:00+01:00" pubdate>Mon 13 August 2018</time>
-        </header>
+    
+    <div class="meta">
+      <div>
+        <a href="./interacting-with-parquet-on-s3.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/notebook.html" class="tag">notebook</a>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="./tag/s3.html" class="tag">S3</a>
+            <a href="./tag/pyarrow.html" class="tag">pyarrow</a>
+            <a href="./tag/s3fs.html" class="tag">s3fs</a>
+            <a href="./tag/parquet.html" class="tag">Parquet</a>
+      </div>
 
-        <div class="article_content">
-            <p>After numerous restarts and resets of my VPS and executing over 20 different tutorials, I finally have my receipe to get my single node Kubernetes cluster with a proper load balancer working. Please note that the last version of my Kubernetes experiment can be found on my <a href="https://github.com/jitsejan/kubernetes-dev">Git repo</a>. Remember that this repository mainly contains a variety of YAML files that got the system working. What worked for me, might not work for anyone else.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="./notes-on-kubernetes.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="./tag/devops.html" class="tag">DevOps</a>
-                <a href="./tag/kubernetes.html" class="tag">Kubernetes</a>
-                <a href="./tag/docker.html" class="tag">Docker</a>
-                <a href="./tag/traefik.html" class="tag">Traefik</a>
-                <a href="./tag/loadbalancer.html" class="tag">LoadBalancer</a>
-                <a href="./tag/helm.html" class="tag">helm</a>
-                <a href="./tag/weave.html" class="tag">weave</a>
-          </div>
-        </div>
-      </article>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="./using-executemany-to-increase-pyodbc-connection.html">Using executemany to increase PyODBC connection</a></h2>
-          <time datetime="" title="2018-07-19T16:13:00+01:00" pubdate>Thu 19 July 2018</time>
-        </header>
 
-        <div class="article_content">
-            <p>I recently had to insert data from a Pandas dataframe into a Azure SQL database using <code>pandas.to_sql()</code>. This was performing very poorly and seemed to take ages, but since  PyODBC introduced <a href="https://github.com/mkleehammer/pyodbc/wiki/Features-beyond-the-DB-API#fast_executemany">executemany</a> it is easy to improve the performance: simply add an event listener that activates the <code>executemany</code> for the cursor. For 2300 records I did a small comparison 8.67s and 7.22s versus 5min 57s and 5min 26s, so roughly 50 times faster for this small example dataset.</p>
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./notes-on-kubernetes.html">Notes on Kubernetes</a></h2>
+      <time datetime="" title="2018-08-13T14:54:00+01:00" pubdate>Mon 13 August 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>After numerous restarts and resets of my VPS and executing over 20 different tutorials, I finally have my receipe to get my single node Kubernetes cluster with a proper load balancer working. Please note that the last version of my Kubernetes experiment can be found on my <a href="https://github.com/jitsejan/kubernetes-dev">Git repo</a>. Remember that this repository mainly contains a variety of YAML files that got the system working. What worked for me, might not work for anyone else.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="./notes-on-kubernetes.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/devops.html" class="tag">DevOps</a>
+            <a href="./tag/kubernetes.html" class="tag">Kubernetes</a>
+            <a href="./tag/docker.html" class="tag">Docker</a>
+            <a href="./tag/traefik.html" class="tag">Traefik</a>
+            <a href="./tag/loadbalancer.html" class="tag">LoadBalancer</a>
+            <a href="./tag/helm.html" class="tag">helm</a>
+            <a href="./tag/weave.html" class="tag">weave</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./using-executemany-to-increase-pyodbc-connection.html">Using executemany to increase PyODBC connection</a></h2>
+      <time datetime="" title="2018-07-19T16:13:00+01:00" pubdate>Thu 19 July 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>I recently had to insert data from a Pandas dataframe into a Azure SQL database using <code>pandas.to_sql()</code>. This was performing very poorly and seemed to take ages, but since  PyODBC introduced <a href="https://github.com/mkleehammer/pyodbc/wiki/Features-beyond-the-DB-API#fast_executemany">executemany</a> it is easy to improve the performance: simply add an event listener that activates the <code>executemany</code> for the cursor. For 2300 records I did a small comparison 8.67s and 7.22s versus 5min 57s and 5min 26s, so roughly 50 times faster for this small example dataset.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">pyodbc</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">event</span>
@@ -11947,54 +11948,56 @@ jQuery(document).ready(function($) {
           <span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
           <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">)</span>
 </pre></div>
-        </div>
-        
-        <div class="meta">
-          <div>
-                <a href="./tag/python.html" class="tag">Python</a>
-                <a href="./tag/pandas.html" class="tag">pandas</a>
-                <a href="./tag/azure.html" class="tag">Azure</a>
-                <a href="./tag/dataframe.html" class="tag">dataframe</a>
-                <a href="./tag/pyodbc.html" class="tag">PyODBC</a>
-          </div>
-        </div>
-      </article>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="./using-buttermcs-in-jupyter.html">Using ButterCMS in a Jupyter notebook with VueJS</a></h2>
-          <time datetime="" title="2018-06-14T16:07:00+01:00" pubdate>Thu 14 June 2018</time>
-        </header>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/pandas.html" class="tag">pandas</a>
+            <a href="./tag/azure.html" class="tag">Azure</a>
+            <a href="./tag/dataframe.html" class="tag">dataframe</a>
+            <a href="./tag/pyodbc.html" class="tag">PyODBC</a>
+      </div>
 
-        <div class="article_content">
-            <p>The goal of this notebook is to get myself familiar with ButterCMS, a headless CMS that can be easily integrated with any platform in any language. In the past I've experienced with Joomla, Drupal and WordPress (and Blogger long time ago), where I have lost invested a lot of time in simply getting the CMS in place, extending the CMS with more functionality and migrating data between servers. Since I am investigating different ways of using microservices, becoming less platform dependent and overall learning new tools, I use this notebook to show a simple example of ButterCMS in Jupyter.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="./using-buttermcs-in-jupyter.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="./tag/notebook.html" class="tag">notebook</a>
-                <a href="./tag/python.html" class="tag">Python</a>
-                <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-                <a href="./tag/vuejs.html" class="tag">VueJS</a>
-                <a href="./tag/buttercms.html" class="tag">ButterCMS</a>
-                <a href="./tag/javascript.html" class="tag">javascript</a>
-          </div>
-        </div>
-      </article>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="./creating-dataframe-from-table-storage.html">Creating Pandas dataframe from Azure Table Storage</a></h2>
-          <time datetime="" title="2018-06-08T11:00:00+01:00" pubdate>Fri 08 June 2018</time>
-        </header>
 
-        <div class="article_content">
-            <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./using-buttermcs-in-jupyter.html">Using ButterCMS in a Jupyter notebook with VueJS</a></h2>
+      <time datetime="" title="2018-06-14T16:07:00+01:00" pubdate>Thu 14 June 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>The goal of this notebook is to get myself familiar with ButterCMS, a headless CMS that can be easily integrated with any platform in any language. In the past I've experienced with Joomla, Drupal and WordPress (and Blogger long time ago), where I have lost invested a lot of time in simply getting the CMS in place, extending the CMS with more functionality and migrating data between servers. Since I am investigating different ways of using microservices, becoming less platform dependent and overall learning new tools, I use this notebook to show a simple example of ButterCMS in Jupyter.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="./using-buttermcs-in-jupyter.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/notebook.html" class="tag">notebook</a>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="./tag/vuejs.html" class="tag">VueJS</a>
+            <a href="./tag/buttercms.html" class="tag">ButterCMS</a>
+            <a href="./tag/javascript.html" class="tag">javascript</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./creating-dataframe-from-table-storage.html">Creating Pandas dataframe from Azure Table Storage</a></h2>
+      <time datetime="" title="2018-06-08T11:00:00+01:00" pubdate>Fri 08 June 2018</time>
+    </header>
+
+    <div class="article_content">
+        <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">azure.cosmosdb.table.tableservice</span> <span class="kn">import</span> <span class="n">TableService</span>
 
 <span class="n">CONNECTION_STRING</span> <span class="o">=</span> <span class="s2">&quot;DUMMYSTRING&quot;</span>
@@ -12021,135 +12024,140 @@ jQuery(document).ready(function($) {
 <span class="n">df</span> <span class="o">=</span> <span class="n">get_dataframe_from_table_storage_table</span><span class="p">(</span><span class="n">table_service</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span>
                                             <span class="n">filter_query</span><span class="o">=</span><span class="n">fq</span><span class="p">)</span>
 </pre></div>
-        </div>
-        
-        <div class="meta">
-          <div>
-                <a href="./tag/python.html" class="tag">Python</a>
-                <a href="./tag/pandas.html" class="tag">pandas</a>
-                <a href="./tag/azure.html" class="tag">Azure</a>
-                <a href="./tag/dataframe.html" class="tag">dataframe</a>
-                <a href="./tag/generator.html" class="tag">generator</a>
-          </div>
-        </div>
-      </article>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="./creating-model-as-a-service.html">Creating prediction model as a service using Flask and Docker</a></h2>
-          <time datetime="" title="2018-05-09T18:07:00+01:00" pubdate>Wed 09 May 2018</time>
-        </header>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/pandas.html" class="tag">pandas</a>
+            <a href="./tag/azure.html" class="tag">Azure</a>
+            <a href="./tag/dataframe.html" class="tag">dataframe</a>
+            <a href="./tag/generator.html" class="tag">generator</a>
+      </div>
 
-        <div class="article_content">
-            <p>The aim of this notebook is to create a machine learning model and transform it an API which, when given some novel input parameters, returns the model’s prediction.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="./creating-model-as-a-service.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="./tag/notebook.html" class="tag">notebook</a>
-                <a href="./tag/python.html" class="tag">Python</a>
-                <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-                <a href="./tag/machine-learning.html" class="tag">machine learning</a>
-                <a href="./tag/classifier.html" class="tag">classifier</a>
-                <a href="./tag/api.html" class="tag">API</a>
-                <a href="./tag/model-as-a-service.html" class="tag">model as a service</a>
-                <a href="./tag/flask.html" class="tag">Flask</a>
-          </div>
-        </div>
-      </article>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="./moving-blog-to-github-pages.html">Moving my blog to Github Pages</a></h2>
-          <time datetime="" title="2018-04-26T12:00:00+01:00" pubdate>Thu 26 April 2018</time>
-        </header>
 
-        <div class="article_content">
-            <p>A short description how I managed to move my blog from my VPS to Github pages with SSL served via CloudFlare.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="./moving-blog-to-github-pages.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="./tag/infra.html" class="tag">infra</a>
-                <a href="./tag/static.html" class="tag">static</a>
-                <a href="./tag/hosting.html" class="tag">hosting</a>
-          </div>
-        </div>
-      </article>
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./creating-model-as-a-service.html">Creating prediction model as a service using Flask and Docker</a></h2>
+      <time datetime="" title="2018-05-09T18:07:00+01:00" pubdate>Wed 09 May 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>The aim of this notebook is to create a machine learning model and transform it an API which, when given some novel input parameters, returns the model’s prediction.</p>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="./mevn-stack-experiment-with-jupyter.html">MEVN stack experiment with Jupyter</a></h2>
-          <time datetime="" title="2018-01-15T01:45:00+00:00" pubdate>Mon 15 January 2018</time>
-        </header>
+    
+    <div class="meta">
+      <div>
+        <a href="./creating-model-as-a-service.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/notebook.html" class="tag">notebook</a>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="./tag/machine-learning.html" class="tag">machine learning</a>
+            <a href="./tag/classifier.html" class="tag">classifier</a>
+            <a href="./tag/api.html" class="tag">API</a>
+            <a href="./tag/model-as-a-service.html" class="tag">model as a service</a>
+            <a href="./tag/flask.html" class="tag">Flask</a>
+      </div>
 
-        <div class="article_content">
-            <p>An experiment to see how far I can go developing an application using only a Jupyter notebook.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="./mevn-stack-experiment-with-jupyter.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="./tag/notebook.html" class="tag">notebook</a>
-                <a href="./tag/python.html" class="tag">Python</a>
-                <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-                <a href="./tag/docker.html" class="tag">Docker</a>
-                <a href="./tag/selenium.html" class="tag">Selenium</a>
-                <a href="./tag/full-stack.html" class="tag">full-stack</a>
-                <a href="./tag/vuejs.html" class="tag">VueJS</a>
-                <a href="./tag/expressjs.html" class="tag">ExpressJS</a>
-                <a href="./tag/mongodb.html" class="tag">MongoDB</a>
-                <a href="./tag/mongoose.html" class="tag">Mongoose</a>
-                <a href="./tag/linux.html" class="tag">Linux</a>
-          </div>
-        </div>
-      </article>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="./creating-block-diagram.html">Creating block diagram using Python in Jupyter notebook</a></h2>
-          <time datetime="" title="2017-12-18T13:07:00+00:00" pubdate>Mon 18 December 2017</time>
-        </header>
 
-        <div class="article_content">
-            <p>Using the <code>blockdiag</code> library of Python you can easily create block diagrams and with the magic of Jupyter's <code>nbconvert</code> transform it into a presentation.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="./creating-block-diagram.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="./tag/notebook.html" class="tag">notebook</a>
-                <a href="./tag/python.html" class="tag">Python</a>
-                <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-                <a href="./tag/blockdiagram.html" class="tag">blockdiagram</a>
-                <a href="./tag/presentation.html" class="tag">presentation</a>
-          </div>
-        </div>
-      </article>
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./moving-blog-to-github-pages.html">Moving my blog to Github Pages</a></h2>
+      <time datetime="" title="2018-04-26T12:00:00+01:00" pubdate>Thu 26 April 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>A short description how I managed to move my blog from my VPS to Github pages with SSL served via CloudFlare.</p>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="./create-spark-dataframe-column-with-lag.html">Create Spark dataframe column with lag</a></h2>
-          <time datetime="" title="2017-12-14T21:25:00+00:00" pubdate>Thu 14 December 2017</time>
-        </header>
+    
+    <div class="meta">
+      <div>
+        <a href="./moving-blog-to-github-pages.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/infra.html" class="tag">infra</a>
+            <a href="./tag/static.html" class="tag">static</a>
+            <a href="./tag/hosting.html" class="tag">hosting</a>
+      </div>
 
-        <div class="article_content">
-            <p>Create a lagged column in a PySpark dataframe:</p>
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./mevn-stack-experiment-with-jupyter.html">MEVN stack experiment with Jupyter</a></h2>
+      <time datetime="" title="2018-01-15T01:45:00+00:00" pubdate>Mon 15 January 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>An experiment to see how far I can go developing an application using only a Jupyter notebook.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="./mevn-stack-experiment-with-jupyter.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/notebook.html" class="tag">notebook</a>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="./tag/docker.html" class="tag">Docker</a>
+            <a href="./tag/selenium.html" class="tag">Selenium</a>
+            <a href="./tag/full-stack.html" class="tag">full-stack</a>
+            <a href="./tag/vuejs.html" class="tag">VueJS</a>
+            <a href="./tag/expressjs.html" class="tag">ExpressJS</a>
+            <a href="./tag/mongodb.html" class="tag">MongoDB</a>
+            <a href="./tag/mongoose.html" class="tag">Mongoose</a>
+            <a href="./tag/linux.html" class="tag">Linux</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./creating-block-diagram.html">Creating block diagram using Python in Jupyter notebook</a></h2>
+      <time datetime="" title="2017-12-18T13:07:00+00:00" pubdate>Mon 18 December 2017</time>
+    </header>
+
+    <div class="article_content">
+        <p>Using the <code>blockdiag</code> library of Python you can easily create block diagrams and with the magic of Jupyter's <code>nbconvert</code> transform it into a presentation.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="./creating-block-diagram.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/notebook.html" class="tag">notebook</a>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="./tag/blockdiagram.html" class="tag">blockdiagram</a>
+            <a href="./tag/presentation.html" class="tag">presentation</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./create-spark-dataframe-column-with-lag.html">Create Spark dataframe column with lag</a></h2>
+      <time datetime="" title="2017-12-14T21:25:00+00:00" pubdate>Thu 14 December 2017</time>
+    </header>
+
+    <div class="article_content">
+        <p>Create a lagged column in a PySpark dataframe:</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">monotonically_increasing_id</span><span class="p">,</span> <span class="n">lag</span>
 <span class="kn">from</span> <span class="nn">pyspark.sql.window</span> <span class="kn">import</span> <span class="n">Window</span>
 
@@ -12162,19 +12170,19 @@ jQuery(document).ready(function($) {
 <span class="c1"># Add the lagged values to a new column</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;prev_value&#39;</span><span class="p">,</span> <span class="n">value_lag</span><span class="p">)</span>
 </pre></div>
-        </div>
-        
-        <div class="meta">
-          <div>
-                <a href="./tag/python.html" class="tag">Python</a>
-                <a href="./tag/lag.html" class="tag">lag</a>
-                <a href="./tag/pyspark.html" class="tag">pyspark</a>
-                <a href="./tag/dataframe.html" class="tag">dataframe</a>
-          </div>
-        </div>
-      </article>
     </div>
-  </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/lag.html" class="tag">lag</a>
+            <a href="./tag/pyspark.html" class="tag">pyspark</a>
+            <a href="./tag/dataframe.html" class="tag">dataframe</a>
+      </div>
+
+    </div>
+
+  </article>
   <div class="separator"></div>
 
   <nav class="pagination row">
@@ -12221,34 +12229,9 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-1">
-            <a href="./tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
         <li class="tag-2">
-            <a href="./tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
+            <a href="./tag/mongodb.html">
+            MongoDB
             </a>
         </li>
         <li class="tag-1">
@@ -12257,13 +12240,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/vps.html">
-            VPS
+            <a href="./tag/shell.html">
+            shell
             </a>
         </li>
         <li class="tag-1">
-            <a href="./tag/notebook.html">
-            notebook
+            <a href="./tag/jupyter.html">
+            Jupyter
             </a>
         </li>
         <li class="tag-2">
@@ -12272,13 +12255,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
+            <a href="./tag/ubuntu.html">
+            Ubuntu
             </a>
         </li>
         <li class="tag-2">
@@ -12287,18 +12265,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="./tag/data-engineer.html">
             data engineer
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/lambda.html">
-            Lambda
             </a>
         </li>
         <li class="tag-2">
@@ -12307,18 +12275,58 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
+            <a href="./tag/devops.html">
+            DevOps
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/vps.html">
+            VPS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/pandas.html">
+            pandas
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/lambda.html">
+            Lambda
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/container.html">
+            container
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/notebook.html">
+            notebook
             </a>
         </li>
         <li class="tag-2">
             <a href="./tag/spark.html">
             Spark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
             </a>
         </li>
         </ul>

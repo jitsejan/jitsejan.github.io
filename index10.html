@@ -11841,13 +11841,13 @@ jQuery(document).ready(function($) {
             </button>
             <a class="navbar-brand" href="/" title="Home" class="title">JJ's World</a></li>
         </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse">
+        <!-- <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="./pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
                 <li><a href="./pages/python-cheatsheet">Python cheatsheet</a></li>
                 <li><a href="./pages/spark-cheatsheet">Spark cheatsheet</a></li>
             </ul>
-        </div><!-- .navbar-collapse -->
+        </div>.navbar-collapse -->
     </div><!-- .container -->
 </nav>
 <div class="container index">
@@ -11864,16 +11864,15 @@ jQuery(document).ready(function($) {
   </div>
 </form>
   </div>
-  <div class="row">
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="./create-big-files-with-dd.html">Create big files with dd</a></h2>
-          <time datetime="" title="2016-07-28T10:45:00+01:00" pubdate>Thu 28 July 2016</time>
-        </header>
+  <div class="col-md-9">
+  <article>
+    <header>
+      <h2><a href="./create-big-files-with-dd.html">Create big files with dd</a></h2>
+      <time datetime="" title="2016-07-28T10:45:00+01:00" pubdate>Thu 28 July 2016</time>
+    </header>
 
-        <div class="article_content">
-            <p>Use dd in Unix to create files with a size of 2.7 GB.</p>
+    <div class="article_content">
+        <p>Use dd in Unix to create files with a size of 2.7 GB.</p>
 <div class="highlight"><pre><span></span><span class="ch">#!/bin/ksh</span>
 <span class="nv">dir</span><span class="o">=</span>/this/is/my/outputdir/
 <span class="nv">numGig</span><span class="o">=</span><span class="m">2</span>.7
@@ -11884,35 +11883,36 @@ jQuery(document).ready(function($) {
    dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>dummy_<span class="nv">$i</span>.xml <span class="nv">count</span><span class="o">=</span><span class="m">204800</span> <span class="nv">bs</span><span class="o">=</span><span class="nv">$factor</span>
 <span class="k">done</span>
 </pre></div>
-        </div>
-        
-        <div class="meta">
-          <div>
-                <a href="./tag/shell.html" class="tag">shell</a>
-          </div>
-        </div>
-      </article>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="./most-used-history-command.html">Find most used history command</a></h2>
-          <time datetime="" title="2016-07-27T16:55:00+01:00" pubdate>Wed 27 July 2016</time>
-        </header>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/shell.html" class="tag">shell</a>
+      </div>
 
-        <div class="article_content">
-            <div class="highlight"><pre><span></span>$ awk <span class="s1">&#39;{print $1}&#39;</span> ~/.bash_history <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -n
-</pre></div>
-        </div>
-        
-        <div class="meta">
-          <div>
-                <a href="./tag/shell.html" class="tag">shell</a>
-          </div>
-        </div>
-      </article>
     </div>
-  </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./most-used-history-command.html">Find most used history command</a></h2>
+      <time datetime="" title="2016-07-27T16:55:00+01:00" pubdate>Wed 27 July 2016</time>
+    </header>
+
+    <div class="article_content">
+        <div class="highlight"><pre><span></span>$ awk <span class="s1">&#39;{print $1}&#39;</span> ~/.bash_history <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -n
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/shell.html" class="tag">shell</a>
+      </div>
+
+    </div>
+
+  </article>
   <div class="separator"></div>
 
   <nav class="pagination row">
@@ -11958,34 +11958,9 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-1">
-            <a href="./tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
         <li class="tag-2">
-            <a href="./tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
+            <a href="./tag/mongodb.html">
+            MongoDB
             </a>
         </li>
         <li class="tag-1">
@@ -11994,13 +11969,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/vps.html">
-            VPS
+            <a href="./tag/shell.html">
+            shell
             </a>
         </li>
         <li class="tag-1">
-            <a href="./tag/notebook.html">
-            notebook
+            <a href="./tag/jupyter.html">
+            Jupyter
             </a>
         </li>
         <li class="tag-2">
@@ -12009,13 +11984,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
+            <a href="./tag/ubuntu.html">
+            Ubuntu
             </a>
         </li>
         <li class="tag-2">
@@ -12024,18 +11994,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="./tag/data-engineer.html">
             data engineer
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/lambda.html">
-            Lambda
             </a>
         </li>
         <li class="tag-2">
@@ -12044,18 +12004,58 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
+            <a href="./tag/devops.html">
+            DevOps
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/vps.html">
+            VPS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/pandas.html">
+            pandas
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/lambda.html">
+            Lambda
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/container.html">
+            container
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/notebook.html">
+            notebook
             </a>
         </li>
         <li class="tag-2">
             <a href="./tag/spark.html">
             Spark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
             </a>
         </li>
         </ul>

@@ -11841,13 +11841,13 @@ jQuery(document).ready(function($) {
             </button>
             <a class="navbar-brand" href="/" title="Home" class="title">JJ's World</a></li>
         </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse">
+        <!-- <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="../pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
                 <li><a href="../pages/python-cheatsheet">Python cheatsheet</a></li>
                 <li><a href="../pages/spark-cheatsheet">Spark cheatsheet</a></li>
             </ul>
-        </div><!-- .navbar-collapse -->
+        </div>.navbar-collapse -->
     </div><!-- .container -->
 </nav>
 <div class="container index">
@@ -11864,229 +11864,236 @@ jQuery(document).ready(function($) {
   </div>
 </form>
   </div>
-  <div class="row">
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="../interacting-with-aws-glue.html">Interacting with AWS Glue</a></h2>
-          <time datetime="" title="2019-04-02T12:44:00+01:00" pubdate>Tue 02 April 2019</time>
-        </header>
+  <div class="col-md-9">
+  <article>
+    <header>
+      <h2><a href="../interacting-with-aws-glue.html">Interacting with AWS Glue</a></h2>
+      <time datetime="" title="2019-04-02T12:44:00+01:00" pubdate>Tue 02 April 2019</time>
+    </header>
 
-        <div class="article_content">
-            <p>In this notebook I interact with <a href="https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html">AWS Glue</a> using <code>boto3</code>.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="../interacting-with-aws-glue.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="../tag/notebook.html" class="tag">notebook</a>
-                <a href="../tag/aws.html" class="tag">AWS</a>
-                <a href="../tag/python.html" class="tag">Python</a>
-                <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-                <a href="../tag/glue.html" class="tag">Glue</a>
-          </div>
-        </div>
-      </article>
+    <div class="article_content">
+        <p>In this notebook I interact with <a href="https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html">AWS Glue</a> using <code>boto3</code>.</p>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="../date-range-with-python.html">Creating a data range with Python</a></h2>
-          <time datetime="" title="2019-03-08T14:45:00+00:00" pubdate>Fri 08 March 2019</time>
-        </header>
+    
+    <div class="meta">
+      <div>
+        <a href="../interacting-with-aws-glue.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+            <a href="../tag/aws.html" class="tag">AWS</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/glue.html" class="tag">Glue</a>
+      </div>
 
-        <div class="article_content">
-            <p>In this notebook I create a date range with a precision of days and a date range with a precision of a month using <code>datetime</code> with <code>timedelta</code>. This has helped me for automating filtering tasks, where I had to query data each day for a certain period and write te results to timestamped files.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="../date-range-with-python.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="../tag/notebook.html" class="tag">notebook</a>
-                <a href="../tag/python.html" class="tag">Python</a>
-                <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-                <a href="../tag/date.html" class="tag">date</a>
-                <a href="../tag/generation.html" class="tag">generation</a>
-                <a href="../tag/daterange.html" class="tag">daterange</a>
-          </div>
-        </div>
-      </article>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="../using-azure-blob-and-parquet.html">Using Azure Blob Storage and Parquet</a></h2>
-          <time datetime="" title="2019-02-26T13:07:00+00:00" pubdate>Tue 26 February 2019</time>
-        </header>
 
-        <div class="article_content">
-            <p>My attempt to interact with Parquet files on Azure Blob Storage. Reading and writing Pandas dataframes is straightforward, but only the reading part is working with Spark 2.4.0.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="../using-azure-blob-and-parquet.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="../tag/notebook.html" class="tag">notebook</a>
-                <a href="../tag/python.html" class="tag">Python</a>
-                <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-                <a href="../tag/spark.html" class="tag">Spark</a>
-                <a href="../tag/azure.html" class="tag">Azure</a>
-                <a href="../tag/blob-pyspark.html" class="tag">Blob. PySpark</a>
-                <a href="../tag/parquet.html" class="tag">parquet</a>
-                <a href="../tag/data.html" class="tag">data</a>
-          </div>
-        </div>
-      </article>
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../date-range-with-python.html">Creating a data range with Python</a></h2>
+      <time datetime="" title="2019-03-08T14:45:00+00:00" pubdate>Fri 08 March 2019</time>
+    </header>
+
+    <div class="article_content">
+        <p>In this notebook I create a date range with a precision of days and a date range with a precision of a month using <code>datetime</code> with <code>timedelta</code>. This has helped me for automating filtering tasks, where I had to query data each day for a certain period and write te results to timestamped files.</p>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="../difference-with-sparse-dataframes.html">Calculate differences with sparse date/value dataframes</a></h2>
-          <time datetime="" title="2019-01-07T12:54:00+00:00" pubdate>Mon 07 January 2019</time>
-        </header>
+    
+    <div class="meta">
+      <div>
+        <a href="../date-range-with-python.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/date.html" class="tag">date</a>
+            <a href="../tag/generation.html" class="tag">generation</a>
+            <a href="../tag/daterange.html" class="tag">daterange</a>
+      </div>
 
-        <div class="article_content">
-            <p>This notebook contains a small example that interpolates the values for a sparse dataframe and calculates the difference with a smaller dataframe.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="../difference-with-sparse-dataframes.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="../tag/notebook.html" class="tag">notebook</a>
-                <a href="../tag/python.html" class="tag">Python</a>
-                <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-                <a href="../tag/interpolation.html" class="tag">interpolation</a>
-                <a href="../tag/pandas.html" class="tag">Pandas</a>
-                <a href="../tag/dataframes.html" class="tag">dataframes</a>
-          </div>
-        </div>
-      </article>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="../using-spark-to-read-from-s3.html">Using Spark to read from S3</a></h2>
-          <time datetime="" title="2019-01-04T16:31:00+00:00" pubdate>Fri 04 January 2019</time>
-        </header>
 
-        <div class="article_content">
-            <p>A short example on how to interact with S3 from Pyspark.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="../using-spark-to-read-from-s3.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="../tag/notebook.html" class="tag">notebook</a>
-                <a href="../tag/python.html" class="tag">Python</a>
-                <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-                <a href="../tag/spark.html" class="tag">Spark</a>
-                <a href="../tag/pyspark.html" class="tag">pyspark</a>
-                <a href="../tag/aws.html" class="tag">AWS</a>
-                <a href="../tag/s3.html" class="tag">S3</a>
-          </div>
-        </div>
-      </article>
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../using-azure-blob-and-parquet.html">Using Azure Blob Storage and Parquet</a></h2>
+      <time datetime="" title="2019-02-26T13:07:00+00:00" pubdate>Tue 26 February 2019</time>
+    </header>
+
+    <div class="article_content">
+        <p>My attempt to interact with Parquet files on Azure Blob Storage. Reading and writing Pandas dataframes is straightforward, but only the reading part is working with Spark 2.4.0.</p>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="../developing-glue-scripts-on-mac-osx.html">Developing AWS Glue scripts on Mac OSX</a></h2>
-          <time datetime="" title="2018-11-21T17:40:00+00:00" pubdate>Wed 21 November 2018</time>
-        </header>
+    
+    <div class="meta">
+      <div>
+        <a href="../using-azure-blob-and-parquet.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/spark.html" class="tag">Spark</a>
+            <a href="../tag/azure.html" class="tag">Azure</a>
+            <a href="../tag/blob-pyspark.html" class="tag">Blob. PySpark</a>
+            <a href="../tag/parquet.html" class="tag">parquet</a>
+            <a href="../tag/data.html" class="tag">data</a>
+      </div>
 
-        <div class="article_content">
-            <p>In this short tutorial I show how I developed my first Glue scripts for the AWS platform.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="../developing-glue-scripts-on-mac-osx.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="../tag/devops.html" class="tag">DevOps</a>
-                <a href="../tag/data-architecture.html" class="tag">data architecture</a>
-                <a href="../tag/glue.html" class="tag">Glue</a>
-                <a href="../tag/aws.html" class="tag">AWS</a>
-                <a href="../tag/data-engineer.html" class="tag">data engineer</a>
-                <a href="../tag/spark.html" class="tag">Spark</a>
-                <a href="../tag/zeppelin.html" class="tag">Zeppelin</a>
-                <a href="../tag/notebook.html" class="tag">notebook</a>
-          </div>
-        </div>
-      </article>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="../aws-lambda-development-with-sam.html">AWS Lambda development - Python & SAM</a></h2>
-          <time datetime="" title="2018-10-23T10:40:00+01:00" pubdate>Tue 23 October 2018</time>
-        </header>
 
-        <div class="article_content">
-            <p>This tutorial explains how to write a lambda functions in Python, test it locally, deploy it to AWS and test it in the cloud using Amazon's SAM. The <code>README.md</code> inside the <a href="https://github.com/aws-samples/cookiecutter-aws-sam-python"><code>cookiecutter</code></a> template folder is used as the base of this tutorial.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="../aws-lambda-development-with-sam.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="../tag/devops.html" class="tag">DevOps</a>
-                <a href="../tag/data-architecture.html" class="tag">data architecture</a>
-                <a href="../tag/serverless.html" class="tag">serverless</a>
-                <a href="../tag/aws.html" class="tag">AWS</a>
-                <a href="../tag/data-engineer.html" class="tag">data engineer</a>
-                <a href="../tag/lambda.html" class="tag">Lambda</a>
-                <a href="../tag/sam.html" class="tag">SAM</a>
-          </div>
-        </div>
-      </article>
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../difference-with-sparse-dataframes.html">Calculate differences with sparse date/value dataframes</a></h2>
+      <time datetime="" title="2019-01-07T12:54:00+00:00" pubdate>Mon 07 January 2019</time>
+    </header>
+
+    <div class="article_content">
+        <p>This notebook contains a small example that interpolates the values for a sparse dataframe and calculates the difference with a smaller dataframe.</p>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="../none-shall-paas.html">None shall PAAS</a></h2>
-          <time datetime="" title="2018-10-17T14:00:00+01:00" pubdate>Wed 17 October 2018</time>
-        </header>
+    
+    <div class="meta">
+      <div>
+        <a href="../difference-with-sparse-dataframes.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/interpolation.html" class="tag">interpolation</a>
+            <a href="../tag/pandas.html" class="tag">Pandas</a>
+            <a href="../tag/dataframes.html" class="tag">dataframes</a>
+      </div>
 
-        <div class="article_content">
-            <p>This article was originally posted on the <a href="https://blog.marketinvoice.com/2018/10/02/none-shall-paas-unlocking-the-data-warehouse/">MarketInvoice blog</a>.</p>
-        </div>
-        
-        <div class="meta">
-          <div>
-            <a href="../none-shall-paas.html" class="read_more">Read more &#8594;</a>
-          </div>
-          <div>
-                <a href="../tag/devops.html" class="tag">DevOps</a>
-                <a href="../tag/data-architecture.html" class="tag">data architecture</a>
-                <a href="../tag/serverless.html" class="tag">serverless</a>
-                <a href="../tag/aws.html" class="tag">AWS</a>
-                <a href="../tag/azure.html" class="tag">Azure</a>
-                <a href="../tag/data-engineer.html" class="tag">data engineer</a>
-          </div>
-        </div>
-      </article>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="../write-dataframe-to-csv-on-s3.html">Write a Pandas dataframe to CSV on S3</a></h2>
-          <time datetime="" title="2018-10-05T11:00:00+01:00" pubdate>Fri 05 October 2018</time>
-        </header>
 
-        <div class="article_content">
-            <p>Write a <code>pandas</code> dataframe to a single CSV file on S3.</p>
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../using-spark-to-read-from-s3.html">Using Spark to read from S3</a></h2>
+      <time datetime="" title="2019-01-04T16:31:00+00:00" pubdate>Fri 04 January 2019</time>
+    </header>
+
+    <div class="article_content">
+        <p>A short example on how to interact with S3 from Pyspark.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../using-spark-to-read-from-s3.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/spark.html" class="tag">Spark</a>
+            <a href="../tag/pyspark.html" class="tag">pyspark</a>
+            <a href="../tag/aws.html" class="tag">AWS</a>
+            <a href="../tag/s3.html" class="tag">S3</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../developing-glue-scripts-on-mac-osx.html">Developing AWS Glue scripts on Mac OSX</a></h2>
+      <time datetime="" title="2018-11-21T17:40:00+00:00" pubdate>Wed 21 November 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>In this short tutorial I show how I developed my first Glue scripts for the AWS platform.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../developing-glue-scripts-on-mac-osx.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/devops.html" class="tag">DevOps</a>
+            <a href="../tag/data-architecture.html" class="tag">data architecture</a>
+            <a href="../tag/glue.html" class="tag">Glue</a>
+            <a href="../tag/aws.html" class="tag">AWS</a>
+            <a href="../tag/data-engineer.html" class="tag">data engineer</a>
+            <a href="../tag/spark.html" class="tag">Spark</a>
+            <a href="../tag/zeppelin.html" class="tag">Zeppelin</a>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../aws-lambda-development-with-sam.html">AWS Lambda development - Python & SAM</a></h2>
+      <time datetime="" title="2018-10-23T10:40:00+01:00" pubdate>Tue 23 October 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>This tutorial explains how to write a lambda functions in Python, test it locally, deploy it to AWS and test it in the cloud using Amazon's SAM. The <code>README.md</code> inside the <a href="https://github.com/aws-samples/cookiecutter-aws-sam-python"><code>cookiecutter</code></a> template folder is used as the base of this tutorial.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../aws-lambda-development-with-sam.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/devops.html" class="tag">DevOps</a>
+            <a href="../tag/data-architecture.html" class="tag">data architecture</a>
+            <a href="../tag/serverless.html" class="tag">serverless</a>
+            <a href="../tag/aws.html" class="tag">AWS</a>
+            <a href="../tag/data-engineer.html" class="tag">data engineer</a>
+            <a href="../tag/lambda.html" class="tag">Lambda</a>
+            <a href="../tag/sam.html" class="tag">SAM</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../none-shall-paas.html">None shall PAAS</a></h2>
+      <time datetime="" title="2018-10-17T14:00:00+01:00" pubdate>Wed 17 October 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>This article was originally posted on the <a href="https://blog.marketinvoice.com/2018/10/02/none-shall-paas-unlocking-the-data-warehouse/">MarketInvoice blog</a>.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../none-shall-paas.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/devops.html" class="tag">DevOps</a>
+            <a href="../tag/data-architecture.html" class="tag">data architecture</a>
+            <a href="../tag/serverless.html" class="tag">serverless</a>
+            <a href="../tag/aws.html" class="tag">AWS</a>
+            <a href="../tag/azure.html" class="tag">Azure</a>
+            <a href="../tag/data-engineer.html" class="tag">data engineer</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../write-dataframe-to-csv-on-s3.html">Write a Pandas dataframe to CSV on S3</a></h2>
+      <time datetime="" title="2018-10-05T11:00:00+01:00" pubdate>Fri 05 October 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>Write a <code>pandas</code> dataframe to a single CSV file on S3.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boto3</span>
 <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
 
@@ -12109,29 +12116,30 @@ jQuery(document).ready(function($) {
 
 
 <p><a href="https://gist.github.com/jitsejan/e24c6f9b288a839f40edd1ce944a747e">Gist</a></p>
-        </div>
-        
-        <div class="meta">
-          <div>
-                <a href="../tag/python.html" class="tag">Python</a>
-                <a href="../tag/pandas.html" class="tag">pandas</a>
-                <a href="../tag/csv.html" class="tag">CSV</a>
-                <a href="../tag/dataframe.html" class="tag">dataframe</a>
-                <a href="../tag/aws.html" class="tag">AWS</a>
-                <a href="../tag/s3.html" class="tag">S3</a>
-          </div>
-        </div>
-      </article>
     </div>
-    <div class="col-6">
-      <article>
-        <header>
-          <h2><a href="../write-dataframe-to-parquet-on-s3.html">Write a Pandas dataframe to Parquet on S3</a></h2>
-          <time datetime="" title="2018-10-05T11:00:00+01:00" pubdate>Fri 05 October 2018</time>
-        </header>
+    
+    <div class="meta">
+      <div>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/pandas.html" class="tag">pandas</a>
+            <a href="../tag/csv.html" class="tag">CSV</a>
+            <a href="../tag/dataframe.html" class="tag">dataframe</a>
+            <a href="../tag/aws.html" class="tag">AWS</a>
+            <a href="../tag/s3.html" class="tag">S3</a>
+      </div>
 
-        <div class="article_content">
-            <p>Write a <code>pandas</code> dataframe to a single Parquet file on S3.</p>
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../write-dataframe-to-parquet-on-s3.html">Write a Pandas dataframe to Parquet on S3</a></h2>
+      <time datetime="" title="2018-10-05T11:00:00+01:00" pubdate>Fri 05 October 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>Write a <code>pandas</code> dataframe to a single Parquet file on S3.</p>
 <div class="highlight"><pre><span></span><span class="c1"># Note: make sure `s3fs` is installed in order to make Pandas use S3.</span>
 <span class="c1">#       Credentials for AWS in the normal location ~/.aws/credentials</span>
 <span class="n">DESTINATION</span> <span class="o">=</span> <span class="s1">&#39;my-bucket&#39;</span>
@@ -12147,21 +12155,21 @@ jQuery(document).ready(function($) {
 
 
 <p><a href="https://gist.github.com/jitsejan/557124bcbaf0780ab4efc6054199550a">Gist</a></p>
-        </div>
-        
-        <div class="meta">
-          <div>
-                <a href="../tag/python.html" class="tag">Python</a>
-                <a href="../tag/pandas.html" class="tag">pandas</a>
-                <a href="../tag/parquet.html" class="tag">Parquet</a>
-                <a href="../tag/dataframe.html" class="tag">dataframe</a>
-                <a href="../tag/aws.html" class="tag">AWS</a>
-                <a href="../tag/s3.html" class="tag">S3</a>
-          </div>
-        </div>
-      </article>
     </div>
-  </div>
+    
+    <div class="meta">
+      <div>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/pandas.html" class="tag">pandas</a>
+            <a href="../tag/parquet.html" class="tag">Parquet</a>
+            <a href="../tag/dataframe.html" class="tag">dataframe</a>
+            <a href="../tag/aws.html" class="tag">AWS</a>
+            <a href="../tag/s3.html" class="tag">S3</a>
+      </div>
+
+    </div>
+
+  </article>
   <div class="separator"></div>
 
   <nav class="pagination row">
@@ -12208,34 +12216,9 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-1">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
         <li class="tag-2">
-            <a href="../tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/pandas.html">
-            pandas
+            <a href="../tag/mongodb.html">
+            MongoDB
             </a>
         </li>
         <li class="tag-1">
@@ -12244,13 +12227,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/vps.html">
-            VPS
+            <a href="../tag/shell.html">
+            shell
             </a>
         </li>
         <li class="tag-1">
-            <a href="../tag/notebook.html">
-            notebook
+            <a href="../tag/jupyter.html">
+            Jupyter
             </a>
         </li>
         <li class="tag-2">
@@ -12259,13 +12242,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/javascript.html">
-            javascript
+            <a href="../tag/ubuntu.html">
+            Ubuntu
             </a>
         </li>
         <li class="tag-2">
@@ -12274,18 +12252,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="../tag/data-engineer.html">
             data engineer
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/lambda.html">
-            Lambda
             </a>
         </li>
         <li class="tag-2">
@@ -12294,18 +12262,58 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
+            <a href="../tag/devops.html">
+            DevOps
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/vps.html">
+            VPS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/pandas.html">
+            pandas
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/lambda.html">
+            Lambda
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/container.html">
+            container
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/notebook.html">
+            notebook
             </a>
         </li>
         <li class="tag-2">
             <a href="../tag/spark.html">
             Spark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/shell.html">
-            shell
             </a>
         </li>
         </ul>
