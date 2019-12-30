@@ -11908,6 +11908,12 @@ jQuery(document).ready(function($) {
               <span class="n">F</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;_json_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
                           <span class="n">json_schema</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+
+<h2>Casting a datatype</h2>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">IntegerType</span>
+<span class="n">dataframe</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">IntegerType</span><span class="p">()))</span>
+</pre></div>
         </div>
 
     </article>
