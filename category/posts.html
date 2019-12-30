@@ -11872,7 +11872,8 @@ jQuery(document).ready(function($) {
     </header>
 
     <div class="article_content">
-        <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">IntegerType</span>
+        <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">as</span> <span class="nn">F</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">IntegerType</span>
 <span class="c1"># Cast the count column to an integer</span>
 <span class="n">dataframe</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">IntegerType</span><span class="p">()))</span>
 </pre></div>
@@ -12184,53 +12185,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <nav class="widget">
         <ul class="tagcloud">
         <li class="tag-2">
-            <a href="../tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/vps.html">
-            VPS
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="../tag/data-engineer.html">
             data engineer
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
+            <a href="../tag/devops.html">
+            DevOps
             </a>
         </li>
         <li class="tag-1">
@@ -12239,33 +12200,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/blockchain.html">
-            blockchain
+            <a href="../tag/docker.html">
+            Docker
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ether.html">
-            ether
+            <a href="../tag/vps.html">
+            VPS
             </a>
         </li>
         <li class="tag-2">
@@ -12279,8 +12220,68 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
+            <a href="../tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-2">
             <a href="../tag/container.html">
             container
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ether.html">
+            ether
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/python.html">
+            Python
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/jupyter.html">
+            Jupyter
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/spark.html">
+            Spark
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/mongodb.html">
+            MongoDB
             </a>
         </li>
         </ul>
