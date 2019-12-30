@@ -11867,6 +11867,45 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="../write-dataframe-to-parquet-on-s3.html">Write a Pandas dataframe to Parquet on S3</a></h2>
+      <time datetime="" title="2018-10-05T11:00:00+01:00" pubdate>Fri 05 October 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>Write a <code>pandas</code> dataframe to a single Parquet file on S3.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Note: make sure `s3fs` is installed in order to make Pandas use S3.</span>
+<span class="c1">#       Credentials for AWS in the normal location ~/.aws/credentials</span>
+<span class="n">DESTINATION</span> <span class="o">=</span> <span class="s1">&#39;my-bucket&#39;</span>
+
+<span class="k">def</span> <span class="nf">_write_dataframe_to_parquet_on_s3</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Write a dataframe to a Parquet on S3 &quot;&quot;&quot;</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Writing {} records to {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataframe</span><span class="p">),</span> <span class="n">filename</span><span class="p">))</span>
+    <span class="n">output_file</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;s3://{DESTINATION}/{filename}/data.parquet&quot;</span>
+    <span class="n">dataframe</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
+
+<span class="n">_write_dataframe_to_parquet_on_s3</span><span class="p">(</span><span class="n">my_df</span><span class="p">,</span> <span class="s1">&#39;my-folder&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p><a href="https://gist.github.com/jitsejan/557124bcbaf0780ab4efc6054199550a">Gist</a></p>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/pandas.html" class="tag">pandas</a>
+            <a href="../tag/parquet.html" class="tag">Parquet</a>
+            <a href="../tag/dataframe.html" class="tag">dataframe</a>
+            <a href="../tag/aws.html" class="tag">AWS</a>
+            <a href="../tag/s3.html" class="tag">S3</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="../interacting-with-parquet-on-s3.html">Interacting with Parquet on S3 with PyArrow and s3fs</a></h2>
       <time datetime="" title="2018-08-17T17:30:00+01:00" pubdate>Fri 17 August 2018</time>
     </header>
@@ -12150,40 +12189,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../create-spark-dataframe-column-with-lag.html">Create Spark dataframe column with lag</a></h2>
-      <time datetime="" title="2017-12-14T21:25:00+00:00" pubdate>Thu 14 December 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>Create a lagged column in a PySpark dataframe:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">monotonically_increasing_id</span><span class="p">,</span> <span class="n">lag</span>
-<span class="kn">from</span> <span class="nn">pyspark.sql.window</span> <span class="kn">import</span> <span class="n">Window</span>
-
-<span class="c1"># Add ID to be used by the window function</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">monotonically_increasing_id</span><span class="p">())</span>
-<span class="c1"># Set the window</span>
-<span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
-<span class="c1"># Create the lagged value</span>
-<span class="n">value_lag</span> <span class="o">=</span> <span class="n">lag</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-<span class="c1"># Add the lagged values to a new column</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;prev_value&#39;</span><span class="p">,</span> <span class="n">value_lag</span><span class="p">)</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/lag.html" class="tag">lag</a>
-            <a href="../tag/pyspark.html" class="tag">pyspark</a>
-            <a href="../tag/dataframe.html" class="tag">dataframe</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12229,59 +12234,34 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-2">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
         <li class="tag-1">
             <a href="../tag/python.html">
             Python
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ether.html">
-            ether
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/devops.html">
-            DevOps
+            <a href="../tag/spark.html">
+            Spark
             </a>
         </li>
         <li class="tag-2">
             <a href="../tag/vps.html">
             VPS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/blockchain.html">
+            blockchain
             </a>
         </li>
         <li class="tag-2">
@@ -12295,8 +12275,33 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/javascript.html">
-            javascript
+            <a href="../tag/data-engineer.html">
+            data engineer
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/pyspark.html">
+            PySpark
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/docker.html">
+            Docker
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/devops.html">
+            DevOps
             </a>
         </li>
         <li class="tag-2">
@@ -12305,18 +12310,18 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/lambda.html">
-            Lambda
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="../tag/container.html">
             container
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/jupyter.html">
+            Jupyter
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/javascript.html">
+            javascript
             </a>
         </li>
         <li class="tag-1">
@@ -12325,8 +12330,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/spark.html">
-            Spark
+            <a href="../tag/ether.html">
+            ether
             </a>
         </li>
         </ul>

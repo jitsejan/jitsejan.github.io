@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>JJ's World - Categories | JJ's World</title>
+        <title>Casting a PySpark DataFrame column to a specific datatype. | JJ's World</title>
 
 
 <style type="text/css">
@@ -11850,10 +11850,79 @@ jQuery(document).ready(function($) {
         </div>.navbar-collapse -->
     </div><!-- .container -->
 </nav>
-    <h1>Categories on JJ's World</h1>
-    <ul>
-        <li><a href="./category/posts.html">posts</a> (93)</li>
-    </ul>
+<div class="container post">
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
+    <article>
+        <header>
+            <h1>Casting a PySpark DataFrame column to a specific datatype.</h1>
+            <time datetime="article.date.isoformat()" pubdate>Mon 30 December 2019</time>
+        </header>
+
+        <div class="article_content">
+            <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">IntegerType</span>
+<span class="c1"># Cast the count column to an integer</span>
+<span class="n">dataframe</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">IntegerType</span><span class="p">()))</span>
+</pre></div>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/pyspark.html" class="tag">PySpark</a>
+                    <a href="./tag/trick.html" class="tag">trick</a>
+                    <a href="./tag/dataframe.html" class="tag">dataframe</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
+
         </div>
 <footer class="footer">
     <div class="container">
