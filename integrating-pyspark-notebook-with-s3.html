@@ -11862,9 +11862,9 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <h2>Introduction</h2>
-<p>In my post <a href="https://www.jitsejan.com/using-spark-to-read-from-s3.html">Using Spark to read from S3</a> I explained how I was able to connect Spark to AWS S3 on a Ubuntu machine. Last week I was trying to connect to S3 again using Spark on my local machine, but I wasn't able to read data from our datalake. Our datalake is hosted in the  <code>eu-west-2</code> region which apparently requires you to specify the version of authentication. Instead of setting up the right environment on my machine and reconfigure everything, I chose to update the Docker image from my <a href="https://github.com/jitsejan/notebooks">notebook repo</a> so I could test on my Mac before pushing it to my server. Instead of configuring both my local and remote environment I can simply spin up the Docker container and have two identical environments. </p>
+<p>In my post <a href="https://www.jitsejan.com/using-spark-to-read-from-s3.html">Using Spark to read from S3</a> I explained how I was able to connect Spark to AWS S3 on a Ubuntu machine. Last week I was trying to connect to S3 again using Spark on my local machine, but I wasn't able to read data from our datalake. Our datalake is hosted in the  <code>eu-west-2</code> region which apparently requires you to specify the version of authentication. Instead of setting up the right environment on my machine and reconfigure everything, I chose to update the Docker image from my <a href="https://github.com/jitsejan/notebooks">notebook repo</a> so I could test locally on my Mac before pushing it to my server. Instead of configuring both my local and remote environment I can simply spin up the Docker container and have two identical environments. </p>
 <h2>Implementation</h2>
-<p>Rather than providing the AWS credentials in the Spark config, I want to keep things simple and only have one credential file from where I will read the important information. The contents of <code>~/.aws/credentials</code> specify just one account in this example, but this is where I have specified all the different AWS accounts we are using. This file will be copied to the Docker container by mounting the local <code>aws</code> folder inside the Docker instance.</p>
+<p>Rather than providing the AWS credentials in the Spark config, I want to keep things simple and only have one credentials file from where I will read the important information. The contents of <code>~/.aws/credentials</code> specify just one account in this example, but this is where I have specified all the different AWS accounts we are using. This file will be copied to the Docker container by mounting the local <code>aws</code> folder inside the Docker instance.</p>
 <div class="highlight"><pre><span></span><span class="k">[prod]</span>
 <span class="na">aws_access_key_id</span> <span class="o">=</span> <span class="s">xxxxxxyyyyyyy</span>
 <span class="na">aws_secret_access_key</span> <span class="o">=</span> <span class="s">zzzzzzzzyyyyyyy</span>
@@ -12008,10 +12008,10 @@ ade618e362da        jitsejan/pyspark-notebook   <span class="s2">&quot;tini -g -
 </pre></div>
 
 
-<p><img alt="image-20200124134425146" src="images/image-20200124134425146.png"></p>
+<p><img src="images/image-20200124134425146.png" /></p>
 <p>For convenience I am running <a href="https://www.portainer.io/">Portainer</a> because it is easier to get an overview of the containers running in Docker instead of using the CLI.. It also helps to clean up all the orphan images.</p>
-<p><img alt="image-20200124134559900" src="images/image-20200124134559900.png"></p>
-<p><img alt="image-20200124134717082" src="images/image-20200124134717082.png"></p>
+<p><img src="images/image-20200124134559900.png" /></p>
+<p><img src="images/image-20200124134717082.png" /></p>
 <h2>Code</h2>
 <p>To connect Spark to S3 I will use the <code>credentials</code> file as configuration file and use the <code>configparser</code> library to read the parameters.</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
@@ -12045,7 +12045,8 @@ ade618e362da        jitsejan/pyspark-notebook   <span class="s2">&quot;tini -g -
 </pre></div>
 
 
-<p><img alt="image-20200124135946914" src="image-20200124135946914.png"></p>
+<p><img src="image-20200124135946914.png" /></p>
+<p>Hope this helps!</p>
         </div>
 
         <div class="meta">
