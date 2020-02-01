@@ -12038,7 +12038,7 @@ ade618e362da        jitsejan/pyspark-notebook   <span class="s2">&quot;tini -g -
 </pre></div>
 
 
-<p>WIth the above configuration I initialize the Spark context and can read from our datalake. </p>
+<p>With the above configuration I initialize the Spark context and can read from our datalake. </p>
 <div class="highlight"><pre><span></span><span class="n">sc</span> <span class="o">=</span> <span class="n">SparkContext</span><span class="p">(</span><span class="n">conf</span><span class="o">=</span><span class="n">conf</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
 <span class="n">sqlContext</span> <span class="o">=</span> <span class="n">SQLContext</span><span class="p">(</span><span class="n">sc</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">sqlContext</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;s3a://mi-datalake-prod/warehouse/platform/company_list/&quot;</span><span class="p">)</span>
