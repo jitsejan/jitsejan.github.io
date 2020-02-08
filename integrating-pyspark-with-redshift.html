@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Home | JJ's World</title>
+        <title>Integrating PySpark with Redshift | JJ's World</title>
 
 
 <style type="text/css">
@@ -11850,441 +11850,141 @@ jQuery(document).ready(function($) {
         </div>.navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container index">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-<form class="navbar-form navbar-right" role="search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-9">
-  <article>
-    <header>
-      <h2><a href="./install-java-version-8.html">Install Java version 8</a></h2>
-      <time datetime="" title="2016-10-05T08:28:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>I ran into an issue while re-configuring the Jira installation on my system. After an update Java 8 was needed but it is not present by default on Ubuntu 14.04. To install the JRE and JDK you need to add the repository of the webupd8team and use the Oracle Java 8 installer.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./install-java-version-8.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/java.html" class="tag">Java</a>
-            <a href="./tag/ubuntu.html" class="tag">Ubuntu</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./add-flickr-photosets-django.html">Add Flickr photosets to a Django site</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>A short description that describes how to retrieve pictures from Flickr and add them to a Django application using the <strong>flickrapi</strong>.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./add-flickr-photosets-django.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/django.html" class="tag">Django</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/flickr.html" class="tag">Flickr</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./change-postgresql-database-encoding.html">Change PostgreSQL database encoding</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>I ran into an issue where I couldn't save some JSON-data to the database because of a weird UTF8 character. Apparently my databases have the SQL ASCII encoding and not the necessary UTF8 encoding.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./change-postgresql-database-encoding.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/postgres.html" class="tag">Postgres</a>
-            <a href="./tag/ubuntu.html" class="tag">Ubuntu</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./upgrade-postgresql.html">Upgrade PostgreSQL</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>By default Ubuntu 14.04 is running PostgreSQL version 9.3. In order to use the json datatype PostgreSQL version 9.4 or bigger is needed. The versions can be installed side by side, but for clarity you could remove the</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./upgrade-postgresql.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/postgres.html" class="tag">Postgres</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./write-dictionary-to-csv-python.html">Write dictionary to CSV in Python</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
-
-<span class="k">def</span> <span class="nf">write_dictionary_to_csv</span><span class="p">(</span><span class="n">o_file</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Write dictionary to output file &quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">o_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
-        <span class="n">outputwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span><span class="p">)</span>
-        <span class="n">outputwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="n">outputwriter</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
-
-<span class="n">dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">34</span><span class="p">],</span>
-              <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span><span class="mi">56</span><span class="p">,</span><span class="mi">67</span><span class="p">],</span>
-              <span class="s2">&quot;key3&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">78</span><span class="p">,</span><span class="mi">89</span><span class="p">,</span><span class="mi">90</span><span class="p">]}</span>
-<span class="n">output_file</span> <span class="o">=</span> <span class="s1">&#39;output.csv&#39;</span>
-<span class="n">write_dictionary_to_csv</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">)</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/dictionary.html" class="tag">dictionary</a>
-            <a href="./tag/csv.html" class="tag">CSV</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./using-supervisor-start-gunicorn.html">Using Supervisor to start Gunicorn</a></h2>
-      <time datetime="" title="2016-10-04T14:06:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>To avoid running the Gunicorn in a separate screen, you can use Supervisor to automatically start the Gunicorn server on system start or on user demand.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./using-supervisor-start-gunicorn.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/ubuntu.html" class="tag">Ubuntu</a>
-            <a href="./tag/supervisor.html" class="tag">Supervisor</a>
-            <a href="./tag/gunicorn.html" class="tag">gunicorn</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./check-listening-ports-on-server.html">Check the listening ports on the server</a></h2>
-      <time datetime="" title="2016-10-04T11:24:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Use netstat to check with ports are listening on the machine.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ netstat -lnt <span class="p">|</span> awk <span class="s1">&#39;$6 == &quot;LISTEN&quot;&#39;</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/shell.html" class="tag">shell</a>
-            <a href="./tag/network.html" class="tag">network</a>
-            <a href="./tag/netstat.html" class="tag">netstat</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./install-anaconda-ubuntu-1404.html">Install Anaconda on Ubuntu 14.04</a></h2>
-      <time datetime="" title="2016-10-04T10:29:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Installation of Anaconda on Ubuntu 14.04.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./install-anaconda-ubuntu-1404.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/anaconda.html" class="tag">Anaconda</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/ubuntu.html" class="tag">Ubuntu</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./move-django-between-servers.html">Move Django database between servers</a></h2>
-      <time datetime="" title="2016-10-04T10:05:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Save the database on the old server.</p>
-<div class="highlight"><pre><span></span><span class="o">(</span>oldenv<span class="o">)</span>jitsejan@oldvps:/opt/oldenv/django_project$ sudo python manage.py dumpdata blog &gt; blog.json
-</pre></div>
-
-
-<p>Load the data on the new server. Make sure the models for both blogs are identical.</p>
-<div class="highlight"><pre><span></span><span class="o">(</span>env<span class="o">)</span>jitsejan@jjsvps:/opt/env/django_project$ sudo python manage.py loaddata blog.json
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/django.html" class="tag">Django</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./install-django-ubuntu-1404-virtualenv-nginx-gunicorn-and-postgres.html">Install Django on Ubuntu 14.04 with virtualenv, Nginx, Gunicorn and postgres</a></h2>
-      <time datetime="" title="2016-10-04T09:46:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>A description of the steps needed to get Django working on Ubuntu 14.04.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./install-django-ubuntu-1404-virtualenv-nginx-gunicorn-and-postgres.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/ubuntu.html" class="tag">Ubuntu</a>
-            <a href="./tag/django.html" class="tag">Django</a>
-            <a href="./tag/nginx.html" class="tag">Nginx</a>
-            <a href="./tag/gunicorn.html" class="tag">Gunicorn</a>
-            <a href="./tag/postgres.html" class="tag">postgres</a>
-            <a href="./tag/virtualenv.html" class="tag">virtualenv</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-
-  <nav class="pagination row">
-    <div class="col-xs-6 left">
-        <a class="prev" href="./index9.html">&#8592; Past</a>
-    </div>
-    <div class="col-xs-6 right">
-        <a class="next" href="./index7.html">Future &#8594;</a>
-    </div>
-  </nav>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm">
-<form class="navbar-form navbar-right" role="search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-3">
-<aside class="page-sidebar">
-    <nav class="widget" id="sidebar-about">
-        <div class="row img-div">
-            <img src="/theme/images/JJ_Montreal.png" />
-        </div>
-        <div class="row">
-        <p>I am the Head Of Data Engineering at for <a href="https://marketfinance.com">MarketFinance</a> in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
-<p>
-While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
-for visualizations as for modern web applications it is the go-to language. 
-</p>
-<p>
-I am using this page as a portfolio and showcase, but mainly as a cheatsheet. That is why you will mainly find shell commands, short scripts or notebooks just for myself to not reinvent the wheel.
-</p>
-
-        </div>  
-    </nav>
-    <hr/>
-    <nav class="widget">
-        <ul class="tagcloud">
-        <li class="tag-2">
-            <a href="./tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pyspark.html">
-            PySpark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/vps.html">
-            VPS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/s3.html">
-            S3
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        </ul>
-    </nav>
-    <hr/>
+<div class="container post">
     <div class="row">
-        <div class="col-md-12">
-            <ul class="social-list">
-                    <li><a href="http://www.flickr.com/photos/jitsejan" title="Flickr" rel="me" target="new"><i class="fa fa-1x fa-flickr"></i></a></li>
-                    <li><a href="https://play.spotify.com/user/jitsejan" title="Spotify" rel="me" target="new"><i class="fa fa-1x fa-spotify"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jitsejan" title="LinkedIn" rel="me" target="new"><i class="fa fa-1x fa-linkedin"></i></a></li>
-                    <li><a href="http://twitter.com/jitsejan" title="Twitter" rel="me" target="new"><i class="fa fa-1x fa-twitter"></i></a></li>
-                    <li><a href="http://www.github.com/jitsejan" title="Github" rel="me" target="new"><i class="fa fa-1x fa-github"></i></a></li>
-                    <li><a href="http://bitbucket.org/jitsejan" title="Bitbucket" rel="me" target="new"><i class="fa fa-1x fa-bitbucket"></i></a></li>
-                    <li><a href="http://bl.ocks.org/jitsejan" title="Blocks.org" rel="me" target="new"><i class="fa fa-1x fa-bar-chart"></i></a></li>
-                    <li><a href="https://hub.docker.com/r/jitsejan" title="Docker" rel="me" target="new"><i class="fa fa-1x fa-docker"></i></a></li>
-            </ul>
-        </div>
+        <a href="javascript:history.back()">Go back</a>
     </div>
-    <iframe src="https://rcm-eu.amazon-adsystem.com/e/cm?o=2&p=12&l=ur1&category=consumerelectronics&banner=154BTPQKM87HBT4TD802&f=ifr&linkID=5855639ed929a875d305006b63834633&t=jitsejan-21&tracking_id=jitsejan-21" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
-</aside>  </div>
-  
-  </div>
+    <article>
+        <header>
+            <h1>Integrating PySpark with Redshift</h1>
+            <time datetime="article.date.isoformat()" pubdate>Sat 08 February 2020</time>
+        </header>
 
+        <div class="article_content">
+            <p>In my article on <a href="https://www.jitsejan.com/integrating-pyspark-notebook-with-s3.html">how to connect to S3 from PySpark</a> I showed how to setup Spark with the right libraries to be able to connect to read and right from AWS S3. In the following article I show a quick example how I connect to Redshift and use the S3 setup to write the table to file. </p>
+<p>First of all I need the Postgres driver for Spark in order to make connecting to Redshift possible.</p>
+<div class="highlight"><pre><span></span>$ wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.6/postgresql-42.2.6.jar -P /opt/notebooks/
+</pre></div>
+
+
+<p>I have saved my configuration in the following variable for testing purposes. Of course it would be wise to store the details in environment variables or in a proper configuration file.</p>
+<div class="highlight"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;aws_access_key&#39;</span><span class="p">:</span> <span class="s1">&#39;aaaaaa&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;aws_secret_key&#39;</span><span class="p">:</span> <span class="s1">&#39;bbbbb&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;aws_region&#39;</span><span class="p">:</span> <span class="s1">&#39;eu-west-2&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;aws_bucket&#39;</span><span class="p">:</span> <span class="s1">&#39;my-bucket&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;redshift_user&#39;</span><span class="p">:</span> <span class="s1">&#39;user&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;redshift_pass&#39;</span><span class="p">:</span> <span class="s1">&#39;pass&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;redshift_port&#39;</span><span class="p">:</span> <span class="mi">1234</span><span class="p">,</span>
+    <span class="s1">&#39;redshift_db&#39;</span><span class="p">:</span> <span class="s1">&#39;mydatabase&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;redshift_host&#39;</span><span class="p">:</span> <span class="s1">&#39;myhost&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>Setting up the Spark context is straightforward. Make sure the Postgres library is available by adding it to <code>extraClassPath</code>, or copy it to the <code>jars</code> folder in the Spark installation location (<code>SPARK_HOME</code>).</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark</span> <span class="kn">import</span> <span class="n">SparkContext</span><span class="p">,</span> <span class="n">SparkConf</span><span class="p">,</span> <span class="n">SQLContext</span>
+
+<span class="n">jars</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;/opt/notebooks/postgresql-42.2.6.jar&quot;</span>
+<span class="p">]</span>
+
+<span class="n">conf</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">SparkConf</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">setAppName</span><span class="p">(</span><span class="s2">&quot;S3 with Redshift&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.driver.extraClassPath&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">jars</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.access.key&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;aws_access_key&#39;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.secret.key&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;aws_secret_key&#39;</span><span class="p">))</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.path.style.access&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.impl&quot;</span><span class="p">,</span> <span class="s2">&quot;org.apache.hadoop.fs.s3a.S3AFileSystem&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;com.amazonaws.services.s3.enableV4&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.endpoint&quot;</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;s3-{config.get(&#39;region&#39;)}.amazonaws.com&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.executor.extraJavaOptions&quot;</span><span class="p">,</span> <span class="s2">&quot;-Dcom.amazonaws.services.s3.enableV4=true&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.driver.extraJavaOptions&quot;</span><span class="p">,</span> <span class="s2">&quot;-Dcom.amazonaws.services.s3.enableV4=true&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">sc</span> <span class="o">=</span> <span class="n">SparkContext</span><span class="p">(</span><span class="n">conf</span><span class="o">=</span><span class="n">conf</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+<span class="n">sqlContext</span> <span class="o">=</span> <span class="n">SQLContext</span><span class="p">(</span><span class="n">sc</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Now the Spark context is set I specify the schema and the table that I want to read from Redshift and write to S3.</p>
+<div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="s1">&#39;custom&#39;</span>
+<span class="n">table</span> <span class="o">=</span> <span class="s1">&#39;postcodes&#39;</span>
+</pre></div>
+
+
+<p>The reading is done using the <code>jdbc</code> format and specifying the Redshift details:</p>
+<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">sqlContext</span><span class="o">.</span><span class="n">read</span> \
+               <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;jdbc&quot;</span><span class="p">)</span> \
+               <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;jdbc:postgresql://{config.get(&#39;redshift_host&#39;)}.redshift.amazonaws.com:{config.get(&#39;redshift_port&#39;)}/{config.get(&#39;redshift_db&#39;)}&quot;</span><span class="p">)</span> \
+               <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;dbtable&quot;</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;{schema}.{table}&quot;</span><span class="p">)</span> \
+               <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redshift_user&#39;</span><span class="p">))</span> \
+               <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redshift_pass&#39;</span><span class="p">))</span> \
+               <span class="o">.</span><span class="n">load</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Writing is easy since I specified the S3 details in the Spark configuration. </p>
+<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s1">&#39;overwrite&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;s3a://{config.get(&#39;aws_bucket&#39;)}/raw/{schema}/{table})</span>
+</pre></div>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/pyspark.html" class="tag">PySpark</a>
+                    <a href="./tag/redshift.html" class="tag">Redshift</a>
+                    <a href="./tag/dataframe.html" class="tag">dataframe</a>
+                    <a href="./tag/spark.html" class="tag">Spark</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
 
         </div>
 <footer class="footer">
