@@ -11888,14 +11888,14 @@ jQuery(document).ready(function($) {
     <span class="o">...</span>
 
     <span class="k">def</span> <span class="nf">test_has_access_true_with_super_mushroom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">castle</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
-                <span class="sd">&quot;&quot;&quot; Test that has_access returns True for Super Mushroom &quot;&quot;&quot;</span>
-                <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">&#39;Super Mushroom&#39;</span>
-                <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="n">character</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot; Test that has_access returns True for Super Mushroom &quot;&quot;&quot;</span>
+        <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">&#39;Super Mushroom&#39;</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="n">character</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">test_has_access_false_without_super_mushroom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">castle</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
-                <span class="sd">&quot;&quot;&quot; Test that has_access returns False for other powerups &quot;&quot;&quot;</span>
-              <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">&#39;Not a mushroom&#39;</span>
-                <span class="k">assert</span> <span class="ow">not</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="n">character</span><span class="p">)</span>
+        <span class="sd">&quot;&quot;&quot; Test that has_access returns False for other powerups &quot;&quot;&quot;</span>
+        <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">&#39;Not a mushroom&#39;</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="n">character</span><span class="p">)</span>
 
     <span class="o">...</span>
 </pre></div>
@@ -11917,7 +11917,7 @@ tests/test_castle_class.py::TestCastleClass::test_has_access_false_without_super
 
 <h2>Introducing parametrize</h2>
 <p>Using <a href="https://docs.pytest.org/en/latest/parametrize.html">parametrize</a> writing tests becomes significantly easier. Instead of writing a test for each combination of parameters I can write one test with a list of different sets of parameters. For each set of parameters the same test case will be executed, hence the two test cases above can be replaced by:</p>
-<div class="highlight"><pre><span></span>        <span class="nd">@pytest.mark.parametrize</span><span class="p">(</span><span class="s1">&#39;powerup,has_access&#39;</span><span class="p">,</span> <span class="p">[</span>
+<div class="highlight"><pre><span></span>    <span class="nd">@pytest.mark.parametrize</span><span class="p">(</span><span class="s1">&#39;powerup,has_access&#39;</span><span class="p">,</span> <span class="p">[</span>
         <span class="p">(</span><span class="s2">&quot;Super Mushroom&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">),</span>
         <span class="p">(</span><span class="s2">&quot;Not a mushroom&quot;</span><span class="p">,</span> <span class="bp">False</span><span class="p">),</span>
     <span class="p">],</span> <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;successful&#39;</span><span class="p">,</span> <span class="s1">&#39;failure-without-super-mushroom&#39;</span><span class="p">])</span>
