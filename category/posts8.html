@@ -11867,6 +11867,32 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="../install-kdiff3-on-osx.html">Install KDiff3 on OSX</a></h2>
+      <time datetime="" title="2016-11-17T12:27:00+00:00" pubdate>Thu 17 November 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>Installing the diff/merge tool <a href="http://kdiff3.sourceforge.net">KDiff3</a> is easy using the package manager <a href="http://brew.s">Homebrew</a> extension <a href="https://caskroom.github.io">Cask</a>. The extension makes is possible to install (GUI) applications on the Mac without the dragging and dropping of the DMG-files.</p>
+<div class="highlight"><pre><span></span>jitsejan@MBP $ /usr/bin/ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
+jitsejan@MBP $ brew tap caskroom/cask
+jitsejan@MBP $ brew cask install kdiff3
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="../tag/kdiff3.html" class="tag">kdiff3</a>
+            <a href="../tag/mac.html" class="tag">mac</a>
+            <a href="../tag/osx.html" class="tag">OSX</a>
+            <a href="../tag/brew.html" class="tag">brew</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="../installing-splunk-on-ubuntu-1404.html">Installing Splunk on Ubuntu 14.04</a></h2>
       <time datetime="" title="2016-11-17T11:47:00+00:00" pubdate>Thu 17 November 2016</time>
     </header>
@@ -12095,29 +12121,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../check-listening-ports-on-server.html">Check the listening ports on the server</a></h2>
-      <time datetime="" title="2016-10-04T11:24:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Use netstat to check with ports are listening on the machine.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ netstat -lnt <span class="p">|</span> awk <span class="s1">&#39;$6 == &quot;LISTEN&quot;&#39;</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-            <a href="../tag/network.html" class="tag">network</a>
-            <a href="../tag/netstat.html" class="tag">netstat</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12164,28 +12167,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <nav class="widget">
         <ul class="tagcloud">
         <li class="tag-2">
-            <a href="../tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="../tag/pyspark.html">
             PySpark
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
+            <a href="../tag/container.html">
+            container
             </a>
         </li>
         <li class="tag-1">
@@ -12194,48 +12182,28 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="../tag/spark.html">
             Spark
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/docker.html">
-            Docker
+            <a href="../tag/s3.html">
+            S3
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/python.html">
+            Python
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/shell.html">
-            shell
+            <a href="../tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/devops.html">
+            DevOps
             </a>
         </li>
         <li class="tag-1">
@@ -12244,23 +12212,58 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="../tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/s3.html">
-            S3
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="../tag/javascript.html">
             javascript
             </a>
         </li>
         <li class="tag-2">
+            <a href="../tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/data-engineer.html">
+            data engineer
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/pandas.html">
+            pandas
+            </a>
+        </li>
+        <li class="tag-2">
             <a href="../tag/vps.html">
             VPS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/docker.html">
+            Docker
             </a>
         </li>
         </ul>

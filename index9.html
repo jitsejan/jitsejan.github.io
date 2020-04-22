@@ -11867,6 +11867,29 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="./check-listening-ports-on-server.html">Check the listening ports on the server</a></h2>
+      <time datetime="" title="2016-10-04T11:24:00+01:00" pubdate>Tue 04 October 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>Use netstat to check with ports are listening on the machine.</p>
+<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ netstat -lnt <span class="p">|</span> awk <span class="s1">&#39;$6 == &quot;LISTEN&quot;&#39;</span>
+</pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/shell.html" class="tag">shell</a>
+            <a href="./tag/network.html" class="tag">network</a>
+            <a href="./tag/netstat.html" class="tag">netstat</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./install-anaconda-ubuntu-1404.html">Install Anaconda on Ubuntu 14.04</a></h2>
       <time datetime="" title="2016-10-04T10:29:00+01:00" pubdate>Tue 04 October 2016</time>
     </header>
@@ -12091,30 +12114,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./setup-ec-instance.html">Setting up an AWS EC instance</a></h2>
-      <time datetime="" title="2016-08-01T09:33:00+01:00" pubdate>Mon 01 August 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>A short description of how to set up an instance at AWS EC</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./setup-ec-instance.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/amazon.html" class="tag">Amazon</a>
-            <a href="./tag/ec.html" class="tag">EC</a>
-            <a href="./tag/vps.html" class="tag">VPS</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12161,28 +12160,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <nav class="widget">
         <ul class="tagcloud">
         <li class="tag-2">
-            <a href="./tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="./tag/pyspark.html">
             PySpark
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
+            <a href="./tag/container.html">
+            container
             </a>
         </li>
         <li class="tag-1">
@@ -12191,48 +12175,28 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="./tag/spark.html">
             Spark
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
+            <a href="./tag/s3.html">
+            S3
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/python.html">
+            Python
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
+            <a href="./tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/devops.html">
+            DevOps
             </a>
         </li>
         <li class="tag-1">
@@ -12241,23 +12205,58 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-2">
-            <a href="./tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/s3.html">
-            S3
-            </a>
-        </li>
-        <li class="tag-2">
             <a href="./tag/javascript.html">
             javascript
             </a>
         </li>
         <li class="tag-2">
+            <a href="./tag/dataframe.html">
+            dataframe
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/data-engineer.html">
+            data engineer
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/pandas.html">
+            pandas
+            </a>
+        </li>
+        <li class="tag-2">
             <a href="./tag/vps.html">
             VPS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/docker.html">
+            Docker
             </a>
         </li>
         </ul>
