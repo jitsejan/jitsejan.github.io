@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Archives | JJ's World</title>
+        <title>GraphQL with Flask and MongoDB | JJ's World</title>
 
 
 <style type="text/css">
@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="../theme/css/main.css?f638e855">
+            <link rel="stylesheet" href="./theme/css/main.css?f638e855">
 
 
     </head>
@@ -11843,69 +11843,467 @@ jQuery(document).ready(function($) {
         </div>
         <!-- <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
-                <li><a href="../pages/python-cheatsheet">Python cheatsheet</a></li>
-                <li><a href="../pages/spark-cheatsheet">Spark cheatsheet</a></li>
+                <li><a href="./pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
+                <li><a href="./pages/python-cheatsheet">Python cheatsheet</a></li>
+                <li><a href="./pages/spark-cheatsheet">Spark cheatsheet</a></li>
             </ul>
         </div>.navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container list">
+<div class="container post">
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
     <article>
-        <h1 style="margin-bottom: 30px;">Tag: MongoDB</h1>
+        <header>
+            <h1>GraphQL with Flask and MongoDB</h1>
+            <time datetime="article.date.isoformat()" pubdate>Fri 15 May 2020</time>
+        </header>
 
-        <ul class="double-list">
-            <li>
-                <a href='/graphql-with-flask-and-mongodb.html'>
-                    <h2>GraphQL with Flask and MongoDB</h2>
-                    <span>15.05.2020</span>
-                </a>
-            </li>
-            <li>
-                <a href='/mevn-stack-experiment-with-jupyter.html'>
-                    <h2>MEVN stack experiment with Jupyter</h2>
-                    <span>15.01.2018</span>
-                </a>
-            </li>
-            <li>
-                <a href='/mevn-stack-tutorial.html'>
-                    <h2>MEVN Stack - Setting up MongoDB, Express and VueJS</h2>
-                    <span>05.12.2017</span>
-                </a>
-            </li>
-            <li>
-                <a href='/creating-api-using-eve-and-mongodb.html'>
-                    <h2>Create an API using Eve in Python</h2>
-                    <span>25.07.2017</span>
-                </a>
-            </li>
-            <li>
-                <a href='/building-a-crypto-app.html'>
-                    <h2>Building a crypto app with ExpressJS, MongoDB and D3.js</h2>
-                    <span>15.05.2017</span>
-                </a>
-            </li>
-            <li>
-                <a href='/creating-dashboard-with-meanjs.html'>
-                    <h2>Creating a dashboard with MEAN.JS</h2>
-                    <span>16.04.2017</span>
-                </a>
-            </li>
-            <li>
-                <a href='/mongodb_first_try.html'>
-                    <h2>MongoDB - First try</h2>
-                    <span>05.04.2017</span>
-                </a>
-            </li>
-        </ul>
+        <div class="article_content">
+            <p>In this project I will add data to a MongoDB database and make it accessible using GraphQL. </p>
+<h2>Prerequisites</h2>
+<ul>
+<li><strong>Python</strong></li>
+</ul>
+<p>For this project I will be using Python 3.7 and <code>pipenv</code> as my virtual environment. </p>
+<ul>
+<li><strong>MongoDB</strong></li>
+</ul>
+<p>Install MongoDB on your machine or VPS, or use a <em>free</em> <a href="https://www.mongodb.com/cloud/atlas/lp/general/try?utm_source=compass&amp;utm_medium=product">hosted</a> cluster. </p>
+<p>On <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/">Mac</a>, simply use <code>brew</code> to install the database. </p>
+<p><code>bash
+  ❯ brew tap mongodb/brew
+  ❯ brew install mongodb-community@4.2</code></p>
+<p>I went with Atlas and tried one of the free clusters they offer.</p>
+<p><img alt="image-20200510214801320" src="images/fmg_choose_cluster.png"></p>
+<p>After selecting the region and the name, simply click on create and wait for the cluster to be ready.</p>
+<p><img alt="image-20200510215036769" src="images/fmg_cluster_being_created.PNG"></p>
+<p>3 minutes later the cluster will be ready.</p>
+<p><img alt="image-20200510215036769" src="images/fmg_show_cluster.png"></p>
+<p>Go to <em>Security</em> -&gt; <em>Database Access</em> and create a new Database User and give Admin or Read and Write access to the database. As an optional safety guard it is smart to enable the IP whitelist and add your own IP to the list to make sure no other IPs can access your database.</p>
+<p>Finally go back to the <em>Clusters</em> overview and click on <strong>Connect</strong>. Choose the appropiate connection mechanism for your application. In my case this will be with Python 3.7. This should give you enough information to get started with MongoDB!</p>
+<p><img alt="image-20200510215729403" src="images/fmg_connect_cluster.png"></p>
+<ul>
+<li>[Optional] <strong>MongoDB Compass</strong></li>
+</ul>
+<p>To visualize MongoDB <a href="https://www.mongodb.com/download-center/compass">download</a> from their website. Use the connection string from the previous step if you want to connect to the hosted cluster directly.</p>
+<p><img alt="image-20200510215915875" src="images/fmg_compass_new.png"></p>
+<p>Once you have connected to the database the page will show your cluster, the hosts and the available data. Since we have not added anything yet it will show the default <code>admin</code> and <code>local</code> databases.</p>
+<p><img alt="image-20200510220012656" src="images/fmg_compass_databases.png"></p>
+<h2>Creating the dataset</h2>
+<p>As a dataset I will be using information from https://www.mariowiki.com/. More specifcally I will be crawling data from Super Mario 1 levels from https://www.mariowiki.com/Category:Super_Mario_Bros._Levels. Each page has a table containing the <strong>Enemies</strong> and the <strong>Level statistics</strong>.</p>
+<p><img alt="image-20200510220012656" src="images/fmg_enemies.png"></p>
+<p><img alt="image-20200510220012656" src="images/fmg_stats.png"></p>
+<p>I will just show the reduced version here, but the whole <a href="https://github.com/jitsejan/flask-mongodb-graphene/blob/master/crawl.py">script</a> is availabe in my Github repo. The script will run through the links on the website and retrieves meta data, the description, enemies and the statistics. The files are stored in a JSON file.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_all_tables</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Retrieve all the tables &quot;&quot;&quot;</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">get_lxml_tree_from_url</span><span class="p">(</span><span class="n">SMB_LEVEL_URL</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s1">&#39;#mw-pages a&#39;</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;{BASE_URL}{elem.get(&#39;href&#39;)}&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Crawling data for `{url}`&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;Minus&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">url</span><span class="p">:</span>
+            <span class="n">subtree</span> <span class="o">=</span> <span class="n">get_lxml_tree_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="p">{</span>
+                <span class="s1">&#39;table_data&#39;</span><span class="p">:</span> <span class="n">_get_table_data</span><span class="p">(</span><span class="n">subtree</span><span class="p">),</span>
+                <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">_get_description</span><span class="p">(</span><span class="n">subtree</span><span class="p">),</span>
+                <span class="s1">&#39;enemies&#39;</span><span class="p">:</span> <span class="n">_get_enemies</span><span class="p">(</span><span class="n">subtree</span><span class="p">),</span>
+                <span class="s1">&#39;statistics&#39;</span><span class="p">:</span> <span class="n">_get_level_statistics</span><span class="p">(</span><span class="n">subtree</span><span class="p">),</span>
+            <span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Main function &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">get_all_tables</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Found {len(df)} results&quot;</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s1">&#39;smb.json&#39;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+
+<p>The JSON for one item will look like the following:</p>
+<div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;World 1-1 is the first level of World 1 in Super Mario Bros., and the first level overall in said game; thus, it is the first level in general of the entire Super Mario series. The first screen of the level is also the game&#39;s title screen when starting it up. It contains the basics of the Super Mario Bros. game, getting the player ready for the journey ahead. The level consists of Magic Mushrooms, standard enemies such as Little Goombas and Koopa Troopas, a lot of coins, a hidden secret bonus area that allows the player to skip most of the level, Fire Flowers, pits, and a flagpole at the end. According to Shigeru Miyamoto, World 1-1 was one of the later levels created, due to the \&quot;fun\&quot; courses created first being more suited for late game, where players were more familiar with how Super Mario Bros. works.&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;enemies&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Little Goomba&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;16&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Green Koopa Troopa&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;statistics&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Coin&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">39</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Magic Mushroom&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Fire Flower&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Starman&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;1 up Mushroom&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;table_data&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;World-Level&quot;</span><span class="p">:</span> <span class="s2">&quot;World 1-1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;World&quot;</span><span class="p">:</span> <span class="s2">&quot;World 1&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;Game&quot;</span><span class="p">:</span> <span class="s2">&quot;Super Mario Bros.&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;Time limit&quot;</span><span class="p">:</span> <span class="s2">&quot;400 seconds&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Storing the dataset</h2>
+<h3>Creating the schemas</h3>
+<p>In the previous step I have stored the result of the crawler to <code>smb.json</code>. To store the data in MongoDB I need to define the schema for the different tables. This is done in <a href="https://github.com/jitsejan/flask-mongodb-graphene/blob/master/models.py">models.py</a> using <code>mongoengine</code> as shown below. I want to store the following four tables.</p>
+<ul>
+<li>Games</li>
+<li>Powerups</li>
+<li>Enemies</li>
+<li>Levels</li>
+</ul>
+<p>The first collection<code>Game</code> only has a <em>name</em>, <code>Powerup</code> and <code>Enemy</code> have a <em>name</em> and <em>amount</em> and the <code>Level</code> collection will have more fields. A <em>Level</em> references a <em>Game</em> document, has a list of enemies and powerups, but also information on the time limit, boss, world and a description.</p>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; models.py &quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">mongoengine</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">EmbeddedDocument</span>
+<span class="kn">from</span> <span class="nn">mongoengine.fields</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DateTimeField</span><span class="p">,</span>
+    <span class="n">ListField</span><span class="p">,</span>
+    <span class="n">ReferenceField</span><span class="p">,</span>
+    <span class="n">StringField</span><span class="p">,</span>
+    <span class="n">IntField</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Game</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;collection&quot;</span><span class="p">:</span> <span class="s2">&quot;game&quot;</span><span class="p">}</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Powerup</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;collection&quot;</span><span class="p">:</span> <span class="s2">&quot;powerup&quot;</span><span class="p">}</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+    <span class="n">amount</span> <span class="o">=</span> <span class="n">IntField</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Enemy</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;collection&quot;</span><span class="p">:</span> <span class="s2">&quot;enemy&quot;</span><span class="p">}</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+    <span class="n">amount</span> <span class="o">=</span> <span class="n">IntField</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">Level</span><span class="p">(</span><span class="n">Document</span><span class="p">):</span>
+
+    <span class="n">meta</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;collection&quot;</span><span class="p">:</span> <span class="s2">&quot;level&quot;</span><span class="p">}</span>
+    <span class="n">game</span> <span class="o">=</span> <span class="n">ReferenceField</span><span class="p">(</span><span class="n">Game</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+    <span class="n">description</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+    <span class="n">world</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+    <span class="n">time_limit</span> <span class="o">=</span> <span class="n">IntField</span><span class="p">()</span>
+    <span class="n">boss</span> <span class="o">=</span> <span class="n">StringField</span><span class="p">()</span>
+    <span class="n">enemies</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ReferenceField</span><span class="p">(</span><span class="n">Enemy</span><span class="p">))</span>
+    <span class="n">powerups</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ReferenceField</span><span class="p">(</span><span class="n">Powerup</span><span class="p">))</span>
+</pre></div>
+
+
+<h3>Loading the data into MongoDB</h3>
+<p>Now the schemas for the documents has been created, I can load the data into the MongoDB cluster that I have created before. I open the JSON file and iterate through the data. Note that I have used different methods to get data from the JSON object. One way is to use multiple <code>get</code>s to get a nest field.</p>
+<div class="highlight"><pre><span></span><span class="n">game</span> <span class="o">=</span> <span class="n">Game</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;table_data&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Game&#39;</span><span class="p">))</span>
+</pre></div>
+
+
+<p>A more readable way is to use <code>jsonpath</code> like I did here, but it requires an extra import.</p>
+<div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="n">jsonpath</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="s1">&#39;table_data.World-Level&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+
+<p>The final script to load the data is <code>database.py</code>. Since I am doing this project as a proof of concept I will always wipe the database first before adding new data.</p>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; database.py &quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">jsonpath</span> <span class="kn">import</span> <span class="n">jsonpath</span>
+<span class="kn">from</span> <span class="nn">mongoengine</span> <span class="kn">import</span> <span class="n">connect</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">Enemy</span><span class="p">,</span> <span class="n">Level</span><span class="p">,</span> <span class="n">Game</span><span class="p">,</span> <span class="n">Powerup</span>
+
+<span class="n">DATABASE</span> <span class="o">=</span> <span class="s2">&quot;flask-mongodb-graphene&quot;</span>
+<span class="n">PASSWORD</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;MONGODB_PASSWORD&quot;</span><span class="p">)</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+    <span class="n">DATABASE</span><span class="p">,</span>
+    <span class="n">host</span><span class="o">=</span><span class="n">f</span><span class="s2">&quot;mongodb+srv://mongograph:{PASSWORD}@clusterjj-gazky.mongodb.net/?ssl=true&amp;ssl_cert_reqs=CERT_NONE&quot;</span><span class="p">,</span>
+    <span class="n">alias</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">drop_database</span><span class="p">(</span><span class="n">DATABASE</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">init_db</span><span class="p">():</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;smb.json&quot;</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="nb">file</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="nb">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="n">game</span> <span class="o">=</span> <span class="n">Game</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;table_data&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Game&quot;</span><span class="p">))</span>
+    <span class="n">game</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">enemies</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;enemies&quot;</span><span class="p">]:</span>
+            <span class="n">amount</span> <span class="o">=</span> <span class="n">elem</span><span class="p">[</span><span class="s2">&quot;amount&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">elem</span><span class="p">[</span><span class="s2">&quot;amount&quot;</span><span class="p">],</span> <span class="nb">int</span><span class="p">)</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="n">enemy</span> <span class="o">=</span> <span class="n">Enemy</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">elem</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">amount</span><span class="o">=</span><span class="n">amount</span><span class="p">)</span>
+            <span class="n">enemy</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">enemies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">enemy</span><span class="p">)</span>
+
+        <span class="n">powerups</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;statistics&quot;</span><span class="p">]:</span>
+            <span class="n">powerup</span> <span class="o">=</span> <span class="n">Powerup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">elem</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">],</span> <span class="n">amount</span><span class="o">=</span><span class="n">elem</span><span class="p">[</span><span class="s2">&quot;amount&quot;</span><span class="p">])</span>
+            <span class="n">powerup</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+            <span class="n">powerups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">powerup</span><span class="p">)</span>
+
+        <span class="n">level</span> <span class="o">=</span> <span class="n">Level</span><span class="p">(</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;description&quot;</span><span class="p">),</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">jsonpath</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="s2">&quot;table_data.World-Level&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">world</span><span class="o">=</span><span class="n">jsonpath</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="s2">&quot;table_data.World&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">time_limit</span><span class="o">=</span><span class="n">jsonpath</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="s2">&quot;table_data.Time limit&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">boss</span><span class="o">=</span><span class="n">row</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;table_data&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Boss&quot;</span><span class="p">),</span>
+            <span class="n">enemies</span><span class="o">=</span><span class="n">enemies</span><span class="p">,</span>
+            <span class="n">game</span><span class="o">=</span><span class="n">game</span><span class="p">,</span>
+            <span class="n">powerups</span><span class="o">=</span><span class="n">powerups</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="n">level</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+
+
+<span class="n">init_db</span><span class="p">()</span>
+</pre></div>
+
+
+<p>To populate the database run the script:</p>
+<div class="highlight"><pre><span></span>❯ python database.py
+</pre></div>
+
+
+<h2>Verifying the dataset</h2>
+<h3>Option 1. Verifying it using the website</h3>
+<p><img alt="image-20200515030104694" src="images/fmg_verify_site.png"></p>
+<h3>Option 2. Verify using MongoDB Compass</h3>
+<h4>Database overview</h4>
+<p><img alt="image-20200510230858416" src="images/fmg_verify_compass.png"></p>
+<h4>Collection overview</h4>
+<p><img alt="image-20200510231351275" src="images/fmg_verify_compass_collection.png"></p>
+<h4>Detailed collection view</h4>
+<p><img alt="image-20200510231508583" src="images/fmg_verify_compass_details.png"></p>
+<h3>Option 3. Using Python</h3>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; verify.py &quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">database</span> <span class="kn">import</span> <span class="n">client</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">Powerup</span>
+
+
+<span class="k">for</span> <span class="n">powerup</span> <span class="ow">in</span> <span class="n">Powerup</span><span class="o">.</span><span class="n">objects</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">powerup</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># OUTPUT</span>
+<span class="c1"># Coin</span>
+<span class="c1"># Magic Mushroom</span>
+<span class="c1"># Fire Flower</span>
+<span class="c1"># Starman</span>
+<span class="c1"># 1 up Mushroom</span>
+<span class="c1"># Coin</span>
+<span class="c1"># Magic Mushroom</span>
+<span class="c1"># Fire Flower</span>
+<span class="c1"># Starman</span>
+<span class="c1"># 1 up Mushroom</span>
+<span class="c1"># Coin</span>
+<span class="c1"># Magic Mushroom</span>
+<span class="c1"># Fire Flower</span>
+</pre></div>
+
+
+<p><img alt="image-20200510231351275" src="images/fmg_verify_python.png"></p>
+<h2>Setting up GraphQL</h2>
+<p>To make the data accessible with GraphQL I need to convert models from the previous step to a GraphQL schema. Firstly, I need the <code>graphene</code> dependencies to create the schema specifically for a MongoDB connection. After importing the dependencies I import all the models from my <code>models.py</code>. Now each model has to be setup as a node in the GraphQL Schema where <code>Query</code> is the top of the graph. In the <code>Query</code> class I have defined three different queries:</p>
+<ul>
+<li>Get all levels</li>
+<li>Get all enemies</li>
+<li>Get all powerups</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; schema.py &quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">graphene</span>
+<span class="kn">from</span> <span class="nn">graphene.relay</span> <span class="kn">import</span> <span class="n">Node</span>
+<span class="kn">from</span> <span class="nn">graphene_mongo</span> <span class="kn">import</span> <span class="n">MongoengineConnectionField</span><span class="p">,</span> <span class="n">MongoengineObjectType</span>
+
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">Game</span> <span class="k">as</span> <span class="n">GameModel</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">Powerup</span> <span class="k">as</span> <span class="n">PowerupModel</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">Enemy</span> <span class="k">as</span> <span class="n">EnemyModel</span>
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">Level</span> <span class="k">as</span> <span class="n">LevelModel</span>
+
+
+<span class="k">class</span> <span class="nc">Game</span><span class="p">(</span><span class="n">MongoengineObjectType</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Game&quot;</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">GameModel</span>
+        <span class="n">interfaces</span> <span class="o">=</span> <span class="p">(</span><span class="n">Node</span><span class="p">,)</span>
+
+
+<span class="k">class</span> <span class="nc">Powerup</span><span class="p">(</span><span class="n">MongoengineObjectType</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Power-ups&quot;</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">PowerupModel</span>
+        <span class="n">interfaces</span> <span class="o">=</span> <span class="p">(</span><span class="n">Node</span><span class="p">,)</span>
+
+
+<span class="k">class</span> <span class="nc">Enemy</span><span class="p">(</span><span class="n">MongoengineObjectType</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Enemies&quot;</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">EnemyModel</span>
+        <span class="n">interfaces</span> <span class="o">=</span> <span class="p">(</span><span class="n">Node</span><span class="p">,)</span>
+
+
+<span class="k">class</span> <span class="nc">Level</span><span class="p">(</span><span class="n">MongoengineObjectType</span><span class="p">):</span>
+    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;Levels&quot;</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">LevelModel</span>
+        <span class="n">interfaces</span> <span class="o">=</span> <span class="p">(</span><span class="n">Node</span><span class="p">,)</span>
+
+
+<span class="k">class</span> <span class="nc">Query</span><span class="p">(</span><span class="n">graphene</span><span class="o">.</span><span class="n">ObjectType</span><span class="p">):</span>
+    <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="o">.</span><span class="n">Field</span><span class="p">()</span>
+
+    <span class="n">all_levels</span> <span class="o">=</span> <span class="n">MongoengineConnectionField</span><span class="p">(</span><span class="n">Level</span><span class="p">)</span>
+    <span class="n">all_enemies</span> <span class="o">=</span> <span class="n">MongoengineConnectionField</span><span class="p">(</span><span class="n">Enemy</span><span class="p">)</span>
+    <span class="n">all_powerups</span> <span class="o">=</span> <span class="n">MongoengineConnectionField</span><span class="p">(</span><span class="n">Powerup</span><span class="p">)</span>
+
+
+<span class="n">schema</span> <span class="o">=</span> <span class="n">graphene</span><span class="o">.</span><span class="n">Schema</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">Query</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="n">Powerup</span><span class="p">,</span> <span class="n">Level</span><span class="p">,</span> <span class="n">Enemy</span><span class="p">,</span> <span class="n">Game</span><span class="p">])</span>
+</pre></div>
+
+
+<p>To start the server now the schema is defined we need to create the application. Flask is used as web application with one path (rule) to the GraphQL endpoint. I connect to the MongoDB database and set the database. The server is started on port 5002.</p>
+<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; app.py &quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+<span class="kn">from</span> <span class="nn">flask_graphql</span> <span class="kn">import</span> <span class="n">GraphQLView</span>
+<span class="kn">from</span> <span class="nn">mongoengine</span> <span class="kn">import</span> <span class="n">connect</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">schema</span> <span class="kn">import</span> <span class="n">schema</span>
+
+<span class="n">DATABASE</span> <span class="o">=</span> <span class="s1">&#39;flask-mongodb-graphene&#39;</span>
+<span class="n">PASSWORD</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;MONGODB_PASSWORD&quot;</span><span class="p">)</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span><span class="n">DATABASE</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="n">f</span><span class="s1">&#39;mongodb+srv://mongograph:{PASSWORD}@clusterjj-gazky.mongodb.net/?ssl=true&amp;ssl_cert_reqs=CERT_NONE&#39;</span><span class="p">,</span> <span class="n">alias</span><span class="o">=</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">debug</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="n">app</span><span class="o">.</span><span class="n">add_url_rule</span><span class="p">(</span><span class="s1">&#39;/graphql&#39;</span><span class="p">,</span> <span class="n">view_func</span><span class="o">=</span><span class="n">GraphQLView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(</span><span class="s1">&#39;graphql&#39;</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">schema</span><span class="p">,</span> <span class="n">graphiql</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">5002</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Go to your terminal and run the webapp:</p>
+<div class="highlight"><pre><span></span>❯ python app.py
+</pre></div>
+
+
+<h2>Verifying GraphQL</h2>
+<h3>Option 1. Verify using the Flask version of GraphiQL</h3>
+<p>Go to <code>localhost:5002/graphql</code> and run the <code>allPowerups</code> query to get back the names of all the power-ups. </p>
+<p><img alt="image-20200515022601294" src="images/fmg_verify_graphql.png"></p>
+<h3>Option 2. Verify using GraphiQL application</h3>
+<p>Using the standalone application <a href="https://www.electronjs.org/apps/graphiql">GraphiQL</a> it is easy to test the GraphQL endpoint. Using the <code>allEnemies</code> query defined in <code>schema.py</code> we get back all the enemies and their amounts.</p>
+<p><img alt="image-20200515024714801" src="images/fmg_verify_graphiql.png"></p>
+<h3>Option 3. Using Postman</h3>
+<p>I have used <a href="https://www.postman.com">Postman</a> for a long time for testing my REST APIs and fortunately it also supports GraphQL APIs. </p>
+<p><img alt="image-20200515022846519" src="images/fmg_verify_postman.png"></p>
+<p>And that should do it. Check my <a href="https://github.com/jitsejan/flask-mongodb-graphene">GitHub</a> for the code. In another post I want to explore GraphQL further and implement filtering and pagination. </p>
+<h2>Sources</h2>
+<ul>
+<li>https://graphene-mongo.readthedocs.io/en/latest/tutorial.html</li>
+<li>https://jeffersonheard.github.io/python/graphql/2018/12/08/graphene-python.html</li>
+</ul>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/data.html" class="tag">data</a>
+                    <a href="./tag/data-engineering.html" class="tag">data-engineering</a>
+                    <a href="./tag/mongodb.html" class="tag">MongoDB</a>
+                    <a href="./tag/graphql.html" class="tag">GraphQL</a>
+                    <a href="./tag/graphene.html" class="tag">graphene</a>
+                    <a href="./tag/flask.html" class="tag">Flask</a>
+            </div>
+        </div>
     </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
+
         </div>
 <footer class="footer">
     <div class="container">
         <center>
             <address id="about" class="vcard body">
-                &copy; <a href="..">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2019
+                &copy; <a href=".">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2019
             </address><!-- /#about -->
         </center>
     </div>
