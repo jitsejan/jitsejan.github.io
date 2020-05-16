@@ -11868,71 +11868,53 @@ jQuery(document).ready(function($) {
 <h3>MongoDB</h3>
 <p>Install MongoDB on your machine or VPS, or use a <em>free</em> <a href="https://www.mongodb.com/cloud/atlas/lp/general/try?utm_source=compass&amp;utm_medium=product">hosted</a> cluster. </p>
 <p>On <a href="https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/">Mac</a>, simply use <code>brew</code> to install the database. </p>
-<p>```
-❯ brew tap mongodb/brew
-❯ brew install mongodb-community@4.2</p>
-<div class="highlight"><pre><span></span>I went with Atlas and tried one of the free clusters they offer.
+<div class="highlight"><pre><span></span><span class="err">❯</span> <span class="n">brew</span> <span class="n">tap</span> <span class="n">mongodb</span><span class="o">/</span><span class="n">brew</span>
+<span class="err">❯</span> <span class="n">brew</span> <span class="n">install</span> <span class="n">mongodb</span><span class="o">-</span><span class="n">community</span><span class="mf">@4.2</span>
+</pre></div>
 
-<span class="nt">&lt;center&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;images/fmg_choose_cluster.png&quot;</span> <span class="na">width=</span><span class="s">&quot;50%&quot;</span> <span class="nt">/&gt;&lt;/center&gt;</span>
 
-After selecting the region and the name, simply click on create and wait for the cluster to be ready.
+<p>I went with Atlas and tried one of the free clusters they offer.</p>
+<p><center><img src="images/fmg_choose_cluster.png" width="50%" /></center></p>
+<p>After selecting the region and the name, simply click on create and wait for the cluster to be ready.</p>
+<p><center><img src="images/fmg_cluster_being_created.png" width="50%" /></center></p>
+<p>3 minutes later the cluster will be ready.</p>
+<p><center><img src="images/fmg_show_cluster.png" width="50%" /></center></p>
+<p>Go to <em>Security</em> -&gt; <em>Database Access</em> and create a new Database User and give Admin or Read and Write access to the database. As an optional safety guard it is smart to enable the IP whitelist and add your own IP to the list to make sure no other IPs can access your database.</p>
+<p>Finally go back to the <em>Clusters</em> overview and click on <strong>Connect</strong>. Choose the appropiate connection mechanism for your application. In my case this will be with Python 3.7. This should give you enough information to get started with MongoDB!</p>
+<p><center><img src="images/fmg_connect_cluster.png" width="50%" /></center></p>
+<h3>[Optional] MongoDB Compass</h3>
+<p>To visualize MongoDB <a href="https://www.mongodb.com/download-center/compass">download</a> from their website. Use the connection string from the previous step if you want to connect to the hosted cluster directly.</p>
+<p><center><img src="images/fmg_compass_new.png" width="50%" /></center></p>
+<p>Once you have connected to the database the page will show your cluster, the hosts and the available data. Since we have not added anything yet it will show the default <code>admin</code> and <code>local</code> databases.</p>
+<p><center><img src="images/fmg_compass_databases.png" width="50%" /></center></p>
+<h2>Creating the dataset</h2>
+<p>As a dataset I will be using information from https://www.mariowiki.com/. More specifcally I will be crawling data from Super Mario 1 levels from https://www.mariowiki.com/Category:Super_Mario_Bros._Levels. Each page has a table containing the <strong>Enemies</strong> and the <strong>Level statistics</strong>.</p>
+<p><center><img src="images/fmg_enemies.png" width="50%" /></center></p>
+<p><center><img src="images/fmg_compass_databases.png" width="50%" /></center></p>
+<p>I will just show the reduced version of the script here, but the whole <a href="https://github.com/jitsejan/flask-mongodb-graphene/blob/master/crawl.py">script</a> is availabe in my Github repo. The script will run through the links on the website and retrieves meta data, the description, enemies and the statistics. The files are stored in a JSON file.</p>
+<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_all_tables</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Retrieve all the tables &quot;&quot;&quot;</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">get_lxml_tree_from_url</span><span class="p">(</span><span class="n">SMB_LEVEL_URL</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s1">&#39;#mw-pages a&#39;</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;{BASE_URL}{elem.get(&#39;href&#39;)}&quot;</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Crawling data for `{url}`&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="s1">&#39;Minus&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">url</span><span class="p">:</span>
+            <span class="n">subtree</span> <span class="o">=</span> <span class="n">get_lxml_tree_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="p">{</span>
+                <span class="s1">&#39;table_data&#39;</span><span class="p">:</span> <span class="n">_get_table_data</span><span class="p">(</span><span class="n">subtree</span><span class="p">),</span>
+                <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="n">_get_description</span><span class="p">(</span><span class="n">subtree</span><span class="p">),</span>
+                <span class="s1">&#39;enemies&#39;</span><span class="p">:</span> <span class="n">_get_enemies</span><span class="p">(</span><span class="n">subtree</span><span class="p">),</span>
+                <span class="s1">&#39;statistics&#39;</span><span class="p">:</span> <span class="n">_get_level_statistics</span><span class="p">(</span><span class="n">subtree</span><span class="p">),</span>
+            <span class="p">}</span>
 
-<span class="nt">&lt;center&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;images/fmg_cluster_being_created.png&quot;</span> <span class="na">width=</span><span class="s">&quot;50%&quot;</span> <span class="nt">/&gt;&lt;/center&gt;</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot; Main function &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">get_all_tables</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Found {len(df)} results&quot;</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s1">&#39;smb.json&#39;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
 
-3 minutes later the cluster will be ready.
-
-<span class="nt">&lt;center&gt;&lt;img</span> <span class="na">src=</span><span class="s">&quot;images/fmg_show_cluster.png&quot;</span> <span class="na">width=</span><span class="s">&quot;50%&quot;</span> <span class="nt">/&gt;&lt;/center&gt;</span>
-
-Go to *Security* -&gt; *Database Access* and create a new Database User and give Admin or Read and Write access to the database. As an optional safety guard it is smart to enable the IP whitelist and add your own IP to the list to make sure no other IPs can access your database.
-
-Finally go back to the *Clusters* overview and click on **Connect**. Choose the appropiate connection mechanism for your application. In my case this will be with Python 3.7. This should give you enough information to get started with MongoDB!
-
-![image-20200510215729403](images/fmg_connect_cluster.png)
-
-### [Optional] MongoDB Compass
-
-  To visualize MongoDB [download](https://www.mongodb.com/download-center/compass) from their website. Use the connection string from the previous step if you want to connect to the hosted cluster directly.
-
-  ![image-20200510215915875](images/fmg_compass_new.png)
-
-  Once you have connected to the database the page will show your cluster, the hosts and the available data. Since we have not added anything yet it will show the default `admin` and `local` databases.
-
-  ![image-20200510220012656](images/fmg_compass_databases.png)
-
-## Creating the dataset
-
-As a dataset I will be using information from https://www.mariowiki.com/. More specifcally I will be crawling data from Super Mario 1 levels from https://www.mariowiki.com/Category:Super_Mario_Bros._Levels. Each page has a table containing the **Enemies** and the **Level statistics**.
-
-![image-20200510220012656](images/fmg_enemies.png)
-
-![image-20200510220012656](images/fmg_stats.png)
-
-I will just show the reduced version here, but the whole [script](https://github.com/jitsejan/flask-mongodb-graphene/blob/master/crawl.py) is availabe in my Github repo. The script will run through the links on the website and retrieves meta data, the description, enemies and the statistics. The files are stored in a JSON file.
-
-```python
-def get_all_tables():
-    &quot;&quot;&quot; Retrieve all the tables &quot;&quot;&quot;
-    tree = get_lxml_tree_from_url(SMB_LEVEL_URL)
-    for elem in tree.cssselect(&#39;#mw-pages a&#39;):
-        url = f&quot;{BASE_URL}{elem.get(&#39;href&#39;)}&quot;
-        print(f&quot;Crawling data for `{url}`&quot;)
-        if &#39;Minus&#39; not in url:
-            subtree = get_lxml_tree_from_url(url)
-            yield {
-                &#39;table_data&#39;: _get_table_data(subtree),
-                &#39;description&#39;: _get_description(subtree),
-                &#39;enemies&#39;: _get_enemies(subtree),
-                &#39;statistics&#39;: _get_level_statistics(subtree),
-            }
-
-def main():
-    &quot;&quot;&quot; Main function &quot;&quot;&quot;
-    df = pd.DataFrame.from_dict(get_all_tables())
-    print(f&quot;Found {len(df)} results&quot;)
-    df.to_json(&#39;smb.json&#39;, orient=&#39;records&#39;)
-
-if __name__ == &quot;__main__&quot;:
-    main()
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 </pre></div>
 
 
@@ -12113,14 +12095,14 @@ if __name__ == &quot;__main__&quot;:
 
 <h2>Verifying the dataset</h2>
 <h3>Option 1. Verifying it using the website</h3>
-<p><img alt="image-20200515030104694" src="images/fmg_verify_site.png"></p>
+<p><center><img src="images/fmg_verify_site.png" width="50%" /></center></p>
 <h3>Option 2. Verify using MongoDB Compass</h3>
 <h4>Database overview</h4>
-<p><img alt="image-20200510230858416" src="images/fmg_verify_compass.png"></p>
+<p><center><img src="images/fmg_verify_compass.png" width="50%" /></center></p>
 <h4>Collection overview</h4>
-<p><img alt="image-20200510231351275" src="images/fmg_verify_compass_collection.png"></p>
+<p><center><img src="images/fmg_verify_compass_collection.png" width="50%" /></center></p>
 <h4>Detailed collection view</h4>
-<p><img alt="image-20200510231508583" src="images/fmg_verify_compass_details.png"></p>
+<p><center><img src="images/fmg_verify_compass_details.png" width="50%" /></center></p>
 <h3>Option 3. Using Python</h3>
 <div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; verify.py &quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">database</span> <span class="kn">import</span> <span class="n">client</span>
@@ -12147,7 +12129,7 @@ if __name__ == &quot;__main__&quot;:
 </pre></div>
 
 
-<p><img alt="image-20200510231351275" src="images/fmg_verify_python.png"></p>
+<p><center><img src="images/fmg_verify_python.png" width="50%" /></center></p>
 <h2>Setting up GraphQL</h2>
 <p>To make the data accessible with GraphQL I need to convert models from the previous step to a GraphQL schema. Firstly, I need the <code>graphene</code> dependencies to create the schema specifically for a MongoDB connection. After importing the dependencies I import all the models from my <code>models.py</code>. Now each model has to be setup as a node in the GraphQL Schema where <code>Query</code> is the top of the graph. In the <code>Query</code> class I have defined three different queries:</p>
 <ul>
@@ -12238,13 +12220,13 @@ if __name__ == &quot;__main__&quot;:
 <h2>Verifying GraphQL</h2>
 <h3>Option 1. Verify using the Flask version of GraphiQL</h3>
 <p>Go to <code>localhost:5002/graphql</code> and run the <code>allPowerups</code> query to get back the names of all the power-ups. </p>
-<p><img alt="image-20200515022601294" src="images/fmg_verify_graphql.png"></p>
+<p><center><img src="images/fmg_verify_graphql.png" width="50%" /></center></p>
 <h3>Option 2. Verify using GraphiQL application</h3>
 <p>Using the standalone application <a href="https://www.electronjs.org/apps/graphiql">GraphiQL</a> it is easy to test the GraphQL endpoint. Using the <code>allEnemies</code> query defined in <code>schema.py</code> we get back all the enemies and their amounts.</p>
-<p><img alt="image-20200515024714801" src="images/fmg_verify_graphiql.png"></p>
+<p><center><img src="images/fmg_verify_graphiql.png" width="50%" /></center></p>
 <h3>Option 3. Using Postman</h3>
 <p>I have used <a href="https://www.postman.com">Postman</a> for a long time for testing my REST APIs and fortunately it also supports GraphQL APIs. </p>
-<p><img alt="image-20200515022846519" src="images/fmg_verify_postman.png"></p>
+<p><center><img src="images/fmg_verify_postman.png" width="50%" /></center></p>
 <p>And that should do it. Check my <a href="https://github.com/jitsejan/flask-mongodb-graphene">GitHub</a> for the code. In another post I want to explore GraphQL further and implement filtering and pagination. </p>
 <h2>Sources</h2>
 <ul>
