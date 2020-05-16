@@ -11876,21 +11876,21 @@ jQuery(document).ready(function($) {
 <p>I went with Atlas and tried one of the free clusters they offer.</p>
 <p><center><img src="images/fmg_choose_cluster.png" width="50%" /></center></p>
 <p>After selecting the region and the name, simply click on create and wait for the cluster to be ready.</p>
-<p><center><img src="images/fmg_cluster_being_created.png" width="50%" /></center></p>
+<p><center><img src="images/fmg_cluster_being_created.PNG" width="50%" /></center></p>
 <p>3 minutes later the cluster will be ready.</p>
 <p><center><img src="images/fmg_show_cluster.png" width="50%" /></center></p>
 <p>Go to <em>Security</em> -&gt; <em>Database Access</em> and create a new Database User and give Admin or Read and Write access to the database. As an optional safety guard it is smart to enable the IP whitelist and add your own IP to the list to make sure no other IPs can access your database.</p>
 <p>Finally go back to the <em>Clusters</em> overview and click on <strong>Connect</strong>. Choose the appropiate connection mechanism for your application. In my case this will be with Python 3.7. This should give you enough information to get started with MongoDB!</p>
 <p><center><img src="images/fmg_connect_cluster.png" width="50%" /></center></p>
 <h3>[Optional] MongoDB Compass</h3>
-<p>To visualize MongoDB <a href="https://www.mongodb.com/download-center/compass">download</a> from their website. Use the connection string from the previous step if you want to connect to the hosted cluster directly.</p>
+<p>To visualize your MongoDB instance <a href="https://www.mongodb.com/download-center/compass">download</a> MongoDB Compass from their website. Use the connection string from the previous step if you want to connect to the hosted cluster directly.</p>
 <p><center><img src="images/fmg_compass_new.png" width="50%" /></center></p>
 <p>Once you have connected to the database the page will show your cluster, the hosts and the available data. Since we have not added anything yet it will show the default <code>admin</code> and <code>local</code> databases.</p>
 <p><center><img src="images/fmg_compass_databases.png" width="50%" /></center></p>
 <h2>Creating the dataset</h2>
-<p>As a dataset I will be using information from https://www.mariowiki.com/. More specifcally I will be crawling data from Super Mario 1 levels from https://www.mariowiki.com/Category:Super_Mario_Bros._Levels. Each page has a table containing the <strong>Enemies</strong> and the <strong>Level statistics</strong>.</p>
-<p><center><img src="images/fmg_enemies.png" width="50%" /></center></p>
-<p><center><img src="images/fmg_compass_databases.png" width="50%" /></center></p>
+<p>As a dataset I will be using information from <a href="https://www.mariowiki.com/">https://www.mariowiki.com/</a>. More specifcally I will be crawling data from Super Mario 1 levels from <a href="https://www.mariowiki.com/Category:Super_Mario_Bros._Levels">https://www.mariowiki.com/Category:Super_Mario_Bros._Levels</a>. Each page with the level details has a table containing the <strong>Enemies</strong> and the <strong>Level statistics</strong>.</p>
+<p><center><img src="images/fmg_enemies.png" width="25%" /></center></p>
+<p><center><img src="images/fmg_stats.png" width="25%" /></center></p>
 <p>I will just show the reduced version of the script here, but the whole <a href="https://github.com/jitsejan/flask-mongodb-graphene/blob/master/crawl.py">script</a> is availabe in my Github repo. The script will run through the links on the website and retrieves meta data, the description, enemies and the statistics. The files are stored in a JSON file.</p>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_all_tables</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot; Retrieve all the tables &quot;&quot;&quot;</span>
@@ -12230,8 +12230,8 @@ jQuery(document).ready(function($) {
 <p>And that should do it. Check my <a href="https://github.com/jitsejan/flask-mongodb-graphene">GitHub</a> for the code. In another post I want to explore GraphQL further and implement filtering and pagination. </p>
 <h2>Sources</h2>
 <ul>
-<li>https://graphene-mongo.readthedocs.io/en/latest/tutorial.html</li>
-<li>https://jeffersonheard.github.io/python/graphql/2018/12/08/graphene-python.html</li>
+<li><a href="https://graphene-mongo.readthedocs.io/en/latest/tutorial.html">https://graphene-mongo.readthedocs.io</a></li>
+<li><a href="https://jeffersonheard.github.io/python/graphql/2018/12/08/graphene-python.html">https://jeffersonheard.github.io</a></li>
 </ul>
         </div>
 
