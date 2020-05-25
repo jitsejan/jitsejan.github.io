@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Home | JJ's World</title>
+        <title>Forward filling in Spark | JJ's World</title>
 
 
 <style type="text/css">
@@ -11850,434 +11850,2482 @@ jQuery(document).ready(function($) {
         </div>.navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container index">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-<form class="navbar-form navbar-right" role="search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-9">
-  <article>
-    <header>
-      <h2><a href="./create-splunk-app-monitor-nginx.html">Create a Splunk app to monitor Nginx</a></h2>
-      <time datetime="" title="2016-12-12T15:34:00+00:00" pubdate>Mon 12 December 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>In this short tutorial I will create a Splunk app to monitor the webserver. We will create the bare-bone app and we add a few panels to the dashboard.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./create-splunk-app-monitor-nginx.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/splunk.html" class="tag">Splunk</a>
-            <a href="./tag/tutorial.html" class="tag">tutorial</a>
-            <a href="./tag/dashboard.html" class="tag">dashboard</a>
-            <a href="./tag/nginx.html" class="tag">Nginx</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./adding-aliases-windows.html">Adding aliases to Windows</a></h2>
-      <time datetime="" title="2016-12-05T10:27:00+00:00" pubdate>Mon 05 December 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Since I have been using Linux for a while, switching back to the Windows CLI has some challenges. Luckily you can add aliases to the command prompt with the following procedure.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./adding-aliases-windows.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/windows.html" class="tag">Windows</a>
-            <a href="./tag/alias.html" class="tag">alias</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./install-kdiff3-on-osx.html">Install KDiff3 on OSX</a></h2>
-      <time datetime="" title="2016-11-17T12:27:00+00:00" pubdate>Thu 17 November 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Installing the diff/merge tool <a href="http://kdiff3.sourceforge.net">KDiff3</a> is easy using the package manager <a href="http://brew.s">Homebrew</a> extension <a href="https://caskroom.github.io">Cask</a>. The extension makes is possible to install (GUI) applications on the Mac without the dragging and dropping of the DMG-files.</p>
-<div class="highlight"><pre><span></span>jitsejan@MBP $ /usr/bin/ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
-jitsejan@MBP $ brew tap caskroom/cask
-jitsejan@MBP $ brew cask install kdiff3
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/kdiff3.html" class="tag">kdiff3</a>
-            <a href="./tag/mac.html" class="tag">mac</a>
-            <a href="./tag/osx.html" class="tag">OSX</a>
-            <a href="./tag/brew.html" class="tag">brew</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./installing-splunk-on-ubuntu-1404.html">Installing Splunk on Ubuntu 14.04</a></h2>
-      <time datetime="" title="2016-11-17T11:47:00+00:00" pubdate>Thu 17 November 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Explanation of the installation of Splunk.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./installing-splunk-on-ubuntu-1404.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/splunk.html" class="tag">Splunk</a>
-            <a href="./tag/ubuntu.html" class="tag">Ubuntu</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./add-css-to-jupyter-notebook.html">Add CSS to Jupyter notebook</a></h2>
-      <time datetime="" title="2016-11-12T11:40:00+00:00" pubdate>Sat 12 November 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>To add some style to the notebook, Jupyter has the option to add a custom css file. This file should be located in <strong>~/.jupyter/custom/custom.css</strong>. If this file does not exist yet, create the directory if needed and add the stylesheet. Add the following code and refresh the notebook to see if it works.</p>
-<div class="highlight"><pre><span></span><span class="nt">body</span> <span class="p">{</span>
-  <span class="k">background-color</span><span class="p">:</span> <span class="kc">purple</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>To make it easier to modify this file, create a link from the stylesheet to the working directory for the notebooks in order to be able to modify the stylesheet in the browser.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~/code/notebooks$ ln -s ~/.jupyter/custom/custom.css .
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="./tag/notebook.html" class="tag">notebook</a>
-            <a href="./tag/css.html" class="tag">CSS</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./create-choropleth-top-50-artists-I-listen-on-spotify.html">Create a choropleth for the top 50 artists I listen on Spotify</a></h2>
-      <time datetime="" title="2016-10-31T23:31:00+00:00" pubdate>Mon 31 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>In this post I will try to make a world map to indicate where the 50 artists I listen to most on Spotify are from. This will be my first personal data science project, so bare with me. My expectation is that the majority will be in either the UK (indie bands), the US or from South-Korea (K-pop). Lets see if my hypothesis is true.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./create-choropleth-top-50-artists-I-listen-on-spotify.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/visualization.html" class="tag">visualization</a>
-            <a href="./tag/spotify.html" class="tag">Spotify</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/pandas.html" class="tag">pandas</a>
-            <a href="./tag/choropleth.html" class="tag">choropleth</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./install-java-version-8.html">Install Java version 8</a></h2>
-      <time datetime="" title="2016-10-05T08:28:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>I ran into an issue while re-configuring the Jira installation on my system. After an update Java 8 was needed but it is not present by default on Ubuntu 14.04. To install the JRE and JDK you need to add the repository of the webupd8team and use the Oracle Java 8 installer.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./install-java-version-8.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/java.html" class="tag">Java</a>
-            <a href="./tag/ubuntu.html" class="tag">Ubuntu</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./add-flickr-photosets-django.html">Add Flickr photosets to a Django site</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>A short description that describes how to retrieve pictures from Flickr and add them to a Django application using the <strong>flickrapi</strong>.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./add-flickr-photosets-django.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/django.html" class="tag">Django</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/flickr.html" class="tag">Flickr</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./change-postgresql-database-encoding.html">Change PostgreSQL database encoding</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>I ran into an issue where I couldn't save some JSON-data to the database because of a weird UTF8 character. Apparently my databases have the SQL ASCII encoding and not the necessary UTF8 encoding.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./change-postgresql-database-encoding.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/postgres.html" class="tag">Postgres</a>
-            <a href="./tag/ubuntu.html" class="tag">Ubuntu</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./upgrade-postgresql.html">Upgrade PostgreSQL</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>By default Ubuntu 14.04 is running PostgreSQL version 9.3. In order to use the json datatype PostgreSQL version 9.4 or bigger is needed. The versions can be installed side by side, but for clarity you could remove the</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./upgrade-postgresql.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/postgres.html" class="tag">Postgres</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-
-  <nav class="pagination row">
-    <div class="col-xs-6 left">
-        <a class="prev" href="./index9.html">&#8592; Past</a>
-    </div>
-    <div class="col-xs-6 right">
-        <a class="next" href="./index7.html">Future &#8594;</a>
-    </div>
-  </nav>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm">
-<form class="navbar-form navbar-right" role="search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-3">
-<aside class="page-sidebar">
-    <nav class="widget" id="sidebar-about">
-        <div class="row img-div">
-            <img src="/theme/images/JJ_Montreal.png" />
-        </div>
-        <div class="row">
-        <p>I am the Head Of Data Engineering at <a href="https://marketfinance.com">MarketFinance</a> in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
-<p>
-While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
-for visualizations as for modern web applications it is the go-to language. 
-</p>
-<p>
-I am using this page as a portfolio and showcase, but mainly as a cheatsheet. That is why you will mainly find shell commands, short scripts or notebooks just for myself to not reinvent the wheel.
-</p>
-
-        </div>  
-    </nav>
-    <hr/>
-    <nav class="widget">
-        <ul class="tagcloud">
-        <li class="tag-2">
-            <a href="./tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/vps.html">
-            VPS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/s3.html">
-            S3
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/pyspark.html">
-            pyspark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        </ul>
-    </nav>
-    <hr/>
+<div class="container post">
     <div class="row">
-        <div class="col-md-12">
-            <ul class="social-list">
-                    <li><a href="http://www.flickr.com/photos/jitsejan" title="Flickr" rel="me" target="new"><i class="fa fa-1x fa-flickr"></i></a></li>
-                    <li><a href="https://play.spotify.com/user/jitsejan" title="Spotify" rel="me" target="new"><i class="fa fa-1x fa-spotify"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jitsejan" title="LinkedIn" rel="me" target="new"><i class="fa fa-1x fa-linkedin"></i></a></li>
-                    <li><a href="http://twitter.com/jitsejan" title="Twitter" rel="me" target="new"><i class="fa fa-1x fa-twitter"></i></a></li>
-                    <li><a href="http://www.github.com/jitsejan" title="Github" rel="me" target="new"><i class="fa fa-1x fa-github"></i></a></li>
-                    <li><a href="http://bitbucket.org/jitsejan" title="Bitbucket" rel="me" target="new"><i class="fa fa-1x fa-bitbucket"></i></a></li>
-                    <li><a href="http://bl.ocks.org/jitsejan" title="Blocks.org" rel="me" target="new"><i class="fa fa-1x fa-bar-chart"></i></a></li>
-                    <li><a href="https://hub.docker.com/r/jitsejan" title="Docker" rel="me" target="new"><i class="fa fa-1x fa-docker"></i></a></li>
-            </ul>
-        </div>
+        <a href="javascript:history.back()">Go back</a>
     </div>
-    <iframe src="https://rcm-eu.amazon-adsystem.com/e/cm?o=2&p=12&l=ur1&category=consumerelectronics&banner=154BTPQKM87HBT4TD802&f=ifr&linkID=5855639ed929a875d305006b63834633&t=jitsejan-21&tracking_id=jitsejan-21" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
-</aside>  </div>
-  
-  </div>
+    <article>
+        <header>
+            <h1>Forward filling in Spark</h1>
+            <time datetime="article.date.isoformat()" pubdate>Mon 25 May 2020</time>
+        </header>
+
+        <div class="article_content">
+            <style type="text/css">/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
+.ansibold {
+  font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
+  border-color: #ababab;
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
+}
+@media print {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell > div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area > div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area > div.highlight > pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the <head> if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
+  border: 0;
+  border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+div.output_area .mglyph > img {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 1px 0 1px 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+
+
+
+.rendered_html pre,
+
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell > div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+</style>
+<style type="text/css">.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+<style type="text/css">
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Spark---Forward-Filling">Spark - Forward Filling<a class="anchor-link" href="#Spark---Forward-Filling">&#182;</a></h1><p>Recently I had the challenge to figure out the <strong>status</strong> of a certain person in our database on any possible date, while the only thing we store is when the status of a person <strong>changes</strong>. The query I need to answer is similar to the following SQL statement:</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">status</span> <span class="k">FROM</span> <span class="n">person_statuses</span> <span class="k">WHERE</span> <span class="n">person</span> <span class="o">=</span> <span class="ss">&quot;John Doe&quot;</span> <span class="k">AND</span> <span class="n">time</span> <span class="o">=</span> <span class="k">current_date</span><span class="p">()</span>
+</pre></div>
+<h2 id="Step-1---Create-the-data">Step 1 - Create the data<a class="anchor-link" href="#Step-1---Create-the-data">&#182;</a></h2><p>To create the dummy data I will create an event generator. The generated events will be the input for the forward fill exercise. I will use the code I have written for the <code>data-pipeline-project</code> from this <a href="https://github.com/jitsejan/data-pipeline-project/blob/master/data_generator/eventgenerator.py">repo</a>.</p>
 
 </div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">faker</span> <span class="k">import</span> <span class="n">Faker</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+
+<span class="n">DATE_END</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="n">DATE_START</span> <span class="o">=</span> <span class="n">DATE_END</span> <span class="o">-</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">31</span><span class="p">)</span>
+<span class="n">NUM_EVENTS</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">class</span> <span class="nc">EventGenerator</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot; Defines the EventGenerator &quot;&quot;&quot;</span>
+
+    <span class="n">MIN_LIVES</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">MAX_LIVES</span> <span class="o">=</span> <span class="mi">99</span>
+    <span class="n">CHARACTERS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Mario&quot;</span><span class="p">,</span> <span class="s2">&quot;Luigi&quot;</span><span class="p">,</span> <span class="s2">&quot;Peach&quot;</span><span class="p">,</span> <span class="s2">&quot;Toad&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_events</span><span class="p">,</span> <span class="n">output_type</span><span class="p">,</span> <span class="n">start_date</span><span class="p">,</span> <span class="n">end_date</span><span class="p">,</span> <span class="n">output_file</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Initialize the EventGenerator &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">faker</span> <span class="o">=</span> <span class="n">Faker</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_events</span> <span class="o">=</span> <span class="n">num_events</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_type</span> <span class="o">=</span> <span class="n">output_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_file</span> <span class="o">=</span> <span class="n">output_file</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_date</span> <span class="o">=</span> <span class="n">start_date</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span> <span class="o">=</span> <span class="n">end_date</span>
+
+    <span class="k">def</span> <span class="nf">_get_date_between</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">date_start</span><span class="p">,</span> <span class="n">date_end</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Get a date between start and end date &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">faker</span><span class="o">.</span><span class="n">date_between_dates</span><span class="p">(</span><span class="n">date_start</span><span class="o">=</span><span class="n">date_start</span><span class="p">,</span> <span class="n">date_end</span><span class="o">=</span><span class="n">date_end</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_generate_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Generate the metric data &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_events</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="p">{</span>
+                <span class="s2">&quot;character&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">faker</span><span class="o">.</span><span class="n">random_element</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">CHARACTERS</span><span class="p">),</span>
+                <span class="s2">&quot;world&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">faker</span><span class="o">.</span><span class="n">random_int</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+                <span class="s2">&quot;level&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">faker</span><span class="o">.</span><span class="n">random_int</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+                <span class="s2">&quot;lives&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">faker</span><span class="o">.</span><span class="n">random_int</span><span class="p">(</span>
+                    <span class="nb">min</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">MIN_LIVES</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">MAX_LIVES</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span>
+                <span class="p">),</span>
+                <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_date_between</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start_date</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_date</span><span class="p">)),</span>
+            <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">store_events</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_type</span> <span class="o">==</span> <span class="s2">&quot;jl&quot;</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_file</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outputfile</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_events</span><span class="p">():</span>
+                    <span class="n">outputfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;{json.dumps(event)}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_type</span> <span class="o">==</span> <span class="s2">&quot;list&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_generate_events</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I only want 10 events to keep the dataframe we use in Spark small.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;num_events&quot;</span><span class="p">:</span> <span class="n">NUM_EVENTS</span><span class="p">,</span>
+    <span class="s2">&quot;output_type&quot;</span><span class="p">:</span> <span class="s2">&quot;list&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;start_date&quot;</span><span class="p">:</span> <span class="n">DATE_START</span><span class="p">,</span>
+    <span class="s2">&quot;end_date&quot;</span><span class="p">:</span> <span class="n">DATE_END</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="c1"># Create the event generator</span>
+<span class="n">generator</span> <span class="o">=</span> <span class="n">EventGenerator</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+<span class="c1"># Create and store the events</span>
+<span class="n">events</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">store_events</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Step-2---Analyze-the-data">Step 2 - Analyze the data<a class="anchor-link" href="#Step-2---Analyze-the-data">&#182;</a></h2><p>The events represent the persons (Nintendo characters) and their status (current world and level). From looking at the data it is obvious there are big gaps in time before the characters advance to the next level. How do we know where Mario was without storing the daily world/level status?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">events</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">&quot;character&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>character</th>
+      <th>world</th>
+      <th>level</th>
+      <th>lives</th>
+      <th>time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>9</th>
+      <td>Luigi</td>
+      <td>4</td>
+      <td>3</td>
+      <td>9</td>
+      <td>2020-04-24</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Luigi</td>
+      <td>7</td>
+      <td>3</td>
+      <td>42</td>
+      <td>2020-04-30</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Luigi</td>
+      <td>5</td>
+      <td>2</td>
+      <td>53</td>
+      <td>2020-05-14</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>Luigi</td>
+      <td>6</td>
+      <td>4</td>
+      <td>99</td>
+      <td>2020-05-22</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Luigi</td>
+      <td>2</td>
+      <td>1</td>
+      <td>41</td>
+      <td>2020-05-23</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Mario</td>
+      <td>5</td>
+      <td>3</td>
+      <td>13</td>
+      <td>2020-05-02</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Mario</td>
+      <td>4</td>
+      <td>4</td>
+      <td>80</td>
+      <td>2020-05-06</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Peach</td>
+      <td>8</td>
+      <td>4</td>
+      <td>55</td>
+      <td>2020-04-29</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Toad</td>
+      <td>6</td>
+      <td>3</td>
+      <td>40</td>
+      <td>2020-05-11</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Toad</td>
+      <td>6</td>
+      <td>3</td>
+      <td>58</td>
+      <td>2020-05-14</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Step-3---Create-Spark-Dataframe">Step 3 - Create Spark Dataframe<a class="anchor-link" href="#Step-3---Create-Spark-Dataframe">&#182;</a></h2><p>To create the Spark Dataframe a <code>SparkSession</code> is used. I don't use any external libraries right now, since we will use plain (Py)Spark.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="k">import</span> <span class="n">SparkSession</span><span class="p">,</span> <span class="n">SQLContext</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="k">import</span> <span class="n">functions</span> <span class="k">as</span> <span class="n">F</span>
+<span class="kn">from</span> <span class="nn">pyspark.sql.window</span> <span class="k">import</span> <span class="n">Window</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;PYSPARK_PYTHON&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/data/jupyter/bin/python&quot;</span>
+
+<span class="n">spark</span> <span class="o">=</span> <span class="p">(</span><span class="n">SparkSession</span>
+  <span class="o">.</span><span class="n">builder</span>
+  <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;Spark Forward Fill&quot;</span><span class="p">)</span>
+  <span class="o">.</span><span class="n">getOrCreate</span><span class="p">())</span>
+
+<span class="n">sc</span> <span class="o">=</span> <span class="n">SQLContext</span><span class="p">(</span><span class="n">spark</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/data/jupyter/lib/python3.6/site-packages/pyspark/sql/session.py:346: UserWarning: inferring schema from dict is deprecated,please use pyspark.sql.Row instead
+  warnings.warn(&#34;inferring schema from dict is deprecated,&#34;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+---------+-----+-----+----------+-----+
+|character|level|lives|      time|world|
++---------+-----+-----+----------+-----+
+|    Luigi|    4|   99|2020-05-22|    6|
+|    Mario|    3|   13|2020-05-02|    5|
+|    Mario|    4|   80|2020-05-06|    4|
+|    Luigi|    1|   41|2020-05-23|    2|
+|     Toad|    3|   40|2020-05-11|    6|
+|    Luigi|    2|   53|2020-05-14|    5|
+|     Toad|    3|   58|2020-05-14|    6|
+|    Peach|    4|   55|2020-04-29|    8|
+|    Luigi|    3|   42|2020-04-30|    7|
+|    Luigi|    3|    9|2020-04-24|    4|
++---------+-----+-----+----------+-----+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Step-4---Correct-the-data">Step 4 - Correct the data<a class="anchor-link" href="#Step-4---Correct-the-data">&#182;</a></h2><p>Ensure we have the correct datatypes:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(&#39;character&#39;, &#39;string&#39;),
+ (&#39;level&#39;, &#39;bigint&#39;),
+ (&#39;lives&#39;, &#39;bigint&#39;),
+ (&#39;time&#39;, &#39;string&#39;),
+ (&#39;world&#39;, &#39;bigint&#39;)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">to_timestamp</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(&#39;character&#39;, &#39;string&#39;),
+ (&#39;level&#39;, &#39;bigint&#39;),
+ (&#39;lives&#39;, &#39;bigint&#39;),
+ (&#39;time&#39;, &#39;date&#39;),
+ (&#39;world&#39;, &#39;bigint&#39;)]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As a status I combine the world and the level:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">),</span> <span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">),</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;level&#39;</span><span class="p">)))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+---------+-----+-----+----------+-----+------+
+|character|level|lives|      time|world|status|
++---------+-----+-----+----------+-----+------+
+|    Luigi|    4|   99|2020-05-22|    6|   6-4|
+|    Mario|    3|   13|2020-05-02|    5|   5-3|
+|    Mario|    4|   80|2020-05-06|    4|   4-4|
+|    Luigi|    1|   41|2020-05-23|    2|   2-1|
+|     Toad|    3|   40|2020-05-11|    6|   6-3|
+|    Luigi|    2|   53|2020-05-14|    5|   5-2|
+|     Toad|    3|   58|2020-05-14|    6|   6-3|
+|    Peach|    4|   55|2020-04-29|    8|   8-4|
+|    Luigi|    3|   42|2020-04-30|    7|   7-3|
+|    Luigi|    3|    9|2020-04-24|    4|   4-3|
++---------+-----+-----+----------+-----+------+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Step-5---Forward-fill-the-data">Step 5 - Forward fill the data<a class="anchor-link" href="#Step-5---Forward-fill-the-data">&#182;</a></h2><p>The data should be partitioned by character and ordered by the time. For this I will use a simple window function to go through the data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">w</span> <span class="o">=</span> <span class="n">Window</span><span class="p">()</span><span class="o">.</span><span class="n">partitionBy</span><span class="p">(</span><span class="s2">&quot;character&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">orderBy</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Apply the window to create a new column where we add the time of the next status update per character.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;next_status&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">lead</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+---------+-----+-----+----------+-----+------+-----------+
+|character|level|lives|      time|world|status|next_status|
++---------+-----+-----+----------+-----+------+-----------+
+|    Peach|    4|   55|2020-04-29|    8|   8-4|       null|
+|     Toad|    3|   40|2020-05-11|    6|   6-3| 2020-05-14|
+|     Toad|    3|   58|2020-05-14|    6|   6-3|       null|
+|    Mario|    3|   13|2020-05-02|    5|   5-3| 2020-05-06|
+|    Mario|    4|   80|2020-05-06|    4|   4-4|       null|
+|    Luigi|    3|    9|2020-04-24|    4|   4-3| 2020-04-30|
+|    Luigi|    3|   42|2020-04-30|    7|   7-3| 2020-05-14|
+|    Luigi|    2|   53|2020-05-14|    5|   5-2| 2020-05-22|
+|    Luigi|    4|   99|2020-05-22|    6|   6-4| 2020-05-23|
+|    Luigi|    1|   41|2020-05-23|    2|   2-1|       null|
++---------+-----+-----+----------+-----+------+-----------+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>With the <code>sequence</code> I create the column containing the dates between the <code>time</code> of the status change and the time of the <code>next_status</code>. The <code>sequence</code> column will contain a list of dates that can be exploded to create a row for each date in the list.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;sequence&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;next_status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNotNull</span><span class="p">(),</span>
+                               <span class="n">F</span><span class="o">.</span><span class="n">expr</span><span class="p">(</span><span class="s2">&quot;sequence(to_date(time), date_sub(to_date(next_status),1), interval 1 day)&quot;</span><span class="p">))</span>\
+                                <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)))</span>
+<span class="n">df</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+---------+-----+-----+----------+-----+------+-----------+--------------------+
+|character|level|lives|      time|world|status|next_status|            sequence|
++---------+-----+-----+----------+-----+------+-----------+--------------------+
+|    Peach|    4|   55|2020-04-29|    8|   8-4|       null|        [2020-04-29]|
+|     Toad|    3|   40|2020-05-11|    6|   6-3| 2020-05-14|[2020-05-11, 2020...|
+|     Toad|    3|   58|2020-05-14|    6|   6-3|       null|        [2020-05-14]|
+|    Mario|    3|   13|2020-05-02|    5|   5-3| 2020-05-06|[2020-05-02, 2020...|
+|    Mario|    4|   80|2020-05-06|    4|   4-4|       null|        [2020-05-06]|
+|    Luigi|    3|    9|2020-04-24|    4|   4-3| 2020-04-30|[2020-04-24, 2020...|
+|    Luigi|    3|   42|2020-04-30|    7|   7-3| 2020-05-14|[2020-04-30, 2020...|
+|    Luigi|    2|   53|2020-05-14|    5|   5-2| 2020-05-22|[2020-05-14, 2020...|
+|    Luigi|    4|   99|2020-05-22|    6|   6-4| 2020-05-23|        [2020-05-22]|
+|    Luigi|    1|   41|2020-05-23|    2|   2-1|       null|        [2020-05-23]|
++---------+-----+-----+----------+-----+------+-----------+--------------------+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now <code>explode</code> is applied to the <code>sequence</code> column which gives the result shown below. As we can see the events are filled from the first status change until the latest status change.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;character&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">explode</span><span class="p">(</span><span class="s2">&quot;sequence&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+---------+------+----------+
+|character|status|      time|
++---------+------+----------+
+|    Peach|   8-4|2020-04-29|
+|     Toad|   6-3|2020-05-11|
+|     Toad|   6-3|2020-05-12|
+|     Toad|   6-3|2020-05-13|
+|     Toad|   6-3|2020-05-14|
+|    Mario|   5-3|2020-05-02|
+|    Mario|   5-3|2020-05-03|
+|    Mario|   5-3|2020-05-04|
+|    Mario|   5-3|2020-05-05|
+|    Mario|   4-4|2020-05-06|
+|    Luigi|   4-3|2020-04-24|
+|    Luigi|   4-3|2020-04-25|
+|    Luigi|   4-3|2020-04-26|
+|    Luigi|   4-3|2020-04-27|
+|    Luigi|   4-3|2020-04-28|
+|    Luigi|   4-3|2020-04-29|
+|    Luigi|   7-3|2020-04-30|
+|    Luigi|   7-3|2020-05-01|
+|    Luigi|   7-3|2020-05-02|
+|    Luigi|   7-3|2020-05-03|
++---------+------+----------+
+only showing top 20 rows
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One thing missing in the approach above is that we only know the status until the latest change for each character. What I need is to know what the status is today, so I need to modify the code and create an artifical end date when there is no next status, or the next status is in the past. That way I can fill dates after the last status up until today with that last status. For completeness I will repeat the code that I have created before.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create the dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+<span class="c1"># Modify the data type</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span>
+                   <span class="n">F</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">to_timestamp</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)))</span>
+<span class="c1"># Create the status column</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
+                   <span class="n">F</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">),</span>
+                            <span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">),</span>
+                            <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;level&#39;</span><span class="p">)))</span>
+<span class="c1"># Apply the window</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;next_status&quot;</span><span class="p">,</span>
+                   <span class="n">F</span><span class="o">.</span><span class="n">lead</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="c1"># Fill in the empty `next_status` column with today&#39;s date</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;next_status&quot;</span><span class="p">,</span>
+                   <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;next_status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">(),</span>
+                          <span class="n">F</span><span class="o">.</span><span class="n">expr</span><span class="p">(</span><span class="s2">&quot;current_date()&quot;</span><span class="p">))</span>\
+                           <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;next_status&quot;</span><span class="p">)))</span>
+<span class="c1"># Apply the sequence</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;sequence&quot;</span><span class="p">,</span>
+                   <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;next_status&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNotNull</span><span class="p">(),</span>
+                          <span class="n">F</span><span class="o">.</span><span class="n">expr</span><span class="p">(</span><span class="s2">&quot;sequence(to_date(time), date_sub(to_date(next_status), 1), interval 1 day)&quot;</span><span class="p">))</span>\
+                           <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)))</span>
+<span class="c1"># Select the columns and explore the sequence</span>
+<span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;character&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">explode</span><span class="p">(</span><span class="s2">&quot;sequence&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+---------+------+----------+
+|character|status|      time|
++---------+------+----------+
+|    Peach|   8-4|2020-04-29|
+|    Peach|   8-4|2020-04-30|
+|    Peach|   8-4|2020-05-01|
+|    Peach|   8-4|2020-05-02|
+|    Peach|   8-4|2020-05-03|
+|    Peach|   8-4|2020-05-04|
+|    Peach|   8-4|2020-05-05|
+|    Peach|   8-4|2020-05-06|
+|    Peach|   8-4|2020-05-07|
+|    Peach|   8-4|2020-05-08|
+|    Peach|   8-4|2020-05-09|
+|    Peach|   8-4|2020-05-10|
+|    Peach|   8-4|2020-05-11|
+|    Peach|   8-4|2020-05-12|
+|    Peach|   8-4|2020-05-13|
+|    Peach|   8-4|2020-05-14|
+|    Peach|   8-4|2020-05-15|
+|    Peach|   8-4|2020-05-16|
+|    Peach|   8-4|2020-05-17|
+|    Peach|   8-4|2020-05-18|
++---------+------+----------+
+only showing top 20 rows
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Step-6---Avoid-forward-filling!">Step 6 - Avoid forward filling!<a class="anchor-link" href="#Step-6---Avoid-forward-filling!">&#182;</a></h2><p>From this small test it is clear it is not wise to use the <code>sequence</code> to create an event for every date for every character. This will easily become massive and should not be used in reality. The main idea behind trying to do the forward filling is to compare the complexity with Python <code>pandas</code>. In Pandas you can forward fill by simply using <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.ffill.html"><code>ffill</code></a>. I used the following code to retrieve the same result as in the Spark script above.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+<span class="c1"># Convert datatypes</span>
+<span class="n">pdf</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">pdf</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">])</span>
+<span class="c1"># Add status column</span>
+<span class="n">pdf</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{x[&#39;world&#39;]}</span><span class="s2">-</span><span class="si">{x[&#39;level&#39;]}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># Create full time range as frame</span>
+<span class="n">timeframe</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">pdf</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]),</span>
+                          <span class="n">end</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">date</span><span class="p">())</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s1">&#39;time&#39;</span><span class="p">})</span>
+<span class="c1"># Merge timeframe into original frame</span>
+<span class="n">pdf</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">timeframe</span><span class="p">,</span>
+                <span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span>
+                <span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span>
+                <span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="c1"># 1. Pivot to get dates on rows and characters as columns</span>
+<span class="c1"># 2. Forward fill values per character</span>
+<span class="c1"># 3. Fill remaining NaNs with False</span>
+<span class="n">pdf</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span>
+                <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;character&#39;</span><span class="p">,</span>
+                <span class="n">values</span><span class="o">=</span><span class="s1">&#39;status&#39;</span><span class="p">)</span>
+
+<span class="n">pdf</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;ffill&#39;</span><span class="p">)</span>
+<span class="c1"># Drop NaN column and reset the index</span>
+<span class="n">pdf</span> <span class="o">=</span> <span class="n">pdf</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">pdf</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+<span class="c1"># Melt the columns back</span>
+<span class="n">pdf</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">melt</span><span class="p">(</span><span class="n">pdf</span><span class="p">,</span>
+              <span class="n">id_vars</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span>
+              <span class="n">value_name</span><span class="o">=</span><span class="s1">&#39;status&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Original length: {len(events)}, new length: {len(pdf)}&quot;</span><span class="p">)</span>
+<span class="n">pdf</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Original length: 10, new length: 128
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>character</th>
+      <th>status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-04-24</td>
+      <td>Luigi</td>
+      <td>4-3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-04-25</td>
+      <td>Luigi</td>
+      <td>4-3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-04-26</td>
+      <td>Luigi</td>
+      <td>4-3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-04-27</td>
+      <td>Luigi</td>
+      <td>4-3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-04-28</td>
+      <td>Luigi</td>
+      <td>4-3</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2020-04-29</td>
+      <td>Luigi</td>
+      <td>4-3</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2020-04-30</td>
+      <td>Luigi</td>
+      <td>7-3</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2020-05-01</td>
+      <td>Luigi</td>
+      <td>7-3</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2020-05-02</td>
+      <td>Luigi</td>
+      <td>7-3</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2020-05-03</td>
+      <td>Luigi</td>
+      <td>7-3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Step-7---Be-smarter">Step 7 - Be smarter<a class="anchor-link" href="#Step-7---Be-smarter">&#182;</a></h2><p>Instead of using the forward fill approach to create all this data, it is a better idea to only add one more column to the table where the end of the status is recorded. For example, if Mario was in level 1-1 seven days ago and today he finally made it to level 1-2, there is no need to create six events containing level 1-1 and one event for level 1-2. Instead it would be better that one event contains 1-1 with start date seven days ago and end date yesterday, plus an event for level 1-2 with start date today and future date somewhere in the future.</p>
+<p>Coming back to the initial SQL query I can rewrite this easily to a query with <code>BETWEEN</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">status</span> <span class="k">FROM</span> <span class="n">person_statuses</span> <span class="k">WHERE</span> <span class="n">person</span> <span class="o">=</span> <span class="ss">&quot;John Doe&quot;</span> <span class="k">AND</span> <span class="n">time</span> <span class="o">=</span> <span class="k">current_date</span><span class="p">()</span>
+</pre></div>
+<p>is rewritten to</p>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">status</span> <span class="k">FROM</span> <span class="n">person_statuses</span> <span class="k">WHERE</span> <span class="n">person</span> <span class="o">=</span> <span class="ss">&quot;John Doe&quot;</span> <span class="k">AND</span> <span class="k">current_date</span><span class="p">()</span> <span class="k">BETWEEN</span> <span class="n">time</span> <span class="k">AND</span> <span class="n">endtime</span>
+</pre></div>
+<p>I use a similar script, but will extract one day from the <code>endtime</code> column. There is no explode needed with this approach.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create the dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+<span class="c1"># Modify the data type</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">,</span>
+                   <span class="n">F</span><span class="o">.</span><span class="n">to_date</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">to_timestamp</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)))</span>
+<span class="c1"># Create the status column</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">,</span>
+                   <span class="n">F</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">),</span>
+                            <span class="n">F</span><span class="o">.</span><span class="n">lit</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">),</span>
+                            <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;level&#39;</span><span class="p">)))</span>
+<span class="c1"># Apply the window</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;endtime&quot;</span><span class="p">,</span>
+                   <span class="n">F</span><span class="o">.</span><span class="n">lead</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="c1"># Substract one day from the endtime</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;endtime&quot;</span><span class="p">,</span>
+                   <span class="n">F</span><span class="o">.</span><span class="n">expr</span><span class="p">(</span><span class="s2">&quot;date_sub(to_date(endtime), 1)&quot;</span><span class="p">))</span>
+<span class="c1"># Fill in the empty `endtime` column with today&#39;s date</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;endtime&quot;</span><span class="p">,</span>
+                   <span class="n">F</span><span class="o">.</span><span class="n">when</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;endtime&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">isNull</span><span class="p">(),</span>
+                          <span class="n">F</span><span class="o">.</span><span class="n">expr</span><span class="p">(</span><span class="s2">&quot;current_date()&quot;</span><span class="p">))</span>\
+                           <span class="o">.</span><span class="n">otherwise</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;endtime&quot;</span><span class="p">)))</span>
+<span class="c1"># Select the columns and explore the sequence</span>
+<span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s2">&quot;character&quot;</span><span class="p">,</span> <span class="s2">&quot;status&quot;</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;endtime&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+---------+------+----------+----------+
+|character|status|      time|   endtime|
++---------+------+----------+----------+
+|    Peach|   8-4|2020-04-29|2020-05-25|
+|     Toad|   6-3|2020-05-11|2020-05-13|
+|     Toad|   6-3|2020-05-14|2020-05-25|
+|    Mario|   5-3|2020-05-02|2020-05-05|
+|    Mario|   4-4|2020-05-06|2020-05-25|
+|    Luigi|   4-3|2020-04-24|2020-04-29|
+|    Luigi|   7-3|2020-04-30|2020-05-13|
+|    Luigi|   5-2|2020-05-14|2020-05-21|
+|    Luigi|   6-4|2020-05-22|2020-05-22|
+|    Luigi|   2-1|2020-05-23|2020-05-25|
++---------+------+----------+----------+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Store the dataframe as temporary view such that I can use SQL to query it with Spark:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="p">(</span><span class="s2">&quot;df&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;SELECT status, time, endtime FROM df WHERE character = &#39;Peach&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+------+----------+----------+
+|status|      time|   endtime|
++------+----------+----------+
+|   8-4|2020-04-29|2020-05-25|
++------+----------+----------+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;SELECT status FROM df WHERE character = &#39;Peach&#39; AND &#39;2020-05-24&#39; BETWEEN time AND endtime&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+------+
+|status|
++------+
+|   8-4|
++------+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Instead of using PySpark to create the dataframe the same can be achieved using SQL.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create the events view</span>
+<span class="n">eventsdf</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">createDataFrame</span><span class="p">(</span><span class="n">events</span><span class="p">)</span>
+<span class="n">eventsdf</span><span class="o">.</span><span class="n">createOrReplaceTempView</span><span class="p">(</span><span class="s2">&quot;events&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">sql</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">WITH statuses AS (</span>
+<span class="s2">    SELECT</span>
+<span class="s2">        character,</span>
+<span class="s2">        CONCAT(world, &#39;-&#39;, level) AS status,</span>
+<span class="s2">        to_date(time) AS start,</span>
+<span class="s2">        to_date(DATE_SUB(LEAD(time) OVER (PARTITION BY character ORDER BY time), 1)) AS end</span>
+<span class="s2">    FROM</span>
+<span class="s2">        events</span>
+<span class="s2">)</span>
+<span class="s2">SELECT</span>
+<span class="s2">  character,</span>
+<span class="s2">  status,</span>
+<span class="s2">  start,</span>
+<span class="s2">  IF(end IS NOT NULL, end, current_date()) AS end</span>
+<span class="s2">FROM statuses</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>+---------+------+----------+----------+
+|character|status|     start|       end|
++---------+------+----------+----------+
+|    Peach|   8-4|2020-04-29|2020-05-25|
+|     Toad|   6-3|2020-05-11|2020-05-13|
+|     Toad|   6-3|2020-05-14|2020-05-25|
+|    Mario|   5-3|2020-05-02|2020-05-05|
+|    Mario|   4-4|2020-05-06|2020-05-25|
+|    Luigi|   4-3|2020-04-24|2020-04-29|
+|    Luigi|   7-3|2020-04-30|2020-05-13|
+|    Luigi|   5-2|2020-05-14|2020-05-21|
+|    Luigi|   6-4|2020-05-22|2020-05-22|
+|    Luigi|   2-1|2020-05-23|2020-05-25|
++---------+------+----------+----------+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And that's it. This was a good exercise to understand how easy it is to make things too complex..</p>
+
+</div>
+</div>
+</div>
+ 
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/notebook.html" class="tag">notebook</a>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/jupyter.html" class="tag">Jupyter</a>
+                    <a href="./tag/spark.html" class="tag">Spark</a>
+                    <a href="./tag/pyspark.html" class="tag">pyspark</a>
+                    <a href="./tag/data-manipulation.html" class="tag">data manipulation</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
 
         </div>
 <footer class="footer">
