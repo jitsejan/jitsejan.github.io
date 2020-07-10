@@ -11865,14 +11865,20 @@ jQuery(document).ready(function($) {
 <h2>Prerequisites</h2>
 <h3>Mac</h3>
 <ol>
-<li>Install IPFS Desktop according to the <a href="https://docs.ipfs.io/install/">install instructions</a>. This will add IPFS to the toolbar (the cube icon).</li>
-</ol>
-<p><img src="images/ipfs_toolbar.png" width="200px" /></p>
-<ol>
-<li>Verify that IPFS is working properly by clicking the icon.</li>
-</ol>
-<p><img src="images/ipfs_toolbar_popup.png" width="200px" /></p>
-<ol>
+<li>
+<p>Install IPFS Desktop according to the <a href="https://docs.ipfs.io/install/">install instructions</a>. This will add IPFS to the toolbar (the cube icon).</p>
+<div class="highlight"><pre><span></span>&lt;img src=&quot;images/ipfs_toolbar.png&quot; width=&quot;200px&quot; /&gt;
+</pre></div>
+
+
+</li>
+<li>
+<p>Verify that IPFS is working properly by clicking the icon.</p>
+<div class="highlight"><pre><span></span>&lt;img src=&quot;images/ipfs_toolbar_popup.png&quot; width=&quot;200px&quot; /&gt;
+</pre></div>
+
+
+</li>
 <li>
 <p>Test <code>ipfs</code> in the command line after enabling <em>Command Line Tools</em> in the <em>Preferences</em>:</p>
 <div class="highlight"><pre><span></span>~/code/ipfs-static-website $                                                                           
@@ -11888,77 +11894,82 @@ ipfs version 0.6.0
 </ol>
 <h3>VPS</h3>
 <ol>
-<li>Install the <code>go-ipfs</code> by retrieving the TAR-ball, extracing it and running the installation script.</li>
-</ol>
-<p><code>bash
-   ~/ $ wget https://github.com/ipfs/go-ipfs/releases/download/v0.5.1/go-ipfs_v0.5.1_linux-amd64.tar.gz
-   ~/ $ tar -xvzf go-ipfs_v0.5.1_linux-amd64.tar.gz
-   ~/ $ cd go-ipfs
-   ~/go-ipfs $ sudo bash install.sh
-   ~/go-ipfs $ ipfs --version
-   ipfs version 0.5.1</code></p>
-<ol>
-<li>Initialization will start the node in a local folder. Once you have been added as a node, the daemon can be started. </li>
-</ol>
-<p>```sh
-   $ ipfs init --profile server
-   initializing IPFS node at /home/jitsejan/.ipfs
-   generating 2048-bit RSA keypair...done
-   peer identity: QmSztWC9dxLzUV7Ph5ZJLwhGW5aLRG2Pwptis3cw6cfK53
-   to get started, enter:</p>
-<div class="highlight"><pre><span></span>       ipfs cat /ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc/readme
+<li>
+<p>Install the <code>go-ipfs</code> by retrieving the TAR-ball, extracing it and running the installation script.</p>
+<div class="highlight"><pre><span></span>~/ $ wget https://github.com/ipfs/go-ipfs/releases/download/v0.5.1/go-ipfs_v0.5.1_linux-amd64.tar.gz
+~/ $ tar -xvzf go-ipfs_v0.5.1_linux-amd64.tar.gz
+~/ $ cd go-ipfs
+~/go-ipfs $ sudo bash install.sh
+~/go-ipfs $ ipfs --version
+ipfs version 0.5.1
 </pre></div>
 
 
-<p>$ ipfs daemon
-   Initializing daemon...
-   go-ipfs version: 0.5.1
-   Repo version: 9
-   System version: amd64/linux
-   Golang version: go1.13.10
-   Swarm listening on /ip4/127.0.0.1/tcp/4001
-   Swarm listening on /ip4/172.17.0.1/tcp/4001
-   Swarm listening on /ip4/172.21.0.1/tcp/4001
-   Swarm listening on /ip4/209.182.238.29/tcp/4001
-   Swarm listening on /ip6/::1/tcp/4001
-   Swarm listening on /p2p-circuit
-   Swarm announcing /ip4/127.0.0.1/tcp/4001
-   Swarm announcing /ip4/209.182.238.29/tcp/4001
-   Swarm announcing /ip6/::1/tcp/4001
-   API server listening on /ip4/127.0.0.1/tcp/5001
-   WebUI: http://127.0.0.1:5001/webui
-   Gateway (readonly) server listening on /ip4/127.0.0.1/tcp/8080
-   Daemon is ready
-   ```</p>
-<ol>
-<li>Verify the peers that are connected.</li>
-</ol>
-<p><code>sh
-   $ ipfs swarm peers
-   /ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ
-   /ip4/111.229.117.28/tcp/4001/p2p/QmXUKFSAKB4K9mSVMmtjJw55CkcyXajwTLXdmxvTC4kYy6
-   /ip4/113.255.3.43/tcp/44244/p2p/QmYC6H9pD26iAMnSiDgn1Rtz8g7Kmiv7mMjoCPRUGkQMLk
-   /ip4/139.162.58.12/tcp/4001/p2p/QmXYaskeTJHGooCG32wP8tY8yfPYiQbC6yeD9RbrYref67
-   /ip4/147.75.109.213/tcp/4001/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN
-   /ip4/147.75.77.187/tcp/4001/p2p/QmQCU2EcMqAqQPR2i9bChDtGNJchTbq5TbXJJ16u19uLTa
-   /ip4/147.75.94.115/tcp/4001/p2p/QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt
-   /ip4/159.65.73.69/tcp/31564/p2p/12D3KooWQC15gyTUwDUob18c5EQBLCDbHrp8WymrrHoMgdPwLFqW
-   /ip4/172.104.103.157/tcp/4001/p2p/QmYRk9rftMorXbRPMW26on6kw1ZPkf5hPQVvmd4aumT8JV
-   /ip4/206.189.69.250/tcp/30315/p2p/12D3KooWJDNVGavZMo5WzgqPZCNBdrKu1DxqoER5wAQ61PHaFnrv
-   /ip4/207.148.19.196/tcp/20010/p2p/12D3KooWMRXRibgUrCY9FDEXG8DFX3RtqwDKLQT98dgAZP25jvRu
-   /ip4/49.234.193.176/tcp/4001/p2p/QmakhXhhfcpKpy1LY9FgBqZ6WcMMgeZqPzXjZSDEcFAmQ2
-   /ip4/73.95.18.162/tcp/51238/p2p/QmWMZpfbMfwRumwrrDjicWsBzHCGzq91AR285dtkrAQB9D</code></p>
-<ol>
-<li>Execute the sample test by adding a string to IPFS and querying it using curl. </li>
-</ol>
+</li>
+<li>
+<p>Initialization will start the node in a local folder. Once you have been added as a node, the daemon can be started. </p>
+<div class="highlight"><pre><span></span>$ ipfs init --profile server
+initializing IPFS node at /home/jitsejan/.ipfs
+generating <span class="m">2048</span>-bit RSA keypair...done
+peer identity: QmSztWC9dxLzUV7Ph5ZJLwhGW5aLRG2Pwptis3cw6cfK53
+to get started, enter:
+          ipfs cat /ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc/readme
+$ ipfs daemon
+Initializing daemon...
+go-ipfs version: <span class="m">0</span>.5.1
+Repo version: <span class="m">9</span>
+System version: amd64/linux
+Golang version: go1.13.10
+Swarm listening on /ip4/127.0.0.1/tcp/4001
+Swarm listening on /ip4/172.17.0.1/tcp/4001
+Swarm listening on /ip4/172.21.0.1/tcp/4001
+Swarm listening on /ip4/209.182.238.29/tcp/4001
+Swarm listening on /ip6/::1/tcp/4001
+Swarm listening on /p2p-circuit
+Swarm announcing /ip4/127.0.0.1/tcp/4001
+Swarm announcing /ip4/209.182.238.29/tcp/4001
+Swarm announcing /ip6/::1/tcp/4001
+API server listening on /ip4/127.0.0.1/tcp/5001
+WebUI: http://127.0.0.1:5001/webui
+Gateway <span class="o">(</span><span class="nb">readonly</span><span class="o">)</span> server listening on /ip4/127.0.0.1/tcp/8080
+Daemon is ready
+</pre></div>
+
+
+</li>
+<li>
+<p>Verify the peers that are connected.</p>
+<div class="highlight"><pre><span></span>$ ipfs swarm peers
+/ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ
+/ip4/111.229.117.28/tcp/4001/p2p/QmXUKFSAKB4K9mSVMmtjJw55CkcyXajwTLXdmxvTC4kYy6
+/ip4/113.255.3.43/tcp/44244/p2p/QmYC6H9pD26iAMnSiDgn1Rtz8g7Kmiv7mMjoCPRUGkQMLk
+/ip4/139.162.58.12/tcp/4001/p2p/QmXYaskeTJHGooCG32wP8tY8yfPYiQbC6yeD9RbrYref67
+/ip4/147.75.109.213/tcp/4001/p2p/QmNnooDu7bfjPFoTZYxMNLWUQJyrVwtbZg5gBMjTezGAJN
+/ip4/147.75.77.187/tcp/4001/p2p/QmQCU2EcMqAqQPR2i9bChDtGNJchTbq5TbXJJ16u19uLTa
+/ip4/147.75.94.115/tcp/4001/p2p/QmcZf59bWwK5XFi76CZX8cbJ4BhTzzA3gU1ZjYZcYW3dwt
+/ip4/159.65.73.69/tcp/31564/p2p/12D3KooWQC15gyTUwDUob18c5EQBLCDbHrp8WymrrHoMgdPwLFqW
+/ip4/172.104.103.157/tcp/4001/p2p/QmYRk9rftMorXbRPMW26on6kw1ZPkf5hPQVvmd4aumT8JV
+/ip4/206.189.69.250/tcp/30315/p2p/12D3KooWJDNVGavZMo5WzgqPZCNBdrKu1DxqoER5wAQ61PHaFnrv
+/ip4/207.148.19.196/tcp/20010/p2p/12D3KooWMRXRibgUrCY9FDEXG8DFX3RtqwDKLQT98dgAZP25jvRu
+/ip4/49.234.193.176/tcp/4001/p2p/QmakhXhhfcpKpy1LY9FgBqZ6WcMMgeZqPzXjZSDEcFAmQ2
+/ip4/73.95.18.162/tcp/51238/p2p/QmWMZpfbMfwRumwrrDjicWsBzHCGzq91AR285dtkrAQB9D
+</pre></div>
+
+
+</li>
+<li>
+<p>Execute the sample test by adding a string to IPFS and querying it using curl. </p>
 <div class="highlight"><pre><span></span>$ <span class="nv">hash</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="s2">&quot;I &lt;3 IPFS -</span><span class="k">$(</span>whoami<span class="k">)</span><span class="s2">&quot;</span> <span class="p">|</span> ipfs add -q<span class="sb">`</span>
 $ <span class="nb">echo</span> <span class="nv">$hash</span>
 QmR8yeru6tqJis2WR5YV6xmgAQHTBwPKxN8DoJK7uhK4Z3
 $ curl <span class="s2">&quot;https://ipfs.io/ipfs/</span><span class="nv">$hash</span><span class="s2">&quot;</span>
 I &lt;<span class="m">3</span> IPFS -jitsejan
+<span class="sb">```</span>
 </pre></div>
 
 
+</li>
+</ol>
 <h2>Create a basic website</h2>
 <p>The website that we will upload has the following structure. I chose to use subfolders for <code>css</code> and <code>images</code> to make sure this is also supported by IPFS. In the future I want to upload more complex websites to IPFS, for example my personal blog that is statis website created using <a href="https://blog.getpelican.com">Pelican</a>. From my understanding of IPFS it is not possible to upload dynamic content at this point.</p>
 <div class="highlight"><pre><span></span>~/code/ipfs-static-website $
@@ -12029,9 +12040,9 @@ added Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u ipfs-static-website
 
 
 <p>The <code>SITE_ID</code> would be <code>Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u</code> as it is the hash of the main folder (bottom element). Opening up the file browser in <strong>IPFS desktop</strong> and searching for the <em>QmHash</em> will show the files from the repository.</p>
-<p><center><img src="images/ipfs_desktop_overview.png" alt="ipfs_desktop_overview" width="600px" /></center></p>
+<p><center><img src="images/ipfs_desktop_overview.png" alt="ipfs_desktop_overview" width="750px" /></center></p>
 <p>To confirm that the files are correct you can view the files. For example, you can navigate to images and open the <code>blockchain.jpg</code> to see the actual content.</p>
-<p><center><img src="images/ipfs_desktop_detail.png" alt="ifps_desktop_detail" width="600px" /></center></p>
+<p><center><img src="images/ipfs_desktop_detail.png" alt="ifps_desktop_detail" width="750px" /></center></p>
 <h2>Verify the content</h2>
 <p>In the previous step we found the hash of the main folder of the website. Since the ipfs daemon is running, we can view the files locally by navigating to <a href="http://localhost:8080/ipfs/">http://localhost:8080/ipfs/</a> and adding the hash. Opening the hash in the browser <a href="http://localhost:8080/ipfs/Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u/">http://localhost:8080/ipfs/Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u/</a> will show the page as we expect:</p>
 <p><center><img src="images/ipfs_local_ipfs.png" alt="ipfs_local_ipfs" width="600px" /></center></p>
@@ -12051,9 +12062,9 @@ Published to QmSztWC9dxLzUV7Ph5ZJLwhGW5aLRG2Pwptis3cw6cfK53: /ipfs/Qmeg3LpczHYLW
 <li>TXT with the name following the pattern <code>_dnslink.&lt;subdomain&gt;</code> with the <code>dnslink=/ipfs/&lt;IPFS_HASH&gt;</code> as content.</li>
 </ol>
 <p>CNAME:</p>
-<p><center><img src="images/ipfs_cloudflare_cname.png" alt="ipfs_cloudflare_cname" width="400px" /></center></p>
+<p><center><img src="images/ipfs_cloudflare_cname.png" alt="ipfs_cloudflare_cname" width="600px" /></center></p>
 <p>DNS link:</p>
-<p><center><img src="images/ipfs_cloufdflare_txt.png" alt="ipfs_cloufdflare_txt" width="400px" /></center></p>
+<p><center><img src="images/ipfs_cloufdflare_txt.png" alt="ipfs_cloufdflare_txt" width="600px" /></center></p>
 <p>These settings can be verified with <code>dig</code>  by checking the answer to a call to <code>_dnslink.&lt;subdomain&gt;.&lt;domain&gt;</code>. This should return the <code>dnslink</code> with the correct IPFS hash. </p>
 <div class="highlight"><pre><span></span>❯ dig +noall +answer TXT _dnslink.ipfs.jitsejan.com
 _dnslink.ipfs.jitsejan.com. <span class="m">300</span> IN  TXT <span class="s2">&quot;dnslink=/ipfs/Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u&quot;</span>
@@ -12065,14 +12076,14 @@ _dnslink.ipfs.jitsejan.com. <span class="m">300</span> IN  TXT <span class="s2">
 <p>After a few seconds this should complete:</p>
 <p><center><img src="images/ipfs_cloudflare_ca_done.png" alt="ipfs_cloudflare_ca_done" width="400px" /></center></p>
 <p>Before checking if my domain is working I will verify the content on the IPFS server of Cloudflare. By navigating to <a href="https://cloudflare-ipfs.com/ipfs/Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u/">https://cloudflare-ipfs.com/ipfs/Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u/</a> I can check if the website is available. Initially it showed me the right page, but without the image.</p>
-<p><center><img src="images/ipfs_cloudflare_wait.png" alt="ipfs_cloudflare_wait" width="400px" /></center></p>
+<p><center><img src="images/ipfs_cloudflare_wait.png" alt="ipfs_cloudflare_wait" width="600px" /></center></p>
 <p>After waiting a couple of minutes the image shows too:</p>
-<p><center><img src="images/ipfs_cloudflare_done.png" alt="ipfs_cloudflare_done" width="400px" /></center></p>
+<p><center><img src="images/ipfs_cloudflare_done.png" alt="ipfs_cloudflare_done" width="600px" /></center></p>
 <h2>Setup ENS</h2>
 <p>I have registered my <code>eth</code> domain with <a href="https://app.ens.domains">https://app.ens.domains</a> to make sure nobody would take <code>jitsejan.eth</code>. To see my domains I will need to connect to my wallet which was used to buy the domains. </p>
 <p>Because I bought the domain on my phone using the Cipher Browser some time ago and since then Cipher Browser got acquired by Coinbase the Cipher app was disabled. I did not have access to the Ethereum network and could not access <a href="https://app.ens.domains">https://app.ens.domains</a>. Using the recovery phrase I was able to import my wallet into Firefox with MetaMask on my laptop and manage my domains.</p>
 <p>Navigate to your <code>eth</code> domain page, for example <a href="https://app.ens.domains/name/jitsejan.eth">https://app.ens.domains/name/jitsejan.eth</a>, and by clicking the <code>+</code> under <strong>Records</strong> add the content with your IPFS link:</p>
-<p><center><img src="images/ipfs_ens_overview.png" alt="ipfs_ens_overview" width="600px" /></center></p>
+<p><center><img src="images/ipfs_ens_overview.png" alt="ipfs_ens_overview" width="750px" /></center></p>
 <p>Note: Adding content to the network will cost gas! </p>
 <p><center><img src="images/ipfs_gas_cost.png" alt="ipfs_gas_cost" width="300px" /></center></p>
 <p>After being very patience the website will be visible on <a href="http://jitsejan.eth.link">http://jitsejan.eth.link</a>. Note the <code>.link</code> in the end to make sure the DNS can handle the content hosted on ENS (info: http://eth.link/). Viewing the page is free, so refreshing every second wouldn't cost you money. </p>
