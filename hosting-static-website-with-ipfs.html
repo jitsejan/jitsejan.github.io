@@ -11873,14 +11873,18 @@ jQuery(document).ready(function($) {
 </ol>
 <p><img src="images/ipfs_toolbar_popup.png" width="200px" /></p>
 <ol>
-<li>Test <code>ipfs</code> in the command line after enabling <em>Command Line Tools</em> in the <em>Preferences</em>:</li>
-</ol>
-<p><code>bash
-   ~/code/ipfs-static-website $                                                                           
-   ❯ ipfs --version
-   ipfs version 0.6.0</code></p>
-<ol>
-<li>Installing the Desktop will already start the daemon, so running <code>ipfs daemon</code> is not necessary.</li>
+<li>
+<p>Test <code>ipfs</code> in the command line after enabling <em>Command Line Tools</em> in the <em>Preferences</em>:</p>
+<div class="highlight"><pre><span></span>~/code/ipfs-static-website $                                                                           
+❯ ipfs --version
+ipfs version 0.6.0
+</pre></div>
+
+
+</li>
+<li>
+<p>Installing the Desktop will already start the daemon, so running <code>ipfs daemon</code> is not necessary.</p>
+</li>
 </ol>
 <h3>VPS</h3>
 <ol>
@@ -12029,7 +12033,7 @@ added Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u ipfs-static-website
 <p>To confirm that the files are correct you can view the files. For example, you can navigate to images and open the <code>blockchain.jpg</code> to see the actual content.</p>
 <p><center><img src="images/ipfs_desktop_detail.png" alt="ifps_desktop_detail" width="600px" /></center></p>
 <h2>Verify the content</h2>
-<p>In the previous step we found the hash of the main folder of the website. Since the ipfs daemon is running, we can view the files locally by navigating to http://localhost;8080/ipfs/ and adding the hash. Opening the hash in the browser http://localhost:8080/ipfs/Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u/ will show the page as we expect:</p>
+<p>In the previous step we found the hash of the main folder of the website. Since the ipfs daemon is running, we can view the files locally by navigating to <a href="http://localhost:8080/ipfs/">http://localhost:8080/ipfs/</a> and adding the hash. Opening the hash in the browser <a href="http://localhost:8080/ipfs/Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u/">http://localhost:8080/ipfs/Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u/</a> will show the page as we expect:</p>
 <p><center><img src="images/ipfs_local_ipfs.png" alt="ipfs_local_ipfs" width="600px" /></center></p>
 <h2>Use IPNS to host content</h2>
 <p>A downside of using IPFS is that every time the website changes the corresponding hashes will be updated. If you link directly to the IPFS hash with your DNS this will break the next time you update the website. To avoid manually updating the hash with every update we could use <a href="https://docs.ipfs.io/concepts/ipns/">IPNS</a> instead. The IPNS hash should remain the same even though the website gets updated. In order to get the IPNS hash we will need to publish using <code>ipfs name publish &lt;IPFS_HASH&gt;</code> and wait for the IPFS hash to be returned. In my case it took a minute before the publishing was completed.</p>
@@ -12038,10 +12042,10 @@ Published to QmSztWC9dxLzUV7Ph5ZJLwhGW5aLRG2Pwptis3cw6cfK53: /ipfs/Qmeg3LpczHYLW
 </pre></div>
 
 
-<p>The return value contains the hash for IPNS which again we can verify using our localhost.  The <code>$PEER_ID</code> will be <em>QmSztWC9dxLzUV7Ph5ZJLwhGW5aLRG2Pwptis3cw6cfK53</em> and can be appended to http://localhost:8080/ipns/.  Indeed, opening <a href="http://localhost:8080/ipns/QmXwD1dj6ywm3pNQPY2vuEzjdxz1zvrnVe7DrJp56yBnPU/">http://localhost:8080/ipns/QmXwD1dj6ywm3pNQPY2vuEzjdxz1zvrnVe7DrJp56yBnPU/</a> shows again the basic website.</p>
+<p>The return value contains the hash for IPNS which again we can verify using our localhost. The <code>$PEER_ID</code> will be <em>QmSztWC9dxLzUV7Ph5ZJLwhGW5aLRG2Pwptis3cw6cfK53</em> and can be appended to <a href="http://localhost:8080/ipns/">http://localhost:8080/ipns/</a>. Indeed opening <a href="http://localhost:8080/ipns/QmXwD1dj6ywm3pNQPY2vuEzjdxz1zvrnVe7DrJp56yBnPU/">http://localhost:8080/ipns/QmXwD1dj6ywm3pNQPY2vuEzjdxz1zvrnVe7DrJp56yBnPU/</a> shows again the basic website.</p>
 <p><center><img src="images/ipfs_local_ipns.png" alt="ipfs_local_ipns" width="600px" /></center></p>
 <h2>Setup DNS with Cloudflare</h2>
-<p>Cloudflare is a service I use for my DNS management and security of my website. Cloudfare also supports an <a href="https://www.cloudflare.com/distributed-web-gateway/">IPFS gateway</a> which means we can setup the DNS to the IPFS content with this service. In order to link a domain name to the IPFS content we need to add two elements. In my case I want to link the IPFS content to https://ipfs.jitsejan.com.</p>
+<p>Cloudflare is a service I use for my DNS management and security of my website. Cloudfare also supports an <a href="https://www.cloudflare.com/distributed-web-gateway/">IPFS gateway</a> which means we can setup the DNS to the IPFS content with this service. In order to link a domain name to the IPFS content we need to add two elements. In my case I want to link the IPFS content to <a href="https://ipfs.jitsejan.com">https://ipfs.jitsejan.com</a>.</p>
 <ol>
 <li>CNAME containing the subdomain with a target to cloudflare-ipfs.com. </li>
 <li>TXT with the name following the pattern <code>_dnslink.&lt;subdomain&gt;</code> with the <code>dnslink=/ipfs/&lt;IPFS_HASH&gt;</code> as content.</li>
@@ -12056,22 +12060,22 @@ _dnslink.ipfs.jitsejan.com. <span class="m">300</span> IN  TXT <span class="s2">
 </pre></div>
 
 
-<p>As an additional step we can add a certificate to the domain by navigating to https://www.cloudflare.com/distributed-web-gateway/ and scrolling down to the bottom:</p>
+<p>As an additional step we can add a certificate to the domain by navigating to <a href="https://www.cloudflare.com/distributed-web-gateway/">https://www.cloudflare.com/distributed-web-gateway/</a> and scrolling down to the bottom:</p>
 <p><center><img src="images/ipfs_cloudflare_ca.png" alt="ipfs_cloudflare_ca" width="400px" /></center></p>
 <p>After a few seconds this should complete:</p>
 <p><center><img src="images/ipfs_cloudflare_ca_done.png" alt="ipfs_cloudflare_ca_done" width="400px" /></center></p>
-<p>Before checking if my domain is working I will verify the content on the IPFS server of Cloudflare. By navigating to https://cloudflare-ipfs.com/ipfs/Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u/ I can check if the website is available. Initially it showed me the right page, but without the image.</p>
+<p>Before checking if my domain is working I will verify the content on the IPFS server of Cloudflare. By navigating to <a href="https://cloudflare-ipfs.com/ipfs/Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u/">https://cloudflare-ipfs.com/ipfs/Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u/</a> I can check if the website is available. Initially it showed me the right page, but without the image.</p>
 <p><center><img src="images/ipfs_cloudflare_wait.png" alt="ipfs_cloudflare_wait" width="400px" /></center></p>
 <p>After waiting a couple of minutes the image shows too:</p>
 <p><center><img src="images/ipfs_cloudflare_done.png" alt="ipfs_cloudflare_done" width="400px" /></center></p>
 <h2>Setup ENS</h2>
-<p>I have registered my <code>eth</code> domain with https://app.ens.domains/ to make sure nobody would take <code>jitsejan.eth</code>. To see my domains I will need to connect to my wallet which I used to buy the domains. </p>
-<p>Because I bought the domain on my phone using the Cipher Browser some time ago and since then Cipher Browser got acquired by Coinbase the Cipher app was disabled. I did not have access to the Ethereum network and could not access https://app.ens.domains. Using the recovery phrase I was able to import my wallet into Firefox with MetaMask on my laptop and manage my domains.</p>
-<p>Navigate to your <code>eth</code> domain page, for example https://app.ens.domains/name/jitsejan.eth, and by clicking the <code>+</code> under <strong>Records</strong> add the content with your IPFS link:</p>
+<p>I have registered my <code>eth</code> domain with <a href="https://app.ens.domains">https://app.ens.domains</a> to make sure nobody would take <code>jitsejan.eth</code>. To see my domains I will need to connect to my wallet which was used to buy the domains. </p>
+<p>Because I bought the domain on my phone using the Cipher Browser some time ago and since then Cipher Browser got acquired by Coinbase the Cipher app was disabled. I did not have access to the Ethereum network and could not access <a href="https://app.ens.domains">https://app.ens.domains</a>. Using the recovery phrase I was able to import my wallet into Firefox with MetaMask on my laptop and manage my domains.</p>
+<p>Navigate to your <code>eth</code> domain page, for example <a href="https://app.ens.domains/name/jitsejan.eth">https://app.ens.domains/name/jitsejan.eth</a>, and by clicking the <code>+</code> under <strong>Records</strong> add the content with your IPFS link:</p>
 <p><center><img src="images/ipfs_ens_overview.png" alt="ipfs_ens_overview" width="600px" /></center></p>
-<p>Note: Adding content to the network will cost ~~money~~ gas! </p>
+<p>Note: Adding content to the network will cost gas! </p>
 <p><center><img src="images/ipfs_gas_cost.png" alt="ipfs_gas_cost" width="300px" /></center></p>
-<p>After being very patience the website will be visible on http://jitsejan.eth.link. Note the <code>.link</code> in the end to make sure the DNS can handle the content hosted on ENS (info: http://eth.link/). Viewing the page is free, so refreshing every second wouldn't cost you money. </p>
+<p>After being very patience the website will be visible on <a href="http://jitsejan.eth.link">http://jitsejan.eth.link</a>. Note the <code>.link</code> in the end to make sure the DNS can handle the content hosted on ENS (info: http://eth.link/). Viewing the page is free, so refreshing every second wouldn't cost you money. </p>
 <p><center><img src="images/ipfs_eth_link.png" alt="ipfs_eth_link" width="600px" /></center></p>
 <h2>Future work</h2>
 <ul>
