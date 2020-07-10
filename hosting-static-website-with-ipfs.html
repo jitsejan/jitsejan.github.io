@@ -11864,46 +11864,36 @@ jQuery(document).ready(function($) {
             <p>In this article I will upload a static website to <a href="https://ipfs.io">IPFS</a> to get myself familiar with the steps it takes to link an .eth domain to content hosted on the distributed web.</p>
 <h2>Prerequisites</h2>
 <h3>Mac</h3>
-<ol>
-<li>Install IPFS Desktop according to the <a href="https://docs.ipfs.io/install/">install instructions</a>. This will add IPFS to the toolbar (the cube icon).
-   <center><img src="images/ipfs_toolbar.png" width="200px" /></center></li>
-<li>Verify that IPFS is working properly by clicking the icon.
-   <center><img src="images/ipfs_toolbar_popup.png" width="200px" /></center></li>
-<li>
-<p>Test <code>ipfs</code> in the command line after enabling <em>Command Line Tools</em> in the <em>Preferences</em>:</p>
+<p>Install IPFS Desktop according to the <a href="https://docs.ipfs.io/install/">install instructions</a>. This will add IPFS to the toolbar (the cube icon).</p>
+<p><center><img src="images/ipfs_toolbar.png" width="200px" /></center></p>
+<p>Verify that IPFS is working properly by clicking the icon.</p>
+<p><center><img src="images/ipfs_toolbar_popup.png" width="200px" /></center>
+Test <code>ipfs</code> in the command line after enabling <em>Command Line Tools</em> in the <em>Preferences</em>:</p>
 <div class="highlight"><pre><span></span>~/code/ipfs-static-website $                                                                           
 ❯ ipfs --version
-ipfs version 0.6.0
+ipfs version <span class="m">0</span>.6.0
 </pre></div>
 
 
-</li>
-<li>
-<p>Installing the Desktop will already start the daemon, so running <code>ipfs daemon</code> is not necessary.</p>
-</li>
-</ol>
+<p>By installing the Desktop will already start the daemon, so running <code>ipfs daemon</code> is not necessary.</p>
 <h3>VPS</h3>
-<ol>
-<li>
 <p>Install the <code>go-ipfs</code> by retrieving the TAR-ball, extracing it and running the installation script.</p>
 <div class="highlight"><pre><span></span>~/ $ wget https://github.com/ipfs/go-ipfs/releases/download/v0.5.1/go-ipfs_v0.5.1_linux-amd64.tar.gz
 ~/ $ tar -xvzf go-ipfs_v0.5.1_linux-amd64.tar.gz
-~/ $ cd go-ipfs
+~/ $ <span class="nb">cd</span> go-ipfs
 ~/go-ipfs $ sudo bash install.sh
 ~/go-ipfs $ ipfs --version
-ipfs version 0.5.1
+ipfs version <span class="m">0</span>.5.1
 </pre></div>
 
 
-</li>
-<li>
 <p>Initialization will start the node in a local folder. Once you have been added as a node, the daemon can be started. </p>
 <div class="highlight"><pre><span></span>$ ipfs init --profile server
 initializing IPFS node at /home/jitsejan/.ipfs
 generating <span class="m">2048</span>-bit RSA keypair...done
 peer identity: QmSztWC9dxLzUV7Ph5ZJLwhGW5aLRG2Pwptis3cw6cfK53
 to get started, enter:
-          ipfs cat /ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc/readme
+         ipfs cat /ipfs/QmQPeNsJPyVWPFDVHb77w8G42Fvo15z4bG2X8D2GhfbSXc/readme
 $ ipfs daemon
 Initializing daemon...
 go-ipfs version: <span class="m">0</span>.5.1
@@ -11926,8 +11916,6 @@ Daemon is ready
 </pre></div>
 
 
-</li>
-<li>
 <p>Verify the peers that are connected.</p>
 <div class="highlight"><pre><span></span>$ ipfs swarm peers
 /ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ
@@ -11946,23 +11934,20 @@ Daemon is ready
 </pre></div>
 
 
-</li>
-<li>
-<p>Execute the sample test by adding a string to IPFS and querying it using curl. </p>
+<p>Execute the sample test by adding a string to IPFS and querying it using <code>curl</code>. </p>
 <div class="highlight"><pre><span></span>$ <span class="nv">hash</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="s2">&quot;I &lt;3 IPFS -</span><span class="k">$(</span>whoami<span class="k">)</span><span class="s2">&quot;</span> <span class="p">|</span> ipfs add -q<span class="sb">`</span>
 $ <span class="nb">echo</span> <span class="nv">$hash</span>
 QmR8yeru6tqJis2WR5YV6xmgAQHTBwPKxN8DoJK7uhK4Z3
 $ curl <span class="s2">&quot;https://ipfs.io/ipfs/</span><span class="nv">$hash</span><span class="s2">&quot;</span>
 I &lt;<span class="m">3</span> IPFS -jitsejan
-<span class="sb">```</span>
-</pre></div>
+        <span class="sb">```</span>
 
+<span class="c1">## Create a basic website</span>
 
-</li>
-</ol>
-<h2>Create a basic website</h2>
-<p>The website that we will upload has the following structure. I chose to use subfolders for <code>css</code> and <code>images</code> to make sure this is also supported by IPFS. In the future I want to upload more complex websites to IPFS, for example my personal blog that is statis website created using <a href="https://blog.getpelican.com">Pelican</a>. From my understanding of IPFS it is not possible to upload dynamic content at this point.</p>
-<div class="highlight"><pre><span></span>~/code/ipfs-static-website $
+The website that we will upload has the following structure. I chose to use subfolders <span class="k">for</span> <span class="sb">`</span>css<span class="sb">`</span> and <span class="sb">`</span>images<span class="sb">`</span> to make sure this is also supported by IPFS. In the future I want to upload more complex websites to IPFS, <span class="k">for</span> example my personal blog that is statis website created using <span class="o">[</span>Pelican<span class="o">](</span>https://blog.getpelican.com<span class="o">)</span>. From my understanding of IPFS it is not possible to upload dynamic content at this point.
+
+<span class="sb">```</span>bash
+~/code/ipfs-static-website $
 ❯ tree
 .
 ├── README.md
