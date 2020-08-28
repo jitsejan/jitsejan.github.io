@@ -182,6 +182,12 @@ article code {
   border-radius: 0;
   font-size: 13px;
 }
+article p code,
+article li code {
+  color: #777;
+  background: none;
+  border: none;
+}
 article article pre code {
   color: white;
   background-color: black;
