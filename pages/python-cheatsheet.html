@@ -11863,18 +11863,18 @@ jQuery(document).ready(function($) {
         <div class="article_content">
             <p>This is my <a href="https://www.python.org/">Python</a> cheatsheet</p>
 <h3>Pretty print a dictionary</h3>
-<div class="highlight"><pre><span></span><span class="k">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">characters</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">print</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">characters</span><span class="p">[:</span><span class="mi">1</span><span class="p">],</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</code></pre></div>
 
 
 <h3>Find index of item in dictionary</h3>
-<div class="highlight"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">index</span> <span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Mario&#39;</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">index</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">index</span> <span class="k">for</span> <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span> <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Mario&#39;</span><span class="p">)</span>
+</code></pre></div>
 
 
 <h2>Databases</h2>
 <h3>Retrieve from Postgresql</h3>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">psycopg2</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">psycopg2</span>
 <span class="n">connnection</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s2">&quot;character_db&quot;</span><span class="p">,</span>
                                <span class="n">user</span><span class="o">=</span><span class="s2">&quot;character_user&quot;</span><span class="p">,</span>
                                <span class="n">password</span><span class="o">=</span><span class="s2">&quot;character1234&quot;</span><span class="p">,</span>
@@ -11883,11 +11883,11 @@ jQuery(document).ready(function($) {
 <span class="n">cursor</span> <span class="o">=</span> <span class="n">connnection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM </span><span class="se">\&quot;</span><span class="s2">characters</span><span class="se">\&quot;</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">characters</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Dictionary to CSV</h3>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">csv</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">csv</span>
 <span class="k">def</span> <span class="nf">write_dictionary_to_csv</span><span class="p">(</span><span class="n">o_file</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Write dictionary to output file &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">o_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
@@ -11897,19 +11897,19 @@ jQuery(document).ready(function($) {
 
 <span class="n">output_file</span> <span class="o">=</span> <span class="s1">&#39;output.csv&#39;</span>
 <span class="n">write_dictionary_to_csv</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Web crawling</h2>
 <h3>Use urllib2 to retrieve page content</h3>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib2</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">urllib2</span>
 <span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s1">&#39;http://www.mariowiki.com&#39;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Set header for urllib2</h3>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">urllib2</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">urllib2</span>
 <span class="c1"># Header to request a page with NL as country</span>
 <span class="n">HEADER</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Accept-Language&#39;</span><span class="p">:</span> <span class="s1">&#39;nl-NL&#39;</span><span class="p">,</span>
        <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s2">&quot;&quot;&quot;Mozilla/5.0 (Windows; U;</span>
@@ -11920,92 +11920,92 @@ jQuery(document).ready(function($) {
 <span class="s2">                       nl-NL&quot;&quot;&quot;</span><span class="p">}</span>
 <span class="n">req</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="s1">&#39;http://www.mariowiki.com&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">HEADER</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">urllib2</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Use requests to retrieve page content</h3>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://www.mariowiki.com&#39;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">content</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Use Selenium to retrieve page content</h3>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 <span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">()</span>
 <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://www.mariowiki.com&#39;</span><span class="p">)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">browser</span><span class="o">.</span><span class="n">page_source</span>
 <span class="n">browser</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Scroll down in Selenium</h3>
-<div class="highlight"><pre><span></span><span class="n">browser</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="s2">&quot;window.scrollTo(0, document.body.scrollHeight);&quot;</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">browser</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="s2">&quot;window.scrollTo(0, document.body.scrollHeight);&quot;</span><span class="p">)</span>
+</code></pre></div>
 
 
 <h3>Find an element and click in Selenium</h3>
 <p>By CSS selector:</p>
-<div class="highlight"><pre><span></span><span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s1">&#39;#clickme&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s1">&#39;#clickme&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</code></pre></div>
 
 
 <p>By attribute:</p>
-<div class="highlight"><pre><span></span><span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="s1">&#39;//input[@title=&quot;Open page&quot;]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="s1">&#39;//input[@title=&quot;Open page&quot;]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</code></pre></div>
 
 
 <h3>Make a list of links with cssselect</h3>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lxml.html</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">lxml.html</span>
 <span class="n">tree</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">links</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://www.mariowiki.com&#39;</span><span class="o">+</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s1">&#39;div[role*=</span><span class="se">\&#39;</span><span class="s1">navigation</span><span class="se">\&#39;</span><span class="s1">] a&#39;</span><span class="p">)]</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Switch between tabs with Selenium</h3>
-<div class="highlight"><pre><span></span><span class="n">browser</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="n">window_name</span><span class="o">=</span><span class="n">browser</span><span class="o">.</span><span class="n">window_handles</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight"><pre><span></span><code><span class="n">browser</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="n">window_name</span><span class="o">=</span><span class="n">browser</span><span class="o">.</span><span class="n">window_handles</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">browser</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
 <span class="n">browser</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="n">window_name</span><span class="o">=</span><span class="n">browser</span><span class="o">.</span><span class="n">window_handles</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Pickle</h2>
 <p>Use the pickle libary to save a variable to a file and load it again.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pickle</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">]</span>
 <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span> <span class="n">colors</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span> <span class="s2">&quot;colors.p&quot;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span> <span class="p">)</span> <span class="p">)</span>
 <span class="n">saved_colors</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="nb">open</span><span class="p">(</span> <span class="s2">&quot;colors.p&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span> <span class="p">)</span> <span class="p">)</span>
 <span class="n">saved_colors</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Filter</h2>
 <p>A simple trick to select columns from a dataframe:</p>
-<div class="highlight"><pre><span></span><span class="c1"># Create the filter condition</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create the filter condition</span>
 <span class="n">condition</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">DESIRED_COLUMNS</span>
 <span class="c1"># Filter the dataframe</span>
 <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="o">*</span><span class="nb">filter</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Use seaborn to create heatmap</h2>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">df</span>\
             <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;field_a&#39;</span><span class="p">,</span> <span class="s1">&#39;field_b&#39;</span><span class="p">])[</span><span class="s1">&#39;amount&#39;</span><span class="p">]</span>\
             <span class="o">.</span><span class="n">sum</span><span class="p">()</span>\
             <span class="o">.</span><span class="n">to_frame</span><span class="p">()</span>\
             <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>\
             <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">&#39;field_a&#39;</span><span class="p">,</span> <span class="s1">&#39;field_b&#39;</span><span class="p">,</span> <span class="s1">&#39;amount&#39;</span><span class="p">));</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>or </p>
-<div class="highlight"><pre><span></span><span class="n">sdf</span> <span class="o">=</span> <span class="n">df</span>\
+<div class="highlight"><pre><span></span><code><span class="n">sdf</span> <span class="o">=</span> <span class="n">df</span>\
         <span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;field_a&#39;</span><span class="p">,</span> <span class="s1">&#39;field_b&#39;</span><span class="p">])[</span><span class="s1">&#39;amount&#39;</span><span class="p">]</span>\
         <span class="o">.</span><span class="n">sum</span><span class="p">()</span>\
         <span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">sdf</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="s1">&#39;genre&#39;</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;view_hours&#39;</span><span class="p">))</span>
-</pre></div>
+</code></pre></div>
         </div>
 
     </article>

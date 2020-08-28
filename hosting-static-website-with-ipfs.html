@@ -11869,26 +11869,26 @@ jQuery(document).ready(function($) {
 <p>Verify that IPFS is working properly by clicking the icon.</p>
 <p><center><img src="images/ipfs_toolbar_popup.png" width="200px" /></center>
 Test <code>ipfs</code> in the command line after enabling <em>Command Line Tools</em> in the <em>Preferences</em>:</p>
-<div class="highlight"><pre><span></span>~/code/ipfs-static-website $                                                                           
+<div class="highlight"><pre><span></span><code>~/code/ipfs-static-website $                                                                           
 ❯ ipfs --version
 ipfs version <span class="m">0</span>.6.0
-</pre></div>
+</code></pre></div>
 
 
 <p>By installing the Desktop will already start the daemon, so running <code>ipfs daemon</code> is not necessary.</p>
 <h3>VPS</h3>
 <p>Install the <code>go-ipfs</code> by retrieving the TAR-ball, extracing it and running the installation script.</p>
-<div class="highlight"><pre><span></span>~/ $ wget https://github.com/ipfs/go-ipfs/releases/download/v0.5.1/go-ipfs_v0.5.1_linux-amd64.tar.gz
+<div class="highlight"><pre><span></span><code>~/ $ wget https://github.com/ipfs/go-ipfs/releases/download/v0.5.1/go-ipfs_v0.5.1_linux-amd64.tar.gz
 ~/ $ tar -xvzf go-ipfs_v0.5.1_linux-amd64.tar.gz
 ~/ $ <span class="nb">cd</span> go-ipfs
 ~/go-ipfs $ sudo bash install.sh
 ~/go-ipfs $ ipfs --version
 ipfs version <span class="m">0</span>.5.1
-</pre></div>
+</code></pre></div>
 
 
 <p>Initialization will start the node in a local folder. Once you have been added as a node, the daemon can be started. </p>
-<div class="highlight"><pre><span></span>$ ipfs init --profile server
+<div class="highlight"><pre><span></span><code>$ ipfs init --profile server
 initializing IPFS node at /home/jitsejan/.ipfs
 generating <span class="m">2048</span>-bit RSA keypair...done
 peer identity: QmSztWC9dxLzUV7Ph5ZJLwhGW5aLRG2Pwptis3cw6cfK53
@@ -11913,11 +11913,11 @@ API server listening on /ip4/127.0.0.1/tcp/5001
 WebUI: http://127.0.0.1:5001/webui
 Gateway <span class="o">(</span><span class="nb">readonly</span><span class="o">)</span> server listening on /ip4/127.0.0.1/tcp/8080
 Daemon is ready
-</pre></div>
+</code></pre></div>
 
 
 <p>Verify the peers that are connected.</p>
-<div class="highlight"><pre><span></span>$ ipfs swarm peers
+<div class="highlight"><pre><span></span><code>$ ipfs swarm peers
 /ip4/104.131.131.82/tcp/4001/p2p/QmaCpDMGvV2BGHeYERUEnRQAwe3N8SzbUtfsmvsqQLuvuJ
 /ip4/111.229.117.28/tcp/4001/p2p/QmXUKFSAKB4K9mSVMmtjJw55CkcyXajwTLXdmxvTC4kYy6
 /ip4/113.255.3.43/tcp/44244/p2p/QmYC6H9pD26iAMnSiDgn1Rtz8g7Kmiv7mMjoCPRUGkQMLk
@@ -11931,21 +11931,21 @@ Daemon is ready
 /ip4/207.148.19.196/tcp/20010/p2p/12D3KooWMRXRibgUrCY9FDEXG8DFX3RtqwDKLQT98dgAZP25jvRu
 /ip4/49.234.193.176/tcp/4001/p2p/QmakhXhhfcpKpy1LY9FgBqZ6WcMMgeZqPzXjZSDEcFAmQ2
 /ip4/73.95.18.162/tcp/51238/p2p/QmWMZpfbMfwRumwrrDjicWsBzHCGzq91AR285dtkrAQB9D
-</pre></div>
+</code></pre></div>
 
 
 <p>Execute the sample test by adding a string to IPFS and querying it using <code>curl</code>. </p>
-<div class="highlight"><pre><span></span>$ <span class="nv">hash</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="s2">&quot;I &lt;3 IPFS -</span><span class="k">$(</span>whoami<span class="k">)</span><span class="s2">&quot;</span> <span class="p">|</span> ipfs add -q<span class="sb">`</span>
+<div class="highlight"><pre><span></span><code>$ <span class="nv">hash</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="s2">&quot;I &lt;3 IPFS -</span><span class="k">$(</span>whoami<span class="k">)</span><span class="s2">&quot;</span> <span class="p">|</span> ipfs add -q<span class="sb">`</span>
 $ <span class="nb">echo</span> <span class="nv">$hash</span>
 QmR8yeru6tqJis2WR5YV6xmgAQHTBwPKxN8DoJK7uhK4Z3
 $ curl <span class="s2">&quot;https://ipfs.io/ipfs/</span><span class="nv">$hash</span><span class="s2">&quot;</span>
 I &lt;<span class="m">3</span> IPFS -jitsejan
-</pre></div>
+</code></pre></div>
 
 
 <h2>Create a basic website</h2>
 <p>The website that we will upload has the following structure. I chose to use subfolders for <code>css</code> and <code>images</code> to make sure this is also supported by IPFS. In the future I want to upload more complex websites to IPFS, for example my personal blog that is statis website created using <a href="https://blog.getpelican.com">Pelican</a>. From my understanding of IPFS it is not possible to upload dynamic content at this point.</p>
-<div class="highlight"><pre><span></span>~/code/ipfs-static-website $
+<div class="highlight"><pre><span></span><code>~/code/ipfs-static-website $
 ❯ tree
 .
 ├── README.md
@@ -11954,12 +11954,12 @@ I &lt;<span class="m">3</span> IPFS -jitsejan
 ├── images
 │   └── blockchain.jpg
 └── index.html
-</pre></div>
+</code></pre></div>
 
 
 <p>The template for the website has a link to the stylesheet, some content and an image.</p>
 <p><code>index.html</code></p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;style.css&quot;</span><span class="p">&gt;</span>
@@ -11974,12 +11974,12 @@ I &lt;<span class="m">3</span> IPFS -jitsejan
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The stylesheet sets the background for the page and makes sure the image is aligned in the center.</p>
 <p><code>style.css</code></p>
-<div class="highlight"><pre><span></span><span class="nt">body</span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="nt">body</span><span class="p">{</span>
     <span class="k">background-color</span><span class="p">:</span> <span class="kc">black</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="p">.</span><span class="nc">main-container</span><span class="p">{</span>
@@ -11993,13 +11993,13 @@ I &lt;<span class="m">3</span> IPFS -jitsejan
     <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
     <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><center><img src="images/ipfs_local.png" width="600px" /></center></p>
 <h2>Add files to IPFS</h2>
 <p>Now that the files have been created the website should be added to the filesystem. Run <code>ipfs add -r</code> in the folder that should be uploaded to recursively add the files to IPFS.</p>
-<div class="highlight"><pre><span></span>~/code/ipfs-static-website $
+<div class="highlight"><pre><span></span><code>~/code/ipfs-static-website $
 ❯ ipfs add -r .
 added QmNfVVQsXyekrNiM2dK35oQXg2dGqQ97Gz2PDBxUH6Piqu ipfs-static-website/README.md
 added QmZEZJRrb6WxoenKzuXtu9jUgmCxGpg777Y2zqcFwifGNS ipfs-static-website/css/style.css
@@ -12009,7 +12009,7 @@ added QmUnsAAQ5vpH4gX1ypR5WaQJb1KDP7KsTEomiijJzetUvM ipfs-static-website/css
 added QmYBwq5uLGX6zfEBwjQ7UHgEv3Ton9hX4QjxxkTfg1tdVx ipfs-static-website/images
 added Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u ipfs-static-website
  <span class="m">77</span>.86 KiB / <span class="m">178</span>.67 KiB <span class="o">[===========================</span>&gt;----------------------------------<span class="o">]</span>  <span class="m">43</span>.58%
-</pre></div>
+</code></pre></div>
 
 
 <p>The <code>SITE_ID</code> would be <code>Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u</code> as it is the hash of the main folder (bottom element). Opening up the file browser in <strong>IPFS desktop</strong> and searching for the <em>QmHash</em> will show the files from the repository.</p>
@@ -12021,9 +12021,9 @@ added Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u ipfs-static-website
 <p><center><img src="images/ipfs_local_ipfs.png" alt="ipfs_local_ipfs" width="600px" /></center></p>
 <h2>Use IPNS to host content</h2>
 <p>A downside of using IPFS is that every time the website changes the corresponding hashes will be updated. If you link directly to the IPFS hash with your DNS this will break the next time you update the website. To avoid manually updating the hash with every update we could use <a href="https://docs.ipfs.io/concepts/ipns/">IPNS</a> instead. The IPNS hash should remain the same even though the website gets updated. In order to get the IPNS hash we will need to publish using <code>ipfs name publish &lt;IPFS_HASH&gt;</code> and wait for the IPFS hash to be returned. In my case it took a minute before the publishing was completed.</p>
-<div class="highlight"><pre><span></span>❯ ipfs name publish Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u
+<div class="highlight"><pre><span></span><code>❯ ipfs name publish Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u
 Published to QmSztWC9dxLzUV7Ph5ZJLwhGW5aLRG2Pwptis3cw6cfK53: /ipfs/Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u
-</pre></div>
+</code></pre></div>
 
 
 <p>The return value contains the hash for IPNS which again we can verify using our localhost. The <code>$PEER_ID</code> will be <em>QmSztWC9dxLzUV7Ph5ZJLwhGW5aLRG2Pwptis3cw6cfK53</em> and can be appended to <a href="http://localhost:8080/ipns/">http://localhost:8080/ipns/</a>. Indeed opening <a href="http://localhost:8080/ipns/QmXwD1dj6ywm3pNQPY2vuEzjdxz1zvrnVe7DrJp56yBnPU/">http://localhost:8080/ipns/QmXwD1dj6ywm3pNQPY2vuEzjdxz1zvrnVe7DrJp56yBnPU/</a> shows again the basic website.</p>
@@ -12039,9 +12039,9 @@ Published to QmSztWC9dxLzUV7Ph5ZJLwhGW5aLRG2Pwptis3cw6cfK53: /ipfs/Qmeg3LpczHYLW
 <p>DNS link:</p>
 <p><center><img src="images/ipfs_cloufdflare_txt.png" alt="ipfs_cloufdflare_txt" width="600px" /></center></p>
 <p>These settings can be verified with <code>dig</code>  by checking the answer to a call to <code>_dnslink.&lt;subdomain&gt;.&lt;domain&gt;</code>. This should return the <code>dnslink</code> with the correct IPFS hash. </p>
-<div class="highlight"><pre><span></span>❯ dig +noall +answer TXT _dnslink.ipfs.jitsejan.com
+<div class="highlight"><pre><span></span><code>❯ dig +noall +answer TXT _dnslink.ipfs.jitsejan.com
 _dnslink.ipfs.jitsejan.com. <span class="m">300</span> IN  TXT <span class="s2">&quot;dnslink=/ipfs/Qmeg3LpczHYLWFhQ9htz6qjizkf2aPKm3qZEyW4autpo5u&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>As an additional step we can add a certificate to the domain by navigating to <a href="https://www.cloudflare.com/distributed-web-gateway/">https://www.cloudflare.com/distributed-web-gateway/</a> and scrolling down to the bottom:</p>

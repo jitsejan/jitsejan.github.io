@@ -11862,24 +11862,24 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <h2>Update npm</h2>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code $ sudo npm install -g npm
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code $ sudo npm install -g npm
+</code></pre></div>
 
 
 <h2>Update nodejs</h2>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code $ sudo npm install -g n
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code $ sudo npm install -g n
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code $ sudo n stable
-</pre></div>
+</code></pre></div>
 
 
 <h2>Install geth</h2>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ brew tap ethereum/ethereum
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ brew tap ethereum/ethereum
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ brew install ethereum
-</pre></div>
+</code></pre></div>
 
 
 <h2>Check versions</h2>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ sw_vers
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ sw_vers
 ProductName:    Mac OS X
 ProductVersion: <span class="m">10</span>.12.4
 BuildVersion:   16E195
@@ -11900,26 +11900,26 @@ jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ npm -v
 <span class="m">4</span>.2.0
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ python -V
 Python <span class="m">2</span>.7.13 :: Anaconda <span class="m">4</span>.3.1 <span class="o">(</span>x86_64<span class="o">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Create structure for the app</h2>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ mkdir truffle-dapp
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ mkdir truffle-dapp
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ <span class="nb">cd</span> truffle-dapp/ <span class="o">&amp;&amp;</span> git init <span class="o">&amp;&amp;</span> npm init
-</pre></div>
+</code></pre></div>
 
 
 <h2>Install web3 and testrpc</h2>
 <p>Note that you need to use Python 2.7 in order to be able to install the Ethereum testrpc.</p>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ npm install ethereumjs-testrpc web3 --save --python<span class="o">=</span>python2.7
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ npm install ethereumjs-testrpc web3 --save --python<span class="o">=</span>python2.7
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ <span class="nb">echo</span> node_modules/ &gt;&gt; .gitignore
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ git commit -a -m <span class="s2">&quot;Initial commit&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Start the testrpc</h2>
 <p>This includes 10 unlocked accounts with 100 Ether each.</p>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ node_modules/.bin/testrpc
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ node_modules/.bin/testrpc
 Secp256k1 bindings are not compiled. Pure JS implementation will be used.
 EthereumJS TestRPC v3.0.5
 
@@ -11955,13 +11955,13 @@ Mnemonic:      search romance drip card right human valley tilt depart detail na
 Base HD Path:  m/44<span class="s1">&#39;/60&#39;</span>/0<span class="err">&#39;</span>/0/<span class="o">{</span>account_index<span class="o">}</span>
 
 Listening on localhost:8545
-</pre></div>
+</code></pre></div>
 
 
 <p>Note. The mnemonic with the 12 words will be used later in Metamask.</p>
 <h2>Connect to the testrpc</h2>
 <p>Create a client and check the balance.</p>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ node
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ node
 &gt; <span class="nv">Web3</span> <span class="o">=</span> require<span class="o">(</span><span class="s1">&#39;web3&#39;</span><span class="o">)</span>
 <span class="o">{</span> <span class="o">[</span>Function: Web3<span class="o">]</span>
   providers:
@@ -11972,37 +11972,37 @@ Listening on localhost:8545
 <span class="s1">&#39;0x914cb49b14a339d000858dc4c8b4cb0e9195c574&#39;</span>
 &gt; web3.fromWei<span class="o">(</span>web3.eth.getBalance<span class="o">(</span>primary<span class="o">)</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span>.toString<span class="o">()</span>
 <span class="s1">&#39;100&#39;</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Install the Truffle scaffold</h2>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ npm install truffle --save --python<span class="o">=</span>python2.7
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ npm install truffle --save --python<span class="o">=</span>python2.7
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ truffle version
 Truffle v3.2.2
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ truffle init webpack
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ git add .
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ git commit -m <span class="s2">&quot;Truffle init&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Compile</h2>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ truffle compile
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ truffle compile
 Compiling ./contracts/ConvertLib.sol...
 Compiling ./contracts/MetaCoin.sol...
 Compiling ./contracts/Migrations.sol...
 Writing artifacts to ./build/contracts
-</pre></div>
+</code></pre></div>
 
 
 <h2>Migrate</h2>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ truffle migrate
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ truffle migrate
+</code></pre></div>
 
 
 <h2>Deploy</h2>
 <p>Start the server in the development environment.</p>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ npm run dev
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ npm run dev
+</code></pre></div>
 
 
 <p>Now by accessing localhost:8080 the web application is visible and we can send some MetaCoin.</p>

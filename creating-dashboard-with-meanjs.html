@@ -11865,25 +11865,25 @@ jQuery(document).ready(function($) {
 <h2>Installation of MEAN.JS</h2>
 <p>I will skip the biggest part of installing MEAN.JS itself, since it is clearly explained on their website.</p>
 <p>Follow the instructions from <a href="http://meanjs.org/generator.html">MEAN.JS</a> to generate the scaffold.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjvps:~/code$ npm install -g yo
+<div class="highlight"><pre><span></span><code>jitsejan@jjvps:~/code$ npm install -g yo
 jitsejan@jjvps:~/code$ npm install -g generator-meanjs
 jitsejan@jjvps:~/code$ yo meanjs
-</pre></div>
+</code></pre></div>
 
 
 <p>Answer 'No' to all questions.</p>
 <h2>Initialization</h2>
-<div class="highlight"><pre><span></span>jitsejan@jjvps:~/code$ <span class="nb">cd</span> mean-dashboard/
+<div class="highlight"><pre><span></span><code>jitsejan@jjvps:~/code$ <span class="nb">cd</span> mean-dashboard/
 jitsejan@jjvps:~/code/mean-dashboard$ git init
 jitsejan@jjvps:~/code/mean-dashboard$ git add .
 jitsejan@jjvps:~/code/mean-dashboard$ git commit -m <span class="s2">&quot;Initial commit&quot;</span>
 jitsejan@jjvps:~/code/mean-dashboard$ grunt
-</pre></div>
+</code></pre></div>
 
 
 <p>At this point you should see the boilerplate of the MEAN.JS application.</p>
 <p>By changing the modules/core/client/views/home.client.view.html the frontpage can be changed. I stripped it down to the following.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">section</span> <span class="na">ng-controller</span><span class="o">=</span><span class="s">&quot;HomeController&quot;</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">section</span> <span class="na">ng-controller</span><span class="o">=</span><span class="s">&quot;HomeController&quot;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;jumbotron text-center&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row&quot;</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">p</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;lead&quot;</span><span class="p">&gt;</span>
@@ -11892,24 +11892,24 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>I also changed the title of the page by adapting config/env/default.js.</p>
 <h2>Change the database</h2>
 <p>Change MongoDB url in config/env/development.js from:</p>
-<div class="highlight"><pre><span></span><span class="n">uri</span><span class="o">:</span> <span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">MONGOHQ_URL</span> <span class="o">||</span> <span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">MONGOLAB_URI</span> <span class="o">||</span> <span class="s1">&#39;mongodb://&#39;</span> <span class="o">+</span> <span class="o">(</span><span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">DB_1_PORT_27017_TCP_ADDR</span> <span class="o">||</span> <span class="s1">&#39;localhost&#39;</span><span class="o">)</span> <span class="o">+</span> <span class="s1">&#39;/mean-dev&#39;</span><span class="o">,</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">uri</span><span class="o">:</span> <span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">MONGOHQ_URL</span> <span class="o">||</span> <span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">MONGOLAB_URI</span> <span class="o">||</span> <span class="s1">&#39;mongodb://&#39;</span> <span class="o">+</span> <span class="o">(</span><span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">DB_1_PORT_27017_TCP_ADDR</span> <span class="o">||</span> <span class="s1">&#39;localhost&#39;</span><span class="o">)</span> <span class="o">+</span> <span class="s1">&#39;/mean-dev&#39;</span><span class="o">,</span>
+</code></pre></div>
 
 
 <p>to</p>
-<div class="highlight"><pre><span></span><span class="n">uri</span><span class="o">:</span> <span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">MONGOHQ_URL</span> <span class="o">||</span> <span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">MONGOLAB_URI</span> <span class="o">||</span> <span class="s1">&#39;mongodb://&#39;</span> <span class="o">+</span> <span class="o">(</span><span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">DB_1_PORT_27017_TCP_ADDR</span> <span class="o">||</span> <span class="s1">&#39;localhost&#39;</span><span class="o">)</span> <span class="o">+</span> <span class="s1">&#39;/mean-dashboard&#39;</span><span class="o">,</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">uri</span><span class="o">:</span> <span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">MONGOHQ_URL</span> <span class="o">||</span> <span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">MONGOLAB_URI</span> <span class="o">||</span> <span class="s1">&#39;mongodb://&#39;</span> <span class="o">+</span> <span class="o">(</span><span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">DB_1_PORT_27017_TCP_ADDR</span> <span class="o">||</span> <span class="s1">&#39;localhost&#39;</span><span class="o">)</span> <span class="o">+</span> <span class="s1">&#39;/mean-dashboard&#39;</span><span class="o">,</span>
+</code></pre></div>
 
 
 <h2>Create a CRUD-module</h2>
-<div class="highlight"><pre><span></span>jitsejan@jjvps:~/code/mean-dashboard$ yo meanjs:crud-module refills
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjvps:~/code/mean-dashboard$ yo meanjs:crud-module refills
+</code></pre></div>
 
 
 <p>Next I want to add more fields to the refills by changing the model.</p>
@@ -11926,7 +11926,7 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
 <li>Distance [optional]</li>
 </ul>
 <p>To modify the model, change the code in modules/refills/server/models/refill.server.model.js.</p>
-<div class="highlight"><pre><span></span><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code><span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
 <span class="cm">/**</span>
 <span class="cm"> * Module dependencies.</span>
@@ -11955,11 +11955,11 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
 <span class="p">});</span>
 
 <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;Refill&#39;</span><span class="p">,</span> <span class="nx">RefillSchema</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>New code:</p>
-<div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">RefillSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">RefillSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
   <span class="nx">name</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">type</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
     <span class="k">default</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
@@ -11999,32 +11999,32 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
     <span class="nx">ref</span><span class="o">:</span> <span class="s1">&#39;User&#39;</span>
   <span class="p">}</span>
 <span class="p">});</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>To create a new instance, I also updated the form in <code>modules/refills/client/form-refill.client.view.html</code>, but since this is pretty straight forward I will not show the code here.</p>
 <p>At this point you should be able to create and list the refills. Update the other views to show the new fields.</p>
 <h2>Create the line chart</h2>
 <p>Create a directive and choose <code>refills</code> as the module and 'line-chart' as the name.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjvps:~/code/mean-dashboard$ yo meanjs:angular-directive line-chart
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjvps:~/code/mean-dashboard$ yo meanjs:angular-directive line-chart
+</code></pre></div>
 
 
 <p>This will create the file <code>refills/client/directives/line-chart.client.directive.js</code>.</p>
 <p>Install D3 via Bower.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjvps:~/code/mean-dashboard$ bower install d3 --save
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjvps:~/code/mean-dashboard$ bower install d3 --save
+</code></pre></div>
 
 
 <p>Add the JS file to the default config in 'config/assets/default.js' to the client JS.</p>
-<div class="highlight"><pre><span></span><span class="p">...</span>
+<div class="highlight"><pre><span></span><code><span class="p">...</span>
 <span class="s1">&#39;public/lib/d3/d3.min.js&#39;</span><span class="p">,</span>
 <span class="p">...</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The challenging part will be creating the D3 visualizations. The first graph is a line chart and the directive will have the following content.</p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
   <span class="nx">angular</span>
@@ -12097,26 +12097,26 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
     <span class="p">};</span>
   <span class="p">}</span>
 <span class="p">})();</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Finally the graph needs to be added to a view. In my case I have added it to the list view of the refills.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-if</span><span class="o">=</span><span class="s">&quot;vm.refills.$resolved &amp;&amp; vm.refills.length&quot;</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-if</span><span class="o">=</span><span class="s">&quot;vm.refills.$resolved &amp;&amp; vm.refills.length&quot;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">line-chart</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Important note: I have used the ng-if statement in order to have my data available in the directive. Without the if-statement I was not able to get the data in properly.</p>
 <p>When you navigate to the refills list page the graph will now be visible.</p>
 <p>Some additional graphs. Please note that currently the graphs are not-responsive and rescaling the window will not resize the graph.</p>
 <h2>Bar chart</h2>
-<div class="highlight"><pre><span></span>jitsejan@jjvps:~/code/mean-dashboard$ yo meanjs:angular-directive bar-chart
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjvps:~/code/mean-dashboard$ yo meanjs:angular-directive bar-chart
+</code></pre></div>
 
 
 <p><code>modules/refills/client/directives/bar-chart.client.directive.js</code></p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
   <span class="nx">angular</span>
@@ -12181,16 +12181,16 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
     <span class="p">};</span>
   <span class="p">}</span>
 <span class="p">})();</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>World map</h2>
-<div class="highlight"><pre><span></span>jitsejan@jjvps:~/code/mean-dashboard$ yo meanjs:angular-directive world-map
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjvps:~/code/mean-dashboard$ yo meanjs:angular-directive world-map
+</code></pre></div>
 
 
 <p><code>modules/refills/client/directives/world-map.client.directive.js</code></p>
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
   <span class="s1">&#39;use strict&#39;</span><span class="p">;</span>
 
   <span class="nx">angular</span>
@@ -12290,7 +12290,7 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
     <span class="p">};</span>
   <span class="p">}</span>
 <span class="p">})();</span>
-</pre></div>
+</code></pre></div>
         </div>
 
         <div class="meta">

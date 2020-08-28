@@ -11862,15 +11862,15 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <p>For the script to work, four applications need to be installed first.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ sudo pip install selenium
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo pip install selenium
 jitsejan@jjsvps:~$ sudo apt-get install firefox
 jitsejan@jjsvps:~$ sudo pip install pyvirtualdisplay
 jitsejan@jjsvps:~$ sudo apt-get install xvfb
-</pre></div>
+</code></pre></div>
 
 
 <p>Now the following script can be used.</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; samples/crawl_02.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; samples/crawl_02.py &quot;&quot;&quot;</span>
 <span class="c1">################################################################################</span>
 <span class="c1"># Application:      WebParser example 02</span>
 <span class="c1"># File:             samples/crawl_01.py</span>
@@ -11937,25 +11937,25 @@ jitsejan@jjsvps:~$ sudo apt-get install xvfb
     <span class="n">parser</span> <span class="o">=</span> <span class="n">WebParser</span><span class="p">()</span>
     <span class="n">etree</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_page</span><span class="p">(</span><span class="s1">&#39;http://isitweekendalready.com&#39;</span><span class="p">)</span>
     <span class="n">divs</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">find_css_element</span><span class="p">(</span><span class="n">etree</span><span class="p">,</span> <span class="s1">&#39;#result&#39;</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">divs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="nb">print</span> <span class="n">divs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
 <span class="c1">################################################################################</span>
 <span class="c1"># main</span>
 <span class="c1">################################################################################</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Update 05-Oct-2016</h3>
 <p>Recently I discovered that Selenium does not work well with newer versions of Firefox. Therefore I had to downgrade Firefox to be able to use Selenium.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ firefox -v
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ firefox -v
 jitsejan@jjsvps:~$ sudo apt-get purge firefox
 jitsejan@jjsvps:~$ wget sourceforge.net/projects/ubuntuzilla/files/mozilla/apt/pool/main/f/firefox-mozilla-build/firefox-mozilla-build_39.0.3-0ubuntu1_amd64.deb
 jitsejan@jjsvps:~$ sudo dpkg -i firefox-mozilla-build_39.0.3-0ubuntu1_amd64.deb 
 jitsejan@jjsvps:~$ rm firefox-mozilla-build_39.0.3-0ubuntu1_amd64.deb 
 jitsejan@jjsvps:~$ firefox -v
-</pre></div>
+</code></pre></div>
         </div>
 
         <div class="meta">

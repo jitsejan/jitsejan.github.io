@@ -11866,11 +11866,11 @@ jQuery(document).ready(function($) {
 <p>Note: I have a Docker container running with Selenium instead of installing all dependencies on my system. See <a href="https://hub.docker.com/r/selenium/standalone-chrome/">this page</a>.</p>
 <h2>Extract script</h2>
 <p>The script below is used to retrieve the data. It is ugly code, but it is doing the job.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">lxml.html</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">lxml.html</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver.common.desired_capabilities</span> <span class="kn">import</span> <span class="n">DesiredCapabilities</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">URL</span> <span class="o">=</span> <span class="s1">&#39;http://videogamecritic.com/nes.htm&#39;</span>
 
@@ -11894,7 +11894,7 @@ jQuery(document).ready(function($) {
 
 <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;GET &#39;</span><span class="o">+</span><span class="n">link</span><span class="o">+</span><span class="s1">&#39; {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;GET &#39;</span><span class="o">+</span><span class="n">link</span><span class="o">+</span><span class="s1">&#39; </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
 <span class="n">tree</span><span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 <span class="n">gamepages</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://videogamecritic.com/&#39;</span> <span class="o">+</span> <span class="n">game</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">game</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s1">&#39;h3 a&#39;</span><span class="p">)]</span>
 <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span><span class="s2">&quot;http://localhost:4444/wd/hub&quot;</span><span class="p">,</span> <span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">CHROME</span><span class="p">)</span>
@@ -11917,24 +11917,24 @@ jQuery(document).ready(function($) {
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">gamedata</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;vote&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;grade&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;publisher&quot;</span><span class="p">})</span>
 <span class="c1"># Extract and convert data</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;reader_rating&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vote&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;Readers:\s(.*?)\s\(&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;reader_rating&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vote&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;Readers:\s(.*?)\s\(&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;reader_rating&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;reader_rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">map_rating</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;number_of_votes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vote&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;\((\d*)\svotes\)&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;number_of_votes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vote&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;\((\d*)\svotes\)&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;grade&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;grade&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Grade:&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">map_rating</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;publish_year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;\((\d*)\)Reviewed&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s2">&quot;Publisher:\s(.*?)\s\(&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;vote&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;publish_year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;\((\d*)\)Reviewed&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s2">&quot;Publisher:\s(.*?)\s\(&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;vote&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="c1"># Calculate the total grade</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_grade&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;grade&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;reader_rating&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;number_of_votes&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;number_of_votes&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># Corrections</span>
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Electrobrain&#39;</span><span class="p">,</span> <span class="s1">&#39;Electro Brain&#39;</span><span class="p">)</span>
 <span class="c1"># Save to file</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;nesgamedata.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-</pre></div>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;nesgamedata.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
 
 
 <p>This will result in the following file.</p>
-<div class="highlight"><pre><span></span><span class="m">0</span>   <span class="m">10</span>-Yard Fight   <span class="m">12</span>  Nintendo    <span class="m">10</span>  <span class="m">44</span>  <span class="m">1985</span>    <span class="m">10</span>.044444444444444
+<div class="highlight"><pre><span></span><code><span class="m">0</span>   <span class="m">10</span>-Yard Fight   <span class="m">12</span>  Nintendo    <span class="m">10</span>  <span class="m">44</span>  <span class="m">1985</span>    <span class="m">10</span>.044444444444444
 <span class="m">1</span>   <span class="m">1942</span>    <span class="m">11</span>  Capcom  <span class="m">8</span>   <span class="m">65</span>  <span class="m">1985</span>    <span class="m">8</span>.045454545454545
 <span class="m">2</span>   <span class="m">1943</span>    <span class="m">5</span>   Capcom  <span class="m">4</span>   <span class="m">58</span>  <span class="m">1988</span>    <span class="m">4</span>.016949152542373
 <span class="m">3</span>   <span class="m">720</span> Degrees <span class="m">13</span>  Tengen  <span class="m">11</span>  <span class="m">24</span>  <span class="m">1989</span>    <span class="m">11</span>.08
@@ -11945,7 +11945,7 @@ jQuery(document).ready(function($) {
 <span class="m">8</span>   Adventure Island <span class="m">3</span>  <span class="m">4</span>   Hudson Soft <span class="m">5</span>   <span class="m">27</span>  <span class="m">1992</span>    <span class="m">4</span>.964285714285714
 <span class="m">9</span>   Adventures in the Magic Kingdom <span class="m">5</span>   Capcom  <span class="m">8</span>   <span class="m">23</span>  <span class="m">1990</span>    <span class="m">7</span>.875
 ...
-</pre></div>
+</code></pre></div>
 
 
 <h2>MapReduce script</h2>
@@ -11955,7 +11955,7 @@ jQuery(document).ready(function($) {
 <li>Reduce to counts per rating</li>
 </ol>
 <p>Lets create the script that will perform my first MapReduce action. The content of the following cell will be saved to a file which can in turn be used to perform the mapping and reducing.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mrjob.job</span> <span class="kn">import</span> <span class="n">MRJob</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mrjob.job</span> <span class="kn">import</span> <span class="n">MRJob</span>
 <span class="kn">from</span> <span class="nn">mrjob.step</span> <span class="kn">import</span> <span class="n">MRStep</span>
 
 <span class="k">class</span> <span class="nc">GamesBreakdown</span><span class="p">(</span><span class="n">MRJob</span><span class="p">):</span>
@@ -11974,53 +11974,53 @@ jQuery(document).ready(function($) {
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">GamesBreakdown</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Execution</h2>
 <p>To use Hadoop, the command should look like the following and should be run on the Hadoop machine, with the hadoop-streaming-jar argument only given in case the .jar is not found:</p>
-<div class="highlight"><pre><span></span>python gamesbreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar nesgamedata.csv
-</pre></div>
+<div class="highlight"><pre><span></span><code>python gamesbreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar nesgamedata.csv
+</code></pre></div>
 
 
 <p>To do this, upload the <code>nesgamesdata.csv</code> file and the script <code>gamesbreakdown.py</code> to HDFS, using the Hue files view and upload functionality. Next copy them to the local folder to be used in the command. Of course other methods to get the files locally on the Hadoop machine can be used.</p>
 <p>I am using the <a href="https://hub.docker.com/r/cloudera/quickstart/">Cloudera Quickstart image</a> to experiment with Docker and Cloudera and the <code>docker-compose.yml</code> contains the following:</p>
-<div class="highlight"><pre><span></span>version: &#39;2&#39;
-services:
-  cloudera:
-    hostname: quickstart.cloudera
-    command: /usr/bin/docker-quickstart
-    tty: true
-    privileged: true
-    image: cloudera/quickstart:latest
-    volumes:
-      - ./data:/opt/data
-    ports:
-      - &quot;8020:8020&quot;
-      - &quot;8022:22&quot;     # ssh
-      - &quot;7180:7180&quot;   # Cloudera Manager
-      - &quot;8888:8888&quot;   # HUE
-      - &quot;11000:11000&quot; # Oozie
-      - &quot;50070:50070&quot; # HDFS REST Namenode
-      - &quot;2181:2181&quot;
-      - &quot;11443:11443&quot;
-      - &quot;9090:9090&quot;
-      - &quot;8088:8088&quot;
-      - &quot;19888:19888&quot;
-      - &quot;9092:9092&quot;
-      - &quot;8983:8983&quot;
-      - &quot;16000:16000&quot;
-      - &quot;16001:16001&quot;
-      - &quot;42222:22&quot;
-      - &quot;8042:8042&quot;
-      - &quot;60010:60010&quot;
-      - &quot;8080:8080&quot;
-      - &quot;7077:7077&quot;
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="c">version: &#39;2&#39;</span>
+<span class="c">services:</span>
+<span class="c">  cloudera:</span>
+<span class="c">    hostname: quickstart.cloudera</span>
+<span class="c">    command: /usr/bin/docker-quickstart</span>
+<span class="c">    tty: true</span>
+<span class="c">    privileged: true</span>
+<span class="c">    image: cloudera/quickstart:latest</span>
+<span class="c">    volumes:</span>
+<span class="c">      - ./data:/opt/data</span>
+<span class="c">    ports:</span>
+<span class="c">      - &quot;8020:8020&quot;</span>
+<span class="c">      - &quot;8022:22&quot;     # ssh</span>
+<span class="c">      - &quot;7180:7180&quot;   # Cloudera Manager</span>
+<span class="c">      - &quot;8888:8888&quot;   # HUE</span>
+<span class="c">      - &quot;11000:11000&quot; # Oozie</span>
+<span class="c">      - &quot;50070:50070&quot; # HDFS REST Namenode</span>
+<span class="c">      - &quot;2181:2181&quot;</span>
+<span class="c">      - &quot;11443:11443&quot;</span>
+<span class="c">      - &quot;9090:9090&quot;</span>
+<span class="c">      - &quot;8088:8088&quot;</span>
+<span class="c">      - &quot;19888:19888&quot;</span>
+<span class="c">      - &quot;9092:9092&quot;</span>
+<span class="c">      - &quot;8983:8983&quot;</span>
+<span class="c">      - &quot;16000:16000&quot;</span>
+<span class="c">      - &quot;16001:16001&quot;</span>
+<span class="c">      - &quot;42222:22&quot;</span>
+<span class="c">      - &quot;8042:8042&quot;</span>
+<span class="c">      - &quot;60010:60010&quot;</span>
+<span class="c">      - &quot;8080:8080&quot;</span>
+<span class="c">      - &quot;7077:7077&quot;</span>
+</code></pre></div>
 
 
 <p>Connect to the machine and verify the file is present:</p>
-<div class="highlight"><pre><span></span>jitsejan@ssdnodes-jj-kvm:~/cloudera_docker$ docker <span class="nb">exec</span> -ti clouderadocker_cloudera_1 bash
+<div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/cloudera_docker$ docker <span class="nb">exec</span> -ti clouderadocker_cloudera_1 bash
 <span class="o">[</span>root@quickstart /<span class="o">]</span><span class="c1"># cd home/</span>
 <span class="o">[</span>root@quickstart home<span class="o">]</span><span class="c1"># mkdir gamedata &amp;&amp; cd $_</span>
 <span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># hadoop fs -get gamedata/gamesbreakdown.py gamesbreakdown.py</span>
@@ -12029,17 +12029,17 @@ services:
 total <span class="m">20</span>
 -rw-r--r-- <span class="m">1</span> root root   <span class="m">590</span> Sep  <span class="m">5</span> <span class="m">13</span>:42 gamesbreakdown.py
 -rw-r--r-- <span class="m">1</span> root root <span class="m">15095</span> Sep  <span class="m">5</span> <span class="m">13</span>:56 nesgamedata.csv
-</pre></div>
+</code></pre></div>
 
 
 <p>Install the mrjob library on the Cloudera container.</p>
-<div class="highlight"><pre><span></span><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># yum install python-pip -y</span>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># yum install python-pip -y</span>
 <span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># pip install mrjob</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Run the script without using Hadoop to verify the installation.</p>
-<div class="highlight"><pre><span></span><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># python gamesbreakdown.py nesgamedata.csv</span>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># python gamesbreakdown.py nesgamedata.csv</span>
 No configs found<span class="p">;</span> falling back on auto-configuration
 Creating temp directory /tmp/gamesbreakdown.root.20170905.135809.859796
 Running step <span class="m">1</span> of <span class="m">1</span>...
@@ -12057,11 +12057,11 @@ Streaming final output from /tmp/gamesbreakdown.root.20170905.135809.859796/outp
 <span class="s2">&quot;8&quot;</span>     <span class="m">28</span>
 <span class="s2">&quot;9&quot;</span>     <span class="m">15</span>
 Removing temp directory /tmp/gamesbreakdown.root.20170905.135809.859796...
-</pre></div>
+</code></pre></div>
 
 
 <p>Now use Hadoop to start the cluster magic.</p>
-<div class="highlight"><pre><span></span><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># python gamesbreakdown.py -r hadoop nesgamedata.csv</span>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># python gamesbreakdown.py -r hadoop nesgamedata.csv</span>
 No configs found<span class="p">;</span> falling back on auto-configuration
 Looking <span class="k">for</span> hadoop binary in <span class="nv">$PATH</span>...
 Found hadoop binary: /usr/bin/hadoop
@@ -12159,11 +12159,11 @@ Streaming final output from hdfs:///user/root/tmp/mrjob/gamesbreakdown.root.2017
 <span class="s2">&quot;9&quot;</span>     <span class="m">15</span>
 Removing HDFS temp directory hdfs:///user/root/tmp/mrjob/gamesbreakdown.root.20170905.135908.241472...
 Removing temp directory /tmp/gamesbreakdown.root.20170905.135908.241472...
-</pre></div>
+</code></pre></div>
 
 
 <p>Now lets add another reducer step to sort the counts of the ratings.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mrjob.job</span> <span class="kn">import</span> <span class="n">MRJob</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mrjob.job</span> <span class="kn">import</span> <span class="n">MRJob</span>
 <span class="kn">from</span> <span class="nn">mrjob.step</span> <span class="kn">import</span> <span class="n">MRStep</span>
 
 <span class="k">class</span> <span class="nc">GamesBreakdownUpdate</span><span class="p">(</span><span class="n">MRJob</span><span class="p">):</span>
@@ -12187,10 +12187,10 @@ Removing temp directory /tmp/gamesbreakdown.root.20170905.135908.241472...
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">GamesBreakdownUpdate</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># python gamesbreakdownupdate.py nesgamedata.csv</span>
+<div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># python gamesbreakdownupdate.py nesgamedata.csv</span>
 No configs found<span class="p">;</span> falling back on auto-configuration
 Creating temp directory /tmp/gamesbreakdownupdate.root.20170905.142738.885314
 Running step <span class="m">1</span> of <span class="m">2</span>...
@@ -12209,7 +12209,7 @@ Streaming final output from /tmp/gamesbreakdownupdate.root.20170905.142738.88531
 <span class="s2">&quot;4&quot;</span>     <span class="s2">&quot;44&quot;</span>
 <span class="s2">&quot;6&quot;</span>     <span class="s2">&quot;48&quot;</span>
 Removing temp directory /tmp/gamesbreakdownupdate.root.20170905.142738.885314...
-</pre></div>
+</code></pre></div>
 
 
 <p>That concludes my first experiments with Hadoop and MapReduce. Next step: using Pig or Spark to calculate similar statistics without all the overhead.</p>

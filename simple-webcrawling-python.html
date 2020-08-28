@@ -11861,7 +11861,7 @@ jQuery(document).ready(function($) {
         </header>
 
         <div class="article_content">
-            <div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; samples/crawl_01.py &quot;&quot;&quot;</span>
+            <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; samples/crawl_01.py &quot;&quot;&quot;</span>
 <span class="c1">################################################################################</span>
 <span class="c1"># Application:      WebParser example 01</span>
 <span class="c1"># File:             samples/crawl_01.py</span>
@@ -11920,14 +11920,14 @@ jQuery(document).ready(function($) {
     <span class="n">parser</span> <span class="o">=</span> <span class="n">WebParser</span><span class="p">()</span>
     <span class="n">etree</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_page</span><span class="p">(</span><span class="s1">&#39;http://isitweekendyet.com/&#39;</span><span class="p">)</span>
     <span class="n">divs</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">find_css_element</span><span class="p">(</span><span class="n">etree</span><span class="p">,</span> <span class="s1">&#39;div&#39;</span><span class="p">)</span>
-    <span class="k">print</span> <span class="n">divs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="nb">print</span> <span class="n">divs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
 <span class="c1">################################################################################</span>
 <span class="c1"># main</span>
 <span class="c1">################################################################################</span>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
         </div>
 
         <div class="meta">

@@ -11862,7 +11862,7 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <p>Create a lagged column in a PySpark dataframe:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">monotonically_increasing_id</span><span class="p">,</span> <span class="n">lag</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">import</span> <span class="n">monotonically_increasing_id</span><span class="p">,</span> <span class="n">lag</span>
 <span class="kn">from</span> <span class="nn">pyspark.sql.window</span> <span class="kn">import</span> <span class="n">Window</span>
 
 <span class="c1"># Add ID to be used by the window function</span>
@@ -11873,7 +11873,7 @@ jQuery(document).ready(function($) {
 <span class="n">value_lag</span> <span class="o">=</span> <span class="n">lag</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">over</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 <span class="c1"># Add the lagged values to a new column</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;prev_value&#39;</span><span class="p">,</span> <span class="n">value_lag</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
         </div>
 
         <div class="meta">

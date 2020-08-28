@@ -11862,45 +11862,45 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <p>First login to the PostgreSQL shell.</p>
-<div class="highlight"><pre><span></span><span class="o">(</span>env<span class="o">)</span>jitsejan@jjsvps:/opt/canadalando_env/canadalando_django$ sudo -u postgres psql
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>env<span class="o">)</span>jitsejan@jjsvps:/opt/canadalando_env/canadalando_django$ sudo -u postgres psql
+</code></pre></div>
 
 
 <p>Check the list of databases.</p>
-<div class="highlight"><pre><span></span><span class="nv">postgres</span><span class="o">=</span><span class="c1"># \l</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">postgres</span><span class="o">=</span><span class="c1"># \l</span>
+</code></pre></div>
 
 
 <p>Here I could see my database had the wrong encoding, instead of SQL_ASCII I want UTF8. 
 I dropped the database so I can re-create it with the right encoding. Note that I did NOT make a back-up, since my database was still empty.</p>
-<div class="highlight"><pre><span></span><span class="nv">postgres</span><span class="o">=</span><span class="c1"># DROP DATABASE website_db;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">postgres</span><span class="o">=</span><span class="c1"># DROP DATABASE website_db;</span>
+</code></pre></div>
 
 
 <p>In order to use UTF8 the template for the databases needs to be updated first.</p>
 <p>Disable the template1.</p>
-<div class="highlight"><pre><span></span><span class="nv">postgres</span><span class="o">=</span><span class="c1"># UPDATE pg_database SET datistemplate = FALSE WHERE datname =&#39;template1&#39;;                                                                                                                                                                                                                                 </span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">postgres</span><span class="o">=</span><span class="c1"># UPDATE pg_database SET datistemplate = FALSE WHERE datname =&#39;template1&#39;;                                                                                                                                                                                                                                 </span>
+</code></pre></div>
 
 
 <p>Drop the database.</p>
-<div class="highlight"><pre><span></span><span class="nv">postgres</span><span class="o">=</span><span class="c1"># DROP DATABASE template1;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">postgres</span><span class="o">=</span><span class="c1"># DROP DATABASE template1;</span>
+</code></pre></div>
 
 
 <p>Now re-create it with the right encoding.</p>
-<div class="highlight"><pre><span></span><span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = &#39;UNICODE&#39;;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE DATABASE template1 WITH TEMPLATE = template0 ENCODING = &#39;UNICODE&#39;;</span>
+</code></pre></div>
 
 
 <p>Activate the template.</p>
-<div class="highlight"><pre><span></span><span class="nv">postgres</span><span class="o">=</span><span class="c1"># UPDATE pg_database SET datistemplate = TRUE WHERE datname = &#39;template1&#39;;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">postgres</span><span class="o">=</span><span class="c1"># UPDATE pg_database SET datistemplate = TRUE WHERE datname = &#39;template1&#39;;</span>
+</code></pre></div>
 
 
 <p>Now we can re-create the database that we dropped earlier.</p>
-<div class="highlight"><pre><span></span><span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE DATABASE website_db WITH ENCODING &#39;UNICODE&#39;;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE DATABASE website_db WITH ENCODING &#39;UNICODE&#39;;</span>
+</code></pre></div>
         </div>
 
         <div class="meta">

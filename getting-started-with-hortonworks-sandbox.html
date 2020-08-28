@@ -11863,41 +11863,41 @@ jQuery(document).ready(function($) {
         <div class="article_content">
             <p><center><img src="https://cdn.datafloq.com/vendor/logo/Hortonworks-logo.png" height=80/></center></p>
 <p>Download the HDP Docker image from Hortonworks.</p>
-<div class="highlight"><pre><span></span>jitsejan@ssdnodes-jj-kvm:~/downloads$ wget https://downloads-hortonworks.akamaized.net/sandbox-hdp-2.6.1/HDP_2_6_1_docker_image_28_07_2017_14_42_40.tar
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/downloads$ wget https://downloads-hortonworks.akamaized.net/sandbox-hdp-2.6.1/HDP_2_6_1_docker_image_28_07_2017_14_42_40.tar
+</code></pre></div>
 
 
 <p>Load the Docker image from the TAR-file.</p>
-<div class="highlight"><pre><span></span>jitsejan@ssdnodes-jj-kvm:~/downloads$ docker load -i HDP_2_6_1_docker_image_28_07_2017_14_42_40.tar
+<div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/downloads$ docker load -i HDP_2_6_1_docker_image_28_07_2017_14_42_40.tar
 jitsejan@ssdnodes-jj-kvm:~/downloads$ docker images
 REPOSITORY                 TAG                 IMAGE ID            CREATED             SIZE
 anaconda3docker_anaconda   latest              4faa1524bf2d        <span class="m">18</span> hours ago        <span class="m">3</span>.397 GB
 sandbox-hdp                latest              c3cef4760133        <span class="m">4</span> weeks ago         <span class="m">12</span>.2 GB
 continuumio/anaconda3      latest              f3a9cb1bc160        <span class="m">12</span> weeks ago        <span class="m">2</span>.317 GB
-</pre></div>
+</code></pre></div>
 
 
 <p>Download and run the start-up script.</p>
-<div class="highlight"><pre><span></span>jitsejan@ssdnodes-jj-kvm:~/downloads$ wget https://raw.githubusercontent.com/hortonworks/data-tutorials/master/tutorials/hdp/sandbox-deployment-and-install-guide/assets/start_sandbox-hdp.sh
+<div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/downloads$ wget https://raw.githubusercontent.com/hortonworks/data-tutorials/master/tutorials/hdp/sandbox-deployment-and-install-guide/assets/start_sandbox-hdp.sh
 jitsejan@ssdnodes-jj-kvm:~/downloads$ chmod +x start_sandbox-hdp.sh
 jitsejan@ssdnodes-jj-kvm:~/downloads$ ./start_sandbox-hdp.sh
-</pre></div>
+</code></pre></div>
 
 
 <p>Verify the container is started.</p>
-<div class="highlight"><pre><span></span>jitsejan@ssdnodes-jj-kvm:~/downloads$ docker ps
+<div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/downloads$ docker ps
 CONTAINER ID        IMAGE               COMMAND               CREATED             STATUS              PORTS                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         NAMES
 26bdf90de81b        sandbox-hdp         <span class="s2">&quot;/usr/sbin/sshd -D&quot;</span>   About an hour ago   Up About an hour    <span class="m">0</span>.0.0.0:1000-&gt;1000/tcp, <span class="m">0</span>.0.0.0:1100-&gt;1100/tcp, <span class="m">0</span>.0.0.0:1220-&gt;1220/tcp, <span class="m">0</span>.0.0.0:1988-&gt;1988/tcp, <span class="m">0</span>.0.0.0:2049-&gt;2049/tcp, <span class="m">0</span>.0.0.0:2100-&gt;2100/tcp, <span class="m">0</span>.0.0.0:2181-&gt;2181/tcp, <span class="m">0</span>.0.0.0:3000-&gt;3000/tcp, <span class="m">0</span>.0.0.0:4040-&gt;4040/tcp, <span class="m">0</span>.0.0.0:4200-&gt;4200/tcp, <span class="m">0</span>.0.0.0:4242-&gt;4242/tcp, <span class="m">0</span>.0.0.0:5007-&gt;5007/tcp, <span class="m">0</span>.0.0.0:5011-&gt;5011/tcp, <span class="m">0</span>.0.0.0:6001-&gt;6001/tcp, <span class="m">0</span>.0.0.0:6003-&gt;6003/tcp, <span class="m">0</span>.0.0.0:6008-&gt;6008/tcp, <span class="m">0</span>.0.0.0:6080-&gt;6080/tcp, <span class="m">0</span>.0.0.0:6188-&gt;6188/tcp, <span class="m">0</span>.0.0.0:8000-&gt;8000/tcp, <span class="m">0</span>.0.0.0:8005-&gt;8005/tcp, <span class="m">0</span>.0.0.0:8020-&gt;8020/tcp, <span class="m">0</span>.0.0.0:8032-&gt;8032/tcp, <span class="m">0</span>.0.0.0:8040-&gt;8040/tcp, <span class="m">0</span>.0.0.0:8042-&gt;8042/tcp, <span class="m">0</span>.0.0.0:8080-&gt;8080/tcp, <span class="m">0</span>.0.0.0:8082-&gt;8082/tcp, <span class="m">0</span>.0.0.0:8086-&gt;8086/tcp, <span class="m">0</span>.0.0.0:8088-&gt;8088/tcp, <span class="m">0</span>.0.0.0:8090-8091-&gt;8090-8091/tcp, <span class="m">0</span>.0.0.0:8188-&gt;8188/tcp, <span class="m">0</span>.0.0.0:8443-&gt;8443/tcp, <span class="m">0</span>.0.0.0:8744-&gt;8744/tcp, <span class="m">0</span>.0.0.0:8765-&gt;8765/tcp, <span class="m">0</span>.0.0.0:8886-&gt;8886/tcp, <span class="m">0</span>.0.0.0:8888-8889-&gt;8888-8889/tcp, <span class="m">0</span>.0.0.0:8983-&gt;8983/tcp, <span class="m">0</span>.0.0.0:8993-&gt;8993/tcp, <span class="m">0</span>.0.0.0:9000-&gt;9000/tcp, <span class="m">0</span>.0.0.0:9995-9996-&gt;9995-9996/tcp, <span class="m">0</span>.0.0.0:10000-10001-&gt;10000-10001/tcp, <span class="m">0</span>.0.0.0:10015-10016-&gt;10015-10016/tcp, <span class="m">0</span>.0.0.0:10500-&gt;10500/tcp, <span class="m">0</span>.0.0.0:10502-&gt;10502/tcp, <span class="m">0</span>.0.0.0:11000-&gt;11000/tcp, <span class="m">0</span>.0.0.0:15000-&gt;15000/tcp, <span class="m">0</span>.0.0.0:15002-&gt;15002/tcp, <span class="m">0</span>.0.0.0:15500-15505-&gt;15500-15505/tcp, <span class="m">0</span>.0.0.0:16000-&gt;16000/tcp, <span class="m">0</span>.0.0.0:16010-&gt;16010/tcp, <span class="m">0</span>.0.0.0:16020-&gt;16020/tcp, <span class="m">0</span>.0.0.0:16030-&gt;16030/tcp, <span class="m">0</span>.0.0.0:18080-18081-&gt;18080-18081/tcp, <span class="m">0</span>.0.0.0:19888-&gt;19888/tcp, <span class="m">0</span>.0.0.0:21000-&gt;21000/tcp, <span class="m">0</span>.0.0.0:33553-&gt;33553/tcp, <span class="m">0</span>.0.0.0:39419-&gt;39419/tcp, <span class="m">0</span>.0.0.0:42111-&gt;42111/tcp, <span class="m">0</span>.0.0.0:50070-&gt;50070/tcp, <span class="m">0</span>.0.0.0:50075-&gt;50075/tcp, <span class="m">0</span>.0.0.0:50079-&gt;50079/tcp, <span class="m">0</span>.0.0.0:50095-&gt;50095/tcp, <span class="m">0</span>.0.0.0:50111-&gt;50111/tcp, <span class="m">0</span>.0.0.0:60000-&gt;60000/tcp, <span class="m">0</span>.0.0.0:60080-&gt;60080/tcp, <span class="m">0</span>.0.0.0:2222-&gt;22/tcp, <span class="m">0</span>.0.0.0:1111-&gt;111/tcp   sandbox-hdp
-</pre></div>
+</code></pre></div>
 
 
 <p>Login to the machine and run the first Hadoop command.</p>
-<div class="highlight"><pre><span></span>jitsejan@ssdnodes-jj-kvm:~/downloads$ ssh <span class="m">127</span>.0.0.1 -p <span class="m">2222</span> -l maria_dev
+<div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/downloads$ ssh <span class="m">127</span>.0.0.1 -p <span class="m">2222</span> -l maria_dev
 <span class="o">[</span>maria_dev@sandbox ~<span class="o">]</span>$ hadoop fs -ls
 Found <span class="m">2</span> items
 drwxr-xr-x   - maria_dev hdfs          <span class="m">0</span> <span class="m">2017</span>-09-01 <span class="m">09</span>:29 .Trash
 drwxr-xr-x   - maria_dev hdfs          <span class="m">0</span> <span class="m">2017</span>-09-01 <span class="m">08</span>:16 hive
-</pre></div>
+</code></pre></div>
         </div>
 
         <div class="meta">

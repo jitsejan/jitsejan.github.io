@@ -11862,43 +11862,43 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <p>Retrieve the last Jira binary from the website. Note that you should pick the right version, either x32 or x64.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~/Downloads$ wget https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-7.2.1-x64.bin 
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~/Downloads$ wget https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-software-7.2.1-x64.bin 
+</code></pre></div>
 
 
 <p>Make the binary executable.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~/Downloads$ chmod a+x atlassian-jira-software-7.2.1-x64.bin 
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~/Downloads$ chmod a+x atlassian-jira-software-7.2.1-x64.bin 
+</code></pre></div>
 
 
 <p>Install the dependencies for Jira.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~/Downloads$ sudo ​​apt-get install lsb-core​ default-jdk​ default-jre
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~/Downloads$ sudo ​​apt-get install lsb-core​ default-jdk​ default-jre
+</code></pre></div>
 
 
 <p>Execute the binary as sudo.</p>
-<div class="highlight"><pre><span></span>​jitsejan@jjsvps:~/Downloads$ ​$ sudo ./atlassian-jira-software-7.2.1-x64.bin
-</pre></div>
+<div class="highlight"><pre><span></span><code>​jitsejan@jjsvps:~/Downloads$ ​$ sudo ./atlassian-jira-software-7.2.1-x64.bin
+</code></pre></div>
 
 
 <p>Start the Jira server.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~/Downloads$ sudo sh /opt/atlassian/jira/bin/start-jira.sh
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~/Downloads$ sudo sh /opt/atlassian/jira/bin/start-jira.sh
+</code></pre></div>
 
 
 <p>Create a Jira user and database.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ sudo -u postgres psql
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo -u postgres psql
 <span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE DATABASE jira;</span>
 <span class="nv">postgres</span><span class="o">=</span><span class="c1"># CREATE USER jira_user WITH PASSWORD &#39;bla&#39;;</span>
 <span class="nv">postgres</span><span class="o">=</span><span class="c1"># GRANT ALL PRIVILEGES ON DATABASE jira TO jira_user;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Now go to port 8080 on your IP address and perform the set-up. After some configuration you will be able to use Jira for your projects.</p>
 <h3>Update</h3>
 <p>It could be that the server does not start. Check if the permissions are right.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ sudo chown -R jira:jira /var/atlassian/application-data/jira
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo chown -R jira:jira /var/atlassian/application-data/jira
+</code></pre></div>
         </div>
 
         <div class="meta">

@@ -11861,32 +11861,32 @@ jQuery(document).ready(function($) {
         </header>
 
         <div class="article_content">
-            <div class="highlight"><pre><span></span>/Users/jitsejan/code  $ mkdir eve-api
+            <div class="highlight"><pre><span></span><code>/Users/jitsejan/code  $ mkdir eve-api
 /Users/jitsejan/code  $ <span class="nb">cd</span> eve-api/
 /Users/jitsejan/code/eve-api  $ python3 -m pip install eve
 /Users/jitsejan/code/eve-api  $ touch app.py
 /Users/jitsejan/code/eve-api  $ sublime app.py
-</pre></div>
+</code></pre></div>
 
 
 <p><em>api.py</em></p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">eve</span> <span class="kn">import</span> <span class="n">Eve</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">eve</span> <span class="kn">import</span> <span class="n">Eve</span>
 <span class="kn">import</span> <span class="nn">settings</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Eve</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="o">.</span><span class="n">settings</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>/Users/jitsejan/code/eve-api  $ touch settings.py
+<div class="highlight"><pre><span></span><code>/Users/jitsejan/code/eve-api  $ touch settings.py
 /Users/jitsejan/code/eve-api  $ sublime settings.py
-</pre></div>
+</code></pre></div>
 
 
 <p><em>settings.py</em></p>
-<div class="highlight"><pre><span></span><span class="n">character</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="n">character</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;schema&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;string&#39;</span><span class="p">},</span>
         <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;string&#39;</span><span class="p">},</span>
@@ -11905,18 +11905,18 @@ jQuery(document).ready(function($) {
         <span class="s1">&#39;character&#39;</span><span class="p">:</span> <span class="n">character</span><span class="p">,</span>
     <span class="p">},</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>/Users/jitsejan/code/eve-api  $ python app.py
-</pre></div>
+<div class="highlight"><pre><span></span><code>/Users/jitsejan/code/eve-api  $ python app.py
+</code></pre></div>
 
 
 <p>Use <a href="https://www.getpostman.com/">Postman</a> to connect to localhost:5000 and start using your API. 
 Since the character schema has been defined, the characters are listed on localhost:5000/character. You can simply search 
 by name and only retrieve a specific field using additional parameters.</p>
-<div class="highlight"><pre><span></span><span class="n">localhost</span><span class="o">:</span><span class="mi">5000</span><span class="o">/</span><span class="n">character</span><span class="o">?</span><span class="n">where</span><span class="o">={</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Mario&quot;</span><span class="o">}&amp;</span><span class="n">projection</span><span class="o">={</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="o">,</span> <span class="s2">&quot;superpower&quot;</span><span class="o">:</span><span class="mi">1</span><span class="o">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">localhost</span><span class="o">:</span><span class="mi">5000</span><span class="o">/</span><span class="n">character</span><span class="o">?</span><span class="n">where</span><span class="o">={</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;Mario&quot;</span><span class="o">}&amp;</span><span class="n">projection</span><span class="o">={</span><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="mi">1</span><span class="o">,</span> <span class="s2">&quot;superpower&quot;</span><span class="o">:</span><span class="mi">1</span><span class="o">}</span>
+</code></pre></div>
         </div>
 
         <div class="meta">

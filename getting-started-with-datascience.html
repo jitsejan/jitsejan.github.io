@@ -11863,19 +11863,19 @@ jQuery(document).ready(function($) {
         <div class="article_content">
             <h4>Installation</h4>
 <p>Use the <a href="https://www.continuum.io/downloads" title="Anaconda">Anaconda</a> package. It will make starting with Data Science way easier, since almost all necessary packages are included and you can start right away.</p>
-<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> ~/Downloads
+<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> ~/Downloads
 $ wget http://repo.continuum.io/archive/Anaconda2-4.1.1-Linux-x86_64.sh
 $ bash Anaconda2-4.1.1-Linux-x86_64.sh
 $ <span class="nb">source</span> ~/.bashrc
 $ conda --version
 $ conda update conda
-</pre></div>
+</code></pre></div>
 
 
 <h4>Examples</h4>
 <h5>Make your first Data Frame</h5>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span> <span class="s1">&#39;A&#39;</span> <span class="p">:</span> <span class="mf">1.</span><span class="p">,</span>
                     <span class="s1">&#39;B&#39;</span> <span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="s1">&#39;20130102&#39;</span><span class="p">),</span>
@@ -11885,18 +11885,18 @@ $ conda update conda
                     <span class="s1">&#39;F&#39;</span> <span class="p">:</span> <span class="s1">&#39;foo&#39;</span> <span class="p">})</span>
 
 <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">D</span>
-</pre></div>
+</code></pre></div>
 
 
 <h5>Create your first plots</h5>
 <p>First update Seaborn</p>
-<div class="highlight"><pre><span></span>$ conda install seaborn
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ conda install seaborn
+</code></pre></div>
 
 
 <p>Next, create a plot of an example dataset</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
 <span class="c1"># Load one of the data sets that come with seaborn</span>
 <span class="n">tips</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;tips&quot;</span><span class="p">)</span>
@@ -11904,7 +11904,7 @@ $ conda update conda
 
 <span class="n">sns</span><span class="o">.</span><span class="n">jointplot</span><span class="p">(</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="s2">&quot;tip&quot;</span><span class="p">,</span> <span class="n">tips</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;reg&#39;</span><span class="p">);</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="s2">&quot;total_bill&quot;</span><span class="p">,</span> <span class="s2">&quot;tip&quot;</span><span class="p">,</span> <span class="n">tips</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s2">&quot;smoker&quot;</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><a href="http://twiecki.github.io/blog/2014/11/18/python-for-data-science/" title="Twiecki@Github">Source</a></p>

@@ -11862,28 +11862,28 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <p>Installation steps:</p>
-<div class="highlight"><pre><span></span>jitsejan@jjschi2:~$ sudo apt-get install software-properties-common
+<div class="highlight"><pre><span></span><code>jitsejan@jjschi2:~$ sudo apt-get install software-properties-common
 jitsejan@jjschi2:~$ sudo add-apt-repository -y ppa:ethereum/ethereum
 jitsejan@jjschi2:~$ sudo apt-get update
 jitsejan@jjschi2:~$ sudo apt-get install ethereum
-</pre></div>
+</code></pre></div>
 
 
 <p>Get a new account with:</p>
-<div class="highlight"><pre><span></span>jitsejan@jjschi2:~$ geth account new
+<div class="highlight"><pre><span></span><code>jitsejan@jjschi2:~$ geth account new
 jitsejan@jjschi2:~$ geth account list
-</pre></div>
+</code></pre></div>
 
 
 <p>Start a screen and start mining:</p>
-<div class="highlight"><pre><span></span>jitsejan@jjschi2:~$ geth --mine
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjschi2:~$ geth --mine
+</code></pre></div>
 
 
 <p>To connect to this session and check your balance:</p>
-<div class="highlight"><pre><span></span>jitsejan@jjschi2:~$ geth attach
+<div class="highlight"><pre><span></span><code>jitsejan@jjschi2:~$ geth attach
 jitsejan@jjschi2:~$ &gt; eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>I am not sure if my slow VPS will ever successfully mine any Ether, but since I want to know the basics of Ether, this is a good starting point.</p>

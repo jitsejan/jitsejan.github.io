@@ -11870,21 +11870,21 @@ jQuery(document).ready(function($) {
 </ul>
 <h2>Java installation</h2>
 <p>Make sure a recent Java version is installed.</p>
-<div class="highlight"><pre><span></span>$ java -version
+<div class="highlight"><pre><span></span><code>$ java -version
 java version <span class="s2">&quot;1.8.0_172&quot;</span>
 Java<span class="o">(</span>TM<span class="o">)</span> SE Runtime Environment <span class="o">(</span>build <span class="m">1</span>.8.0_172-b11<span class="o">)</span>
 Java HotSpot<span class="o">(</span>TM<span class="o">)</span> <span class="m">64</span>-Bit Server VM <span class="o">(</span>build <span class="m">25</span>.172-b11, mixed mode<span class="o">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Spark installation</h2>
 <p>Assuming <code>brew</code> is installed, navigate to the <em>Formula</em> folder.</p>
-<div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
+</code></pre></div>
 
 
 <p>We need to create the formula to install the correct version of Spark. If there is already a <code>apache-spark.rb</code> rename it to <code>apache-spark.rb.old</code>. Create the <code>apache-spark.rb</code> formula with the following content. Note that we explicitly use <strong>Spark 2.2.0</strong>.</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ApacheSpark</span> <span class="o">&lt;</span> <span class="no">Formula</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ApacheSpark</span> <span class="o">&lt;</span> <span class="no">Formula</span>
   <span class="n">desc</span> <span class="s2">&quot;Engine for large-scale data processing&quot;</span>
   <span class="n">homepage</span> <span class="s2">&quot;https://spark.apache.org/&quot;</span>
   <span class="n">url</span> <span class="s2">&quot;http://archive.apache.org/dist/spark/spark-2.2.0/spark-2.2.0-bin-hadoop2.7.tgz&quot;</span>
@@ -11907,23 +11907,23 @@ Java HotSpot<span class="o">(</span>TM<span class="o">)</span> <span class="m">6
     <span class="n">assert_match</span> <span class="s2">&quot;Long = 1000&quot;</span><span class="p">,</span> <span class="n">pipe_output</span><span class="p">(</span><span class="n">bin</span><span class="o">/</span><span class="s2">&quot;spark-shell&quot;</span><span class="p">,</span> <span class="s2">&quot;sc.parallelize(1 to 1000).count()&quot;</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Now install <code>apache-spark</code> and verify the correct version gets installed.</p>
-<div class="highlight"><pre><span></span>$ brew install apache-spark
+<div class="highlight"><pre><span></span><code>$ brew install apache-spark
 $ brew list apache-spark --versions
 apache-spark <span class="m">2</span>.2.0 
-</pre></div>
+</code></pre></div>
 
 
 <p>Verify that we can use Spark now by starting <code>pyspark</code> in a terminal. Before we run <code>pyspark</code> make sure <code>JAVA_HOME</code> is set to the correct path and <code>PYSPARK_PYTHON</code> is <strong>not</strong> using Python 2. Use <code>sudo find / -name javac</code> to find the Java path.</p>
-<div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="s2">&quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="s2">&quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/&quot;</span>
 <span class="nb">export</span> <span class="nv">PYSPARK_PYTHON</span><span class="o">=</span>python3
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>$ pyspark                                                                           Python <span class="m">3</span>.5.0 <span class="o">(</span>v3.5.0:374f501f4567, Sep <span class="m">12</span> <span class="m">2015</span>, <span class="m">11</span>:00:19<span class="o">)</span>
+<div class="highlight"><pre><span></span><code>$ pyspark                                                                           Python <span class="m">3</span>.5.0 <span class="o">(</span>v3.5.0:374f501f4567, Sep <span class="m">12</span> <span class="m">2015</span>, <span class="m">11</span>:00:19<span class="o">)</span>
 <span class="o">[</span>GCC <span class="m">4</span>.2.1 <span class="o">(</span>Apple Inc. build <span class="m">5666</span><span class="o">)</span> <span class="o">(</span>dot <span class="m">3</span><span class="o">)]</span> on darwin
 Type <span class="s2">&quot;help&quot;</span>, <span class="s2">&quot;copyright&quot;</span>, <span class="s2">&quot;credits&quot;</span> or <span class="s2">&quot;license&quot;</span> <span class="k">for</span> more information.
 Using Spark<span class="s1">&#39;s default log4j profile: org/apache/spark/log4j-defaults.properties</span>
@@ -11947,33 +11947,33 @@ SparkSession available as <span class="s1">&#39;spark&#39;</span>.
 &gt;&gt;&gt; sc
 &lt;SparkContext <span class="nv">master</span><span class="o">=</span>local<span class="o">[</span>*<span class="o">]</span> <span class="nv">appName</span><span class="o">=</span>PySparkShell&gt;
 &gt;&gt;&gt;
-</pre></div>
+</code></pre></div>
 
 
 <p>Apart from some warnings, we can see <code>pyspark</code> is working, connects to the local Spark, refers to the right Spark version and Python 3 (<code>3.5.0</code>) is used in the shell.</p>
 <h2>Zeppelin installation</h2>
 <p>We need to install <strong>Zeppelin 0.7.3</strong> (and not 0.8.0!) to setup the connection with AWS in a later stage. Navigate to Zeppelin's <a href="http://zeppelin.apache.org/download.html">Download page</a> and scroll down for <a href="http://www.apache.org/dyn/closer.cgi/zeppelin/zeppelin-0.7.3/zeppelin-0.7.3-bin-all.tgz">Zeppelin-0.7.3-bin-all</a>. Unpack the TGZ-file and start Zeppelin with the command:</p>
-<div class="highlight"><pre><span></span>$ bin/zeppelin-daemon.sh start
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ bin/zeppelin-daemon.sh start
+</code></pre></div>
 
 
 <p>By navigating to http://localhost:8080 the Zeppelin interface should show.</p>
 <p><img alt="a2da3065.png" src="images/a2da3065.png"></p>
 <h2>Development with local Spark</h2>
 <p>Create a new note and verify the master of the Spark context. Since we did not configure it yet, it will default to connect to the local Spark cluster. We simply test the notebook by creating a simple RDD and converting it to a dataframe.</p>
-<div class="highlight"><pre><span></span><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([(</span><span class="s1">&#39;Mario&#39;</span><span class="p">,</span> <span class="s1">&#39;Red&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Luigi&#39;</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Princess&#39;</span><span class="p">,</span> <span class="s1">&#39;Pink&#39;</span><span class="p">)])</span>
+<div class="highlight"><pre><span></span><code><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([(</span><span class="s1">&#39;Mario&#39;</span><span class="p">,</span> <span class="s1">&#39;Red&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Luigi&#39;</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Princess&#39;</span><span class="p">,</span> <span class="s1">&#39;Pink&#39;</span><span class="p">)])</span>
 <span class="n">rdd</span><span class="o">.</span><span class="n">toDF</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>+--------+-----+
-|    name|color|
-+--------+-----+
-|   Mario| Red |
-|   Luigi|Green|
-|Princess| Pink|
-+--------+-----+
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">+--------+-----+</span>
+<span class="err">|    name|color|</span>
+<span class="err">+--------+-----+</span>
+<span class="err">|   Mario| Red |</span>
+<span class="err">|   Luigi|Green|</span>
+<span class="err">|Princess| Pink|</span>
+<span class="err">+--------+-----+</span>
+</code></pre></div>
 
 
 <p><img alt="2ec1fb2f.png" src="images/2ec1fb2f.png"></p>
@@ -11986,8 +11986,8 @@ SparkSession available as <span class="s1">&#39;spark&#39;</span>.
 <p>Skip through the <em>Networking</em> pane. In the <em>SSH public key</em> pane, create a new key pair using <code>ssh-keygen</code> in the terminal. Save the two files to a safe place and upload the public key (i.e. <code>id_rsa.pub</code>) to the development endpoint. Finally, review the endpoint and click on <em>Finish</em>. It will take a couple of minutes for the endpoint to go from <em>Provisioning</em> to the <em>Ready</em> state. </p>
 <p><img alt="a1dabd58.png" src="images/a1dabd58.png"></p>
 <p>Go the the details page for the endpoint and copy the <em>SSH tunnel to remote interpeter</em> line. Replace the <private-key.pem> with the private key that was just generated in the previous step. Run the command in a terminal and keep it running. Choose <em>yes</em> when it prompts to accept the connection. We now have an active SSH tunnel that will route all traffic to localhost port 9007 to the development endpoint on AWS.</p>
-<div class="highlight"><pre><span></span>$ ssh -i id_rsa -vnNT -L :9007:123.456.789.255:9007 glue@ec2-52-16-115-181.eu-west-1.compute.amazonaws.com
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ ssh -i id_rsa -vnNT -L :9007:123.456.789.255:9007 glue@ec2-52-16-115-181.eu-west-1.compute.amazonaws.com
+</code></pre></div>
 
 
 <p><img alt="89a5835c.png" src="images/89a5835c.png"></p>
@@ -12007,7 +12007,7 @@ SparkSession available as <span class="s1">&#39;spark&#39;</span>.
 <p>Click on <em>Add job</em> and fill in the name and role for the script. Select the folder to save the script and make sure the option to <em>A new script to be authored by you</em> is selected. Accept the defaults and continue to the next two pages to get to <em>Save job and edit script</em>. </p>
 <p><img alt="cd300323.png" src="images/cd300323.png"></p>
 <p>For this tutorial we keep things simple and only add the simple cost that we have used before. The script will have some default content and by adding the two lines for the RDD and dataframe it should look like the code below. Note that I did not clean up the imports since in a normal ETL jobs these imports are needed to manipulate the data properly.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">awsglue.transforms</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">awsglue.utils</span> <span class="kn">import</span> <span class="n">getResolvedOptions</span>
 <span class="kn">from</span> <span class="nn">pyspark.context</span> <span class="kn">import</span> <span class="n">SparkContext</span>
@@ -12027,7 +12027,7 @@ SparkSession available as <span class="s1">&#39;spark&#39;</span>.
 <span class="n">rdd</span><span class="o">.</span><span class="n">toDF</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 <span class="n">job</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>After modifying the code, save the job and run it to verify the script is working. </p>

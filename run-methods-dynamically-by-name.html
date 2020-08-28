@@ -11873,13 +11873,13 @@ jQuery(document).ready(function($) {
 <p>One of the main reasons I switched from <code>unittest</code> to <code>pytest</code> is the ease of use of <em>fixtures</em>. You can define the functions or variables that you will need throughout the whole test set. </p>
 <h3>Fixture class</h3>
 <p>In this case I define a <code>FixtureClass</code> that contains a function to retrieve the parameters from AWS <em>SSM</em>, a key-value store where we store our API keys and other secrets. Note that in the following function I only retrieve the parameters for the base path <code>/</code>. The class has a Boto3 <code>session</code> and <code>ssm_client</code>.</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FixtureClass</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">FixtureClass</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; Defines the FixtureClass &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">get_ssm_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Returns the SSM parameters &quot;&quot;&quot;</span>
         <span class="n">paginator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm_client</span><span class="o">.</span><span class="n">get_paginator</span><span class="p">(</span><span class="s2">&quot;get_parameters_by_path&quot;</span><span class="p">)</span>
-        <span class="n">iterator</span> <span class="o">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">paginate</span><span class="p">(</span><span class="n">Path</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">WithDecryption</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">iterator</span> <span class="o">=</span> <span class="n">paginator</span><span class="o">.</span><span class="n">paginate</span><span class="p">(</span><span class="n">Path</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">WithDecryption</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">iterator</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">page</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;Parameters&quot;</span><span class="p">,</span> <span class="p">[]):</span>
@@ -11893,26 +11893,26 @@ jQuery(document).ready(function($) {
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">ssm_client</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">&quot;ssm&quot;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Set the fixture</h3>
 <p>Now I can create an instance of the FixtureClass and add the <code>ssm_parameters</code> as fixture for my tests. Define them either on <code>conftest.py</code> next to your test files, or add them on top of the file where you will write the tests.</p>
-<div class="highlight"><pre><span></span><span class="n">fc</span> <span class="o">=</span> <span class="n">FixtureClass</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="n">fc</span> <span class="o">=</span> <span class="n">FixtureClass</span><span class="p">()</span>
 
-<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;session&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">ssm_parameters</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">fc</span><span class="o">.</span><span class="n">get_ssm_parameters</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Add fixture to test class</h3>
 <p>In order to make the fixture available for all the tests I add the fixture as attribute to the test class. By using <code>autouse=True</code> the fixtures become available in the <code>setup_class</code> method. This method is only called once per execution of the tests.</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; testsourceavailability.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; testsourceavailability.py &quot;&quot;&quot;</span>
 <span class="k">class</span> <span class="nc">TestSourceAvailability</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; Defines the tests to verify the source availability &quot;&quot;&quot;</span>
 
-    <span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">setup_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ssm_parameters</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Setup the test class &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ssm_parameters</span> <span class="o">=</span> <span class="n">ssm_parameters</span>
@@ -11920,7 +11920,7 @@ jQuery(document).ready(function($) {
 
     <span class="k">def</span> <span class="nf">_get_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Create the tests</h3>
@@ -11936,7 +11936,7 @@ jQuery(document).ready(function($) {
 <li>Set the arguments for the API call</li>
 <li>Assert the status code of the API call</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="c1"># Append to previous TestSourceAvailability file.</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Append to previous TestSourceAvailability file.</span>
         <span class="k">def</span> <span class="nf">test_hibob_is_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Test that the HiBob API is available &quot;&quot;&quot;</span>
         <span class="n">api_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;HIBOB_API_KEY&quot;</span><span class="p">)</span>
@@ -11959,20 +11959,20 @@ jQuery(document).ready(function($) {
 
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{api_url}/rest/api/2/project&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">api_url</span><span class="si">}</span><span class="s2">/rest/api/2/project&quot;</span><span class="p">,</span>
             <span class="s1">&#39;auth&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">jira_user</span><span class="p">,</span> <span class="n">api_key</span><span class="p">)</span>
         <span class="p">}</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
 
     <span class="k">def</span> <span class="nf">test_jira_is_unavailable_without_api_key</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Test that the Jira API is unavailable without API key &quot;&quot;&quot;</span>
-        <span class="n">api_key</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">api_key</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">api_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;JIRA_URL&quot;</span><span class="p">)</span>
         <span class="n">jira_user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;JIRA_USER&quot;</span><span class="p">)</span>
 
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{api_url}/rest/api/2/project&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">api_url</span><span class="si">}</span><span class="s2">/rest/api/2/project&quot;</span><span class="p">,</span>
             <span class="s1">&#39;auth&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">jira_user</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="p">}</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span>
@@ -11984,8 +11984,8 @@ jQuery(document).ready(function($) {
 
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{api_url}jobs&quot;</span><span class="p">,</span>
-            <span class="s1">&#39;headers&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_key</span><span class="p">)},</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">api_url</span><span class="si">}</span><span class="s2">jobs&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;headers&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_key</span><span class="p">)},</span>
             <span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;include_fields&quot;</span><span class="p">:</span> <span class="s2">&quot;description&quot;</span><span class="p">}</span>
         <span class="p">}</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
@@ -11997,17 +11997,17 @@ jQuery(document).ready(function($) {
 
         <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{api_url}jobs&quot;</span><span class="p">,</span>
-            <span class="s1">&#39;headers&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_key</span><span class="p">)},</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">api_url</span><span class="si">}</span><span class="s2">jobs&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;headers&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_key</span><span class="p">)},</span>
             <span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;include_fields&quot;</span><span class="p">:</span> <span class="s2">&quot;description&quot;</span><span class="p">}</span>
         <span class="p">}</span>
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Execution of the tests</h3>
 <p>Make sure<code>pytest</code> is installed on your machine. Run the file we've created before and add verbosity if you wish. Note that I use Python 3.7 and pytest 5.3.1. In my case all tests are green, so we can continue!</p>
-<div class="highlight"><pre><span></span>$ pytest testsourceavailability.py -v
+<div class="highlight"><pre><span></span><code>$ pytest testsourceavailability.py -v
 <span class="o">=============================</span> <span class="nb">test</span> session <span class="nv">starts</span> <span class="o">==============================</span>
 platform darwin -- Python <span class="m">3</span>.7.4, pytest-5.3.1, py-1.8.0, pluggy-0.13.1 -- /Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7
 cachedir: .pytest_cache
@@ -12019,14 +12019,14 @@ testsourceavailability.py::TestSourceAvailability::test_jira_is_available PASSED
 testsourceavailability.py::TestSourceAvailability::test_jira_is_unavailable_without_api_key PASSED <span class="o">[</span> <span class="m">60</span>%<span class="o">]</span>
 testsourceavailability.py::TestSourceAvailability::test_workable_api_is_available PASSED <span class="o">[</span> <span class="m">80</span>%<span class="o">]</span>
 testsourceavailability.py::TestSourceAvailability::test_workable_api_is_not_available_for_wrong_credentials PASSED <span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Lambda function</h2>
 <p>Because I do not only want to verify availability at the test stage, I will create a Lambda function that I can schedule to periodically check that the APIs are still available. </p>
 <h3>AvailabilityChecker class</h3>
 <p>The class is initialized with the <code>ssm_client</code> to access the parameters stored in SSM and again the <code>requests.Session</code> that is used to call the API. The function to get the parameter by key has the same name, but the underlying logic is of course different compared to the one I used in the tests before with a fixture. By keeping the function name the same it is slightly easier to copy the tests to this Lambda function.</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; availabilitychecker.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; availabilitychecker.py &quot;&quot;&quot;</span>
 <span class="k">class</span> <span class="nc">AvailabilityChecker</span><span class="p">:</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -12035,13 +12035,13 @@ testsourceavailability.py::TestSourceAvailability::test_workable_api_is_not_avai
 
     <span class="k">def</span> <span class="nf">_get_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Return the SSM parameter &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm_client</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">WithDecryption</span><span class="o">=</span><span class="bp">True</span><span class="p">)[</span><span class="s2">&quot;Parameter&quot;</span><span class="p">][</span><span class="s2">&quot;Value&quot;</span><span class="p">]</span>
-</pre></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm_client</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">WithDecryption</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s2">&quot;Parameter&quot;</span><span class="p">][</span><span class="s2">&quot;Value&quot;</span><span class="p">]</span>
+</code></pre></div>
 
 
 <h4>Verify functions</h4>
 <p>I will only add the good weather tests from the previous test set, hence I will verify HiBob, Jira and Workable, but I don't check for the negative cases.</p>
-<div class="highlight"><pre><span></span><span class="c1"># continue availabilitychecker.py</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># continue availabilitychecker.py</span>
     <span class="k">def</span> <span class="nf">verify_hibob_is_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Verify that the HiBob API is available &quot;&quot;&quot;</span>
         <span class="n">api_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_param</span><span class="p">(</span><span class="s2">&quot;HIBOB_API_KEY&quot;</span><span class="p">)</span>
@@ -12064,7 +12064,7 @@ testsourceavailability.py::TestSourceAvailability::test_workable_api_is_not_avai
 
         <span class="n">arguments</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{api_url}/rest/api/2/project&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">api_url</span><span class="si">}</span><span class="s2">/rest/api/2/project&quot;</span><span class="p">,</span>
             <span class="s1">&#39;auth&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">jira_user</span><span class="p">,</span> <span class="n">api_key</span><span class="p">)</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">arguments</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
@@ -12076,9 +12076,9 @@ testsourceavailability.py::TestSourceAvailability::test_workable_api_is_not_avai
 
         <span class="n">arguments</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s1">&#39;method&#39;</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="n">f</span><span class="s2">&quot;{api_url}jobs&quot;</span><span class="p">,</span>
+            <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">api_url</span><span class="si">}</span><span class="s2">jobs&quot;</span><span class="p">,</span>
             <span class="s1">&#39;headers&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
+                <span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="s2">&quot;Bearer </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
             <span class="p">},</span>
             <span class="s1">&#39;params&#39;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -12086,47 +12086,47 @@ testsourceavailability.py::TestSourceAvailability::test_workable_api_is_not_avai
             <span class="p">}</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">arguments</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
-</pre></div>
+</code></pre></div>
 
 
 <h4>Retrieve verify methods automatically</h4>
 <p>Because in reality this file is way larger since I need to test way more sources, I do not want to write out all the verify functions explicitly in my Lambda function like below.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="n">avc</span> <span class="o">=</span> <span class="n">AvailabilityChecker</span><span class="p">()</span>
     <span class="n">avc</span><span class="o">.</span><span class="n">verify_hibob_is_available</span><span class="p">()</span>
     <span class="n">avc</span><span class="o">.</span><span class="n">verify_jira_is_available</span><span class="p">()</span>
     <span class="n">avc</span><span class="o">.</span><span class="n">verify_workable_is_available</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Instead, I want to dynamically retrieve these functions by iterating through the methods of the class.</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">_get_verify_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_get_verify_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Return verify functions inside this class &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">[</span><span class="n">func</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">))</span> <span class="ow">and</span> <span class="n">func</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;verify&quot;</span><span class="p">)]</span>
-</pre></div>
+    <span class="k">return</span> <span class="p">[</span><span class="n">func</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">))</span> <span class="ow">and</span> <span class="n">func</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;verify&quot;</span><span class="p">)]</span>
+</code></pre></div>
 
 
 <p>This method will loop through the callable functions, check if it starts with <code>verify</code> and return a list of functions. </p>
 <h4>Final Lambda</h4>
 <p>I have updated the <code>lambda_handler</code> to retrieve the functions, iterate through them and execute the method to validate for the different sources if the API is available. Of course this code is a bit longer, but when I add more <code>verify</code> functions to the class, I do not have to change any other code!</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="n">avc</span> <span class="o">=</span> <span class="n">AvailabilityChecker</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">avc</span><span class="o">.</span><span class="n">_get_verify_functions</span><span class="p">():</span>
         <span class="n">is_available</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">avc</span><span class="p">,</span> <span class="n">method</span><span class="p">)()</span>
         <span class="n">source</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">method</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">title</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">is_available</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;[NOK] Please check availability for `{source}`.&quot;</span><span class="p">)</span>            
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[NOK] Please check availability for `</span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="s2">`.&quot;</span><span class="p">)</span>            
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;[OK] `{source}`&quot;</span><span class="p">)</span>
-</pre></div>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[OK] `</span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="s2">`&quot;</span><span class="p">)</span>
+</code></pre></div>
 
 
 <p>Running it will give the results for the three sources.</p>
-<div class="highlight"><pre><span></span>$ python availabilitychecker.py
+<div class="highlight"><pre><span></span><code>$ python availabilitychecker.py
 <span class="o">[</span>OK<span class="o">]</span> <span class="sb">`</span>Hibob<span class="sb">`</span>
 <span class="o">[</span>OK<span class="o">]</span> <span class="sb">`</span>Jira<span class="sb">`</span>
 <span class="o">[</span>OK<span class="o">]</span> <span class="sb">`</span>Workable Api<span class="sb">`</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Check the <a href="https://gist.github.com/jitsejan/c12a076f3950c0e1be4b55831d291f91">Gist</a> for the final code. Hope it helps :) </p>

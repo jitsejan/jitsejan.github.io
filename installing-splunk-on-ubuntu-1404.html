@@ -11862,33 +11862,33 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <p>Download the latest version of <a href="https://www.splunk.com/en_us/products/splunk-light.html">Splunk Light</a> (Currently version 6.5) to your download folder.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~/Downloads$ wget -O splunklight-6.5.0-59c8927def0f-Linux-x86_64.tgz <span class="s1">&#39;https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&amp;platform=linux&amp;version=6.5.0&amp;product=splunk_light&amp;filename=splunklight-6.5.0-59c8927def0f-Linux-x86_64.tgz&amp;wget=true&#39;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~/Downloads$ wget -O splunklight-6.5.0-59c8927def0f-Linux-x86_64.tgz <span class="s1">&#39;https://www.splunk.com/bin/splunk/DownloadActivityServlet?architecture=x86_64&amp;platform=linux&amp;version=6.5.0&amp;product=splunk_light&amp;filename=splunklight-6.5.0-59c8927def0f-Linux-x86_64.tgz&amp;wget=true&#39;</span>
+</code></pre></div>
 
 
 <p>Extract the archive to the <strong>/opt/</strong> folder.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~/Downloads$ sudo tar zvzf splunklight-6.5.0-59c8927def0f-Linux-x86_64.tgz -C /opt/
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~/Downloads$ sudo tar zvzf splunklight-6.5.0-59c8927def0f-Linux-x86_64.tgz -C /opt/
+</code></pre></div>
 
 
 <p>Export the folder where Splunk is installed to your environment.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:/opt/splunk$ <span class="nb">echo</span> <span class="s1">&#39;export SPLUNK_HOME=/opt/splunk/&#39;</span> &gt;&gt; ~/.bashrc 
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:/opt/splunk$ <span class="nb">echo</span> <span class="s1">&#39;export SPLUNK_HOME=/opt/splunk/&#39;</span> &gt;&gt; ~/.bashrc 
 jitsejan@jjsvps:/opt/splunk$ <span class="nb">source</span> ~/.bashrc
-</pre></div>
+</code></pre></div>
 
 
 <p>Make sure the rights of the <strong>/opt/splunk/</strong> folder are correctly set. </p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:/opt$ sudo chown -R jitsejan:root splunk/ 
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:/opt$ sudo chown -R jitsejan:root splunk/ 
+</code></pre></div>
 
 
 <p>Enable access to the Splunk web interface by adding a subdomain that links to the right port.                                                                                   </p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:/etc/nginx/sites-available$ sudo nano splunk
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:/etc/nginx/sites-available$ sudo nano splunk
+</code></pre></div>
 
 
 <p>Add the following to the configuration file. Change the subdomain and port to the right values for you. </p>
-<div class="highlight"><pre><span></span><span class="nt">server</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="nt">server</span> <span class="p">{</span>
     <span class="err">listen</span> <span class="err">80</span><span class="p">;</span>
     <span class="err">server_name</span> <span class="err">subdomain.jitsejan.com</span><span class="p">;</span>
 
@@ -11896,17 +11896,17 @@ jitsejan@jjsvps:/opt/splunk$ <span class="nb">source</span> ~/.bashrc
         <span class="err">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="o">:</span><span class="mi">8888</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="err">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Enable the subdomain by creating a system link.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:/etc/nginx/sites-available$ sudo ln -s /etc/nginx/sites-available/splunk /etc/nginx/sites-enabled/
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:/etc/nginx/sites-available$ sudo ln -s /etc/nginx/sites-available/splunk /etc/nginx/sites-enabled/
+</code></pre></div>
 
 
 <p>And finally restart the server.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:/etc/nginx/sites-available$ sudo service nginx restart
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:/etc/nginx/sites-available$ sudo service nginx restart
+</code></pre></div>
 
 
 <p>Now you can open up the browser and go the the subdomain that you just introduced.</p>

@@ -11862,46 +11862,46 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <p>Install Supervisor.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ sudo pip install supervisor
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo pip install supervisor
+</code></pre></div>
 
 
 <p>Create the default configuration file for Supervisor.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ sudo echo_supervisord_conf &gt; /etc/supervisord.conf
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo echo_supervisord_conf &gt; /etc/supervisord.conf
+</code></pre></div>
 
 
 <p>Create the configuration file for the website.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ sudo nano /etc/supervisor/conf.d/website.conf
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo nano /etc/supervisor/conf.d/website.conf
+</code></pre></div>
 
 
 <p>Enter the following.</p>
-<div class="highlight"><pre><span></span>; /etc/supervisor/conf.d/website.conf
-[program:website]
-command=gunicorn -c /opt/env/gunicorn_config.py django_project.wsgi:application
-directory=/opt/env/django_project/
-user=jitsejan
-autostart=True
-autorestart=True
-redirect_stderr=True
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">; /etc/supervisor/conf.d/website.conf</span>
+<span class="err">[program:website]</span>
+<span class="err">command=gunicorn -c /opt/env/gunicorn_config.py django_project.wsgi:application</span>
+<span class="err">directory=/opt/env/django_project/</span>
+<span class="err">user=jitsejan</span>
+<span class="err">autostart=True</span>
+<span class="err">autorestart=True</span>
+<span class="err">redirect_stderr=True</span>
+</code></pre></div>
 
 
 <p>Make the file executable.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ sudo chmod a+x /etc/supervisor/conf.d/website.conf 
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo chmod a+x /etc/supervisor/conf.d/website.conf 
+</code></pre></div>
 
 
 <p>Reload Supervisor to find the new file and update the configuration.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ sudo supervisorctl reread
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo supervisorctl reread
 jitsejan@jjsvps:~$ sudo supervisorctl update
-</pre></div>
+</code></pre></div>
 
 
 <p>Now you can start the website with the following command.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ sudo supervisorctl start website
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo supervisorctl start website
+</code></pre></div>
         </div>
 
         <div class="meta">

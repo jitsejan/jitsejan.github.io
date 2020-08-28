@@ -11862,7 +11862,7 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <p>Use dd in Unix to create files with a size of 2.7 GB.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/ksh</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/ksh</span>
 <span class="nv">dir</span><span class="o">=</span>/this/is/my/outputdir/
 <span class="nv">numGig</span><span class="o">=</span><span class="m">2</span>.7
 <span class="nv">factor</span><span class="o">=</span><span class="m">1024</span>
@@ -11871,7 +11871,7 @@ jQuery(document).ready(function($) {
 <span class="k">for</span> i in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span> <span class="m">11</span> <span class="m">12</span> <span class="m">13</span> <span class="m">14</span> <span class="p">;</span> <span class="k">do</span>
    dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>dummy_<span class="nv">$i</span>.xml <span class="nv">count</span><span class="o">=</span><span class="m">204800</span> <span class="nv">bs</span><span class="o">=</span><span class="nv">$factor</span>
 <span class="k">done</span>
-</pre></div>
+</code></pre></div>
         </div>
 
         <div class="meta">

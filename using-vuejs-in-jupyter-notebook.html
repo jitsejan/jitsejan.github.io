@@ -11895,32 +11895,32 @@ img.header{
 <li>For each company page, find all ratings</li>
 </ol>
 <h3>Markup for companies links</h3>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;winners&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;page-section&quot;</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;winners&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;page-section&quot;</span><span class="p">&gt;</span>
 ...
   <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">span</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;_blank&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://content.eluta.ca/top-employer-3m-canada&quot;</span><span class="p">&gt;</span>3M Canada Company<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
 ...
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>This corresponds with the Python code from the CompanySpider class:</p>
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">href</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;div#winners a::attr(href)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">():</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">href</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;div#winners a::attr(href)&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">():</span>
+</code></pre></div>
 
 
 <h3>Markup for ratings</h3>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h3</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;rating-row&quot;</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">h3</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;rating-row&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;nocolor&quot;</span><span class="p">&gt;</span>Physical Workplace<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;rating&quot;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;score&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Great-West Life Assurance Company, The&#39;s physical workplace is rated as exceptional. &quot;</span><span class="p">&gt;</span>A+<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Python crawler</h2>
 <p>The crawler in Scrapy is defined in the following code snippet.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">scrapy</span>
 <span class="kn">from</span> <span class="nn">scrapy.crawler</span> <span class="kn">import</span> <span class="n">CrawlerProcess</span>
 
@@ -11948,39 +11948,39 @@ img.header{
                 <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="n">rating</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;span.nocolor::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">(),</span>
                 <span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="n">rating</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="s1">&#39;span.rating span.score::text&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extract_first</span><span class="p">(),</span>
             <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Make sure the output file does not exist in the directory where the script is going to be executed.</p>
-<div class="highlight"><pre><span></span>rm canadastop100.json
-</pre></div>
+<div class="highlight"><pre><span></span><code>rm canadastop100.json
+</code></pre></div>
 
 
 <p>Next we need to define the crawling processor with the following:</p>
-<div class="highlight"><pre><span></span><span class="n">process</span> <span class="o">=</span> <span class="n">CrawlerProcess</span><span class="p">({</span>
+<div class="highlight"><pre><span></span><code><span class="n">process</span> <span class="o">=</span> <span class="n">CrawlerProcess</span><span class="p">({</span>
     <span class="s1">&#39;USER_AGENT&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)&#39;</span>
 <span class="p">})</span>
 
 <span class="n">process</span><span class="o">.</span><span class="n">crawl</span><span class="p">(</span><span class="n">CompanySpider</span><span class="p">)</span>
 <span class="n">process</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Executing this will give the following result:</p>
-<div class="highlight"><pre><span></span><span class="nt">2017-10-06</span> <span class="nt">12</span><span class="p">:</span><span class="nd">09</span><span class="p">:</span><span class="nd">45</span> <span class="cp">[</span><span class="nx">scrapy.utils.log</span><span class="cp">]</span> <span class="nt">INFO</span><span class="o">:</span> <span class="nt">Scrapy</span> <span class="nt">1</span><span class="p">.</span><span class="nc">4</span><span class="p">.</span><span class="nc">0</span> <span class="nt">started</span> <span class="o">(</span><span class="nt">bot</span><span class="o">:</span> <span class="nt">scrapybot</span><span class="o">)</span>
-<span class="nt">2017-10-06</span> <span class="nt">12</span><span class="p">:</span><span class="nd">09</span><span class="p">:</span><span class="nd">45</span> <span class="cp">[</span><span class="nx">scrapy.utils.log</span><span class="cp">]</span> <span class="nt">INFO</span><span class="o">:</span> <span class="nt">Overridden</span> <span class="nt">settings</span><span class="o">:</span> <span class="p">{</span><span class="err">&#39;USER_AGENT&#39;:</span> <span class="err">&#39;Mozilla/4.0</span> <span class="err">(compatible</span><span class="p">;</span> <span class="err">MSIE</span> <span class="err">7.0</span><span class="p">;</span> <span class="err">Windows</span> <span class="err">NT</span> <span class="err">5.1)&#39;</span><span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">2017-10-06 12:09:45 [scrapy.utils.log] INFO: Scrapy 1.4.0 started (bot: scrapybot)</span>
+<span class="err">2017-10-06 12:09:45 [scrapy.utils.log] INFO: Overridden settings: {&#39;USER_AGENT&#39;: &#39;Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)&#39;}</span>
+</code></pre></div>
 
 
 <h2>Preparing data</h2>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</code></pre></div>
 
 
 <p>Read the output file from the scraper.</p>
-<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">&#39;canadastop100.json&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">&#39;canadastop100.json&#39;</span><span class="p">)</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <div class="row">
@@ -12042,58 +12042,58 @@ img.header{
 </div>
 
 <p>Get the unique names in the database.</p>
-<div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>101
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">101</span>
+</code></pre></div>
 
 
 <p>Filter out the companies without a title.</p>
-<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
+</code></pre></div>
 
 
 <p>The unique elements in the value column are given by</p>
-<div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</code></pre></div>
 
 
 <p>and result in</p>
-<div class="highlight"><pre><span></span>array([&#39;A+&#39;, &#39;A&#39;, &#39;B&#39;, &#39;B+&#39;, &#39;B-&#39;, &#39;A-&#39;, &#39;C+&#39;], dtype=object)
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">array([&#39;A+&#39;, &#39;A&#39;, &#39;B&#39;, &#39;B+&#39;, &#39;B-&#39;, &#39;A-&#39;, &#39;C+&#39;], dtype=object)</span>
+</code></pre></div>
 
 
 <p>Lets map these values to a number to make it easier to work them in the dataset. Define the mapping:</p>
-<div class="highlight"><pre><span></span><span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A+&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A+&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
            <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
            <span class="s1">&#39;A-&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
            <span class="s1">&#39;B+&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
            <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
            <span class="s1">&#39;B-&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
            <span class="s1">&#39;C+&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>and apply the mapping to the value column:</p>
-<div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapping</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">mapping</span><span class="p">)</span>
+</code></pre></div>
 
 
 <p>Now we need to transpose the dataframe, since we want a matrix with the companies per row and the different scores as a column.</p>
-<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+</code></pre></div>
 
 
 <p>We add a column to get the total score:</p>
-<div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Total Score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Total Score&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
 
 
 <p>The dataframe has the following layout after adding the extra column:</p>
-<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
 
 
 <div>
@@ -12203,44 +12203,44 @@ img.header{
 </div>
 
 <p>As a last step we need to attach the dataframe to the body of the notebook by using some JavaScript. We import the proper libraries</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Javascript</span><span class="p">,</span> <span class="n">display</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Javascript</span><span class="p">,</span> <span class="n">display</span>
+</code></pre></div>
 
 
 <p>and attach the dataframe, after converting, to the window.</p>
-<div class="highlight"><pre><span></span><span class="n">Javascript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;§</span>
-<span class="s2">           window.companyData={};</span>
+<div class="highlight"><pre><span></span><code><span class="n">Javascript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;§</span>
+<span class="s2">           window.companyData=</span><span class="si">{}</span><span class="s2">;</span>
 <span class="s2">           &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)))</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>&lt;IPython.core.display.Javascript object&gt;
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;IPython.core.display.Javascript object&gt;</span>
+</code></pre></div>
 
 
 <p>Write to JSON file on disk if you want. This can be used in turn to move to the server where the VueJS application will be deployed. </p>
-<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s1">&#39;canadastop100.json&#39;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s1">&#39;canadastop100.json&#39;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
+</code></pre></div>
 
 
 <h2>Visualizing data</h2>
 <p>Next step is to visualize the data using VueJS. VueJS can be included from https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue. This notebook will make use of the example of the <a href="https://vuejs.org/v2/examples/grid-component.html">grid-component</a> from the official documentation to create a table representing the crawled data.</p>
 <p>Add the requirement to the notebook.</p>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">javascript</span>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">javascript</span>
 <span class="n">require</span><span class="o">.</span><span class="n">config</span><span class="p">({</span>
     <span class="n">paths</span><span class="p">:</span> <span class="p">{</span>
         <span class="n">vue</span><span class="p">:</span> <span class="s2">&quot;https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue&quot;</span>
     <span class="p">}</span>
 <span class="p">});</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>&lt;IPython.core.display.Javascript object&gt;
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;IPython.core.display.Javascript object&gt;</span>
+</code></pre></div>
 
 
 <p>Define the template for displaying the data in a table using the x-template script type and the VueJS syntax.</p>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">html</span>
 <span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text/x-template&quot;</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;data-template&quot;</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">table</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;canada&quot;</span><span class="o">&gt;</span>
     <span class="o">&lt;</span><span class="n">thead</span><span class="o">&gt;</span>
@@ -12263,7 +12263,7 @@ img.header{
     <span class="o">&lt;/</span><span class="n">tbody</span><span class="o">&gt;</span>
   <span class="o">&lt;/</span><span class="n">table</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <script type="text/x-template" id="data-template">
@@ -12290,7 +12290,7 @@ img.header{
 </script>
 
 <p>Define the main HTML that contains the template we defined earlier.</p>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">html</span>
 <span class="o">&lt;</span><span class="n">div</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;vue-app&quot;</span><span class="o">&gt;</span>
   <span class="o">&lt;</span><span class="n">form</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;search&quot;</span><span class="o">&gt;</span>
     <span class="n">Search</span> <span class="o">&lt;</span><span class="nb">input</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;query&quot;</span> <span class="n">v</span><span class="o">-</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;searchQuery&quot;</span><span class="o">&gt;</span>
@@ -12301,7 +12301,7 @@ img.header{
     <span class="p">:</span><span class="nb">filter</span><span class="o">-</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;searchQuery&quot;</span><span class="o">&gt;</span>
   <span class="o">&lt;/</span><span class="n">data</span><span class="o">-</span><span class="n">grid</span><span class="o">&gt;</span>
 <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <div id="vue-app">
@@ -12316,7 +12316,7 @@ img.header{
 </div>
 
 <p>Initialize the VueJS application using Javascript by extracting the data from the window, attaching the component with the table for the data and creating a new Vue instance.</p>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">javascript</span>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">javascript</span>
 <span class="n">require</span><span class="p">([</span><span class="s1">&#39;vue&#39;</span><span class="p">],</span> <span class="n">function</span><span class="p">(</span><span class="n">Vue</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">Vue</span><span class="o">.</span><span class="n">version</span><span class="p">);</span>
     <span class="n">var</span> <span class="n">companyData</span> <span class="o">=</span> <span class="n">window</span><span class="o">.</span><span class="n">companyData</span><span class="p">;</span>
@@ -12384,15 +12384,15 @@ img.header{
     <span class="p">})</span>
 
 <span class="p">});</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>&lt;IPython.core.display.Javascript object&gt;
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">&lt;IPython.core.display.Javascript object&gt;</span>
+</code></pre></div>
 
 
 <p>Attach a style to make the table more attractive.</p>
-<div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<div class="highlight"><pre><span></span><code><span class="o">%%</span><span class="n">html</span>
 <span class="o">&lt;</span><span class="n">style</span><span class="o">&gt;</span>
 <span class="n">table</span><span class="o">.</span><span class="n">canada</span> <span class="p">{</span>
   <span class="n">border</span><span class="p">:</span> <span class="mi">2</span><span class="n">px</span> <span class="n">solid</span> <span class="n">rgb</span><span class="p">(</span><span class="mi">102</span><span class="p">,</span> <span class="mi">153</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
@@ -12448,7 +12448,7 @@ img.header{
   <span class="n">border</span><span class="o">-</span><span class="n">top</span><span class="p">:</span> <span class="mi">4</span><span class="n">px</span> <span class="n">solid</span> <span class="c1">#fff;</span>
 <span class="p">}</span>
 <span class="o">&lt;/</span><span class="n">style</span><span class="o">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <style>

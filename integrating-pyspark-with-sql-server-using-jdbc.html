@@ -11862,39 +11862,39 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <p>First of all I need the JDBC driver for Spark in order to make the connection to a Microsoft SQL server.</p>
-<div class="highlight"><pre><span></span>$ wget https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/6.4.0.jre8/mssql-jdbc-6.4.0.jre8.jar -P /opt/notebooks/
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ wget https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/6.4.0.jre8/mssql-jdbc-6.4.0.jre8.jar -P /opt/notebooks/
+</code></pre></div>
 
 
 <p>The configuration is saved in <code>config.ini</code> with the following fields:</p>
-<div class="highlight"><pre><span></span><span class="k">[mydb]</span>
+<div class="highlight"><pre><span></span><code><span class="k">[mydb]</span>
 <span class="na">database</span> <span class="o">=</span> <span class="s">mydb</span>
 <span class="na">host</span> <span class="o">=</span> <span class="s">mydb-server.database.windows.net</span>
 <span class="na">username</span> <span class="o">=</span> <span class="s">readonly</span>
 <span class="na">password</span> <span class="o">=</span> <span class="s">mypassword</span>
 <span class="na">port</span> <span class="o">=</span> <span class="s">1433</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Loading the configuration is simple with <code>configparser</code>:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
 
 <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
 <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;config.ini&#39;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Set the values for the connection:</p>
-<div class="highlight"><pre><span></span><span class="n">jdbc_url</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;jdbc:sqlserver://{config.get(&#39;mydb&#39;, &#39;host&#39;)}:{config.get(&#39;mydb&#39;, &#39;port&#39;)};database={config.get(&#39;mydb&#39;, &#39;database&#39;)}&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="n">jdbc_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;jdbc:sqlserver://</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mydb&#39;</span><span class="p">,</span> <span class="s1">&#39;host&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mydb&#39;</span><span class="p">,</span> <span class="s1">&#39;port&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">;database=</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mydb&#39;</span><span class="p">,</span> <span class="s1">&#39;database&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
 <span class="n">connection_properties</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;user&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mydb&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">),</span>
     <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mydb&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>When creating the SparkSession make sure the path to the JAR is correctly set:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
 
 <span class="n">jars</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;mssql-jdbc-6.4.0.jre8.jar&quot;</span><span class="p">,</span>
@@ -11904,34 +11904,34 @@ jQuery(document).ready(function($) {
   <span class="o">.</span><span class="n">appName</span><span class="p">(</span><span class="s2">&quot;PySpark with SQL server&quot;</span><span class="p">)</span>
   <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.driver.extraClassPath&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">jars</span><span class="p">))</span>
   <span class="o">.</span><span class="n">getOrCreate</span><span class="p">())</span>  
-</pre></div>
+</code></pre></div>
 
 
 <p>The session is created and we can query the actual database:</p>
-<div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="s1">&#39;dbo&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">schema</span> <span class="o">=</span> <span class="s1">&#39;dbo&#39;</span>
 <span class="n">table</span> <span class="o">=</span> <span class="s1">&#39;users&#39;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The reading is done using the <code>jdbc</code> read option and specifying the connection details:</p>
-<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span> \
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span> \
     <span class="o">.</span><span class="n">read</span> \
     <span class="o">.</span><span class="n">jdbc</span><span class="p">(</span><span class="n">jdbc_url</span><span class="p">,</span>
-          <span class="n">f</span><span class="s2">&quot;{schema}.{table}&quot;</span><span class="p">,</span>
+          <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">schema</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
           <span class="n">properties</span><span class="o">=</span><span class="n">connection_properties</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>An alternative approach is to use the same syntax as for the <a href="https://www.jitsejan.com/integrating-pyspark-with-redshift.html">Redshift article</a> by omitting the <code>connection_properties</code> and use a more explicit notation.</p>
-<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span>
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span>
     <span class="o">.</span><span class="n">read</span> \
     <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;jdbc&quot;</span><span class="p">)</span> \
     <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="n">jdbc_url</span><span class="p">)</span> \
-    <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;dbtable&quot;</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;{schema}.{table}&quot;</span><span class="p">)</span> \
+    <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;dbtable&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">schema</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> \
     <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mydb&#39;</span><span class="p">,</span> <span class="s1">&#39;username&#39;</span><span class="p">))</span> \
     <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mydb&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">))</span> \
     <span class="o">.</span><span class="n">load</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
         </div>
 
         <div class="meta">

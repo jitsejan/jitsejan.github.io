@@ -11863,12 +11863,12 @@ jQuery(document).ready(function($) {
         <div class="article_content">
             <p>In my article on <a href="https://www.jitsejan.com/integrating-pyspark-notebook-with-s3.html">how to connect to S3 from PySpark</a> I showed how to setup Spark with the right libraries to be able to connect to read and right from AWS S3. In the following article I show a quick example how I connect to Redshift and use the S3 setup to write the table to file. </p>
 <p>First of all I need the Postgres driver for Spark in order to make connecting to Redshift possible.</p>
-<div class="highlight"><pre><span></span>$ wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.6/postgresql-42.2.6.jar -P /opt/notebooks/
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.6/postgresql-42.2.6.jar -P /opt/notebooks/
+</code></pre></div>
 
 
 <p>I have saved my configuration in the following variable for testing purposes. Of course it would be wise to store the details in environment variables or in a proper configuration file.</p>
-<div class="highlight"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;aws_access_key&#39;</span><span class="p">:</span> <span class="s1">&#39;aaaaaa&#39;</span><span class="p">,</span>
     <span class="s1">&#39;aws_secret_key&#39;</span><span class="p">:</span> <span class="s1">&#39;bbbbb&#39;</span><span class="p">,</span>
     <span class="s1">&#39;aws_region&#39;</span><span class="p">:</span> <span class="s1">&#39;eu-west-2&#39;</span><span class="p">,</span>
@@ -11879,11 +11879,11 @@ jQuery(document).ready(function($) {
     <span class="s1">&#39;redshift_db&#39;</span><span class="p">:</span> <span class="s1">&#39;mydatabase&#39;</span><span class="p">,</span>
     <span class="s1">&#39;redshift_host&#39;</span><span class="p">:</span> <span class="s1">&#39;myhost&#39;</span><span class="p">,</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Setting up the Spark context is straightforward. Make sure the Postgres library is available by adding it to <code>extraClassPath</code>, or copy it to the <code>jars</code> folder in the Spark installation location (<code>SPARK_HOME</code>).</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark</span> <span class="kn">import</span> <span class="n">SparkContext</span><span class="p">,</span> <span class="n">SparkConf</span><span class="p">,</span> <span class="n">SQLContext</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark</span> <span class="kn">import</span> <span class="n">SparkContext</span><span class="p">,</span> <span class="n">SparkConf</span><span class="p">,</span> <span class="n">SQLContext</span>
 
 <span class="n">jars</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;/opt/notebooks/postgresql-42.2.6.jar&quot;</span>
@@ -11895,38 +11895,38 @@ jQuery(document).ready(function($) {
     <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.driver.extraClassPath&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">jars</span><span class="p">))</span>
     <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.access.key&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;aws_access_key&#39;</span><span class="p">))</span>
     <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.secret.key&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;aws_secret_key&#39;</span><span class="p">))</span>
-    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.path.style.access&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.path.style.access&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
     <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.impl&quot;</span><span class="p">,</span> <span class="s2">&quot;org.apache.hadoop.fs.s3a.S3AFileSystem&quot;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;com.amazonaws.services.s3.enableV4&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.endpoint&quot;</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;s3-{config.get(&#39;region&#39;)}.amazonaws.com&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;com.amazonaws.services.s3.enableV4&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.endpoint&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;s3-</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.amazonaws.com&quot;</span><span class="p">)</span>
     <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.executor.extraJavaOptions&quot;</span><span class="p">,</span> <span class="s2">&quot;-Dcom.amazonaws.services.s3.enableV4=true&quot;</span><span class="p">)</span>
     <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.driver.extraJavaOptions&quot;</span><span class="p">,</span> <span class="s2">&quot;-Dcom.amazonaws.services.s3.enableV4=true&quot;</span><span class="p">)</span>
 <span class="p">)</span>
 <span class="n">sc</span> <span class="o">=</span> <span class="n">SparkContext</span><span class="p">(</span><span class="n">conf</span><span class="o">=</span><span class="n">conf</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
 <span class="n">sqlContext</span> <span class="o">=</span> <span class="n">SQLContext</span><span class="p">(</span><span class="n">sc</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Now the Spark context is set I specify the schema and the table that I want to read from Redshift and write to S3.</p>
-<div class="highlight"><pre><span></span><span class="n">schema</span> <span class="o">=</span> <span class="s1">&#39;custom&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="n">schema</span> <span class="o">=</span> <span class="s1">&#39;custom&#39;</span>
 <span class="n">table</span> <span class="o">=</span> <span class="s1">&#39;postcodes&#39;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The reading is done using the <code>jdbc</code> format and specifying the Redshift details:</p>
-<div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">sqlContext</span><span class="o">.</span><span class="n">read</span> \
+<div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">sqlContext</span><span class="o">.</span><span class="n">read</span> \
                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;jdbc&quot;</span><span class="p">)</span> \
-               <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;jdbc:postgresql://{config.get(&#39;redshift_host&#39;)}.redshift.amazonaws.com:{config.get(&#39;redshift_port&#39;)}/{config.get(&#39;redshift_db&#39;)}&quot;</span><span class="p">)</span> \
-               <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;dbtable&quot;</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;{schema}.{table}&quot;</span><span class="p">)</span> \
+               <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;jdbc:postgresql://</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redshift_host&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.redshift.amazonaws.com:</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redshift_port&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redshift_db&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> \
+               <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;dbtable&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">schema</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> \
                <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redshift_user&#39;</span><span class="p">))</span> \
                <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redshift_pass&#39;</span><span class="p">))</span> \
                <span class="o">.</span><span class="n">load</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Writing is easy since I specified the S3 details in the Spark configuration. </p>
-<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s1">&#39;overwrite&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;s3a://{config.get(&#39;aws_bucket&#39;)}/raw/{schema}/{table})</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s1">&#39;overwrite&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;s3a://{config.get(&#39;aws_bucket&#39;)}/raw/</span><span class="si">{schema}</span><span class="s2">/</span><span class="si">{table}</span><span class="s2">)</span>
+</code></pre></div>
         </div>
 
         <div class="meta">

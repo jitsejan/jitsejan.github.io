@@ -11865,11 +11865,11 @@ jQuery(document).ready(function($) {
 <p>In my post <a href="https://www.jitsejan.com/using-spark-to-read-from-s3.html">Using Spark to read from S3</a> I explained how I was able to connect Spark to AWS S3 on a Ubuntu machine. Last week I was trying to connect to S3 again using Spark on my local machine, but I wasn't able to read data from our datalake. Our datalake is hosted in the  <code>eu-west-2</code> region which apparently requires you to specify the version of authentication. Instead of setting up the right environment on my machine and reconfigure everything, I chose to update the Docker image from my <a href="https://github.com/jitsejan/notebooks">notebook repo</a> so I could test locally on my Mac before pushing it to my server. Instead of configuring both my local and remote environment I can simply spin up the Docker container and have two identical environments. </p>
 <h2>Implementation</h2>
 <p>Rather than providing the AWS credentials in the Spark config, I want to keep things simple and only have one credentials file from where I will read the important information. The contents of <code>~/.aws/credentials</code> specify just one account in this example, but this is where I have specified all the different AWS accounts we are using. This file will be copied to the Docker container by mounting the local <code>aws</code> folder inside the Docker instance.</p>
-<div class="highlight"><pre><span></span><span class="k">[prod]</span>
+<div class="highlight"><pre><span></span><code><span class="k">[prod]</span>
 <span class="na">aws_access_key_id</span> <span class="o">=</span> <span class="s">xxxxxxyyyyyyy</span>
 <span class="na">aws_secret_access_key</span> <span class="o">=</span> <span class="s">zzzzzzzzyyyyyyy</span>
 <span class="na">region</span> <span class="o">=</span> <span class="s">eu-west-2 </span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The Dockerfile consists of different steps. I have stripped down the Dockerfile to only install the essentials to get Spark working with S3 and a few extra libraries (like <code>nltk</code>) to play with some data. A few things to note:</p>
@@ -11882,7 +11882,7 @@ jQuery(document).ready(function($) {
 <li>The Jupyter packages and extensions are installed and enabled.</li>
 <li>The notebook is started in Jupyter <em>lab</em> mode.</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> jupyter/pyspark-notebook</span>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">jupyter/pyspark-notebook</span>
 <span class="k">USER</span><span class="s"> root</span>
 <span class="c"># Add essential packages</span>
 <span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> apt-get install -y build-essential curl git gnupg2 nano apt-transport-https software-properties-common
@@ -11911,20 +11911,20 @@ jQuery(document).ready(function($) {
 <span class="k">RUN</span> jupyter nbextensions_configurator <span class="nb">enable</span> --user
 <span class="c"># Run the notebook</span>
 <span class="k">CMD</span> <span class="p">[</span><span class="s2">&quot;/opt/conda/bin/jupyter&quot;</span><span class="p">,</span> <span class="s2">&quot;lab&quot;</span><span class="p">,</span> <span class="s2">&quot;--allow-root&quot;</span><span class="p">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The Jupyter configuration file sets up the notebook environment. In my case I set the password, the startup directory and the IP restrictions.</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; jupyter_notebook_config.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; jupyter_notebook_config.py &quot;&quot;&quot;</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
 <span class="n">c</span><span class="o">.</span><span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">allow_origin</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span> 
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">ip</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">notebook_dir</span> <span class="o">=</span> <span class="s1">&#39;/opt/notebooks/&#39;</span>
-<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">open_browser</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">open_browser</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;sha1:a123:345345&#39;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="mi">8558</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The <code>docker-compose.yml</code> contains the setup of the Docker instance. The most important parts of the compose file are:</p>
@@ -11933,7 +11933,7 @@ jQuery(document).ready(function($) {
 <li>The credential file is mapped from the Docker machine to the local machine.</li>
 <li>The public port is set to 8558.</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
 <span class="nt">services</span><span class="p">:</span>
   <span class="nt">jitsejan-pyspark</span><span class="p">:</span>
     <span class="nt">user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
@@ -11948,12 +11948,12 @@ jQuery(document).ready(function($) {
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">GRANT_SUDO=yes</span>
     <span class="nt">ports</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;8558:8558&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Execution</h2>
 <p>I am running Docker version 19.03.5 at the time of writing.</p>
-<div class="highlight"><pre><span></span>~/code/notebooks &gt; master $ docker version
+<div class="highlight"><pre><span></span><code>~/code/notebooks &gt; master $ docker version
 Client: Docker Engine - Community
  Version:           <span class="m">19</span>.03.5
  API version:       <span class="m">1</span>.40
@@ -11981,11 +11981,11 @@ Server: Docker Engine - Community
  docker-init:
   Version:          <span class="m">0</span>.18.0
   GitCommit:        fec3683
-</pre></div>
+</code></pre></div>
 
 
 <p>Run <code>docker-compose up</code> after creating the compose file to spin up the notebook. </p>
-<div class="highlight"><pre><span></span>~/code/notebooks &gt; master $ docker-compose up
+<div class="highlight"><pre><span></span><code>~/code/notebooks &gt; master $ docker-compose up
 Creating network <span class="s2">&quot;notebooks_default&quot;</span> with the default driver
 Creating notebooks_jitsejan-pyspark_1 ... <span class="k">done</span>
 Attaching to notebooks_jitsejan-pyspark_1
@@ -11998,14 +11998,14 @@ jitsejan-pyspark_1  <span class="p">|</span> <span class="o">[</span>I <span cla
 jitsejan-pyspark_1  <span class="p">|</span> <span class="o">[</span>I <span class="m">13</span>:38:49.802 LabApp<span class="o">]</span> The Jupyter Notebook is running at:
 jitsejan-pyspark_1  <span class="p">|</span> <span class="o">[</span>I <span class="m">13</span>:38:49.802 LabApp<span class="o">]</span> http://ade618e362da:8558/
 jitsejan-pyspark_1  <span class="p">|</span> <span class="o">[</span>I <span class="m">13</span>:38:49.803 LabApp<span class="o">]</span> Use Control-C to stop this server and shut down all kernels <span class="o">(</span>twice to skip confirmation<span class="o">)</span>.
-</pre></div>
+</code></pre></div>
 
 
 <p>The container is now running on port <code>8558</code>:</p>
-<div class="highlight"><pre><span></span>~/code/notebooks &gt; master $ docker ps
+<div class="highlight"><pre><span></span><code>~/code/notebooks &gt; master $ docker ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                              NAMES
 ade618e362da        jitsejan/pyspark-notebook   <span class="s2">&quot;tini -g -- /opt/con…&quot;</span>   <span class="m">2</span> minutes ago       Up <span class="m">2</span> minutes        <span class="m">0</span>.0.0.0:8558-&gt;8558/tcp, <span class="m">8888</span>/tcp   notebooks_jitsejan-pyspark_1
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="pyspark_terminal" src="images/pyspark_terminal.png"></p>
@@ -12014,35 +12014,35 @@ ade618e362da        jitsejan/pyspark-notebook   <span class="s2">&quot;tini -g -
 <p><img alt="pypspark_jupyter_login" src="images/pypspark_jupyter_login.png"></p>
 <h2>Code</h2>
 <p>To connect Spark to S3 I will use the <code>credentials</code> file as configuration file and use the <code>configparser</code> library to read the parameters.</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
 
 <span class="n">config_object</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
 <span class="n">config_object</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;/home/jovyan/.aws/credentials&quot;</span><span class="p">)</span>
 <span class="n">profile_info</span> <span class="o">=</span> <span class="n">config_object</span><span class="p">[</span><span class="s2">&quot;prod&quot;</span><span class="p">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Since the configuration now contains the production account data I can use it so set the parameters for the Spark context. Note that all these parameters are required to connect to the data on S3. The access key and secret are always mentioned in tutorials, but it took me a while to figure out I need to specify the <code>endpoint</code> and enable V4. </p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark</span> <span class="kn">import</span> <span class="n">SparkContext</span><span class="p">,</span> <span class="n">SparkConf</span><span class="p">,</span> <span class="n">SQLContext</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark</span> <span class="kn">import</span> <span class="n">SparkContext</span><span class="p">,</span> <span class="n">SparkConf</span><span class="p">,</span> <span class="n">SQLContext</span>
 
 <span class="n">conf</span> <span class="o">=</span> <span class="p">(</span>
     <span class="n">SparkConf</span><span class="p">()</span>
-    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.path.style.access&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.path.style.access&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
     <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.access.key&quot;</span><span class="p">,</span> <span class="n">profile_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;aws_access_key_id&#39;</span><span class="p">))</span>
     <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.secret.key&quot;</span><span class="p">,</span> <span class="n">profile_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;aws_secret_access_key&#39;</span><span class="p">))</span>
-    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.endpoint&quot;</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;s3-{profile_info.get(&#39;region&#39;)}.amazonaws.com&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.endpoint&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;s3-</span><span class="si">{</span><span class="n">profile_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;region&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">.amazonaws.com&quot;</span><span class="p">)</span>
     <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.hadoop.fs.s3a.impl&quot;</span><span class="p">,</span> <span class="s2">&quot;org.apache.hadoop.fs.s3a.S3AFileSystem&quot;</span><span class="p">)</span>
-    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;com.amazonaws.services.s3.enableV4&quot;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;com.amazonaws.services.s3.enableV4&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
     <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;spark.driver.extraJavaOptions&quot;</span><span class="p">,</span> <span class="s2">&quot;-Dcom.amazonaws.services.s3.enableV4=true&quot;</span><span class="p">)</span>
 <span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>With the above configuration I initialize the Spark context and can read from our datalake. </p>
-<div class="highlight"><pre><span></span><span class="n">sc</span> <span class="o">=</span> <span class="n">SparkContext</span><span class="p">(</span><span class="n">conf</span><span class="o">=</span><span class="n">conf</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
+<div class="highlight"><pre><span></span><code><span class="n">sc</span> <span class="o">=</span> <span class="n">SparkContext</span><span class="p">(</span><span class="n">conf</span><span class="o">=</span><span class="n">conf</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
 <span class="n">sqlContext</span> <span class="o">=</span> <span class="n">SQLContext</span><span class="p">(</span><span class="n">sc</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">sqlContext</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;s3a://mi-datalake-prod/warehouse/platform/company_list/&quot;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><img alt="pyspark_jupyterlab" src="images/pyspark_jupyterlab.png"></p>

@@ -11862,13 +11862,13 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <h2>Install Docker and add user</h2>
-<div class="highlight"><pre><span></span>jitsejan@ssdnodes-jj-kvm:~$ sudo apt install docker.io docker-compose -y
+<div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~$ sudo apt install docker.io docker-compose -y
 jitsejan@ssdnodes-jj-kvm:~$ sudo usermod -aG docker <span class="nv">$USER</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Create the folder structure</h2>
-<div class="highlight"><pre><span></span>jitsejan@ssdnodes-jj-kvm:~/anaconda3_docker$ tree
+<div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/anaconda3_docker$ tree
 .
 ├── data
 ├── docker-compose.yml
@@ -11876,33 +11876,33 @@ jitsejan@ssdnodes-jj-kvm:~$ sudo usermod -aG docker <span class="nv">$USER</span
 ├── notebooks
 ├── README.md
 └── requirements.txt
-</pre></div>
+</code></pre></div>
 
 
 <p>The data folder will contain input and output data for the notebooks. The notebooks folder will contain the Jupyter notebooks. The Dockerfile will create the folders in the container and install the Python requirements from the requirements.txt.</p>
 <p>Content of Dockerfile:</p>
-<div class="highlight"><pre><span></span>FROM continuumio/anaconda3
-ADD requirements.txt /
-RUN pip install -r requirements.txt
-CMD [&quot;/opt/conda/bin/jupyter&quot;, &quot;notebook&quot;, &quot;--notebook-dir=/opt/notebooks&quot;, &quot;--ip=&#39;*&#39;&quot;, &quot;--no-browser&quot;, &quot;--allow-root&quot;]
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">FROM continuumio/anaconda3</span>
+<span class="err">ADD requirements.txt /</span>
+<span class="err">RUN pip install -r requirements.txt</span>
+<span class="err">CMD [&quot;/opt/conda/bin/jupyter&quot;, &quot;notebook&quot;, &quot;--notebook-dir=/opt/notebooks&quot;, &quot;--ip=&#39;*&#39;&quot;, &quot;--no-browser&quot;, &quot;--allow-root&quot;]</span>
+</code></pre></div>
 
 
 <p>Content of docker-compose.yml:</p>
-<div class="highlight"><pre><span></span>version: &#39;2&#39;
-services:
-  anaconda:
-    build: .
-    volumes:
-      - ./notebooks:/opt/notebooks
-    ports:
-      - &quot;8888:8888&quot;
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="c">version: &#39;2&#39;</span>
+<span class="c">services:</span>
+<span class="c">  anaconda:</span>
+<span class="c">    build: .</span>
+<span class="c">    volumes:</span>
+<span class="c">      - ./notebooks:/opt/notebooks</span>
+<span class="c">    ports:</span>
+<span class="c">      - &quot;8888:8888&quot;</span>
+</code></pre></div>
 
 
 <h2>Start the container</h2>
-<div class="highlight"><pre><span></span>jitsejan@ssdnodes-jj-kvm:~/anaconda3_docker$ docker-compose up --build
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/anaconda3_docker$ docker-compose up --build
+</code></pre></div>
 
 
 <h2>Action</h2>

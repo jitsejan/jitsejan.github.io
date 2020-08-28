@@ -11867,23 +11867,25 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
-      <h2><a href="../add-css-splunk-dashboard.html">Add CSS to Splunk dashboard</a></h2>
-      <time datetime="" title="2016-12-17T14:18:00+00:00" pubdate>Sat 17 December 2016</time>
+      <h2><a href="../change-modified-time-file.html">Change the last modified time of a file</a></h2>
+      <time datetime="" title="2016-07-31T14:52:00+01:00" pubdate>Sun 31 July 2016</time>
     </header>
 
     <div class="article_content">
-        <p>To add some custom style to your dashboard, you can create a cascade stylesheet in your app folder and overrule the standard dashboard lay-out.</p>
+        <p>This script will change the last modified time of a file in the current directory to 4 days back.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/ksh </span>
+<span class="nv">numDays</span><span class="o">=</span><span class="m">4</span>
+<span class="nv">diff</span><span class="o">=</span><span class="m">86400</span>*<span class="nv">$numDays</span>
+<span class="nb">export</span> diff
+<span class="nv">newDate</span><span class="o">=</span><span class="k">$(</span>perl -e <span class="s1">&#39;use POSIX; print strftime &quot;%Y%m%d%H%M&quot;, localtime time-$ENV{diff};&#39;</span><span class="k">)</span>
+<span class="nv">lastFile</span><span class="o">=</span><span class="k">$(</span>ls -lt <span class="p">|</span> egrep -v ^d <span class="p">|</span> tail -1 <span class="p">|</span> awk <span class="s1">&#39; { print $9 } &#39;</span><span class="k">)</span>
+touch -t <span class="nv">$newDate</span> <span class="nv">$lastFile</span>
+</code></pre></div>
     </div>
     
     <div class="meta">
       <div>
-        <a href="../add-css-splunk-dashboard.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/splunk.html" class="tag">Splunk</a>
-            <a href="../tag/tutorial.html" class="tag">tutorial</a>
-            <a href="../tag/dashboard.html" class="tag">dashboard</a>
-            <a href="../tag/css.html" class="tag">CSS</a>
+            <a href="../tag/shell.html" class="tag">shell</a>
       </div>
 
     </div>
@@ -11892,198 +11894,19 @@ jQuery(document).ready(function($) {
   <div class="separator"></div>
   <article>
     <header>
-      <h2><a href="../create-splunk-app-monitor-nginx.html">Create a Splunk app to monitor Nginx</a></h2>
-      <time datetime="" title="2016-12-12T15:34:00+00:00" pubdate>Mon 12 December 2016</time>
+      <h2><a href="../debugging-in-django.html">Show all debug information in Django</a></h2>
+      <time datetime="" title="2016-07-31T13:51:00+01:00" pubdate>Sun 31 July 2016</time>
     </header>
 
     <div class="article_content">
-        <p>In this short tutorial I will create a Splunk app to monitor the webserver. We will create the bare-bone app and we add a few panels to the dashboard.</p>
+        <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;</span> {% filter force_escape %} {% debug %} {% endfilter %} <span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
+</code></pre></div>
     </div>
     
     <div class="meta">
-      <div>
-        <a href="../create-splunk-app-monitor-nginx.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/splunk.html" class="tag">Splunk</a>
-            <a href="../tag/tutorial.html" class="tag">tutorial</a>
-            <a href="../tag/dashboard.html" class="tag">dashboard</a>
-            <a href="../tag/nginx.html" class="tag">Nginx</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../adding-aliases-windows.html">Adding aliases to Windows</a></h2>
-      <time datetime="" title="2016-12-05T10:27:00+00:00" pubdate>Mon 05 December 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Since I have been using Linux for a while, switching back to the Windows CLI has some challenges. Luckily you can add aliases to the command prompt with the following procedure.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../adding-aliases-windows.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/windows.html" class="tag">Windows</a>
-            <a href="../tag/alias.html" class="tag">alias</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../install-kdiff3-on-osx.html">Install KDiff3 on OSX</a></h2>
-      <time datetime="" title="2016-11-17T12:27:00+00:00" pubdate>Thu 17 November 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Installing the diff/merge tool <a href="http://kdiff3.sourceforge.net">KDiff3</a> is easy using the package manager <a href="http://brew.s">Homebrew</a> extension <a href="https://caskroom.github.io">Cask</a>. The extension makes is possible to install (GUI) applications on the Mac without the dragging and dropping of the DMG-files.</p>
-<div class="highlight"><pre><span></span>jitsejan@MBP $ /usr/bin/ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
-jitsejan@MBP $ brew tap caskroom/cask
-jitsejan@MBP $ brew cask install kdiff3
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/kdiff3.html" class="tag">kdiff3</a>
-            <a href="../tag/mac.html" class="tag">mac</a>
-            <a href="../tag/osx.html" class="tag">OSX</a>
-            <a href="../tag/brew.html" class="tag">brew</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../installing-splunk-on-ubuntu-1404.html">Installing Splunk on Ubuntu 14.04</a></h2>
-      <time datetime="" title="2016-11-17T11:47:00+00:00" pubdate>Thu 17 November 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Explanation of the installation of Splunk.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../installing-splunk-on-ubuntu-1404.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/splunk.html" class="tag">Splunk</a>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../add-css-to-jupyter-notebook.html">Add CSS to Jupyter notebook</a></h2>
-      <time datetime="" title="2016-11-12T11:40:00+00:00" pubdate>Sat 12 November 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>To add some style to the notebook, Jupyter has the option to add a custom css file. This file should be located in <strong>~/.jupyter/custom/custom.css</strong>. If this file does not exist yet, create the directory if needed and add the stylesheet. Add the following code and refresh the notebook to see if it works.</p>
-<div class="highlight"><pre><span></span><span class="nt">body</span> <span class="p">{</span>
-  <span class="k">background-color</span><span class="p">:</span> <span class="kc">purple</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<p>To make it easier to modify this file, create a link from the stylesheet to the working directory for the notebooks in order to be able to modify the stylesheet in the browser.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~/code/notebooks$ ln -s ~/.jupyter/custom/custom.css .
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-            <a href="../tag/css.html" class="tag">CSS</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../create-choropleth-top-50-artists-I-listen-on-spotify.html">Create a choropleth for the top 50 artists I listen on Spotify</a></h2>
-      <time datetime="" title="2016-10-31T23:31:00+00:00" pubdate>Mon 31 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>In this post I will try to make a world map to indicate where the 50 artists I listen to most on Spotify are from. This will be my first personal data science project, so bare with me. My expectation is that the majority will be in either the UK (indie bands), the US or from South-Korea (K-pop). Lets see if my hypothesis is true.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../create-choropleth-top-50-artists-I-listen-on-spotify.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/visualization.html" class="tag">visualization</a>
-            <a href="../tag/spotify.html" class="tag">Spotify</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/pandas.html" class="tag">pandas</a>
-            <a href="../tag/choropleth.html" class="tag">choropleth</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../install-java-version-8.html">Install Java version 8</a></h2>
-      <time datetime="" title="2016-10-05T08:28:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>I ran into an issue while re-configuring the Jira installation on my system. After an update Java 8 was needed but it is not present by default on Ubuntu 14.04. To install the JRE and JDK you need to add the repository of the webupd8team and use the Oracle Java 8 installer.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../install-java-version-8.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/java.html" class="tag">Java</a>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../add-flickr-photosets-django.html">Add Flickr photosets to a Django site</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>A short description that describes how to retrieve pictures from Flickr and add them to a Django application using the <strong>flickrapi</strong>.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../add-flickr-photosets-django.html" class="read_more">Read more &#8594;</a>
-      </div>
       <div>
             <a href="../tag/django.html" class="tag">Django</a>
             <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/flickr.html" class="tag">Flickr</a>
       </div>
 
     </div>
@@ -12092,21 +11915,135 @@ jitsejan@MBP $ brew cask install kdiff3
   <div class="separator"></div>
   <article>
     <header>
-      <h2><a href="../change-postgresql-database-encoding.html">Change PostgreSQL database encoding</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
+      <h2><a href="../webcrawling-with-selenium.html">Webcrawling in Python using Selenium</a></h2>
+      <time datetime="" title="2016-07-30T11:09:00+01:00" pubdate>Sat 30 July 2016</time>
     </header>
 
     <div class="article_content">
-        <p>I ran into an issue where I couldn't save some JSON-data to the database because of a weird UTF8 character. Apparently my databases have the SQL ASCII encoding and not the necessary UTF8 encoding.</p>
+        <p>This is a simple script to crawl information from a website when the content is dynamically loaded.</p>
     </div>
     
     <div class="meta">
       <div>
-        <a href="../change-postgresql-database-encoding.html" class="read_more">Read more &#8594;</a>
+        <a href="../webcrawling-with-selenium.html" class="read_more">Read more &#8594;</a>
       </div>
       <div>
-            <a href="../tag/postgres.html" class="tag">Postgres</a>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
+            <a href="../tag/python.html" class="tag">python</a>
+            <a href="../tag/selenium.html" class="tag">selenium</a>
+            <a href="../tag/webcrawl.html" class="tag">webcrawl</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../send-attachment-from-command-line.html">Send attachment from command line</a></h2>
+      <time datetime="" title="2016-07-29T19:09:00+01:00" pubdate>Fri 29 July 2016</time>
+    </header>
+
+    <div class="article_content">
+        <div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s1">&#39;Mail with attachment&#39;</span> <span class="p">|</span> mutt -a <span class="s2">&quot;/file/to/add/&quot;</span> -s <span class="s2">&quot;FYI: See attachment&quot;</span> -- name@email.com
+</code></pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="../tag/shell.html" class="tag">shell</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../mount-amazon-ec-local-folder.html">Mount Amazon EC as local folder</a></h2>
+      <time datetime="" title="2016-07-29T19:07:00+01:00" pubdate>Fri 29 July 2016</time>
+    </header>
+
+    <div class="article_content">
+        <div class="highlight"><pre><span></span><code>jitsejan@MBP $ sshfs ubuntu@ec2-34-56-7-89.eu-central-1.compute.amazonaws.com:/home/ubuntu/ ~/AmazonEC2/ -oauto_cache,reconnect,defer_permissions,noappledouble,negative_vncache
+</code></pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="../tag/shell.html" class="tag">shell</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../simple-webcrawling-python.html">Simple webcrawling in Python</a></h2>
+      <time datetime="" title="2016-07-28T12:45:00+01:00" pubdate>Thu 28 July 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>Simple webcrawling in Python</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../simple-webcrawling-python.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/python.html" class="tag">python</a>
+            <a href="../tag/webcrawl.html" class="tag">webcrawl</a>
+            <a href="../tag/lxml.html" class="tag">lxml</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../create-big-files-with-dd.html">Create big files with dd</a></h2>
+      <time datetime="" title="2016-07-28T10:45:00+01:00" pubdate>Thu 28 July 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>Use dd in Unix to create files with a size of 2.7 GB.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/ksh</span>
+<span class="nv">dir</span><span class="o">=</span>/this/is/my/outputdir/
+<span class="nv">numGig</span><span class="o">=</span><span class="m">2</span>.7
+<span class="nv">factor</span><span class="o">=</span><span class="m">1024</span>
+<span class="nv">memLimit</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$numGig</span>*<span class="nv">$factor</span>*<span class="nv">$factor</span>*<span class="nv">$factor</span> <span class="p">|</span> bc<span class="k">)</span>
+<span class="nb">cd</span> <span class="nv">$dir</span>
+<span class="k">for</span> i in <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">8</span> <span class="m">9</span> <span class="m">10</span> <span class="m">11</span> <span class="m">12</span> <span class="m">13</span> <span class="m">14</span> <span class="p">;</span> <span class="k">do</span>
+   dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">of</span><span class="o">=</span>dummy_<span class="nv">$i</span>.xml <span class="nv">count</span><span class="o">=</span><span class="m">204800</span> <span class="nv">bs</span><span class="o">=</span><span class="nv">$factor</span>
+<span class="k">done</span>
+</code></pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="../tag/shell.html" class="tag">shell</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../most-used-history-command.html">Find most used history command</a></h2>
+      <time datetime="" title="2016-07-27T16:55:00+01:00" pubdate>Wed 27 July 2016</time>
+    </header>
+
+    <div class="article_content">
+        <div class="highlight"><pre><span></span><code>$ awk <span class="s1">&#39;{print $1}&#39;</span> ~/.bash_history <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -n
+</code></pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="../tag/shell.html" class="tag">shell</a>
       </div>
 
     </div>
@@ -12116,7 +12053,6 @@ jitsejan@MBP $ brew cask install kdiff3
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
-        <a class="prev" href="../author/jitse-jan9.html">&#8592; Past</a>
     </div>
     <div class="col-xs-6 right">
         <a class="next" href="../author/jitse-jan7.html">Future &#8594;</a>
@@ -12158,34 +12094,49 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-3">
-            <a href="../tag/javascript.html">
-            javascript
+        <li class="tag-4">
+            <a href="../tag/flask.html">
+            Flask
             </a>
         </li>
         <li class="tag-1">
-            <a href="../tag/notebook.html">
-            notebook
+            <a href="../tag/python.html">
+            Python
             </a>
         </li>
         <li class="tag-3">
+            <a href="../tag/spark.html">
+            Spark
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/pyspark.html">
+            PySpark
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/data-engineer.html">
+            data engineer
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/container.html">
+            container
+            </a>
+        </li>
+        <li class="tag-4">
             <a href="../tag/ethereum.html">
             Ethereum
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/s3.html">
-            S3
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/testing.html">
-            testing
             </a>
         </li>
         <li class="tag-3">
@@ -12194,68 +12145,23 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-3">
             <a href="../tag/aws.html">
             AWS
             </a>
         </li>
-        <li class="tag-4">
-            <a href="../tag/ether.html">
-            ether
-            </a>
-        </li>
         <li class="tag-3">
-            <a href="../tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-4">
             <a href="../tag/vps.html">
             VPS
             </a>
         </li>
-        <li class="tag-3">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-3">
+        <li class="tag-2">
             <a href="../tag/dataframe.html">
             dataframe
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/pyspark.html">
-            pyspark
+            <a href="../tag/notebook.html">
+            notebook
             </a>
         </li>
         <li class="tag-3">
@@ -12264,13 +12170,43 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
+            <a href="../tag/jupyter.html">
+            Jupyter
+            </a>
+        </li>
+        <li class="tag-3">
             <a href="../tag/blockchain.html">
             blockchain
             </a>
         </li>
         <li class="tag-4">
-            <a href="../tag/flask.html">
-            Flask
+            <a href="../tag/lambda.html">
+            Lambda
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="../tag/django.html">
+            Django
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/docker.html">
+            Docker
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="../tag/javascript.html">
+            Javascript
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="../tag/hadoop.html">
+            Hadoop
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/shell.html">
+            shell
             </a>
         </li>
         </ul>

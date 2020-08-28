@@ -11865,7 +11865,7 @@ jQuery(document).ready(function($) {
 <p>The post is a bit long, but I try give my steps as clear as possible so it can be of any help to anyone.</p>
 <h2>Structure of the application</h2>
 <p>The final structure of the app will look like the following.</p>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app$ tree
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app$ tree
 .
 ├── app.js
 ├── data
@@ -11888,11 +11888,11 @@ jQuery(document).ready(function($) {
         └── header.ejs
 
 <span class="m">7</span> directories, <span class="m">11</span> files
-</pre></div>
+</code></pre></div>
 
 
 <h2>Version check</h2>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ git --version
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ git --version
 git version <span class="m">2</span>.11.0 <span class="o">(</span>Apple Git-81<span class="o">)</span>
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ npm -v
 <span class="m">4</span>.2.0
@@ -11902,22 +11902,22 @@ jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ python --ver
 Python <span class="m">3</span>.6.0 :: Anaconda <span class="m">4</span>.3.1 <span class="o">(</span>x86_64<span class="o">)</span>
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ jupyter --version
 <span class="m">4</span>.2.1
-</pre></div>
+</code></pre></div>
 
 
 <h2>Initialize</h2>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ git init
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ git init
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ npm init
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ <span class="nb">echo</span> node_modules &gt;&gt; .gitignore
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ git add . <span class="o">&amp;&amp;</span> git commit -am <span class="s2">&quot;Initial commit&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Create the back-end using a Jupyter notebook</h2>
 <p>Using Python we will read two CSV files and add them to MongoDB.</p>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ <span class="nb">echo</span> notebook/.ipynb_checkpoints &gt;&gt; .gitignore
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ <span class="nb">echo</span> notebook/.ipynb_checkpoints &gt;&gt; .gitignore
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app/notebook  $ jupyter notebook
-</pre></div>
+</code></pre></div>
 
 
 <h3>Content of the notebook</h3>
@@ -11927,12 +11927,12 @@ jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app/notebook  $ jup
 Now the data is in the database we are ready to create the front-end.</p>
 <h2>Create the front-end</h2>
 <p>First install the packages we need and save them to <code>package.json</code>.</p>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ npm install --save express mongoose ejs mongodb
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ npm install --save express mongoose ejs mongodb
+</code></pre></div>
 
 
 <p>This will result in the following <code>package.json</code>.</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
   <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;crypto-app&quot;</span><span class="p">,</span>
   <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
   <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Simple app to track some crypto investments&quot;</span><span class="p">,</span>
@@ -11955,14 +11955,14 @@ Now the data is in the database we are ready to create the front-end.</p>
     <span class="nt">&quot;mongoose&quot;</span><span class="p">:</span> <span class="s2">&quot;^4.9.9&quot;</span>
   <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>The core</h3>
 <p>I will create three pages. A blank frontpage, a page for the wallet data and a page for the mining data. First we need setup the 
 application in <code>app.js</code>. This file is responsible for the database connection and serving the templates for each route containing
 the correct data.</p>
-<div class="highlight"><pre><span></span><span class="c1">// Requirements</span>
+<div class="highlight"><pre><span></span><code><span class="c1">// Requirements</span>
 <span class="kd">var</span> <span class="nx">express</span>        <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
 <span class="kd">var</span> <span class="nx">app</span>            <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
 <span class="kd">var</span> <span class="nx">mongoose</span>       <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mongoose&#39;</span><span class="p">);</span>
@@ -12022,36 +12022,36 @@ the correct data.</p>
 <span class="c1">// Start the app on port 3000</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;listening on port 3000&#39;</span><span class="p">);</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Partials</h3>
 <p>To easily create templates for the different pages, I will first create the partials for the head, footer and header. I will use Bootstrap
 to make creating the layout easier.</p>
 <p><code>head.ejs</code></p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content=</span><span class="s">&quot;IE=edge&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content=</span><span class="s">&quot;width=device-width, initial-scale=1&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;description&quot;</span> <span class="na">content=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;author&quot;</span> <span class="na">content=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span>
-<span class="nt">&lt;title&gt;</span>Crypto app<span class="nt">&lt;/title&gt;</span>
-<span class="c">&lt;!-- Bootstrap Core CSS --&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&quot;http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css&quot;</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span><span class="nt">&gt;</span>
-<span class="c">&lt;!-- Custom CSS --&gt;</span>
-<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href=</span><span class="s">&quot;public/css/style.css&quot;</span><span class="nt">&gt;</span>
-<span class="c">&lt;!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --&gt;</span>
-<span class="c">&lt;!-- WARNING: Respond.js doesn&#39;t work if you view the page via file:// --&gt;</span>
-<span class="c">&lt;!--[if lt IE 9]&gt;</span>
-<span class="c">    &lt;script src=&quot;https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js&quot;&gt;&lt;/script&gt;</span>
-<span class="c">    &lt;script src=&quot;https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js&quot;&gt;&lt;/script&gt;</span>
-<span class="c">&lt;![endif]--&gt;</span>
-<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;http://d3js.org/d3.v3.min.js&quot;</span> <span class="na">charset=</span><span class="s">&quot;utf-8&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-<span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="n">meta</span><span class="w"> </span><span class="n">charset</span><span class="o">=</span><span class="ss">&quot;utf-8&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">meta</span><span class="w"> </span><span class="n">http</span><span class="o">-</span><span class="n">equiv</span><span class="o">=</span><span class="ss">&quot;X-UA-Compatible&quot;</span><span class="w"> </span><span class="n">content</span><span class="o">=</span><span class="ss">&quot;IE=edge&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">meta</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;viewport&quot;</span><span class="w"> </span><span class="n">content</span><span class="o">=</span><span class="ss">&quot;width=device-width, initial-scale=1&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">meta</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;description&quot;</span><span class="w"> </span><span class="n">content</span><span class="o">=</span><span class="ss">&quot;&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">meta</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;author&quot;</span><span class="w"> </span><span class="n">content</span><span class="o">=</span><span class="ss">&quot;&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Crypto</span><span class="w"> </span><span class="n">app</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="err">!</span><span class="c1">-- Bootstrap Core CSS --&gt;</span>
+<span class="o">&lt;</span><span class="n">link</span><span class="w"> </span><span class="n">href</span><span class="o">=</span><span class="ss">&quot;http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css&quot;</span><span class="w"> </span><span class="n">rel</span><span class="o">=</span><span class="ss">&quot;stylesheet&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="err">!</span><span class="c1">-- Custom CSS --&gt;</span>
+<span class="o">&lt;</span><span class="n">link</span><span class="w"> </span><span class="n">rel</span><span class="o">=</span><span class="ss">&quot;stylesheet&quot;</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="ss">&quot;text/css&quot;</span><span class="w"> </span><span class="n">href</span><span class="o">=</span><span class="ss">&quot;public/css/style.css&quot;</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="err">!</span><span class="c1">-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --&gt;</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="c1">-- WARNING: Respond.js doesn&#39;t work if you view the page via file:// --&gt;</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="c1">--[if lt IE 9]&gt;</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">script</span><span class="w"> </span><span class="n">src</span><span class="o">=</span><span class="ss">&quot;https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js&quot;</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="o">&lt;</span><span class="n">script</span><span class="w"> </span><span class="n">src</span><span class="o">=</span><span class="ss">&quot;https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js&quot;</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">[</span><span class="n">endif</span><span class="o">]</span><span class="c1">--&gt;</span>
+<span class="o">&lt;</span><span class="n">script</span><span class="w"> </span><span class="n">src</span><span class="o">=</span><span class="ss">&quot;http://d3js.org/d3.v3.min.js&quot;</span><span class="w"> </span><span class="n">charset</span><span class="o">=</span><span class="ss">&quot;utf-8&quot;</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="n">script</span><span class="w"> </span><span class="n">src</span><span class="o">=</span><span class="ss">&quot;http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js&quot;</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span><span class="w"></span>
+</code></pre></div>
 
 
 <p><code>header.ejs</code></p>
-<div class="highlight"><pre><span></span><span class="c">&lt;!-- Navigation --&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="c">&lt;!-- Navigation --&gt;</span>
 <span class="nt">&lt;nav</span> <span class="na">class=</span><span class="s">&quot;navbar navbar-inverse navbar-fixed-top&quot;</span> <span class="na">role=</span><span class="s">&quot;navigation&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;container&quot;</span><span class="nt">&gt;</span>
         <span class="c">&lt;!-- Brand and toggle get grouped for better mobile display --&gt;</span>
@@ -12076,23 +12076,23 @@ to make creating the layout easier.</p>
         <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!-- /.navbar-collapse --&gt;</span>
     <span class="nt">&lt;/div&gt;</span><span class="c">&lt;!-- /.container --&gt;</span>
 <span class="nt">&lt;/nav&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><code>footer.ejs</code></p>
-<div class="highlight"><pre><span></span><span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;text-center text-small text-muted&quot;</span><span class="nt">&gt;</span>© Copyright 2017 - Crypto app<span class="nt">&lt;/p&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;text-center text-small text-muted&quot;</span><span class="nt">&gt;</span>© Copyright 2017 - Crypto app<span class="nt">&lt;/p&gt;</span>
 
 <span class="c">&lt;!-- JQuery JS--&gt;</span>
 <span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;https://code.jquery.com/jquery-3.2.1.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 <span class="c">&lt;!-- Bootstrap Core JS --&gt;</span>
 <span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Pages</h3>
 <p>Now creating the pages is simple. The frontpage is currently empty and will simply look like this:</p>
 <p><code>index.ejs</code></p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 <span class="cp">&lt;%</span> <span class="kp">include</span> <span class="o">../</span><span class="n">partials</span><span class="o">/</span><span class="n">head</span> <span class="cp">%&gt;</span>
@@ -12115,12 +12115,12 @@ to make creating the layout easier.</p>
     <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>The mining page template is identical to the frontpage, but we add a placeholder for the D3.js graph and show the data in a table.</p>
 <p><code>mining.ejs</code></p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 <span class="cp">&lt;%</span> <span class="kp">include</span> <span class="o">../</span><span class="n">partials</span><span class="o">/</span><span class="n">head</span> <span class="cp">%&gt;</span>
@@ -12168,11 +12168,11 @@ to make creating the layout easier.</p>
     <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Next I append te template with a Javascript block containing the D3.js graph code.</p>
-<div class="highlight"><pre><span></span>// Convert the bitcoins data to the data we can use in DS.js
+<div class="highlight"><pre><span></span><code>// Convert the bitcoins data to the data we can use in DS.js
 var data = <span class="cp">&lt;%-</span> <span class="no">JSON</span><span class="o">.</span><span class="n">stringify</span><span class="p">(</span><span class="n">minings</span><span class="p">)</span> <span class="cp">%&gt;</span>;
 
 var svg = d3.select(&#39;svg&#39;),
@@ -12324,12 +12324,12 @@ legend.append(&quot;text&quot;)
     .text(function(d) {
         return d.name;
     });
-</pre></div>
+</code></pre></div>
 
 
 <p>For the wallet page I have a similar approach.</p>
 <p><code>wallet.ejs</code></p>
-<div class="highlight"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
 <span class="cp">&lt;%</span> <span class="kp">include</span> <span class="o">../</span><span class="n">partials</span><span class="o">/</span><span class="n">head</span> <span class="cp">%&gt;</span>
@@ -12381,244 +12381,244 @@ legend.append(&quot;text&quot;)
     <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>and the Javascript</p>
-<div class="highlight"><pre><span></span><span class="x">// Convert the bitcoins data to the data we can use in DS.js</span>
-<span class="x">var data = </span><span class="cp">&lt;%-</span> <span class="no">JSON</span><span class="o">.</span><span class="n">stringify</span><span class="p">(</span><span class="n">wallets</span><span class="p">)</span> <span class="cp">%&gt;</span><span class="x">;</span>
-<span class="x">// Draw a line chart</span>
-<span class="x">var svg = d3.select(&#39;svg.svg-chart&#39;),</span>
-<span class="x">    margin = {</span>
-<span class="x">        top: 20,</span>
-<span class="x">        right: 50,</span>
-<span class="x">        bottom: 30,</span>
-<span class="x">        left: 50</span>
-<span class="x">    },</span>
-<span class="x">    width = +svg.attr(&#39;width&#39;) - margin.left - margin.right,</span>
-<span class="x">    height = +svg.attr(&#39;height&#39;) - margin.top - margin.bottom,</span>
-<span class="x">    g = svg.append(&#39;g&#39;).attr(&#39;transform&#39;, &#39;translate(&#39; + margin.left + &#39;,&#39; + margin.top + &#39;)&#39;);</span>
-<span class="x">// Graph title</span>
-<span class="x">g.append(&#39;text&#39;)</span>
-<span class="x">    .attr(&#39;x&#39;, (width / 2))</span>
-<span class="x">    .attr(&#39;y&#39;, 0 - (margin.top / 3))</span>
-<span class="x">    .attr(&#39;text-anchor&#39;, &#39;middle&#39;)</span>
-<span class="x">    .style(&#39;font-size&#39;, &#39;16px&#39;)</span>
-<span class="x">    .text(&#39;Wallet chart&#39;);</span>
-<span class="x">// Function to convert a string into a time</span>
-<span class="x">var parseTime = d3.time.format(&#39;%Y-%m-%dT%H:%M:%S.%LZ&#39;).parse;</span>
-<span class="x">// Function to show specific time format</span>
-<span class="x">var formatTime = d3.time.format(&#39;%e %B&#39;);</span>
+<div class="highlight"><pre><span></span><code><span class="o">//</span><span class="w"> </span><span class="nf">Convert</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">bitcoins</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">DS</span><span class="p">.</span><span class="n">js</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;%-</span><span class="w"> </span><span class="n">JSON</span><span class="p">.</span><span class="n">stringify</span><span class="p">(</span><span class="n">wallets</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;</span><span class="p">;</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="n">Draw</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="n">chart</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">svg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3</span><span class="p">.</span><span class="k">select</span><span class="p">(</span><span class="s1">&#39;svg.svg-chart&#39;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">margin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">top</span><span class="err">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nf">right</span><span class="err">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nl">bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nf">left</span><span class="err">:</span><span class="w"> </span><span class="mi">50</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">+</span><span class="n">svg</span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">margin</span><span class="p">.</span><span class="nf">left</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">margin</span><span class="p">.</span><span class="nf">right</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">+</span><span class="n">svg</span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">margin</span><span class="p">.</span><span class="k">top</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">margin</span><span class="p">.</span><span class="n">bottom</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">svg</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">).</span><span class="n">attr</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;translate(&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">margin</span><span class="p">.</span><span class="nf">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;,&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">margin</span><span class="p">.</span><span class="k">top</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;)&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="n">Graph</span><span class="w"> </span><span class="n">title</span><span class="w"></span>
+<span class="n">g</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">margin</span><span class="p">.</span><span class="k">top</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="s1">&#39;text-anchor&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;middle&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="s1">&#39;font-size&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;16px&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="nc">text</span><span class="p">(</span><span class="s1">&#39;Wallet chart&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">Function</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="nf">convert</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nc">time</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">parseTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3</span><span class="p">.</span><span class="nc">time</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="s1">&#39;%Y-%m-%dT%H:%M:%S.%LZ&#39;</span><span class="p">).</span><span class="nf">parse</span><span class="p">;</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">Function</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">show</span><span class="w"> </span><span class="k">specific</span><span class="w"> </span><span class="nc">time</span><span class="w"> </span><span class="nf">format</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">formatTime</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3</span><span class="p">.</span><span class="nc">time</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="s1">&#39;%e %B&#39;</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">// Set the X scale</span>
-<span class="x">var x = d3.time.scale().range([0, width], 0.5);</span>
-<span class="x">// Set the Y scale</span>
-<span class="x">var y = d3.scale.linear().range([height, 0]);</span>
-<span class="x">// Set the color scale</span>
-<span class="x">var color = d3.scale.category10();</span>
+<span class="o">//</span><span class="w"> </span><span class="k">Set</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="n">scale</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3</span><span class="p">.</span><span class="nc">time</span><span class="p">.</span><span class="n">scale</span><span class="p">().</span><span class="k">range</span><span class="p">(</span><span class="o">[</span><span class="n">0, width</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">);</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">Set</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="n">scale</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3</span><span class="p">.</span><span class="n">scale</span><span class="p">.</span><span class="n">linear</span><span class="p">().</span><span class="k">range</span><span class="p">(</span><span class="o">[</span><span class="n">height, 0</span><span class="o">]</span><span class="p">);</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">Set</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="n">scale</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3</span><span class="p">.</span><span class="n">scale</span><span class="p">.</span><span class="n">category10</span><span class="p">();</span><span class="w"></span>
 
-<span class="x">var xAxis = d3.svg.axis()</span>
-<span class="x">    .scale(x)</span>
-<span class="x">    .orient(&quot;bottom&quot;);</span>
+<span class="nf">var</span><span class="w"> </span><span class="n">xAxis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3</span><span class="p">.</span><span class="n">svg</span><span class="p">.</span><span class="n">axis</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">scale</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">orient</span><span class="p">(</span><span class="ss">&quot;bottom&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">var yAxis = d3.svg.axis()</span>
-<span class="x">    .scale(y)</span>
-<span class="x">    .orient(&quot;left&quot;);</span>
+<span class="nf">var</span><span class="w"> </span><span class="n">yAxis</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3</span><span class="p">.</span><span class="n">svg</span><span class="p">.</span><span class="n">axis</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">scale</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">orient</span><span class="p">(</span><span class="ss">&quot;left&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">var line = d3.svg.line()</span>
-<span class="x">    // .interpolate(&quot;basis&quot;)</span>
-<span class="x">    .x(function(d) {</span>
-<span class="x">        return x(d.date);</span>
-<span class="x">    })</span>
-<span class="x">    .y(function(d) {</span>
-<span class="x">        return y(d.worth);</span>
-<span class="x">    });</span>
-<span class="x">// Select the important columns</span>
-<span class="x">color.domain(d3.keys(data[0]).filter(function(key) {</span>
-<span class="x">    return key !== &quot;Time&quot; &amp;&amp; key !== &quot;_id&quot;;</span>
-<span class="x">}));</span>
-<span class="x">// Correct the types</span>
-<span class="x">data.forEach(function(d) {</span>
-<span class="x">    d.date = parseTime(d.Time);</span>
-<span class="x">});</span>
+<span class="nf">var</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3</span><span class="p">.</span><span class="n">svg</span><span class="p">.</span><span class="n">line</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="o">//</span><span class="w"> </span><span class="p">.</span><span class="n">interpolate</span><span class="p">(</span><span class="ss">&quot;basis&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">x</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="nc">date</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">y</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">worth</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">);</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">Select</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">important</span><span class="w"> </span><span class="n">columns</span><span class="w"></span>
+<span class="n">color</span><span class="p">.</span><span class="k">domain</span><span class="p">(</span><span class="n">d3</span><span class="p">.</span><span class="n">keys</span><span class="p">(</span><span class="k">data</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">).</span><span class="k">filter</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="k">key</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="ss">&quot;Time&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="ss">&quot;_id&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="p">));</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="n">Correct</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">types</span><span class="w"></span>
+<span class="k">data</span><span class="p">.</span><span class="n">forEach</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">d</span><span class="p">.</span><span class="nc">date</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parseTime</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="nc">Time</span><span class="p">);</span><span class="w"></span>
+<span class="err">}</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">var currencies = color.domain().map(function(name) {</span>
-<span class="x">    return {</span>
-<span class="x">        name: name,</span>
-<span class="x">        values: data.map(function(d) {</span>
-<span class="x">            return {</span>
-<span class="x">                date: d.date,</span>
-<span class="x">                worth: +d[name]</span>
-<span class="x">            };</span>
-<span class="x">        })</span>
-<span class="x">    };</span>
-<span class="x">});</span>
-<span class="x">// Set the X domain</span>
-<span class="x">x.domain(d3.extent(data, function(d) {</span>
-<span class="x">    return d.date;</span>
-<span class="x">}));</span>
-<span class="x">// Set the Y domain</span>
-<span class="x">y.domain([</span>
-<span class="x">    d3.min(currencies, function(c) {</span>
-<span class="x">        return d3.min(c.values, function(v) {</span>
-<span class="x">            return v.worth;</span>
-<span class="x">        });</span>
-<span class="x">    }),</span>
-<span class="x">    d3.max(currencies, function(c) {</span>
-<span class="x">        return d3.max(c.values, function(v) {</span>
-<span class="x">            return v.worth;</span>
-<span class="x">        });</span>
-<span class="x">    })</span>
-<span class="x">]);</span>
-<span class="x">// Set the X axis</span>
-<span class="x">g.append(&quot;g&quot;)</span>
-<span class="x">    .attr(&quot;class&quot;, &quot;x axis&quot;)</span>
-<span class="x">    .attr(&quot;transform&quot;, &quot;translate(0,&quot; + height + &quot;)&quot;)</span>
-<span class="x">    .call(xAxis);</span>
-<span class="x">// Set the Y axis</span>
-<span class="x">g.append(&quot;g&quot;)</span>
-<span class="x">    .attr(&quot;class&quot;, &quot;y axis&quot;)</span>
-<span class="x">    .call(yAxis)</span>
-<span class="x">    .append(&quot;text&quot;)</span>
-<span class="x">    .attr(&quot;transform&quot;, &quot;rotate(-90)&quot;)</span>
-<span class="x">    .attr(&quot;y&quot;, 6)</span>
-<span class="x">    .attr(&quot;dy&quot;, &quot;.71em&quot;)</span>
-<span class="x">    .style(&quot;text-anchor&quot;, &quot;end&quot;)</span>
-<span class="x">    .text(&quot;Value (USD)&quot;);</span>
+<span class="nf">var</span><span class="w"> </span><span class="n">currencies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">color</span><span class="p">.</span><span class="k">domain</span><span class="p">().</span><span class="k">map</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="k">values</span><span class="err">:</span><span class="w"> </span><span class="k">data</span><span class="p">.</span><span class="k">map</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                </span><span class="nc">date</span><span class="err">:</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="nc">date</span><span class="p">,</span><span class="w"></span>
+<span class="w">                </span><span class="nl">worth</span><span class="p">:</span><span class="w"> </span><span class="o">+</span><span class="n">d</span><span class="o">[</span><span class="n">name</span><span class="o">]</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="p">);</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">Set</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="k">domain</span><span class="w"></span>
+<span class="n">x</span><span class="p">.</span><span class="k">domain</span><span class="p">(</span><span class="n">d3</span><span class="p">.</span><span class="n">extent</span><span class="p">(</span><span class="k">data</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="nc">date</span><span class="p">;</span><span class="w"></span>
+<span class="err">}</span><span class="p">));</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">Set</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="k">domain</span><span class="w"></span>
+<span class="n">y</span><span class="p">.</span><span class="k">domain</span><span class="p">(</span><span class="o">[</span><span class="n"></span>
+<span class="n">    d3.min(currencies, function(c) {</span>
+<span class="n">        return d3.min(c.values, function(v) {</span>
+<span class="n">            return v.worth;</span>
+<span class="n">        });</span>
+<span class="n">    }),</span>
+<span class="n">    d3.max(currencies, function(c) {</span>
+<span class="n">        return d3.max(c.values, function(v) {</span>
+<span class="n">            return v.worth;</span>
+<span class="n">        });</span>
+<span class="n">    })</span>
+<span class="o">]</span><span class="p">);</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">Set</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="n">axis</span><span class="w"></span>
+<span class="n">g</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="ss">&quot;g&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;x axis&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;transform&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;translate(0,&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;)&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="k">call</span><span class="p">(</span><span class="n">xAxis</span><span class="p">);</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">Set</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Y</span><span class="w"> </span><span class="n">axis</span><span class="w"></span>
+<span class="n">g</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="ss">&quot;g&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;y axis&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="k">call</span><span class="p">(</span><span class="n">yAxis</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="ss">&quot;text&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;transform&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;rotate(-90)&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;y&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;dy&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;.71em&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;text-anchor&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;end&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="nc">text</span><span class="p">(</span><span class="ss">&quot;Value (USD)&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">// Draw the lines</span>
-<span class="x">var currency = g.selectAll(&quot;.currency&quot;)</span>
-<span class="x">    .data(currencies)</span>
-<span class="x">    .enter().append(&quot;g&quot;)</span>
-<span class="x">    .attr(&quot;class&quot;, &quot;currency&quot;);</span>
+<span class="o">//</span><span class="w"> </span><span class="n">Draw</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">lines</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">currency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="ss">&quot;.currency&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="k">data</span><span class="p">(</span><span class="n">currencies</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">enter</span><span class="p">().</span><span class="n">append</span><span class="p">(</span><span class="ss">&quot;g&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;currency&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">currency.append(&quot;path&quot;)</span>
-<span class="x">    .attr(&quot;class&quot;, &quot;line&quot;)</span>
-<span class="x">    .attr(&quot;d&quot;, function(d) {</span>
-<span class="x">        return line(d.values);</span>
-<span class="x">    })</span>
-<span class="x">    .style(&quot;stroke&quot;, function(d) {</span>
-<span class="x">        return color(d.name);</span>
-<span class="x">    });</span>
-<span class="x">// Add the circles</span>
-<span class="x">currency.append(&quot;g&quot;).selectAll(&quot;circle&quot;)</span>
-<span class="x">    .data(function(d) {</span>
-<span class="x">        return d.values</span>
-<span class="x">    })</span>
-<span class="x">    .enter()</span>
-<span class="x">    .append(&quot;circle&quot;)</span>
-<span class="x">    .attr(&quot;r&quot;, 2)</span>
-<span class="x">    .attr(&quot;cx&quot;, function(dd) {</span>
-<span class="x">        return x(dd.date)</span>
-<span class="x">    })</span>
-<span class="x">    .attr(&quot;cy&quot;, function(dd) {</span>
-<span class="x">        return y(dd.worth)</span>
-<span class="x">    })</span>
-<span class="x">    .attr(&quot;fill&quot;, &quot;none&quot;)</span>
-<span class="x">    .attr(&quot;stroke&quot;, function(d) {</span>
-<span class="x">        return color(this.parentNode.__data__.name)</span>
-<span class="x">    });</span>
-<span class="x">// Add label to the end of the line</span>
-<span class="x">currency.append(&quot;text&quot;)</span>
-<span class="x">    .attr(&quot;class&quot;, &quot;label&quot;)</span>
-<span class="x">    .datum(function(d) {</span>
-<span class="x">        return {</span>
-<span class="x">            name: d.name,</span>
-<span class="x">            value: d.values[d.values.length - 1]</span>
-<span class="x">        };</span>
-<span class="x">    })</span>
-<span class="x">    .attr(&quot;transform&quot;, function(d) {</span>
-<span class="x">        return &quot;translate(&quot; + x(d.value.date) + &quot;,&quot; + y(d.value.worth) + &quot;)&quot;;</span>
-<span class="x">    })</span>
-<span class="x">    .attr(&quot;x&quot;, 3)</span>
-<span class="x">    .attr(&quot;dy&quot;, &quot;.35em&quot;)</span>
-<span class="x">    .text(function(d) {</span>
-<span class="x">        return d.name;</span>
-<span class="x">    });</span>
-<span class="x">// Add the mouse line</span>
-<span class="x">var mouseG = g.append(&quot;g&quot;)</span>
-<span class="x">    .attr(&quot;class&quot;, &quot;mouse-over-effects&quot;);</span>
+<span class="n">currency</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="ss">&quot;path&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;line&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;d&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">line</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="k">values</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;stroke&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">color</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">);</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">Add</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">circles</span><span class="w"></span>
+<span class="n">currency</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="ss">&quot;g&quot;</span><span class="p">).</span><span class="n">selectAll</span><span class="p">(</span><span class="ss">&quot;circle&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="k">data</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="k">values</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">enter</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="ss">&quot;circle&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;r&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;cx&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">dd</span><span class="p">.</span><span class="nc">date</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;cy&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="n">dd</span><span class="p">.</span><span class="n">worth</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;fill&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;none&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;stroke&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">color</span><span class="p">(</span><span class="n">this</span><span class="p">.</span><span class="n">parentNode</span><span class="p">.</span><span class="n">__data__</span><span class="p">.</span><span class="n">name</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">);</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">Add</span><span class="w"> </span><span class="n">label</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">end</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">line</span><span class="w"></span>
+<span class="n">currency</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="ss">&quot;text&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;label&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">datum</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">            </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"></span>
+<span class="w">            </span><span class="k">value</span><span class="err">:</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="k">values</span><span class="o">[</span><span class="n">d.values.length - 1</span><span class="o">]</span><span class="w"></span>
+<span class="w">        </span><span class="err">}</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;transform&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="ss">&quot;translate(&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="k">value</span><span class="p">.</span><span class="nc">date</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;,&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="k">value</span><span class="p">.</span><span class="n">worth</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;)&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;x&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;dy&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;.35em&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="nc">text</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">name</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">);</span><span class="w"></span>
+<span class="o">//</span><span class="w"> </span><span class="k">Add</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">mouse</span><span class="w"> </span><span class="n">line</span><span class="w"></span>
+<span class="nf">var</span><span class="w"> </span><span class="n">mouseG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="ss">&quot;g&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;mouse-over-effects&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">mouseG.append(&quot;path&quot;)</span>
-<span class="x">    .attr(&quot;class&quot;, &quot;mouse-line&quot;)</span>
-<span class="x">    .style(&quot;stroke&quot;, &quot;black&quot;)</span>
-<span class="x">    .style(&quot;stroke-width&quot;, &quot;1px&quot;)</span>
-<span class="x">    .style(&quot;opacity&quot;, &quot;0&quot;);</span>
+<span class="n">mouseG</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="ss">&quot;path&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;mouse-line&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;stroke&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;black&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;stroke-width&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;1px&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;opacity&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;0&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">var lines = document.getElementsByClassName(&#39;line&#39;);</span>
+<span class="nf">var</span><span class="w"> </span><span class="n">lines</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">document</span><span class="p">.</span><span class="n">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;line&#39;</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">var mousePerLine = mouseG.selectAll(&#39;.mouse-per-line&#39;)</span>
-<span class="x">    .data(currencies)</span>
-<span class="x">    .enter()</span>
-<span class="x">    .append(&quot;g&quot;)</span>
-<span class="x">    .attr(&quot;class&quot;, &quot;mouse-per-line&quot;);</span>
+<span class="nf">var</span><span class="w"> </span><span class="n">mousePerLine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mouseG</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="s1">&#39;.mouse-per-line&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="k">data</span><span class="p">(</span><span class="n">currencies</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">enter</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="ss">&quot;g&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;mouse-per-line&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">mousePerLine.append(&quot;circle&quot;)</span>
-<span class="x">    .attr(&quot;r&quot;, 7)</span>
-<span class="x">    .style(&quot;stroke&quot;, function(d) {</span>
-<span class="x">        return color(d.name);</span>
-<span class="x">    })</span>
-<span class="x">    .style(&quot;fill&quot;, &quot;none&quot;)</span>
-<span class="x">    .style(&quot;stroke-width&quot;, &quot;2px&quot;)</span>
-<span class="x">    .style(&quot;opacity&quot;, &quot;0&quot;);</span>
+<span class="n">mousePerLine</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="ss">&quot;circle&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;r&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;stroke&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">color</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="n">name</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;fill&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;none&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;stroke-width&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;2px&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;opacity&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;0&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">mousePerLine.append(&quot;text&quot;)</span>
-<span class="x">    .attr(&quot;class&quot;, &quot;hover-text&quot;)</span>
-<span class="x">    .attr(&quot;dy&quot;, &quot;-1em&quot;)</span>
-<span class="x">    .attr(&quot;transform&quot;, &quot;translate(10,3)&quot;);</span>
+<span class="n">mousePerLine</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="ss">&quot;text&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;class&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;hover-text&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;dy&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;-1em&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;transform&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;translate(10,3)&quot;</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">// Append a rect to catch mouse movements on canvas</span>
-<span class="x">mouseG.append(&#39;svg:rect&#39;)</span>
-<span class="x">    .attr(&#39;width&#39;, width)</span>
-<span class="x">    .attr(&#39;height&#39;, height)</span>
-<span class="x">    .attr(&#39;fill&#39;, &#39;none&#39;)</span>
-<span class="x">    .attr(&#39;pointer-events&#39;, &#39;all&#39;)</span>
-<span class="x">    .on(&#39;mouseout&#39;, function() { // on mouse out hide line, circles and text</span>
-<span class="x">        d3.select(&quot;.mouse-line&quot;)</span>
-<span class="x">            .style(&quot;opacity&quot;, &quot;0&quot;);</span>
-<span class="x">        d3.selectAll(&quot;.mouse-per-line circle&quot;)</span>
-<span class="x">            .style(&quot;opacity&quot;, &quot;0&quot;);</span>
-<span class="x">        d3.selectAll(&quot;.mouse-per-line text&quot;)</span>
-<span class="x">            .style(&quot;opacity&quot;, &quot;0&quot;);</span>
-<span class="x">    })</span>
-<span class="x">    .on(&#39;mouseover&#39;, function() { // on mouse in show line, circles and text</span>
-<span class="x">        d3.select(&quot;.mouse-line&quot;)</span>
-<span class="x">            .style(&quot;opacity&quot;, &quot;1&quot;);</span>
-<span class="x">        d3.selectAll(&quot;.mouse-per-line circle&quot;)</span>
-<span class="x">            .style(&quot;opacity&quot;, &quot;1&quot;);</span>
-<span class="x">        d3.selectAll(&quot;.mouse-per-line text&quot;)</span>
-<span class="x">            .style(&quot;opacity&quot;, &quot;1&quot;);</span>
-<span class="x">    })</span>
-<span class="x">    .on(&#39;mousemove&#39;, function() { // mouse moving over canvas</span>
-<span class="x">        var mouse = d3.mouse(this);</span>
+<span class="o">//</span><span class="w"> </span><span class="n">Append</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="n">mouse</span><span class="w"> </span><span class="n">movements</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">canvas</span><span class="w"></span>
+<span class="n">mouseG</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;svg:rect&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;none&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="s1">&#39;pointer-events&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;all&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="k">on</span><span class="p">(</span><span class="s1">&#39;mouseout&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">()</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">mouse</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">hide</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">circles</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="nc">text</span><span class="w"></span>
+<span class="w">        </span><span class="n">d3</span><span class="p">.</span><span class="k">select</span><span class="p">(</span><span class="ss">&quot;.mouse-line&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;opacity&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;0&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">d3</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="ss">&quot;.mouse-per-line circle&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;opacity&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;0&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">d3</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="ss">&quot;.mouse-per-line text&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;opacity&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;0&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="k">on</span><span class="p">(</span><span class="s1">&#39;mouseover&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">()</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">mouse</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">show</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">circles</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="nc">text</span><span class="w"></span>
+<span class="w">        </span><span class="n">d3</span><span class="p">.</span><span class="k">select</span><span class="p">(</span><span class="ss">&quot;.mouse-line&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;opacity&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;1&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">d3</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="ss">&quot;.mouse-per-line circle&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;opacity&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;1&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">d3</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="ss">&quot;.mouse-per-line text&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">style</span><span class="p">(</span><span class="ss">&quot;opacity&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;1&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="k">on</span><span class="p">(</span><span class="s1">&#39;mousemove&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">()</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">mouse</span><span class="w"> </span><span class="n">moving</span><span class="w"> </span><span class="k">over</span><span class="w"> </span><span class="n">canvas</span><span class="w"></span>
+<span class="w">        </span><span class="nf">var</span><span class="w"> </span><span class="n">mouse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3</span><span class="p">.</span><span class="n">mouse</span><span class="p">(</span><span class="n">this</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">        d3.selectAll(&quot;.mouse-per-line&quot;)</span>
-<span class="x">            .attr(&quot;transform&quot;, function(d, i) {</span>
+<span class="w">        </span><span class="n">d3</span><span class="p">.</span><span class="n">selectAll</span><span class="p">(</span><span class="ss">&quot;.mouse-per-line&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;transform&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
 
-<span class="x">                var xDate = x.invert(mouse[0]),</span>
-<span class="x">                    bisect = d3.bisector(function(d) {</span>
-<span class="x">                        return d.date;</span>
-<span class="x">                    }).left;</span>
-<span class="x">                idx = bisect(d.values, xDate);</span>
+<span class="w">                </span><span class="nf">var</span><span class="w"> </span><span class="n">xDate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">invert</span><span class="p">(</span><span class="n">mouse</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="p">),</span><span class="w"></span>
+<span class="w">                    </span><span class="n">bisect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3</span><span class="p">.</span><span class="n">bisector</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                        </span><span class="k">return</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="nc">date</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="err">}</span><span class="p">).</span><span class="nf">left</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bisect</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="k">values</span><span class="p">,</span><span class="w"> </span><span class="n">xDate</span><span class="p">);</span><span class="w"></span>
 
-<span class="x">                d3.select(this).select(&#39;text&#39;)</span>
-<span class="x">                    .text(y.invert(y(d.values[idx].worth)).toFixed(2));</span>
+<span class="w">                </span><span class="n">d3</span><span class="p">.</span><span class="k">select</span><span class="p">(</span><span class="n">this</span><span class="p">).</span><span class="k">select</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">                    </span><span class="p">.</span><span class="nc">text</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="n">invert</span><span class="p">(</span><span class="n">y</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="k">values</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="p">.</span><span class="n">worth</span><span class="p">)).</span><span class="n">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span><span class="w"></span>
 
-<span class="x">                d3.select(&quot;.mouse-line&quot;)</span>
-<span class="x">                    .attr(&quot;d&quot;, function() {</span>
-<span class="x">                        var data = &quot;M&quot; + x(d.values[idx].date) + &quot;,&quot; + height;</span>
-<span class="x">                        data += &quot; &quot; + x(d.values[idx].date) + &quot;,&quot; + 0;</span>
-<span class="x">                        return data;</span>
-<span class="x">                    });</span>
-<span class="x">                return &quot;translate(&quot; + x(d.values[idx].date) + &quot;,&quot; + y(d.values[idx].worth) + &quot;)&quot;;</span>
-<span class="x">            });</span>
-<span class="x">    });</span>
-</pre></div>
+<span class="w">                </span><span class="n">d3</span><span class="p">.</span><span class="k">select</span><span class="p">(</span><span class="ss">&quot;.mouse-line&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">                    </span><span class="p">.</span><span class="n">attr</span><span class="p">(</span><span class="ss">&quot;d&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">function</span><span class="p">()</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">                        </span><span class="nf">var</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;M&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="k">values</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="p">.</span><span class="nc">date</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;,&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">height</span><span class="p">;</span><span class="w"></span>
+<span class="w">                        </span><span class="k">data</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="ss">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="k">values</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="p">.</span><span class="nc">date</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;,&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">                        </span><span class="k">return</span><span class="w"> </span><span class="k">data</span><span class="p">;</span><span class="w"></span>
+<span class="w">                    </span><span class="err">}</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="k">return</span><span class="w"> </span><span class="ss">&quot;translate(&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="k">values</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="p">.</span><span class="nc">date</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;,&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">(</span><span class="n">d</span><span class="p">.</span><span class="k">values</span><span class="o">[</span><span class="n">idx</span><span class="o">]</span><span class="p">.</span><span class="n">worth</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;)&quot;</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="err">}</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="err">}</span><span class="p">);</span><span class="w"></span>
+</code></pre></div>
 
 
 <p>Last thing we need to add is some custom style to the pages and graphs.
 <code>style.css</code></p>
-<div class="highlight"><pre><span></span><span class="nt">html</span><span class="o">,</span> <span class="nt">body</span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="nt">html</span><span class="o">,</span> <span class="nt">body</span><span class="p">{</span>
     <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nt">body</span> <span class="p">{</span>
@@ -12710,12 +12710,12 @@ legend.append(&quot;text&quot;)
   <span class="k">top</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
   <span class="k">left</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>And that is it. Now by running the server, the application can be viewed on port 3000 of your localhost!</p>
-<div class="highlight"><pre><span></span>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ node app.js
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ node app.js
+</code></pre></div>
 
 
 <h2>Result</h2>

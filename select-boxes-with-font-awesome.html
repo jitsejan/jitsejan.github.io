@@ -11864,7 +11864,7 @@ jQuery(document).ready(function($) {
             <p>See the example on my <a href="https://bl.ocks.org/jqadrad/5d8a76d9bb4e6d91c2009a46ad36468a">bl.ocks.org</a>.</p>
 <h2>index.html</h2>
 <p>The necessary JS and CSS files are included. Two select boxes are added to the main container.</p>
-<div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://code.jquery.com/jquery-3.2.1.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;script.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -11898,12 +11898,12 @@ jQuery(document).ready(function($) {
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>style.css</h2>
 <p>The checkbox itself is hidden and a background using FontAwesome is used instead.</p>
-<div class="highlight"><pre><span></span><span class="nt">body</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="nt">body</span> <span class="p">{</span>
   <span class="k">margin</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
 <span class="p">}</span>
 
@@ -11942,12 +11942,12 @@ jQuery(document).ready(function($) {
   <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
   <span class="k">background-color</span><span class="p">:</span> <span class="kc">black</span><span class="p">;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>script.js</h2>
 <p>Retrieve the value of the checkboxes and set the HTML of its corresponding element.</p>
-<div class="highlight"><pre><span></span><span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
 
   <span class="kd">function</span> <span class="nx">setItemValues</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;#coffee_cb&quot;</span><span class="p">).</span><span class="nx">is</span><span class="p">(</span><span class="s2">&quot;:checked&quot;</span><span class="p">)</span> <span class="o">?</span> <span class="nx">coffeeCheck</span> <span class="o">=</span> <span class="s1">&#39;Yes&#39;</span> <span class="o">:</span> <span class="nx">coffeeCheck</span> <span class="o">=</span> <span class="s1">&#39;No&#39;</span><span class="p">;</span>
@@ -11962,7 +11962,7 @@ jQuery(document).ready(function($) {
 
   <span class="nx">setItemValues</span><span class="p">();</span>
 <span class="p">});</span>
-</pre></div>
+</code></pre></div>
         </div>
 
         <div class="meta">

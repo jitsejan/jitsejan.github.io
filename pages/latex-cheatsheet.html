@@ -11864,7 +11864,7 @@ jQuery(document).ready(function($) {
             <p>This is my <a href="https://www.latex-project.org/">Latex</a> cheatsheet</p>
 <h2>Add style to a code listing</h2>
 <p><strong>styles.tex</strong></p>
-<div class="highlight"><pre><span></span><span class="k">\definecolor</span><span class="nb">{</span>dkgreen<span class="nb">}{</span>rgb<span class="nb">}{</span>0,0.6,0<span class="nb">}</span>
+<div class="highlight"><pre><span></span><code><span class="k">\definecolor</span><span class="nb">{</span>dkgreen<span class="nb">}{</span>rgb<span class="nb">}{</span>0,0.6,0<span class="nb">}</span>
 <span class="k">\definecolor</span><span class="nb">{</span>gray<span class="nb">}{</span>rgb<span class="nb">}{</span>0.5,0.5,0.5<span class="nb">}</span>
 <span class="k">\definecolor</span><span class="nb">{</span>mauve<span class="nb">}{</span>rgb<span class="nb">}{</span>0.58,0,0.82<span class="nb">}</span>
 <span class="k">\definecolor</span><span class="nb">{</span>light-gray<span class="nb">}{</span>gray<span class="nb">}{</span>0.25<span class="nb">}</span>
@@ -11887,22 +11887,22 @@ jQuery(document).ready(function($) {
   breakatwhitespace=true,
   tabsize=3,
 <span class="nb">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><strong>main.tex</strong></p>
-<div class="highlight"><pre><span></span><span class="k">\input</span><span class="nb">{</span>styles.tex<span class="nb">}</span>
+<div class="highlight"><pre><span></span><code><span class="k">\input</span><span class="nb">{</span>styles.tex<span class="nb">}</span>
 <span class="k">\lstinputlisting</span><span class="na">[style=Java, frame=single, caption={Hello world}, captionpos=b]</span><span class="nb">{</span>helloworld.java<span class="nb">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Bonus: rename the caption from <em>Listing</em> to <em>Code snippet</em> with the following:</p>
-<div class="highlight"><pre><span></span><span class="k">\renewcommand*\lstlistingname</span><span class="nb">{</span>Code snippet<span class="nb">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="k">\renewcommand*\lstlistingname</span><span class="nb">{</span>Code snippet<span class="nb">}</span>
+</code></pre></div>
 
 
 <h2>Subfigures</h2>
-<div class="highlight"><pre><span></span><span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
+<div class="highlight"><pre><span></span><code><span class="k">\usepackage</span><span class="nb">{</span>graphicx<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>caption<span class="nb">}</span>
 <span class="k">\usepackage</span><span class="nb">{</span>subcaption<span class="nb">}</span>
 
@@ -11921,7 +11921,7 @@ jQuery(document).ready(function($) {
     <span class="k">\end</span><span class="nb">{</span>subfigure<span class="nb">}</span>
     <span class="k">\caption</span><span class="nb">{</span>These are two images<span class="nb">}</span>
 <span class="k">\end</span><span class="nb">{</span>figure*<span class="nb">}</span>
-</pre></div>
+</code></pre></div>
         </div>
 
     </article>

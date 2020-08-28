@@ -11862,24 +11862,24 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <p>Open the <strong>Registry Editor</strong> and go to the following key</p>
-<div class="highlight"><pre><span></span>Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command Processor
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command Processor</span>
+</code></pre></div>
 
 
 <p>and add the key <strong>AutoRun</strong> with the value of the file containing the aliases. In my case this is </p>
-<div class="highlight"><pre><span></span>&quot;%USERPROFILE%\alias.cmd&quot;
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">&quot;%USERPROFILE%\alias.cmd&quot;</span>
+</code></pre></div>
 
 
 <p>Save the change to the registry and restart the command prompt. Currently my <strong>alias.cmd</strong> contains the following:</p>
-<div class="highlight"><pre><span></span><span class="err">::</span> <span class="err">Registry</span> <span class="err">path:</span>   <span class="err">Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command</span> <span class="err">Processor</span>
+<div class="highlight"><pre><span></span><code><span class="err">::</span> <span class="err">Registry</span> <span class="err">path:</span>   <span class="err">Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command</span> <span class="err">Processor</span>
 <span class="err">::</span> <span class="err">Key:</span>             <span class="err">AutoRun</span>
 <span class="err">::</span> <span class="err">Value:</span>           <span class="err">&quot;%USERPROFILE%\alias.cmd&quot;</span>
 <span class="err">@echo</span> <span class="err">off</span>
 <span class="na">DOSKEY alias</span><span class="o">=</span><span class="s">&quot;C:\Program Files (x86)\Notepad++\notepad++.exe&quot; &quot;%USERPROFILE%\alias.cmd&quot;</span>
 <span class="na">DOSKEY ls</span><span class="o">=</span><span class="s">dir /B</span>
 <span class="na">DOSKEY proj1</span><span class="o">=</span><span class="s">cd &quot;%USERPROFILE%\Documents\Projects\proj1&quot;</span>
-</pre></div>
+</code></pre></div>
         </div>
 
         <div class="meta">

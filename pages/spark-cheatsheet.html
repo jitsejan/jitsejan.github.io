@@ -11862,58 +11862,58 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <p>Import PySpark</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyspark</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pyspark</span>
+</code></pre></div>
 
 
 <h2>Setup SparkSession</h2>
-<div class="highlight"><pre><span></span><span class="n">spark</span> <span class="o">=</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
+<div class="highlight"><pre><span></span><code><span class="n">spark</span> <span class="o">=</span> <span class="n">pyspark</span><span class="o">.</span><span class="n">sql</span><span class="o">.</span><span class="n">SparkSession</span><span class="o">.</span><span class="n">builder</span> \
         <span class="o">.</span><span class="n">master</span><span class="p">(</span><span class="s2">&quot;local[*]&quot;</span><span class="p">)</span> \
         <span class="o">.</span><span class="n">enableHiveSupport</span><span class="p">()</span> \
         <span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Read data</h2>
-<div class="highlight"><pre><span></span><span class="n">json_sdf</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;mydata.json&quot;</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">json_sdf</span> <span class="o">=</span> <span class="n">spark</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">json</span><span class="p">(</span><span class="s2">&quot;mydata.json&quot;</span><span class="p">)</span>
+</code></pre></div>
 
 
 <h2>Convert RDD to Pandas DataFrame</h2>
-<div class="highlight"><pre><span></span><span class="n">json_pdf</span> <span class="o">=</span> <span class="n">json_sdf</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">json_pdf</span> <span class="o">=</span> <span class="n">json_sdf</span><span class="o">.</span><span class="n">toPandas</span><span class="p">()</span>
+</code></pre></div>
 
 
 <h2>Convert PySpark row to dictionary</h2>
-<div class="highlight"><pre><span></span><span class="n">row</span><span class="o">.</span><span class="n">asDict</span><span class="p">(</span><span class="n">recursive</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">row</span><span class="o">.</span><span class="n">asDict</span><span class="p">(</span><span class="n">recursive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
 
 
 <h2>Join two dataframes</h2>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyspark.sql.functions</span> <span class="kn">as</span> <span class="nn">F</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pyspark.sql.functions</span> <span class="k">as</span> <span class="nn">F</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">df_01</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;dfone&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">df_02</span><span class="o">.</span><span class="n">alias</span><span class="p">(</span><span class="s1">&#39;dftwo&#39;</span><span class="p">),</span>
                                <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;dfone.id&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;dftwo.id&#39;</span><span class="p">)],</span>
                                <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Select fields from dataframe</h2>
-<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;amount&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;country&#39;</span><span class="p">,</span> <span class="s1">&#39;amount&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div>
 
 
 <h2>Expand JSON</h2>
-<div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">,</span>
+<div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">,</span>
               <span class="n">F</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s1">&#39;_json_col&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
                           <span class="n">json_schema</span><span class="p">))</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Casting a datatype</h2>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">IntegerType</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.sql.types</span> <span class="kn">import</span> <span class="n">IntegerType</span>
 <span class="n">dataframe</span><span class="o">.</span><span class="n">withColumn</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">,</span> <span class="n">F</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="s2">&quot;count&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">IntegerType</span><span class="p">()))</span>
-</pre></div>
+</code></pre></div>
         </div>
 
     </article>

@@ -11867,35 +11867,6 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
-      <h2><a href="./run-methods-dynamically-by-name.html">Run methods dynamically by name</a></h2>
-      <time datetime="" title="2019-12-06T01:56:00+00:00" pubdate>Fri 06 December 2019</time>
-    </header>
-
-    <div class="article_content">
-        <p>In this project I want to verify the availability of the APIs that we use to ingest data into our data platform. In the example I will use Jira, Workable and HiBob, since they offer clean APIs without too much configuration. First I will create a test suite to verify the availability and once this works move it to a Lambda function that could be scheduled with CloudWatch on a fixed schedule.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./run-methods-dynamically-by-name.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/pytest.html" class="tag">pytest</a>
-            <a href="./tag/dynamic.html" class="tag">dynamic</a>
-            <a href="./tag/testing.html" class="tag">testing</a>
-            <a href="./tag/availability.html" class="tag">availability</a>
-            <a href="./tag/aws.html" class="tag">AWS</a>
-            <a href="./tag/boto3.html" class="tag">boto3</a>
-            <a href="./tag/api.html" class="tag">API</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
       <h2><a href="./using-python-with-jinja-and-pdfkit-to-generate-resume.html">Using Python with Jinja and PDFkit to generate a resume</a></h2>
       <time datetime="" title="2019-11-10T01:56:00+00:00" pubdate>Sun 10 November 2019</time>
     </header>
@@ -11924,33 +11895,6 @@ jQuery(document).ready(function($) {
   <div class="separator"></div>
   <article>
     <header>
-      <h2><a href="./using-faker-to-generate-events.html">Using Faker to generate events</a></h2>
-      <time datetime="" title="2019-10-29T18:05:00+00:00" pubdate>Tue 29 October 2019</time>
-    </header>
-
-    <div class="article_content">
-        <p>A simple introduction to create fake data using the Faker tool in Python. Very convenient if you need to generate dummy data for an experiment.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./using-faker-to-generate-events.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/notebook.html" class="tag">notebook</a>
-            <a href="./tag/faker.html" class="tag">faker</a>
-            <a href="./tag/testing.html" class="tag">testing</a>
-            <a href="./tag/generator.html" class="tag">generator</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
       <h2><a href="./moving-from-unittest-to-pytest.html">Moving from `unittest` to `pytest`</a></h2>
       <time datetime="" title="2019-10-17T17:00:00+01:00" pubdate>Thu 17 October 2019</time>
     </header>
@@ -11969,34 +11913,6 @@ jQuery(document).ready(function($) {
             <a href="./tag/unittest.html" class="tag">unittest</a>
             <a href="./tag/pytest.html" class="tag">pytest</a>
             <a href="./tag/mock.html" class="tag">mock</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./sftp-with-spark.html">Using SFTP with Spark</a></h2>
-      <time datetime="" title="2019-08-02T16:55:00+01:00" pubdate>Fri 02 August 2019</time>
-    </header>
-
-    <div class="article_content">
-        <p>A simple showcase of how to use SFTP together with Spark. By using Spark I can read the files directly into a Spark RDD. Reading big files was failing for me when I was using plain Python with <code>pysftp</code>.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./sftp-with-spark.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/notebook.html" class="tag">notebook</a>
-            <a href="./tag/spark.html" class="tag">Spark</a>
-            <a href="./tag/pyspark.html" class="tag">PySpark</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="./tag/sftp.html" class="tag">SFTP</a>
-            <a href="./tag/data-engineering.html" class="tag">Data Engineering</a>
       </div>
 
     </div>
@@ -12038,13 +11954,13 @@ jQuery(document).ready(function($) {
     </header>
 
     <div class="article_content">
-        <div class="highlight"><pre><span></span><span class="c1"># Find the columns where each value is null</span>
+        <div class="highlight"><pre><span></span><code><span class="c1"># Find the columns where each value is null</span>
 <span class="n">empty_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
 <span class="c1"># Drop these columns from the dataframe</span>
 <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">empty_cols</span><span class="p">,</span>
         <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
     </div>
     
     <div class="meta">
@@ -12141,6 +12057,90 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./developing-glue-scripts-on-mac-osx.html">Developing AWS Glue scripts on Mac OSX</a></h2>
+      <time datetime="" title="2018-11-21T17:40:00+00:00" pubdate>Wed 21 November 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>In this short tutorial I show how I developed my first Glue scripts for the AWS platform.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="./developing-glue-scripts-on-mac-osx.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/devops.html" class="tag">DevOps</a>
+            <a href="./tag/data-architecture.html" class="tag">data architecture</a>
+            <a href="./tag/glue.html" class="tag">Glue</a>
+            <a href="./tag/aws.html" class="tag">AWS</a>
+            <a href="./tag/data-engineer.html" class="tag">data engineer</a>
+            <a href="./tag/spark.html" class="tag">Spark</a>
+            <a href="./tag/zeppelin.html" class="tag">Zeppelin</a>
+            <a href="./tag/notebook.html" class="tag">notebook</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./aws-lambda-development-with-sam.html">AWS Lambda development - Python & SAM</a></h2>
+      <time datetime="" title="2018-10-23T10:40:00+01:00" pubdate>Tue 23 October 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>This tutorial explains how to write a lambda functions in Python, test it locally, deploy it to AWS and test it in the cloud using Amazon's SAM. The <code>README.md</code> inside the <a href="https://github.com/aws-samples/cookiecutter-aws-sam-python"><code>cookiecutter</code></a> template folder is used as the base of this tutorial.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="./aws-lambda-development-with-sam.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/devops.html" class="tag">DevOps</a>
+            <a href="./tag/data-architecture.html" class="tag">data architecture</a>
+            <a href="./tag/serverless.html" class="tag">serverless</a>
+            <a href="./tag/aws.html" class="tag">AWS</a>
+            <a href="./tag/data-engineer.html" class="tag">data engineer</a>
+            <a href="./tag/lambda.html" class="tag">Lambda</a>
+            <a href="./tag/sam.html" class="tag">SAM</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="./none-shall-paas.html">None shall PAAS</a></h2>
+      <time datetime="" title="2018-10-17T14:00:00+01:00" pubdate>Wed 17 October 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>This article was originally posted on the <a href="https://blog.marketinvoice.com/2018/10/02/none-shall-paas-unlocking-the-data-warehouse/">MarketInvoice blog</a>.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="./none-shall-paas.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/devops.html" class="tag">DevOps</a>
+            <a href="./tag/data-architecture.html" class="tag">data architecture</a>
+            <a href="./tag/serverless.html" class="tag">serverless</a>
+            <a href="./tag/aws.html" class="tag">AWS</a>
+            <a href="./tag/azure.html" class="tag">Azure</a>
+            <a href="./tag/data-engineer.html" class="tag">data engineer</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12186,34 +12186,49 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-3">
-            <a href="./tag/javascript.html">
-            javascript
+        <li class="tag-4">
+            <a href="./tag/flask.html">
+            Flask
             </a>
         </li>
         <li class="tag-1">
-            <a href="./tag/notebook.html">
-            notebook
+            <a href="./tag/python.html">
+            Python
             </a>
         </li>
         <li class="tag-3">
+            <a href="./tag/spark.html">
+            Spark
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/pyspark.html">
+            PySpark
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/data-engineer.html">
+            data engineer
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/container.html">
+            container
+            </a>
+        </li>
+        <li class="tag-4">
             <a href="./tag/ethereum.html">
             Ethereum
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/s3.html">
-            S3
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/testing.html">
-            testing
             </a>
         </li>
         <li class="tag-3">
@@ -12222,68 +12237,23 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-3">
             <a href="./tag/aws.html">
             AWS
             </a>
         </li>
-        <li class="tag-4">
-            <a href="./tag/ether.html">
-            ether
-            </a>
-        </li>
         <li class="tag-3">
-            <a href="./tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-4">
             <a href="./tag/vps.html">
             VPS
             </a>
         </li>
-        <li class="tag-3">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-3">
+        <li class="tag-2">
             <a href="./tag/dataframe.html">
             dataframe
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/pyspark.html">
-            pyspark
+            <a href="./tag/notebook.html">
+            notebook
             </a>
         </li>
         <li class="tag-3">
@@ -12292,13 +12262,43 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
+            <a href="./tag/jupyter.html">
+            Jupyter
+            </a>
+        </li>
+        <li class="tag-3">
             <a href="./tag/blockchain.html">
             blockchain
             </a>
         </li>
         <li class="tag-4">
-            <a href="./tag/flask.html">
-            Flask
+            <a href="./tag/lambda.html">
+            Lambda
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="./tag/django.html">
+            Django
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/docker.html">
+            Docker
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="./tag/javascript.html">
+            Javascript
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="./tag/hadoop.html">
+            Hadoop
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/shell.html">
+            shell
             </a>
         </li>
         </ul>

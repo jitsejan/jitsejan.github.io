@@ -11866,7 +11866,7 @@ jQuery(document).ready(function($) {
 <p>Let's recap the classes first. </p>
 <h3>Castle class</h3>
 <p>The Castle class has a name, boss and world property and a simple method to determine if a character has access bases on his powerup. Note that the classes have been cleaned up since the last article.</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; jj_classes/castle.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; jj_classes/castle.py &quot;&quot;&quot;</span>
 
 
 <span class="k">class</span> <span class="nc">Castle</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -11904,11 +11904,11 @@ jQuery(document).ready(function($) {
     <span class="k">def</span> <span class="nf">world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; World of the castle &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_world</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Character class</h3>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; jj_classes/character.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; jj_classes/character.py &quot;&quot;&quot;</span>
 
 
 <span class="k">class</span> <span class="nc">Character</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -11933,26 +11933,26 @@ jQuery(document).ready(function($) {
         <span class="sd">&quot;&quot;&quot; Powerup of the character &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_powerup</span>
 
-    <span class="nd">@powerup.setter</span>
+    <span class="nd">@powerup</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">powerup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">powerup</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Sets the powerup &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_powerup</span> <span class="o">=</span> <span class="n">powerup</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Unittests</h2>
 <p>In the previous articles, I've written two tests sets, one for Character and one for Character and Castle. Looking back at the tests now, I noticed that the Character/Castle testset is not very tidy so at the end I will simply have a set to test the <code>Character</code> class and one to test the <code>Castle</code> class.</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; tests/charactertestclass.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; tests/charactertestclass.py &quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">import</span> <span class="nn">unittest.mock</span> <span class="kn">as</span> <span class="nn">mock</span>
+<span class="kn">import</span> <span class="nn">unittest.mock</span> <span class="k">as</span> <span class="nn">mock</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">jj_classes.castle</span> <span class="kn">import</span> <span class="n">Castle</span>
 <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 
-    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;{os.path.dirname(os.path.abspath(__file__))}/../&quot;</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span><span class="si">}</span><span class="s2">/../&quot;</span><span class="p">)</span>
     <span class="kn">from</span> <span class="nn">jj_classes.castle</span> <span class="kn">import</span> <span class="n">Castle</span>
 <span class="kn">from</span> <span class="nn">jj_classes.character</span> <span class="kn">import</span> <span class="n">Character</span>
 
@@ -11983,14 +11983,14 @@ jQuery(document).ready(function($) {
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">(),</span> <span class="s2">&quot;Grass Land&quot;</span><span class="p">)</span>
 
     <span class="c1"># Mock a class method</span>
-    <span class="nd">@mock.patch.object</span><span class="p">(</span><span class="n">Castle</span><span class="p">,</span> <span class="s2">&quot;get_boss&quot;</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Castle</span><span class="p">,</span> <span class="s2">&quot;get_boss&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_mock_castle_boss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mock_get_boss</span><span class="p">):</span>
         <span class="n">mock_get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Hammer Bro&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Hammer Bro&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">(),</span> <span class="s2">&quot;Grass Land&quot;</span><span class="p">)</span>
 
     <span class="c1"># Mock an instance</span>
-    <span class="nd">@mock.patch</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.Castle&quot;</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.Castle&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_mock_castle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">MockCastle</span><span class="p">):</span>
         <span class="n">instance</span> <span class="o">=</span> <span class="n">MockCastle</span>
         <span class="n">instance</span><span class="o">.</span><span class="n">get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Toad&quot;</span>
@@ -12032,20 +12032,20 @@ jQuery(document).ready(function($) {
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; tests/charactercastletestclass.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; tests/charactercastletestclass.py &quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">import</span> <span class="nn">unittest.mock</span> <span class="kn">as</span> <span class="nn">mock</span>
+<span class="kn">import</span> <span class="nn">unittest.mock</span> <span class="k">as</span> <span class="nn">mock</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">jj_classes.castle</span> <span class="kn">import</span> <span class="n">Castle</span>
 <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
 
-    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="s2">&quot;{os.path.dirname(os.path.abspath(__file__))}/../&quot;</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span><span class="si">}</span><span class="s2">/../&quot;</span><span class="p">)</span>
     <span class="kn">from</span> <span class="nn">jj_classes.castle</span> <span class="kn">import</span> <span class="n">Castle</span>
 <span class="kn">from</span> <span class="nn">jj_classes.character</span> <span class="kn">import</span> <span class="n">Character</span>
 
@@ -12053,8 +12053,8 @@ jQuery(document).ready(function($) {
 <span class="k">class</span> <span class="nc">CharacterCastleTestClass</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Defines the tests for the Character and Castle class together &quot;&quot;&quot;</span>
 
-    <span class="nd">@mock.patch</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.Castle&quot;</span><span class="p">)</span>
-    <span class="nd">@mock.patch</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.Character&quot;</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.Castle&quot;</span><span class="p">)</span>
+    <span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;.Character&quot;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_mock_castle_and_character</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">MockCharacter</span><span class="p">,</span> <span class="n">MockCastle</span><span class="p">):</span>
         <span class="c1"># Note the order of the arguments of this test</span>
         <span class="n">MockCastle</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Mocked Castle&quot;</span>
@@ -12083,7 +12083,7 @@ jQuery(document).ready(function($) {
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Rewriting the tests to use <code>pytest</code></h2>
@@ -12091,55 +12091,55 @@ jQuery(document).ready(function($) {
 <h3>Main differences</h3>
 <h4>Assert</h4>
 <p>With <code>unittest</code> we always use <code>self.assertEqual</code> and the other variations. With <code>pytest</code> only <code>assert</code> is used.</p>
-<div class="highlight"><pre><span></span><span class="c1"># unittest</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># unittest</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;five&quot;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="c1"># pytest</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># pytest</span>
 <span class="k">assert</span> <span class="mi">5</span> <span class="o">==</span> <span class="n">five</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Capturing errors is easier with PyTest, you can even assert the raised message in the same go.</p>
-<div class="highlight"><pre><span></span><span class="c1"># unittest</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># unittest</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">assertRaises</span><span class="p">(</span><span class="ne">StopIteration</span><span class="p">,</span> <span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="c1"># pytest</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># pytest</span>
 <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">StopIteration</span><span class="p">):</span>
         <span class="n">multi_boss_castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">()</span>
 
 <span class="n">expected_error</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;__init__\(\) missing 1 required positional argument: \&#39;name\&#39;&quot;</span>
 <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="n">expected_error</span><span class="p">):</span>
         <span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h4>Mock</h4>
-<div class="highlight"><pre><span></span><span class="c1"># unittest</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># unittest</span>
 <span class="c1"># Mock a class method</span>
-<span class="nd">@mock.patch.object</span><span class="p">(</span><span class="n">Castle</span><span class="p">,</span> <span class="s2">&quot;get_boss&quot;</span><span class="p">)</span>
+<span class="nd">@mock</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Castle</span><span class="p">,</span> <span class="s2">&quot;get_boss&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">test_mock_castle_boss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mock_get_boss</span><span class="p">):</span>
     <span class="n">mock_get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Hammer Bro&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Hammer Bro&quot;</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Make sure that for the mock functionality in PyTest the package <code>pytest-mock</code> is installed.</p>
-<div class="highlight"><pre><span></span><span class="c1"># pytest</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># pytest</span>
 <span class="c1"># Mock a class method</span>
 <span class="k">def</span> <span class="nf">test_mock_castle_boss</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mocker</span><span class="p">,</span> <span class="n">castle</span><span class="p">):</span>
     <span class="n">mock_get_boss</span> <span class="o">=</span> <span class="n">mocker</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">object</span><span class="p">(</span><span class="n">Castle</span><span class="p">,</span> <span class="s2">&quot;get_boss&quot;</span><span class="p">)</span>
     <span class="n">mock_get_boss</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;Hammer Bro&quot;</span>
     <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_boss</span><span class="p">(),</span> <span class="s2">&quot;Hammer Bro&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <h4>Fixtures</h4>
 <p>PyTest has the functionality to add fixtures to your tests. They are normally placed in <code>conftest.py</code> in your tests folder where it will be automatically be picked up. For the sake of example, I have added the fixture to the same file as the test itself. In case of defining <code>castle</code> in each test like for <code>unittest</code>, we create a fixture for <code>castle</code> once and add it as an argument to the tests.</p>
-<div class="highlight"><pre><span></span><span class="c1"># unittest</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># unittest</span>
 
 <span class="k">def</span> <span class="nf">test_get_boss_returns_bowser</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Test that the get_boss returns Bowser &quot;&quot;&quot;</span>
@@ -12150,11 +12150,11 @@ jQuery(document).ready(function($) {
     <span class="sd">&quot;&quot;&quot; Test that the get_boss returns Grass Land &quot;&quot;&quot;</span>
     <span class="n">castle</span> <span class="o">=</span> <span class="n">Castle</span><span class="p">(</span><span class="s2">&quot;My Fixture Castle&quot;</span><span class="p">)</span>
     <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Grass Land&#39;</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="c1"># pytest</span>
-<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s1">&#39;session&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># pytest</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s1">&#39;session&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">castle</span><span class="p">():</span>
     <span class="n">returns</span> <span class="n">Castle</span><span class="p">(</span><span class="s2">&quot;My Fixture Castle&quot;</span><span class="p">)</span>
 
@@ -12165,12 +12165,12 @@ jQuery(document).ready(function($) {
 <span class="k">def</span> <span class="nf">test_get_world_returns_grass_land</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">castle</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Test that the get_boss returns Grass Land &quot;&quot;&quot;</span>
     <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">get_world</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Grass Land&#39;</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Conclusion</h2>
 <p>In the end I have cleaned up my tests to only use <code>pytest</code> and I have introduced the fixture file <code>conftest.py</code> to reduce the complexity of the test files.</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; tests/conftest.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; tests/conftest.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">pytest</span>
 
 <span class="n">CASTLE_NAME</span> <span class="o">=</span> <span class="s2">&quot;Castle Name&quot;</span>
@@ -12179,18 +12179,18 @@ jQuery(document).ready(function($) {
 <span class="kn">from</span> <span class="nn">jj_classes.castle</span> <span class="kn">import</span> <span class="n">Castle</span>
 <span class="kn">from</span> <span class="nn">jj_classes.character</span> <span class="kn">import</span> <span class="n">Character</span>
 
-<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">)</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">castle</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">Castle</span><span class="p">(</span><span class="n">CASTLE_NAME</span><span class="p">)</span>
 
-<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">)</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">character</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">Character</span><span class="p">(</span><span class="n">CHARACTER_NAME</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>And the tests look like the following:</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; tests/test_castle_class.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; tests/test_castle_class.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">pytest</span>
 <span class="kn">from</span> <span class="nn">jj_classes.castle</span> <span class="kn">import</span> <span class="n">Castle</span>
 
@@ -12216,7 +12216,7 @@ jQuery(document).ready(function($) {
     <span class="k">def</span> <span class="nf">test_has_access_false_without_super_mushroom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">castle</span><span class="p">,</span> <span class="n">character</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Test that has_access returns False for other powerups &quot;&quot;&quot;</span>
         <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="s1">&#39;Not a mushroom&#39;</span>
-        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="n">character</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">False</span>
+        <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="n">character</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">test_get_boss_returns_bowser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">castle</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Test that the get_boss returns Bowser &quot;&quot;&quot;</span>
@@ -12267,10 +12267,10 @@ jQuery(document).ready(function($) {
         <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="s2">&quot;Let me in, please&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;No access&quot;</span>
         <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="s2">&quot;Let me in, please sir!&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;No access&quot;</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="o">.</span><span class="n">call_args_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; tests/test_character_class.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; tests/test_character_class.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">pytest</span>
 <span class="kn">from</span> <span class="nn">jj_classes.character</span> <span class="kn">import</span> <span class="n">Character</span>
 
@@ -12311,10 +12311,10 @@ jQuery(document).ready(function($) {
         <span class="k">assert</span> <span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;star&quot;</span>
         <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">StopIteration</span><span class="p">):</span>
             <span class="n">multi_characters</span><span class="o">.</span><span class="n">get_powerup</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>$ pytest -v
+<div class="highlight"><pre><span></span><code>$ pytest -v
 <span class="o">=================================================================================================</span> <span class="nb">test</span> session <span class="nv">starts</span> <span class="o">==================================================================================================</span>
 platform darwin -- Python <span class="m">3</span>.7.3, pytest-5.2.1, py-1.8.0, pluggy-0.13.0 -- /Users/jitsejan/.local/share/virtualenvs/blog-testing-KMgUXSdn/bin/python3.7m
 cachedir: .pytest_cache
@@ -12341,7 +12341,7 @@ tests/test_character_class.py::TestCharacterClass::test_fake_powerup PASSED     
 tests/test_character_class.py::TestCharacterClass::test_characters_with_more_powerups PASSED                                                                                                                     <span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
 
 <span class="o">==================================================================================================</span> <span class="m">17</span> passed in <span class="m">0</span>.10s <span class="o">==================================================================================================</span>
-</pre></div>
+</code></pre></div>
         </div>
 
         <div class="meta">

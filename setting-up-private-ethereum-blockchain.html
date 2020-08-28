@@ -11863,7 +11863,7 @@ jQuery(document).ready(function($) {
         <div class="article_content">
             <h2>Setup</h2>
 <p>For this experiment, I will use three Linux machines running Ubuntu. Machine one will be used as the base, the second machine will send some Ether to the third machine.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjvps:~$ uname -a
+<div class="highlight"><pre><span></span><code>jitsejan@jjvps:~$ uname -a
 Linux jjvps <span class="m">2</span>.6.32-042stab123.1 <span class="c1">#1 SMP Wed Mar 22 15:21:30 MSK 2017 x86_64 x86_64 x86_64 GNU/Linux</span>
 jitsejan@jjvps:~$ geth version
 Geth
@@ -11876,10 +11876,10 @@ Go Version: go1.8.1
 Operating System: linux
 <span class="nv">GOPATH</span><span class="o">=</span>
 <span class="nv">GOROOT</span><span class="o">=</span>/usr/lib/go-1.8
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>jitsejan@jjschi1:~$ uname -a
+<div class="highlight"><pre><span></span><code>jitsejan@jjschi1:~$ uname -a
 Linux jjschi1 <span class="m">2</span>.6.32-042stab108.8 <span class="c1">#1 SMP Wed Jul 22 17:23:23 MSK 2015 x86_64 x86_64 x86_64 GNU/Linux</span>
 jitsejan@jjschi1:~$ geth version
 Geth
@@ -11892,10 +11892,10 @@ Go Version: go1.8.1
 Operating System: linux
 <span class="nv">GOPATH</span><span class="o">=</span>
 <span class="nv">GOROOT</span><span class="o">=</span>/usr/lib/go-1.8
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>jitsejan@jjschi2:~$ uname -a
+<div class="highlight"><pre><span></span><code>jitsejan@jjschi2:~$ uname -a
 Linux jjschi2 <span class="m">2</span>.6.32-042stab094.7 <span class="c1">#1 SMP Wed Oct 22 12:43:21 MSK 2014 x86_64 x86_64 x86_64 GNU/Linux</span>
 jitsejan@jjschi2:~$ geth version
 Geth
@@ -11908,27 +11908,27 @@ Go Version: go1.8.1
 Operating System: linux
 <span class="nv">GOPATH</span><span class="o">=</span>
 <span class="nv">GOROOT</span><span class="o">=</span>/usr/lib/go-1.8
-</pre></div>
+</code></pre></div>
 
 
 <h2>Create new user accounts</h2>
 <p>Repeat the following for all the machines.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjschi1:~$ geth account new
+<div class="highlight"><pre><span></span><code>jitsejan@jjschi1:~$ geth account new
 WARN <span class="o">[</span><span class="m">05</span>-01<span class="p">|</span><span class="m">06</span>:51:51<span class="o">]</span> No etherbase <span class="nb">set</span> and no accounts found as default 
 Your new account is locked with a password. Please give a password. Do not forget this password.
 Passphrase: 
 Repeat passphrase: 
 Address: <span class="o">{</span>fb82f6d873addc0032a08aaa05bb1c338ce49b45<span class="o">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Create a genesis file</h2>
 <p>Create a genesis file with the 3 addresses from the newly created accounts. Set an initial balance to the accounts so we can transfer some 'money'. Set the gasLimit to the maximum and the difficulty low.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjvps:~$ nano jitsejansGenesis.json 
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjvps:~$ nano jitsejansGenesis.json 
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;config&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="nt">&quot;chainId&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
         <span class="nt">&quot;homesteadBlock&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
@@ -11949,93 +11949,93 @@ Address: <span class="o">{</span>fb82f6d873addc0032a08aaa05bb1c338ce49b45<span c
         <span class="nt">&quot;0xe86ee31b7d32b743907fa7438c422a1803717deb&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="nt">&quot;balance&quot;</span><span class="p">:</span> <span class="s2">&quot;40000000000000000000&quot;</span> <span class="p">}</span>
     <span class="p">}</span>    
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Copy the genesis file to the second machine and third machine.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjschi1:~$ nano jitsejansGenesis.json
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjschi1:~$ nano jitsejansGenesis.json
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>jitsejan@jjschi2:~$ nano jitsejansGenesis.json
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjschi2:~$ nano jitsejansGenesis.json
+</code></pre></div>
 
 
 <h2>Initialize the blockchain</h2>
 <p>Initialize the blockchains on all three machines.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ geth init jitsejansGenesis.json 
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ geth init jitsejansGenesis.json 
 INFO <span class="o">[</span><span class="m">05</span>-01<span class="p">|</span><span class="m">06</span>:56:35<span class="o">]</span> Allocated cache and file handles         <span class="nv">database</span><span class="o">=</span>/home/jitsejan/.ethereum/geth/chaindata <span class="nv">cache</span><span class="o">=</span><span class="m">128</span> <span class="nv">handles</span><span class="o">=</span><span class="m">1024</span>
 INFO <span class="o">[</span><span class="m">05</span>-01<span class="p">|</span><span class="m">06</span>:56:35<span class="o">]</span> Writing custom genesis block 
 INFO <span class="o">[</span><span class="m">05</span>-01<span class="p">|</span><span class="m">06</span>:56:35<span class="o">]</span> Successfully wrote genesis state         <span class="nv">hash</span><span class="o">=</span>86a3b9…deee1b
-</pre></div>
+</code></pre></div>
 
 
 <h2>Start the blockchain</h2>
 <p>On the first machine, start the blockchain.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjvps:~$ geth --networkid <span class="m">23</span> --nodiscover --maxpeers <span class="m">2</span>  --port <span class="m">30333</span> console 
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjvps:~$ geth --networkid <span class="m">23</span> --nodiscover --maxpeers <span class="m">2</span>  --port <span class="m">30333</span> console 
+</code></pre></div>
 
 
 <p>Get information about the hosting node.</p>
-<div class="highlight"><pre><span></span>&gt; admin.nodeInfo.enode
+<div class="highlight"><pre><span></span><code>&gt; admin.nodeInfo.enode
 <span class="s2">&quot;enode://342a11d352151b3dfeb78db02a4319e1255c9fb49bc9a1dc44485f7c1bca9cc638540833e4577016f9a6180d1e911d907280af9b3892c53120e1e30619594eba@[::]:30333?discport=0&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Connect to the blockchain</h2>
 <p>With the node information from the previous step, we can now create a static nodes files on the second and third machine to connect to the running blockchain.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjschi1~$ nano ~/.ethereum/static-nodes.json
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@jjschi1~$ nano ~/.ethereum/static-nodes.json
+</code></pre></div>
 
 
 <p>Replace the <code>[::]</code> with the IP address of the first machine and copy the file on the third machine too.</p>
-<div class="highlight"><pre><span></span><span class="p">[</span>
+<div class="highlight"><pre><span></span><code><span class="p">[</span>
 <span class="s2">&quot;enode://84f9c7f807a58f98643ac2bff9ea6691bf6be36fe6d0ccd0ad838a83501d16c1027269a82c3251104a10da5982e4fe905de41ae84dd44ba78e8cfb1659d355e8@192.123.345.567:30303?discport=0&quot;</span>
 <span class="p">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Restart the blockchain on the first machine.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjsvps:~$ geth --networkid <span class="m">23</span> --nodiscover --maxpeers <span class="m">1</span> --port <span class="m">30333</span> console
+<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ geth --networkid <span class="m">23</span> --nodiscover --maxpeers <span class="m">1</span> --port <span class="m">30333</span> console
 &gt; <span class="nv">balance</span> <span class="o">=</span> web3.fromWei<span class="o">(</span>eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span><span class="p">;</span>
 <span class="m">20</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Connect to the blockchain with the second machine and third machine.</p>
-<div class="highlight"><pre><span></span>jitsejan@jjschi1:~$ geth --networkid <span class="m">23</span> --port <span class="m">30333</span> console
+<div class="highlight"><pre><span></span><code>jitsejan@jjschi1:~$ geth --networkid <span class="m">23</span> --port <span class="m">30333</span> console
 &gt; <span class="nv">balance</span> <span class="o">=</span> web3.fromWei<span class="o">(</span>eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span><span class="p">;</span>
 <span class="m">40</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Once you perform a mining action, by default Ether will reward you with 5 ether.</p>
-<div class="highlight"><pre><span></span>&gt; <span class="nv">balance</span> <span class="o">=</span> web3.fromWei<span class="o">(</span>eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>&gt; <span class="nv">balance</span> <span class="o">=</span> web3.fromWei<span class="o">(</span>eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span><span class="p">;</span>
 <span class="m">40</span>
 &gt; miner.start<span class="o">()</span><span class="p">;</span>admin.sleepBlocks<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="p">;</span>miner.stop<span class="o">()</span><span class="p">;</span>
 &gt; <span class="nv">balance</span> <span class="o">=</span> web3.fromWei<span class="o">(</span>eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span><span class="p">;</span>
 <span class="m">45</span>
-</pre></div>
+</code></pre></div>
 
 
 <h2>Perform a transaction</h2>
 <h3>Unlock the sending machine</h3>
-<div class="highlight"><pre><span></span>&gt; personal.unlockAccount<span class="o">(</span><span class="s1">&#39;0x1c1ab1dcc7054c35a6029b0904cbead5aab37c54&#39;</span><span class="o">)</span>
+<div class="highlight"><pre><span></span><code>&gt; personal.unlockAccount<span class="o">(</span><span class="s1">&#39;0x1c1ab1dcc7054c35a6029b0904cbead5aab37c54&#39;</span><span class="o">)</span>
 Unlock account 0x1c1ab1dcc7054c35a6029b0904cbead5aab37c54
 Passphrase: 
 <span class="nb">true</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Send the transaction</h3>
-<div class="highlight"><pre><span></span>&gt; eth.sendTransaction<span class="o">({</span>from: <span class="s1">&#39;0x1c1ab1dcc7054c35a6029b0904cbead5aab37c54&#39;</span>, to: <span class="s1">&#39;0xfb82f6d873addc0032a08aaa05bb1c338ce49b45&#39;</span>, value: web3.toWei<span class="o">(</span><span class="m">23</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)})</span>
+<div class="highlight"><pre><span></span><code>&gt; eth.sendTransaction<span class="o">({</span>from: <span class="s1">&#39;0x1c1ab1dcc7054c35a6029b0904cbead5aab37c54&#39;</span>, to: <span class="s1">&#39;0xfb82f6d873addc0032a08aaa05bb1c338ce49b45&#39;</span>, value: web3.toWei<span class="o">(</span><span class="m">23</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)})</span>
 INFO <span class="o">[</span><span class="m">05</span>-01<span class="p">|</span><span class="m">15</span>:09:47<span class="o">]</span> Submitted transaction                    <span class="nv">fullhash</span><span class="o">=</span>0x9ea76acbba2ad0bf65dc9b4295bfd7f2836435329a1fee9162b0649f35855ad3 <span class="nv">recipient</span><span class="o">=</span>0xfb82f6d873addc0032a08aaa05bb2c338ce49b45
 <span class="s2">&quot;0x9ea76acbba2ad0bf65dc9b4295bfd7f2836435329a1fee9162b0649f35855ad3&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Check for pending transactions. The transaction should be queued.</p>
-<div class="highlight"><pre><span></span>&gt; eth.pendingTransactions
+<div class="highlight"><pre><span></span><code>&gt; eth.pendingTransactions
 <span class="o">[{</span>
     blockHash: null,
     blockNumber: null,
@@ -12060,11 +12060,11 @@ INFO <span class="o">[</span><span class="m">05</span>-01<span class="p">|</span
   pending: <span class="m">1</span>,
   queued: <span class="m">0</span>
 <span class="o">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>On the receiving machine we start the mining to receive the transaction.</p>
-<div class="highlight"><pre><span></span>&gt; <span class="nv">balance</span> <span class="o">=</span> web3.fromWei<span class="o">(</span>eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>&gt; <span class="nv">balance</span> <span class="o">=</span> web3.fromWei<span class="o">(</span>eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span><span class="p">;</span>
 <span class="m">96</span>
 &gt; miner.start<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="p">;</span>admin.sleepBlocks<span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="p">;</span>miner.stop<span class="o">()</span><span class="p">;</span>
 INFO <span class="o">[</span><span class="m">05</span>-01<span class="p">|</span><span class="m">10</span>:51:14<span class="o">]</span> Updated mining threads                   <span class="nv">threads</span><span class="o">=</span><span class="m">1</span>
@@ -12077,13 +12077,13 @@ INFO <span class="o">[</span><span class="m">05</span>-01<span class="p">|</span
 <span class="nb">true</span>
 &gt; <span class="nv">balance</span> <span class="o">=</span> web3.fromWei<span class="o">(</span>eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span><span class="p">;</span>
 <span class="m">124</span>.00042
-</pre></div>
+</code></pre></div>
 
 
 <p>On the sending machine we check again the balance. </p>
-<div class="highlight"><pre><span></span>&gt; <span class="nv">balance</span> <span class="o">=</span> web3.fromWei<span class="o">(</span>eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span><span class="p">;</span>
+<div class="highlight"><pre><span></span><code>&gt; <span class="nv">balance</span> <span class="o">=</span> web3.fromWei<span class="o">(</span>eth.getBalance<span class="o">(</span>eth.accounts<span class="o">[</span><span class="m">0</span><span class="o">])</span>, <span class="s2">&quot;ether&quot;</span><span class="o">)</span><span class="p">;</span>
 <span class="m">405</span>.99958
-</pre></div>
+</code></pre></div>
 
 
 <p>We can see that indeed the 23 Ether got deducted, plus 0.00042 Ether to pay for the gas. The balance of the receiving machine got another 5 Ether for the mining action

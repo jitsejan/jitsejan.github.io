@@ -11861,13 +11861,13 @@ jQuery(document).ready(function($) {
         </header>
 
         <div class="article_content">
-            <div class="highlight"><pre><span></span><span class="c1"># Find the columns where each value is null</span>
+            <div class="highlight"><pre><span></span><code><span class="c1"># Find the columns where each value is null</span>
 <span class="n">empty_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
 <span class="c1"># Drop these columns from the dataframe</span>
 <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">empty_cols</span><span class="p">,</span>
         <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
         </div>
 
         <div class="meta">

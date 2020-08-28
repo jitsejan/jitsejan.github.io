@@ -11862,11 +11862,11 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <p>A simple trick to select columns from a dataframe:</p>
-<div class="highlight"><pre><span></span><span class="c1"># Create the filter condition</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create the filter condition</span>
 <span class="n">condition</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">DESIRED_COLUMNS</span>
 <span class="c1"># Filter the dataframe</span>
 <span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="o">*</span><span class="nb">filter</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
-</pre></div>
+</code></pre></div>
         </div>
 
         <div class="meta">

@@ -11873,28 +11873,28 @@ jQuery(document).ready(function($) {
 <p>In previous years I have been working as a Software Engineer where code was written in a more consistent way and software practices were followed according to the different <em>Software Design Patterns</em> (<a href="https://www.gofpatterns.com">Gang of Four Patterns</a>). I have noticed that in my current team everybody understands Python and PySpark, but often code is simply written as a sequential script rather than a proper structure with appropriate classes. This was not a problem when my team was still small, but since we are scaling here at MarketInvoice, more people are working on the code base. For example, we have a variety of AWS Lambda functions that crawl data from third parties (i.e. Jira, PagerDuty) which are all written as standalone functions with (a lot) of overlapping code. The idea is to create a common class with shared functionality which can then be used by the different crawlers and avoid repeating writing the same code over and over again (<a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">Don't repeat yourself - Wikipedia</a>). By utilizing these software principles, I am sure my team will become more productive and can spend more time on adding more interesting data to our data platform and reduce fixing bugs.</p>
 <h2>Initialization</h2>
 <p>First I create the Git repository for this tutorial on Github. After creating the repo, I clone it to my code directory.</p>
-<div class="highlight"><pre><span></span>~/code $ git clone https://github.com/jitsejan/abstract-lambdas-terraform.git
-</pre></div>
+<div class="highlight"><pre><span></span><code>~/code $ git clone https://github.com/jitsejan/abstract-lambdas-terraform.git
+</code></pre></div>
 
 
 <p>I have the alias that will open <a href="https://www.jetbrains.com/pycharm/">PyCharm</a> from my command line so I can simply do the following:</p>
-<div class="highlight"><pre><span></span>~/code $ which charm
+<div class="highlight"><pre><span></span><code>~/code $ which charm
 /usr/local/bin/charm
 ~/code $ <span class="nb">cd</span> abstract-lambdas-terraform
 ~/code/abstract-lambdas-terraform $ charm .
 No IDE instance has been found. New one will be started.
-</pre></div>
+</code></pre></div>
 
 
 <p>After opening PyCharm, make sure to add the <code>.idea</code> folder to the <code>.gitignore</code>.</p>
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform $ <span class="nb">echo</span> .idea &gt;&gt; .gitignore
-</pre></div>
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform $ <span class="nb">echo</span> .idea &gt;&gt; .gitignore
+</code></pre></div>
 
 
 <p>Additionally, add the API key from IGDB (see below) to your shell, either add the <code>export IGDB_KEY="&lt;KEY&gt;"</code> to <code>~/.bashrc</code> or <code>~/.zshrc</code> and run <code>source</code> on the file you've just changed to make variable available in your terminal and Python.</p>
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform $ <span class="nb">echo</span> <span class="nv">$IGDB_KEY</span>
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform $ <span class="nb">echo</span> <span class="nv">$IGDB_KEY</span>
 &lt;KEY&gt;
-</pre></div>
+</code></pre></div>
 
 
 <h2>Testing</h2>
@@ -11906,11 +11906,11 @@ No IDE instance has been found. New one will be started.
 <h2>Implementation</h2>
 <h3>Single file</h3>
 <p>Let's first start by recreating the Postman test in Python with the following code to get the platform ID for the N64.</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/{endpoint}&#39;</span>
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/</span><span class="si">{endpoint}</span><span class="s1">&#39;</span>
 <span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;user-key&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IGDB_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="p">}</span>
@@ -11921,26 +11921,26 @@ No IDE instance has been found. New one will be started.
     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;platforms&#39;</span><span class="p">),</span>
                             <span class="n">data</span><span class="o">=</span><span class="s1">&#39;fields id; where abbreviation = &quot;N64&quot;;&#39;</span><span class="p">,</span>
                             <span class="n">headers</span><span class="o">=</span><span class="n">HEADERS</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Running this in the terminal will print the response with a list containing ID 4.</p>
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform $ python .
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform $ python .
 <span class="o">[{</span>u<span class="s1">&#39;id&#39;</span>: <span class="m">4</span><span class="o">}]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>After cleaning up the code by introducing a private function the code looks like this:</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/{endpoint}&#39;</span>
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/</span><span class="si">{endpoint}</span><span class="s1">&#39;</span>
 <span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;user-key&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IGDB_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="p">}</span>
@@ -11949,7 +11949,7 @@ No IDE instance has been found. New one will be started.
 <span class="k">def</span> <span class="nf">_get_platform_id</span><span class="p">(</span><span class="n">platform_abbreviation</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Get the platform ID for a given platform abbreviation &quot;&quot;&quot;</span>
     <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;platforms&#39;</span>
-    <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;{abbr}&quot;;&#39;</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;</span><span class="si">{abbr}</span><span class="s1">&quot;;&#39;</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">),</span>
                             <span class="n">data</span><span class="o">=</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">abbr</span><span class="o">=</span><span class="n">platform_abbreviation</span><span class="p">),</span>
                             <span class="n">headers</span><span class="o">=</span><span class="n">HEADERS</span><span class="p">)</span>
@@ -11958,33 +11958,33 @@ No IDE instance has been found. New one will be started.
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot; Main function &quot;&quot;&quot;</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">_get_platform_id</span><span class="p">(</span><span class="s2">&quot;N64&quot;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">_get_platform_id</span><span class="p">(</span><span class="s2">&quot;N64&quot;</span><span class="p">))</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Let's add the second endpoint function to retrieve the games for the platform like we did in the second Postman call.</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/{endpoint}&#39;</span>
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/</span><span class="si">{endpoint}</span><span class="s1">&#39;</span>
 <span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;user-key&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IGDB_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="p">}</span>
 
 
-<span class="k">def</span> <span class="nf">_get_games</span><span class="p">(</span><span class="n">platform_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">_get_games</span><span class="p">(</span><span class="n">platform_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Get the games for a given platform and an optional name filter &quot;&quot;&quot;</span>
     <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;games&#39;</span>
     <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
-        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where name ~ *&quot;{name}&quot;* &amp; platforms = {platform_id}; limit 50;&#39;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where name ~ *&quot;</span><span class="si">{name}</span><span class="s1">&quot;* &amp; platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where platforms = {platform_id}; limit 50;&#39;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">),</span>
                             <span class="n">data</span><span class="o">=</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">platform_id</span><span class="o">=</span><span class="n">platform_id</span><span class="p">),</span>
                             <span class="n">headers</span><span class="o">=</span><span class="n">HEADERS</span><span class="p">)</span>
@@ -11994,7 +11994,7 @@ No IDE instance has been found. New one will be started.
 <span class="k">def</span> <span class="nf">_get_platform_id</span><span class="p">(</span><span class="n">platform_abbreviation</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Get the platform ID for a given platform abbreviation &quot;&quot;&quot;</span>
     <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;platforms&#39;</span>
-    <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;{abbr}&quot;;&#39;</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;</span><span class="si">{abbr}</span><span class="s1">&quot;;&#39;</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">BASE_URL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">),</span>
                             <span class="n">data</span><span class="o">=</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">abbr</span><span class="o">=</span><span class="n">platform_abbreviation</span><span class="p">),</span>
                             <span class="n">headers</span><span class="o">=</span><span class="n">HEADERS</span><span class="p">)</span>
@@ -12005,16 +12005,16 @@ No IDE instance has been found. New one will be started.
     <span class="sd">&quot;&quot;&quot; Main function &quot;&quot;&quot;</span>
     <span class="n">platform_id</span> <span class="o">=</span> <span class="n">_get_platform_id</span><span class="p">(</span><span class="s2">&quot;N64&quot;</span><span class="p">)</span>
     <span class="n">games</span> <span class="o">=</span> <span class="n">_get_games</span><span class="p">(</span><span class="n">platform_id</span><span class="p">,</span> <span class="s2">&quot;Mario&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Running this will result in the list with games. Note that I use the <code>jq</code> tool to pretty print the JSON response from the API.</p>
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform $ python . <span class="p">|</span> jq
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform $ python . <span class="p">|</span> jq
 <span class="o">[</span>
   <span class="o">{</span>
     <span class="s2">&quot;id&quot;</span>: <span class="m">47731</span>,
@@ -12041,12 +12041,12 @@ No IDE instance has been found. New one will be started.
     <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;Mario Party 3&quot;</span>
   <span class="o">}</span>
 <span class="o">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Introduce classes</h3>
 <p>We now introduce the IGDBApiResolver class that contains the code for the two endpoints. The initial version looks like this:</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">requests</span>
@@ -12054,18 +12054,18 @@ No IDE instance has been found. New one will be started.
 
 <span class="k">class</span> <span class="nc">IGDBApiResolver</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; Class definition for the IGDBApiResolver &quot;&quot;&quot;</span>
-    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/{endpoint}&#39;</span>
+    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/</span><span class="si">{endpoint}</span><span class="s1">&#39;</span>
     <span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;user-key&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IGDB_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">_get_games</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_games</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Get the games for a given platform and an optional name filter &quot;&quot;&quot;</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;games&#39;</span>
         <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
-            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where name ~ *&quot;{name}&quot;* &amp; platforms = {platform_id}; limit 50;&#39;</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where name ~ *&quot;</span><span class="si">{name}</span><span class="s1">&quot;* &amp; platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where platforms = {platform_id}; limit 50;&#39;</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">),</span>
                                 <span class="n">data</span><span class="o">=</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">platform_id</span><span class="o">=</span><span class="n">platform_id</span><span class="p">),</span>
                                 <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">HEADERS</span><span class="p">)</span>
@@ -12075,7 +12075,7 @@ No IDE instance has been found. New one will be started.
     <span class="k">def</span> <span class="nf">_get_platform_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_abbreviation</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Get the platform ID for a given platform abbreviation &quot;&quot;&quot;</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;platforms&#39;</span>
-        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;{abbr}&quot;;&#39;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;</span><span class="si">{abbr}</span><span class="s1">&quot;;&#39;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">),</span>
                                 <span class="n">data</span><span class="o">=</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">abbr</span><span class="o">=</span><span class="n">platform_abbreviation</span><span class="p">),</span>
                                 <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">HEADERS</span><span class="p">)</span>
@@ -12087,16 +12087,16 @@ No IDE instance has been found. New one will be started.
     <span class="n">game_api</span> <span class="o">=</span> <span class="n">IGDBApiResolver</span><span class="p">()</span>
     <span class="n">platform_id</span> <span class="o">=</span> <span class="n">game_api</span><span class="o">.</span><span class="n">_get_platform_id</span><span class="p">(</span><span class="s2">&quot;N64&quot;</span><span class="p">)</span>
     <span class="n">games</span> <span class="o">=</span> <span class="n">game_api</span><span class="o">.</span><span class="n">_get_games</span><span class="p">(</span><span class="n">platform_id</span><span class="p">,</span> <span class="s2">&quot;Mario&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Because we use the <code>requests</code> call several times, it's good practice to create a function for the call. Additionally, a function that can be called from a class externally should not have the leading underscore. Let's separate private and public functions properly.</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">requests</span>
@@ -12104,7 +12104,7 @@ No IDE instance has been found. New one will be started.
 
 <span class="k">class</span> <span class="nc">IGDBApiResolver</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; Class definition for the IGDBApiResolver &quot;&quot;&quot;</span>
-    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/{endpoint}&#39;</span>
+    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/</span><span class="si">{endpoint}</span><span class="s1">&#39;</span>
     <span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;user-key&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IGDB_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="p">}</span>
@@ -12116,13 +12116,13 @@ No IDE instance has been found. New one will be started.
                                 <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">HEADERS</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">get_games</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_games</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Get the games for a given platform and an optional name filter &quot;&quot;&quot;</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;games&#39;</span>
         <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
-            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where name ~ *&quot;{name}&quot;* &amp; platforms = {platform_id}; limit 50;&#39;</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where name ~ *&quot;</span><span class="si">{name}</span><span class="s1">&quot;* &amp; platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where platforms = {platform_id}; limit 50;&#39;</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_json_response</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
                                            <span class="n">data</span><span class="o">=</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
@@ -12131,7 +12131,7 @@ No IDE instance has been found. New one will be started.
     <span class="k">def</span> <span class="nf">get_platform_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_abbreviation</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Get the platform ID for a given platform abbreviation &quot;&quot;&quot;</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;platforms&#39;</span>
-        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;{abbr}&quot;;&#39;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;</span><span class="si">{abbr}</span><span class="s1">&quot;;&#39;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_json_response</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
                                            <span class="n">data</span><span class="o">=</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">abbr</span><span class="o">=</span><span class="n">platform_abbreviation</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
@@ -12142,16 +12142,16 @@ No IDE instance has been found. New one will be started.
     <span class="n">game_api</span> <span class="o">=</span> <span class="n">IGDBApiResolver</span><span class="p">()</span>
     <span class="n">platform_id</span> <span class="o">=</span> <span class="n">game_api</span><span class="o">.</span><span class="n">get_platform_id</span><span class="p">(</span><span class="s2">&quot;N64&quot;</span><span class="p">)</span>
     <span class="n">games</span> <span class="o">=</span> <span class="n">game_api</span><span class="o">.</span><span class="n">get_games</span><span class="p">(</span><span class="n">platform_id</span><span class="p">,</span> <span class="s2">&quot;Mario&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>We split the class and the main function into two files. <code>__main__.py</code> contains</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">igdbapiresolver</span> <span class="kn">import</span> <span class="n">IGDBApiResolver</span>
 
@@ -12161,23 +12161,23 @@ No IDE instance has been found. New one will be started.
     <span class="n">game_api</span> <span class="o">=</span> <span class="n">IGDBApiResolver</span><span class="p">()</span>
     <span class="n">platform_id</span> <span class="o">=</span> <span class="n">game_api</span><span class="o">.</span><span class="n">get_platform_id</span><span class="p">(</span><span class="s2">&quot;N64&quot;</span><span class="p">)</span>
     <span class="n">games</span> <span class="o">=</span> <span class="n">game_api</span><span class="o">.</span><span class="n">get_games</span><span class="p">(</span><span class="n">platform_id</span><span class="p">,</span> <span class="s2">&quot;Mario&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>and <code>igdbapiresolver.py</code> contains the class:</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; igdbapiresolver.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; igdbapiresolver.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
 
 <span class="k">class</span> <span class="nc">IGDBApiResolver</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; Class definition for the IGDBApiResolver &quot;&quot;&quot;</span>
-    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/{endpoint}&#39;</span>
+    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/</span><span class="si">{endpoint}</span><span class="s1">&#39;</span>
     <span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;user-key&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IGDB_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="p">}</span>
@@ -12189,13 +12189,13 @@ No IDE instance has been found. New one will be started.
                                 <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">HEADERS</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">get_games</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_games</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Get the games for a given platform and an optional name filter &quot;&quot;&quot;</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;games&#39;</span>
         <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
-            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where name ~ *&quot;{name}&quot;* &amp; platforms = {platform_id}; limit 50;&#39;</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where name ~ *&quot;</span><span class="si">{name}</span><span class="s1">&quot;* &amp; platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where platforms = {platform_id}; limit 50;&#39;</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_json_response</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
                                            <span class="n">data</span><span class="o">=</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
@@ -12204,15 +12204,15 @@ No IDE instance has been found. New one will be started.
     <span class="k">def</span> <span class="nf">get_platform_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_abbreviation</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Get the platform ID for a given platform abbreviation &quot;&quot;&quot;</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;platforms&#39;</span>
-        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;{abbr}&quot;;&#39;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;</span><span class="si">{abbr}</span><span class="s1">&quot;;&#39;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_json_response</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
                                            <span class="n">data</span><span class="o">=</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">abbr</span><span class="o">=</span><span class="n">platform_abbreviation</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Running this will result in the exact same list.</p>
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform $ python . <span class="p">|</span> jq
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform $ python . <span class="p">|</span> jq
 <span class="o">[</span>
   <span class="o">{</span>
     <span class="s2">&quot;id&quot;</span>: <span class="m">47731</span>,
@@ -12239,23 +12239,23 @@ No IDE instance has been found. New one will be started.
     <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;Mario Party 3&quot;</span>
   <span class="o">}</span>
 <span class="o">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Another API..</h3>
 <p>I will use the <a href="https://github.com/15Dkatz/official_joke_api">GitHub - 15Dkatz/official_joke_api</a> to add another API resolver to this project.</p>
 <p>Add the following class to <code>jokeapiresolver.py</code>:</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; jokeapiresolver.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; jokeapiresolver.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
 
 <span class="k">class</span> <span class="nc">JokeApiResolver</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; Class definition for the JokeApiResolver &quot;&quot;&quot;</span>
-    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://official-joke-api.appspot.com/{endpoint}&#39;</span>
-    <span class="n">HEADERS</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://official-joke-api.appspot.com/</span><span class="si">{endpoint}</span><span class="s1">&#39;</span>
+    <span class="n">HEADERS</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">_get_api_json_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_api_json_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Return the API JSON response &quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">),</span>
                                 <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
@@ -12269,11 +12269,11 @@ No IDE instance has been found. New one will be started.
     <span class="k">def</span> <span class="nf">get_random_joke</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;random_joke&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_json_response</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>and extend the <code>__main__.py</code> with the new API:</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">igdbapiresolver</span> <span class="kn">import</span> <span class="n">IGDBApiResolver</span>
 <span class="kn">from</span> <span class="nn">jokeapiresolver</span> <span class="kn">import</span> <span class="n">JokeApiResolver</span>
@@ -12283,20 +12283,20 @@ No IDE instance has been found. New one will be started.
     <span class="n">game_api</span> <span class="o">=</span> <span class="n">IGDBApiResolver</span><span class="p">()</span>
     <span class="n">platform_id</span> <span class="o">=</span> <span class="n">game_api</span><span class="o">.</span><span class="n">get_platform_id</span><span class="p">(</span><span class="s2">&quot;N64&quot;</span><span class="p">)</span>
     <span class="n">games</span> <span class="o">=</span> <span class="n">game_api</span><span class="o">.</span><span class="n">get_games</span><span class="p">(</span><span class="n">platform_id</span><span class="p">,</span> <span class="s2">&quot;Mario&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
 
     <span class="n">joke_api</span> <span class="o">=</span> <span class="n">JokeApiResolver</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">joke_api</span><span class="o">.</span><span class="n">get_random_joke</span><span class="p">()))</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">joke_api</span><span class="o">.</span><span class="n">get_programming_joke</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">joke_api</span><span class="o">.</span><span class="n">get_random_joke</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">joke_api</span><span class="o">.</span><span class="n">get_programming_joke</span><span class="p">()))</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Running the main function will give back the games as before, plus two jokes from the new API.</p>
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform $ python . <span class="p">|</span> jq
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform $ python . <span class="p">|</span> jq
 <span class="o">[</span>
   <span class="o">{</span>
     <span class="s2">&quot;id&quot;</span>: <span class="m">47731</span>,
@@ -12337,7 +12337,7 @@ No IDE instance has been found. New one will be started.
     <span class="s2">&quot;punchline&quot;</span>: <span class="s2">&quot;The Foo Bar.&quot;</span>
   <span class="o">}</span>
 <span class="o">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Introduce an Abstract Base Class (ABC)</h3>
@@ -12350,7 +12350,7 @@ No IDE instance has been found. New one will be started.
 (Note that abstract properties in Python &gt; 3.5 are defined with the two decorators <code>@property</code> and <code>@abstractmethod</code>. </li>
 </ul>
 <p>Add the following to <code>abstractapiresolver.py</code>:</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; abstractapiresolver.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; abstractapiresolver.py &quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
@@ -12358,7 +12358,7 @@ No IDE instance has been found. New one will be started.
 <span class="k">class</span> <span class="nc">AbstractApiResolver</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class definition of the AbstractApiResolver &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">_get_api_json_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_api_json_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Return the API JSON response &quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">BASE_URL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">),</span>
                                 <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
@@ -12374,18 +12374,18 @@ No IDE instance has been found. New one will be started.
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>We can now inherit from this ABC in the Joke API resolver as such:</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; jokeapiresolver.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; jokeapiresolver.py &quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">abstractapiresolver</span> <span class="kn">import</span> <span class="n">AbstractApiResolver</span>
 
 
 <span class="k">class</span> <span class="nc">JokeApiResolver</span><span class="p">(</span><span class="n">AbstractApiResolver</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class definition for the JokeApiResolver &quot;&quot;&quot;</span>
-    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://official-joke-api.appspot.com/{endpoint}&#39;</span>
-    <span class="n">HEADERS</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://official-joke-api.appspot.com/</span><span class="si">{endpoint}</span><span class="s1">&#39;</span>
+    <span class="n">HEADERS</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">get_programming_joke</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;jokes/programming/random&#39;</span>
@@ -12394,29 +12394,29 @@ No IDE instance has been found. New one will be started.
     <span class="k">def</span> <span class="nf">get_random_joke</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;random_joke&#39;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_json_response</span><span class="p">(</span><span class="n">endpoint</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>and the API resolver for the games as:</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; igdbapiresolver.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; igdbapiresolver.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">abstractapiresolver</span> <span class="kn">import</span> <span class="n">AbstractApiResolver</span>
 
 
 <span class="k">class</span> <span class="nc">IGDBApiResolver</span><span class="p">(</span><span class="n">AbstractApiResolver</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class definition for the IGDBApiResolver &quot;&quot;&quot;</span>
-    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/{endpoint}&#39;</span>
+    <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s1">&#39;https://api-v3.igdb.com/</span><span class="si">{endpoint}</span><span class="s1">&#39;</span>
     <span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;user-key&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IGDB_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">get_games</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_games</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Get the games for a given platform and an optional name filter &quot;&quot;&quot;</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;games&#39;</span>
         <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
-            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where name ~ *&quot;{name}&quot;* &amp; platforms = {platform_id}; limit 50;&#39;</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where name ~ *&quot;</span><span class="si">{name}</span><span class="s1">&quot;* &amp; platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where platforms = {platform_id}; limit 50;&#39;</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_json_response</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
                                            <span class="n">data</span><span class="o">=</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
@@ -12425,15 +12425,15 @@ No IDE instance has been found. New one will be started.
     <span class="k">def</span> <span class="nf">get_platform_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_abbreviation</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Get the platform ID for a given platform abbreviation &quot;&quot;&quot;</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;platforms&#39;</span>
-        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;{abbr}&quot;;&#39;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;</span><span class="si">{abbr}</span><span class="s1">&quot;;&#39;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_json_response</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
                                            <span class="n">data</span><span class="o">=</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">abbr</span><span class="o">=</span><span class="n">platform_abbreviation</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Note that I did not clean this file up yet and this will not work yet. Instead, when running the code now will result in the following error:</p>
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform $ python3 .
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform $ python3 .
 Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
   File <span class="s2">&quot;/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/runpy.py&quot;</span>, line <span class="m">193</span>, in _run_module_as_main
     <span class="s2">&quot;__main__&quot;</span>, mod_spec<span class="o">)</span>
@@ -12444,11 +12444,11 @@ Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
   File <span class="s2">&quot;./__main__.py&quot;</span>, line <span class="m">8</span>, in main
     <span class="nv">game_api</span> <span class="o">=</span> IGDBApiResolver<span class="o">()</span>
 TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApiResolver with abstract methods base_url, headers
-</pre></div>
+</code></pre></div>
 
 
 <p>Because in <code>abstractapiresolver.py</code> we defined <code>base_url</code> and <code>headers</code> as abstract properties, each inherited class should define these properties, otherwise the class can not be instantiated. I have moved the properties <code>BASE_URL</code> and <code>HEADERS</code> to be a property of the ABC, so let's rewrite them as below.</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; jokeapiresolver.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; jokeapiresolver.py &quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">abstractapiresolver</span> <span class="kn">import</span> <span class="n">AbstractApiResolver</span>
 
 
@@ -12465,16 +12465,16 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="kc">None</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s1">&#39;https://official-joke-api.appspot.com/{endpoint}&#39;</span>
-</pre></div>
+        <span class="k">return</span> <span class="s1">&#39;https://official-joke-api.appspot.com/</span><span class="si">{endpoint}</span><span class="s1">&#39;</span>
+</code></pre></div>
 
 
 <p>and</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; igdbapiresolver.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; igdbapiresolver.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">abstractapiresolver</span> <span class="kn">import</span> <span class="n">AbstractApiResolver</span>
 
@@ -12482,13 +12482,13 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
 <span class="k">class</span> <span class="nc">IGDBApiResolver</span><span class="p">(</span><span class="n">AbstractApiResolver</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class definition for the IGDBApiResolver &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">get_games</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_games</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Get the games for a given platform and an optional name filter &quot;&quot;&quot;</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;games&#39;</span>
         <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
-            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where name ~ *&quot;{name}&quot;* &amp; platforms = {platform_id}; limit 50;&#39;</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where name ~ *&quot;</span><span class="si">{name}</span><span class="s1">&quot;* &amp; platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where platforms = {platform_id}; limit 50;&#39;</span>
+            <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields name; where platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_json_response</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
                                            <span class="n">data</span><span class="o">=</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
@@ -12497,7 +12497,7 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
     <span class="k">def</span> <span class="nf">get_platform_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">platform_abbreviation</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Get the platform ID for a given platform abbreviation &quot;&quot;&quot;</span>
         <span class="n">endpoint</span> <span class="o">=</span> <span class="s1">&#39;platforms&#39;</span>
-        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;{abbr}&quot;;&#39;</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="s1">&#39;fields id; where abbreviation = &quot;</span><span class="si">{abbr}</span><span class="s1">&quot;;&#39;</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_json_response</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">,</span>
                                            <span class="n">data</span><span class="o">=</span><span class="n">query</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">abbr</span><span class="o">=</span><span class="n">platform_abbreviation</span><span class="p">))[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
@@ -12510,12 +12510,12 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s1">&#39;https://api-v3.igdb.com/{endpoint}&#39;</span>
-</pre></div>
+        <span class="k">return</span> <span class="s1">&#39;https://api-v3.igdb.com/</span><span class="si">{endpoint}</span><span class="s1">&#39;</span>
+</code></pre></div>
 
 
 <p>In order to use <code>base_url</code> and <code>headers</code> we rewrite the ABC as:</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; abstractapiresolver.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; abstractapiresolver.py &quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
@@ -12523,7 +12523,7 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
 <span class="k">class</span> <span class="nc">AbstractApiResolver</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class definition of the AbstractApiResolver &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">_get_api_json_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_api_json_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Return the API JSON response &quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">),</span>
                                 <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
@@ -12539,20 +12539,20 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Now the code will run fine, since we implemented the correct properties for the concrete classes.</p>
 <p>Additionally, we can add a <code>@abstractmethod</code>, which is a method that we define in the ABC to enforce it to be implemented by each concrete class.</p>
 <p>Add the following to the ABC:</p>
-<div class="highlight"><pre><span></span><span class="nd">@abstractmethod</span>
+<div class="highlight"><pre><span></span><code><span class="nd">@abstractmethod</span>
 <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="k">pass</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>so it becomes</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; abstractapiresolver.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; abstractapiresolver.py &quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
@@ -12560,7 +12560,7 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
 <span class="k">class</span> <span class="nc">AbstractApiResolver</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class definition of the AbstractApiResolver &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">_get_api_json_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_api_json_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Return the API JSON response &quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">),</span>
                                 <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
@@ -12580,10 +12580,10 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform $ python3 . <span class="p">|</span> jq
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform $ python3 . <span class="p">|</span> jq
 Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
   File <span class="s2">&quot;/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/runpy.py&quot;</span>, line <span class="m">193</span>, in _run_module_as_main
     <span class="s2">&quot;__main__&quot;</span>, mod_spec<span class="o">)</span>
@@ -12594,12 +12594,12 @@ Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
   File <span class="s2">&quot;./__main__.py&quot;</span>, line <span class="m">8</span>, in main
     <span class="nv">game_api</span> <span class="o">=</span> IGDBApiResolver<span class="o">()</span>
 TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApiResolver with abstract methods get_data
-</pre></div>
+</code></pre></div>
 
 
 <h3>Rewrite the classes</h3>
 <p>The abstract class contains the shared method to get the API response, the <code>get_data</code> method that each class should implement, as well as the <code>base_url</code>, <code>headers</code> and <code>endpoints</code> abstract properties.</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; abstractapiresolver.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; abstractapiresolver.py &quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 
@@ -12607,7 +12607,7 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
 <span class="k">class</span> <span class="nc">AbstractApiResolver</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class definition of the AbstractApiResolver &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">_get_api_json_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_api_json_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Return the API JSON response &quot;&quot;&quot;</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="n">endpoint</span><span class="p">),</span>
                                 <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
@@ -12632,11 +12632,11 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span> <span class="nf">endpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Note that I wrote the <code>get_data</code> function differently in the Joke API resolver compared to the Game API resolver, just for the sake of example. This <code>get_data</code> function is generic enough to put in the ABC instead of defining it for each subclass since the endpoints are defined the same way, but that's an easy fix!</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; jokeapiresolver.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; jokeapiresolver.py &quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">abstractapiresolver</span> <span class="kn">import</span> <span class="n">AbstractApiResolver</span>
 
 
@@ -12650,28 +12650,28 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s1">&#39;https://official-joke-api.appspot.com/{endpoint}&#39;</span>
+        <span class="k">return</span> <span class="s1">&#39;https://official-joke-api.appspot.com/</span><span class="si">{endpoint}</span><span class="s1">&#39;</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">endpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;get_programming_joke&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;jokes/programming/random&#39;</span><span class="p">,</span>
             <span class="p">},</span>
             <span class="s1">&#39;get_random_joke&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span>
+                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
                 <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;random_joke&#39;</span><span class="p">,</span>
             <span class="p">}</span>
         <span class="p">}</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">None</span>
-</pre></div>
+        <span class="k">return</span> <span class="kc">None</span>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; igdbapiresolver.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; igdbapiresolver.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">abstractapiresolver</span> <span class="kn">import</span> <span class="n">AbstractApiResolver</span>
 
@@ -12687,21 +12687,21 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s1">&#39;https://api-v3.igdb.com/{endpoint}&#39;</span>
+        <span class="k">return</span> <span class="s1">&#39;https://api-v3.igdb.com/</span><span class="si">{endpoint}</span><span class="s1">&#39;</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">endpoints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;get_platform_id&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="s1">&#39;fields id; where abbreviation = &quot;{abbr}&quot;;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="s1">&#39;fields id; where abbreviation = &quot;</span><span class="si">{abbr}</span><span class="s1">&quot;;&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;platforms&#39;</span><span class="p">,</span>
             <span class="p">},</span>
             <span class="s1">&#39;get_games_for_platform&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="s1">&#39;fields name; where platforms = {platform_id}; limit 50;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="s1">&#39;fields name; where platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;games&#39;</span><span class="p">,</span>
             <span class="p">},</span>
             <span class="s1">&#39;get_games_for_platform_with_name&#39;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="s1">&#39;fields name; where name ~ *&quot;{name}&quot;* &amp; platforms = {platform_id}; limit 50;&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="s1">&#39;fields name; where name ~ *&quot;</span><span class="si">{name}</span><span class="s1">&quot;* &amp; platforms = </span><span class="si">{platform_id}</span><span class="s1">; limit 50;&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;url&#39;</span><span class="p">:</span> <span class="s1">&#39;games&#39;</span><span class="p">,</span>
             <span class="p">},</span>
         <span class="p">}</span>
@@ -12711,11 +12711,11 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;user-key&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;IGDB_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
         <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Finally, we need to update our <code>__main__.py</code> to call the two APIs with the right methods.</p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; __main__.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">igdbapiresolver</span> <span class="kn">import</span> <span class="n">IGDBApiResolver</span>
 <span class="kn">from</span> <span class="nn">jokeapiresolver</span> <span class="kn">import</span> <span class="n">JokeApiResolver</span>
@@ -12728,23 +12728,23 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
     <span class="n">games</span> <span class="o">=</span> <span class="n">game_api</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;get_games_for_platform_with_name&quot;</span><span class="p">,</span>
                               <span class="n">platform_id</span><span class="o">=</span><span class="n">platform_id</span><span class="p">,</span>
                               <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Mario&quot;</span><span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
 
     <span class="n">joke_api</span> <span class="o">=</span> <span class="n">JokeApiResolver</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">joke_api</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;get_random_joke&#39;</span><span class="p">)))</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">joke_api</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;get_programming_joke&#39;</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">joke_api</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;get_random_joke&#39;</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">joke_api</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s1">&#39;get_programming_joke&#39;</span><span class="p">)))</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">main</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Lambda functions</h3>
 <p>This article is not about the use or the definition of a Lambda function, but simply an article to show how to simplify Lambda functions and layers with user defined classes.</p>
 <h4>Get a programming joke</h4>
 <p>Let's define a function that calls the Joke API and get a programming joke. <code>lambda_handler</code> is the default handler for a Lambda function, which we will call with an empty <code>event</code> and <code>context</code>. </p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; get_programming_joke.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; get_programming_joke.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">jokeapiresolver</span> <span class="kn">import</span> <span class="n">JokeApiResolver</span>
 
@@ -12752,17 +12752,17 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
 <span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Main function &quot;&quot;&quot;</span>
     <span class="n">joke_api</span> <span class="o">=</span> <span class="n">JokeApiResolver</span><span class="p">()</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">joke_api</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;get_programming_joke&quot;</span><span class="p">)))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">joke_api</span><span class="o">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;get_programming_joke&quot;</span><span class="p">)))</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">lambda_handler</span><span class="p">({},</span> <span class="p">{})</span>
-</pre></div>
+</code></pre></div>
 
 
 <h4>Get the Mario games for N64</h4>
 <p>In this case we add the <code>platform_abbr</code> and <code>name</code> to the event. This means we can keep the Lambda function the same and simply update these two parameters to get different sets of games. </p>
-<div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot; get_games_for_platform.py &quot;&quot;&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; get_games_for_platform.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">igdbapiresolver</span> <span class="kn">import</span> <span class="n">IGDBApiResolver</span>
 
@@ -12778,13 +12778,13 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
         <span class="n">platform_id</span><span class="o">=</span><span class="n">platform_id</span><span class="p">,</span>
         <span class="n">name</span><span class="o">=</span><span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">),</span>
     <span class="p">)</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">games</span><span class="p">))</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">event</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;platform_abbr&quot;</span><span class="p">:</span> <span class="s2">&quot;N64&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Mario&quot;</span><span class="p">}</span>
     <span class="n">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="p">{})</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>Terraform</h3>
@@ -12800,17 +12800,17 @@ TypeError: Can<span class="err">&#39;</span>t instantiate abstract class IGDBApi
 </li>
 </ul>
 <h4>Initialization</h4>
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform $ terraform init
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform $ terraform init
 ...
 ~/code/abstract-lambdas-terraform $ terraform workspace new dev
 Created and switched to workspace <span class="s2">&quot;dev&quot;</span>!
 ~/code/abstract-lambdas-terraform $ touch main.tf
 ~/code/abstract-lambdas-terraform $ touch variables.tf
-</pre></div>
+</code></pre></div>
 
 
 <h4>Structure</h4>
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform $ tree .
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform $ tree .
 .
 ├── README.md
 ├── images
@@ -12835,13 +12835,13 @@ Created and switched to workspace <span class="s2">&quot;dev&quot;</span>!
 ├── terraform.tfstate.d
 │   └── dev
 └── variables.tf
-</pre></div>
+</code></pre></div>
 
 
 <h4>Build</h4>
 <h5>Lambda layer</h5>
 <p>In order to create the right <code>lambda.zip</code> for the Lambda layer, we create a <code>dist</code>folder and copy the content of the <code>python</code>folder inside. Additionally we need to install all the requirements (in this case only <code>requests</code>) for AWS with Docker. We add everything to the ZIP file inside the <code>dist</code> folder.</p>
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform/sources/lambda-layers/abstract-layer $ mkdir -p dist/python 
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform/sources/lambda-layers/abstract-layer $ mkdir -p dist/python 
 ~/code/abstract-lambdas-terraform/sources/lambda-layers/abstract-layer $ docker run --rm -v <span class="k">$(</span>PWD<span class="k">)</span>:/foo -w /foo lambci/lambda:build-python3.7 <span class="se">\</span>
     pip install -r requirements.txt -t ./dist/python
 ~/code/abstract-lambdas-terraform/sources/lambda-layers/abstract-layer $ cp -r ./python/* ./dist
@@ -12852,32 +12852,32 @@ Created and switched to workspace <span class="s2">&quot;dev&quot;</span>!
   adding: python/abstractlayer/__init__.py <span class="o">(</span>stored <span class="m">0</span>%<span class="o">)</span>
   adding: python/abstractlayer/igdbapiresolver.py <span class="o">(</span>deflated <span class="m">62</span>%<span class="o">)</span>
   adding: python/abstractlayer/__main__.py <span class="o">(</span>deflated <span class="m">56</span>%<span class="o">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h5>Lambda functions</h5>
 <p>For the Lambda functions we make sure we first rename the files to <code>lambda.py</code> since that's the default filename AWS expects as default module name. Then we create again a <code>dist</code> folder, add the <code>lambda.py</code> and compress the file.</p>
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform/sources/lambda-functions/get-games-for-platform $ mkdir dist                     
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform/sources/lambda-functions/get-games-for-platform $ mkdir dist                     
 ~/code/abstract-lambdas-terraform/sources/lambda-functions/get-games-for-platform $ cp lambda.py dist/ 
 ~/code/abstract-lambdas-terraform/sources/lambda-functions/get-games-for-platform $ <span class="nb">cd</span> dist <span class="o">&amp;&amp;</span> zip -rD lambda.zip .
   adding: lambda.py <span class="o">(</span>deflated <span class="m">50</span>%<span class="o">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h5>Validate</h5>
 <p>Run <code>terraform validate</code>to ensure all files are there and there is no configuration issue.</p>
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform  $ terraform validate
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform  $ terraform validate
 Success! The configuration is valid.
-</pre></div>
+</code></pre></div>
 
 
 <h5>Plan &amp; apply</h5>
-<div class="highlight"><pre><span></span>~/code/abstract-lambdas-terraform  $ terraform plan
+<div class="highlight"><pre><span></span><code>~/code/abstract-lambdas-terraform  $ terraform plan
 ...
 ~/code/abstract-lambdas-terraform  $ terraform apply
 ...
 Apply complete! Resources: <span class="m">5</span> added, <span class="m">0</span> changed, <span class="m">0</span> destroyed.
-</pre></div>
+</code></pre></div>
 
 
 <h5>Results</h5>

@@ -11880,41 +11880,41 @@ Working in IT, you're likely doing the same tasks over and over. What if you cou
 </blockquote>
 <h2>Preparation</h2>
 <p>Installation of Ansible on Mac (and Linux) is easy with <a href="https://brew.sh">Brew</a>.</p>
-<div class="highlight"><pre><span></span>$ brew install ansible
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ brew install ansible
+</code></pre></div>
 
 
 <p>After installation we can verify if Ansible is available by checking the version. In my case I have installed version <strong>2.8.1</strong>. </p>
-<div class="highlight"><pre><span></span>$ ansible --version
+<div class="highlight"><pre><span></span><code>$ ansible --version
 ansible <span class="m">2</span>.8.1
   config <span class="nv">file</span> <span class="o">=</span> /Users/jitsejan/.ansible.cfg
   configured module search <span class="nv">path</span> <span class="o">=</span> <span class="o">[</span><span class="s1">&#39;/Users/jitsejan/.ansible/plugins/modules&#39;</span>, <span class="s1">&#39;/usr/share/ansible/plugins/modules&#39;</span><span class="o">]</span>
   ansible python module <span class="nv">location</span> <span class="o">=</span> /usr/local/Cellar/ansible/2.8.1_1/libexec/lib/python3.7/site-packages/ansible
   executable <span class="nv">location</span> <span class="o">=</span> /usr/local/bin/ansible
   python <span class="nv">version</span> <span class="o">=</span> <span class="m">3</span>.7.3 <span class="o">(</span>default, Jun <span class="m">19</span> <span class="m">2019</span>, <span class="m">07</span>:38:49<span class="o">)</span> <span class="o">[</span>Clang <span class="m">10</span>.0.1 <span class="o">(</span>clang-1001.0.46.4<span class="o">)]</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Finally, you need to make sure the machine you want to provision is defined in the Ansible configuration <code>/etc/ansible/hosts</code>.</p>
-<div class="highlight"><pre><span></span><span class="k">[ssdnodes]</span>
+<div class="highlight"><pre><span></span><code><span class="k">[ssdnodes]</span>
 <span class="na">development.jitsejan.com</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>To make it easier to connect to the host, it is smart to create a key pair on the local computer and copy it to the host. This way you do not need to provide login details when you run the Ansible tool. Create the keypair with <code>ssh-keygen</code>:</p>
-<div class="highlight"><pre><span></span>$ ssh-keygen -t rsa -b <span class="m">4096</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ ssh-keygen -t rsa -b <span class="m">4096</span>
+</code></pre></div>
 
 
 <p>Copy the key to the host to be deployed. It will ask you to provide the password for the root, but it will be the only time we need the password.</p>
-<div class="highlight"><pre><span></span>$ ssh-copy-id root@development.jitsejan.com
-</pre></div>
+<div class="highlight"><pre><span></span><code>$ ssh-copy-id root@development.jitsejan.com
+</code></pre></div>
 
 
 <p>And that is all there is to it to get started with Ansible.</p>
 <h2>Structure</h2>
 <p>The directory of the repository at the time of writing looks like the following. Please note that this <em>might</em> not be the best structure, but it gave me a good head-start to work with the file structure, local and global variables and templating.</p>
-<div class="highlight"><pre><span></span>├── README.md
+<div class="highlight"><pre><span></span><code>├── README.md
 ├── provision_vps.yaml
 └── roles
     ├── base
@@ -11951,30 +11951,30 @@ ansible <span class="m">2</span>.8.1
         │   └── main.yml
         └── vars
             └── main.yml
-</pre></div>
+</code></pre></div>
 
 
 <h2>Breakdown</h2>
 <h3>Playbook</h3>
 <p>The core of an Ansible deployment is a playbook (or multiple). The playbook contains all the different items that should be deployed. In Ansible these items are divided by <em>roles</em>, each role can relate to a tool, a service, a user or anything else that makes sense to group together. In my repository I have called the playbook `provision_vps.yaml'. The file is small, since I have used multiple roles to be loaded when running the playbook. </p>
 <p>The first part of the file contains the host and the user you want to run the deployment with. I have only specified one host, since I only have one VPS to deploy. </p>
-<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">hosts</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ssdnodes</span>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">hosts</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ssdnodes</span>
   <span class="nt">remote_user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>For each host, we can define <em>global</em> variables by defining them in the playbook under <code>vars</code>. This makes the variables available in all the different roles. If the variable is only to be used within a role, it is smarter to define it at the role level. In my case I want to deploy a Jupyter notebook and therefore I should define the parameters on playbook level, so the variables become available for both the Jupyter and nginx installation. I define the domain, the name and port to host the notebook from, and I supply the location of the SSL certificate and key.</p>
-<div class="highlight"><pre><span></span>  <span class="nt">vars</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code>  <span class="nt">vars</span><span class="p">:</span>
     <span class="nt">jupyter_domain</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">dev.jitsejan.com</span>
     <span class="nt">jupyter_name</span><span class="p">:</span> <span class="s">&#39;dev&#39;</span>
     <span class="nt">jupyter_port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">8181</span>
     <span class="nt">key_out</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/jupyter/.jupyter/jupyter.key</span>
     <span class="nt">cert_out</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/jupyter/.jupyter/jupyter.cert</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>If you want to prompt the user for input for certain variables you can use <code>vars_prompt</code>. In my playbook I want to ask the user (me) for the username and password to create an account on the Ubuntu box for me. It will ask to confirm both the user and password before it continues to run the playbook.</p>
-<div class="highlight"><pre><span></span>  <span class="nt">vars_prompt</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code>  <span class="nt">vars_prompt</span><span class="p">:</span>
     <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;user_name&quot;</span>
       <span class="nt">prompt</span><span class="p">:</span> <span class="s">&quot;Enter</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">new</span><span class="nv"> </span><span class="s">user&quot;</span>
       <span class="nt">private</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
@@ -11985,11 +11985,11 @@ ansible <span class="m">2</span>.8.1
       <span class="nt">encrypt</span><span class="p">:</span> <span class="s">&quot;sha512_crypt&quot;</span>
       <span class="nt">confirm</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
       <span class="nt">salt_size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">7</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Finally, I define the <code>roles</code> to be executed as part of the playbook. This is the part where you can easily add new roles when you want to add more services to your machine.</p>
-<div class="highlight"><pre><span></span><span class="nt">roles</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="nt">roles</span><span class="p">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">base</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">common</span>
   <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span> 
@@ -12002,7 +12002,7 @@ ansible <span class="m">2</span>.8.1
 <span class="nt">      role</span><span class="p">:</span> <span class="s">&#39;nginx&#39;</span><span class="p p-Indicator">,</span>
 <span class="nt">      app_ip</span><span class="p">:</span> <span class="nv">localhost</span><span class="p p-Indicator">,</span>
     <span class="p p-Indicator">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>As you can see, you can call the role as simple parameter, or call the role by specifying the role and any additional variable. For the Spark role we supply the Spark and Hadoop version. For the Nginx role we indicate that our app will only run on localhost. (We use Nginx as proxy to make it accessible on a public address).</p>
@@ -12017,26 +12017,26 @@ ansible <span class="m">2</span>.8.1
 </ul>
 <p>The tasks to be executed are defined inside the role in the <code>tasks</code> folder. Ansible expect the <code>main.yml</code> inside this folder to have all the steps for the role. Variables can be defined in two folders, either in <code>vars/main.yml</code> or in <code>defaults/main.yml</code>. The defaults, as the name says, contains the default value for certain variables. These can be overwritten by variables defines in the <code>vars</code> folder. Note that some of the variables are passed through from the playbook and are not defined on this level. </p>
 <p>To install a package the <code>apt</code> module can be used. Variables are passed in using the double curly brackets (<code>{{ }}</code>).  The following is part of <code>roles/base/tasks/main.yml</code>. I will leave the rest out to keep this article short.</p>
-<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure necessary packages are installed</span>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ensure necessary packages are installed</span>
   <span class="nt">apt</span><span class="p">:</span> 
     <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;{{</span><span class="nv"> </span><span class="s">base_pkgs</span><span class="nv"> </span><span class="s">}}&quot;</span>
     <span class="nt">state</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">present</span>
     <span class="nt">update_cache</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">yes</span>
 <span class="nn">...</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>To keep things simple, I have only defined one package to be installed in <code>roles/base/vars/main.yml</code>. I prefer <code>mosh</code> over <code>ssh</code> since my internet is often buggy and I don't like to keep on reconnecting with ssh. </p>
-<div class="highlight"><pre><span></span><span class="nt">base_pkgs</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="nt">base_pkgs</span><span class="p">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mosh</span>
-</pre></div>
+</code></pre></div>
 
 
 <h4>Common role</h4>
 <p>The  <strong>common</strong> role currently only installs <code>openjdk-8-jdk</code>, <code>openjdk-8-jre-headless</code> and exports the <code>JAVA_HOME</code> variable. Java 8 is needed to make Spark work, since it is not compatible (yet) with Java 11. </p>
 <h4>Jupyter role</h4>
 <p>At this point it gets more interesting. To deploy Jupyter on the VPS some more advanced steps are needed. Just to recap, the structure of the Jupyter role looks like this:</p>
-<div class="highlight"><pre><span></span>├── defaults
+<div class="highlight"><pre><span></span><code>├── defaults
 │   └── main.yml
 ├── files
 │   ├── custom.css
@@ -12051,11 +12051,11 @@ ansible <span class="m">2</span>.8.1
 │   └── jupyterhub_config.py.j2
 └── vars
     └── main.yml
-</pre></div>
+</code></pre></div>
 
 
 <p>The <code>defaults</code>  contain the default values for the Jupyter deployment.  The <code>main.yml</code> has the following content, which basically tells the system that for the notebook server I want to use Python 3 as default and only run it from localhost. </p>
-<div class="highlight"><pre><span></span><span class="nn">---</span>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
 <span class="nt">jupyter_python_executable</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python3</span>
 <span class="nt">jupyter_package_manager</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pip3</span>
 <span class="nt">jupyter_package_manager_become</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
@@ -12063,7 +12063,7 @@ ansible <span class="m">2</span>.8.1
 <span class="nt">jupyter_password</span><span class="p">:</span> <span class="s">&#39;sha1:b3af1b4adee9:9e86cb52435cc24db0b487451c10f6d348734645&#39;</span>
 <span class="nt">jupyter_open_browser</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="nt">jupyter_ip</span><span class="p">:</span> <span class="s">&#39;localhost&#39;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Under the <code>files</code> folder you can put the files you wish to copy to the VPS. In my case I want to copy the <code>custom.css</code> and <code>requirements.txt</code> to the VPS. The CSS file contains the custom layout I like for my notebooks, the requirements file obviously contains the Python packages I wish to use.</p>
@@ -12079,16 +12079,16 @@ ansible <span class="m">2</span>.8.1
 <li>Make and run the <em>jupyter.service</em></li>
 </ul>
 <p>One of the nifty things of Ansible is conditional execution, only run certain tasks if a condition is met. For example, I will not recreate the virtual environment if it already exists, as shown in the code snippet below.</p>
-<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Check to see if the Jupyter environment exists</span>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Check to see if the Jupyter environment exists</span>
   <span class="nt">stat</span><span class="p">:</span> 
     <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/data/jupyter</span>
   <span class="nt">register</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">environment_exists</span>
   <span class="nt">become_user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>When the folder exists already, it will register <code>environment_exists</code> that can be used under the <code>when</code> condition with <code>environment_exists.stat.exists == False</code>.</p>
-<div class="highlight"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">block</span><span class="p">:</span>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">block</span><span class="p">:</span>
   <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Install virtual environment</span>
     <span class="nt">pip</span><span class="p">:</span>
       <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">virtualenv</span>
@@ -12106,22 +12106,22 @@ ansible <span class="m">2</span>.8.1
     <span class="nt">become_user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jupyter</span>
     <span class="nt">changed_when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">no</span>
   <span class="nt">when</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">environment_exists.stat.exists == False</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>In the <code>templates</code> folder I have used two different approaches. The first one is to <em>replicate</em> the location of the folder on the server by creating a similar directory structure.  The <code>jupyter.service</code> will be placed under <code>/etc/systemd/system/</code>. The second approach is the preferred method and doesn't create the <em>annoying</em> directory structure. It uses <a href="http://jinja.pocoo.org/">Jinja</a> templates to easily configure files dynamically with variables. I have defined the structure of a <code>jupyterhub_config.py</code> with variables that will be filled in automatically by Ansible. As you might remember, some of these variables are part of the defaults of this role, while some other where defined on playbook level.</p>
-<div class="highlight"><pre><span></span><span class="c1"># jupyterhub_config.py</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># jupyterhub_config.py</span>
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">open_browser</span> <span class="o">=</span> <span class="p">{{</span> <span class="n">jupyter_open_browser</span> <span class="p">}}</span>
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">ip</span> <span class="o">=</span> <span class="s1">&#39;{{ jupyter_ip }}&#39;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="p">{{</span> <span class="n">jupyter_port</span> <span class="p">}}</span>
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;{{ jupyter_password }}&#39;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">allow_origin</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
-<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">allow_remote_access</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">allow_remote_access</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">certfile</span> <span class="o">=</span> <span class="s1">&#39;{{ cert_out }}&#39;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">keyfile</span> <span class="o">=</span> <span class="s1">&#39;{{ key_out }}&#39;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">notebook_dir</span> <span class="o">=</span> <span class="s1">&#39;/data/notebooks/&#39;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">InteractiveShell</span><span class="o">.</span><span class="n">ast_node_interactivity</span> <span class="o">=</span> <span class="s2">&quot;all&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>In the <code>vars/main.yml</code> I have only defined the Jupyter packages that I wish to install, the location of the Jupyter configuration and the variables to create the SSL certificate for the server.</p>

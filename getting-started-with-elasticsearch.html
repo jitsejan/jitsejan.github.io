@@ -11862,18 +11862,18 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <h4>Install ElasticSearch</h4>
-<div class="highlight"><pre><span></span>$ mkdir ~/es
+<div class="highlight"><pre><span></span><code>$ mkdir ~/es
 $ <span class="nb">cd</span> ~/es
 $ wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.5/elasticsearch-2.3.5.tar.gz
 $ tar -xzvf elasticsearch-2.3.5.tar.gz
 $ <span class="nb">cd</span> elasticsearch-2.3.5/
 $ ./bin/elasticsearch -d
 $ curl http://127.0.0.1:9200
-</pre></div>
+</code></pre></div>
 
 
 <p>At this point you should see something like</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
   <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Gailyn Bailey&quot;</span><span class="p">,</span>
   <span class="nt">&quot;cluster_name&quot;</span> <span class="p">:</span> <span class="s2">&quot;elasticsearch&quot;</span><span class="p">,</span>
   <span class="nt">&quot;version&quot;</span> <span class="p">:</span> <span class="p">{</span>
@@ -11885,12 +11885,12 @@ $ curl http://127.0.0.1:9200
   <span class="p">},</span>
   <span class="nt">&quot;tagline&quot;</span> <span class="p">:</span> <span class="s2">&quot;You Know, for Search&quot;</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <h4>Create the ES index for the posts</h4>
 <p>In the mappings part we want to differentiate between finding a hit in the title or in the body. A hit of the search in the title has twice as much value as a hit in the body.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;settings&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;number_of_shards&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
@@ -11907,12 +11907,12 @@ $ curl http://127.0.0.1:9200
 <span class="p">}</span>
 <span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">requests</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s1">&#39;http://127.0.0.1:9200/blog_index/&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-<span class="k">print</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
-</pre></div>
+<span class="nb">print</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+</code></pre></div>
 
 
 <h4>Add the entries</h4>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">blog.models</span> <span class="kn">import</span> <span class="n">Entry</span>
 
@@ -11924,12 +11924,12 @@ $ curl http://127.0.0.1:9200
         <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">body</span>
     <span class="p">})</span><span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s1">&#39;http://127.0.0.1:9200/blog_index/blog/_bulk&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-<span class="k">print</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
-</pre></div>
+<span class="nb">print</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+</code></pre></div>
 
 
 <h4>Search the entries</h4>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">requests</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
      <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -11937,12 +11937,12 @@ $ curl http://127.0.0.1:9200
      <span class="p">}</span>
 <span class="p">}</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://127.0.0.1:9200/blog_index/blog/_search&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-<span class="k">print</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</pre></div>
+<span class="nb">print</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</code></pre></div>
 
 
 <p>This gives the following reply:</p>
-<div class="highlight"><pre><span></span><span class="p">{</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
   <span class="nt">&quot;hits&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;hits&quot;</span><span class="p">:</span> <span class="p">[</span>
       <span class="p">{</span>
@@ -11999,7 +11999,7 @@ $ curl http://127.0.0.1:9200
   <span class="nt">&quot;took&quot;</span><span class="p">:</span> <span class="mi">23</span><span class="p">,</span>
   <span class="nt">&quot;timed_out&quot;</span><span class="p">:</span> <span class="kc">false</span>
 <span class="p">}</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Each result will get a score and the results will be ordered accordingly. Of course the better the search query, the more the score will say about the likeliness of the result matching your query.</p>

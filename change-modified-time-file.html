@@ -11862,14 +11862,14 @@ jQuery(document).ready(function($) {
 
         <div class="article_content">
             <p>This script will change the last modified time of a file in the current directory to 4 days back.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/ksh </span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/ksh </span>
 <span class="nv">numDays</span><span class="o">=</span><span class="m">4</span>
 <span class="nv">diff</span><span class="o">=</span><span class="m">86400</span>*<span class="nv">$numDays</span>
 <span class="nb">export</span> diff
 <span class="nv">newDate</span><span class="o">=</span><span class="k">$(</span>perl -e <span class="s1">&#39;use POSIX; print strftime &quot;%Y%m%d%H%M&quot;, localtime time-$ENV{diff};&#39;</span><span class="k">)</span>
 <span class="nv">lastFile</span><span class="o">=</span><span class="k">$(</span>ls -lt <span class="p">|</span> egrep -v ^d <span class="p">|</span> tail -1 <span class="p">|</span> awk <span class="s1">&#39; { print $9 } &#39;</span><span class="k">)</span>
 touch -t <span class="nv">$newDate</span> <span class="nv">$lastFile</span>
-</pre></div>
+</code></pre></div>
         </div>
 
         <div class="meta">

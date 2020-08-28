@@ -11871,37 +11871,37 @@ jQuery(document).ready(function($) {
 </ul>
 <h3>Set up the Pelican blog</h3>
 <p>Copy the source repository to the machine:</p>
-<div class="highlight"><pre><span></span>jitsejan@dev16:~/code$ git clone https://github.com/jitsejan/jitsejan.github.io-source.git
+<div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code$ git clone https://github.com/jitsejan/jitsejan.github.io-source.git
 Cloning into <span class="s1">&#39;jitsejan.github.io-source&#39;</span>...
 remote: Counting objects: <span class="m">4</span>, <span class="k">done</span>.
 remote: Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>, <span class="k">done</span>.
 remote: Total <span class="m">4</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, pack-reused <span class="m">0</span>
 Unpacking objects: <span class="m">100</span>% <span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>, <span class="k">done</span>.
 Checking connectivity... <span class="k">done</span>.
-</pre></div>
+</code></pre></div>
 
 
 <p>Verify the repository is correct:</p>
-<div class="highlight"><pre><span></span>jitsejan@dev16:~/code$ <span class="nb">cd</span> jitsejan.github.io-source/
+<div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code$ <span class="nb">cd</span> jitsejan.github.io-source/
 jitsejan@dev16:~/code/jitsejan.github.io-source$ git remote -v
 origin  https://github.com/jitsejan/jitsejan.github.io-source.git <span class="o">(</span>fetch<span class="o">)</span>
 origin  https://github.com/jitsejan/jitsejan.github.io-source.git <span class="o">(</span>push<span class="o">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Add the output repository as a submodule to the source repo:</p>
-<div class="highlight"><pre><span></span>jitsejan@dev16:~/code/jitsejan.github.io-source$ git submodule add  https://github.com/jitsejan/jitsejan.github.io.git output
+<div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ git submodule add  https://github.com/jitsejan/jitsejan.github.io.git output
 Cloning into <span class="s1">&#39;output&#39;</span>...
 remote: Counting objects: <span class="m">4</span>, <span class="k">done</span>.
 remote: Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>, <span class="k">done</span>.
 remote: Total <span class="m">4</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, pack-reused <span class="m">0</span>
 Unpacking objects: <span class="m">100</span>% <span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>, <span class="k">done</span>.
 Checking connectivity... <span class="k">done</span>.
-</pre></div>
+</code></pre></div>
 
 
 <p>Create the Pelican application using the quickstart tool:</p>
-<div class="highlight"><pre><span></span>jitsejan@dev16:~/code/jitsejan.github.io-source$ pelican-quickstart 
+<div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ pelican-quickstart 
 Welcome to pelican-quickstart v3.6.3.
 
 This script will <span class="nb">help</span> you create a new Pelican-based website.
@@ -11930,11 +11930,11 @@ needed by Pelican.
 &gt; Is this your personal page <span class="o">(</span>username.github.io<span class="o">)</span>? <span class="o">(</span>y/N<span class="o">)</span> Y
 Error: <span class="o">[</span>Errno <span class="m">17</span><span class="o">]</span> File exists: <span class="s1">&#39;/home/jitsejan/code/jitsejan.github.io-source/output&#39;</span>
 Done. Your new project is available at /home/jitsejan/code/jitsejan.github.io-source
-</pre></div>
+</code></pre></div>
 
 
 <p>Change the <code>publishconf.py</code> to not delete the output directory:</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*- #</span>
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
 
@@ -11947,22 +11947,22 @@ Done. Your new project is available at /home/jitsejan/code/jitsejan.github.io-so
 <span class="kn">from</span> <span class="nn">pelicanconf</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">SITEURL</span> <span class="o">=</span> <span class="s1">&#39;http://jitsejan.github.io&#39;</span>
-<span class="n">RELATIVE_URLS</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">RELATIVE_URLS</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="n">FEED_ALL_ATOM</span> <span class="o">=</span> <span class="s1">&#39;feeds/all.atom.xml&#39;</span>
 <span class="n">CATEGORY_FEED_ATOM</span> <span class="o">=</span> <span class="s1">&#39;feeds/</span><span class="si">%s</span><span class="s1">.atom.xml&#39;</span>
 
-<span class="n">DELETE_OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">DELETE_OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="kc">False</span>
 
 <span class="c1"># Following items are often useful when publishing</span>
 
 <span class="c1">#DISQUS_SITENAME = &quot;&quot;</span>
 <span class="c1">#GOOGLE_ANALYTICS = &quot;&quot;</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Create the first post:</p>
-<div class="highlight"><pre><span></span>jitsejan@dev16:~/code/jitsejan.github.io-source$ cat content/first-post.md 
+<div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ cat content/first-post.md 
 Title: My first post
 Date: <span class="m">2018</span>-04-26 <span class="m">13</span>:00
 Modified: <span class="m">2018</span>-04-26 <span class="m">13</span>:00
@@ -11973,40 +11973,40 @@ Authors: Jitse-Jan
 Summary: The first post of the Pelican blog on Github pages.
 
 I am migrating my website from my VPS to Github pages as an experiment.
-</pre></div>
+</code></pre></div>
 
 
 <p>Build the website and serve its contents:</p>
-<div class="highlight"><pre><span></span>jitsejan@dev16:~/code/jitsejan.github.io-source$ make html <span class="o">&amp;&amp;</span> make serve
+<div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ make html <span class="o">&amp;&amp;</span> make serve
 pelican /home/jitsejan/code/pelican-source/content -o /home/jitsejan/code/pelican-source/output -s /home/jitsejan/code/pelican-source/pelicanconf.py 
 WARNING: No valid files found in content.
 Done: Processed <span class="m">0</span> articles, <span class="m">0</span> drafts, <span class="m">0</span> pages and <span class="m">0</span> hidden pages in <span class="m">0</span>.07 seconds.
 <span class="nb">cd</span> /home/jitsejan/code/pelican-source/output <span class="o">&amp;&amp;</span> python -m pelican.server
-</pre></div>
+</code></pre></div>
 
 
 <p>Generate the static content for the website:</p>
-<div class="highlight"><pre><span></span>jitsejan@dev16:~/code/jitsejan.github.io-source$ make publish
+<div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ make publish
 pelican /home/jitsejan/code/pelican-source/content -o /home/jitsejan/code/pelican-source/output -s /home/jitsejan/code/pelican-source/publishconf.py 
 Done: Processed <span class="m">1</span> article, <span class="m">0</span> drafts, <span class="m">0</span> pages and <span class="m">0</span> hidden pages in <span class="m">0</span>.14 seconds.
-</pre></div>
+</code></pre></div>
 
 
 <p>Push the output code to the <code>jitsejan.github.io</code> repository:</p>
-<div class="highlight"><pre><span></span>jitsejan@dev16:~/code/jitsejan.github.io-source$ <span class="nb">cd</span> output/
+<div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ <span class="nb">cd</span> output/
 jitsejan@dev16:~/code/jitsejan.github.io-source/output$ git add .
 jitsejan@dev16:~/code/jitsejan.github.io-source/output$ git commit -m <span class="s1">&#39;My first post&#39;</span>
 jitsejan@dev16:~/code/jitsejan.github.io-source/output$ git push -u origin master
-</pre></div>
+</code></pre></div>
 
 
 <p>Push the source code to the <code>jitsejan.github.io-source</code> repository:</p>
-<div class="highlight"><pre><span></span>jitsejan@dev16:~/code/jitsejan.github.io-source/output$ <span class="nb">cd</span> ..
+<div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source/output$ <span class="nb">cd</span> ..
 jitsejan@dev16:~/code/jitsejan.github.io-source$ <span class="nb">echo</span> <span class="s1">&#39;*.pyc&#39;</span> &gt;&gt; .gitignore
 jitsejan@dev16:~/code/jitsejan.github.io-source$ git add .
 jitsejan@dev16:~/code/jitsejan.github.io-source$ git commit -m <span class="s1">&#39;My first commit&#39;</span>
 jitsejan@dev16:~/code/jitsejan.github.io-source$ git push -u origin master
-</pre></div>
+</code></pre></div>
 
 
 <p>Now the homepage is ready on <a href="https://jitsejan.github.io/">https://jitsejan.github.io/</a>!</p>
@@ -12014,28 +12014,28 @@ jitsejan@dev16:~/code/jitsejan.github.io-source$ git push -u origin master
 <h2>Merge the original Pelican blog</h2>
 <h3>Copy the data</h3>
 <p>Clone the old repository and overwrite the contents of the Github pages repo:</p>
-<div class="highlight"><pre><span></span>jitsejan@dev16:~/code$ git clone https://github.com/jitsejan/pelican-blog
+<div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code$ git clone https://github.com/jitsejan/pelican-blog
 jitsejan@dev16:~/code$ rm -rf jitsejan.github.io-source/content/
 jitsejan@dev16:~/code$ rm -rf ../jitsejan.github.io-source/themes/
 jitsejan@dev16:~/code$ mv pelican-blog/* jitsejan.github.io-source
-</pre></div>
+</code></pre></div>
 
 
 <p>Additionally the <code>DELETE_OUTPUT_DIRECTORY</code> had to be set to <code>False</code> again in <code>publishconf.py</code>.</p>
 <h3>Issues</h3>
 <p>Some Python libraries were missing and the <code>pip install</code> had to be done first:</p>
-<div class="highlight"><pre><span></span>jitsejan@dev16:~/code/jitsejan.github.io-source$ pip install -r requirements.txt 
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ pip install -r requirements.txt 
+</code></pre></div>
 
 
 <p>The <code>less</code> compiler was missing:</p>
-<div class="highlight"><pre><span></span>jitsejan@dev16:~/code$ sudo npm install -g less
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code$ sudo npm install -g less
+</code></pre></div>
 
 
 <p>I had to remove the ipynb plugin and reinstall it by adding it again as a submodule:</p>
-<div class="highlight"><pre><span></span>git submodule add git://github.com/danielfrg/pelican-ipynb.git plugins/ipynb
-</pre></div>
+<div class="highlight"><pre><span></span><code>git submodule add git://github.com/danielfrg/pelican-ipynb.git plugins/ipynb
+</code></pre></div>
 
 
 <h2>Final steps</h2>

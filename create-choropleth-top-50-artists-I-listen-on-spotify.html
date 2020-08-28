@@ -11861,27 +11861,27 @@ jQuery(document).ready(function($) {
         </header>
 
         <div class="article_content">
-            <div class="highlight"><pre><span></span><span class="c1"># Import the settings for the notebooks</span>
+            <div class="highlight"><pre><span></span><code><span class="c1"># Import the settings for the notebooks</span>
 <span class="kn">from</span> <span class="nn">notebooksettings</span> <span class="kn">import</span> <span class="n">GRACENOTE_USERID</span><span class="p">,</span> <span class="n">SPOTIFY_USERNAME</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>1. Connect to Spotify</h3>
 <p>I will use the <a href="https://github.com/plamere/spotipy">Spotipy</a> library to connect to Spotify. Both reading the library and reading the top tracks will be enabled by setting the scope appropriately.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">spotipy</span>
-<span class="kn">import</span> <span class="nn">spotipy.util</span> <span class="kn">as</span> <span class="nn">util</span>
+<span class="kn">import</span> <span class="nn">spotipy.util</span> <span class="k">as</span> <span class="nn">util</span>
 
 <span class="c1"># Set scope to read the library and read the top tracks</span>
 <span class="n">scope</span> <span class="o">=</span> <span class="s1">&#39;user-library-read user-top-read&#39;</span>
 <span class="n">username</span> <span class="o">=</span> <span class="n">SPOTIFY_USERNAME</span>
 <span class="n">token</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">prompt_for_user_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">scope</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>2. Retrieve songs from Spotify</h3>
 <p>After creating a token, you can make a new Spotipy instance and connect to your account. Lets retrieve the top 50 of artists of my account and add the artists to a list.</p>
-<div class="highlight"><pre><span></span><span class="n">LIMIT</span> <span class="o">=</span> <span class="mi">50</span>
+<div class="highlight"><pre><span></span><code><span class="n">LIMIT</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="n">OFFSET</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">artists</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">if</span> <span class="n">token</span><span class="p">:</span>
@@ -11891,29 +11891,29 @@ jQuery(document).ready(function($) {
         <span class="n">artist_id</span> <span class="o">=</span> <span class="n">artist</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
         <span class="n">artists</span><span class="p">[</span><span class="n">artist_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">artist</span><span class="p">(</span><span class="n">artist_id</span><span class="p">)[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="k">print</span> <span class="s2">&quot;Can&#39;t get token for&quot;</span><span class="p">,</span> <span class="n">username</span>
-</pre></div>
+    <span class="nb">print</span> <span class="s2">&quot;Can&#39;t get token for&quot;</span><span class="p">,</span> <span class="n">username</span>
+</code></pre></div>
 
 
 <h3>3. Create a placeholder for the country mapping</h3>
 <p>To create a choropleth, I will create a list of countries using the <a href="https://pypi.python.org/pypi/pycountry">Pycountry</a> library. The country data will contain the name, the three character long abbreviation, the number of occurrences of the country for the different artists and a list of artists.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pycountry</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pycountry</span>
 <span class="n">country_data</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="n">pycountry</span><span class="o">.</span><span class="n">countries</span><span class="p">:</span>
     <span class="n">country_data</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">cnt</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">cnt</span><span class="o">.</span><span class="n">alpha3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]])</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>4. Create a mapping for the country name to country abbreviation</h3>
 <p>To map the country name to a three character abbreviation, we need to make a mapping linking the two together.</p>
-<div class="highlight"><pre><span></span><span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">country</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">country</span><span class="o">.</span><span class="n">alpha3</span> <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">pycountry</span><span class="o">.</span><span class="n">countries</span><span class="p">}</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">country</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">country</span><span class="o">.</span><span class="n">alpha3</span> <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">pycountry</span><span class="o">.</span><span class="n">countries</span><span class="p">}</span>
+</code></pre></div>
 
 
 <h3>5. Retrieve the country of origin for the artists</h3>
 <p>To find the country of origin, I will make use of the <a href="https://github.com/cweichen/pygn">pygn</a> library to connect to <a href="https://www.gracenote.com">Gracenote</a> and find metadata for music.</p>
 <p>First I create a connection with pygn so I can retrieve the metadata from the Gracenote servers. Next I will find the country and map it to the right abbreviation. Finally I will increase the counter in the country data for the corresponding country and add the artist to the list.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygn</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pygn</span>
 <span class="n">clientID</span> <span class="o">=</span> <span class="n">GRACENOTE_USERID</span>
 <span class="n">userID</span> <span class="o">=</span> <span class="n">pygn</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">clientID</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">artist_name</span> <span class="ow">in</span> <span class="n">artists</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
@@ -11922,7 +11922,7 @@ jQuery(document).ready(function($) {
     <span class="k">if</span> <span class="s1">&#39;2&#39;</span> <span class="ow">in</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;artist_origin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="n">country</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;artist_origin&#39;</span><span class="p">][</span><span class="s1">&#39;2&#39;</span><span class="p">][</span><span class="s1">&#39;TEXT&#39;</span><span class="p">]</span>
     <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;artist_origin&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">country</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">country</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">country</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;artist_origin&#39;</span><span class="p">][</span><span class="s1">&#39;1&#39;</span><span class="p">][</span><span class="s1">&#39;TEXT&#39;</span><span class="p">]</span>
     <span class="c1"># Replace names</span>
@@ -11937,20 +11937,20 @@ jQuery(document).ready(function($) {
         <span class="k">if</span> <span class="n">cnt_entry</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">country_code</span><span class="p">:</span>
             <span class="n">country_data</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">+=</span><span class="mi">1</span>
             <span class="n">country_data</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">artist_name</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>6. Create a dataframe from the data</h3>
 <p>Using <a href="http://pandas.pydata.org">Pandas</a> we will now create a DataFrame to convert the data from the country data to a Pandas format.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">country_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country name&#39;</span><span class="p">,</span> <span class="s1">&#39;Code&#39;</span><span class="p">,</span> <span class="s1">&#39;Amount&#39;</span><span class="p">,</span> <span class="s1">&#39;Artists&#39;</span><span class="p">])</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 
 
 <h3>7. Create a choropleth from the data</h3>
 <p>Using <a href="https://plot.ly">Plotly</a> we can easily make a <a href="https://en.wikipedia.org/wiki/Choropleth_map">choropleth</a> for the data that we just retrieved. In the data settings you indicate the type is a choropleth graph, the locations can be found in the 'Code' column and the important data is the column 'Amount'. Next we set the colors and a title and we are good to go.</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">plotly.plotly</span> <span class="kn">as</span> <span class="nn">py</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">plotly.plotly</span> <span class="k">as</span> <span class="nn">py</span>
 <span class="kn">from</span> <span class="nn">plotly.graph_objs</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">data</span> <span class="o">=</span> <span class="p">[</span> <span class="nb">dict</span><span class="p">(</span>
         <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;choropleth&#39;</span><span class="p">,</span>
@@ -11963,8 +11963,8 @@ jQuery(document).ready(function($) {
                       <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span><span class="s2">&quot;rgb(120, 240, 172)&quot;</span><span class="p">],</span>
                       <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span><span class="s2">&quot;rgb(140, 245, 201)&quot;</span><span class="p">],</span>
                       <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="s2">&quot;rgb(250, 250, 250)&quot;</span><span class="p">]],</span>
-        <span class="n">autocolorscale</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
-        <span class="n">reversescale</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="n">autocolorscale</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">reversescale</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">marker</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
             <span class="n">line</span> <span class="o">=</span> <span class="nb">dict</span> <span class="p">(</span>
                 <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;rgb(180,180,180)&#39;</span><span class="p">,</span>
@@ -11975,7 +11975,7 @@ jQuery(document).ready(function($) {
         <span class="n">zmin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">dtick</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">,</span>
         <span class="n">colorbar</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-            <span class="n">autotick</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+            <span class="n">autotick</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
             <span class="n">tickprefix</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
             <span class="n">title</span> <span class="o">=</span> <span class="s1">&#39;Number of artists&#39;</span>
         <span class="p">),</span>
@@ -11984,16 +11984,16 @@ jQuery(document).ready(function($) {
 <span class="n">layout</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Countries of origin of artists I listen on Spotify&quot;</span><span class="p">,</span>
     <span class="n">geo</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
-        <span class="n">showframe</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
-        <span class="n">showcoastlines</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+        <span class="n">showframe</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">showcoastlines</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">projection</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
             <span class="nb">type</span> <span class="o">=</span> <span class="s1">&#39;Mercator&#39;</span>
         <span class="p">)</span>
     <span class="p">)</span>
 <span class="p">)</span>
 <span class="n">figure</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">layout</span><span class="p">)</span>
-<span class="n">py</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">figure</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-</pre></div>
+<span class="n">py</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">figure</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
 
 
 <iframe width="500" height="400" frameborder="0" scrolling="no" src="//plot.ly/~jitsejan/68.embed"> </iframe>
