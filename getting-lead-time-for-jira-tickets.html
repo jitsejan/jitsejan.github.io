@@ -11865,17 +11865,17 @@ jQuery(document).ready(function($) {
 <p>This is a simple example on how to retrieve the <em>changelog</em> of your Jira tickets using Python and <code>requests</code> and calculate the lead time. You could also use the Python <a href="https://jira.readthedocs.io/en/master/">Jira module</a> but using plain <code>requests</code> the following code can easily be copied to other languages.</p>
 <h2>Setting up</h2>
 <p>Either you can use the Jira instance you use at work or simply create a <strong>free</strong> account at <a href="https://www.atlassian.com/software/jira/try">Atlassian.com</a>. </p>
-<p><center><img src="images/jira_free.png" width="400px" /></center></p>
+<p><center><img src="images/jira_free.png" width="600px" /></center></p>
 <p>Note: setting up a new instance using GMail or another other Single Sign On method will not give you a Jira password. You do not need it if you can use the API token for logging in to your Jira instance but in case you do need a password logout of the account and on the login page click on "Can't log in?".</p>
-<p><center><img src="images/jira_sso.png" width="200px" /></center></p>
+<p><center><img src="images/jira_sso.png" width="400px" /></center></p>
 <p>Fill in the email address you used to sign up for Jira and click on "Send recovery link" to set a password.  </p>
 <h2>Authenticating</h2>
 <p>In case of using the free instance that Jira provides authentication is done through the API token. Navigate to your <em>Atlassian account</em> &gt; <em>Security</em> and click on "Create and manage API tokens" under <strong>API token</strong>. </p>
-<p><center><img src="images/jira_sec.png" width="400px" /></center></p>
+<p><center><img src="images/jira_sec.png" width="600px" /></center></p>
 <p>In case you have started from scratch there will be no API tokens yet.</p>
-<p><center><img src="images/jira_tokens.png" width="400px" /></center></p>
+<p><center><img src="images/jira_tokens.png" width="600px" /></center></p>
 <p>Click on "Create API token" to generate a token that you can use in the Python code to connect to the Jira instance. Make sure to save the token somewhere save, i.e. in your terminal environment.</p>
-<p><center><img src="images/jira_new_token.png" width="400px" /></center></p>
+<p><center><img src="images/jira_new_token.png" width="600px" /></center></p>
 <p>Add the <code>API_TOKEN</code>, <code>API_USER</code> and <code>API_URL</code> to your Python script and add them as <code>authentication</code> for your <code>requests</code> session. </p>
 <p>Note: for older Jira instances the token might not be supported and you need to authenticate with <code>(JIRA_USER, JIRA_PASSWORD)</code>. </p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
@@ -11890,12 +11890,12 @@ jQuery(document).ready(function($) {
 
 
 <h2>Mocking data</h2>
-<p><center><img src="images/jira_create_proj.png" width="200px" /></center></p>
+<p><center><img src="images/jira_create_proj.png" width="400px" /></center></p>
 <p>To create some data for this small example I have created four stories as part of the <code>blog-test</code> (BT) project. I have moved two stories to <em>Done</em>, one is still <em>In progress</em> and one is in the <em>Backlog</em>. Since this is a simple example I haven't added any assignee, description or other metadata to the tickets. </p>
-<p><center><img src="images/jira_board.png" width="600px" /></center></p>
+<p><center><img src="images/jira_board.png" width="700px" /></center></p>
 <h2>Retrieving data</h2>
 <p>Using the Jira API it is easy to retrieve the tickets as long as you know a little bit of the <a href="https://www.atlassian.com/software/jira/guides/expand-jira/jql">Jira Query Language</a>. To create a query navigate to the <em>All issues</em> page and click on Advanced search.</p>
-<p><center><img src="images/jira_issues.png" width="400px" /></center></p>
+<p><center><img src="images/jira_issues.png" width="600px" /></center></p>
 <p>It can be as simple as querying all tickets by their project. For more advanced queries play with the Jira UI and copy the query using the Advanced search option. For simplicity reasons I will pull all the tickets based on the project with the following query:</p>
 <div class="highlight"><pre><span></span><code><span class="n">project</span> <span class="o">=</span> <span class="n">BT</span>
 </code></pre></div>
@@ -12242,8 +12242,8 @@ jQuery(document).ready(function($) {
 </tr>
 </tbody>
 </table>
-<p>Now to calculate to <em>lead time</em> (time from Backlog to Done) it is straightforward to substract the two columns and get the <em>timedelta</em>. Since I moved tickets manually in a short period of time I will calculate the delta in seconds.</p>
-<div class="highlight"><pre><span></span><code><span class="n">statuses</span><span class="p">[</span><span class="s1">&#39;Duration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">statuses</span><span class="p">[</span><span class="s1">&#39;Done&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">statuses</span><span class="p">[</span><span class="s1">&#39;Backlog&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">seconds</span><span class="p">)</span>
+<p>Now to calculate the <em>lead time</em> (time from Backlog to Done) it is straightforward to substract the two columns and get the <em>timedelta</em>. Since I moved tickets manually in a short period of time I will calculate the delta in seconds.</p>
+<div class="highlight"><pre><span></span><code><span class="n">statuses</span><span class="p">[</span><span class="s1">&#39;duration [s]&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">statuses</span><span class="p">[</span><span class="s1">&#39;Done&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">statuses</span><span class="p">[</span><span class="s1">&#39;Backlog&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">seconds</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -12252,7 +12252,7 @@ jQuery(document).ready(function($) {
 <thead>
 <tr>
 <th align="left">key</th>
-<th align="right">Duration</th>
+<th align="right">duration [s]</th>
 </tr>
 </thead>
 <tbody>
@@ -12282,7 +12282,8 @@ jQuery(document).ready(function($) {
                     <a href="./tag/etl.html" class="tag">ETL</a>
                     <a href="./tag/python.html" class="tag">Python</a>
                     <a href="./tag/jira.html" class="tag">Jira</a>
-                    <a href="./tag/data-extraction.html" class="tag">data-extraction</a>
+                    <a href="./tag/data-extraction.html" class="tag">data extraction</a>
+                    <a href="./tag/pandas.html" class="tag">Pandas</a>
             </div>
         </div>
     </article>
