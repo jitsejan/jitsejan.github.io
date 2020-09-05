@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>JJ's World - Articles by Jitse-Jan | JJ's World</title>
+        <title>Getting the lead time for Jira tickets | JJ's World</title>
 
 
 <style type="text/css">
@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="../theme/css/main.css?2bd06398">
+            <link rel="stylesheet" href="./theme/css/main.css?2bd06398">
 
 
     </head>
@@ -11843,488 +11843,502 @@ jQuery(document).ready(function($) {
         </div>
         <!-- <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
-                <li><a href="../pages/python-cheatsheet">Python cheatsheet</a></li>
-                <li><a href="../pages/spark-cheatsheet">Spark cheatsheet</a></li>
+                <li><a href="./pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
+                <li><a href="./pages/python-cheatsheet">Python cheatsheet</a></li>
+                <li><a href="./pages/spark-cheatsheet">Spark cheatsheet</a></li>
             </ul>
         </div>.navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container index">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-9">
-  <article>
-    <header>
-      <h2><a href="../using-pythons-pickle-to-save-and-load-variables.html">Using Pythons pickle to save and load variables</a></h2>
-      <time datetime="" title="2017-06-27T13:45:00+01:00" pubdate>Tue 27 June 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>Recently I was playing with some code that generated big dictionaries and had to manipulate these dictonaries
-several times. I used to save them via Pythons pandas to CSV and load them back from the CSV the next time 
-I was using my script. Luckily I found out an easier way to deal with saving and loading variables, namely by using <a href="https://wiki.python.org/moin/UsingPickle">Pickle</a>.</p>
-<h4>Import</h4>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pickle</span>
-</code></pre></div>
-
-
-<h4>Saving</h4>
-<div class="highlight"><pre><span></span><code><span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">picklename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
-</code></pre></div>
-
-
-<h4>Loading</h4>
-<div class="highlight"><pre><span></span><code><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="nb">open</span><span class="p">(</span> <span class="n">picklename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span> <span class="p">)</span> <span class="p">)</span>
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/pickle.html" class="tag">pickle</a>
-            <a href="../tag/tool.html" class="tag">tool</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../select-boxes-with-font-awesome.html">Fancy select boxes using FontAwesome</a></h2>
-      <time datetime="" title="2017-06-20T23:21:00+01:00" pubdate>Tue 20 June 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>A simple example on how to use Font Awesome for fancy select boxes.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../select-boxes-with-font-awesome.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/front-end.html" class="tag">front-end</a>
-            <a href="../tag/fontawesome.html" class="tag">FontAwesome</a>
-            <a href="../tag/design.html" class="tag">design</a>
-            <a href="../tag/javascript.html" class="tag">javascript</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../building-a-crypto-app.html">Building a crypto app with ExpressJS, MongoDB and D3.js</a></h2>
-      <time datetime="" title="2017-05-15T23:21:00+01:00" pubdate>Mon 15 May 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>In this post I will describe my initial version of my crypto app, an application where I will simply show some data of my experiments with crypto currencies. Data is handled by Python, put in MongoDB and displayed using ExpressJS and D3.js.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../building-a-crypto-app.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/notebook.html" class="tag">notebook</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
-            <a href="../tag/cryptocurrency.html" class="tag">cryptocurrency</a>
-            <a href="../tag/d3js.html" class="tag">D3.js</a>
-            <a href="../tag/expressjs.html" class="tag">Express.js</a>
-            <a href="../tag/mongodb.html" class="tag">MongoDB</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../creating-dapp-with-truffle-and-metamask.html">Setting up a Dapp with Truffle and Metamask</a></h2>
-      <time datetime="" title="2017-05-11T23:09:00+01:00" pubdate>Thu 11 May 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>Inspired by the <a href="https://medium.com/metamask/developing-ethereum-dapps-with-truffle-and-metamask-aa8ad7e363ba">article</a> by <a href="https://twitter.com/danfinlay">Dan Finlay</a> and the <a href="https://www.youtube.com/watch?v=muWuHIPeXb4">video</a> by <a href="https://twitter.com/timothyjcoulter">Tim Coulter</a>, I had my first attempt creating the scaffold for a Truffle application and checking it with Metamask.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../creating-dapp-with-truffle-and-metamask.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/ether.html" class="tag">ether</a>
-            <a href="../tag/ethereum.html" class="tag">ethereum</a>
-            <a href="../tag/truffle.html" class="tag">Truffle</a>
-            <a href="../tag/metamask.html" class="tag">Metamask</a>
-            <a href="../tag/blockchain.html" class="tag">blockchain</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../setting-up-private-ethereum-blockchain.html">Setting up a private Ethereum blockchain</a></h2>
-      <time datetime="" title="2017-05-01T10:19:00+01:00" pubdate>Mon 01 May 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>Following the steps from the <a href="http://ethdocs.org/en/latest/network/test-networks.html">etcdocs.org</a>, I try to set up a private blockchain to perform my first -fake- transaction.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../setting-up-private-ethereum-blockchain.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/vps.html" class="tag">vps</a>
-            <a href="../tag/ether.html" class="tag">ether</a>
-            <a href="../tag/ethereum.html" class="tag">ethereum</a>
-            <a href="../tag/linux.html" class="tag">Linux</a>
-            <a href="../tag/geth.html" class="tag">geth</a>
-            <a href="../tag/blockchain.html" class="tag">blockchain</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../setting-up-ether-on-vps.html">Setting up Ether on my VPS</a></h2>
-      <time datetime="" title="2017-04-28T18:34:00+01:00" pubdate>Fri 28 April 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>My first step in getting to know the Ether platform is installing it on one of my Linux machines.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../setting-up-ether-on-vps.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/vps.html" class="tag">vps</a>
-            <a href="../tag/ether.html" class="tag">ether</a>
-            <a href="../tag/ethereum.html" class="tag">ethereum</a>
-            <a href="../tag/linux.html" class="tag">Linux</a>
-            <a href="../tag/geth.html" class="tag">geth</a>
-            <a href="../tag/blockchain.html" class="tag">blockchain</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../creating-dashboard-with-meanjs.html">Creating a dashboard with MEAN.JS</a></h2>
-      <time datetime="" title="2017-04-16T18:55:00+01:00" pubdate>Sun 16 April 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>I will make a dashboard to give an overview of the refills for the car using MEAN.JS and D3.js.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../creating-dashboard-with-meanjs.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/mongodb.html" class="tag">MongoDB</a>
-            <a href="../tag/expressjs.html" class="tag">Express.js</a>
-            <a href="../tag/angular-2.html" class="tag">Angular 2</a>
-            <a href="../tag/node.html" class="tag">Node</a>
-            <a href="../tag/mean.html" class="tag">MEAN</a>
-            <a href="../tag/dashboard.html" class="tag">dashboard</a>
-            <a href="../tag/d3js.html" class="tag">D3.js</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../add-css-splunk-dashboard.html">Add CSS to Splunk dashboard</a></h2>
-      <time datetime="" title="2016-12-17T14:18:00+00:00" pubdate>Sat 17 December 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>To add some custom style to your dashboard, you can create a cascade stylesheet in your app folder and overrule the standard dashboard lay-out.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../add-css-splunk-dashboard.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/splunk.html" class="tag">Splunk</a>
-            <a href="../tag/tutorial.html" class="tag">tutorial</a>
-            <a href="../tag/dashboard.html" class="tag">dashboard</a>
-            <a href="../tag/css.html" class="tag">CSS</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../create-splunk-app-monitor-nginx.html">Create a Splunk app to monitor Nginx</a></h2>
-      <time datetime="" title="2016-12-12T15:34:00+00:00" pubdate>Mon 12 December 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>In this short tutorial I will create a Splunk app to monitor the webserver. We will create the bare-bone app and we add a few panels to the dashboard.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../create-splunk-app-monitor-nginx.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/splunk.html" class="tag">Splunk</a>
-            <a href="../tag/tutorial.html" class="tag">tutorial</a>
-            <a href="../tag/dashboard.html" class="tag">dashboard</a>
-            <a href="../tag/nginx.html" class="tag">Nginx</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../adding-aliases-windows.html">Adding aliases to Windows</a></h2>
-      <time datetime="" title="2016-12-05T10:27:00+00:00" pubdate>Mon 05 December 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Since I have been using Linux for a while, switching back to the Windows CLI has some challenges. Luckily you can add aliases to the command prompt with the following procedure.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../adding-aliases-windows.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/windows.html" class="tag">Windows</a>
-            <a href="../tag/alias.html" class="tag">alias</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-
-  <nav class="pagination row">
-    <div class="col-xs-6 left">
-        <a class="prev" href="../author/jitse-jan6.html">&#8592; Past</a>
-    </div>
-    <div class="col-xs-6 right">
-        <a class="next" href="../author/jitse-jan4.html">Future &#8594;</a>
-    </div>
-  </nav>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-3">
-<aside class="page-sidebar">
-    <nav class="widget" id="sidebar-about">
-        <div class="row img-div">
-            <img src="/theme/images/JJ_Montreal.png" />
-        </div>
-        <div class="row">
-        <p>I am a Data Engineering Manager at <a href="https://www.sainsburys.co.uk">Sainsbury's Tech</a> in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
-<p>
-While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
-for visualizations as for modern web applications it is the go-to language. 
-</p>
-<p>
-I am using this page as a portfolio and showcase, but mainly as a cheatsheet. That is why you will mainly find shell commands, short scripts or notebooks just for myself to not reinvent the wheel.
-</p>
-
-        </div>  
-    </nav>
-    <hr/>
-    <nav class="widget">
-        <ul class="tagcloud">
-        <li class="tag-2">
-            <a href="../tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/lambda.html">
-            Lambda
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/javascript.html">
-            Javascript
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/django.html">
-            Django
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/hadoop.html">
-            Hadoop
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/vps.html">
-            VPS
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/pyspark.html">
-            PySpark
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/flask.html">
-            Flask
-            </a>
-        </li>
-        </ul>
-    </nav>
-    <hr/>
+<div class="container post">
     <div class="row">
-        <div class="col-md-12">
-            <ul class="social-list">
-                    <li><a href="http://www.flickr.com/photos/jitsejan" title="Flickr" rel="me" target="new"><i class="fa fa-1x fa-flickr"></i></a></li>
-                    <li><a href="https://play.spotify.com/user/jitsejan" title="Spotify" rel="me" target="new"><i class="fa fa-1x fa-spotify"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jitsejan" title="LinkedIn" rel="me" target="new"><i class="fa fa-1x fa-linkedin"></i></a></li>
-                    <li><a href="http://twitter.com/jitsejan" title="Twitter" rel="me" target="new"><i class="fa fa-1x fa-twitter"></i></a></li>
-                    <li><a href="http://www.github.com/jitsejan" title="Github" rel="me" target="new"><i class="fa fa-1x fa-github"></i></a></li>
-                    <li><a href="http://bitbucket.org/jitsejan" title="Bitbucket" rel="me" target="new"><i class="fa fa-1x fa-bitbucket"></i></a></li>
-                    <li><a href="http://bl.ocks.org/jitsejan" title="Blocks.org" rel="me" target="new"><i class="fa fa-1x fa-bar-chart"></i></a></li>
-                    <li><a href="https://hub.docker.com/r/jitsejan" title="Docker" rel="me" target="new"><i class="fa fa-1x fa-docker"></i></a></li>
-            </ul>
-        </div>
+        <a href="javascript:history.back()">Go back</a>
     </div>
-    <iframe src="https://rcm-eu.amazon-adsystem.com/e/cm?o=2&p=12&l=ur1&category=consumerelectronics&banner=154BTPQKM87HBT4TD802&f=ifr&linkID=5855639ed929a875d305006b63834633&t=jitsejan-21&tracking_id=jitsejan-21" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
-</aside>  </div>
-  
-  </div>
+    <article>
+        <header>
+            <h1>Getting the lead time for Jira tickets</h1>
+            <time datetime="article.date.isoformat()" pubdate>Sat 29 August 2020</time>
+        </header>
 
+        <div class="article_content">
+            <h2>Goal</h2>
+<p>This is a simple example on how to retrieve the <em>changelog</em> of your Jira tickets using Python and <code>requests</code> and calculate the lead time. You could also use the Python <a href="https://jira.readthedocs.io/en/master/">Jira module</a> but using plain <code>requests</code> the following code can easily be copied to other languages.</p>
+<h2>Setting up</h2>
+<p>Either you can use the Jira instance you use at work or simply create a <strong>free</strong> account at <a href="https://www.atlassian.com/software/jira/try">Atlassian.com</a>. </p>
+<p><center><img src="images/jira_free.png" width="400px" /></center></p>
+<p>Note: setting up a new instance using GMail or another other Single Sign On method will not give you a Jira password. You do not need it if you can use the API token for logging in to your Jira instance but in case you do need a password logout of the account and on the login page click on "Can't log in?".</p>
+<p><center><img src="images/jira_sso.png" width="200px" /></center></p>
+<p>Fill in the email address you used to sign up for Jira and click on "Send recovery link" to set a password.  </p>
+<h2>Authenticating</h2>
+<p>In case of using the free instance that Jira provides authentication is done through the API token. Navigate to your <em>Atlassian account</em> &gt; <em>Security</em> and click on "Create and manage API tokens" under <strong>API token</strong>. </p>
+<p><center><img src="images/jira_sec.png" width="400px" /></center></p>
+<p>In case you have started from scratch there will be no API tokens yet.</p>
+<p><center><img src="images/jira_tokens.png" width="400px" /></center></p>
+<p>Click on "Create API token" to generate a token that you can use in the Python code to connect to the Jira instance. Make sure to save the token somewhere save, i.e. in your terminal environment.</p>
+<p><center><img src="images/jira_new_token.png" width="400px" /></center></p>
+<p>Add the <code>API_TOKEN</code>, <code>API_USER</code> and <code>API_URL</code> to your Python script and add them as <code>authentication</code> for your <code>requests</code> session. </p>
+<p>Note: for older Jira instances the token might not be supported and you need to authenticate with <code>(JIRA_USER, JIRA_PASSWORD)</code>. </p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="c1"># Authentication</span>
+<span class="n">JIRA_TOKEN</span> <span class="o">=</span> <span class="s2">&quot;abcdefg12345&quot;</span>
+<span class="n">JIRA_URL</span> <span class="o">=</span> <span class="s2">&quot;https://jitsejan.atlassian.net/&quot;</span>
+<span class="n">JIRA_USER</span> <span class="o">=</span> <span class="s2">&quot;jitsejan@gmail.com&quot;</span>
+<span class="c1"># Setup request session</span>
+<span class="n">rsession</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">rsession</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="n">JIRA_USER</span><span class="p">,</span> <span class="n">JIRA_TOKEN</span><span class="p">)</span>
+</code></pre></div>
+
+
+<h2>Mocking data</h2>
+<p><center><img src="images/jira_create_proj.png" width="200px" /></center></p>
+<p>To create some data for this small example I have created four stories as part of the <code>blog-test</code> (BT) project. I have moved two stories to <em>Done</em>, one is still <em>In progress</em> and one is in the <em>Backlog</em>. Since this is a simple example I haven't added any assignee, description or other metadata to the tickets. </p>
+<p><center><img src="images/jira_board.png" width="600px" /></center></p>
+<h2>Retrieving data</h2>
+<p>Using the Jira API it is easy to retrieve the tickets as long as you know a little bit of the <a href="https://www.atlassian.com/software/jira/guides/expand-jira/jql">Jira Query Language</a>. To create a query navigate to the <em>All issues</em> page and click on Advanced search.</p>
+<p><center><img src="images/jira_issues.png" width="400px" /></center></p>
+<p>It can be as simple as querying all tickets by their project. For more advanced queries play with the Jira UI and copy the query using the Advanced search option. For simplicity reasons I will pull all the tickets based on the project with the following query:</p>
+<div class="highlight"><pre><span></span><code><span class="n">project</span> <span class="o">=</span> <span class="n">BT</span>
+</code></pre></div>
+
+
+<p>The following Python code will retrieve the tickets for the query and addtionally add the changelog. It is important to enable the <code>changelog</code> for the <code>expand</code> parameter when the data is retrieved for the tickets. Note that I use version 2 of the API and I retrieve JSON data directly. If this was production code you would obviously verify the response and build in the proper error handling. </p>
+<div class="highlight"><pre><span></span><code><span class="n">jql</span> <span class="o">=</span> <span class="s2">&quot;project = BT&quot;</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;jql&#39;</span><span class="p">:</span> <span class="n">jql</span><span class="p">,</span>
+    <span class="s1">&#39;expand&#39;</span><span class="p">:</span> <span class="s1">&#39;changelog&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">issues</span> <span class="o">=</span> <span class="n">rsession</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">JIRA_URL</span><span class="si">}</span><span class="s2">/rest/api/2/search&quot;</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;issues&#39;</span><span class="p">]</span>
+</code></pre></div>
+
+
+<p>As a base table I use only the <code>key</code> and the <code>created</code> field.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">base</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">issues</span><span class="p">)[[</span><span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="s1">&#39;fields.created&#39;</span><span class="p">]]</span>
+<span class="n">base</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fields.created&#39;</span><span class="p">:</span> <span class="s1">&#39;created&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>This will result in the following table with the four tickets that I created before.</p>
+<table>
+<thead>
+<tr>
+<th align="left">key</th>
+<th align="left">Created</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">BT-4</td>
+<td align="left">2020-08-30T21:13:05.191+0000</td>
+</tr>
+<tr>
+<td align="left">BT-3</td>
+<td align="left">2020-08-30T21:13:00.259+0000</td>
+</tr>
+<tr>
+<td align="left">BT-2</td>
+<td align="left">2020-08-30T21:12:52.512+0000</td>
+</tr>
+<tr>
+<td align="left">BT-1</td>
+<td align="left">2020-08-30T21:12:46.238+0000</td>
+</tr>
+</tbody>
+</table>
+<p>To get the changelog from the <code>issues</code> we have to dive a little deeper into the JSON structure. Again I use <code>json_normalize</code> but keep the <code>fields</code> and <code>key</code> fields. To get the history you need to open the JSON path to <code>changelog</code> &gt; <code>histories</code> and extract the <code>items</code> field.</p>
+<div class="highlight"><pre><span></span><code><span class="n">transitions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">issues</span><span class="p">,</span>
+                                <span class="n">record_path</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;changelog&#39;</span><span class="p">,</span> <span class="s1">&#39;histories&#39;</span><span class="p">],</span>
+                                <span class="n">meta</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fields&#39;</span><span class="p">,</span> <span class="s1">&#39;key&#39;</span><span class="p">])[[</span><span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="s1">&#39;key&#39;</span><span class="p">]]</span>
+</code></pre></div>
+
+
+<p>Running the above code will result in the following table with the <code>items</code> still containing a list of different elements.</p>
+<table>
+<thead>
+<tr>
+<th align="left">created</th>
+<th align="left">items</th>
+<th align="left">key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2020-08-30T21:25:13.454+0000</td>
+<td Development_="Development'," Progress_="Progress'" _10004_="'10004'," _3_="'3'," _In="'In" _Selected="'Selected" _fieldId_:="'fieldId':" _field_:="'field':" _fieldtype_:="'fieldtype':" _fromString_:="'fromString':" _from_:="'from':" _jira_="'jira'," _status_="'status'," _toString_:="'toString':" _to_:="'to':" align="left" for>[</td>
+<td align="left">BT-3</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:17:14.147+0000</td>
+<td Development_="Development'" _10003_="'10003'," _10004_="'10004'," _Backlog_="'Backlog'," _Selected="'Selected" _fieldId_:="'fieldId':" _field_:="'field':" _fieldtype_:="'fieldtype':" _fromString_:="'fromString':" _from_:="'from':" _jira_="'jira'," _status_="'status'," _toString_:="'toString':" _to_:="'to':" align="left" for>[</td>
+<td align="left">BT-3</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:21:39.042+0000</td>
+<td None_="None," _10000_="'10000'," _Done_="'Done'" _fieldId_:="'fieldId':" _field_:="'field':" _fieldtype_:="'fieldtype':" _fromString_:="'fromString':" _from_:="'from':" _jira_="'jira'," _resolution_="'resolution'," _toString_:="'toString':" _to_:="'to':" align="left">[</td>
+<td align="left">BT-2</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:18:59.912+0000</td>
+<td Development_="Development'," Progress_="Progress'" _10004_="'10004'," _3_="'3'," _In="'In" _Selected="'Selected" _fieldId_:="'fieldId':" _field_:="'field':" _fieldtype_:="'fieldtype':" _fromString_:="'fromString':" _from_:="'from':" _jira_="'jira'," _status_="'status'," _toString_:="'toString':" _to_:="'to':" align="left" for>[</td>
+<td align="left">BT-2</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:17:08.462+0000</td>
+<td Development_="Development'" _10003_="'10003'," _10004_="'10004'," _Backlog_="'Backlog'," _Selected="'Selected" _fieldId_:="'fieldId':" _field_:="'field':" _fieldtype_:="'fieldtype':" _fromString_:="'fromString':" _from_:="'from':" _jira_="'jira'," _status_="'status'," _toString_:="'toString':" _to_:="'to':" align="left" for>[</td>
+<td align="left">BT-2</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:21:41.059+0000</td>
+<td None_="None," _10000_="'10000'," _Done_="'Done'" _fieldId_:="'fieldId':" _field_:="'field':" _fieldtype_:="'fieldtype':" _fromString_:="'fromString':" _from_:="'from':" _jira_="'jira'," _resolution_="'resolution'," _toString_:="'toString':" _to_:="'to':" align="left">[</td>
+<td align="left">BT-1</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:18:58.145+0000</td>
+<td Development_="Development'," Progress_="Progress'" _10004_="'10004'," _3_="'3'," _In="'In" _Selected="'Selected" _fieldId_:="'fieldId':" _field_:="'field':" _fieldtype_:="'fieldtype':" _fromString_:="'fromString':" _from_:="'from':" _jira_="'jira'," _status_="'status'," _toString_:="'toString':" _to_:="'to':" align="left" for>[</td>
+<td align="left">BT-1</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:14:17.086+0000</td>
+<td Development_="Development'" _10003_="'10003'," _10004_="'10004'," _Backlog_="'Backlog'," _Selected="'Selected" _fieldId_:="'fieldId':" _field_:="'field':" _fieldtype_:="'fieldtype':" _fromString_:="'fromString':" _from_:="'from':" _jira_="'jira'," _status_="'status'," _toString_:="'toString':" _to_:="'to':" align="left" for>[</td>
+<td align="left">BT-1</td>
+</tr>
+</tbody>
+</table>
+<p>The next transformation involves a few steps:</p>
+<ol>
+<li>Explode the items column to have a row for each item in the list</li>
+<li>Extract the columns from the items column (i.e. <code>field</code> and <code>fieldtype</code>) using <code>pd.Series</code></li>
+<li>Filter out the transitions that involve a <code>status</code> change</li>
+<li>Select only the status change date <code>created</code>, the <code>key</code> and the <code>toString</code> (final state of the transition)</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="n">transitions</span> <span class="o">=</span> <span class="n">transitions</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">transitions</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]</span>\
+                               <span class="o">.</span><span class="n">explode</span><span class="p">()</span>\
+                               <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)</span>
+                              <span class="p">)</span>\
+                          <span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;field == &#39;status&#39;&quot;</span><span class="p">)</span>\
+                          <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s2">&quot;items&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[[</span><span class="s1">&#39;created&#39;</span><span class="p">,</span> <span class="s1">&#39;key&#39;</span><span class="p">,</span> <span class="s1">&#39;toString&#39;</span><span class="p">]]</span>
+</code></pre></div>
+
+
+<p>The table looks cleaner now and shows when a ticket was put in a certain state.</p>
+<table>
+<thead>
+<tr>
+<th align="left">created</th>
+<th align="left">key</th>
+<th align="left">toString</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2020-08-30T21:25:13.454+0000</td>
+<td align="left">BT-3</td>
+<td align="left">In Progress</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:17:14.147+0000</td>
+<td align="left">BT-3</td>
+<td align="left">Selected for Development</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:21:39.042+0000</td>
+<td align="left">BT-2</td>
+<td align="left">Done</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:18:59.912+0000</td>
+<td align="left">BT-2</td>
+<td align="left">In Progress</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:17:08.462+0000</td>
+<td align="left">BT-2</td>
+<td align="left">Selected for Development</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:21:41.059+0000</td>
+<td align="left">BT-1</td>
+<td align="left">Done</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:18:58.145+0000</td>
+<td align="left">BT-1</td>
+<td align="left">In Progress</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:14:17.086+0000</td>
+<td align="left">BT-1</td>
+<td align="left">Selected for Development</td>
+</tr>
+</tbody>
+</table>
+<p>In the previous table it should be observed that there are no transitions for the fourth ticket <code>BT-4</code>. This makes sense since the ticket was only created but was never put in another column on the Jira board. To calculate ticket metrics it is important to also include the transition to when a ticket was added. In order to do this I will join the <code>transitions</code> table with the <code>created</code> column from the base table.</p>
+<p>First I will create a copy of the base dataframe and add an additional column with the transition to match the schema of the <code>transitions</code> table.</p>
+<div class="highlight"><pre><span></span><code><span class="n">created_transitions</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="c1"># Add column</span>
+<span class="n">created_transitions</span><span class="p">[</span><span class="s1">&#39;toString&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Backlog&#39;</span>
+</code></pre></div>
+
+
+<p>This will show the four keys with the timestamp and the <code>toString</code> information.</p>
+<table>
+<thead>
+<tr>
+<th align="left">key</th>
+<th align="left">created</th>
+<th align="left">toString</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">BT-4</td>
+<td align="left">2020-08-30T21:13:05.191+0000</td>
+<td align="left">Backlog</td>
+</tr>
+<tr>
+<td align="left">BT-3</td>
+<td align="left">2020-08-30T21:13:00.259+0000</td>
+<td align="left">Backlog</td>
+</tr>
+<tr>
+<td align="left">BT-2</td>
+<td align="left">2020-08-30T21:12:52.512+0000</td>
+<td align="left">Backlog</td>
+</tr>
+<tr>
+<td align="left">BT-1</td>
+<td align="left">2020-08-30T21:12:46.238+0000</td>
+<td align="left">Backlog</td>
+</tr>
+</tbody>
+</table>
+<p>After combining the two tables with</p>
+<div class="highlight"><pre><span></span><code><span class="n">transitions</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">transitions</span><span class="p">,</span> <span class="n">create_transitions</span><span class="p">])</span>
+</code></pre></div>
+
+
+<p>the table is complete and contains all the information we need. Now we <em>do</em> have a transition for <code>BT-4</code>. </p>
+<table>
+<thead>
+<tr>
+<th align="left">created</th>
+<th align="left">key</th>
+<th align="left">toString</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2020-08-30T21:12:46.238+0000</td>
+<td align="left">BT-1</td>
+<td align="left">Backlog</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:14:17.086+0000</td>
+<td align="left">BT-1</td>
+<td align="left">Selected for Development</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:18:58.145+0000</td>
+<td align="left">BT-1</td>
+<td align="left">In Progress</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:21:41.059+0000</td>
+<td align="left">BT-1</td>
+<td align="left">Done</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:12:52.512+0000</td>
+<td align="left">BT-2</td>
+<td align="left">Backlog</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:17:08.462+0000</td>
+<td align="left">BT-2</td>
+<td align="left">Selected for Development</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:18:59.912+0000</td>
+<td align="left">BT-2</td>
+<td align="left">In Progress</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:21:39.042+0000</td>
+<td align="left">BT-2</td>
+<td align="left">Done</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:13:00.259+0000</td>
+<td align="left">BT-3</td>
+<td align="left">Backlog</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:17:14.147+0000</td>
+<td align="left">BT-3</td>
+<td align="left">Selected for Development</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:25:13.454+0000</td>
+<td align="left">BT-3</td>
+<td align="left">In Progress</td>
+</tr>
+<tr>
+<td align="left">2020-08-30T21:13:05.191+0000</td>
+<td align="left">BT-4</td>
+<td align="left">Backlog</td>
+</tr>
+</tbody>
+</table>
+<p>To calculate the time in each status we will need to <code>pivot</code> the table to get the tickets as rows and the statuses as columns.</p>
+<div class="highlight"><pre><span></span><code><span class="n">statuses</span> <span class="o">=</span> <span class="n">transitions</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;key&#39;</span><span class="p">,</span>
+                             <span class="n">values</span><span class="o">=</span><span class="s1">&#39;created&#39;</span><span class="p">,</span>
+                             <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;toString&#39;</span><span class="p">)</span>
+<span class="c1"># Correct the datatype for the dataframe</span>
+<span class="n">statuses</span> <span class="o">=</span> <span class="n">statuses</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;datetime64[ns]&#39;</span><span class="p">)</span>
+<span class="c1"># Rename the column</span>
+</code></pre></div>
+
+
+<p>The table now looks like this which makes it easy to see that <code>BT-3</code> is not done yet and <code>BT-4</code> never moved.</p>
+<table>
+<thead>
+<tr>
+<th align="left">key</th>
+<th align="left">Backlog</th>
+<th align="left">Selected for Development</th>
+<th align="left">In Progress</th>
+<th align="left">Done</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">BT-1</td>
+<td align="left">2020-08-30T21:12:46.238</td>
+<td align="left">2020-08-30T21:14:17.086</td>
+<td align="left">2020-08-30T21:18:58.145</td>
+<td align="left">2020-08-30T21:21:41.059</td>
+</tr>
+<tr>
+<td align="left">BT-2</td>
+<td align="left">2020-08-30T21:12:52.512</td>
+<td align="left">2020-08-30T21:17:08.462</td>
+<td align="left">2020-08-30T21:18:59.912</td>
+<td align="left">2020-08-30T21:21:39.042</td>
+</tr>
+<tr>
+<td align="left">BT-3</td>
+<td align="left">2020-08-30T21:13:00.259</td>
+<td align="left">2020-08-30T21:17:14.147</td>
+<td align="left">2020-08-30T21:25:13.454</td>
+<td align="left">NaT</td>
+</tr>
+<tr>
+<td align="left">BT-4</td>
+<td align="left">2020-08-30T21:13:05.191</td>
+<td align="left">NaT</td>
+<td align="left">NaT</td>
+<td align="left">NaT</td>
+</tr>
+</tbody>
+</table>
+<p>Now to calculate to <em>lead time</em> (time from Backlog to Done) it is straightforward to substract the two columns and get the <em>timedelta</em>. Since I moved tickets manually in a short period of time I will calculate the delta in seconds.</p>
+<div class="highlight"><pre><span></span><code><span class="n">statuses</span><span class="p">[</span><span class="s1">&#39;Duration&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">statuses</span><span class="p">[</span><span class="s1">&#39;Done&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">statuses</span><span class="p">[</span><span class="s1">&#39;Backlog&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">seconds</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>The very impressive result will be this small table:</p>
+<table>
+<thead>
+<tr>
+<th align="left">key</th>
+<th align="right">Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">BT-1</td>
+<td align="right">534</td>
+</tr>
+<tr>
+<td align="left">BT-2</td>
+<td align="right">526</td>
+</tr>
+<tr>
+<td align="left">BT-3</td>
+<td align="right">nan</td>
+</tr>
+<tr>
+<td align="left">BT-4</td>
+<td align="right">nan</td>
+</tr>
+</tbody>
+</table>
+<p>Hope this helps anyone playing with Jira and Python!</p>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/etl.html" class="tag">ETL</a>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/jira.html" class="tag">Jira</a>
+                    <a href="./tag/data-extraction.html" class="tag">data-extraction</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
 
         </div>
 <footer class="footer">
     <div class="container">
         <center>
             <address id="about" class="vcard body">
-                &copy; <a href="..">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2020
+                &copy; <a href=".">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2020
             </address><!-- /#about -->
         </center>
     </div>
