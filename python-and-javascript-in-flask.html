@@ -11880,7 +11880,6 @@ jQuery(document).ready(function($) {
 <span class="p">...</span>
 </code></pre></div>
 
-
 <p>Retrieve the canvas_data from the POST request and write the content to a file. Return the unique id that was used for writing to the file.</p>
 <div class="highlight"><pre><span></span><code><span class="o">...</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/postmethod&#39;</span><span class="p">,</span> <span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
@@ -11891,7 +11890,6 @@ jQuery(document).ready(function($) {
     <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 <span class="o">...</span>
 </code></pre></div>
-
 
 <h3>Implementation</h3>
 <p>The core of the web application is inside this file. Here I define the different routes for the website and specify the settings. The default route shows the index.html where a canvas is shown. The result route will show the image once a picture is drawn, based on the provided unique ID. The postmethod route is defined to handle the data coming from Javascript into Python via a POST call. The content of the POST variable are written to a CSV file which can be used again on the result page where data is loaded from this same file.</p>
@@ -11962,7 +11960,6 @@ jQuery(document).ready(function($) {
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>The second part of the magic happens in the Javascript file. In this file a canvas is generated and added to the DOM. The mouse is used to draw dots on the canvas with a predefined color and radius. One button is used to send the data of the current drawing on the canvas and another one is used to clear the canvas.</p>
 <p><code>templates/static/js/script.js</code></p>
 <div class="highlight"><pre><span></span><code><span class="nx">$</span><span class="p">(</span> <span class="nb">document</span> <span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -11980,12 +11977,12 @@ jQuery(document).ready(function($) {
       <span class="k">this</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">fillColor</span><span class="p">;</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">beginPath</span><span class="p">();</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">moveTo</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">);</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">arc</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">radius</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">arc</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">radius</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span> <span class="o">*</span> <span class="mf">2</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">fill</span><span class="p">();</span>
     <span class="p">};</span>
     <span class="nx">ctx</span><span class="p">.</span><span class="nx">clearTo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fillColor</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">ctx</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="nx">fillColor</span><span class="p">;</span>
-      <span class="nx">ctx</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+      <span class="nx">ctx</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
     <span class="p">};</span>
     <span class="nx">ctx</span><span class="p">.</span><span class="nx">clearTo</span><span class="p">(</span><span class="s2">&quot;#fff&quot;</span><span class="p">);</span>
 
@@ -11995,7 +11992,7 @@ jQuery(document).ready(function($) {
       <span class="p">}</span>
       <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">pageX</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetLeft</span><span class="p">;</span>
       <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">pageY</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">offsetTop</span><span class="p">;</span>
-      <span class="kd">var</span> <span class="nx">radius</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+      <span class="kd">var</span> <span class="nx">radius</span> <span class="o">=</span> <span class="mf">10</span><span class="p">;</span>
       <span class="kd">var</span> <span class="nx">fillColor</span> <span class="o">=</span> <span class="s1">&#39;rgb(102,153,255)&#39;</span><span class="p">;</span>
       <span class="nx">ctx</span><span class="p">.</span><span class="nx">fillCircle</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">,</span> <span class="nx">radius</span><span class="p">,</span> <span class="nx">fillColor</span><span class="p">);</span>
     <span class="p">};</span>
@@ -12008,21 +12005,21 @@ jQuery(document).ready(function($) {
   <span class="p">}</span>
 
   <span class="kd">var</span> <span class="nx">container</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;canvas&#39;</span><span class="p">);</span>
-  <span class="nx">init</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="s1">&#39;#ddd&#39;</span><span class="p">);</span>
+  <span class="nx">init</span><span class="p">(</span><span class="nx">container</span><span class="p">,</span> <span class="mf">200</span><span class="p">,</span> <span class="mf">200</span><span class="p">,</span> <span class="s1">&#39;#ddd&#39;</span><span class="p">);</span>
 
   <span class="kd">function</span> <span class="nx">clearCanvas</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;inputCanvas&quot;</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span>
-        <span class="nx">ctx</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+        <span class="nx">ctx</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
   <span class="p">}</span>
 
   <span class="kd">function</span> <span class="nx">getData</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;inputCanvas&quot;</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">imageData</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">getImageData</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">imageData</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">context</span><span class="p">.</span><span class="nx">getImageData</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span> <span class="mf">0</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
     <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">imageData</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">outputData</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">var</span> <span class="nx">brightness</span> <span class="o">=</span> <span class="mf">0.34</span> <span class="o">*</span> <span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="nx">data</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.16</span> <span class="o">*</span> <span class="nx">data</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mf">4</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">brightness</span> <span class="o">=</span> <span class="mf">0.34</span> <span class="o">*</span> <span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="nx">data</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mf">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.16</span> <span class="o">*</span> <span class="nx">data</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mf">2</span><span class="p">];</span>
       <span class="nx">outputData</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">brightness</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="nx">$</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span> <span class="s2">&quot;/postmethod&quot;</span><span class="p">,</span> <span class="p">{</span>
@@ -12041,7 +12038,6 @@ jQuery(document).ready(function($) {
   <span class="p">});</span>
 <span class="p">});</span>
 </code></pre></div>
-
 
 <p>Finally we need to define a base template to be used by the index and result page. I know this could be split up nicer and I could make better use of the templating engine, but for this experiment it seemed sufficient.</p>
 <p><code>templates/layouts/base.html</code></p>
@@ -12089,7 +12085,6 @@ jQuery(document).ready(function($) {
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div>
 
-
 <p>The code for the index.html and results.html can be kept to a minimum this way.</p>
 <p><code>templates/layouts/index.html</code></p>
 <div class="highlight"><pre><span></span><code>{% extends &quot;layouts/base.html&quot; %}
@@ -12110,7 +12105,6 @@ jQuery(document).ready(function($) {
 {% endblock %}
 </code></pre></div>
 
-
 <p><code>templates/layouts/result.html</code></p>
 <div class="highlight"><pre><span></span><code>{% extends &quot;layouts/base.html&quot; %}
 {% block title %}{{title}}{% endblock %}
@@ -12124,7 +12118,6 @@ jQuery(document).ready(function($) {
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 {% endblock %}
 </code></pre></div>
-
 
 <p>Important: Please note that for the source of the image the specific URL for the matplotlib image is used. The route for plot is called with the parameter <code>imgdata</code> containing the data.</p>
 <p>I have kept the stylesheet very basic since this project is not aimed at making the most slick interface.</p>
@@ -12140,11 +12133,9 @@ jQuery(document).ready(function($) {
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>After putting all the files together the application can be started and visited on port 5000 on the localhost. </p>
 <div class="highlight"><pre><span></span><code>~/code/flask-app $ <span class="nv">FLASK_APP</span><span class="o">=</span>app.py <span class="nv">FLASK_DEBUG</span><span class="o">=</span><span class="m">1</span> flask run
 </code></pre></div>
-
 
 <p>See the <a href="https://github.com/jitsejan/python-flask-with-javascript">Github repo</a> for the final code.</p>
         </div>

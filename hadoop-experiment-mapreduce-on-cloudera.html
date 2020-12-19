@@ -11932,7 +11932,6 @@ jQuery(document).ready(function($) {
 <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;nesgamedata.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>This will result in the following file.</p>
 <div class="highlight"><pre><span></span><code><span class="m">0</span>   <span class="m">10</span>-Yard Fight   <span class="m">12</span>  Nintendo    <span class="m">10</span>  <span class="m">44</span>  <span class="m">1985</span>    <span class="m">10</span>.044444444444444
 <span class="m">1</span>   <span class="m">1942</span>    <span class="m">11</span>  Capcom  <span class="m">8</span>   <span class="m">65</span>  <span class="m">1985</span>    <span class="m">8</span>.045454545454545
@@ -11946,7 +11945,6 @@ jQuery(document).ready(function($) {
 <span class="m">9</span>   Adventures in the Magic Kingdom <span class="m">5</span>   Capcom  <span class="m">8</span>   <span class="m">23</span>  <span class="m">1990</span>    <span class="m">7</span>.875
 ...
 </code></pre></div>
-
 
 <h2>MapReduce script</h2>
 <p>Calculate how often what rating is used.</p>
@@ -11976,12 +11974,10 @@ jQuery(document).ready(function($) {
     <span class="n">GamesBreakdown</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div>
 
-
 <h2>Execution</h2>
 <p>To use Hadoop, the command should look like the following and should be run on the Hadoop machine, with the hadoop-streaming-jar argument only given in case the .jar is not found:</p>
 <div class="highlight"><pre><span></span><code>python gamesbreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar nesgamedata.csv
 </code></pre></div>
-
 
 <p>To do this, upload the <code>nesgamesdata.csv</code> file and the script <code>gamesbreakdown.py</code> to HDFS, using the Hue files view and upload functionality. Next copy them to the local folder to be used in the command. Of course other methods to get the files locally on the Hadoop machine can be used.</p>
 <p>I am using the <a href="https://hub.docker.com/r/cloudera/quickstart/">Cloudera Quickstart image</a> to experiment with Docker and Cloudera and the <code>docker-compose.yml</code> contains the following:</p>
@@ -12018,7 +12014,6 @@ jQuery(document).ready(function($) {
 <span class="c">      - &quot;7077:7077&quot;</span>
 </code></pre></div>
 
-
 <p>Connect to the machine and verify the file is present:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/cloudera_docker$ docker <span class="nb">exec</span> -ti clouderadocker_cloudera_1 bash
 <span class="o">[</span>root@quickstart /<span class="o">]</span><span class="c1"># cd home/</span>
@@ -12031,12 +12026,10 @@ total <span class="m">20</span>
 -rw-r--r-- <span class="m">1</span> root root <span class="m">15095</span> Sep  <span class="m">5</span> <span class="m">13</span>:56 nesgamedata.csv
 </code></pre></div>
 
-
 <p>Install the mrjob library on the Cloudera container.</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># yum install python-pip -y</span>
 <span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># pip install mrjob</span>
 </code></pre></div>
-
 
 <p>Run the script without using Hadoop to verify the installation.</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># python gamesbreakdown.py nesgamedata.csv</span>
@@ -12058,7 +12051,6 @@ Streaming final output from /tmp/gamesbreakdown.root.20170905.135809.859796/outp
 <span class="s2">&quot;9&quot;</span>     <span class="m">15</span>
 Removing temp directory /tmp/gamesbreakdown.root.20170905.135809.859796...
 </code></pre></div>
-
 
 <p>Now use Hadoop to start the cluster magic.</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># python gamesbreakdown.py -r hadoop nesgamedata.csv</span>
@@ -12161,7 +12153,6 @@ Removing HDFS temp directory hdfs:///user/root/tmp/mrjob/gamesbreakdown.root.201
 Removing temp directory /tmp/gamesbreakdown.root.20170905.135908.241472...
 </code></pre></div>
 
-
 <p>Now lets add another reducer step to sort the counts of the ratings.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mrjob.job</span> <span class="kn">import</span> <span class="n">MRJob</span>
 <span class="kn">from</span> <span class="nn">mrjob.step</span> <span class="kn">import</span> <span class="n">MRStep</span>
@@ -12189,7 +12180,6 @@ Removing temp directory /tmp/gamesbreakdown.root.20170905.135908.241472...
     <span class="n">GamesBreakdownUpdate</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># python gamesbreakdownupdate.py nesgamedata.csv</span>
 No configs found<span class="p">;</span> falling back on auto-configuration
 Creating temp directory /tmp/gamesbreakdownupdate.root.20170905.142738.885314
@@ -12210,7 +12200,6 @@ Streaming final output from /tmp/gamesbreakdownupdate.root.20170905.142738.88531
 <span class="s2">&quot;6&quot;</span>     <span class="s2">&quot;48&quot;</span>
 Removing temp directory /tmp/gamesbreakdownupdate.root.20170905.142738.885314...
 </code></pre></div>
-
 
 <p>That concludes my first experiments with Hadoop and MapReduce. Next step: using Pig or Spark to calculate similar statistics without all the overhead.</p>
         </div>

@@ -11871,7 +11871,6 @@ jQuery(document).ready(function($) {
 <span class="na">region</span> <span class="o">=</span> <span class="s">eu-west-2 </span>
 </code></pre></div>
 
-
 <p>The Dockerfile consists of different steps. I have stripped down the Dockerfile to only install the essentials to get Spark working with S3 and a few extra libraries (like <code>nltk</code>) to play with some data. A few things to note:</p>
 <ul>
 <li>The base image is the <code>pyspark-notebook</code> provided by <a href="https://github.com/jupyter/docker-stacks/tree/master/pyspark-notebook">Jupyter</a>.</li>
@@ -11913,7 +11912,6 @@ jQuery(document).ready(function($) {
 <span class="k">CMD</span> <span class="p">[</span><span class="s2">&quot;/opt/conda/bin/jupyter&quot;</span><span class="p">,</span> <span class="s2">&quot;lab&quot;</span><span class="p">,</span> <span class="s2">&quot;--allow-root&quot;</span><span class="p">]</span>
 </code></pre></div>
 
-
 <p>The Jupyter configuration file sets up the notebook environment. In my case I set the password, the startup directory and the IP restrictions.</p>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; jupyter_notebook_config.py &quot;&quot;&quot;</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
@@ -11925,7 +11923,6 @@ jQuery(document).ready(function($) {
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="sa">u</span><span class="s1">&#39;sha1:a123:345345&#39;</span>
 <span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="mi">8558</span>
 </code></pre></div>
-
 
 <p>The <code>docker-compose.yml</code> contains the setup of the Docker instance. The most important parts of the compose file are:</p>
 <ul>
@@ -11949,7 +11946,6 @@ jQuery(document).ready(function($) {
     <span class="nt">ports</span><span class="p">:</span>
       <span class="p p-Indicator">-</span> <span class="s">&quot;8558:8558&quot;</span>
 </code></pre></div>
-
 
 <h2>Execution</h2>
 <p>I am running Docker version 19.03.5 at the time of writing.</p>
@@ -11983,7 +11979,6 @@ Server: Docker Engine - Community
   GitCommit:        fec3683
 </code></pre></div>
 
-
 <p>Run <code>docker-compose up</code> after creating the compose file to spin up the notebook. </p>
 <div class="highlight"><pre><span></span><code>~/code/notebooks &gt; master $ docker-compose up
 Creating network <span class="s2">&quot;notebooks_default&quot;</span> with the default driver
@@ -12000,13 +11995,11 @@ jitsejan-pyspark_1  <span class="p">|</span> <span class="o">[</span>I <span cla
 jitsejan-pyspark_1  <span class="p">|</span> <span class="o">[</span>I <span class="m">13</span>:38:49.803 LabApp<span class="o">]</span> Use Control-C to stop this server and shut down all kernels <span class="o">(</span>twice to skip confirmation<span class="o">)</span>.
 </code></pre></div>
 
-
 <p>The container is now running on port <code>8558</code>:</p>
 <div class="highlight"><pre><span></span><code>~/code/notebooks &gt; master $ docker ps
 CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                              NAMES
 ade618e362da        jitsejan/pyspark-notebook   <span class="s2">&quot;tini -g -- /opt/con…&quot;</span>   <span class="m">2</span> minutes ago       Up <span class="m">2</span> minutes        <span class="m">0</span>.0.0.0:8558-&gt;8558/tcp, <span class="m">8888</span>/tcp   notebooks_jitsejan-pyspark_1
 </code></pre></div>
-
 
 <p><img alt="pyspark_terminal" src="images/pyspark_terminal.png"></p>
 <p>For convenience I am running <a href="https://www.portainer.io/">Portainer</a> because it is easier to get an overview of the containers running in Docker instead of using the CLI.. It also helps to clean up all the orphan images.</p>
@@ -12020,7 +12013,6 @@ ade618e362da        jitsejan/pyspark-notebook   <span class="s2">&quot;tini -g -
 <span class="n">config_object</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;/home/jovyan/.aws/credentials&quot;</span><span class="p">)</span>
 <span class="n">profile_info</span> <span class="o">=</span> <span class="n">config_object</span><span class="p">[</span><span class="s2">&quot;prod&quot;</span><span class="p">]</span>
 </code></pre></div>
-
 
 <p>Since the configuration now contains the production account data I can use it so set the parameters for the Spark context. Note that all these parameters are required to connect to the data on S3. The access key and secret are always mentioned in tutorials, but it took me a while to figure out I need to specify the <code>endpoint</code> and enable V4. </p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark</span> <span class="kn">import</span> <span class="n">SparkContext</span><span class="p">,</span> <span class="n">SparkConf</span><span class="p">,</span> <span class="n">SQLContext</span>
@@ -12037,13 +12029,11 @@ ade618e362da        jitsejan/pyspark-notebook   <span class="s2">&quot;tini -g -
 <span class="p">)</span>
 </code></pre></div>
 
-
 <p>With the above configuration I initialize the Spark context and can read from our datalake. </p>
 <div class="highlight"><pre><span></span><code><span class="n">sc</span> <span class="o">=</span> <span class="n">SparkContext</span><span class="p">(</span><span class="n">conf</span><span class="o">=</span><span class="n">conf</span><span class="p">)</span><span class="o">.</span><span class="n">getOrCreate</span><span class="p">()</span>
 <span class="n">sqlContext</span> <span class="o">=</span> <span class="n">SQLContext</span><span class="p">(</span><span class="n">sc</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">sqlContext</span><span class="o">.</span><span class="n">read</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;s3a://mi-datalake-prod/warehouse/platform/company_list/&quot;</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p><img alt="pyspark_jupyterlab" src="images/pyspark_jupyterlab.png"></p>
 <p>Hope this helps!</p>

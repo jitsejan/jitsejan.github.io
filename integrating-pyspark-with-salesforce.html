@@ -11870,7 +11870,6 @@ $ wget https://repo1.maven.org/maven2/com/fasterxml/jackson/dataformat/jackson-d
 $ wget https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.10.3/jackson-core-2.10.3.jar
 </code></pre></div>
 
-
 <p>The configuration is saved in <code>config.ini</code> with the following fields:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[salesforce]</span>
 <span class="na">username</span> <span class="o">=</span> <span class="s">mail@jitsejan.com</span>
@@ -11878,14 +11877,12 @@ $ wget https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.
 <span class="na">token</span> <span class="o">=</span> <span class="s">sal3sforceT0ken</span>
 </code></pre></div>
 
-
 <p>Loading the configuration is done using <code>configparser</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
 
 <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
 <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;config.ini&#39;</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>When creating the SparkSession make sure the paths to the differents JARs are correctly set:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark</span> <span class="kn">import</span> <span class="n">SparkSession</span>
@@ -11904,7 +11901,6 @@ $ wget https://repo1.maven.org/maven2/com/fasterxml/jackson/core/jackson-core/2.
   <span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="s2">&quot;spark.driver.extraClassPath&quot;</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">jars</span><span class="p">))</span>
   <span class="o">.</span><span class="n">getOrCreate</span><span class="p">())</span>  
 </code></pre></div>
-
 
 <p>The session is created and we are ready to pull some data:</p>
 <div class="highlight"><pre><span></span><code><span class="n">soql</span> <span class="o">=</span> <span class="s2">&quot;SELECT name, industry, type, billingaddress, sic FROM account&quot;</span>  

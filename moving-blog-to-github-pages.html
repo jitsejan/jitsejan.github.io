@@ -11880,14 +11880,12 @@ Unpacking objects: <span class="m">100</span>% <span class="o">(</span><span cla
 Checking connectivity... <span class="k">done</span>.
 </code></pre></div>
 
-
 <p>Verify the repository is correct:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code$ <span class="nb">cd</span> jitsejan.github.io-source/
 jitsejan@dev16:~/code/jitsejan.github.io-source$ git remote -v
 origin  https://github.com/jitsejan/jitsejan.github.io-source.git <span class="o">(</span>fetch<span class="o">)</span>
 origin  https://github.com/jitsejan/jitsejan.github.io-source.git <span class="o">(</span>push<span class="o">)</span>
 </code></pre></div>
-
 
 <p>Add the output repository as a submodule to the source repo:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ git submodule add  https://github.com/jitsejan/jitsejan.github.io.git output
@@ -11898,7 +11896,6 @@ remote: Total <span class="m">4</span> <span class="o">(</span>delta <span class
 Unpacking objects: <span class="m">100</span>% <span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>, <span class="k">done</span>.
 Checking connectivity... <span class="k">done</span>.
 </code></pre></div>
-
 
 <p>Create the Pelican application using the quickstart tool:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ pelican-quickstart 
@@ -11932,7 +11929,6 @@ Error: <span class="o">[</span>Errno <span class="m">17</span><span class="o">]<
 Done. Your new project is available at /home/jitsejan/code/jitsejan.github.io-source
 </code></pre></div>
 
-
 <p>Change the <code>publishconf.py</code> to not delete the output directory:</p>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
 <span class="c1"># -*- coding: utf-8 -*- #</span>
@@ -11960,7 +11956,6 @@ Done. Your new project is available at /home/jitsejan/code/jitsejan.github.io-so
 <span class="c1">#GOOGLE_ANALYTICS = &quot;&quot;</span>
 </code></pre></div>
 
-
 <p>Create the first post:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ cat content/first-post.md 
 Title: My first post
@@ -11975,7 +11970,6 @@ Summary: The first post of the Pelican blog on Github pages.
 I am migrating my website from my VPS to Github pages as an experiment.
 </code></pre></div>
 
-
 <p>Build the website and serve its contents:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ make html <span class="o">&amp;&amp;</span> make serve
 pelican /home/jitsejan/code/pelican-source/content -o /home/jitsejan/code/pelican-source/output -s /home/jitsejan/code/pelican-source/pelicanconf.py 
@@ -11984,13 +11978,11 @@ Done: Processed <span class="m">0</span> articles, <span class="m">0</span> draf
 <span class="nb">cd</span> /home/jitsejan/code/pelican-source/output <span class="o">&amp;&amp;</span> python -m pelican.server
 </code></pre></div>
 
-
 <p>Generate the static content for the website:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ make publish
 pelican /home/jitsejan/code/pelican-source/content -o /home/jitsejan/code/pelican-source/output -s /home/jitsejan/code/pelican-source/publishconf.py 
 Done: Processed <span class="m">1</span> article, <span class="m">0</span> drafts, <span class="m">0</span> pages and <span class="m">0</span> hidden pages in <span class="m">0</span>.14 seconds.
 </code></pre></div>
-
 
 <p>Push the output code to the <code>jitsejan.github.io</code> repository:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ <span class="nb">cd</span> output/
@@ -11999,7 +11991,6 @@ jitsejan@dev16:~/code/jitsejan.github.io-source/output$ git commit -m <span clas
 jitsejan@dev16:~/code/jitsejan.github.io-source/output$ git push -u origin master
 </code></pre></div>
 
-
 <p>Push the source code to the <code>jitsejan.github.io-source</code> repository:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source/output$ <span class="nb">cd</span> ..
 jitsejan@dev16:~/code/jitsejan.github.io-source$ <span class="nb">echo</span> <span class="s1">&#39;*.pyc&#39;</span> &gt;&gt; .gitignore
@@ -12007,7 +11998,6 @@ jitsejan@dev16:~/code/jitsejan.github.io-source$ git add .
 jitsejan@dev16:~/code/jitsejan.github.io-source$ git commit -m <span class="s1">&#39;My first commit&#39;</span>
 jitsejan@dev16:~/code/jitsejan.github.io-source$ git push -u origin master
 </code></pre></div>
-
 
 <p>Now the homepage is ready on <a href="https://jitsejan.github.io/">https://jitsejan.github.io/</a>!</p>
 <p><a href="https://fedoramagazine.org/make-github-pages-blog-with-pelican/">Inspiration link</a></p>
@@ -12020,23 +12010,19 @@ jitsejan@dev16:~/code$ rm -rf ../jitsejan.github.io-source/themes/
 jitsejan@dev16:~/code$ mv pelican-blog/* jitsejan.github.io-source
 </code></pre></div>
 
-
 <p>Additionally the <code>DELETE_OUTPUT_DIRECTORY</code> had to be set to <code>False</code> again in <code>publishconf.py</code>.</p>
 <h3>Issues</h3>
 <p>Some Python libraries were missing and the <code>pip install</code> had to be done first:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code/jitsejan.github.io-source$ pip install -r requirements.txt 
 </code></pre></div>
 
-
 <p>The <code>less</code> compiler was missing:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/code$ sudo npm install -g less
 </code></pre></div>
 
-
 <p>I had to remove the ipynb plugin and reinstall it by adding it again as a submodule:</p>
 <div class="highlight"><pre><span></span><code>git submodule add git://github.com/danielfrg/pelican-ipynb.git plugins/ipynb
 </code></pre></div>
-
 
 <h2>Final steps</h2>
 <p>To make the Github URL work with my own domain, I had to follow several steps:</p>

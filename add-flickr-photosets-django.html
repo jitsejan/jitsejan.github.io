@@ -11870,7 +11870,6 @@ jQuery(document).ready(function($) {
 <span class="n">flickr</span> <span class="o">=</span> <span class="n">flickrapi</span><span class="o">.</span><span class="n">FlickrAPI</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">secret</span><span class="p">)</span>
 </code></pre></div>
 
-
 <h3>2. Retrieve the photosets</h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
 <span class="n">sets</span> <span class="o">=</span> <span class="n">flickr</span><span class="o">.</span><span class="n">photosets</span><span class="o">.</span><span class="n">getList</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">userid</span><span class="p">)</span>
@@ -11878,14 +11877,12 @@ jQuery(document).ready(function($) {
 <span class="nb">print</span> <span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">photoset</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>will return</p>
 <div class="highlight"><pre><span></span><code>&lt;photoset <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;72157674032173850&quot;</span> <span class="nv">primary</span><span class="o">=</span><span class="s2">&quot;30292011566&quot;</span> <span class="nv">secret</span><span class="o">=</span><span class="s2">&quot;c384c894ce&quot;</span> <span class="nv">server</span><span class="o">=</span><span class="s2">&quot;8552&quot;</span> <span class="nv">farm</span><span class="o">=</span><span class="s2">&quot;9&quot;</span> <span class="nv">photos</span><span class="o">=</span><span class="s2">&quot;31&quot;</span> <span class="nv">videos</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">needs_interstitial</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">visibility_can_see_set</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nv">count_views</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">count_comments</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">can_comment</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">date_create</span><span class="o">=</span><span class="s2">&quot;1476484376&quot;</span> <span class="nv">date_update</span><span class="o">=</span><span class="s2">&quot;1476488433&quot;</span>&gt;
     &lt;title&gt;Canada <span class="m">2016</span>&lt;/title&gt;
     &lt;description&gt;Visit to Toronto, Montreal and the Falls.&lt;/description&gt;
 &lt;/photoset&gt;
 </code></pre></div>
-
 
 <h3>3. Connect to Django</h3>
 <p>Since I want to add to pictures from Flickr to my Django webpage, I need to connect to the database.</p>
@@ -11895,7 +11892,6 @@ jQuery(document).ready(function($) {
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">project_path</span><span class="p">)</span>
 </code></pre></div>
 
-
 <h3>4. Load the Photoset model</h3>
 <p>Now we set the path to be the Django path, we can import the models from my blog.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">django</span>
@@ -11904,7 +11900,6 @@ jQuery(document).ready(function($) {
 <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">Photoset</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">():</span>
     <span class="nb">print</span> <span class="n">field</span>
 </code></pre></div>
-
 
 <p>This will show the fields of the model.</p>
 <div class="highlight"><pre><span></span><code>&lt;ManyToOneRel: blog.photo&gt;
@@ -11918,7 +11913,6 @@ blog.Photoset.date_update
 blog.Photoset.created
 blog.Photoset.modified
 </code></pre></div>
-
 
 <h3>5. Add Flickr photosets to Django</h3>
 <div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="ow">not</span> <span class="n">Photoset</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">flickr_id</span><span class="o">=</span><span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
@@ -11935,11 +11929,9 @@ blog.Photoset.modified
     <span class="nb">print</span> <span class="s2">&quot;Photoset &#39;</span><span class="si">%s</span><span class="s2">&#39; already in database!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">photoset</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>In my case the photoset has already been added.</p>
 <div class="highlight"><pre><span></span><code>Photoset <span class="s1">&#39;Canada 2016&#39;</span> already in database!
 </code></pre></div>
-
 
 <h3>6. Retrieve photos from Flickr photoset</h3>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">photo</span> <span class="ow">in</span> <span class="n">flickr</span><span class="o">.</span><span class="n">walk_set</span><span class="p">(</span><span class="n">photoset</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]):</span>
@@ -11947,7 +11939,6 @@ blog.Photoset.modified
     <span class="nb">print</span> <span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">photo_element</span><span class="p">)</span>
     <span class="k">break</span> <span class="c1"># Just print one</span>
 </code></pre></div>
-
 
 <p>This will return the XML object of a photo.</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;photo</span> <span class="na">id=</span><span class="s">&quot;30326779825&quot;</span> <span class="na">secret=</span><span class="s">&quot;78076b80de&quot;</span> <span class="na">server=</span><span class="s">&quot;8140&quot;</span> <span class="na">farm=</span><span class="s">&quot;9&quot;</span> <span class="na">dateuploaded=</span><span class="s">&quot;1476484428&quot;</span> <span class="na">isfavorite=</span><span class="s">&quot;0&quot;</span> <span class="na">license=</span><span class="s">&quot;0&quot;</span> <span class="na">safety_level=</span><span class="s">&quot;0&quot;</span> <span class="na">rotation=</span><span class="s">&quot;270&quot;</span> <span class="na">originalsecret=</span><span class="s">&quot;cb36a41988&quot;</span> <span class="na">originalformat=</span><span class="s">&quot;jpg&quot;</span> <span class="na">views=</span><span class="s">&quot;1&quot;</span> <span class="na">media=</span><span class="s">&quot;photo&quot;</span><span class="nt">&gt;</span>
@@ -11969,25 +11960,21 @@ blog.Photoset.modified
 <span class="nt">&lt;/photo&gt;</span>
 </code></pre></div>
 
-
 <h3>7. Create URL for Flickr photo</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># url_template = &quot;http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg&quot; </span>
 <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://farm</span><span class="si">%(farm)s</span><span class="s2">.staticflickr.com/</span><span class="si">%(server)s</span><span class="s2">/</span><span class="si">%(id)s</span><span class="s2">_</span><span class="si">%(secret)s</span><span class="s2">_z.jpg&quot;</span> <span class="o">%</span> <span class="n">photo</span><span class="o">.</span><span class="n">attrib</span>
 <span class="nb">print</span> <span class="n">url</span>
 </code></pre></div>
 
-
 <p>Resulting URL:</p>
 <div class="highlight"><pre><span></span><code>http://farm9.staticflickr.com/8140/30326779825_78076b80de_z.jpg
 </code></pre></div>
-
 
 <h3>8. Load the Photo model</h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">blog.models</span> <span class="kn">import</span> <span class="n">Photo</span>
 <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">Photo</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">():</span>
     <span class="nb">print</span> <span class="n">field</span>
 </code></pre></div>
-
 
 <p>Above code will show the fields of the Photo model in Django.</p>
 <div class="highlight"><pre><span></span><code>blog.Photo.id
@@ -12002,7 +11989,6 @@ blog.Photo.created
 blog.Photo.modified
 blog.Photo.photoset
 </code></pre></div>
-
 
 <h3>9. Add Flickr photo to Django</h3>
 <div class="highlight"><pre><span></span><code><span class="n">blog_photo</span> <span class="o">=</span> <span class="n">Photo</span><span class="p">()</span>
@@ -12023,7 +12009,6 @@ blog.Photo.photoset
 <span class="k">else</span><span class="p">:</span>
     <span class="nb">print</span> <span class="s2">&quot;Photo &#39;</span><span class="si">%s</span><span class="s2">&#39; already in database!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">blog_photo</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Again, the item is already in the database in my case.</p>
 <div class="highlight"><pre><span></span><code>Photo <span class="s1">&#39;Looking at the city&#39;</span> already in database!

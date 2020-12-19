@@ -11890,7 +11890,6 @@ jQuery(document).ready(function($) {
 <span class="m">7</span> directories, <span class="m">11</span> files
 </code></pre></div>
 
-
 <h2>Version check</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ git --version
 git version <span class="m">2</span>.11.0 <span class="o">(</span>Apple Git-81<span class="o">)</span>
@@ -11904,7 +11903,6 @@ jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ jupyter --ve
 <span class="m">4</span>.2.1
 </code></pre></div>
 
-
 <h2>Initialize</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ git init
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ npm init
@@ -11912,24 +11910,21 @@ jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ <span class=
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ git add . <span class="o">&amp;&amp;</span> git commit -am <span class="s2">&quot;Initial commit&quot;</span>
 </code></pre></div>
 
-
 <h2>Create the back-end using a Jupyter notebook</h2>
 <p>Using Python we will read two CSV files and add them to MongoDB.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ <span class="nb">echo</span> notebook/.ipynb_checkpoints &gt;&gt; .gitignore
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app/notebook  $ jupyter notebook
 </code></pre></div>
 
-
 <h3>Content of the notebook</h3>
-<p><hr/>
-{% notebook csv_to_mongodb.ipynb %}
 <hr/>
-Now the data is in the database we are ready to create the front-end.</p>
+<p>{% notebook csv_to_mongodb.ipynb %}</p>
+<hr/>
+<p>Now the data is in the database we are ready to create the front-end.</p>
 <h2>Create the front-end</h2>
 <p>First install the packages we need and save them to <code>package.json</code>.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ npm install --save express mongoose ejs mongodb
 </code></pre></div>
-
 
 <p>This will result in the following <code>package.json</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -11956,7 +11951,6 @@ Now the data is in the database we are ready to create the front-end.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <h3>The core</h3>
 <p>I will create three pages. A blank frontpage, a page for the wallet data and a page for the mining data. First we need setup the 
@@ -12004,14 +11998,14 @@ the correct data.</p>
 <span class="p">});</span>
 <span class="c1">// Create the route to the mining page</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/mining&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">Mining</span><span class="p">.</span><span class="nx">find</span><span class="p">({},</span> <span class="kc">null</span><span class="p">,</span> <span class="p">{</span><span class="nx">sort</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;Date&#39;</span><span class="o">:+</span><span class="mi">1</span><span class="p">}},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">minings</span><span class="p">){</span>
+  <span class="nx">Mining</span><span class="p">.</span><span class="nx">find</span><span class="p">({},</span> <span class="kc">null</span><span class="p">,</span> <span class="p">{</span><span class="nx">sort</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;Date&#39;</span><span class="o">:+</span><span class="mf">1</span><span class="p">}},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">minings</span><span class="p">){</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">minings</span><span class="p">);</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;pages/mining&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span><span class="o">:</span><span class="s1">&#39;Mining&#39;</span><span class="p">,</span> <span class="nx">minings</span><span class="o">:</span> <span class="nx">minings</span> <span class="p">});</span>
   <span class="p">})</span>
 <span class="p">});</span>
 <span class="c1">// Create the route to the wallet page</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/wallet&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">Wallet</span><span class="p">.</span><span class="nx">find</span><span class="p">({},</span> <span class="kc">null</span><span class="p">,</span> <span class="p">{</span><span class="nx">sort</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;Time&#39;</span><span class="o">:+</span><span class="mi">1</span><span class="p">}},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallets</span><span class="p">){</span>
+  <span class="nx">Wallet</span><span class="p">.</span><span class="nx">find</span><span class="p">({},</span> <span class="kc">null</span><span class="p">,</span> <span class="p">{</span><span class="nx">sort</span><span class="o">:</span> <span class="p">{</span><span class="s1">&#39;Time&#39;</span><span class="o">:+</span><span class="mf">1</span><span class="p">}},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">wallets</span><span class="p">){</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">wallets</span><span class="p">);</span>
     <span class="nx">res</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="s1">&#39;pages/wallet&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">title</span><span class="o">:</span><span class="s1">&#39;Wallet&#39;</span><span class="p">,</span> <span class="nx">wallets</span><span class="o">:</span> <span class="nx">wallets</span> <span class="p">});</span>
   <span class="p">})</span>
@@ -12020,10 +12014,9 @@ the correct data.</p>
 <span class="c1">// Normally this would be a subdirectory &#39;public/css/&#39;</span>
 <span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">express</span><span class="p">.</span><span class="kr">static</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">));</span>
 <span class="c1">// Start the app on port 3000</span>
-<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mf">3000</span><span class="p">);</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;listening on port 3000&#39;</span><span class="p">);</span>
 </code></pre></div>
-
 
 <h3>Partials</h3>
 <p>To easily create templates for the different pages, I will first create the partials for the head, footer and header. I will use Bootstrap
@@ -12035,20 +12028,19 @@ to make creating the layout easier.</p>
 <span class="o">&lt;</span><span class="n">meta</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;description&quot;</span><span class="w"> </span><span class="n">content</span><span class="o">=</span><span class="ss">&quot;&quot;</span><span class="o">&gt;</span><span class="w"></span>
 <span class="o">&lt;</span><span class="n">meta</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;author&quot;</span><span class="w"> </span><span class="n">content</span><span class="o">=</span><span class="ss">&quot;&quot;</span><span class="o">&gt;</span><span class="w"></span>
 <span class="o">&lt;</span><span class="n">title</span><span class="o">&gt;</span><span class="n">Crypto</span><span class="w"> </span><span class="n">app</span><span class="o">&lt;/</span><span class="n">title</span><span class="o">&gt;</span><span class="w"></span>
-<span class="o">&lt;</span><span class="err">!</span><span class="c1">-- Bootstrap Core CSS --&gt;</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span><span class="w"> </span><span class="n">Bootstrap</span><span class="w"> </span><span class="n">Core</span><span class="w"> </span><span class="n">CSS</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"></span>
 <span class="o">&lt;</span><span class="n">link</span><span class="w"> </span><span class="n">href</span><span class="o">=</span><span class="ss">&quot;http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css&quot;</span><span class="w"> </span><span class="n">rel</span><span class="o">=</span><span class="ss">&quot;stylesheet&quot;</span><span class="o">&gt;</span><span class="w"></span>
-<span class="o">&lt;</span><span class="err">!</span><span class="c1">-- Custom CSS --&gt;</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span><span class="w"> </span><span class="n">Custom</span><span class="w"> </span><span class="n">CSS</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"></span>
 <span class="o">&lt;</span><span class="n">link</span><span class="w"> </span><span class="n">rel</span><span class="o">=</span><span class="ss">&quot;stylesheet&quot;</span><span class="w"> </span><span class="n">type</span><span class="o">=</span><span class="ss">&quot;text/css&quot;</span><span class="w"> </span><span class="n">href</span><span class="o">=</span><span class="ss">&quot;public/css/style.css&quot;</span><span class="o">&gt;</span><span class="w"></span>
-<span class="o">&lt;</span><span class="err">!</span><span class="c1">-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --&gt;</span>
-<span class="o">&lt;</span><span class="err">!</span><span class="c1">-- WARNING: Respond.js doesn&#39;t work if you view the page via file:// --&gt;</span>
-<span class="o">&lt;</span><span class="err">!</span><span class="c1">--[if lt IE 9]&gt;</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span><span class="w"> </span><span class="n">HTML5</span><span class="w"> </span><span class="n">Shim</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">Respond</span><span class="p">.</span><span class="n">js</span><span class="w"> </span><span class="n">IE8</span><span class="w"> </span><span class="n">support</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">HTML5</span><span class="w"> </span><span class="n">elements</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">media</span><span class="w"> </span><span class="n">queries</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--</span><span class="w"> </span><span class="nl">WARNING</span><span class="p">:</span><span class="w"> </span><span class="n">Respond</span><span class="p">.</span><span class="n">js</span><span class="w"> </span><span class="n">doesn</span><span class="err">&#39;</span><span class="n">t</span><span class="w"> </span><span class="k">work</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="k">view</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">page</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="k">file</span><span class="err">:</span><span class="o">//</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"></span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">--[</span><span class="n">if lt IE 9</span><span class="o">]&gt;</span><span class="w"></span>
 <span class="w">    </span><span class="o">&lt;</span><span class="n">script</span><span class="w"> </span><span class="n">src</span><span class="o">=</span><span class="ss">&quot;https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js&quot;</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span><span class="w"></span>
 <span class="w">    </span><span class="o">&lt;</span><span class="n">script</span><span class="w"> </span><span class="n">src</span><span class="o">=</span><span class="ss">&quot;https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js&quot;</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span><span class="w"></span>
-<span class="o">&lt;</span><span class="err">!</span><span class="o">[</span><span class="n">endif</span><span class="o">]</span><span class="c1">--&gt;</span>
+<span class="o">&lt;</span><span class="err">!</span><span class="o">[</span><span class="n">endif</span><span class="o">]--&gt;</span><span class="w"></span>
 <span class="o">&lt;</span><span class="n">script</span><span class="w"> </span><span class="n">src</span><span class="o">=</span><span class="ss">&quot;http://d3js.org/d3.v3.min.js&quot;</span><span class="w"> </span><span class="n">charset</span><span class="o">=</span><span class="ss">&quot;utf-8&quot;</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span><span class="w"></span>
 <span class="o">&lt;</span><span class="n">script</span><span class="w"> </span><span class="n">src</span><span class="o">=</span><span class="ss">&quot;http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js&quot;</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span><span class="w"></span>
 </code></pre></div>
-
 
 <p><code>header.ejs</code></p>
 <div class="highlight"><pre><span></span><code><span class="c">&lt;!-- Navigation --&gt;</span>
@@ -12078,7 +12070,6 @@ to make creating the layout easier.</p>
 <span class="nt">&lt;/nav&gt;</span>
 </code></pre></div>
 
-
 <p><code>footer.ejs</code></p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;text-center text-small text-muted&quot;</span><span class="nt">&gt;</span>© Copyright 2017 - Crypto app<span class="nt">&lt;/p&gt;</span>
 
@@ -12087,7 +12078,6 @@ to make creating the layout easier.</p>
 <span class="c">&lt;!-- Bootstrap Core JS --&gt;</span>
 <span class="nt">&lt;script</span> <span class="na">src=</span><span class="s">&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre></div>
-
 
 <h3>Pages</h3>
 <p>Now creating the pages is simple. The frontpage is currently empty and will simply look like this:</p>
@@ -12116,7 +12106,6 @@ to make creating the layout easier.</p>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div>
-
 
 <p>The mining page template is identical to the frontpage, but we add a placeholder for the D3.js graph and show the data in a table.</p>
 <p><code>mining.ejs</code></p>
@@ -12169,7 +12158,6 @@ to make creating the layout easier.</p>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div>
-
 
 <p>Next I append te template with a Javascript block containing the D3.js graph code.</p>
 <div class="highlight"><pre><span></span><code>// Convert the bitcoins data to the data we can use in DS.js
@@ -12326,7 +12314,6 @@ legend.append(&quot;text&quot;)
     });
 </code></pre></div>
 
-
 <p>For the wallet page I have a similar approach.</p>
 <p><code>wallet.ejs</code></p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
@@ -12382,7 +12369,6 @@ legend.append(&quot;text&quot;)
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div>
-
 
 <p>and the Javascript</p>
 <div class="highlight"><pre><span></span><code><span class="o">//</span><span class="w"> </span><span class="nf">Convert</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">bitcoins</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">DS</span><span class="p">.</span><span class="n">js</span><span class="w"></span>
@@ -12615,7 +12601,6 @@ legend.append(&quot;text&quot;)
 <span class="w">    </span><span class="err">}</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
 
-
 <p>Last thing we need to add is some custom style to the pages and graphs.
 <code>style.css</code></p>
 <div class="highlight"><pre><span></span><code><span class="nt">html</span><span class="o">,</span> <span class="nt">body</span><span class="p">{</span>
@@ -12712,20 +12697,18 @@ legend.append(&quot;text&quot;)
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>And that is it. Now by running the server, the application can be viewed on port 3000 of your localhost!</p>
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/crypto-app  $ node app.js
 </code></pre></div>
-
 
 <h2>Result</h2>
 <p>I did not deploy the application on a server (yet) so it cannot be viewed. However, I have put my code on <a href="https://bitbucket.org/jitsejan/crypto-app">Bitbucket</a> and the two
 charts can be viewed as <a href="http://gist.github.com/jqadrad">Gist</a> or <a href="http://bl.ocks.org/jqadrad">bl.ocks.org</a>.</p>
 <p>The line chart can be viewed on <a href="https://bl.ocks.org/jqadrad/a58719d82741b1642a2061c071ae2375">this</a> page. Using <a href="http://raw.git.com">rawgit</a>
 I was able to display it using an iframe.</p>
-<p><center>
+<p><center></p>
 <iframe src="https://rawgit.com/jqadrad/a58719d82741b1642a2061c071ae2375/raw/53bd826b39abcd55cbbfa2fd06a1e6b7e3bc5ce6/index.html" width="960" height="500" marginwidth="0" marginheight="0" scrolling="no" frameBorder="0"></iframe>
-</center></p>
+<p></center></p>
 <p>The bar chart can be viewed on <a href="http://bl.ocks.org/jqadrad/819518e2dd11cb1eec6132837186db93">this</a> page. Because I am using an additional
 library to create fancy tooltips, the iframe won't load properly.</p>
 <p>Check my <a href="https://github.com/jitsejan/crypto-app-javascript-express-mongoose">Github repo</a> for the source code.</p>

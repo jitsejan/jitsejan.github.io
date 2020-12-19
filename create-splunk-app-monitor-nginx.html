@@ -11881,7 +11881,6 @@ jQuery(document).ready(function($) {
 <span class="err">    `-- local.meta</span>
 </code></pre></div>
 
-
 <p>To the <em>nginxwatcher/default</em> folder the files <strong>indexes.conf</strong> and <strong>inputs.conf</strong> should be added. </p>
 <p>The content of <strong>indexes.conf</strong> should be something like the following:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[nginxwatcher]</span>
@@ -11893,7 +11892,6 @@ jQuery(document).ready(function($) {
 <span class="na">thawedPath</span> <span class="o">=</span> <span class="s">$SPLUNK_DB\nginxwatcher\thaweddb</span>
 </code></pre></div>
 
-
 <p>The content of <strong>inputs.conf</strong> should indicate we are monitoring the Nginx logging folder:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[monitor:///var/log/nginx/*.log]</span>
 <span class="na">disabled</span> <span class="o">=</span> <span class="s">false</span>
@@ -11901,7 +11899,6 @@ jQuery(document).ready(function($) {
 <span class="na">index</span> <span class="o">=</span> <span class="s">nginxwatcher</span>
 <span class="na">sourcetype</span> <span class="o">=</span> <span class="s">nginxwatcher_logs</span>
 </code></pre></div>
-
 
 <p>The contens of <strong>props.conf</strong> looks like this:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[nginxwatcher_logs]</span>
@@ -11913,16 +11910,13 @@ jQuery(document).ready(function($) {
 <span class="na">disabled</span> <span class="o">=</span> <span class="s">false</span>
 </code></pre></div>
 
-
 <p>After restarting Splunk we can start using the new index of the Nginx app and query with:</p>
 <div class="highlight"><pre><span></span><code><span class="err">index=&quot;nginxwatcher&quot;</span>
 </code></pre></div>
 
-
 <p>To retrieve the values of the log files, we can use regular expressions and follow the description on the <a href="http://nginx.org/en/docs/http/ngx_http_log_module.html">Nginx</a> website. </p>
 <div class="highlight"><pre><span></span><code><span class="err">index=&quot;nginxwatcher&quot; | rex field=_raw &quot;^(?&amp;lt;remote_addr&amp;gt;\d+.\d+.\d+.\d+)\s-\s(?P&amp;lt;remote_user&amp;gt;.*?)\s\[(?&amp;lt;localtime&amp;gt;\d+\/\w+\/\d{4}:\d{2}:\d{2}:\d{2}\s\+\d+)\]\s+\&quot;(?&amp;lt;request&amp;gt;.*?)\&quot;\s(?&amp;lt;status&amp;gt;\d+)\s(?&amp;lt;bytes_sent&amp;gt;\d+.*?)\s\&quot;(?&amp;lt;http_refererer&amp;gt;.*?)\&quot;\s\&quot;(?&amp;lt;http_user_agent&amp;gt;.*)\&quot;&quot;</span>
 </code></pre></div>
-
 
 <p>Obviously we do not want to do this every time and we extract the values using the <strong>props.conf</strong>. The file is changed to:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[nginxwatcher_logs]</span>
@@ -11935,18 +11929,15 @@ jQuery(document).ready(function($) {
 <span class="na">EXTRACT-e1</span> <span class="o">=</span> <span class="s">^(?&lt;remote_addr&gt;\d+.\d+.\d+.\d+)\s-\s(?P&lt;remote_user&gt;.*?)\s\[(?&lt;localtime&gt;\d+\/\w+\/\d{4}:\d{2}:\d{2}:\d{2}\s\+\d+)\]\s+\&quot;(?&lt;request&gt;.*?)\&quot;\s(?&lt;status&gt;\d+)\s(?&lt;bytes_sent&gt;\d+.*?)\s\&quot;(?&lt;http_refererer&gt;.*?)\&quot;\s\&quot;(?&lt;http_user_agent&gt;.*)\&quot;</span>
 </code></pre></div>
 
-
 <p>The following query will show a timechart for the status over time, grouped by 30 minutes.</p>
 <div class="highlight"><pre><span></span><code><span class="err">index=&quot;nginxwatcher&quot; </span>
 <span class="err">| timechart count(status) span=30m by status</span>
 </code></pre></div>
 
-
 <p>Top visitors:</p>
 <div class="highlight"><pre><span></span><code><span class="err">index=&quot;nginxwatcher&quot;</span>
 <span class="err">| top limit=20 remote_addr</span>
 </code></pre></div>
-
 
 <p>Pages which produce the most errors:</p>
 <div class="highlight"><pre><span></span><code><span class="err">index=&quot;nginxwatcher&quot;</span>
@@ -11954,7 +11945,6 @@ jQuery(document).ready(function($) {
 <span class="err">| stats count(status) as cnt by request, status</span>
 <span class="err">| sort cnt desc</span>
 </code></pre></div>
-
 
 <p>All these graphs can of course be added to a dashboard to keep a close watch on the webserver.</p>
         </div>

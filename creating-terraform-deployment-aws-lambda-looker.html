@@ -11879,13 +11879,11 @@ jQuery(document).ready(function($) {
 └── variables.tf
 </code></pre></div>
 
-
 <h2>Requirements</h2>
 <h3>Terraform</h3>
 <p>Currently I have <a href="https://learn.hashicorp.com/terraform/getting-started/install.html">installed Terraform</a> on my MacBooks and my VPS. For Mac the installation is straightforward using <a href="https://brew.sh/">brew</a>:</p>
 <div class="highlight"><pre><span></span><code>brew install terraform
 </code></pre></div>
-
 
 <p>For Ubuntu we need to download the ZIP-file, extract it and add it manually:</p>
 <div class="highlight"><pre><span></span><code>sudo apt-get install unzip
@@ -11894,12 +11892,10 @@ unzip terraform_0.11.13_linux_amd64.zip
 sudo mv terraform /usr/local/bin
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code>╭─ ~/code/data-engineer-solutions
 ╰─ terraform version
 Terraform v0.11.13
 </code></pre></div>
-
 
 <h3>Other</h3>
 <ul>
@@ -11909,12 +11905,11 @@ Terraform v0.11.13
 </ul>
 <h2>Implementation</h2>
 <p>The core of the infrastructure is defined in <code>main.tf</code>. The first element is the provider that is being used.</p>
-<div class="highlight"><pre><span></span><code># The AWS provider
-provider &quot;aws&quot; {
-  region = &quot;<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">region</span><span class="cp">}</span>&quot;
-}
+<div class="highlight"><pre><span></span><code><span class="c1"># The AWS provider</span>
+<span class="n">provider</span> <span class="s2">&quot;aws&quot;</span> <span class="p">{</span>
+  <span class="n">region</span> <span class="o">=</span> <span class="s2">&quot;${var.region}&quot;</span>
+<span class="p">}</span>
 </code></pre></div>
-
 
 <p>Secondly, we need to create the policy and the role for executing the Looker Lambda function. The role should be able to start a Lambda function, creating CloudWatch logs, get parameters from SSM and interact with S3. The resources are not limited in this example, but of course it is good practice to keep the permissions of a role limited and reduce the blast radius.</p>
 <div class="highlight"><pre><span></span><code># Define the policy for the role
@@ -11970,25 +11965,23 @@ resource &quot;aws_iam_role_policy&quot; &quot;policy-lambda&quot; {
 <span class="err">}</span>
 </code></pre></div>
 
-
 <p>The Lambda function needs the files for executing the function in a ZIP archive. This should contain both the function itself and it's dependencies. The <code>filename</code> links to the ZIP file that is created by my deployment script. The deployment script makes sure that the Python dependencies are being build for the Amazon image the Lambda function is running on instead of complying it for my Mac. When a Python library (such as <code>pandas</code>) is compiled for Mac it is likely not to work for the Amazon image because <code>pandas</code> depends on many C libraries which are OS specific.</p>
-<div class="highlight"><pre><span></span><code># Define the Lambda function
-resource &quot;aws_lambda_function&quot; &quot;lambda-function&quot; {
-  function_name = &quot;dev-lambda-looker-upload&quot;
-  description   = &quot;Lambda function for uploading a Looker view&quot;
-  handler       = &quot;<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">handler</span><span class="cp">}</span>&quot;
-  runtime       = &quot;<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">runtime</span><span class="cp">}</span>&quot;
+<div class="highlight"><pre><span></span><code><span class="c1"># Define the Lambda function</span>
+<span class="n">resource</span> <span class="s2">&quot;aws_lambda_function&quot;</span> <span class="s2">&quot;lambda-function&quot;</span> <span class="p">{</span>
+  <span class="n">function_name</span> <span class="o">=</span> <span class="s2">&quot;dev-lambda-looker-upload&quot;</span>
+  <span class="n">description</span>   <span class="o">=</span> <span class="s2">&quot;Lambda function for uploading a Looker view&quot;</span>
+  <span class="n">handler</span>       <span class="o">=</span> <span class="s2">&quot;${var.handler}&quot;</span>
+  <span class="n">runtime</span>       <span class="o">=</span> <span class="s2">&quot;${var.runtime}&quot;</span>
 
-  filename = &quot;sources/lambda-functions/looker-upload/lambda.zip&quot;
-  role     = &quot;<span class="cp">${</span><span class="n">aws_iam_role</span><span class="o">.</span><span class="n">role</span><span class="o">-</span><span class="k">lambda</span><span class="o">.</span><span class="n">arn</span><span class="cp">}</span>&quot;
+  <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;sources/lambda-functions/looker-upload/lambda.zip&quot;</span>
+  <span class="n">role</span>     <span class="o">=</span> <span class="s2">&quot;${aws_iam_role.role-lambda.arn}&quot;</span>
 
-  tags = {
-    Environment = &quot;Development&quot;
-    Owner       = &quot;Jitse-Jan&quot;
-  }
-}
+  <span class="n">tags</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Environment</span> <span class="o">=</span> <span class="s2">&quot;Development&quot;</span>
+    <span class="n">Owner</span>       <span class="o">=</span> <span class="s2">&quot;Jitse-Jan&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-
 
 <p>The deployment script <code>deploy.sh</code> contains the following steps:</p>
 <ol>
@@ -12024,7 +12017,6 @@ terraform apply
 <span class="si">${</span><span class="nv">PY_VERSION</span><span class="si">}</span> initial_run.py
 </code></pre></div>
 
-
 <p>Note that for running the Python script <code>boto3</code> should be installed.</p>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; initial_run.py &quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">boto3</span>
@@ -12044,79 +12036,72 @@ terraform apply
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&lt; Response: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">response</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>In order to run the Lambda function at a given interval, we use a cron expression in a CloudWatch event rule. We will run the schedule at midnight every day.</p>
-<div class="highlight"><pre><span></span><code># Define the CloudWatch schedule
-resource &quot;aws_cloudwatch_event_rule&quot; &quot;cloudwatch-event-rule-midnight-run&quot; {
-  name                = &quot;dev-cloudwatch-event-rule-midnight-run-looker-upload&quot;
-  description         = &quot;Cloudwatch event rule to run every day at midnight for the Looker upload.&quot;
-  schedule_expression = &quot;<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">schedule_midnight</span><span class="cp">}</span>&quot;
-}
+<div class="highlight"><pre><span></span><code><span class="c1"># Define the CloudWatch schedule</span>
+<span class="n">resource</span> <span class="s2">&quot;aws_cloudwatch_event_rule&quot;</span> <span class="s2">&quot;cloudwatch-event-rule-midnight-run&quot;</span> <span class="p">{</span>
+  <span class="n">name</span>                <span class="o">=</span> <span class="s2">&quot;dev-cloudwatch-event-rule-midnight-run-looker-upload&quot;</span>
+  <span class="n">description</span>         <span class="o">=</span> <span class="s2">&quot;Cloudwatch event rule to run every day at midnight for the Looker upload.&quot;</span>
+  <span class="n">schedule_expression</span> <span class="o">=</span> <span class="s2">&quot;${var.schedule_midnight}&quot;</span>
+<span class="p">}</span>
 </code></pre></div>
-
 
 <p>The Lambda function and CloudWatch event rule should be attached to get things working.</p>
-<div class="highlight"><pre><span></span><code># Define the CloudWatch target
-resource &quot;aws_cloudwatch_event_target&quot; &quot;cloudwatch-event-target&quot; {
-  rule = &quot;dev-cloudwatch-event-rule-midnight-run-looker-upload&quot;
-  arn  = &quot;arn:aws:lambda:<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">region</span><span class="cp">}</span>:848373817713:function:dev-lambda-looker-upload&quot;
-}
+<div class="highlight"><pre><span></span><code><span class="c1"># Define the CloudWatch target</span>
+<span class="n">resource</span> <span class="s2">&quot;aws_cloudwatch_event_target&quot;</span> <span class="s2">&quot;cloudwatch-event-target&quot;</span> <span class="p">{</span>
+  <span class="n">rule</span> <span class="o">=</span> <span class="s2">&quot;dev-cloudwatch-event-rule-midnight-run-looker-upload&quot;</span>
+  <span class="n">arn</span>  <span class="o">=</span> <span class="s2">&quot;arn:aws:lambda:${var.region}:848373817713:function:dev-lambda-looker-upload&quot;</span>
+<span class="p">}</span>
 </code></pre></div>
-
 
 <p>Finally we need to make sure that CloudWatch is allowed to run the Lambda function. </p>
-<div class="highlight"><pre><span></span><code># Define the Lambda permission to run Lambda from CloudWatch
-resource &quot;aws_lambda_permission&quot; &quot;lambda-permission-cloudwatch&quot; {
-  statement_id  = &quot;AllowExecutionFromCloudWatch&quot;
-  action        = &quot;lambda:InvokeFunction&quot;
-  function_name = &quot;dev-lambda-looker-upload&quot;
-  principal     = &quot;events.amazonaws.com&quot;
-  source_arn    = &quot;arn:aws:events:<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">region</span><span class="cp">}</span>:848373817713:rule/dev-cloudwatch-event-rule-midnight-run-looker-upload&quot;
-}
+<div class="highlight"><pre><span></span><code><span class="c1"># Define the Lambda permission to run Lambda from CloudWatch</span>
+<span class="n">resource</span> <span class="s2">&quot;aws_lambda_permission&quot;</span> <span class="s2">&quot;lambda-permission-cloudwatch&quot;</span> <span class="p">{</span>
+  <span class="n">statement_id</span>  <span class="o">=</span> <span class="s2">&quot;AllowExecutionFromCloudWatch&quot;</span>
+  <span class="n">action</span>        <span class="o">=</span> <span class="s2">&quot;lambda:InvokeFunction&quot;</span>
+  <span class="n">function_name</span> <span class="o">=</span> <span class="s2">&quot;dev-lambda-looker-upload&quot;</span>
+  <span class="n">principal</span>     <span class="o">=</span> <span class="s2">&quot;events.amazonaws.com&quot;</span>
+  <span class="n">source_arn</span>    <span class="o">=</span> <span class="s2">&quot;arn:aws:events:${var.region}:848373817713:rule/dev-cloudwatch-event-rule-midnight-run-looker-upload&quot;</span>
+<span class="p">}</span>
 </code></pre></div>
-
 
 <p>The result of the Lambda function will be written to a S3 bucket. In the definition we make sure the bucket is public and we enable versioning. </p>
-<div class="highlight"><pre><span></span><code># Define the public bucket
-resource &quot;aws_s3_bucket&quot; &quot;bucket-lambda-deployments&quot; {
-  bucket = &quot;dev-jwat&quot;
-  region = &quot;<span class="cp">${</span><span class="n">var</span><span class="o">.</span><span class="n">region</span><span class="cp">}</span>&quot;
-  acl    = &quot;public-read&quot;
+<div class="highlight"><pre><span></span><code><span class="c1"># Define the public bucket</span>
+<span class="n">resource</span> <span class="s2">&quot;aws_s3_bucket&quot;</span> <span class="s2">&quot;bucket-lambda-deployments&quot;</span> <span class="p">{</span>
+  <span class="n">bucket</span> <span class="o">=</span> <span class="s2">&quot;dev-jwat&quot;</span>
+  <span class="n">region</span> <span class="o">=</span> <span class="s2">&quot;${var.region}&quot;</span>
+  <span class="n">acl</span>    <span class="o">=</span> <span class="s2">&quot;public-read&quot;</span>
 
-  versioning = {
-    enabled = true
-  }
+  <span class="n">versioning</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">enabled</span> <span class="o">=</span> <span class="bp">true</span>
+  <span class="p">}</span>
 
-  tags = {
-    Environment = &quot;Development&quot;
-    Owner       = &quot;Jitse-Jan&quot;
-  }
-}
+  <span class="n">tags</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Environment</span> <span class="o">=</span> <span class="s2">&quot;Development&quot;</span>
+    <span class="n">Owner</span>       <span class="o">=</span> <span class="s2">&quot;Jitse-Jan&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
-
 
 <p>Variables for a Terraform deployment can be stored in different ways. Terraform will automatically pick up all <code>*.tf</code> and <code>.tfvars</code> and add it to the deployment. Most commonly the two files <code>terraform.tfvars</code>and <code>variables.tf</code> are used. The first one defines the specific values of the parameters, while the latter often contains the type and the default. In this example it I have defined the following.  The value of  <code>region</code> is inside the first file, while the type <code>{}</code> (string) is defined in the second file.  </p>
 <p><code>terraform.tfvars</code></p>
 <div class="highlight"><pre><span></span><code><span class="err">region = &quot;eu-west-2&quot;</span>
 </code></pre></div>
 
-
 <p><code>variables.tf</code></p>
-<div class="highlight"><pre><span></span><code><span class="k">variable</span> <span class="ss">&quot;handler&quot;</span> <span class="err">{</span>
-  <span class="k">default</span> <span class="o">=</span> <span class="ss">&quot;lambda.handler&quot;</span>
-<span class="err">}</span>
+<div class="highlight"><pre><span></span><code><span class="n">variable</span> <span class="s2">&quot;handler&quot;</span> <span class="p">{</span>
+  <span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;lambda.handler&quot;</span>
+<span class="p">}</span>
 
-<span class="k">variable</span> <span class="ss">&quot;region&quot;</span> <span class="err">{}</span>
+<span class="n">variable</span> <span class="s2">&quot;region&quot;</span> <span class="p">{}</span>
 
-<span class="k">variable</span> <span class="ss">&quot;runtime&quot;</span> <span class="err">{</span>
-  <span class="k">default</span> <span class="o">=</span> <span class="ss">&quot;python3.7&quot;</span>
-<span class="err">}</span>
+<span class="n">variable</span> <span class="s2">&quot;runtime&quot;</span> <span class="p">{</span>
+  <span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;python3.7&quot;</span>
+<span class="p">}</span>
 
-<span class="k">variable</span> <span class="ss">&quot;schedule_midnight&quot;</span> <span class="err">{</span>
-  <span class="k">default</span> <span class="o">=</span> <span class="ss">&quot;cron(0 0 * * ? *)&quot;</span>
-<span class="err">}</span>
+<span class="n">variable</span> <span class="s2">&quot;schedule_midnight&quot;</span> <span class="p">{</span>
+  <span class="n">default</span> <span class="o">=</span> <span class="s2">&quot;cron(0 0 * * ? *)&quot;</span>
+<span class="p">}</span>
 </code></pre></div>
-
 
 <h2>Execution</h2>
 <h3>Terraform initialization</h3>
@@ -12147,7 +12132,6 @@ If you ever <span class="nb">set</span> or change modules or backend configurati
 rerun this <span class="nb">command</span> to reinitialize your working directory. If you forget, other
 commands will detect it and remind you to <span class="k">do</span> so <span class="k">if</span> necessary.
 </code></pre></div>
-
 
 <h3>Terraform plan</h3>
 <div class="highlight"><pre><span></span><code>╭─ ~/code/terraform-aws-lambda-looker $
@@ -12260,7 +12244,6 @@ Note: You didn<span class="s1">&#39;t specify an &quot;-out&quot; parameter to s
 <span class="s2">&quot;terraform apply&quot;</span> is subsequently run.
 </code></pre></div>
 
-
 <h3>Terraform deploy</h3>
 <div class="highlight"><pre><span></span><code>╭─ ~/code/terraform-aws-lambda-looker $ 
 ╰─ ./deploy.sh
@@ -12295,7 +12278,6 @@ Apply complete! Resources: <span class="m">0</span> added, <span class="m">0</sp
 &gt; Running <span class="k">function</span> <span class="sb">`</span>dev-lambda-looker-upload<span class="sb">`</span>.
 &lt; Response: <span class="o">{</span><span class="s1">&#39;ResponseMetadata&#39;</span>: <span class="o">{</span><span class="s1">&#39;RequestId&#39;</span>: <span class="s1">&#39;1d492f55-78c4-47c2-921a-a27cf784d4b0&#39;</span>, <span class="s1">&#39;HTTPStatusCode&#39;</span>: <span class="m">200</span>, <span class="s1">&#39;HTTPHeaders&#39;</span>: <span class="o">{</span><span class="s1">&#39;date&#39;</span>: <span class="s1">&#39;Mon, 13 May 2019 08:40:36 GMT&#39;</span>, <span class="s1">&#39;content-type&#39;</span>: <span class="s1">&#39;application/json&#39;</span>, <span class="s1">&#39;content-length&#39;</span>: <span class="s1">&#39;123&#39;</span>, <span class="s1">&#39;connection&#39;</span>: <span class="s1">&#39;keep-alive&#39;</span>, <span class="s1">&#39;x-amzn-requestid&#39;</span>: <span class="s1">&#39;1d492f55-78c4-47c2-921a-a27cf784d4b0&#39;</span>, <span class="s1">&#39;x-amz-function-error&#39;</span>: <span class="s1">&#39;Unhandled&#39;</span>, <span class="s1">&#39;x-amzn-remapped-content-length&#39;</span>: <span class="s1">&#39;0&#39;</span>, <span class="s1">&#39;x-amz-executed-version&#39;</span>: <span class="s1">&#39;$LATEST&#39;</span>, <span class="s1">&#39;x-amzn-trace-id&#39;</span>: <span class="s1">&#39;root=1-5cd92d84-d306a2215d6228179c96cb04;sampled=0&#39;</span><span class="o">}</span>, <span class="s1">&#39;RetryAttempts&#39;</span>: <span class="m">0</span><span class="o">}</span>, <span class="s1">&#39;StatusCode&#39;</span>: <span class="m">200</span>, <span class="s1">&#39;FunctionError&#39;</span>: <span class="s1">&#39;Unhandled&#39;</span>, <span class="s1">&#39;ExecutedVersion&#39;</span>: <span class="s1">&#39;$LATEST&#39;</span>, <span class="s1">&#39;Payload&#39;</span>: &lt;botocore.response.StreamingBody object at 0x10ea5ceb8&gt;<span class="o">}</span>
 </code></pre></div>
-
 
 <h2>Validation</h2>
 <h3>Lambda functions</h3>
