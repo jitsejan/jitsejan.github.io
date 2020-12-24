@@ -11865,6 +11865,7 @@ jQuery(document).ready(function($) {
 <span class="kn">from</span> <span class="nn">notebooksettings</span> <span class="kn">import</span> <span class="n">GRACENOTE_USERID</span><span class="p">,</span> <span class="n">SPOTIFY_USERNAME</span>
 </code></pre></div>
 
+
 <h3>1. Connect to Spotify</h3>
 <p>I will use the <a href="https://github.com/plamere/spotipy">Spotipy</a> library to connect to Spotify. Both reading the library and reading the top tracks will be enabled by setting the scope appropriately.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
@@ -11876,6 +11877,7 @@ jQuery(document).ready(function($) {
 <span class="n">username</span> <span class="o">=</span> <span class="n">SPOTIFY_USERNAME</span>
 <span class="n">token</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">prompt_for_user_token</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">scope</span><span class="p">)</span>
 </code></pre></div>
+
 
 <h3>2. Retrieve songs from Spotify</h3>
 <p>After creating a token, you can make a new Spotipy instance and connect to your account. Lets retrieve the top 50 of artists of my account and add the artists to a list.</p>
@@ -11892,6 +11894,7 @@ jQuery(document).ready(function($) {
     <span class="nb">print</span> <span class="s2">&quot;Can&#39;t get token for&quot;</span><span class="p">,</span> <span class="n">username</span>
 </code></pre></div>
 
+
 <h3>3. Create a placeholder for the country mapping</h3>
 <p>To create a choropleth, I will create a list of countries using the <a href="https://pypi.python.org/pypi/pycountry">Pycountry</a> library. The country data will contain the name, the three character long abbreviation, the number of occurrences of the country for the different artists and a list of artists.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pycountry</span>
@@ -11900,10 +11903,12 @@ jQuery(document).ready(function($) {
     <span class="n">country_data</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">cnt</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">cnt</span><span class="o">.</span><span class="n">alpha3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[]])</span>
 </code></pre></div>
 
+
 <h3>4. Create a mapping for the country name to country abbreviation</h3>
 <p>To map the country name to a three character abbreviation, we need to make a mapping linking the two together.</p>
 <div class="highlight"><pre><span></span><code><span class="n">mapping</span> <span class="o">=</span> <span class="p">{</span><span class="n">country</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">country</span><span class="o">.</span><span class="n">alpha3</span> <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">pycountry</span><span class="o">.</span><span class="n">countries</span><span class="p">}</span>
 </code></pre></div>
+
 
 <h3>5. Retrieve the country of origin for the artists</h3>
 <p>To find the country of origin, I will make use of the <a href="https://github.com/cweichen/pygn">pygn</a> library to connect to <a href="https://www.gracenote.com">Gracenote</a> and find metadata for music.</p>
@@ -11934,12 +11939,14 @@ jQuery(document).ready(function($) {
             <span class="n">country_data</span><span class="p">[</span><span class="n">index</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">artist_name</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h3>6. Create a dataframe from the data</h3>
 <p>Using <a href="http://pandas.pydata.org">Pandas</a> we will now create a DataFrame to convert the data from the country data to a Pandas format.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">country_data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Country name&#39;</span><span class="p">,</span> <span class="s1">&#39;Code&#39;</span><span class="p">,</span> <span class="s1">&#39;Amount&#39;</span><span class="p">,</span> <span class="s1">&#39;Artists&#39;</span><span class="p">])</span>
 <span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </code></pre></div>
+
 
 <h3>7. Create a choropleth from the data</h3>
 <p>Using <a href="https://plot.ly">Plotly</a> we can easily make a <a href="https://en.wikipedia.org/wiki/Choropleth_map">choropleth</a> for the data that we just retrieved. In the data settings you indicate the type is a choropleth graph, the locations can be found in the 'Code' column and the important data is the column 'Amount'. Next we set the colors and a title and we are good to go.</p>
@@ -11987,6 +11994,7 @@ jQuery(document).ready(function($) {
 <span class="n">figure</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="n">layout</span><span class="p">)</span>
 <span class="n">py</span><span class="o">.</span><span class="n">iplot</span><span class="p">(</span><span class="n">figure</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
+
 
 <iframe width="500" height="400" frameborder="0" scrolling="no" src="//plot.ly/~jitsejan/68.embed"> </iframe>
 

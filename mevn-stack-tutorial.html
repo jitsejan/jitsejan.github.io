@@ -11886,10 +11886,12 @@ jitsejan@dev:~/code$ npm --version
 <span class="m">5</span>.5.1
 </code></pre></div>
 
+
 <h2>Setup</h2>
 <p>Create the folder for the application and move inside it.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev:~/code$ mkdir mongo-express-vue-node <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$_</span>
 </code></pre></div>
+
 
 <h2>Client</h2>
 <p><center><img height=100 src="https://vuejs.org/images/logo.png"/></center></p>
@@ -11898,6 +11900,7 @@ jitsejan@dev:~/code$ npm --version
 jitsejan@dev:~/code$ vue --version
 <span class="m">2</span>.9.1
 </code></pre></div>
+
 
 <p>Use the <a href="https://github.com/vuejs-templates/webpack">webpack template</a> to create a Vue app with a webpack boilerplate. </p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev:~/code/mongo-express-vue-node$ vue init webpack client
@@ -11927,6 +11930,7 @@ jitsejan@dev:~/code/mongo-express-vue-node$ <span class="nb">cd</span> client
 jitsejan@dev:~/code/mongo-express-vue-node/client$ npm install
 </code></pre></div>
 
+
 <p>To make the app accessible from the VPS, first change the host for the webpack-dev-server in <code>client/package.json</code>from</p>
 <div class="highlight"><pre><span></span><code>...
 <span class="s2">&quot;scripts&quot;</span>: <span class="o">{</span>
@@ -11936,6 +11940,7 @@ jitsejan@dev:~/code/mongo-express-vue-node/client$ npm install
 ...
 </code></pre></div>
 
+
 <p>to</p>
 <div class="highlight"><pre><span></span><code>...
 <span class="s2">&quot;scripts&quot;</span>: <span class="o">{</span>
@@ -11944,6 +11949,7 @@ jitsejan@dev:~/code/mongo-express-vue-node/client$ npm install
   <span class="o">}</span>,
 ...
 </code></pre></div>
+
 
 <p>and make sure the <code>disableHostCheck</code> is set to <code>true</code> in <code>client/build/webpack.dev.conf.js</code>:</p>
 <div class="highlight"><pre><span></span><code>...
@@ -11955,9 +11961,11 @@ devServer: <span class="o">{</span>
 ...
 </code></pre></div>
 
+
 <p>We can now start the application by running the following command:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev:~/code/mongo-express-vue-node/client$ npm run dev
 </code></pre></div>
+
 
 <p>and use curl to check the page:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev:~/code/mongo-express-vue-node/client$ curl dev.jitsejan.com:8080
@@ -11977,6 +11985,7 @@ devServer: <span class="o">{</span>
 &lt;/html&gt;
 </code></pre></div>
 
+
 <p>which is indeed the content of the <code>index.html</code> of the client application.</p>
 <h2>Server</h2>
 <p><center><img height=100 src="https://i.cloudup.com/zfY6lL7eFa-3000x3000.png"/></center></p>
@@ -11987,6 +11996,7 @@ devServer: <span class="o">{</span>
 jitsejan@dev:~/code/mongo-express-vue-node$ express --version
 <span class="m">4</span>.15.5
 </code></pre></div>
+
 
 <p>Using the generator, we can create the boilerplate for the server, with a <code>.gitignore</code> by using <code>--git</code> and with <code>ejs</code> support by setting the view argument. </p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev:~/code/mongo-express-vue-node$ express --git --view ejs server
@@ -12016,6 +12026,7 @@ jitsejan@dev:~/code/mongo-express-vue-node$ express --version
      $ <span class="nv">DEBUG</span><span class="o">=</span>server:* npm start
 </code></pre></div>
 
+
 <p>Lets navigate inside the server folder, install the packages and start the server.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev:~/code/mongo-express-vue-node$ <span class="nb">cd</span> server/
 jitsejan@dev:~/code/mongo-express-vue-node/server$ npm install
@@ -12026,6 +12037,7 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
 
   server:server Listening on port <span class="m">3000</span> +0ms
 </code></pre></div>
+
 
 <p>Using curl we can retrieve the content of the application by requesting the server on port 3000.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev:~/code/mongo-express-vue-node$ curl dev.jitsejan.com:3000
@@ -12043,6 +12055,7 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
   &lt;/body&gt;
 &lt;/html&gt;
 </code></pre></div>
+
 
 <p><center><img style="max-width:500px; -webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(2px 5px 5px #222);" src="images/express_main.png" /></center></p>
 <h3>Setup API route</h3>
@@ -12067,9 +12080,11 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
 <span class="p">...</span>
 </code></pre></div>
 
+
 <p>Start the server to test the new route by running the following command:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span><span class="o">=</span>server:* npm start
 </code></pre></div>
+
 
 <p>which will result in the curl response as shown below using <code>jq</code> for a nicer layout.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev:~$ curl dev.jitsejan.com:3000/characters <span class="p">|</span> jq <span class="s1">&#39;.&#39;</span>
@@ -12088,11 +12103,13 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
 <span class="o">]</span>
 </code></pre></div>
 
+
 <p><center><img style="max-width:500px; -webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(2px 5px 5px #222);" src="images/express_characters.png" /></center></p>
 <h2>Connect client and server</h2>
 <p>Finally, we need to connect the VueJS front with the ExpressJS back-end. To do this, we will use <code>axios</code> at the client-side to talk to the API from the server-side. First install <code>axios</code> for the client:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev:~/code/mongo-express-vue-node/client$ npm install --save axios
 </code></pre></div>
+
 
 <h3>Setup characters component</h3>
 <p>Create a new Vue component to show the characters from the API. Add the content to <code>client/src/components/Characters.vue</code>:</p>
@@ -12121,8 +12138,8 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
     <span class="k">this</span><span class="p">.</span><span class="nx">getCharacters</span><span class="p">()</span>
   <span class="p">},</span>
   <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
-    <span class="k">async</span> <span class="nx">getCharacters</span> <span class="p">()</span> <span class="p">{</span>
-      <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">CharactersService</span><span class="p">.</span><span class="nx">fetchCharacters</span><span class="p">()</span>
+    <span class="nx">async</span> <span class="nx">getCharacters</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="kr">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">CharactersService</span><span class="p">.</span><span class="nx">fetchCharacters</span><span class="p">()</span>
       <span class="k">this</span><span class="p">.</span><span class="nx">characters</span> <span class="o">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">characters</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
     <span class="p">}</span>
@@ -12130,6 +12147,7 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
 <span class="p">}</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div>
+
 
 <p>with <code>client/src/services/CharactersService.js</code> contains</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">api</span> <span class="nn">from</span> <span class="s1">&#39;@/services/api&#39;</span>
@@ -12141,6 +12159,7 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
 <span class="p">}</span>
 </code></pre></div>
 
+
 <p>and <code>client/src/services/api.js</code> contains</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">axios</span> <span class="nn">from</span> <span class="s1">&#39;axios&#39;</span>
 
@@ -12150,6 +12169,7 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
   <span class="p">})</span>
 <span class="p">}</span>
 </code></pre></div>
+
 
 <p>Add a route to <code>client/src/router/index.js</code> for the characters view by adding the import of the component and defining the route parameters.</p>
 <div class="highlight"><pre><span></span><code><span class="p">...</span>
@@ -12164,6 +12184,7 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
 <span class="p">...</span>
 </code></pre></div>
 
+
 <h3>Extend main application</h3>
 <p>To visit the available routes, add the router-links to the main application. Change the template in <code>client/src/App.vue</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
@@ -12175,6 +12196,7 @@ jitsejan@dev:~/code/mongo-express-vue-node/server$ <span class="nv">DEBUG</span>
 <span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
 ...
 </code></pre></div>
+
 
 <p>Main page:
 <center><img style="max-width:500px; -webkit-filter: drop-shadow(5px 5px 5px #222); filter: drop-shadow(2px 5px 5px #222);" src="images/main_menu.png" /></center>

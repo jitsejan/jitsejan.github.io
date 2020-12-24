@@ -11876,10 +11876,12 @@ Java<span class="o">(</span>TM<span class="o">)</span> SE Runtime Environment <s
 Java HotSpot<span class="o">(</span>TM<span class="o">)</span> <span class="m">64</span>-Bit Server VM <span class="o">(</span>build <span class="m">25</span>.172-b11, mixed mode<span class="o">)</span>
 </code></pre></div>
 
+
 <h2>Spark installation</h2>
 <p>Assuming <code>brew</code> is installed, navigate to the <em>Formula</em> folder.</p>
 <div class="highlight"><pre><span></span><code>$ <span class="nb">cd</span> /usr/local/Homebrew/Library/Taps/homebrew/homebrew-core/Formula
 </code></pre></div>
+
 
 <p>We need to create the formula to install the correct version of Spark. If there is already a <code>apache-spark.rb</code> rename it to <code>apache-spark.rb.old</code>. Create the <code>apache-spark.rb</code> formula with the following content. Note that we explicitly use <strong>Spark 2.2.0</strong>.</p>
 <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ApacheSpark</span> <span class="o">&lt;</span> <span class="no">Formula</span>
@@ -11907,16 +11909,19 @@ Java HotSpot<span class="o">(</span>TM<span class="o">)</span> <span class="m">6
 <span class="k">end</span>
 </code></pre></div>
 
+
 <p>Now install <code>apache-spark</code> and verify the correct version gets installed.</p>
 <div class="highlight"><pre><span></span><code>$ brew install apache-spark
 $ brew list apache-spark --versions
 apache-spark <span class="m">2</span>.2.0 
 </code></pre></div>
 
+
 <p>Verify that we can use Spark now by starting <code>pyspark</code> in a terminal. Before we run <code>pyspark</code> make sure <code>JAVA_HOME</code> is set to the correct path and <code>PYSPARK_PYTHON</code> is <strong>not</strong> using Python 2. Use <code>sudo find / -name javac</code> to find the Java path.</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="s2">&quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/&quot;</span>
 <span class="nb">export</span> <span class="nv">PYSPARK_PYTHON</span><span class="o">=</span>python3
 </code></pre></div>
+
 
 <div class="highlight"><pre><span></span><code>$ pyspark                                                                           Python <span class="m">3</span>.5.0 <span class="o">(</span>v3.5.0:374f501f4567, Sep <span class="m">12</span> <span class="m">2015</span>, <span class="m">11</span>:00:19<span class="o">)</span>
 <span class="o">[</span>GCC <span class="m">4</span>.2.1 <span class="o">(</span>Apple Inc. build <span class="m">5666</span><span class="o">)</span> <span class="o">(</span>dot <span class="m">3</span><span class="o">)]</span> on darwin
@@ -11944,11 +11949,13 @@ SparkSession available as <span class="s1">&#39;spark&#39;</span>.
 &gt;&gt;&gt;
 </code></pre></div>
 
+
 <p>Apart from some warnings, we can see <code>pyspark</code> is working, connects to the local Spark, refers to the right Spark version and Python 3 (<code>3.5.0</code>) is used in the shell.</p>
 <h2>Zeppelin installation</h2>
 <p>We need to install <strong>Zeppelin 0.7.3</strong> (and not 0.8.0!) to setup the connection with AWS in a later stage. Navigate to Zeppelin's <a href="http://zeppelin.apache.org/download.html">Download page</a> and scroll down for <a href="http://www.apache.org/dyn/closer.cgi/zeppelin/zeppelin-0.7.3/zeppelin-0.7.3-bin-all.tgz">Zeppelin-0.7.3-bin-all</a>. Unpack the TGZ-file and start Zeppelin with the command:</p>
 <div class="highlight"><pre><span></span><code>$ bin/zeppelin-daemon.sh start
 </code></pre></div>
+
 
 <p>By navigating to http://localhost:8080 the Zeppelin interface should show.</p>
 <p><img alt="a2da3065.png" src="images/a2da3065.png"></p>
@@ -11958,6 +11965,7 @@ SparkSession available as <span class="s1">&#39;spark&#39;</span>.
 <span class="n">rdd</span><span class="o">.</span><span class="n">toDF</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div>
 
+
 <div class="highlight"><pre><span></span><code><span class="err">+--------+-----+</span>
 <span class="err">|    name|color|</span>
 <span class="err">+--------+-----+</span>
@@ -11966,6 +11974,7 @@ SparkSession available as <span class="s1">&#39;spark&#39;</span>.
 <span class="err">|Princess| Pink|</span>
 <span class="err">+--------+-----+</span>
 </code></pre></div>
+
 
 <p><img alt="2ec1fb2f.png" src="images/2ec1fb2f.png"></p>
 <h2>Development with AWS Spark</h2>
@@ -11979,6 +11988,7 @@ SparkSession available as <span class="s1">&#39;spark&#39;</span>.
 <p>Go the the details page for the endpoint and copy the <em>SSH tunnel to remote interpeter</em> line. Replace the <private-key.pem> with the private key that was just generated in the previous step. Run the command in a terminal and keep it running. Choose <em>yes</em> when it prompts to accept the connection. We now have an active SSH tunnel that will route all traffic to localhost port 9007 to the development endpoint on AWS.</p>
 <div class="highlight"><pre><span></span><code>$ ssh -i id_rsa -vnNT -L :9007:123.456.789.255:9007 glue@ec2-52-16-115-181.eu-west-1.compute.amazonaws.com
 </code></pre></div>
+
 
 <p><img alt="89a5835c.png" src="images/89a5835c.png"></p>
 <h3>Connect Zeppelin to Glue endpoint</h3>
@@ -12018,6 +12028,7 @@ SparkSession available as <span class="s1">&#39;spark&#39;</span>.
 
 <span class="n">job</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
 </code></pre></div>
+
 
 <p>After modifying the code, save the job and run it to verify the script is working. </p>
 <h2>Conclusion</h2>

@@ -11866,6 +11866,7 @@ jQuery(document).ready(function($) {
 <div class="highlight"><pre><span></span><code>$ wget https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.6/postgresql-42.2.6.jar -P /opt/notebooks/
 </code></pre></div>
 
+
 <p>I have saved my configuration in the following variable for testing purposes. Of course it would be wise to store the details in environment variables or in a proper configuration file.</p>
 <div class="highlight"><pre><span></span><code><span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;aws_access_key&#39;</span><span class="p">:</span> <span class="s1">&#39;aaaaaa&#39;</span><span class="p">,</span>
@@ -11879,6 +11880,7 @@ jQuery(document).ready(function($) {
     <span class="s1">&#39;redshift_host&#39;</span><span class="p">:</span> <span class="s1">&#39;myhost&#39;</span><span class="p">,</span>
 <span class="p">}</span>
 </code></pre></div>
+
 
 <p>Setting up the Spark context is straightforward. Make sure the Postgres library is available by adding it to <code>extraClassPath</code>, or copy it to the <code>jars</code> folder in the Spark installation location (<code>SPARK_HOME</code>).</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark</span> <span class="kn">import</span> <span class="n">SparkContext</span><span class="p">,</span> <span class="n">SparkConf</span><span class="p">,</span> <span class="n">SQLContext</span>
@@ -11904,10 +11906,12 @@ jQuery(document).ready(function($) {
 <span class="n">sqlContext</span> <span class="o">=</span> <span class="n">SQLContext</span><span class="p">(</span><span class="n">sc</span><span class="p">)</span>
 </code></pre></div>
 
+
 <p>Now the Spark context is set I specify the schema and the table that I want to read from Redshift and write to S3.</p>
 <div class="highlight"><pre><span></span><code><span class="n">schema</span> <span class="o">=</span> <span class="s1">&#39;custom&#39;</span>
 <span class="n">table</span> <span class="o">=</span> <span class="s1">&#39;postcodes&#39;</span>
 </code></pre></div>
+
 
 <p>The reading is done using the <code>jdbc</code> format and specifying the Redshift details:</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">sqlContext</span><span class="o">.</span><span class="n">read</span> \
@@ -11918,6 +11922,7 @@ jQuery(document).ready(function($) {
                <span class="o">.</span><span class="n">option</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;redshift_pass&#39;</span><span class="p">))</span> \
                <span class="o">.</span><span class="n">load</span><span class="p">()</span>
 </code></pre></div>
+
 
 <p>Writing is easy since I specified the S3 details in the Spark configuration. </p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="s1">&#39;overwrite&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">parquet</span><span class="p">(</span><span class="s2">&quot;s3a://{config.get(&#39;aws_bucket&#39;)}/raw/</span><span class="si">{schema}</span><span class="s2">/</span><span class="si">{table}</span><span class="s2">)</span>

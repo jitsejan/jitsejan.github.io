@@ -11872,6 +11872,7 @@ jQuery(document).ready(function($) {
 <span class="err">❯</span> <span class="n">brew</span> <span class="n">install</span> <span class="n">mongodb</span><span class="o">-</span><span class="n">community</span><span class="mf">@4.2</span>
 </code></pre></div>
 
+
 <p>I went with Atlas and tried one of the free clusters they offer.</p>
 <p><center><img src="images/fmg_choose_cluster.png" width="50%" /></center></p>
 <p>After selecting the region and the name, simply click on create and wait for the cluster to be ready.</p>
@@ -11916,6 +11917,7 @@ jQuery(document).ready(function($) {
     <span class="n">main</span><span class="p">()</span>
 </code></pre></div>
 
+
 <p>The JSON for one item will look like the following:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;World 1-1 is the first level of World 1 in Super Mario Bros., and the first level overall in said game; thus, it is the first level in general of the entire Super Mario series. The first screen of the level is also the game&#39;s title screen when starting it up. It contains the basics of the Super Mario Bros. game, getting the player ready for the journey ahead. The level consists of Magic Mushrooms, standard enemies such as Little Goombas and Koopa Troopas, a lot of coins, a hidden secret bonus area that allows the player to skip most of the level, Fire Flowers, pits, and a flagpole at the end. According to Shigeru Miyamoto, World 1-1 was one of the later levels created, due to the \&quot;fun\&quot; courses created first being more suited for late game, where players were more familiar with how Super Mario Bros. works.&quot;</span><span class="p">,</span>
@@ -11959,6 +11961,7 @@ jQuery(document).ready(function($) {
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+
 
 <h2>Storing the dataset</h2>
 <h3>Creating the schemas</h3>
@@ -12014,14 +12017,17 @@ jQuery(document).ready(function($) {
     <span class="n">powerups</span> <span class="o">=</span> <span class="n">ListField</span><span class="p">(</span><span class="n">ReferenceField</span><span class="p">(</span><span class="n">Powerup</span><span class="p">))</span>
 </code></pre></div>
 
+
 <h3>Loading the data into MongoDB</h3>
 <p>Now the schemas for the documents has been created, I can load the data into the MongoDB cluster that I have created before. I open the JSON file and iterate through the data. Note that I have used different methods to get data from the JSON object. One way is to use multiple <code>get</code>s to get a nest field.</p>
 <div class="highlight"><pre><span></span><code><span class="n">game</span> <span class="o">=</span> <span class="n">Game</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;table_data&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;Game&#39;</span><span class="p">))</span>
 </code></pre></div>
 
+
 <p>A more readable way is to use <code>jsonpath</code> like I did here, but it requires an extra import.</p>
 <div class="highlight"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="n">jsonpath</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="s1">&#39;table_data.World-Level&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 </code></pre></div>
+
 
 <p>The final script to load the data is <code>database.py</code>. Since I am doing this project as a proof of concept I will always wipe the database first before adding new data.</p>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; database.py &quot;&quot;&quot;</span>
@@ -12081,9 +12087,11 @@ jQuery(document).ready(function($) {
 <span class="n">init_db</span><span class="p">()</span>
 </code></pre></div>
 
+
 <p>To populate the database run the script:</p>
 <div class="highlight"><pre><span></span><code><span class="err">❯ python database.py</span>
 </code></pre></div>
+
 
 <h2>Verifying the dataset</h2>
 <h3>Option 1. Verifying it using the website</h3>
@@ -12119,6 +12127,7 @@ jQuery(document).ready(function($) {
 <span class="c1"># Magic Mushroom</span>
 <span class="c1"># Fire Flower</span>
 </code></pre></div>
+
 
 <p><center><img src="images/fmg_verify_python.png" width="50%" /></center></p>
 <h2>Setting up GraphQL</h2>
@@ -12178,6 +12187,7 @@ jQuery(document).ready(function($) {
 <span class="n">schema</span> <span class="o">=</span> <span class="n">graphene</span><span class="o">.</span><span class="n">Schema</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">Query</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="p">[</span><span class="n">Powerup</span><span class="p">,</span> <span class="n">Level</span><span class="p">,</span> <span class="n">Enemy</span><span class="p">,</span> <span class="n">Game</span><span class="p">])</span>
 </code></pre></div>
 
+
 <p>To start the server now the schema is defined we need to create the application. Flask is used as web application with one path (rule) to the GraphQL endpoint. I connect to the MongoDB database and set the database. The server is started on port 5002.</p>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot; app.py &quot;&quot;&quot;</span>
 <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
@@ -12201,9 +12211,11 @@ jQuery(document).ready(function($) {
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">5002</span><span class="p">)</span>
 </code></pre></div>
 
+
 <p>Go to your terminal and run the webapp:</p>
 <div class="highlight"><pre><span></span><code><span class="err">❯ python app.py</span>
 </code></pre></div>
+
 
 <h2>Verifying GraphQL</h2>
 <h3>Option 1. Verify using the Flask version of GraphiQL</h3>

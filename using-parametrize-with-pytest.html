@@ -11878,6 +11878,7 @@ jQuery(document).ready(function($) {
 <span class="o">...</span>
 </code></pre></div>
 
+
 <p><em>Snippet - Tests to validate access to castle.</em></p>
 <div class="highlight"><pre><span></span><code><span class="o">...</span>
 
@@ -11899,6 +11900,7 @@ jQuery(document).ready(function($) {
     <span class="o">...</span>
 </code></pre></div>
 
+
 <p>Running this in the console looks like this:</p>
 <div class="highlight"><pre><span></span><code>$ pytest -k has_access -v
 <span class="o">============================================================</span> <span class="nb">test</span> session <span class="nv">starts</span> <span class="o">=============================================================</span>
@@ -11912,6 +11914,7 @@ tests/test_castle_class.py::TestCastleClass::test_has_access_true_with_super_mus
 tests/test_castle_class.py::TestCastleClass::test_has_access_false_without_super_mushroom PASSED                                       <span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
 </code></pre></div>
 
+
 <h2>Introducing parametrize</h2>
 <p>Using <a href="https://docs.pytest.org/en/latest/parametrize.html">parametrize</a> writing tests becomes significantly easier. Instead of writing a test for each combination of parameters I can write one test with a list of different sets of parameters. For each set of parameters the same test case will be executed, hence the two test cases above can be replaced by:</p>
 <div class="highlight"><pre><span></span><code>    <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s1">&#39;powerup,has_access&#39;</span><span class="p">,</span> <span class="p">[</span>
@@ -11923,6 +11926,7 @@ tests/test_castle_class.py::TestCastleClass::test_has_access_false_without_super
         <span class="n">character</span><span class="o">.</span><span class="n">powerup</span> <span class="o">=</span> <span class="n">powerup</span>
         <span class="k">assert</span> <span class="n">castle</span><span class="o">.</span><span class="n">has_access</span><span class="p">(</span><span class="n">character</span><span class="p">)</span> <span class="o">==</span> <span class="n">has_access</span>
 </code></pre></div>
+
 
 <p>Running the same selection of tests again still returns two results but now it is indicated by the ID provided as argument for the <code>parametrize</code>.</p>
 <div class="highlight"><pre><span></span><code>$ pytest -k has_access -v
@@ -11936,6 +11940,7 @@ collected <span class="m">17</span> items / <span class="m">15</span> deselected
 tests/test_castle_class.py::TestCastleClass::test_has_access_true_with_super_mushroom<span class="o">[</span>successful<span class="o">]</span> PASSED                               <span class="o">[</span> <span class="m">50</span>%<span class="o">]</span>
 tests/test_castle_class.py::TestCastleClass::test_has_access_true_with_super_mushroom<span class="o">[</span>failure-without-super-mushroom<span class="o">]</span> PASSED           <span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
 </code></pre></div>
+
 
 <p>The other test cases in the <a href="https://github.com/jitsejan/blog-testing">repo</a> don't lend themselves to be used for parametrization, but it has helped me to reduce the number of test cases in our data platform repo by half. Give it a try :) </p>
         </div>

@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Add Flickr photosets to a Django site | JJ's World</title>
+        <title>Archives | JJ's World</title>
 
 
 <style type="text/css">
@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="./theme/css/main.css?e6f3817f">
+            <link rel="stylesheet" href="../theme/css/main.css?e6f3817f">
 
 
     </head>
@@ -11843,254 +11843,33 @@ jQuery(document).ready(function($) {
         </div>
         <!-- <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="./pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
-                <li><a href="./pages/python-cheatsheet">Python cheatsheet</a></li>
-                <li><a href="./pages/spark-cheatsheet">Spark cheatsheet</a></li>
+                <li><a href="../pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
+                <li><a href="../pages/python-cheatsheet">Python cheatsheet</a></li>
+                <li><a href="../pages/spark-cheatsheet">Spark cheatsheet</a></li>
             </ul>
         </div>.navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container post">
-    <div class="row">
-        <a href="javascript:history.back()">Go back</a>
-    </div>
+<div class="container list">
     <article>
-        <header>
-            <h1>Add Flickr photosets to a Django site</h1>
-            <time datetime="article.date.isoformat()" pubdate>Wed 05 October 2016</time>
-        </header>
+        <h1 style="margin-bottom: 30px;">Tag: xpath</h1>
 
-        <div class="article_content">
-            <h3>1. Set up connection</h3>
-<p>(Note that I just put a dummy key, secret and userid)</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">flickrapi</span>
-<span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;123456789abcdefghijklmn&#39;</span>
-<span class="n">secret</span> <span class="o">=</span> <span class="s1">&#39;123456a7890&#39;</span>
-<span class="n">userid</span> <span class="o">=</span> <span class="s1">&#39;123456@N16&#39;</span>
-<span class="n">flickr</span> <span class="o">=</span> <span class="n">flickrapi</span><span class="o">.</span><span class="n">FlickrAPI</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">secret</span><span class="p">)</span>
-</code></pre></div>
-
-
-<h3>2. Retrieve the photosets</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
-<span class="n">sets</span> <span class="o">=</span> <span class="n">flickr</span><span class="o">.</span><span class="n">photosets</span><span class="o">.</span><span class="n">getList</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">userid</span><span class="p">)</span>
-<span class="n">photoset</span> <span class="o">=</span> <span class="n">sets</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//photoset&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span> <span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">photoset</span><span class="p">)</span>
-</code></pre></div>
-
-
-<p>will return</p>
-<div class="highlight"><pre><span></span><code>&lt;photoset <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;72157674032173850&quot;</span> <span class="nv">primary</span><span class="o">=</span><span class="s2">&quot;30292011566&quot;</span> <span class="nv">secret</span><span class="o">=</span><span class="s2">&quot;c384c894ce&quot;</span> <span class="nv">server</span><span class="o">=</span><span class="s2">&quot;8552&quot;</span> <span class="nv">farm</span><span class="o">=</span><span class="s2">&quot;9&quot;</span> <span class="nv">photos</span><span class="o">=</span><span class="s2">&quot;31&quot;</span> <span class="nv">videos</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">needs_interstitial</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">visibility_can_see_set</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nv">count_views</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">count_comments</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">can_comment</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">date_create</span><span class="o">=</span><span class="s2">&quot;1476484376&quot;</span> <span class="nv">date_update</span><span class="o">=</span><span class="s2">&quot;1476488433&quot;</span>&gt;
-    &lt;title&gt;Canada <span class="m">2016</span>&lt;/title&gt;
-    &lt;description&gt;Visit to Toronto, Montreal and the Falls.&lt;/description&gt;
-&lt;/photoset&gt;
-</code></pre></div>
-
-
-<h3>3. Connect to Django</h3>
-<p>Since I want to add to pictures from Flickr to my Django webpage, I need to connect to the database.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
-<span class="n">project_path</span> <span class="o">=</span> <span class="s1">&#39;/opt/env/django_project/&#39;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;DJANGO_SETTINGS_MODULE&quot;</span><span class="p">,</span> <span class="s2">&quot;django_project.settings&quot;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">project_path</span><span class="p">)</span>
-</code></pre></div>
-
-
-<h3>4. Load the Photoset model</h3>
-<p>Now we set the path to be the Django path, we can import the models from my blog.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">django</span>
-<span class="n">django</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
-<span class="kn">from</span> <span class="nn">blog.models</span> <span class="kn">import</span> <span class="n">Photoset</span>
-<span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">Photoset</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">():</span>
-    <span class="nb">print</span> <span class="n">field</span>
-</code></pre></div>
-
-
-<p>This will show the fields of the model.</p>
-<div class="highlight"><pre><span></span><code>&lt;ManyToOneRel: blog.photo&gt;
-blog.Photoset.id
-blog.Photoset.flickr_id
-blog.Photoset.secret
-blog.Photoset.title
-blog.Photoset.description
-blog.Photoset.date_create
-blog.Photoset.date_update
-blog.Photoset.created
-blog.Photoset.modified
-</code></pre></div>
-
-
-<h3>5. Add Flickr photosets to Django</h3>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="ow">not</span> <span class="n">Photoset</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">flickr_id</span><span class="o">=</span><span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-    <span class="n">blog_photoset</span> <span class="o">=</span> <span class="n">Photoset</span><span class="p">()</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">flickr_id</span> <span class="o">=</span> <span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">secret</span> <span class="o">=</span> <span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;secret&#39;</span><span class="p">)</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">photoset</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">photoset</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="k">if</span> <span class="n">photoset</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="ow">is</span> <span class="s1">&#39;null&#39;</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">date_create</span> <span class="o">=</span> <span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;date_create&#39;</span><span class="p">)</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">date_update</span> <span class="o">=</span> <span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;date_update&#39;</span><span class="p">)</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="s2">&quot;Added photoset &#39;</span><span class="si">%s</span><span class="s2">&#39; to database!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">blog_photoset</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span> <span class="s2">&quot;Photoset &#39;</span><span class="si">%s</span><span class="s2">&#39; already in database!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">photoset</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</code></pre></div>
-
-
-<p>In my case the photoset has already been added.</p>
-<div class="highlight"><pre><span></span><code>Photoset <span class="s1">&#39;Canada 2016&#39;</span> already in database!
-</code></pre></div>
-
-
-<h3>6. Retrieve photos from Flickr photoset</h3>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">photo</span> <span class="ow">in</span> <span class="n">flickr</span><span class="o">.</span><span class="n">walk_set</span><span class="p">(</span><span class="n">photoset</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]):</span>
-    <span class="n">photo_element</span> <span class="o">=</span> <span class="n">flickr</span><span class="o">.</span><span class="n">photos</span><span class="o">.</span><span class="n">getinfo</span><span class="p">(</span><span class="n">photo_id</span><span class="o">=</span><span class="n">photo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;./photo&#39;</span><span class="p">)</span>
-    <span class="nb">print</span> <span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">photo_element</span><span class="p">)</span>
-    <span class="k">break</span> <span class="c1"># Just print one</span>
-</code></pre></div>
-
-
-<p>This will return the XML object of a photo.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;photo</span> <span class="na">id=</span><span class="s">&quot;30326779825&quot;</span> <span class="na">secret=</span><span class="s">&quot;78076b80de&quot;</span> <span class="na">server=</span><span class="s">&quot;8140&quot;</span> <span class="na">farm=</span><span class="s">&quot;9&quot;</span> <span class="na">dateuploaded=</span><span class="s">&quot;1476484428&quot;</span> <span class="na">isfavorite=</span><span class="s">&quot;0&quot;</span> <span class="na">license=</span><span class="s">&quot;0&quot;</span> <span class="na">safety_level=</span><span class="s">&quot;0&quot;</span> <span class="na">rotation=</span><span class="s">&quot;270&quot;</span> <span class="na">originalsecret=</span><span class="s">&quot;cb36a41988&quot;</span> <span class="na">originalformat=</span><span class="s">&quot;jpg&quot;</span> <span class="na">views=</span><span class="s">&quot;1&quot;</span> <span class="na">media=</span><span class="s">&quot;photo&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;owner</span> <span class="na">nsid=</span><span class="s">&quot;45832294@N06&quot;</span> <span class="na">username=</span><span class="s">&quot;jitsejan&quot;</span> <span class="na">realname=</span><span class="s">&quot;Jitse-Jan van Waterschoot&quot;</span> <span class="na">location=</span><span class="s">&quot;&quot;</span> <span class="na">iconserver=</span><span class="s">&quot;5495&quot;</span> <span class="na">iconfarm=</span><span class="s">&quot;6&quot;</span> <span class="na">path_alias=</span><span class="s">&quot;jitsejan&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Looking at the city<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;description/&gt;</span>
-    <span class="nt">&lt;visibility</span> <span class="na">ispublic=</span><span class="s">&quot;1&quot;</span> <span class="na">isfriend=</span><span class="s">&quot;0&quot;</span> <span class="na">isfamily=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;dates</span> <span class="na">posted=</span><span class="s">&quot;1476484428&quot;</span> <span class="na">taken=</span><span class="s">&quot;2016-08-26 04:14:31&quot;</span> <span class="na">takengranularity=</span><span class="s">&quot;0&quot;</span> <span class="na">takenunknown=</span><span class="s">&quot;0&quot;</span> <span class="na">lastupdate=</span><span class="s">&quot;1476700149&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;editability</span> <span class="na">cancomment=</span><span class="s">&quot;0&quot;</span> <span class="na">canaddmeta=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;publiceditability</span> <span class="na">cancomment=</span><span class="s">&quot;1&quot;</span> <span class="na">canaddmeta=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;usage</span> <span class="na">candownload=</span><span class="s">&quot;1&quot;</span> <span class="na">canblog=</span><span class="s">&quot;0&quot;</span> <span class="na">canprint=</span><span class="s">&quot;0&quot;</span> <span class="na">canshare=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;comments&gt;</span>0<span class="nt">&lt;/comments&gt;</span>
-    <span class="nt">&lt;notes/&gt;</span>
-    <span class="nt">&lt;people</span> <span class="na">haspeople=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;tags/&gt;</span>
-    <span class="nt">&lt;urls&gt;</span>
-        <span class="nt">&lt;url</span> <span class="na">type=</span><span class="s">&quot;photopage&quot;</span><span class="nt">&gt;</span>https://www.flickr.com/photos/jitsejan/30326779825/<span class="nt">&lt;/url&gt;</span>
-       <span class="nt">&lt;/urls&gt;</span>
-<span class="nt">&lt;/photo&gt;</span>
-</code></pre></div>
-
-
-<h3>7. Create URL for Flickr photo</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># url_template = &quot;http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg&quot; </span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://farm</span><span class="si">%(farm)s</span><span class="s2">.staticflickr.com/</span><span class="si">%(server)s</span><span class="s2">/</span><span class="si">%(id)s</span><span class="s2">_</span><span class="si">%(secret)s</span><span class="s2">_z.jpg&quot;</span> <span class="o">%</span> <span class="n">photo</span><span class="o">.</span><span class="n">attrib</span>
-<span class="nb">print</span> <span class="n">url</span>
-</code></pre></div>
-
-
-<p>Resulting URL:</p>
-<div class="highlight"><pre><span></span><code>http://farm9.staticflickr.com/8140/30326779825_78076b80de_z.jpg
-</code></pre></div>
-
-
-<h3>8. Load the Photo model</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">blog.models</span> <span class="kn">import</span> <span class="n">Photo</span>
-<span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">Photo</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">():</span>
-    <span class="nb">print</span> <span class="n">field</span>
-</code></pre></div>
-
-
-<p>Above code will show the fields of the Photo model in Django.</p>
-<div class="highlight"><pre><span></span><code>blog.Photo.id
-blog.Photo.flickr_id
-blog.Photo.title
-blog.Photo.description
-blog.Photo.date_posted
-blog.Photo.date_taken
-blog.Photo.url
-blog.Photo.image_url
-blog.Photo.created
-blog.Photo.modified
-blog.Photo.photoset
-</code></pre></div>
-
-
-<h3>9. Add Flickr photo to Django</h3>
-<div class="highlight"><pre><span></span><code><span class="n">blog_photo</span> <span class="o">=</span> <span class="n">Photo</span><span class="p">()</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">flickr_id</span> <span class="o">=</span> <span class="n">photo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">photo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">photo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="s1">&#39;null&#39;</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">date_posted</span> <span class="o">=</span> <span class="n">photo_element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;dates&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;posted&#39;</span><span class="p">]</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">date_taken</span> <span class="o">=</span> <span class="n">photo_element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;dates&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;taken&#39;</span><span class="p">]</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">photo_element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;urls/url&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">image_url</span> <span class="o">=</span> <span class="n">url</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">blog_photo</span><span class="o">.</span><span class="n">photoset</span> <span class="o">=</span> <span class="n">blog_photoset</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="n">blog_photo</span><span class="o">.</span><span class="n">photoset</span> <span class="o">=</span> <span class="n">Photoset</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">flickr_id</span><span class="o">=</span><span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">Photo</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">flickr_id</span><span class="o">=</span><span class="n">blog_photo</span><span class="o">.</span><span class="n">flickr_id</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-    <span class="n">blog_photo</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="s2">&quot;Added photo &#39;</span><span class="si">%s</span><span class="s2">&#39; to database!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">blog_photo</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span> <span class="s2">&quot;Photo &#39;</span><span class="si">%s</span><span class="s2">&#39; already in database!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">blog_photo</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-</code></pre></div>
-
-
-<p>Again, the item is already in the database in my case.</p>
-<div class="highlight"><pre><span></span><code>Photo <span class="s1">&#39;Looking at the city&#39;</span> already in database!
-</code></pre></div>
-        </div>
-
-        <div class="meta">
-            <div>
-                    <a href="./tag/django.html" class="tag">Django</a>
-                    <a href="./tag/python.html" class="tag">Python</a>
-                    <a href="./tag/flickr.html" class="tag">Flickr</a>
-            </div>
-        </div>
+        <ul class="double-list">
+            <li>
+                <a href='/scraping-with-xpaths.html'>
+                    <h2>Scraping data based on xpaths</h2>
+                    <span>24.12.2020</span>
+                </a>
+            </li>
+        </ul>
     </article>
-    <div class="row">
-        <a href="javascript:history.back()">Go back</a>
-    </div>
 </div>
-
-<script type="text/javascript">
-(function () {
-    'use strict';
-
-    // Global object
-    var App = {};
-
-    // Create button
-    App.commentsButton = document.getElementById('comments-button');
-
-    App.commentsButton.onclick = function () {
-        // Remove button action on click
-        App.commentsButton.onclick = function () {
-        }
-
-        // Create comments container
-        App.disqusContainer = document.createElement('div');
-        App.disqusContainer.setAttribute('id', 'disqus_thread');
-        // App.disqusContainer.setAttribute('class', 'container');
-
-        // Append container to body or div
-        // document.body.appendChild( App.disqusContainer );
-        var container = document.getElementsByClassName('container post')[0];
-        container.appendChild(App.disqusContainer);
-
-        // Your Disqus shortname
-        App.disqus_shortname = '';
-
-        // Embed Disqus
-        var dsq = document.createElement('script');
-
-        dsq.type = 'text/javascript';
-        dsq.async = true;
-        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
-
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-
-        window.scrollTo(0, dsq.offsetTop - 200);
-    };
-})();
-</script>
-
         </div>
 <footer class="footer">
     <div class="container">
         <center>
             <address id="about" class="vcard body">
-                &copy; <a href=".">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2020
+                &copy; <a href="..">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2020
             </address><!-- /#about -->
         </center>
     </div>

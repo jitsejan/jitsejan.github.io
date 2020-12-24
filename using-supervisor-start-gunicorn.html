@@ -11865,13 +11865,16 @@ jQuery(document).ready(function($) {
 <div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo pip install supervisor
 </code></pre></div>
 
+
 <p>Create the default configuration file for Supervisor.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo echo_supervisord_conf &gt; /etc/supervisord.conf
 </code></pre></div>
 
+
 <p>Create the configuration file for the website.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo nano /etc/supervisor/conf.d/website.conf
 </code></pre></div>
+
 
 <p>Enter the following.</p>
 <div class="highlight"><pre><span></span><code><span class="err">; /etc/supervisor/conf.d/website.conf</span>
@@ -11884,14 +11887,17 @@ jQuery(document).ready(function($) {
 <span class="err">redirect_stderr=True</span>
 </code></pre></div>
 
+
 <p>Make the file executable.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo chmod a+x /etc/supervisor/conf.d/website.conf 
 </code></pre></div>
+
 
 <p>Reload Supervisor to find the new file and update the configuration.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo supervisorctl reread
 jitsejan@jjsvps:~$ sudo supervisorctl update
 </code></pre></div>
+
 
 <p>Now you can start the website with the following command.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo supervisorctl start website

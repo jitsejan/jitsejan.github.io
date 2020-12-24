@@ -11867,6 +11867,7 @@ img.header{
   width:100px;
 }
 </style>
+
 <p><center>
 <img class="header" src="http://files.jitsejan.com/logos/truffle.PNG" />
 <img class="header" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Tab_plus.svg/2000px-Tab_plus.svg.png" />
@@ -11884,10 +11885,12 @@ jitsejan@ssdnodes-jj-kvm:~$ docker-compose -v
 docker-compose version <span class="m">1</span>.8.0, build unknown
 </code></pre></div>
 
+
 <h3>TestRPC image</h3>
 <p>First of all, we need to setup a test network to play around with the Truffle app that we are going to create. Since we do not want to use the official Ethereum blockchain network, we use <code>testrpc</code> as created by Tim Coulter. See <a href="https://github.com/ethereumjs/testrpc">Github</a> for the official repository.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/docker/testrpc$ nano Dockerfile 
 </code></pre></div>
+
 
 <p>The Dockerfile contains the few steps that are needed to create the TestRPC image. It will retrieve the Linux distro with node installed, install the node module <code>ethereumjs-testrpc</code> and open up port 8545, which is the default port for testrpc.</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Node image</span>
@@ -11902,6 +11905,7 @@ EXPOSE <span class="m">8545</span>
 ENTRYPOINT <span class="o">[</span><span class="s2">&quot;testrpc&quot;</span><span class="o">]</span>
 </code></pre></div>
 
+
 <p>From the Dockerfile we will create the image on the local machine and push it to Docker.io.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/docker/testrpc$ docker build . -t jitsejan/testrpc
 jitsejan@ssdnodes-jj-kvm:~/docker/testrpc$ docker login
@@ -11913,6 +11917,7 @@ jitsejan@ssdnodes-jj-kvm:~/docker/testrpc$ docker push jitsejan/testrpc
 jitsejan@ssdnodes-jj-kvm:~/docker/testrpc$ docker images <span class="p">|</span> grep testrpc
 jitsejan/testrpc               latest              a5cae5578720        <span class="m">10</span> minutes ago      <span class="m">716</span> MB
 </code></pre></div>
+
 
 <p>The image can now be found at <a href="https://hub.docker.com/r/jitsejan/testrpc/">hub.docker.com</a>.</p>
 <h3>Truffle image</h3>
@@ -11929,10 +11934,12 @@ WORKDIR /code
 RUN npm install -g truffle
 </code></pre></div>
 
+
 <p>We can build and push the image again, finally the image will be available locally to be used by Docker. Again I use the docker push to add the image to my <a href="https://hub.docker.com/r/jitsejan/truffle-application/">hub.docker.com</a>.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/docker/truffle-application$ docker images <span class="p">|</span> grep truffle-application
 jitsejan/truffle-application   latest              1987e7928f6b        <span class="m">58</span> minutes ago      <span class="m">693</span>.3 MB
 </code></pre></div>
+
 
 <h3>Docker compose</h3>
 <p>The <code>docker-compose.yml</code> contains the information to start the two images, map the ports and start the testrpc network. It will try to retrieve the two Docker images locally and otherwise retrieve them from hub.docker.com. The testrpc is started with host 0.0.0.0 in order for the truffle3 container to access the network.</p>
@@ -11954,10 +11961,12 @@ jitsejan/truffle-application   latest              1987e7928f6b        <span cla
       <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./:/code</span>
 </code></pre></div>
 
+
 <h3>Docker start</h3>
 <p>Once the docker-compose.yml is in place, we can start the testrpc and truffle3 container by running the following command:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/docker/truffle-application$ docker-compose -f docker-compose.yml up -d
 </code></pre></div>
+
 
 <p>and verify if both containers are running:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/docker/truffle-application$ docker ps
@@ -11965,6 +11974,7 @@ CONTAINER ID        IMAGE                          COMMAND                  CREA
 cda7d1c5c2a0        jitsejan/truffle-application   <span class="s2">&quot;bash&quot;</span>                   <span class="m">6</span> minutes ago       Up About a minute   <span class="m">0</span>.0.0.0:7001-&gt;8080/tcp   truffleapplication_truffle3_1
 36f0bf0d4d25        jitsejan/testrpc               <span class="s2">&quot;testrpc bash -c &#39;tes&quot;</span>   <span class="m">9</span> minutes ago       Up About a minute   <span class="m">0</span>.0.0.0:7000-&gt;8545/tcp   truffleapplication_testrpc_1
 </code></pre></div>
+
 
 <h2>Creating the app</h2>
 <p>Now we connect to the Truffle machine and create the application.</p>
@@ -11979,6 +11989,7 @@ Truffle v3.4.11 <span class="o">(</span>core: <span class="m">3</span>.4.11<span
 Solidity v0.4.15 <span class="o">(</span>solc-js<span class="o">)</span>
 </code></pre></div>
 
+
 <h3>Initialize a Truffle application</h3>
 <p>Use the unbox function of Truffle to create a sample webpack application.</p>
 <div class="highlight"><pre><span></span><code>root@cda7d1c5c2a0:/code# truffle unbox webpack
@@ -11986,6 +11997,7 @@ root@cda7d1c5c2a0:/code# ls
 Dockerfile  box-img-lg.png  contracts           migrations    package-lock.json  <span class="nb">test</span>                truffle.js
 app         box-img-sm.png  docker-compose.yml  node_modules  package.json       tmp-276YgmHxiGG8WL  webpack.config.js
 </code></pre></div>
+
 
 <p>Compile the contracts and migrate them to the network.</p>
 <div class="highlight"><pre><span></span><code>root@cda7d1c5c2a0:/code# truffle compile
@@ -12001,15 +12013,18 @@ Could not connect to your Ethereum client. Please check that your Ethereum clien
     - is properly configured in your Truffle configuration file <span class="o">(</span>truffle.js<span class="o">)</span>
 </code></pre></div>
 
+
 <p>In order to be able to migrate, we need to modify <code>truffle.js</code>. It is easier to change this is on the host machine instead of the Docker machine, since most probably there is a text editor available.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/docker/truffle-application$ ls
 app             box-img-sm.png  contracts           Dockerfile  node_modules  package-lock.json  tmp-276YgmHxiGG8WL  webpack.config.js
 box-img-lg.png  build           docker-compose.yml  migrations  package.json  <span class="nb">test</span>               truffle.js
 </code></pre></div>
 
+
 <p>Lets edit the truffle.js and update the network settings.</p>
 <div class="highlight"><pre><span></span><code><span class="err">jitsejan@ssdnodes-jj-kvm:~/docker/truffle-application$ sudo nano truffle.js </span>
 </code></pre></div>
+
 
 <p>Change the host from localhost to testrpc, since that is the name we assigned in our Docker setup.</p>
 <div class="highlight"><pre><span></span><code><span class="c1">// Allows us to use ES6 in our migrations and tests.</span>
@@ -12019,12 +12034,13 @@ box-img-lg.png  build           docker-compose.yml  migrations  package.json  <s
   <span class="nx">networks</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">development</span><span class="o">:</span> <span class="p">{</span>
       <span class="nx">host</span><span class="o">:</span> <span class="s1">&#39;testrpc&#39;</span><span class="p">,</span>
-      <span class="nx">port</span><span class="o">:</span> <span class="mf">8545</span><span class="p">,</span>
+      <span class="nx">port</span><span class="o">:</span> <span class="mi">8545</span><span class="p">,</span>
       <span class="nx">network_id</span><span class="o">:</span> <span class="s1">&#39;*&#39;</span> <span class="c1">// Match any network id</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+
 
 <p>With the updated network settings, lets try to migrate the contracts again to the network.</p>
 <div class="highlight"><pre><span></span><code>root@cda7d1c5c2a0:/code# truffle migrate
@@ -12050,46 +12066,57 @@ Saving successful migration to network...
 Saving artifacts...
 </code></pre></div>
 
+
 <p>Now we need to build and deploy the application.</p>
 <div class="highlight"><pre><span></span><code>root@cda7d1c5c2a0:/code# npm run build
 root@cda7d1c5c2a0:/code# npm run dev
 </code></pre></div>
 
+
 <p>This will output that the application is running on localhost:8080, but visiting this link shows an error. We need to modify the settings for webpack and add the host for the development server. Change package.json </p>
 <div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/docker/truffle-application$ sudo nano package.json 
 </code></pre></div>
 
+
 <p>and change the following line</p>
-<div class="highlight"><pre><span></span><code>    <span class="nt">&quot;dev&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack-dev-server&quot;</span>
+<div class="highlight"><pre><span></span><code>    <span class="s2">&quot;dev&quot;</span><span class="err">:</span> <span class="s2">&quot;webpack-dev-server&quot;</span>
 </code></pre></div>
 
+
 <p>to</p>
-<div class="highlight"><pre><span></span><code>    <span class="nt">&quot;dev&quot;</span><span class="p">:</span> <span class="s2">&quot;webpack-dev-server --host 0.0.0.0&quot;</span>
+<div class="highlight"><pre><span></span><code>    <span class="s2">&quot;dev&quot;</span><span class="err">:</span> <span class="s2">&quot;webpack-dev-server --host 0.0.0.0&quot;</span>
 </code></pre></div>
+
 
 <p>to make the server accept external traffic. Run again </p>
 <div class="highlight"><pre><span></span><code>root@d546db65c693:/code# npm run dev
 </code></pre></div>
 
+
 <p>and now the application is served on http://0.0.0.0:8080/. Visit the IP of the machine on which you are developing on port 7001 (remember we mapped the port from 8080 to 7001 in the docker-compose file) and the MetaCoin application should be visible. However, an error pops up.</p>
 <div class="highlight"><pre><span></span><code><span class="err">There was an error fetching your accounts.</span>
 </code></pre></div>
+
 
 <p>Why? Because the Truffle app cannot connect to the Ethereum test network yet. In order for the connection to work, we need to modify the code of the app.js inside the Truffle application and change the IP for the Web3 client to the external IP, and the port to 7000 since we mapped port 8545 to 7000 in docker-compose. Open the app.js with nano</p>
 <div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/docker/truffle-application$ sudo nano app/javascripts/app.js 
 </code></pre></div>
 
+
 <p>and change the line</p>
 <div class="highlight"><pre><span></span><code>window.web3 <span class="o">=</span> new Web3<span class="o">(</span>new Web3.providers.HttpProvider<span class="o">(</span><span class="s2">&quot;http://localhost:8545&quot;</span><span class="o">))</span><span class="p">;</span>
 </code></pre></div>
+
 
 <p>to</p>
 <div class="highlight"><pre><span></span><code>window.web3 <span class="o">=</span> new Web3<span class="o">(</span>new Web3.providers.HttpProvider<span class="o">(</span><span class="s2">&quot;http://EXTERNAL_IP:7000&quot;</span><span class="o">))</span><span class="p">;</span>
 </code></pre></div>
 
+
 <p>replacing the EXTERNAL_IP with the IP of the development machine where the Docker container with testrpc is running. Again run </p>
 <div class="highlight"><pre><span></span><code>root@d546db65c693:/code# npm run dev
 </code></pre></div>
+
 
 <p>and this time no error should pop up when the page is visited. If everything went find you should see the MetaCoin application with 10000 META.</p>
 <p>Hopefully this can serve as a base to create your own Dapp using Truffle.</p>

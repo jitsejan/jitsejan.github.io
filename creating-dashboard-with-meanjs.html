@@ -11870,6 +11870,7 @@ jitsejan@jjvps:~/code$ npm install -g generator-meanjs
 jitsejan@jjvps:~/code$ yo meanjs
 </code></pre></div>
 
+
 <p>Answer 'No' to all questions.</p>
 <h2>Initialization</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@jjvps:~/code$ <span class="nb">cd</span> mean-dashboard/
@@ -11878,6 +11879,7 @@ jitsejan@jjvps:~/code/mean-dashboard$ git add .
 jitsejan@jjvps:~/code/mean-dashboard$ git commit -m <span class="s2">&quot;Initial commit&quot;</span>
 jitsejan@jjvps:~/code/mean-dashboard$ grunt
 </code></pre></div>
+
 
 <p>At this point you should see the boilerplate of the MEAN.JS application.</p>
 <p>By changing the modules/core/client/views/home.client.view.html the frontpage can be changed. I stripped it down to the following.</p>
@@ -11892,19 +11894,23 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
 <span class="p">&lt;/</span><span class="nt">section</span><span class="p">&gt;</span>
 </code></pre></div>
 
+
 <p>I also changed the title of the page by adapting config/env/default.js.</p>
 <h2>Change the database</h2>
 <p>Change MongoDB url in config/env/development.js from:</p>
 <div class="highlight"><pre><span></span><code><span class="n">uri</span><span class="o">:</span> <span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">MONGOHQ_URL</span> <span class="o">||</span> <span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">MONGOLAB_URI</span> <span class="o">||</span> <span class="s1">&#39;mongodb://&#39;</span> <span class="o">+</span> <span class="o">(</span><span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">DB_1_PORT_27017_TCP_ADDR</span> <span class="o">||</span> <span class="s1">&#39;localhost&#39;</span><span class="o">)</span> <span class="o">+</span> <span class="s1">&#39;/mean-dev&#39;</span><span class="o">,</span>
 </code></pre></div>
 
+
 <p>to</p>
 <div class="highlight"><pre><span></span><code><span class="n">uri</span><span class="o">:</span> <span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">MONGOHQ_URL</span> <span class="o">||</span> <span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">MONGOLAB_URI</span> <span class="o">||</span> <span class="s1">&#39;mongodb://&#39;</span> <span class="o">+</span> <span class="o">(</span><span class="n">process</span><span class="o">.</span><span class="na">env</span><span class="o">.</span><span class="na">DB_1_PORT_27017_TCP_ADDR</span> <span class="o">||</span> <span class="s1">&#39;localhost&#39;</span><span class="o">)</span> <span class="o">+</span> <span class="s1">&#39;/mean-dashboard&#39;</span><span class="o">,</span>
 </code></pre></div>
 
+
 <h2>Create a CRUD-module</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@jjvps:~/code/mean-dashboard$ yo meanjs:crud-module refills
 </code></pre></div>
+
 
 <p>Next I want to add more fields to the refills by changing the model.</p>
 <p>The fields I want are:</p>
@@ -11951,6 +11957,7 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
 <span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span><span class="p">(</span><span class="s1">&#39;Refill&#39;</span><span class="p">,</span> <span class="nx">RefillSchema</span><span class="p">);</span>
 </code></pre></div>
 
+
 <p>New code:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">var</span> <span class="nx">RefillSchema</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Schema</span><span class="p">({</span>
   <span class="nx">name</span><span class="o">:</span> <span class="p">{</span>
@@ -11965,22 +11972,22 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
   <span class="p">},</span>
   <span class="nx">kilometers</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>
-    <span class="k">default</span><span class="o">:</span> <span class="mf">0</span><span class="p">,</span>
+    <span class="k">default</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nx">required</span><span class="o">:</span> <span class="s1">&#39;Please fill Refill kilometers&#39;</span>
   <span class="p">},</span>
   <span class="nx">volume</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>
-    <span class="k">default</span><span class="o">:</span> <span class="mf">0</span><span class="p">,</span>
+    <span class="k">default</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nx">required</span><span class="o">:</span> <span class="s1">&#39;Please fill Refill volume&#39;</span>
   <span class="p">},</span>
   <span class="nx">price</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>
-    <span class="k">default</span><span class="o">:</span> <span class="mf">0</span><span class="p">,</span>
+    <span class="k">default</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nx">required</span><span class="o">:</span> <span class="s1">&#39;Please fill Refill litre price&#39;</span>
   <span class="p">},</span>
   <span class="nx">cost</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">type</span><span class="o">:</span> <span class="nb">Number</span><span class="p">,</span>
-    <span class="k">default</span><span class="o">:</span> <span class="mf">0</span><span class="p">,</span>
+    <span class="k">default</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nx">required</span><span class="o">:</span> <span class="s1">&#39;Please fill Refill cost&#39;</span>
   <span class="p">},</span>
   <span class="nx">created</span><span class="o">:</span> <span class="p">{</span>
@@ -11994,6 +12001,7 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
 <span class="p">});</span>
 </code></pre></div>
 
+
 <p>To create a new instance, I also updated the form in <code>modules/refills/client/form-refill.client.view.html</code>, but since this is pretty straight forward I will not show the code here.</p>
 <p>At this point you should be able to create and list the refills. Update the other views to show the new fields.</p>
 <h2>Create the line chart</h2>
@@ -12001,16 +12009,19 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
 <div class="highlight"><pre><span></span><code>jitsejan@jjvps:~/code/mean-dashboard$ yo meanjs:angular-directive line-chart
 </code></pre></div>
 
+
 <p>This will create the file <code>refills/client/directives/line-chart.client.directive.js</code>.</p>
 <p>Install D3 via Bower.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@jjvps:~/code/mean-dashboard$ bower install d3 --save
 </code></pre></div>
+
 
 <p>Add the JS file to the default config in 'config/assets/default.js' to the client JS.</p>
 <div class="highlight"><pre><span></span><code><span class="p">...</span>
 <span class="s1">&#39;public/lib/d3/d3.min.js&#39;</span><span class="p">,</span>
 <span class="p">...</span>
 </code></pre></div>
+
 
 <p>The challenging part will be creating the D3 visualizations. The first graph is a line chart and the directive will have the following content.</p>
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -12034,7 +12045,7 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 
         <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;svg&#39;</span><span class="p">),</span>
-          <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">top</span><span class="o">:</span> <span class="mf">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="mf">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span> <span class="mf">30</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="mf">50</span> <span class="p">},</span>
+          <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="mi">50</span> <span class="p">},</span>
           <span class="nx">width</span> <span class="o">=</span> <span class="o">+</span><span class="nx">svg</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span>
           <span class="nx">height</span> <span class="o">=</span> <span class="o">+</span><span class="nx">svg</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">,</span>
           <span class="nx">g</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="s1">&#39;translate(&#39;</span> <span class="o">+</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">);</span>
@@ -12042,8 +12053,8 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
         <span class="c1">// 2017-04-18T22:35:19.352Z</span>
         <span class="kd">var</span> <span class="nx">parseTime</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">utcParse</span><span class="p">(</span><span class="s1">&#39;%Y-%m-%dT%H:%M:%S.%LZ&#39;</span><span class="p">);</span>
 
-        <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleTime</span><span class="p">().</span><span class="nx">rangeRound</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">]);</span>
-        <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">rangeRound</span><span class="p">([</span><span class="nx">height</span><span class="p">,</span> <span class="mf">0</span><span class="p">]);</span>
+        <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleTime</span><span class="p">().</span><span class="nx">rangeRound</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">]);</span>
+        <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">rangeRound</span><span class="p">([</span><span class="nx">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
 
         <span class="kd">var</span> <span class="nx">line</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">line</span><span class="p">()</span>
           <span class="p">.</span><span class="nx">x</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> 
@@ -12068,7 +12079,7 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
         <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
           <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">,</span> <span class="s1">&#39;#000&#39;</span><span class="p">)</span>
           <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="s1">&#39;rotate(-90)&#39;</span><span class="p">)</span>
-          <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mf">6</span><span class="p">)</span>
+          <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
           <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;dy&#39;</span><span class="p">,</span> <span class="s1">&#39;0.71em&#39;</span><span class="p">)</span>
           <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;text-anchor&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">)</span>
           <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Amount of kilometers&#39;</span><span class="p">);</span>
@@ -12088,11 +12099,13 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
 <span class="p">})();</span>
 </code></pre></div>
 
+
 <p>Finally the graph needs to be added to a view. In my case I have added it to the list view of the refills.</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">ng-if</span><span class="o">=</span><span class="s">&quot;vm.refills.$resolved &amp;&amp; vm.refills.length&quot;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">div</span> <span class="na">line-chart</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></div>
+
 
 <p>Important note: I have used the ng-if statement in order to have my data available in the directive. Without the if-statement I was not able to get the data in properly.</p>
 <p>When you navigate to the refills list page the graph will now be visible.</p>
@@ -12100,6 +12113,7 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
 <h2>Bar chart</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@jjvps:~/code/mean-dashboard$ yo meanjs:angular-directive bar-chart
 </code></pre></div>
+
 
 <p><code>modules/refills/client/directives/bar-chart.client.directive.js</code></p>
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -12120,30 +12134,30 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
         <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">scope</span><span class="p">.</span><span class="nx">vm</span><span class="p">.</span><span class="nx">refills</span><span class="p">;</span>
         <span class="c1">// SVG</span>
         <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;svg.bar-chart&#39;</span><span class="p">),</span>
-          <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">top</span><span class="o">:</span> <span class="mf">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="mf">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span> <span class="mf">130</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="mf">50</span> <span class="p">},</span>
+          <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span> <span class="mi">130</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="mi">50</span> <span class="p">},</span>
           <span class="nx">width</span> <span class="o">=</span> <span class="o">+</span><span class="nx">svg</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span>
           <span class="nx">height</span> <span class="o">=</span> <span class="o">+</span><span class="nx">svg</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">,</span>
           <span class="nx">g</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="s1">&#39;translate(&#39;</span> <span class="o">+</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">);</span>
 
         <span class="c1">// Graph title</span>
         <span class="nx">g</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
-          <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">width</span> <span class="o">/</span> <span class="mf">2</span><span class="p">))</span>             
-          <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mf">0</span> <span class="o">-</span> <span class="p">(</span><span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">/</span> <span class="mf">3</span><span class="p">))</span>
+          <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>             
+          <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">0</span> <span class="o">-</span> <span class="p">(</span><span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">/</span> <span class="mi">3</span><span class="p">))</span>
           <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;text-anchor&#39;</span><span class="p">,</span> <span class="s1">&#39;middle&#39;</span><span class="p">)</span>  
           <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s1">&#39;font-size&#39;</span><span class="p">,</span> <span class="s1">&#39;16px&#39;</span><span class="p">)</span> 
           <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Volume per refill&#39;</span><span class="p">);</span>
 
         <span class="kd">var</span> <span class="nx">parseTime</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;%Y-%m-%dT%H:%M:%S.%LZ&#39;</span><span class="p">).</span><span class="nx">parse</span><span class="p">;</span>
-        <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scale</span><span class="p">.</span><span class="nx">ordinal</span><span class="p">().</span><span class="nx">rangeRoundBands</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">],</span> <span class="mf">0.5</span><span class="p">);</span>
-        <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scale</span><span class="p">.</span><span class="nx">linear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="p">,</span> <span class="mf">0</span><span class="p">]);</span>
+        <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scale</span><span class="p">.</span><span class="nx">ordinal</span><span class="p">().</span><span class="nx">rangeRoundBands</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">],</span> <span class="mf">0.5</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scale</span><span class="p">.</span><span class="nx">linear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="p">,</span> <span class="mi">0</span><span class="p">]);</span>
 
         <span class="nx">x</span><span class="p">.</span><span class="nx">domain</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">date</span><span class="p">;</span> <span class="p">}));</span>
-        <span class="nx">y</span><span class="p">.</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">volume</span><span class="p">;</span> <span class="p">})]);</span>
+        <span class="nx">y</span><span class="p">.</span><span class="nx">domain</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">volume</span><span class="p">;</span> <span class="p">})]);</span>
         <span class="c1">// X axis</span>
         <span class="nx">g</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">)</span>
           <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="s1">&#39;translate(0,&#39;</span> <span class="o">+</span> <span class="nx">height</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">)</span>
           <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;x axis&#39;</span><span class="p">)</span>
-          <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">svg</span><span class="p">.</span><span class="nx">axis</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">).</span><span class="nx">orient</span><span class="p">(</span><span class="s1">&#39;bottom&#39;</span><span class="p">).</span><span class="nx">tickFormat</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span> <span class="k">return</span> <span class="nx">parseTime</span><span class="p">(</span><span class="nx">d</span><span class="p">).</span><span class="nx">toISOString</span><span class="p">().</span><span class="nx">substring</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span> <span class="mf">10</span><span class="p">);}))</span>
+          <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">svg</span><span class="p">.</span><span class="nx">axis</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">).</span><span class="nx">orient</span><span class="p">(</span><span class="s1">&#39;bottom&#39;</span><span class="p">).</span><span class="nx">tickFormat</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">){</span> <span class="k">return</span> <span class="nx">parseTime</span><span class="p">(</span><span class="nx">d</span><span class="p">).</span><span class="nx">toISOString</span><span class="p">().</span><span class="nx">substring</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">);}))</span>
           <span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>    
             <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s1">&#39;text-anchor&#39;</span><span class="p">,</span> <span class="s1">&#39;end&#39;</span><span class="p">)</span>
             <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;dx&#39;</span><span class="p">,</span> <span class="s1">&#39;-.8em&#39;</span><span class="p">)</span>
@@ -12169,9 +12183,11 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
 <span class="p">})();</span>
 </code></pre></div>
 
+
 <h2>World map</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@jjvps:~/code/mean-dashboard$ yo meanjs:angular-directive world-map
 </code></pre></div>
+
 
 <p><code>modules/refills/client/directives/world-map.client.directive.js</code></p>
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -12192,10 +12208,10 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
         <span class="kd">var</span> <span class="nx">topojson</span> <span class="o">=</span> <span class="nx">$window</span><span class="p">.</span><span class="nx">topojson</span><span class="p">;</span>
         <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">scope</span><span class="p">.</span><span class="nx">vm</span><span class="p">.</span><span class="nx">refills</span><span class="p">;</span>
         <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;svg.world-map&#39;</span><span class="p">),</span>
-          <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">top</span><span class="o">:</span> <span class="mf">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="mf">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span> <span class="mf">130</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="mf">50</span> <span class="p">},</span>
+          <span class="nx">margin</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">top</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span> <span class="mi">130</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="mi">50</span> <span class="p">},</span>
           <span class="nx">width</span> <span class="o">=</span> <span class="o">+</span><span class="nx">svg</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;width&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">right</span><span class="p">,</span>
           <span class="nx">height</span> <span class="o">=</span> <span class="o">+</span><span class="nx">svg</span><span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">bottom</span><span class="p">,</span>
-          <span class="nx">scale0</span> <span class="o">=</span> <span class="p">(</span><span class="nx">width</span> <span class="o">-</span> <span class="mf">1</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2</span> <span class="o">/</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">,</span>
+          <span class="nx">scale0</span> <span class="o">=</span> <span class="p">(</span><span class="nx">width</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">PI</span><span class="p">,</span>
           <span class="nx">g</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;g&#39;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;transform&#39;</span><span class="p">,</span> <span class="s1">&#39;translate(&#39;</span> <span class="o">+</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">left</span> <span class="o">+</span> <span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="s1">&#39;)&#39;</span><span class="p">);</span>
 
         <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;rect&#39;</span><span class="p">)</span>
@@ -12206,12 +12222,12 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
         <span class="c1">// Define the div for the tooltip</span>
         <span class="kd">var</span> <span class="nx">div</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span>   
             <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="s1">&#39;tooltip&#39;</span><span class="p">)</span>               
-            <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s1">&#39;opacity&#39;</span><span class="p">,</span> <span class="mf">0</span><span class="p">);</span>    
+            <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s1">&#39;opacity&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>    
 
         <span class="kd">var</span> <span class="nx">projection</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geo</span><span class="p">.</span><span class="nx">mercator</span><span class="p">()</span>
-          <span class="p">.</span><span class="nx">center</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span> <span class="mf">5</span> <span class="p">])</span>
-          <span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="mf">200</span><span class="p">)</span>
-          <span class="p">.</span><span class="nx">rotate</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">0</span><span class="p">]);</span>
+          <span class="p">.</span><span class="nx">center</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span> <span class="p">])</span>
+          <span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+          <span class="p">.</span><span class="nx">rotate</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]);</span>
 
         <span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geo</span><span class="p">.</span><span class="nx">path</span><span class="p">()</span>
           <span class="p">.</span><span class="nx">projection</span><span class="p">(</span><span class="nx">projection</span><span class="p">);</span>
@@ -12228,8 +12244,8 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
 
         <span class="c1">// Graph title</span>
         <span class="nx">g</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
-          <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">width</span> <span class="o">/</span> <span class="mf">2</span><span class="p">))</span>             
-          <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mf">0</span> <span class="o">-</span> <span class="p">(</span><span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">/</span> <span class="mf">3</span><span class="p">))</span>
+          <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>             
+          <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="mi">0</span> <span class="o">-</span> <span class="p">(</span><span class="nx">margin</span><span class="p">.</span><span class="nx">top</span> <span class="o">/</span> <span class="mi">3</span><span class="p">))</span>
           <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;text-anchor&#39;</span><span class="p">,</span> <span class="s1">&#39;middle&#39;</span><span class="p">)</span>  
           <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s1">&#39;font-size&#39;</span><span class="p">,</span> <span class="s1">&#39;16px&#39;</span><span class="p">)</span> 
           <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;Locations&#39;</span><span class="p">);</span>
@@ -12257,12 +12273,12 @@ jitsejan@jjvps:~/code/mean-dashboard$ grunt
             <span class="p">.</span><span class="nx">enter</span><span class="p">()</span>
             <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;circle&#39;</span><span class="p">)</span>
             <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;cx&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
-              <span class="k">return</span> <span class="nx">projection</span><span class="p">([</span><span class="nx">d</span><span class="p">.</span><span class="nx">longitude</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">latitude</span><span class="p">])[</span><span class="mf">0</span><span class="p">];</span>
+              <span class="k">return</span> <span class="nx">projection</span><span class="p">([</span><span class="nx">d</span><span class="p">.</span><span class="nx">longitude</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">latitude</span><span class="p">])[</span><span class="mi">0</span><span class="p">];</span>
             <span class="p">})</span>
             <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;cy&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span>
-              <span class="k">return</span> <span class="nx">projection</span><span class="p">([</span><span class="nx">d</span><span class="p">.</span><span class="nx">longitude</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">latitude</span><span class="p">])[</span><span class="mf">1</span><span class="p">];</span>
+              <span class="k">return</span> <span class="nx">projection</span><span class="p">([</span><span class="nx">d</span><span class="p">.</span><span class="nx">longitude</span><span class="p">,</span> <span class="nx">d</span><span class="p">.</span><span class="nx">latitude</span><span class="p">])[</span><span class="mi">1</span><span class="p">];</span>
             <span class="p">})</span>
-            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="mf">5</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
             <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">,</span> <span class="s1">&#39;red&#39;</span><span class="p">);</span>
         <span class="p">});</span>
 

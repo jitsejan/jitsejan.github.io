@@ -11868,9 +11868,11 @@ I was using my script. Luckily I found out an easier way to deal with saving and
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pickle</span>
 </code></pre></div>
 
+
 <h4>Saving</h4>
 <div class="highlight"><pre><span></span><code><span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">picklename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
 </code></pre></div>
+
 
 <h4>Loading</h4>
 <div class="highlight"><pre><span></span><code><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="nb">open</span><span class="p">(</span> <span class="n">picklename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span> <span class="p">)</span> <span class="p">)</span>

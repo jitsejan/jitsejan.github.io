@@ -11866,6 +11866,7 @@ jQuery(document).ready(function($) {
 <div class="highlight"><pre><span></span><code><span class="err">| rex mode=sed &quot;s/\&#39;/\&quot;/g&quot; field=myfield</span>
 </code></pre></div>
 
+
 <h3>Extract JSON data from an JSON array</h3>
 <p>The following will try to find ten matches for strings contained in curly brackets. Next it will be expanded to a multi value field so we can use <em>spath</em> on each extracted field.</p>
 <div class="highlight"><pre><span></span><code><span class="err">| rex max_match=10 &quot;(?&lt;json_field&gt;{[^}]+})&quot; field=myjsonarrayfield</span>
@@ -11874,17 +11875,20 @@ jQuery(document).ready(function($) {
 <span class="err">| rename field_in_json_field AS field</span>
 </code></pre></div>
 
+
 <h3>Drilldown of areachart</h3>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;drilldown&gt;</span>
     <span class="nt">&lt;set</span> <span class="na">token=</span><span class="s">&quot;form.character&quot;</span><span class="nt">&gt;</span>$click.name2$<span class="nt">&lt;/set&gt;</span>
 <span class="nt">&lt;/drilldown&gt;</span>
 </code></pre></div>
 
+
 <h3>Create a range between limits</h3>
 <div class="highlight"><pre><span></span><code><span class="err">| eval range_field = mvrange(start, end, step) </span>
 <span class="err">| mvexpand range_field </span>
 <span class="err">| stats count by range_field</span>
 </code></pre></div>
+
 
 <h3>Frequency of Splunk restarts</h3>
 <div class="highlight"><pre><span></span><code><span class="err">index=_internal &quot;Splunkd starting&quot; | timechart span=1d count(_raw) as Event</span>

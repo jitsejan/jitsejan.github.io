@@ -11865,9 +11865,11 @@ jQuery(document).ready(function($) {
 <div class="highlight"><pre><span></span><code><span class="err">Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command Processor</span>
 </code></pre></div>
 
+
 <p>and add the key <strong>AutoRun</strong> with the value of the file containing the aliases. In my case this is </p>
 <div class="highlight"><pre><span></span><code><span class="err">&quot;%USERPROFILE%\alias.cmd&quot;</span>
 </code></pre></div>
+
 
 <p>Save the change to the registry and restart the command prompt. Currently my <strong>alias.cmd</strong> contains the following:</p>
 <div class="highlight"><pre><span></span><code><span class="err">::</span> <span class="err">Registry</span> <span class="err">path:</span>   <span class="err">Computer\HKEY_CURRENT_USER\SOFTWARE\Microsoft\Command</span> <span class="err">Processor</span>

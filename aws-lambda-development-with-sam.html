@@ -11880,12 +11880,14 @@ Python <span class="m">2</span>.7.15
 Python <span class="m">3</span>.6.6
 </code></pre></div>
 
+
 <p>By installing Python, <code>pip</code> should be available on the machine. In case Python 3 is not the default Python interpreter, <code>pip</code> should be called with <code>pip3</code>. </p>
 <div class="highlight"><pre><span></span><code>~/c/python-lambda-tutorial $ pip --version
 pip <span class="m">18</span>.1 from /usr/local/lib/python2.7/site-packages/pip <span class="o">(</span>python <span class="m">2</span>.7<span class="o">)</span>
 ~/c/python-lambda-tutorial $ pip3 --version
 pip <span class="m">18</span>.1 from /Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/pip <span class="o">(</span>python <span class="m">3</span>.6<span class="o">)</span>
 </code></pre></div>
+
 
 <p>Create the Python <strong>virtual environment</strong> using <code>pipenv</code>. <code>pipenv</code> is the recommended way to create virtual environments for Python. The same can be achieved using <code>conda</code> or <code>virtualenv</code> or other tools, but the preferred way for Python 3 is <code>pipenv</code>. (<a href="https://docs.python-guide.org/dev/virtualenvs/">Source</a>)</p>
 <p>Install <code>pipenv</code>:</p>
@@ -11895,6 +11897,7 @@ Collecting pipenv
 Installing collected packages: pipenv
 Successfully installed pipenv-2018.10.13
 </code></pre></div>
+
 
 <p>Create an environment for Python 3.6:</p>
 <div class="highlight"><pre><span></span><code>~/c/python-lambda-tutorial $ pipenv --python <span class="m">3</span>.6
@@ -11910,10 +11913,12 @@ Installing setuptools, pip, wheel...done.
 Virtualenv location: /Users/jitsejan/.local/share/virtualenvs/python-lambda-tutorial-mfatrPYM
 </code></pre></div>
 
+
 <p>Activate the environment:</p>
 <div class="highlight"><pre><span></span><code>~/c/python-lambda-tutorial $ pipenv shell
 Launching subshell in virtual environment…
 </code></pre></div>
+
 
 <p>Install <a href="https://aws.amazon.com/cli/">AWS CLI</a>:</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ pipenv install awscli
@@ -11932,6 +11937,7 @@ Installing dependencies from Pipfile.lock <span class="o">(</span>94bc2a<span cl
 python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ aws --version
 aws-cli/1.16.35 Python/3.6.6 Darwin/18.0.0 botocore/1.12.25
 </code></pre></div>
+
 
 <p>Install <a href="https://github.com/awslabs/aws-sam-local">AWS SAM CLI</a>:</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ pipenv install aws-sam-cli 
@@ -11953,6 +11959,7 @@ python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ sam --version
 SAM CLI, version <span class="m">0</span>.6.0
 </code></pre></div>
 
+
 <p>Install the template tool <a href="https://github.com/audreyr/cookiecutter"><code>cookiecutter</code></a>:</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ pipenv install cookiecutter
 Installing cookiecutter…
@@ -11966,6 +11973,7 @@ Updated Pipfile.lock <span class="o">(</span>23abb4<span class="o">)</span>!
 Installing dependencies from Pipfile.lock <span class="o">(</span>23abb4<span class="o">)</span>…
   🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ <span class="m">42</span>/42 — <span class="m">00</span>:00:11
 </code></pre></div>
+
 
 <p>Verify the environment:</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ tree
@@ -11991,12 +11999,14 @@ aws-sam-cli <span class="o">=</span> <span class="s2">&quot;*&quot;</span>
 <span class="nv">python_version</span> <span class="o">=</span> <span class="s2">&quot;3.6&quot;</span>
 </code></pre></div>
 
+
 <p><strong>Important</strong></p>
 <p>Make sure the AWS credentials are saved in <code>~/.aws/credentials</code> with the following content and the ID and key replaced with the correct values.</p>
 <div class="highlight"><pre><span></span><code><span class="k">[default]</span>
 <span class="na">aws_access_key_id</span><span class="o">=</span><span class="s">AAAAAAAAAAAAAAAAAAAA</span>
 <span class="na">aws_secret_access_key</span><span class="o">=</span><span class="s">aAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaAaA</span>
 </code></pre></div>
+
 
 <h2>Local development</h2>
 <p>Install the template with the minimal option set:</p>
@@ -12031,6 +12041,7 @@ python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ tree
 <span class="m">4</span> directories, <span class="m">11</span> files
 </code></pre></div>
 
+
 <p>Navigate inside the <code>python-lambda-tutorial-project</code> folder and install the application and development dependencies. Note that this creates a different virtual environment, namely the one with the dependencies for the lambda function.</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ <span class="nb">cd</span> python-lambda-tutorial-project/
 python-lambda-tutorial-mfatrPYM ~/c/p/python-lambda-tutorial-project $ pipenv install
@@ -12055,12 +12066,14 @@ Installing dependencies from Pipfile.lock <span class="o">(</span>26f9f9<span cl
   🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ <span class="m">17</span>/17 — <span class="m">00</span>:00:04
 </code></pre></div>
 
+
 <p>The <code>cookiecutter</code> template will create a <code>first_function</code>. The function code is located in <code>first_function/app.py</code>, while the function itself is defined in the <code>template.yaml</code> as <code>FirstFunction</code>. Before we can test the function, we need to prepare the function for deployment. If we run the test without creating the deployment package, the tests will fail. Note that the first time the function is invoked, the <code>lambda:python3.6</code> image will be downloaded first.</p>
 <p>Start the local lambda server:</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial sam <span class="nb">local</span> start-lambda                                          
 <span class="m">2018</span>-10-17 <span class="m">12</span>:54:38 Starting the Local Lambda Service. You can now invoke your Lambda Functions defined in your template through the endpoint.
 <span class="m">2018</span>-10-17 <span class="m">12</span>:54:38  * Running on http://127.0.0.1:3001/ <span class="o">(</span>Press CTRL+C to quit<span class="o">)</span>
 </code></pre></div>
+
 
 <p>Call the <code>FirstFunction</code> with a simple JSON payload:</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ <span class="nb">echo</span> <span class="s1">&#39;{&quot;lambda&quot;: &quot;payload&quot;}&#39;</span> <span class="p">|</span> sam <span class="nb">local</span> invoke FirstFunction
@@ -12078,6 +12091,7 @@ REPORT RequestId: 6928ee1b-e1df-4b0c-bd36-c181102fd447 Duration: <span class="m"
 <span class="o">{</span><span class="s2">&quot;errorMessage&quot;</span>: <span class="s2">&quot;Unable to import module &#39;app&#39;&quot;</span><span class="o">}</span>
 </code></pre></div>
 
+
 <p>To create the deployment, we first create a hashed <code>requirements.txt</code> from the <code>Pipfile</code>:</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ pipenv lock -r &gt; requirements.txt
 /usr/local/lib/python2.7/site-packages/pipenv/vendor/vistir/compat.py:109: ResourceWarning: Implicitly cleaning up &lt;TemporaryDirectory <span class="s1">&#39;/var/folders/06/61h5ywpd0936tr9cvk_gc38r0rr60q/T/pipenv-tjo3nI-requirements&#39;</span>&gt;
@@ -12093,6 +12107,7 @@ python-dateutil<span class="o">==</span><span class="m">2</span>.7.3 <span class
 <span class="nv">urllib3</span><span class="o">==</span><span class="m">1</span>.23
 </code></pre></div>
 
+
 <p>Install the dependencies directly to the <code>build</code> folder of the function:</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ pip install -r requirements.txt -t first_function/build/
 Looking in indexes: https://pypi.python.org/simple
@@ -12101,9 +12116,11 @@ Installing collected packages: jmespath, docutils, urllib3, six, python-dateutil
 Successfully installed boto3-1.9.25 botocore-1.12.25 docutils-0.14 jmespath-0.9.3 python-dateutil-2.7.3 s3transfer-0.1.13 six-1.11.0 urllib3-1.23
 </code></pre></div>
 
+
 <p>Finally, copy the <code>app.py</code> for the function to the <code>build</code> folder:</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ cp -R first_function/app.py first_function/build/
 </code></pre></div>
+
 
 <p>We can test the function again and see that in this case we get the expected result as defined in <code>first_function/app.py</code>.</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ <span class="nb">echo</span> <span class="s1">&#39;{&quot;lambda&quot;: &quot;payload&quot;}&#39;</span> <span class="p">|</span> sam <span class="nb">local</span> invoke FirstFunction
@@ -12120,6 +12137,7 @@ REPORT RequestId: 8b3f19d2-9fd9-41bd-9842-c6347e18259f Duration: <span class="m"
 <span class="o">{</span><span class="s2">&quot;hello&quot;</span>: <span class="s2">&quot;world&quot;</span><span class="o">}</span>
 </code></pre></div>
 
+
 <p>To make testing simpler, we can write the JSON payload the <code>event.json</code> and call the function with the event file as an argument. </p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ <span class="nb">echo</span> <span class="s1">&#39;{&quot;lambda&quot;: &quot;payload&quot;}&#39;</span> &gt; event.json
 python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ sam <span class="nb">local</span> invoke -e event.json FirstFunction
@@ -12134,6 +12152,7 @@ REPORT RequestId: ea8c34a0-c44f-4719-a20a-fdf6613d75d4 Duration: <span class="m"
 
 <span class="o">{</span><span class="s2">&quot;hello&quot;</span>: <span class="s2">&quot;world&quot;</span><span class="o">}</span>
 </code></pre></div>
+
 
 <p>As we can see in the generated <code>app.py</code>, there is an <code>event</code> and <code>context</code> parameter. Simplify the <code>app.py</code> to the following to test the two parameters:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">boto3</span>
@@ -12167,6 +12186,7 @@ REPORT RequestId: ea8c34a0-c44f-4719-a20a-fdf6613d75d4 Duration: <span class="m"
     <span class="p">}</span>
 </code></pre></div>
 
+
 <p>Copy the <code>app.py</code> in the <code>build</code> folder and invoke the function again. We can see the output has changed and shows us more content.</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ cp -R first_function/app.py first_function/build/   
 python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ sam <span class="nb">local</span> invoke -e event.json FirstFunction
@@ -12182,6 +12202,7 @@ REPORT RequestId: 7160a23c-f8db-4c22-bc95-34d8822b2427 Duration: <span class="m"
 <span class="o">{</span><span class="s2">&quot;event&quot;</span>: <span class="o">{</span><span class="s2">&quot;lambda&quot;</span>: <span class="s2">&quot;payload&quot;</span><span class="o">}</span>, <span class="s2">&quot;function_name&quot;</span>: <span class="s2">&quot;test&quot;</span><span class="o">}</span>
 </code></pre></div>
 
+
 <h2>Deployment</h2>
 <p>First and foremost, we need a S3 bucket where we can upload our Lambda functions packaged as ZIP before we deploy anything - If you don't have a S3 bucket to store code artifacts then this is a good time to create one:</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ aws s3 mb s3://lambda-artifacts
@@ -12189,6 +12210,7 @@ make_bucket: lambda-artifacts
 python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ aws s3 ls <span class="p">|</span> grep lambda-artifacts
 <span class="m">2018</span>-10-17 <span class="m">13</span>:25:24 lambda-artifacts
 </code></pre></div>
+
 
 <p>Run the following command to package our Lambda function to S3:</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ sam package --template-file template.yaml --output-template-file packaged.yaml --s3-bucket lambda-artifacts
@@ -12198,12 +12220,14 @@ Execute the following <span class="nb">command</span> to deploy the packaged tem
 aws cloudformation deploy --template-file /Users/jitsejan/code/python-lambda-tutorial/python-lambda-tutorial-project/packaged.yaml --stack-name &lt;YOUR STACK NAME&gt;
 </code></pre></div>
 
+
 <p>Next, the following command will create a Cloudformation Stack and deploy your SAM resources.</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ sam deploy --template-file packaged.yaml --stack-name python-lambda-tutorial --capabilities CAPABILITY_IAM
 Waiting <span class="k">for</span> changeset to be created..
 Waiting <span class="k">for</span> stack create/update to <span class="nb">complete</span>
 Successfully created/updated stack - python-lambda-tutorial
 </code></pre></div>
+
 
 <p>The deployment stack can be checked with CloudFormation too:</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ aws cloudformation describe-stacks --stack-name python-lambda-tutorial --query <span class="s1">&#39;Stacks[].Outputs&#39;</span>
@@ -12218,12 +12242,14 @@ Successfully created/updated stack - python-lambda-tutorial
 <span class="o">]</span>
 </code></pre></div>
 
+
 <p>We can list the available functions on AWS Lambda and search for <code>FirstFunction</code>:</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ aws lambda list-functions <span class="p">|</span> grep FirstFunction
             <span class="s2">&quot;FunctionName&quot;</span>: <span class="s2">&quot;python-lambda-tutorial-FirstFunction-10Z13KCZEJ575&quot;</span>,
             <span class="s2">&quot;FunctionArn&quot;</span>: <span class="s2">&quot;arn:aws:lambda:eu-west-1:848373817713:function:python-lambda-tutorial-FirstFunction-10Z13KCZEJ575&quot;</span>,
             <span class="s2">&quot;Role&quot;</span>: <span class="s2">&quot;arn:aws:iam::848373817713:role/python-lambda-tutorial-FirstFunctionRole-6V7HKJLXSE52&quot;</span>,
 </code></pre></div>
+
 
 <h2>Running</h2>
 <p>We can invoke the function on AWS Lambda with the following command, where the function name is copied from the output of the previous command. </p>
@@ -12233,6 +12259,7 @@ Successfully created/updated stack - python-lambda-tutorial
     <span class="s2">&quot;ExecutedVersion&quot;</span>: <span class="s2">&quot;</span><span class="nv">$LATEST</span><span class="s2">&quot;</span>
 <span class="o">}</span>
 </code></pre></div>
+
 
 <p>The result is written to <code>output.txt</code> and should contain the event and the function name.</p>
 <div class="highlight"><pre><span></span><code>python-lambda-tutorial-mfatrPYM ~/c/python-lambda-tutorial $ cat outputfile.txt                                                                                                      

@@ -11936,6 +11936,7 @@ the environment I install minIO and add it as a service <code>/etc/systemd/syste
 <span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
 </code></pre></div>
 
+
 <p>The minIO environment file located at <code>/etc/default/minIO</code> contains the configuration for the volume, the port and the credentials.</p>
 <div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="n">minIO</span> <span class="k">local</span><span class="o">/</span><span class="n">remote</span> <span class="n">volumes</span><span class="p">.</span>
 <span class="n">minIO_VOLUMES</span><span class="o">=</span><span class="ss">&quot;/minIO-data/&quot;</span>
@@ -11946,11 +11947,13 @@ the environment I install minIO and add it as a service <code>/etc/systemd/syste
 <span class="n">minIO_SECRET_KEY</span><span class="o">=</span><span class="ss">&quot;mysecret&quot;</span>
 </code></pre></div>
 
+
 <div class="highlight"><pre><span></span><code>$ minIO version
 Version: <span class="m">2019</span>-06-27T21:13:50Z
 Release-Tag: RELEASE.2019-06-27T21-13-50Z
 Commit-ID: 36c19f1d653adf3ef70128eb3be1a35b6b032731
 </code></pre></div>
+
 
 <p>For the complete configuration, check the <a href="https://github.com/jitsejan/vps-provision/tree/master/roles/minIO">role</a> in Github.</p>
 <h2>Code</h2>
@@ -11963,6 +11966,7 @@ Commit-ID: 36c19f1d653adf3ef70128eb3be1a35b6b032731
 <span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>/lib/native
 <span class="nb">export</span> <span class="nv">SPARK_DIST_CLASSPATH</span><span class="o">=</span><span class="k">$(</span>hadoop classpath<span class="k">)</span>
 </code></pre></div>
+
 
 <p>After setting the environment variables, we need to make sure we connect to the minIO endpoint and set the credentials. Make 
 sure the <code>path.style.access</code> is set to <code>True</code>. </p>
@@ -11980,6 +11984,7 @@ sure the <code>path.style.access</code> is set to <code>True</code>. </p>
 <span class="n">sqlContext</span> <span class="o">=</span> <span class="n">SQLContext</span><span class="p">(</span><span class="n">sc</span><span class="p">)</span>
 </code></pre></div>
 
+
 <p>Once this is done, we can simply access the bucket and read a text file (given that this bucket and text file exists), and
 we are able to write a dataframe to minIO. </p>
 <div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">sc</span><span class="o">.</span><span class="n">wholeTextFiles</span><span class="p">(</span><span class="s1">&#39;s3a://datalake/test.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">collect</span><span class="p">())</span>
@@ -11988,6 +11993,7 @@ we are able to write a dataframe to minIO. </p>
 <span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">([(</span><span class="s1">&#39;Mario&#39;</span><span class="p">,</span> <span class="s1">&#39;Red&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Luigi&#39;</span><span class="p">,</span> <span class="s1">&#39;Green&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;Princess&#39;</span><span class="p">,</span> <span class="s1">&#39;Pink&#39;</span><span class="p">)])</span>
 <span class="n">rdd</span><span class="o">.</span><span class="n">toDF</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">write</span><span class="o">.</span><span class="n">csv</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
 </code></pre></div>
+
 
 <h2>Todo</h2>
 <p>Currently there seems to be an issue with reading <strong>small</strong> files, it will give a Parquet error that the files are not big enough to read. It seems

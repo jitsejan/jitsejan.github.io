@@ -11866,77 +11866,94 @@ jQuery(document).ready(function($) {
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </code></pre></div>
 
+
 <h2>Convert with dataframes</h2>
 <h3>Create dataframe from a dictionary</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span>
 <span class="n">characters</span> <span class="o">=</span> <span class="n">character_df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h3>Convert CSV to dataframe</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_csv</span><span class="p">(</span><span class="s2">&quot;characters.csv&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
 <span class="n">character_df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;characters.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
 </code></pre></div>
+
 
 <h3>Convert dataframe to JSON</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_json</span><span class="p">(</span><span class="s1">&#39;characters.json&#39;</span><span class="p">)</span>
 <span class="n">character_df</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="s1">&#39;characters.json&#39;</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s1">&#39;records&#39;</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h3>Convert dataframe to pickle</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;characters.pandas&#39;</span><span class="p">)</span>
 <span class="n">character_df</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;characters.pandas&#39;</span><span class="p">)</span>
 </code></pre></div>
+
 
 <h3>Convert database query to dataframe</h3>
 <div class="highlight"><pre><span></span><code><span class="n">db</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;postgresql://</span><span class="si">%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1">@</span><span class="si">%s</span><span class="s1">:</span><span class="si">%d</span><span class="s1">/characters&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">POSTGRES_USER</span><span class="p">,</span> <span class="n">POSTGRES_PASS</span><span class="p">,</span> <span class="n">POSTGRES_HOST</span><span class="p">,</span> <span class="n">POSTGRES_PORT</span><span class="p">))</span>
 <span class="n">character_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM &quot;character_collection&quot;&#39;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">db</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h2>Cleaning dataframes</h2>
 <h3>Replace in column</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h3>Regex replace in whole dataframe</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="sa">r</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
+
 
 <h3>Regex extract in column</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;introduction_year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;date_of_introduction&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;(\d</span><span class="si">{4}</span><span class="s1">)-..-..&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h3>Remove all Not-a-Numbers</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span> <span class="o">=</span> <span class="n">character_df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s1">&#39;NaN&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
+
 
 <h3>Rename a column</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;character_name&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 
+
 <p>Or replace characters:</p>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">character_df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h3>Drop a column</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span> <span class="o">=</span> <span class="n">character_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
+
 
 <h3>Drop a row</h3>
 <p>Drop all rows where the name is NaN.</p>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h3>Delete a column</h3>
 <div class="highlight"><pre><span></span><code><span class="k">del</span> <span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;special_diet&#39;</span><span class="p">]</span>
 </code></pre></div>
+
 
 <h3>Convert to integer</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;introduction_year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;introduction_year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h3>Convert to category</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;superpower&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;superpower&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;category&#39;</span><span class="p">)</span>
 </code></pre></div>
+
 
 <h3>Convert string to list</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Convert a string with surrounding brackets and quotes to a list</span>
@@ -11946,31 +11963,38 @@ jQuery(document).ready(function($) {
 <span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;superpowers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">convert_string_to_list</span><span class="p">(</span><span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;superpowers&#39;</span><span class="p">])</span>
 </code></pre></div>
 
+
 <h3>Create column from index</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Name&#39;</span><span class="p">]</span>
 <span class="n">character_df</span> <span class="o">=</span> <span class="n">character_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </code></pre></div>
 
+
 <h3>Extend dictionary cell to columns</h3>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;meta&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;meta&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
+
 
 <h2>Find data</h2>
 <h3>Describe the data</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </code></pre></div>
 
+
 <h3>Unique values</h3>
 <div class="highlight"><pre><span></span><code><span class="n">characters</span> <span class="o">=</span> <span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;character_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </code></pre></div>
+
 
 <h3>Field contains</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span><span class="p">[</span><span class="n">character_df</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;Koopa&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="kc">False</span><span class="p">)]</span>
 </code></pre></div>
 
+
 <h3>Count by</h3>
 <div class="highlight"><pre><span></span><code><span class="n">character_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;superpowers&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </code></pre></div>
+
 
 <h3>Loop through data</h3>
 <div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">character_df</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
@@ -11979,18 +12003,22 @@ jQuery(document).ready(function($) {
        <span class="nb">print</span> <span class="s1">&#39;Super!&#39;</span>
 </code></pre></div>
 
+
 <h3>Substract</h3>
 <p>Substract two consecutive cells</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;difference&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h3>Add a maximum column for a groupby</h3>
 <div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;group_maximum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;category&#39;</span><span class="p">])[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="nb">max</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h3>Get maximum 10</h3>
 <div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;category&#39;</span><span class="p">])[</span><span class="s1">&#39;viewers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </code></pre></div>
+
 
 <h3>Create category based on values</h3>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">set_category</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
@@ -12004,26 +12032,32 @@ jQuery(document).ready(function($) {
 <span class="n">df</span><span class="p">[</span><span class="s1">&#39;category&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">set_category</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h3>Apply lambda function</h3>
 <div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;inverse_number&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;number&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
 </code></pre></div>
+
 
 <h3>Sort values</h3>
 <div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h3>Normalize a JSON column</h3>
 <div class="highlight"><pre><span></span><code><span class="n">pd</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">json_normalize</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;json_col&#39;</span><span class="p">])</span>
 </code></pre></div>
+
 
 <h3>Select data</h3>
 <div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">notnull</span><span class="p">()]</span>
 </code></pre></div>
 
+
 <p>or</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;name.notnull()&#39;</span><span class="p">,</span>
          <span class="n">engine</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>
 </code></pre></div>
+
 
 <h3>Expand cell with list to rows</h3>
 <div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;list_cells&#39;</span><span class="p">]</span>\
@@ -12034,12 +12068,14 @@ jQuery(document).ready(function($) {
     <span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="s1">&#39;list_cell&#39;</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h2>Find and drop empty columns</h2>
 <div class="highlight"><pre><span></span><code><span class="n">empty_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
 <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">empty_cols</span><span class="p">,</span>
         <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
         <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
+
 
 <h2>Merge two dataframe</h2>
 <div class="highlight"><pre><span></span><code><span class="n">combined_data_df</span> <span class="o">=</span> <span class="n">first_df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">second_df</span><span class="p">,</span>
@@ -12048,11 +12084,13 @@ jQuery(document).ready(function($) {
                                   <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h2>Calculate difference between two consecutive rows</h2>
 <div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s1">&#39;diff&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">]</span>\
     <span class="o">.</span><span class="n">diff</span><span class="p">()</span>\
     <span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
+
 
 <h2>Filter each column larger than threshold</h2>
 <div class="highlight"><pre><span></span><code><span class="n">THRESHOLD</span> <span class="o">=</span> <span class="mi">100</span>

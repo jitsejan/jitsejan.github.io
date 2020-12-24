@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Add Flickr photosets to a Django site | JJ's World</title>
+        <title>Scraping data based on xpaths | JJ's World</title>
 
 
 <style type="text/css">
@@ -11856,185 +11856,137 @@ jQuery(document).ready(function($) {
     </div>
     <article>
         <header>
-            <h1>Add Flickr photosets to a Django site</h1>
-            <time datetime="article.date.isoformat()" pubdate>Wed 05 October 2016</time>
+            <h1>Scraping data based on xpaths</h1>
+            <time datetime="article.date.isoformat()" pubdate>Thu 24 December 2020</time>
         </header>
 
         <div class="article_content">
-            <h3>1. Set up connection</h3>
-<p>(Note that I just put a dummy key, secret and userid)</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">flickrapi</span>
-<span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;123456789abcdefghijklmn&#39;</span>
-<span class="n">secret</span> <span class="o">=</span> <span class="s1">&#39;123456a7890&#39;</span>
-<span class="n">userid</span> <span class="o">=</span> <span class="s1">&#39;123456@N16&#39;</span>
-<span class="n">flickr</span> <span class="o">=</span> <span class="n">flickrapi</span><span class="o">.</span><span class="n">FlickrAPI</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">secret</span><span class="p">)</span>
+            <p>For a small project I need to retrieve the cost of an item from the following HTML syntax:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Name<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Boomerang<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Cost(s)<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>300<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Description<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>A wonderful boomerang<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
 </code></pre></div>
 
 
-<h3>2. Retrieve the photosets</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
-<span class="n">sets</span> <span class="o">=</span> <span class="n">flickr</span><span class="o">.</span><span class="n">photosets</span><span class="o">.</span><span class="n">getList</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">userid</span><span class="p">)</span>
-<span class="n">photoset</span> <span class="o">=</span> <span class="n">sets</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;.//photoset&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="nb">print</span> <span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">photoset</span><span class="p">)</span>
+<p>It is difficult to get to this item because not every page has the same table, and not every table has the cost mentioned. The goal is to retrieve both the <code>name</code> and the <code>price</code> of an item. To keep things tidy I will use a <code>dataclass</code> for the items. Here I can define that the name will be a string and the price an integer as well as overwrite the print function for a single item.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Item</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">price</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;(name=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">, price=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 </code></pre></div>
 
 
-<p>will return</p>
-<div class="highlight"><pre><span></span><code>&lt;photoset <span class="nv">id</span><span class="o">=</span><span class="s2">&quot;72157674032173850&quot;</span> <span class="nv">primary</span><span class="o">=</span><span class="s2">&quot;30292011566&quot;</span> <span class="nv">secret</span><span class="o">=</span><span class="s2">&quot;c384c894ce&quot;</span> <span class="nv">server</span><span class="o">=</span><span class="s2">&quot;8552&quot;</span> <span class="nv">farm</span><span class="o">=</span><span class="s2">&quot;9&quot;</span> <span class="nv">photos</span><span class="o">=</span><span class="s2">&quot;31&quot;</span> <span class="nv">videos</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">needs_interstitial</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">visibility_can_see_set</span><span class="o">=</span><span class="s2">&quot;1&quot;</span> <span class="nv">count_views</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">count_comments</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">can_comment</span><span class="o">=</span><span class="s2">&quot;0&quot;</span> <span class="nv">date_create</span><span class="o">=</span><span class="s2">&quot;1476484376&quot;</span> <span class="nv">date_update</span><span class="o">=</span><span class="s2">&quot;1476488433&quot;</span>&gt;
-    &lt;title&gt;Canada <span class="m">2016</span>&lt;/title&gt;
-    &lt;description&gt;Visit to Toronto, Montreal and the Falls.&lt;/description&gt;
-&lt;/photoset&gt;
+<p>I am crawling data from https://zelda.gamepedia.com since it has a very complete overview of all the Zelda data. I use a simple function to get the XML tree from the page source using <code>requests</code> with <code>lxml.html</code>. <code>BeautifulSoup</code> and other fancy packages would work too but I like to stick to more basic libraries for simplicity.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">lxml.html</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0&#39;</span>
+<span class="p">}</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">session</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="n">HEADERS</span>
+
+<span class="k">def</span> <span class="nf">_get_tree_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">lxml</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">etree</span><span class="p">:</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lxml</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre></div>
 
 
-<h3>3. Connect to Django</h3>
-<p>Since I want to add to pictures from Flickr to my Django webpage, I need to connect to the database.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span><span class="o">,</span> <span class="nn">sys</span>
-<span class="n">project_path</span> <span class="o">=</span> <span class="s1">&#39;/opt/env/django_project/&#39;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&quot;DJANGO_SETTINGS_MODULE&quot;</span><span class="p">,</span> <span class="s2">&quot;django_project.settings&quot;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">project_path</span><span class="p">)</span>
+<p>The links to all the items are inside the <code>gallerybox</code> div and are easy to retrieve using <code>cssselect</code>. The following function is a generator that returns the links to all items mentioned on the Legend of Zelda page.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_get_item_links</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="n">items_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s2">/Items_in_The_Legend_of_Zelda&quot;</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">_get_tree_from_url</span><span class="p">(</span><span class="n">items_url</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s2">&quot;li.gallerybox .gallerytext p a&quot;</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BASE_URL</span><span class="si">}{</span><span class="n">elem</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
 
 
-<h3>4. Load the Photoset model</h3>
-<p>Now we set the path to be the Django path, we can import the models from my blog.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">django</span>
-<span class="n">django</span><span class="o">.</span><span class="n">setup</span><span class="p">()</span>
-<span class="kn">from</span> <span class="nn">blog.models</span> <span class="kn">import</span> <span class="n">Photoset</span>
-<span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">Photoset</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">():</span>
-    <span class="nb">print</span> <span class="n">field</span>
+<p>The next bit takes care of finding the right row in the table to retrieve the price and the name of the item. The <strong>name</strong> is retrieved from the <code>meta</code> tag with the <code>og:title</code> property by getting the <code>content</code> attribute. I wrote it with <code>cssselect</code> but this could easily be rewritten as xpath with <code>"//meta[@property='og:title']/@content"</code>. The more tricky part is to find the cell of the table where the header of the row contains a certain text. For the xpath you will need to find the <code>tr</code> for which the table header <code>contains()</code> a certain string and return the text of the div inside the cell.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_item_details</span><span class="p">(</span><span class="n">link</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Item</span><span class="p">:</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">_get_tree_from_url</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s2">&quot;meta[property=&#39;og:title&#39;]&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+        <span class="n">price</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//tr[th//text()[contains(., &#39;Cost(s)&#39;)]]/td/div&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Item</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span> <span class="c1"># No price for this item</span>
 </code></pre></div>
 
 
-<p>This will show the fields of the model.</p>
-<div class="highlight"><pre><span></span><code>&lt;ManyToOneRel: blog.photo&gt;
-blog.Photoset.id
-blog.Photoset.flickr_id
-blog.Photoset.secret
-blog.Photoset.title
-blog.Photoset.description
-blog.Photoset.date_create
-blog.Photoset.date_update
-blog.Photoset.created
-blog.Photoset.modified
-</code></pre></div>
+<p>Putting it all together:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">import</span> <span class="nn">lxml.html</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Iterator</span>
+
+<span class="n">BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;https://zelda.gamepedia.com&quot;</span>
+<span class="n">HEADERS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0&#39;</span>
+<span class="p">}</span>
+
+<span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Item</span><span class="p">:</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">price</span><span class="p">:</span> <span class="nb">int</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;(name=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">, price=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 
-<h3>5. Add Flickr photosets to Django</h3>
-<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="ow">not</span> <span class="n">Photoset</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">flickr_id</span><span class="o">=</span><span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-    <span class="n">blog_photoset</span> <span class="o">=</span> <span class="n">Photoset</span><span class="p">()</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">flickr_id</span> <span class="o">=</span> <span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">secret</span> <span class="o">=</span> <span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;secret&#39;</span><span class="p">)</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">photoset</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">photoset</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="k">if</span> <span class="n">photoset</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="ow">is</span> <span class="s1">&#39;null&#39;</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">date_create</span> <span class="o">=</span> <span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;date_create&#39;</span><span class="p">)</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">date_update</span> <span class="o">=</span> <span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;date_update&#39;</span><span class="p">)</span>
-    <span class="n">blog_photoset</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="s2">&quot;Added photoset &#39;</span><span class="si">%s</span><span class="s2">&#39; to database!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">blog_photoset</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span> <span class="s2">&quot;Photoset &#39;</span><span class="si">%s</span><span class="s2">&#39; already in database!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">photoset</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</code></pre></div>
+<span class="k">def</span> <span class="nf">_get_tree_from_url</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">lxml</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">etree</span><span class="p">:</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lxml</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 
+<span class="k">def</span> <span class="nf">get_item_links</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="n">items_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s2">/Items_in_The_Legend_of_Zelda&quot;</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">_get_tree_from_url</span><span class="p">(</span><span class="n">items_url</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s2">&quot;li.gallerybox .gallerytext p a&quot;</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BASE_URL</span><span class="si">}{</span><span class="n">elem</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
 
-<p>In my case the photoset has already been added.</p>
-<div class="highlight"><pre><span></span><code>Photoset <span class="s1">&#39;Canada 2016&#39;</span> already in database!
-</code></pre></div>
+<span class="k">def</span> <span class="nf">get_item_details</span><span class="p">(</span><span class="n">link</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Item</span><span class="p">:</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">_get_tree_from_url</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s2">&quot;meta[property=&#39;og:title&#39;]&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+        <span class="n">price</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">tree</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s2">&quot;//tr[th//text()[contains(., &#39;Cost(s)&#39;)]]/td/div&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Item</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">price</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span> <span class="c1"># No price for this item</span>
 
+<span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+<span class="n">session</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="n">HEADERS</span>
+<span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">get_item_links</span><span class="p">():</span>
+    <span class="n">item_data</span> <span class="o">=</span> <span class="n">get_item_details</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item_data</span><span class="p">)</span> <span class="k">if</span> <span class="n">item_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span><span class="p">)</span>
 
-<h3>6. Retrieve photos from Flickr photoset</h3>
-<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">photo</span> <span class="ow">in</span> <span class="n">flickr</span><span class="o">.</span><span class="n">walk_set</span><span class="p">(</span><span class="n">photoset</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]):</span>
-    <span class="n">photo_element</span> <span class="o">=</span> <span class="n">flickr</span><span class="o">.</span><span class="n">photos</span><span class="o">.</span><span class="n">getinfo</span><span class="p">(</span><span class="n">photo_id</span><span class="o">=</span><span class="n">photo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;./photo&#39;</span><span class="p">)</span>
-    <span class="nb">print</span> <span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">photo_element</span><span class="p">)</span>
-    <span class="k">break</span> <span class="c1"># Just print one</span>
-</code></pre></div>
-
-
-<p>This will return the XML object of a photo.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">&lt;photo</span> <span class="na">id=</span><span class="s">&quot;30326779825&quot;</span> <span class="na">secret=</span><span class="s">&quot;78076b80de&quot;</span> <span class="na">server=</span><span class="s">&quot;8140&quot;</span> <span class="na">farm=</span><span class="s">&quot;9&quot;</span> <span class="na">dateuploaded=</span><span class="s">&quot;1476484428&quot;</span> <span class="na">isfavorite=</span><span class="s">&quot;0&quot;</span> <span class="na">license=</span><span class="s">&quot;0&quot;</span> <span class="na">safety_level=</span><span class="s">&quot;0&quot;</span> <span class="na">rotation=</span><span class="s">&quot;270&quot;</span> <span class="na">originalsecret=</span><span class="s">&quot;cb36a41988&quot;</span> <span class="na">originalformat=</span><span class="s">&quot;jpg&quot;</span> <span class="na">views=</span><span class="s">&quot;1&quot;</span> <span class="na">media=</span><span class="s">&quot;photo&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;owner</span> <span class="na">nsid=</span><span class="s">&quot;45832294@N06&quot;</span> <span class="na">username=</span><span class="s">&quot;jitsejan&quot;</span> <span class="na">realname=</span><span class="s">&quot;Jitse-Jan van Waterschoot&quot;</span> <span class="na">location=</span><span class="s">&quot;&quot;</span> <span class="na">iconserver=</span><span class="s">&quot;5495&quot;</span> <span class="na">iconfarm=</span><span class="s">&quot;6&quot;</span> <span class="na">path_alias=</span><span class="s">&quot;jitsejan&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;title&gt;</span>Looking at the city<span class="nt">&lt;/title&gt;</span>
-    <span class="nt">&lt;description/&gt;</span>
-    <span class="nt">&lt;visibility</span> <span class="na">ispublic=</span><span class="s">&quot;1&quot;</span> <span class="na">isfriend=</span><span class="s">&quot;0&quot;</span> <span class="na">isfamily=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;dates</span> <span class="na">posted=</span><span class="s">&quot;1476484428&quot;</span> <span class="na">taken=</span><span class="s">&quot;2016-08-26 04:14:31&quot;</span> <span class="na">takengranularity=</span><span class="s">&quot;0&quot;</span> <span class="na">takenunknown=</span><span class="s">&quot;0&quot;</span> <span class="na">lastupdate=</span><span class="s">&quot;1476700149&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;editability</span> <span class="na">cancomment=</span><span class="s">&quot;0&quot;</span> <span class="na">canaddmeta=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;publiceditability</span> <span class="na">cancomment=</span><span class="s">&quot;1&quot;</span> <span class="na">canaddmeta=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;usage</span> <span class="na">candownload=</span><span class="s">&quot;1&quot;</span> <span class="na">canblog=</span><span class="s">&quot;0&quot;</span> <span class="na">canprint=</span><span class="s">&quot;0&quot;</span> <span class="na">canshare=</span><span class="s">&quot;1&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;comments&gt;</span>0<span class="nt">&lt;/comments&gt;</span>
-    <span class="nt">&lt;notes/&gt;</span>
-    <span class="nt">&lt;people</span> <span class="na">haspeople=</span><span class="s">&quot;0&quot;</span><span class="nt">/&gt;</span>
-    <span class="nt">&lt;tags/&gt;</span>
-    <span class="nt">&lt;urls&gt;</span>
-        <span class="nt">&lt;url</span> <span class="na">type=</span><span class="s">&quot;photopage&quot;</span><span class="nt">&gt;</span>https://www.flickr.com/photos/jitsejan/30326779825/<span class="nt">&lt;/url&gt;</span>
-       <span class="nt">&lt;/urls&gt;</span>
-<span class="nt">&lt;/photo&gt;</span>
-</code></pre></div>
-
-
-<h3>7. Create URL for Flickr photo</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># url_template = &quot;http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_[mstzb].jpg&quot; </span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://farm</span><span class="si">%(farm)s</span><span class="s2">.staticflickr.com/</span><span class="si">%(server)s</span><span class="s2">/</span><span class="si">%(id)s</span><span class="s2">_</span><span class="si">%(secret)s</span><span class="s2">_z.jpg&quot;</span> <span class="o">%</span> <span class="n">photo</span><span class="o">.</span><span class="n">attrib</span>
-<span class="nb">print</span> <span class="n">url</span>
-</code></pre></div>
-
-
-<p>Resulting URL:</p>
-<div class="highlight"><pre><span></span><code>http://farm9.staticflickr.com/8140/30326779825_78076b80de_z.jpg
-</code></pre></div>
-
-
-<h3>8. Load the Photo model</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">blog.models</span> <span class="kn">import</span> <span class="n">Photo</span>
-<span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">Photo</span><span class="o">.</span><span class="n">_meta</span><span class="o">.</span><span class="n">get_fields</span><span class="p">():</span>
-    <span class="nb">print</span> <span class="n">field</span>
-</code></pre></div>
-
-
-<p>Above code will show the fields of the Photo model in Django.</p>
-<div class="highlight"><pre><span></span><code>blog.Photo.id
-blog.Photo.flickr_id
-blog.Photo.title
-blog.Photo.description
-blog.Photo.date_posted
-blog.Photo.date_taken
-blog.Photo.url
-blog.Photo.image_url
-blog.Photo.created
-blog.Photo.modified
-blog.Photo.photoset
-</code></pre></div>
-
-
-<h3>9. Add Flickr photo to Django</h3>
-<div class="highlight"><pre><span></span><code><span class="n">blog_photo</span> <span class="o">=</span> <span class="n">Photo</span><span class="p">()</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">flickr_id</span> <span class="o">=</span> <span class="n">photo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="n">photo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="n">photo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="s1">&#39;null&#39;</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">date_posted</span> <span class="o">=</span> <span class="n">photo_element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;dates&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;posted&#39;</span><span class="p">]</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">date_taken</span> <span class="o">=</span> <span class="n">photo_element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;dates&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;taken&#39;</span><span class="p">]</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">photo_element</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;urls/url&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
-<span class="n">blog_photo</span><span class="o">.</span><span class="n">image_url</span> <span class="o">=</span> <span class="n">url</span>
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">blog_photo</span><span class="o">.</span><span class="n">photoset</span> <span class="o">=</span> <span class="n">blog_photoset</span>
-<span class="k">except</span><span class="p">:</span>
-    <span class="n">blog_photo</span><span class="o">.</span><span class="n">photoset</span> <span class="o">=</span> <span class="n">Photoset</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">flickr_id</span><span class="o">=</span><span class="n">photoset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
-<span class="k">if</span> <span class="ow">not</span> <span class="n">Photo</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">flickr_id</span><span class="o">=</span><span class="n">blog_photo</span><span class="o">.</span><span class="n">flickr_id</span><span class="p">)</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-    <span class="n">blog_photo</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="s2">&quot;Added photo &#39;</span><span class="si">%s</span><span class="s2">&#39; to database!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">blog_photo</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span> <span class="s2">&quot;Photo &#39;</span><span class="si">%s</span><span class="s2">&#39; already in database!&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">blog_photo</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-</code></pre></div>
-
-
-<p>Again, the item is already in the database in my case.</p>
-<div class="highlight"><pre><span></span><code>Photo <span class="s1">&#39;Looking at the city&#39;</span> already in database!
+<span class="n">items</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">price</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+<span class="c1"># [Item(name=Bow, price=980), Item(name=Boomerang, price=300), Item(name=Blue Ring, price=250), Item(name=Arrow, price=80), Item(name=Red Water of Life, price=68), Item(name=Blue Candle, price=60), Item(name=Food, price=60), Item(name=Blue Water of Life, price=40), Item(name=Bomb, price=20), Item(name=Heart Container, price=4)]</span>
 </code></pre></div>
         </div>
 
         <div class="meta">
             <div>
-                    <a href="./tag/django.html" class="tag">Django</a>
                     <a href="./tag/python.html" class="tag">Python</a>
-                    <a href="./tag/flickr.html" class="tag">Flickr</a>
+                    <a href="./tag/scraping.html" class="tag">scraping</a>
+                    <a href="./tag/xpath.html" class="tag">xpath</a>
+                    <a href="./tag/requests.html" class="tag">requests</a>
             </div>
         </div>
     </article>

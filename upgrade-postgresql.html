@@ -11866,24 +11866,29 @@ jQuery(document).ready(function($) {
 <div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo service postgresql status
 </code></pre></div>
 
+
 <p>Probably this will list version 9.3 running on port 5432.</p>
 <p>Add the PostgreSQL repository to the sources to be able to update to newer versions.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo sh -c <span class="s1">&#39;echo &quot;deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main&quot; &gt; /etc/apt/sources.list.d/pgdg.list&#39;</span>
 jitsejan@jjsvps:~$ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc <span class="p">|</span> sudo apt-key add -
 </code></pre></div>
 
+
 <p>Now update the system to retrieve data from the new repository.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo apt-get update
 jitsejan@jjsvps:~$ sudo apt-get upgrade
 </code></pre></div>
 
+
 <p>Next we can install version 9.4 of PostgreSQL.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo apt-get install postgresql-9.4
 </code></pre></div>
 
+
 <p>If you check the status again, you will see two instances of PostgreSQL running.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo service postgresql status
 </code></pre></div>
+
 
 <p>Optionally the old version can be removed.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ sudo apt-get remove --purge postgresql-9.3

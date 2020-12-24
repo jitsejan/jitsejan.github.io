@@ -11887,12 +11887,14 @@ jQuery(document).ready(function($) {
 <div class="highlight"><pre><span></span><code><span class="err">jitsejan@dev16:~$ sudo apt-get update</span>
 </code></pre></div>
 
+
 <h3>Install Docker</h3>
 <p><center><img src="http://files.jitsejan.com/logos/docker.PNG" width=200/></center></p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~$ sudo apt-get install -qy docker.io
 jitsejan@dev16:~$ docker --version
 Docker version <span class="m">17</span>.03.2-ce, build f5ec1e2
 </code></pre></div>
+
 
 <h3>Install Kubernetes apt repository</h3>
 <p><center><img src="http://files.jitsejan.com/logos/kubernetes.svg" width=200/></center></p>
@@ -11901,6 +11903,7 @@ jitsejan@dev16:~$ <span class="nb">echo</span> <span class="s2">&quot;deb http:/
   <span class="p">|</span> sudo tee -a /etc/apt/sources.list.d/kubernetes.list <span class="se">\</span>
   <span class="o">&amp;&amp;</span> sudo apt-get update 
 </code></pre></div>
+
 
 <h3>Install <code>kubeadm</code>, <code>kubectl</code> and <code>kubelet</code></h3>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~$ sudo apt-get install -y kubelet kubeadm kubectl
@@ -11912,6 +11915,7 @@ jitsejan@dev16:~$ kubectl version
 Client Version: version.Info<span class="o">{</span>Major:<span class="s2">&quot;1&quot;</span>, Minor:<span class="s2">&quot;10&quot;</span>, GitVersion:<span class="s2">&quot;v1.10.0&quot;</span>, GitCommit:<span class="s2">&quot;fc32d2f3698e36b93322a3465f63a14e9f0eaead&quot;</span>, GitTreeState:<span class="s2">&quot;clean&quot;</span>, BuildDate:<span class="s2">&quot;2018-03-26T16:55:54Z&quot;</span>, GoVersion:<span class="s2">&quot;go1.9.3&quot;</span>, Compiler:<span class="s2">&quot;gc&quot;</span>, Platform:<span class="s2">&quot;linux/amd64&quot;</span><span class="o">}</span>
 The connection to the server localhost:8080 was refused - did you specify the right host or port?
 </code></pre></div>
+
 
 <h3>Initialize kubernetes</h3>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~$ sudo kubeadm init
@@ -11982,28 +11986,32 @@ as root:
   kubeadm join <span class="m">142</span>.44.184.35:6443 --token j8gf09.pe16y63l0hxygc77 --discovery-token-ca-cert-hash sha256:d8d47cbd352035d5a7746d0ed7e54ae7c0c6bcbb5e89ef410039f7b457be853f
 </code></pre></div>
 
+
 <p>Run the steps mentioned in the previous output:</p>
 <div class="highlight"><pre><span></span><code><span class="err">jitsejan@dev16:~$ mkdir -p $HOME/.kube</span>
 <span class="err">jitsejan@dev16:~$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span>
 <span class="err">jitsejan@dev16:~$ sudo chown $(id -u):$(id -g) $HOME/.kube/config</span>
 </code></pre></div>
 
+
 <h3>Weave net</h3>
-<div class="highlight"><pre><span></span><code><span class="n">jitsejan</span><span class="err">@</span><span class="n">dev16</span><span class="p">:</span><span class="o">~$</span> <span class="k">export</span> <span class="n">kubever</span><span class="o">=$</span><span class="p">(</span><span class="n">kubectl</span> <span class="n">version</span> <span class="o">|</span> <span class="n">base64</span> <span class="o">|</span> <span class="n">tr</span> <span class="o">-</span><span class="n">d</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="n">jitsejan</span><span class="err">@</span><span class="n">dev16</span><span class="p">:</span><span class="o">~$</span> <span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-</span><span class="n">f</span> <span class="s2">&quot;https://cloud.weave.works/k8s/net?k8s-version=$kubever&quot;</span>
-<span class="n">serviceaccount</span><span class="o">/</span><span class="n">weave</span><span class="o">-</span><span class="n">net</span> <span class="n">created</span>
-<span class="n">clusterrole</span><span class="o">.</span><span class="n">rbac</span><span class="o">.</span><span class="n">authorization</span><span class="o">.</span><span class="n">k8s</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">weave</span><span class="o">-</span><span class="n">net</span> <span class="n">created</span>
-<span class="n">clusterrolebinding</span><span class="o">.</span><span class="n">rbac</span><span class="o">.</span><span class="n">authorization</span><span class="o">.</span><span class="n">k8s</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">weave</span><span class="o">-</span><span class="n">net</span> <span class="n">created</span>
-<span class="n">role</span><span class="o">.</span><span class="n">rbac</span><span class="o">.</span><span class="n">authorization</span><span class="o">.</span><span class="n">k8s</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">weave</span><span class="o">-</span><span class="n">net</span> <span class="n">created</span>
-<span class="n">rolebinding</span><span class="o">.</span><span class="n">rbac</span><span class="o">.</span><span class="n">authorization</span><span class="o">.</span><span class="n">k8s</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">weave</span><span class="o">-</span><span class="n">net</span> <span class="n">created</span>
-<span class="n">daemonset</span><span class="o">.</span><span class="n">extensions</span><span class="o">/</span><span class="n">weave</span><span class="o">-</span><span class="n">net</span> <span class="n">created</span>
+<div class="highlight"><pre><span></span><code><span class="err">jitsejan@dev16:~$ export kubever=$(kubectl version | base64 | tr -d &#39;\n&#39;)</span>
+<span class="err">jitsejan@dev16:~$ kubectl apply -f &quot;https://cloud.weave.works/k8s/net?k8s-version=$kubever&quot;</span>
+<span class="err">serviceaccount/weave-net created</span>
+<span class="err">clusterrole.rbac.authorization.k8s.io/weave-net created</span>
+<span class="err">clusterrolebinding.rbac.authorization.k8s.io/weave-net created</span>
+<span class="err">role.rbac.authorization.k8s.io/weave-net created</span>
+<span class="err">rolebinding.rbac.authorization.k8s.io/weave-net created</span>
+<span class="err">daemonset.extensions/weave-net created</span>
 </code></pre></div>
+
 
 <h3>Untaint the master node</h3>
 <p>Make sure we can install pods on the master node:</p>
 <div class="highlight"><pre><span></span><code><span class="err">jitsejan@dev16:~$ kubectl taint nodes --all node-role.kubernetes.io/master-</span>
 <span class="err">node/dev16.jitsejan.com untainted</span>
 </code></pre></div>
+
 
 <p>Check status of the pods:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~$ kubectl get pods --all-namespaces
@@ -12017,6 +12025,7 @@ kube-system   kube-proxy-59l87                             <span class="m">1</sp
 kube-system   kube-scheduler-dev16.jitsejan.com            <span class="m">1</span>/1       Running   <span class="m">0</span>          4m
 kube-system   weave-net-rkmrb                              <span class="m">2</span>/2       Running   <span class="m">0</span>          1m
 </code></pre></div>
+
 
 <h2>Install <code>helm</code></h2>
 <p>Install the package manager for Kubernetes:</p>
@@ -12049,6 +12058,7 @@ Client: v2.9.1+g20adb27
 Server: v2.9.1+g20adb27
 </code></pre></div>
 
+
 <p>Check status of the pods:</p>
 <div class="highlight"><pre><span></span><code><span class="err">jitsejan@dev16:~/kubernetes-dev$ kubectl get pods --all-namespaces</span>
 <span class="err">NAMESPACE        NAME                                         READY     STATUS    RESTARTS   AGE</span>
@@ -12063,48 +12073,50 @@ Server: v2.9.1+g20adb27
 <span class="err">kube-system      weave-net-rkmrb                              2/2       Running   0          41m</span>
 </code></pre></div>
 
+
 <h2>Heapster</h2>
-<div class="highlight"><pre><span></span><code><span class="n">jitsejan</span><span class="err">@</span><span class="n">dev16</span><span class="p">:</span><span class="o">~/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dev</span><span class="o">$</span> <span class="n">sudo</span> <span class="n">helm</span> <span class="n">install</span> <span class="n">stable</span><span class="o">/</span><span class="n">heapster</span> <span class="o">--</span><span class="n">name</span> <span class="n">heapster</span> <span class="o">--</span><span class="n">set</span> <span class="n">rbac</span><span class="o">.</span><span class="n">create</span><span class="o">=</span><span class="bp">true</span>
-<span class="n">NAME</span><span class="p">:</span>   <span class="n">heapster</span>
-<span class="n">LAST</span> <span class="n">DEPLOYED</span><span class="p">:</span> <span class="n">Tue</span> <span class="n">Aug</span>  <span class="mi">7</span> <span class="mi">10</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mi">28</span> <span class="mi">2018</span>
-<span class="n">NAMESPACE</span><span class="p">:</span> <span class="n">default</span>
-<span class="n">STATUS</span><span class="p">:</span> <span class="n">DEPLOYED</span>
+<div class="highlight"><pre><span></span><code><span class="n">jitsejan</span><span class="nv">@dev16</span><span class="err">:</span><span class="o">~/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dev</span><span class="err">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">helm</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">stable</span><span class="o">/</span><span class="n">heapster</span><span class="w"> </span><span class="c1">--name heapster --set rbac.create=true</span>
+<span class="nl">NAME</span><span class="p">:</span><span class="w">   </span><span class="n">heapster</span><span class="w"></span>
+<span class="k">LAST</span><span class="w"> </span><span class="nl">DEPLOYED</span><span class="p">:</span><span class="w"> </span><span class="n">Tue</span><span class="w"> </span><span class="n">Aug</span><span class="w">  </span><span class="mi">7</span><span class="w"> </span><span class="mi">10</span><span class="err">:</span><span class="mi">04</span><span class="err">:</span><span class="mi">28</span><span class="w"> </span><span class="mi">2018</span><span class="w"></span>
+<span class="nl">NAMESPACE</span><span class="p">:</span><span class="w"> </span><span class="k">default</span><span class="w"></span>
+<span class="nl">STATUS</span><span class="p">:</span><span class="w"> </span><span class="n">DEPLOYED</span><span class="w"></span>
 
-<span class="n">RESOURCES</span><span class="p">:</span>
-<span class="o">==&gt;</span> <span class="n">v1</span><span class="o">/</span><span class="n">Service</span>
-<span class="n">NAME</span>      <span class="n">TYPE</span>       <span class="n">CLUSTER</span><span class="o">-</span><span class="n">IP</span>    <span class="n">EXTERNAL</span><span class="o">-</span><span class="n">IP</span>  <span class="n">PORT</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>   <span class="n">AGE</span>
-<span class="n">heapster</span>  <span class="n">ClusterIP</span>  <span class="mf">10.108</span><span class="o">.</span><span class="mf">195.4</span>  <span class="o">&lt;</span><span class="n">none</span><span class="o">&gt;</span>       <span class="mi">8082</span><span class="o">/</span><span class="n">TCP</span>  <span class="mi">1</span><span class="n">s</span>
+<span class="nl">RESOURCES</span><span class="p">:</span><span class="w"></span>
+<span class="o">==&gt;</span><span class="w"> </span><span class="n">v1</span><span class="o">/</span><span class="n">Service</span><span class="w"></span>
+<span class="n">NAME</span><span class="w">      </span><span class="n">TYPE</span><span class="w">       </span><span class="n">CLUSTER</span><span class="o">-</span><span class="n">IP</span><span class="w">    </span><span class="k">EXTERNAL</span><span class="o">-</span><span class="n">IP</span><span class="w">  </span><span class="n">PORT</span><span class="p">(</span><span class="n">S</span><span class="p">)</span><span class="w">   </span><span class="n">AGE</span><span class="w"></span>
+<span class="n">heapster</span><span class="w">  </span><span class="n">ClusterIP</span><span class="w">  </span><span class="mf">10.108.195.4</span><span class="w">  </span><span class="o">&lt;</span><span class="k">none</span><span class="o">&gt;</span><span class="w">       </span><span class="mi">8082</span><span class="o">/</span><span class="n">TCP</span><span class="w">  </span><span class="mi">1</span><span class="n">s</span><span class="w"></span>
 
-<span class="o">==&gt;</span> <span class="n">v1beta1</span><span class="o">/</span><span class="n">Deployment</span>
-<span class="n">NAME</span>               <span class="n">DESIRED</span>  <span class="n">CURRENT</span>  <span class="n">UP</span><span class="o">-</span><span class="n">TO</span><span class="o">-</span><span class="n">DATE</span>  <span class="n">AVAILABLE</span>  <span class="n">AGE</span>
-<span class="n">heapster</span><span class="o">-</span><span class="n">heapster</span>  <span class="mi">1</span>        <span class="mi">1</span>        <span class="mi">1</span>           <span class="mi">0</span>          <span class="mi">1</span><span class="n">s</span>
+<span class="o">==&gt;</span><span class="w"> </span><span class="n">v1beta1</span><span class="o">/</span><span class="n">Deployment</span><span class="w"></span>
+<span class="n">NAME</span><span class="w">               </span><span class="n">DESIRED</span><span class="w">  </span><span class="k">CURRENT</span><span class="w">  </span><span class="n">UP</span><span class="o">-</span><span class="k">TO</span><span class="o">-</span><span class="nc">DATE</span><span class="w">  </span><span class="n">AVAILABLE</span><span class="w">  </span><span class="n">AGE</span><span class="w"></span>
+<span class="n">heapster</span><span class="o">-</span><span class="n">heapster</span><span class="w">  </span><span class="mi">1</span><span class="w">        </span><span class="mi">1</span><span class="w">        </span><span class="mi">1</span><span class="w">           </span><span class="mi">0</span><span class="w">          </span><span class="mi">1</span><span class="n">s</span><span class="w"></span>
 
-<span class="o">==&gt;</span> <span class="n">v1</span><span class="o">/</span><span class="n">Pod</span><span class="p">(</span><span class="n">related</span><span class="p">)</span>
-<span class="n">NAME</span>                                <span class="n">READY</span>  <span class="n">STATUS</span>             <span class="n">RESTARTS</span>  <span class="n">AGE</span>
-<span class="n">heapster</span><span class="o">-</span><span class="n">heapster</span><span class="o">-</span><span class="mi">7</span><span class="n">bb6d67b9d</span><span class="o">-</span><span class="n">h77tj</span>  <span class="mi">0</span><span class="o">/</span><span class="mi">2</span>    <span class="n">ContainerCreating</span>  <span class="mi">0</span>         <span class="mi">0</span><span class="n">s</span>
+<span class="o">==&gt;</span><span class="w"> </span><span class="n">v1</span><span class="o">/</span><span class="n">Pod</span><span class="p">(</span><span class="n">related</span><span class="p">)</span><span class="w"></span>
+<span class="n">NAME</span><span class="w">                                </span><span class="n">READY</span><span class="w">  </span><span class="n">STATUS</span><span class="w">             </span><span class="n">RESTARTS</span><span class="w">  </span><span class="n">AGE</span><span class="w"></span>
+<span class="n">heapster</span><span class="o">-</span><span class="n">heapster</span><span class="o">-</span><span class="mi">7</span><span class="n">bb6d67b9d</span><span class="o">-</span><span class="n">h77tj</span><span class="w">  </span><span class="mi">0</span><span class="o">/</span><span class="mi">2</span><span class="w">    </span><span class="n">ContainerCreating</span><span class="w">  </span><span class="mi">0</span><span class="w">         </span><span class="mi">0</span><span class="n">s</span><span class="w"></span>
 
-<span class="o">==&gt;</span> <span class="n">v1</span><span class="o">/</span><span class="n">ServiceAccount</span>
-<span class="n">NAME</span>               <span class="n">SECRETS</span>  <span class="n">AGE</span>
-<span class="n">heapster</span><span class="o">-</span><span class="n">heapster</span>  <span class="mi">1</span>        <span class="mi">1</span><span class="n">s</span>
+<span class="o">==&gt;</span><span class="w"> </span><span class="n">v1</span><span class="o">/</span><span class="n">ServiceAccount</span><span class="w"></span>
+<span class="n">NAME</span><span class="w">               </span><span class="n">SECRETS</span><span class="w">  </span><span class="n">AGE</span><span class="w"></span>
+<span class="n">heapster</span><span class="o">-</span><span class="n">heapster</span><span class="w">  </span><span class="mi">1</span><span class="w">        </span><span class="mi">1</span><span class="n">s</span><span class="w"></span>
 
-<span class="o">==&gt;</span> <span class="n">v1beta1</span><span class="o">/</span><span class="n">ClusterRoleBinding</span>
-<span class="n">NAME</span>               <span class="n">AGE</span>
-<span class="n">heapster</span><span class="o">-</span><span class="n">heapster</span>  <span class="mi">1</span><span class="n">s</span>
+<span class="o">==&gt;</span><span class="w"> </span><span class="n">v1beta1</span><span class="o">/</span><span class="n">ClusterRoleBinding</span><span class="w"></span>
+<span class="n">NAME</span><span class="w">               </span><span class="n">AGE</span><span class="w"></span>
+<span class="n">heapster</span><span class="o">-</span><span class="n">heapster</span><span class="w">  </span><span class="mi">1</span><span class="n">s</span><span class="w"></span>
 
-<span class="o">==&gt;</span> <span class="n">v1beta1</span><span class="o">/</span><span class="n">Role</span>
-<span class="n">NAME</span>                         <span class="n">AGE</span>
-<span class="n">heapster</span><span class="o">-</span><span class="n">heapster</span><span class="o">-</span><span class="n">pod</span><span class="o">-</span><span class="n">nanny</span>  <span class="mi">1</span><span class="n">s</span>
+<span class="o">==&gt;</span><span class="w"> </span><span class="n">v1beta1</span><span class="o">/</span><span class="k">Role</span><span class="w"></span>
+<span class="n">NAME</span><span class="w">                         </span><span class="n">AGE</span><span class="w"></span>
+<span class="n">heapster</span><span class="o">-</span><span class="n">heapster</span><span class="o">-</span><span class="n">pod</span><span class="o">-</span><span class="n">nanny</span><span class="w">  </span><span class="mi">1</span><span class="n">s</span><span class="w"></span>
 
-<span class="o">==&gt;</span> <span class="n">v1beta1</span><span class="o">/</span><span class="n">RoleBinding</span>
-<span class="n">NAME</span>                         <span class="n">AGE</span>
-<span class="n">heapster</span><span class="o">-</span><span class="n">heapster</span><span class="o">-</span><span class="n">pod</span><span class="o">-</span><span class="n">nanny</span>  <span class="mi">1</span><span class="n">s</span>
+<span class="o">==&gt;</span><span class="w"> </span><span class="n">v1beta1</span><span class="o">/</span><span class="n">RoleBinding</span><span class="w"></span>
+<span class="n">NAME</span><span class="w">                         </span><span class="n">AGE</span><span class="w"></span>
+<span class="n">heapster</span><span class="o">-</span><span class="n">heapster</span><span class="o">-</span><span class="n">pod</span><span class="o">-</span><span class="n">nanny</span><span class="w">  </span><span class="mi">1</span><span class="n">s</span><span class="w"></span>
 
 
-<span class="n">NOTES</span><span class="p">:</span>
-<span class="mf">1.</span> <span class="n">Get</span> <span class="n">the</span> <span class="n">application</span> <span class="n">URL</span> <span class="n">by</span> <span class="n">running</span> <span class="n">these</span> <span class="n">commands</span><span class="p">:</span>
-  <span class="k">export</span> <span class="n">POD_NAME</span><span class="o">=$</span><span class="p">(</span><span class="n">kubectl</span> <span class="n">get</span> <span class="n">pods</span> <span class="o">--</span><span class="n">namespace</span> <span class="n">default</span> <span class="o">-</span><span class="n">l</span> <span class="s2">&quot;app=heapster-heapster&quot;</span> <span class="o">-</span><span class="n">o</span> <span class="n">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.items[0].metadata.name}&quot;</span><span class="p">)</span>
-  <span class="n">kubectl</span> <span class="o">--</span><span class="n">namespace</span> <span class="n">default</span> <span class="n">port</span><span class="o">-</span><span class="n">forward</span> <span class="o">$</span><span class="n">POD_NAME</span> <span class="mi">8082</span>
+<span class="nl">NOTES</span><span class="p">:</span><span class="w"></span>
+<span class="mf">1.</span><span class="w"> </span><span class="k">Get</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">application</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">these</span><span class="w"> </span><span class="nl">commands</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">export</span><span class="w"> </span><span class="n">POD_NAME</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">kubectl</span><span class="w"> </span><span class="k">get</span><span class="w"> </span><span class="n">pods</span><span class="w"> </span><span class="c1">--namespace default -l &quot;app=heapster-heapster&quot; -o jsonpath=&quot;{.items[0].metadata.name}&quot;)</span>
+<span class="w">  </span><span class="n">kubectl</span><span class="w"> </span><span class="c1">--namespace default port-forward $POD_NAME 8082</span>
 </code></pre></div>
+
 
 <h2>Traefik</h2>
 <p><center><img src="http://files.jitsejan.com/logos/traefik.PNG" width=200/></center></p>
@@ -12151,6 +12163,7 @@ Server: v2.9.1+g20adb27
   <span class="nt">namespace</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kube-system</span>
 </code></pre></div>
 
+
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/kubernetes-dev$ kubectl apply -f traefik-rbac.yml 
 clusterrole.rbac.authorization.k8s.io/traefik-ingress-controller created
 clusterrolebinding.rbac.authorization.k8s.io/traefik-ingress-controller created
@@ -12179,6 +12192,7 @@ jitsejan@dev16:~/kubernetes-dev$ curl -X GET <span class="m">10</span>.106.201.3
 <span class="m">404</span> page not found
 </code></pre></div>
 
+
 <p>Check the pods:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/kubernetes-dev$ kubectl get pods --all-namespaces
 NAMESPACE        NAME                                          READY     STATUS    RESTARTS   AGE
@@ -12199,6 +12213,7 @@ metallb-system   controller-67cb74b4b5-4ll62                   <span class="m">1
 metallb-system   speaker-bbqnd                                 <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
 </code></pre></div>
 
+
 <hr>
 <h2>Alternatives</h2>
 <hr>
@@ -12214,43 +12229,46 @@ jitsejan@dev16:~$ minikube version
 minikube version: v0.28.2
 </code></pre></div>
 
+
 <h4>Start the Kubernetes cluster</h4>
-<div class="highlight"><pre><span></span><code><span class="n">jitsejan</span><span class="err">@</span><span class="n">dev16</span><span class="p">:</span><span class="o">~$</span> <span class="n">sudo</span> <span class="n">minikube</span> <span class="n">start</span> <span class="o">--</span><span class="n">vm</span><span class="o">-</span><span class="n">driver</span><span class="o">=</span><span class="n">none</span>
-<span class="n">Starting</span> <span class="n">local</span> <span class="n">Kubernetes</span> <span class="n">v1</span><span class="o">.</span><span class="mf">10.0</span> <span class="n">cluster</span><span class="o">...</span>
-<span class="n">Starting</span> <span class="n">VM</span><span class="o">...</span>
-<span class="n">Getting</span> <span class="n">VM</span> <span class="n">IP</span> <span class="n">address</span><span class="o">...</span>
-<span class="n">Moving</span> <span class="n">files</span> <span class="n">into</span> <span class="n">cluster</span><span class="o">...</span>
-<span class="n">Downloading</span> <span class="n">kubeadm</span> <span class="n">v1</span><span class="o">.</span><span class="mf">10.0</span>
-<span class="n">Downloading</span> <span class="n">kubelet</span> <span class="n">v1</span><span class="o">.</span><span class="mf">10.0</span>
-<span class="n">Finished</span> <span class="n">Downloading</span> <span class="n">kubelet</span> <span class="n">v1</span><span class="o">.</span><span class="mf">10.0</span>
-<span class="n">Finished</span> <span class="n">Downloading</span> <span class="n">kubeadm</span> <span class="n">v1</span><span class="o">.</span><span class="mf">10.0</span>
-<span class="n">Setting</span> <span class="n">up</span> <span class="n">certs</span><span class="o">...</span>
-<span class="n">Connecting</span> <span class="n">to</span> <span class="n">cluster</span><span class="o">...</span>
-<span class="n">Setting</span> <span class="n">up</span> <span class="n">kubeconfig</span><span class="o">...</span>
-<span class="n">Starting</span> <span class="n">cluster</span> <span class="n">components</span><span class="o">...</span>
-<span class="n">Kubectl</span> <span class="k">is</span> <span class="n">now</span> <span class="n">configured</span> <span class="n">to</span> <span class="n">use</span> <span class="n">the</span> <span class="n">cluster</span><span class="o">.</span>
-<span class="o">===================</span>
-<span class="n">WARNING</span><span class="p">:</span> <span class="n">IT</span> <span class="n">IS</span> <span class="n">RECOMMENDED</span> <span class="n">NOT</span> <span class="n">TO</span> <span class="n">RUN</span> <span class="n">THE</span> <span class="n">NONE</span> <span class="n">DRIVER</span> <span class="n">ON</span> <span class="n">PERSONAL</span> <span class="n">WORKSTATIONS</span>
-    <span class="n">The</span> <span class="s1">&#39;none&#39;</span> <span class="n">driver</span> <span class="n">will</span> <span class="n">run</span> <span class="n">an</span> <span class="n">insecure</span> <span class="n">kubernetes</span> <span class="n">apiserver</span> <span class="k">as</span> <span class="n">root</span> <span class="n">that</span> <span class="n">may</span> <span class="n">leave</span> <span class="n">the</span> <span class="n">host</span> <span class="n">vulnerable</span> <span class="n">to</span> <span class="n">CSRF</span> <span class="n">attacks</span>
+<div class="highlight"><pre><span></span><code><span class="n">jitsejan</span><span class="nv">@dev16</span><span class="err">:</span><span class="o">~</span><span class="err">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">minikube</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="c1">--vm-driver=none</span>
+<span class="n">Starting</span><span class="w"> </span><span class="k">local</span><span class="w"> </span><span class="n">Kubernetes</span><span class="w"> </span><span class="n">v1</span><span class="mf">.10.0</span><span class="w"> </span><span class="n">cluster</span><span class="p">...</span><span class="w"></span>
+<span class="n">Starting</span><span class="w"> </span><span class="n">VM</span><span class="p">...</span><span class="w"></span>
+<span class="n">Getting</span><span class="w"> </span><span class="n">VM</span><span class="w"> </span><span class="n">IP</span><span class="w"> </span><span class="n">address</span><span class="p">...</span><span class="w"></span>
+<span class="n">Moving</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">cluster</span><span class="p">...</span><span class="w"></span>
+<span class="n">Downloading</span><span class="w"> </span><span class="n">kubeadm</span><span class="w"> </span><span class="n">v1</span><span class="mf">.10.0</span><span class="w"></span>
+<span class="n">Downloading</span><span class="w"> </span><span class="n">kubelet</span><span class="w"> </span><span class="n">v1</span><span class="mf">.10.0</span><span class="w"></span>
+<span class="n">Finished</span><span class="w"> </span><span class="n">Downloading</span><span class="w"> </span><span class="n">kubelet</span><span class="w"> </span><span class="n">v1</span><span class="mf">.10.0</span><span class="w"></span>
+<span class="n">Finished</span><span class="w"> </span><span class="n">Downloading</span><span class="w"> </span><span class="n">kubeadm</span><span class="w"> </span><span class="n">v1</span><span class="mf">.10.0</span><span class="w"></span>
+<span class="n">Setting</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="n">certs</span><span class="p">...</span><span class="w"></span>
+<span class="n">Connecting</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">cluster</span><span class="p">...</span><span class="w"></span>
+<span class="n">Setting</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="n">kubeconfig</span><span class="p">...</span><span class="w"></span>
+<span class="n">Starting</span><span class="w"> </span><span class="n">cluster</span><span class="w"> </span><span class="n">components</span><span class="p">...</span><span class="w"></span>
+<span class="n">Kubectl</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">now</span><span class="w"> </span><span class="n">configured</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">use</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">cluster</span><span class="p">.</span><span class="w"></span>
+<span class="o">===================</span><span class="w"></span>
+<span class="nl">WARNING</span><span class="p">:</span><span class="w"> </span><span class="n">IT</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="n">RECOMMENDED</span><span class="w"> </span><span class="ow">NOT</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">RUN</span><span class="w"> </span><span class="n">THE</span><span class="w"> </span><span class="k">NONE</span><span class="w"> </span><span class="n">DRIVER</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">PERSONAL</span><span class="w"> </span><span class="n">WORKSTATIONS</span><span class="w"></span>
+<span class="w">    </span><span class="n">The</span><span class="w"> </span><span class="s1">&#39;none&#39;</span><span class="w"> </span><span class="n">driver</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">insecure</span><span class="w"> </span><span class="n">kubernetes</span><span class="w"> </span><span class="n">apiserver</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">leave</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">host</span><span class="w"> </span><span class="n">vulnerable</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">CSRF</span><span class="w"> </span><span class="n">attacks</span><span class="w"></span>
 
-<span class="n">When</span> <span class="n">using</span> <span class="n">the</span> <span class="n">none</span> <span class="n">driver</span><span class="p">,</span> <span class="n">the</span> <span class="n">kubectl</span> <span class="n">config</span> <span class="ow">and</span> <span class="n">credentials</span> <span class="n">generated</span> <span class="n">will</span> <span class="n">be</span> <span class="n">root</span> <span class="n">owned</span> <span class="ow">and</span> <span class="n">will</span> <span class="n">appear</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">root</span> <span class="n">home</span> <span class="n">directory</span><span class="o">.</span>
-<span class="n">You</span> <span class="n">will</span> <span class="n">need</span> <span class="n">to</span> <span class="n">move</span> <span class="n">the</span> <span class="n">files</span> <span class="n">to</span> <span class="n">the</span> <span class="n">appropriate</span> <span class="n">location</span> <span class="ow">and</span> <span class="n">then</span> <span class="n">set</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">permissions</span><span class="o">.</span>  <span class="n">An</span> <span class="n">example</span> <span class="n">of</span> <span class="n">this</span> <span class="k">is</span> <span class="n">below</span><span class="p">:</span>
+<span class="k">When</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">none</span><span class="w"> </span><span class="n">driver</span><span class="p">,</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">kubectl</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="n">generated</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">owned</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">appear</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="n">home</span><span class="w"> </span><span class="n">directory</span><span class="p">.</span><span class="w"></span>
+<span class="n">You</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">move</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">files</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">appropriate</span><span class="w"> </span><span class="n">location</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">correct</span><span class="w"> </span><span class="nf">permissions</span><span class="p">.</span><span class="w">  </span><span class="n">An</span><span class="w"> </span><span class="n">example</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nl">below</span><span class="p">:</span><span class="w"></span>
 
-    <span class="n">sudo</span> <span class="n">mv</span> <span class="o">/</span><span class="n">root</span><span class="o">/.</span><span class="n">kube</span> <span class="o">$</span><span class="n">HOME</span><span class="o">/.</span><span class="n">kube</span> <span class="c1"># this will write over any previous configuration</span>
-    <span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="o">$</span><span class="n">USER</span> <span class="o">$</span><span class="n">HOME</span><span class="o">/.</span><span class="n">kube</span>
-    <span class="n">sudo</span> <span class="n">chgrp</span> <span class="o">-</span><span class="n">R</span> <span class="o">$</span><span class="n">USER</span> <span class="o">$</span><span class="n">HOME</span><span class="o">/.</span><span class="n">kube</span>
+<span class="w">    </span><span class="n">sudo</span><span class="w"> </span><span class="n">mv</span><span class="w"> </span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="p">.</span><span class="n">kube</span><span class="w"> </span><span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="p">.</span><span class="n">kube</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="k">write</span><span class="w"> </span><span class="k">over</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">previous</span><span class="w"> </span><span class="n">configuration</span><span class="w"></span>
+<span class="w">    </span><span class="n">sudo</span><span class="w"> </span><span class="n">chown</span><span class="w"> </span><span class="o">-</span><span class="n">R</span><span class="w"> </span><span class="err">$</span><span class="k">USER</span><span class="w"> </span><span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="p">.</span><span class="n">kube</span><span class="w"></span>
+<span class="w">    </span><span class="n">sudo</span><span class="w"> </span><span class="n">chgrp</span><span class="w"> </span><span class="o">-</span><span class="n">R</span><span class="w"> </span><span class="err">$</span><span class="k">USER</span><span class="w"> </span><span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="p">.</span><span class="n">kube</span><span class="w"></span>
 
-    <span class="n">sudo</span> <span class="n">mv</span> <span class="o">/</span><span class="n">root</span><span class="o">/.</span><span class="n">minikube</span> <span class="o">$</span><span class="n">HOME</span><span class="o">/.</span><span class="n">minikube</span> <span class="c1"># this will write over any previous configuration</span>
-    <span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="o">$</span><span class="n">USER</span> <span class="o">$</span><span class="n">HOME</span><span class="o">/.</span><span class="n">minikube</span>
-    <span class="n">sudo</span> <span class="n">chgrp</span> <span class="o">-</span><span class="n">R</span> <span class="o">$</span><span class="n">USER</span> <span class="o">$</span><span class="n">HOME</span><span class="o">/.</span><span class="n">minikube</span>
+<span class="w">    </span><span class="n">sudo</span><span class="w"> </span><span class="n">mv</span><span class="w"> </span><span class="o">/</span><span class="n">root</span><span class="o">/</span><span class="p">.</span><span class="n">minikube</span><span class="w"> </span><span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="p">.</span><span class="n">minikube</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="k">write</span><span class="w"> </span><span class="k">over</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">previous</span><span class="w"> </span><span class="n">configuration</span><span class="w"></span>
+<span class="w">    </span><span class="n">sudo</span><span class="w"> </span><span class="n">chown</span><span class="w"> </span><span class="o">-</span><span class="n">R</span><span class="w"> </span><span class="err">$</span><span class="k">USER</span><span class="w"> </span><span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="p">.</span><span class="n">minikube</span><span class="w"></span>
+<span class="w">    </span><span class="n">sudo</span><span class="w"> </span><span class="n">chgrp</span><span class="w"> </span><span class="o">-</span><span class="n">R</span><span class="w"> </span><span class="err">$</span><span class="k">USER</span><span class="w"> </span><span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="p">.</span><span class="n">minikube</span><span class="w"></span>
 
-<span class="n">This</span> <span class="n">can</span> <span class="n">also</span> <span class="n">be</span> <span class="n">done</span> <span class="n">automatically</span> <span class="n">by</span> <span class="n">setting</span> <span class="n">the</span> <span class="n">env</span> <span class="k">var</span> <span class="n">CHANGE_MINIKUBE_NONE_USER</span><span class="o">=</span><span class="bp">true</span>
-<span class="n">Loading</span> <span class="n">cached</span> <span class="n">images</span> <span class="n">from</span> <span class="n">config</span> <span class="n">file</span><span class="o">.</span>
+<span class="n">This</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="n">automatically</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">env</span><span class="w"> </span><span class="nf">var</span><span class="w"> </span><span class="n">CHANGE_MINIKUBE_NONE_USER</span><span class="o">=</span><span class="k">true</span><span class="w"></span>
+<span class="n">Loading</span><span class="w"> </span><span class="n">cached</span><span class="w"> </span><span class="n">images</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="k">file</span><span class="p">.</span><span class="w"></span>
 </code></pre></div>
+
 
 <div class="highlight"><pre><span></span><code><span class="err">jitsejan@dev16:~$ sudo kubectl config current-context</span>
 <span class="err">minikube</span>
 </code></pre></div>
+
 
 <h3>Flannel (instead of Weave)</h3>
 <p><center><img src="http://files.jitsejan.com/logos/metallb.PNG" width=100/></center></p>
@@ -12288,6 +12306,7 @@ kube-proxy-mz7jt                             <span class="m">1</span>/1       Ru
 kube-scheduler-dev16.jitsejan.com            <span class="m">1</span>/1       Running   <span class="m">0</span>          7m
 </code></pre></div>
 
+
 <h3>Calico (instead of Weave)</h3>
 <p><center><img src="http://files.jitsejan.com/logos/calico.JPG" width=200/></center></p>
 <p>Instead of using Weave or Flannel, we can use <a href="https://docs.projectcalico.org/master/getting-started/kubernetes/"><code>Calico</code></a> to create a virtual network in our Kubernetes cluster.</p>
@@ -12324,6 +12343,7 @@ kube-system   kube-proxy-kb559                             <span class="m">1</sp
 kube-system   kube-scheduler-dev16.jitsejan.com            <span class="m">1</span>/1       Running   <span class="m">0</span>          7m
 </code></pre></div>
 
+
 <h3>metallb (instead of Traefik)</h3>
 <p><center><img src="http://files.jitsejan.com/logos/flannel.PNG" width=200/></center></p>
 <p>Because we are not using EKS, AKS or GCP, we need to deal with the <strong>load balancer</strong> ourselves. Before I showed how to use Traefik as the load balancer to take care of all incoming traffic to the VPS, but [<code>metallb</code>[(https://metallb.universe.tf/)] could be a good alternative. My initial approach involved both Traefik and metallb, but this seemed to create overhead and Traefik has enough functionality to handle the ingress and egress by itself. </p>
@@ -12346,6 +12366,7 @@ controller-67cb74b4b5-4ll62   <span class="m">1</span>/1       Running   <span c
 speaker-bbqnd                 <span class="m">1</span>/1       Running   <span class="m">0</span>          31s
 </code></pre></div>
 
+
 <h4>Configure the loadbalancer</h4>
 <p><code>metallb-conf.yml</code></p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
@@ -12361,6 +12382,7 @@ speaker-bbqnd                 <span class="m">1</span>/1       Running   <span c
       <span class="no">addresses:</span>
       <span class="no">- 192.168.1.16/28</span>
 </code></pre></div>
+
 
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~$ kubectl apply -f metallb-conf.yml 
 configmap/config created

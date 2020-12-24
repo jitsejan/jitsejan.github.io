@@ -11872,6 +11872,7 @@ jQuery(document).ready(function($) {
 <span class="nt">DUMP</span> <span class="nt">gamedata</span><span class="o">;</span>
 </code></pre></div>
 
+
 <div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># pig -f gamedata_01.pig</span>
 ...
 <span class="o">(</span><span class="m">269</span>,Winter Games,12,Epyx,13,24,1987,12.96<span class="o">)</span>
@@ -11889,6 +11890,7 @@ jQuery(document).ready(function($) {
 <span class="o">(</span><span class="m">281</span>,Zombie Nation,4,Kaze,8,26,1991,7.851851851851852<span class="o">)</span>
 </code></pre></div>
 
+
 <p>Now lets calculate the average rating given by users for each different rating given by the author of the website for all Nintendo games.</p>
 <p><code>gamedata_02.pig</code></p>
 <div class="highlight"><pre><span></span><code><span class="nt">gamedata</span> <span class="o">=</span> <span class="nt">LOAD</span> <span class="s1">&#39;nesgamedata.csv&#39;</span> <span class="nt">AS</span> <span class="o">(</span><span class="nt">index</span><span class="p">:</span><span class="nd">int</span><span class="o">,</span> <span class="nt">name</span><span class="p">:</span><span class="nd">chararray</span><span class="o">,</span> <span class="nt">grade</span><span class="p">:</span><span class="nd">int</span><span class="o">,</span> <span class="nt">publisher</span><span class="p">:</span><span class="nd">chararray</span><span class="o">,</span> <span class="nt">reader_rating</span><span class="p">:</span><span class="nd">int</span><span class="o">,</span> <span class="nt">number_of_votes</span><span class="p">:</span><span class="nd">int</span><span class="o">,</span> <span class="nt">publish_year</span><span class="p">:</span><span class="nd">int</span><span class="o">,</span> <span class="nt">total_grade</span><span class="p">:</span><span class="nd">float</span><span class="o">);</span>
@@ -11902,6 +11904,7 @@ jQuery(document).ready(function($) {
 
 <span class="nt">DUMP</span> <span class="nt">averaged</span><span class="o">;</span>
 </code></pre></div>
+
 
 <p>Run the script on the Hadoop machine:</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># pig -f gamedata_02.pig</span>
@@ -11919,6 +11922,7 @@ jQuery(document).ready(function($) {
 <span class="o">(</span><span class="m">12</span>,8.070609092712402<span class="o">)</span>
 <span class="o">(</span><span class="m">13</span>,10.066511631011963<span class="o">)</span>
 </code></pre></div>
+
 
 <p>From this we can observe that on average the users do not really agree with the author on the ratings. Often the author gives higher grades to a game than the users.</p>
         </div>

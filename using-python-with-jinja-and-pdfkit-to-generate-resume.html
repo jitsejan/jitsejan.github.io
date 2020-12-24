@@ -11875,6 +11875,7 @@ jQuery(document).ready(function($) {
 ~/code/ $ <span class="nb">cd</span> jinja-resume-template
 </code></pre></div>
 
+
 <p>Create the virtual environment with <a href="https://pipenv.kennethreitz.org/en/latest/">pipenv</a> to run the project in.</p>
 <div class="highlight"><pre><span></span><code>~/code/jinja-resume-template $ pipenv shell
 Creating a virtualenv <span class="k">for</span> this project…
@@ -11894,6 +11895,7 @@ Launching subshell in virtual environment…
  . /Users/jitsejan/.local/share/virtualenvs/jinja-resume-template-97zV94Wt/bin/activate
 </code></pre></div>
 
+
 <p>Install the dependencies:</p>
 <div class="highlight"><pre><span></span><code>jinja-resume-template-97zV94Wt ~/code/jinja-resume-template $ pipenv install
 Pipfile.lock not found, creating…
@@ -11904,6 +11906,7 @@ Updated Pipfile.lock <span class="o">(</span><span class="m">546278</span><span 
 Installing dependencies from Pipfile.lock <span class="o">(</span><span class="m">546278</span><span class="o">)</span>…
   🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ <span class="m">8</span>/8 — <span class="m">00</span>:00:10
 </code></pre></div>
+
 
 <h2>Creating the PDF</h2>
 <p>Execute the script <code>run.py</code> to generate the PDF:</p>
@@ -11916,6 +11919,7 @@ Printing pages <span class="o">(</span><span class="m">6</span>/6<span class="o"
 Done
 </code></pre></div>
 
+
 <h2>Information</h2>
 <p>Jinja helps to create structures like this:</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">header</span><span class="p">&gt;</span>
@@ -11924,6 +11928,7 @@ Done
 <span class="p">&lt;/</span><span class="nt">header</span><span class="p">&gt;</span>
 </code></pre></div>
 
+
 <p>Everything between <code>{{</code> and <code>}}</code> is interpreted as Python. The input of the template is a dictionary with the keys <code>personal</code> and <code>occupation</code>, which are all defined in <code>data.yml</code>. All the variables defined in the YAML file can be used in the template. </p>
 <div class="highlight"><pre><span></span><code><span class="nt">personal</span><span class="p">:</span>
   <span class="nt">name</span><span class="p">:</span> 
@@ -11931,6 +11936,7 @@ Done
     <span class="nt">last</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Peterson</span>
 <span class="nt">occupation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Resume builder</span>
 </code></pre></div>
+
 
 <p>The following Python script will load the YAML and the HTML and save the populated template to <code>output_text</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_get_data</span><span class="p">():</span>
@@ -11955,6 +11961,7 @@ Done
 <span class="n">output_text</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
 </code></pre></div>
 
+
 <h3>Jinja for-loop</h3>
 <p>With Jinja it is also easy to loop through lists and dictionaries. Below I have defined the <code>languages</code> variable with two elements where each element has a <code>description</code>. </p>
 <div class="highlight"><pre><span></span><code><span class="nt">languages</span><span class="p">:</span>
@@ -11964,6 +11971,7 @@ Done
     <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Elementary proficiency</span>
 </code></pre></div>
 
+
 <p>In the HTML we use <code>{%</code> and <code>%}</code> to indicate Python code is executed. </p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
 {% for dict_item in languages %}
@@ -11972,11 +11980,13 @@ Done
 <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 </code></pre></div>
 
+
 <p>In the above case I use it for a <code>for</code>-loop, but the same syntax is used for conditionals too. For example, you could write a condition like the following:</p>
 <div class="highlight"><pre><span></span><code>{% if social.get(&#39;github&#39;) not None %}
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;social&quot;</span><span class="p">&gt;</span>{{ social.get(&#39;github&#39;) }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 {% endif %}
 </code></pre></div>
+
 
 <p>For further Jinja tricks, take a look at their <a href="https://jinja.palletsprojects.com/en/2.10.x/">documentation</a>. Take a look at my <a href="https://github.com/jitsejan/jinja-resume-template">Github repo</a> for the code, clone it and play with the template.</p>
         </div>

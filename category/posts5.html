@@ -11867,6 +11867,42 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="../using-pythons-pickle-to-save-and-load-variables.html">Using Pythons pickle to save and load variables</a></h2>
+      <time datetime="" title="2017-06-27T13:45:00+01:00" pubdate>Tue 27 June 2017</time>
+    </header>
+
+    <div class="article_content">
+        <p>Recently I was playing with some code that generated big dictionaries and had to manipulate these dictonaries
+several times. I used to save them via Pythons pandas to CSV and load them back from the CSV the next time 
+I was using my script. Luckily I found out an easier way to deal with saving and loading variables, namely by using <a href="https://wiki.python.org/moin/UsingPickle">Pickle</a>.</p>
+<h4>Import</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pickle</span>
+</code></pre></div>
+
+
+<h4>Saving</h4>
+<div class="highlight"><pre><span></span><code><span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">variable</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">picklename</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">))</span>
+</code></pre></div>
+
+
+<h4>Loading</h4>
+<div class="highlight"><pre><span></span><code><span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="nb">open</span><span class="p">(</span> <span class="n">picklename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span> <span class="p">)</span> <span class="p">)</span>
+</code></pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/pickle.html" class="tag">pickle</a>
+            <a href="../tag/tool.html" class="tag">tool</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="../select-boxes-with-font-awesome.html">Fancy select boxes using FontAwesome</a></h2>
       <time datetime="" title="2017-06-20T23:21:00+01:00" pubdate>Tue 20 June 2017</time>
     </header>
@@ -12099,32 +12135,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../install-kdiff3-on-osx.html">Install KDiff3 on OSX</a></h2>
-      <time datetime="" title="2016-11-17T12:27:00+00:00" pubdate>Thu 17 November 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Installing the diff/merge tool <a href="http://kdiff3.sourceforge.net">KDiff3</a> is easy using the package manager <a href="http://brew.s">Homebrew</a> extension <a href="https://caskroom.github.io">Cask</a>. The extension makes is possible to install (GUI) applications on the Mac without the dragging and dropping of the DMG-files.</p>
-<div class="highlight"><pre><span></span><code>jitsejan@MBP $ /usr/bin/ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
-jitsejan@MBP $ brew tap caskroom/cask
-jitsejan@MBP $ brew cask install kdiff3
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/kdiff3.html" class="tag">kdiff3</a>
-            <a href="../tag/mac.html" class="tag">mac</a>
-            <a href="../tag/osx.html" class="tag">OSX</a>
-            <a href="../tag/brew.html" class="tag">brew</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12170,44 +12180,9 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-3">
-            <a href="../tag/vps.html">
-            VPS
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
         <li class="tag-4">
             <a href="../tag/hadoop.html">
             Hadoop
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/spark.html">
-            Spark
             </a>
         </li>
         <li class="tag-3">
@@ -12215,19 +12190,19 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             data engineer
             </a>
         </li>
-        <li class="tag-3">
-            <a href="../tag/pyspark.html">
-            PySpark
-            </a>
-        </li>
         <li class="tag-4">
             <a href="../tag/django.html">
             Django
             </a>
         </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
+        <li class="tag-3">
+            <a href="../tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/python.html">
+            Python
             </a>
         </li>
         <li class="tag-4">
@@ -12235,24 +12210,19 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             Javascript
             </a>
         </li>
-        <li class="tag-2">
-            <a href="../tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/container.html">
-            container
-            </a>
-        </li>
         <li class="tag-3">
             <a href="../tag/devops.html">
             DevOps
             </a>
         </li>
-        <li class="tag-4">
-            <a href="../tag/ethereum.html">
-            Ethereum
+        <li class="tag-3">
+            <a href="../tag/jupyter.html">
+            Jupyter
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/dataframe.html">
+            dataframe
             </a>
         </li>
         <li class="tag-3">
@@ -12266,13 +12236,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/flask.html">
-            Flask
+            <a href="../tag/shell.html">
+            shell
             </a>
         </li>
         <li class="tag-2">
@@ -12280,9 +12245,54 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             Docker
             </a>
         </li>
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
+        <li class="tag-4">
+            <a href="../tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/vps.html">
+            VPS
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/pyspark.html">
+            PySpark
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="../tag/flask.html">
+            Flask
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/pandas.html">
+            pandas
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/spark.html">
+            Spark
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="../tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/container.html">
+            container
             </a>
         </li>
         </ul>

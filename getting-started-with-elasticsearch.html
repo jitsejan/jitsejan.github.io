@@ -11871,6 +11871,7 @@ $ ./bin/elasticsearch -d
 $ curl http://127.0.0.1:9200
 </code></pre></div>
 
+
 <p>At this point you should see something like</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
   <span class="nt">&quot;name&quot;</span> <span class="p">:</span> <span class="s2">&quot;Gailyn Bailey&quot;</span><span class="p">,</span>
@@ -11885,6 +11886,7 @@ $ curl http://127.0.0.1:9200
   <span class="nt">&quot;tagline&quot;</span> <span class="p">:</span> <span class="s2">&quot;You Know, for Search&quot;</span>
 <span class="p">}</span>
 </code></pre></div>
+
 
 <h4>Create the ES index for the posts</h4>
 <p>In the mappings part we want to differentiate between finding a hit in the title or in the body. A hit of the search in the title has twice as much value as a hit in the body.</p>
@@ -11908,6 +11910,7 @@ $ curl http://127.0.0.1:9200
 <span class="nb">print</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
 </code></pre></div>
 
+
 <h4>Add the entries</h4>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">requests</span>
@@ -11924,6 +11927,7 @@ $ curl http://127.0.0.1:9200
 <span class="nb">print</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
 </code></pre></div>
 
+
 <h4>Search the entries</h4>
 <div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/env python</span>
 <span class="kn">import</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">requests</span>
@@ -11935,6 +11939,7 @@ $ curl http://127.0.0.1:9200
 <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://127.0.0.1:9200/blog_index/blog/_search&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
 <span class="nb">print</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre></div>
+
 
 <p>This gives the following reply:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -11995,6 +12000,7 @@ $ curl http://127.0.0.1:9200
   <span class="nt">&quot;timed_out&quot;</span><span class="p">:</span> <span class="kc">false</span>
 <span class="p">}</span>
 </code></pre></div>
+
 
 <p>Each result will get a score and the results will be ordered accordingly. Of course the better the search query, the more the score will say about the likeliness of the result matching your query.</p>
         </div>

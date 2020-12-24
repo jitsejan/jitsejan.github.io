@@ -11865,6 +11865,7 @@ jQuery(document).ready(function($) {
 <div class="highlight"><pre><span></span><code>$ wget https://repo1.maven.org/maven2/com/microsoft/sqlserver/mssql-jdbc/6.4.0.jre8/mssql-jdbc-6.4.0.jre8.jar -P /opt/notebooks/
 </code></pre></div>
 
+
 <p>The configuration is saved in <code>config.ini</code> with the following fields:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[mydb]</span>
 <span class="na">database</span> <span class="o">=</span> <span class="s">mydb</span>
@@ -11874,12 +11875,14 @@ jQuery(document).ready(function($) {
 <span class="na">port</span> <span class="o">=</span> <span class="s">1433</span>
 </code></pre></div>
 
+
 <p>Loading the configuration is simple with <code>configparser</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">configparser</span> <span class="kn">import</span> <span class="n">ConfigParser</span>
 
 <span class="n">config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">()</span>
 <span class="n">config</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;config.ini&#39;</span><span class="p">)</span>
 </code></pre></div>
+
 
 <p>Set the values for the connection:</p>
 <div class="highlight"><pre><span></span><code><span class="n">jdbc_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;jdbc:sqlserver://</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mydb&#39;</span><span class="p">,</span> <span class="s1">&#39;host&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mydb&#39;</span><span class="p">,</span> <span class="s1">&#39;port&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">;database=</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mydb&#39;</span><span class="p">,</span> <span class="s1">&#39;database&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -11888,6 +11891,7 @@ jQuery(document).ready(function($) {
     <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;mydb&#39;</span><span class="p">,</span> <span class="s1">&#39;password&#39;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
+
 
 <p>When creating the SparkSession make sure the path to the JAR is correctly set:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark.sql</span> <span class="kn">import</span> <span class="n">SparkSession</span>
@@ -11902,10 +11906,12 @@ jQuery(document).ready(function($) {
   <span class="o">.</span><span class="n">getOrCreate</span><span class="p">())</span>  
 </code></pre></div>
 
+
 <p>The session is created and we can query the actual database:</p>
 <div class="highlight"><pre><span></span><code><span class="n">schema</span> <span class="o">=</span> <span class="s1">&#39;dbo&#39;</span>
 <span class="n">table</span> <span class="o">=</span> <span class="s1">&#39;users&#39;</span>
 </code></pre></div>
+
 
 <p>The reading is done using the <code>jdbc</code> read option and specifying the connection details:</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span> \
@@ -11914,6 +11920,7 @@ jQuery(document).ready(function($) {
           <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">schema</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
           <span class="n">properties</span><span class="o">=</span><span class="n">connection_properties</span><span class="p">)</span>
 </code></pre></div>
+
 
 <p>An alternative approach is to use the same syntax as for the <a href="https://www.jitsejan.com/integrating-pyspark-with-redshift.html">Redshift article</a> by omitting the <code>connection_properties</code> and use a more explicit notation.</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">spark</span>

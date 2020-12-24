@@ -11866,6 +11866,7 @@ jQuery(document).ready(function($) {
 jitsejan@ssdnodes-jj-kvm:~$ sudo usermod -aG docker <span class="nv">$USER</span>
 </code></pre></div>
 
+
 <h2>Create the folder structure</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/anaconda3_docker$ tree
 .
@@ -11877,6 +11878,7 @@ jitsejan@ssdnodes-jj-kvm:~$ sudo usermod -aG docker <span class="nv">$USER</span
 └── requirements.txt
 </code></pre></div>
 
+
 <p>The data folder will contain input and output data for the notebooks. The notebooks folder will contain the Jupyter notebooks. The Dockerfile will create the folders in the container and install the Python requirements from the requirements.txt.</p>
 <p>Content of Dockerfile:</p>
 <div class="highlight"><pre><span></span><code><span class="err">FROM continuumio/anaconda3</span>
@@ -11884,6 +11886,7 @@ jitsejan@ssdnodes-jj-kvm:~$ sudo usermod -aG docker <span class="nv">$USER</span
 <span class="err">RUN pip install -r requirements.txt</span>
 <span class="err">CMD [&quot;/opt/conda/bin/jupyter&quot;, &quot;notebook&quot;, &quot;--notebook-dir=/opt/notebooks&quot;, &quot;--ip=&#39;*&#39;&quot;, &quot;--no-browser&quot;, &quot;--allow-root&quot;]</span>
 </code></pre></div>
+
 
 <p>Content of docker-compose.yml:</p>
 <div class="highlight"><pre><span></span><code><span class="c">version: &#39;2&#39;</span>
@@ -11896,9 +11899,11 @@ jitsejan@ssdnodes-jj-kvm:~$ sudo usermod -aG docker <span class="nv">$USER</span
 <span class="c">      - &quot;8888:8888&quot;</span>
 </code></pre></div>
 
+
 <h2>Start the container</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/anaconda3_docker$ docker-compose up --build
 </code></pre></div>
+
 
 <h2>Action</h2>
 <p>Go to your IP-address on the given port and start coding.</p>
