@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="./theme/css/main.css?e6f3817f">
+            <link rel="stylesheet" href="./theme/css/main.css?9c57dc56">
 
 
     </head>
@@ -11866,10 +11866,9 @@ jQuery(document).ready(function($) {
 <li>Setup PostgreSQL on Ubuntu</li>
 <li>Setup Python to connect to PostgreSQL</li>
 </ul>
-<h2>VPS information</h2>
-<h3>Setup PostgreSQL</h3>
+<h2>Setup PostgreSQL</h2>
 <p>For this tutorial I will be installing PostgreSQL on my VPS running <code>Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-58-generic x86_64)</code>.</p>
-<h2>Ubuntu Packages</h2>
+<h3>Ubuntu Packages</h3>
 <p>Install the following packages to get PostgreSQL and Python running. I assume Python is already installed on the machine.</p>
 <ul>
 <li><code>postgresql</code></li>
@@ -11877,14 +11876,14 @@ jQuery(document).ready(function($) {
 <li><code>postgresql-client-common</code></li>
 <li><code>libpq-dev</code></li>
 </ul>
-<div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo apt install postgresql <span class="se">\\</span>
-                                     postgresql-client <span class="se">\\</span>
-                                     postgresql-client-common <span class="se">\\</span>
+<div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo apt install postgresql <span class="se">\</span>
+                                     postgresql-client <span class="se">\</span>
+                                     postgresql-client-common <span class="se">\</span>
                                      libpq-dev
 </code></pre></div>
 
 
-<h2>Verify PostgreSQL</h2>
+<h3>Verify PostgreSQL</h3>
 <p>The PostgreSQL server version can be verified with the <code>locate</code> tool which returns version <code>12</code>:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ locate bin/postgres
 /usr/lib/postgresql/12/bin/postgres
@@ -11897,7 +11896,7 @@ psql <span class="o">(</span>PostgreSQL<span class="o">)</span> <span class="m">
 </code></pre></div>
 
 
-<h2>Create new user</h2>
+<h3>Create new user</h3>
 <p>After installing PostgreSQL I add a new user for the project I will be working on. First login with the default <code>postgres</code> user and use <code>createuser --interactive</code> to add a user. In my case I will do a project around Zelda and therefor create a new user <code>zelda</code>.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo -i -u postgres
 <span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> jitsejan:
@@ -11966,7 +11965,7 @@ You are connected to database <span class="s2">&quot;zelda&quot;</span> as user 
 </code></pre></div>
 
 
-<h2>Configure PostgreSQL for Python</h2>
+<h3>Configure PostgreSQL for Python</h3>
 <p>The important part to get PostgreSQL working with Python remotely is to make sure PostgreSQL allows external IPs. Modify the <code>postgresql.conf</code> that should be located in <code>/etc/postgresql/12/main</code>.</p>
 <p>Open the file as <code>sudo</code> with a text editor:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo nano /etc/postgresql/12/main/postgresql.conf

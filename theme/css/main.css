@@ -184,9 +184,13 @@ article code {
 }
 article p code,
 article li code {
-  color: #777;
+  color: #888;
   background: none;
   border: none;
+}
+article article pre {
+  border-radius: 10px;
+  margin: 10px 10%;
 }
 article article pre code {
   color: white;
@@ -285,17 +289,14 @@ article .meta a.comments_btn:hover {
   max-width: 1200px;
 }
 .post h2:before {
-  content: "# ";
   font-weight: bold;
   color: #DDD;
 }
 .post h3:before {
-  content: "## ";
   font-weight: bold;
   color: #DDD;
 }
 .post h4:before {
-  content: "### ";
   font-weight: bold;
   color: #DDD;
 }
@@ -391,14 +392,6 @@ ul.social-list {
 ul.social-list li {
   display: inline-block;
   margin: 0px 2px;
-}
-table {
-  margin: 20px auto;
-}
-th,
-td {
-  border: 1px solid black;
-  padding: 5px;
 }
 footer {
   margin-top: 150px;
