@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>JJ's World - Categories | JJ's World</title>
+        <title>Setting up PostgreSQL for Python | JJ's World</title>
 
 
 <style type="text/css">
@@ -11850,10 +11850,279 @@ jQuery(document).ready(function($) {
         </div>.navbar-collapse -->
     </div><!-- .container -->
 </nav>
-    <h1>Categories on JJ's World</h1>
-    <ul>
-        <li><a href="./category/posts.html">posts</a> (80)</li>
-    </ul>
+<div class="container post">
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
+    <article>
+        <header>
+            <h1>Setting up PostgreSQL for Python</h1>
+            <time datetime="article.date.isoformat()" pubdate>Wed 30 December 2020</time>
+        </header>
+
+        <div class="article_content">
+            <h2>Objective</h2>
+<ul>
+<li>Setup PostgreSQL on Ubuntu</li>
+<li>Setup Python to connect to PostgreSQL</li>
+</ul>
+<h2>VPS information</h2>
+<h3>Setup PostgreSQL</h3>
+<p>For this tutorial I will be installing PostgreSQL on my VPS running <code>Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-58-generic x86_64)</code>.</p>
+<h2>Ubuntu Packages</h2>
+<p>Install the following packages to get PostgreSQL and Python running. I assume Python is already installed on the machine.</p>
+<ul>
+<li><code>postgresql</code></li>
+<li><code>postgresql-client</code></li>
+<li><code>postgresql-client-common</code></li>
+<li><code>libpq-dev</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo apt install postgresql <span class="se">\\</span>
+                                     postgresql-client <span class="se">\\</span>
+                                     postgresql-client-common <span class="se">\\</span>
+                                     libpq-dev
+</code></pre></div>
+
+
+<h2>Verify PostgreSQL</h2>
+<p>The PostgreSQL server version can be verified with the <code>locate</code> tool which returns version <code>12</code>:</p>
+<div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ locate bin/postgres
+/usr/lib/postgresql/12/bin/postgres
+</code></pre></div>
+
+
+<p>The PostgreSQL client version can simply be checked using <code>psql</code> and in this case is <code>12.5</code>:</p>
+<div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ psql -V
+psql <span class="o">(</span>PostgreSQL<span class="o">)</span> <span class="m">12</span>.5 <span class="o">(</span>Ubuntu <span class="m">12</span>.5-0ubuntu0.20.04.1<span class="o">)</span>
+</code></pre></div>
+
+
+<h2>Create new user</h2>
+<p>After installing PostgreSQL I add a new user for the project I will be working on. First login with the default <code>postgres</code> user and use <code>createuser --interactive</code> to add a user. In my case I will do a project around Zelda and therefor create a new user <code>zelda</code>.</p>
+<div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo -i -u postgres
+<span class="o">[</span>sudo<span class="o">]</span> password <span class="k">for</span> jitsejan:
+postgres@theviji:~$ createuser --interactive
+Enter name of role to add: zelda
+Shall the new role be a superuser? <span class="o">(</span>y/n<span class="o">)</span> n
+Shall the new role be allowed to create databases? <span class="o">(</span>y/n<span class="o">)</span> y
+Shall the new role be allowed to create more new roles? <span class="o">(</span>y/n<span class="o">)</span> n
+</code></pre></div>
+
+
+<p>Default the user doesn't have a password set which means we have to login to the <code>psql</code> shell and add a password for the new user:</p>
+<div class="highlight"><pre><span></span><code>postgres@theviji:~$ psql
+psql <span class="o">(</span><span class="m">12</span>.5 <span class="o">(</span>Ubuntu <span class="m">12</span>.5-0ubuntu0.20.04.1<span class="o">))</span>
+Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
+
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># \password zelda</span>
+Enter new password:
+Enter it again:
+</code></pre></div>
+
+
+<p>Since we are already here lets also add a database with the same name as the user.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">postgres</span><span class="o">=</span><span class="c1"># create database zelda;</span>
+CREATE DATABASE
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># \l</span>
+                                  List of databases
+   Name    <span class="p">|</span>  Owner   <span class="p">|</span> Encoding <span class="p">|</span>   Collate   <span class="p">|</span>    Ctype    <span class="p">|</span>   Access privileges
+-----------+----------+----------+-------------+-------------+-----------------------
+ postgres  <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span>
+ template0 <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> <span class="o">=</span>c/postgres          +
+           <span class="p">|</span>          <span class="p">|</span>          <span class="p">|</span>             <span class="p">|</span>             <span class="p">|</span> <span class="nv">postgres</span><span class="o">=</span>CTc/postgres
+ template1 <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> <span class="o">=</span>c/postgres          +
+           <span class="p">|</span>          <span class="p">|</span>          <span class="p">|</span>             <span class="p">|</span>             <span class="p">|</span> <span class="nv">postgres</span><span class="o">=</span>CTc/postgres
+ zelda     <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span>
+<span class="o">(</span><span class="m">4</span> rows<span class="o">)</span>
+</code></pre></div>
+
+
+<p>Additionally to adding the user to PostgreSQL I also add the user to the system.</p>
+<div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo adduser zelda
+Adding user <span class="sb">`</span>zelda<span class="s1">&#39; ...</span>
+<span class="s1">Adding new group `zelda&#39;</span> <span class="o">(</span><span class="m">1001</span><span class="o">)</span> ...
+Adding new user <span class="sb">`</span>zelda<span class="s1">&#39; (1001) with group `zelda&#39;</span> ...
+Creating home directory <span class="sb">`</span>/home/zelda<span class="s1">&#39; ...</span>
+<span class="s1">Copying files from `/etc/skel&#39;</span> ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information <span class="k">for</span> zelda
+Enter the new value, or press ENTER <span class="k">for</span> the default
+        Full Name <span class="o">[]</span>: Zelda
+        Room Number <span class="o">[]</span>:
+        Work Phone <span class="o">[]</span>:
+        Home Phone <span class="o">[]</span>:
+        Other <span class="o">[]</span>:
+Is the information correct? <span class="o">[</span>Y/n<span class="o">]</span> Y
+</code></pre></div>
+
+
+<p>Now I can switch to the newly created user and start the PostgreSQL shell. The connection information shows that we are indeed connected to the new <code>zelda</code> database by default.</p>
+<div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo -i -u zelda
+zelda@theviji:~$ psql
+<span class="nv">zelda</span><span class="o">=</span>&gt; <span class="se">\c</span>onninfo
+You are connected to database <span class="s2">&quot;zelda&quot;</span> as user <span class="s2">&quot;zelda&quot;</span> via socket in <span class="s2">&quot;/var/run/postgresql&quot;</span> at port <span class="s2">&quot;5432&quot;</span>.
+</code></pre></div>
+
+
+<h2>Configure PostgreSQL for Python</h2>
+<p>The important part to get PostgreSQL working with Python remotely is to make sure PostgreSQL allows external IPs. Modify the <code>postgresql.conf</code> that should be located in <code>/etc/postgresql/12/main</code>.</p>
+<p>Open the file as <code>sudo</code> with a text editor:</p>
+<div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo nano /etc/postgresql/12/main/postgresql.conf
+</code></pre></div>
+
+
+<p>And change the <code>listen_addresses</code> to <code>'*'</code> to make PostgreSQL listen to all IPs.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">listen_addresses</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>                  <span class="c1"># what IP address(es) to listen on;</span>
+</code></pre></div>
+
+
+<p>Furthermore, update the <code>pg_hba.conf</code> to allow a connection from any IP. The file should be located in the same folder as the <code>postgresql.conf</code>.</p>
+<div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo nano /etc/postgresql/12/main/pg_hba.conf
+</code></pre></div>
+
+
+<p>Add this to that the bottom of the table at the bottom of the file:</p>
+<div class="highlight"><pre><span></span><code>host    all             all             <span class="m">0</span>.0.0.0/0               md5
+host    all             all             ::/0                    md5
+</code></pre></div>
+
+
+<p>Restart <code>postgreqsl</code> to apply the changes:</p>
+<div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ /etc/init.d/postgresql restart
+</code></pre></div>
+
+
+<p>In case of errors we can look at the log files located in <code>/var/log</code>. Use <code>sudo tail &lt;logfile&gt;</code> to check the last lines in the log file.</p>
+<div class="highlight"><pre><span></span><code> jitsejan@theviji:~$ sudo tail /var/log/postgresql/postgresql-12-main.log
+</code></pre></div>
+
+
+<h2>Connect to PostgreSQL with Python</h2>
+<p>At this point we have a running PostgreSQL server which allows external traffic. We have a dedicated user with a password that we can use to connect to the server. The Python version I will be using is <code>3.8.5</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">jitsejan</span><span class="nd">@theviji</span><span class="p">:</span><span class="o">~</span><span class="err">$</span> <span class="n">python3</span> <span class="o">--</span><span class="n">version</span>
+<span class="n">Python</span> <span class="mf">3.8</span><span class="o">.</span><span class="mi">5</span>
+</code></pre></div>
+
+
+<h3>Install packages</h3>
+<p>Install <code>SQLAlchemy</code> and the <code>psycopg2</code> library. <a href="[]()">SQLAlchemy</a> is an ORM which abstracts the specific PostgreSQL code for the project. If at some point you were to switch databases you could simply update the connection but leave all the database definitions the same.</p>
+<div class="highlight"><pre><span></span><code>pip3 install psycopg2 sqlalchemy
+</code></pre></div>
+
+
+<h3>Create database engine</h3>
+<p>For safety I have added my secrets as environment variables. Update the <code>~/.bashrc</code> or <code>~/.zshrc</code> and add the necessary exports.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># ~/.bashrc</span>
+<span class="n">export</span> <span class="n">POSTGRES_USER</span><span class="o">=</span><span class="n">zelda</span>
+<span class="n">export</span> <span class="n">POSTGRES_DB</span><span class="o">=</span><span class="n">zelda</span>
+<span class="n">export</span> <span class="n">POSTGRES_PASS</span><span class="o">=</span><span class="n">SomePass</span>
+<span class="n">export</span> <span class="n">POSTGRES_PORT</span><span class="o">=</span><span class="mi">1234</span>
+<span class="n">export</span> <span class="n">POSTGRES_HOST</span><span class="o">=</span><span class="n">dev</span><span class="o">.</span><span class="n">jitsejan</span><span class="o">.</span><span class="n">com</span>
+</code></pre></div>
+
+
+<p>Make sure to reload the configuration file with <code>source ~/.bashrc</code>. Now that the variables are exported we can use them in the following Python script to setup the database engine.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sqlalchemy</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+
+<span class="n">USER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;POSTGRES_USER&#39;</span><span class="p">]</span>
+<span class="n">PASS</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;POSTGRES_PASS&#39;</span><span class="p">]</span>
+<span class="n">HOST</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;POSTGRES_HOST&#39;</span><span class="p">]</span>
+<span class="n">PORT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;POSTGRES_PORT&#39;</span><span class="p">]</span>
+<span class="n">DB</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;POSTGRES_DB&#39;</span><span class="p">]</span>
+<span class="n">db_string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;postgres://</span><span class="si">{</span><span class="n">USER</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">PASS</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">HOST</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">PORT</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">DB</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">db_string</span><span class="p">)</span>
+</code></pre></div>
+
+
+<h3>Add a table</h3>
+<p>For the first project I will crawl items from a website with only two fields for simplicity. The table <code>items</code> contains two columns:</p>
+<ul>
+<li>name (string)</li>
+<li>price (integer)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">MetaData</span>
+<span class="n">meta</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+
+<span class="n">items</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
+   <span class="s1">&#39;items&#39;</span><span class="p">,</span> <span class="n">meta</span><span class="p">,</span> 
+   <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span> <span class="o">=</span> <span class="kc">True</span><span class="p">),</span> 
+   <span class="n">Column</span><span class="p">(</span><span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">),</span> 
+<span class="p">)</span>
+<span class="n">meta</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Verify the table has been created by calling the <code>table_names</code> function on the <code>engine</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">engine</span><span class="o">.</span><span class="n">table_names</span><span class="p">()</span>
+<span class="c1"># [&#39;items&#39;]</span>
+</code></pre></div>
+
+
+<p>And that is it. PostgreSQL is up and running and we are able to interact with it using Python.</p>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/postgres.html" class="tag">postgres</a>
+                    <a href="./tag/postgresql.html" class="tag">PostgreSQL</a>
+                    <a href="./tag/sqlalchemy.html" class="tag">SQLAlchemy</a>
+                    <a href="./tag/ubuntu.html" class="tag">Ubuntu</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
+
         </div>
 <footer class="footer">
     <div class="container">

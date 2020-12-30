@@ -11867,6 +11867,34 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="./aws-lambda-development-with-sam.html">AWS Lambda development - Python & SAM</a></h2>
+      <time datetime="" title="2018-10-23T10:40:00+01:00" pubdate>Tue 23 October 2018</time>
+    </header>
+
+    <div class="article_content">
+        <p>This tutorial explains how to write a lambda functions in Python, test it locally, deploy it to AWS and test it in the cloud using Amazon's SAM. The <code>README.md</code> inside the <a href="https://github.com/aws-samples/cookiecutter-aws-sam-python"><code>cookiecutter</code></a> template folder is used as the base of this tutorial.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="./aws-lambda-development-with-sam.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/devops.html" class="tag">DevOps</a>
+            <a href="./tag/data-architecture.html" class="tag">data architecture</a>
+            <a href="./tag/serverless.html" class="tag">serverless</a>
+            <a href="./tag/aws.html" class="tag">AWS</a>
+            <a href="./tag/data-engineer.html" class="tag">data engineer</a>
+            <a href="./tag/lambda.html" class="tag">Lambda</a>
+            <a href="./tag/sam.html" class="tag">SAM</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./none-shall-paas.html">None shall PAAS</a></h2>
       <time datetime="" title="2018-10-17T14:00:00+01:00" pubdate>Wed 17 October 2018</time>
     </header>
@@ -12182,33 +12210,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./using-pythons-filter-on-dataframe.html">Using Pythons filter to select columns in dataframe</a></h2>
-      <time datetime="" title="2017-11-09T23:45:00+00:00" pubdate>Thu 09 November 2017</time>
-    </header>
-
-    <div class="article_content">
-        <p>A simple trick to select columns from a dataframe:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Create the filter condition</span>
-<span class="n">condition</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">col</span><span class="p">:</span> <span class="n">col</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">DESIRED_COLUMNS</span>
-<span class="c1"># Filter the dataframe</span>
-<span class="n">filtered_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="o">*</span><span class="nb">filter</span><span class="p">(</span><span class="n">condition</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">))</span>
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/filter.html" class="tag">filter</a>
-            <a href="./tag/tool.html" class="tag">tool</a>
-            <a href="./tag/lambda.html" class="tag">lambda</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12254,29 +12255,14 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-4">
-            <a href="./tag/hadoop.html">
-            Hadoop
-            </a>
-        </li>
         <li class="tag-3">
             <a href="./tag/data-engineer.html">
             data engineer
             </a>
         </li>
-        <li class="tag-4">
-            <a href="./tag/django.html">
-            Django
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
+        <li class="tag-2">
+            <a href="./tag/ubuntu.html">
+            Ubuntu
             </a>
         </li>
         <li class="tag-4">
@@ -12285,13 +12271,23 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/devops.html">
-            DevOps
+            <a href="./tag/aws.html">
+            AWS
             </a>
         </li>
-        <li class="tag-3">
-            <a href="./tag/jupyter.html">
-            Jupyter
+        <li class="tag-4">
+            <a href="./tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="./tag/lambda.html">
+            Lambda
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="./tag/hadoop.html">
+            Hadoop
             </a>
         </li>
         <li class="tag-2">
@@ -12300,28 +12296,38 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/lambda.html">
-            Lambda
+            <a href="./tag/spark.html">
+            Spark
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/shell.html">
-            shell
+            <a href="./tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/jupyter.html">
+            Jupyter
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/devops.html">
+            DevOps
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/container.html">
+            container
             </a>
         </li>
         <li class="tag-2">
             <a href="./tag/docker.html">
             Docker
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/ethereum.html">
-            Ethereum
             </a>
         </li>
         <li class="tag-3">
@@ -12330,43 +12336,38 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/pyspark.html">
-            PySpark
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/flask.html">
-            Flask
-            </a>
-        </li>
-        <li class="tag-3">
             <a href="./tag/pandas.html">
             pandas
             </a>
         </li>
-        <li class="tag-3">
-            <a href="./tag/spark.html">
-            Spark
+        <li class="tag-4">
+            <a href="./tag/postgres.html">
+            postgres
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="./tag/django.html">
+            Django
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/aws.html">
-            AWS
+            <a href="./tag/pyspark.html">
+            PySpark
             </a>
         </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
+        <li class="tag-1">
+            <a href="./tag/python.html">
+            Python
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/container.html">
-            container
+            <a href="./tag/notebook.html">
+            notebook
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/shell.html">
+            shell
             </a>
         </li>
         </ul>
