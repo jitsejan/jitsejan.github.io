@@ -11919,27 +11919,29 @@ crawl
 
 
 <p>You could choose to not use the generator and write the Scrapy files yourself but for simplicity I use the boilerplate that comes with Scrapy. Now navigate to the top level project folder and create the spider (<em>crawler</em>) using <code>genspider</code>. In my case I will be crawling data from Gamepedia.com about items that were found in the Zelda games. A completely random choice of website but it fits with the theme I normally use when playing around with code.</p>
-<p><img src="images/scrapy_zelda_overview.PNG" style="width: 700px" /></p>
-<div class="highlight"><pre><span></span><code><span class="err">data-retrieval $ cd crawl</span>
-<span class="err">data-retrieval/crawl $ scrapy genspider zelda_items zelda.gamepedia.com</span>
-<span class="err">Created spider &#39;zelda_items&#39; using template &#39;basic&#39; in module:</span>
-<span class="err">  crawl.spiders.zelda_items</span>
+<p><center>
+<img src="images/scrapy_zelda_overview.PNG" style="width: 700px" />
+</center></p>
+<div class="highlight"><pre><span></span><code>data-retrieval $ <span class="nb">cd</span> crawl
+data-retrieval/crawl $ scrapy genspider zelda_items zelda.gamepedia.com
+Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <span class="s1">&#39;basic&#39;</span> in module:
+  crawl.spiders.zelda_items
 </code></pre></div>
 
 
 <p>If we look again at the tree structure we see that inside the <code>spiders</code> folder a new file (<code>zelda_items.py</code>) has been created. This file creates the basic structure for a spider.</p>
-<div class="highlight"><pre><span></span><code><span class="err">data-retrieval/crawl $ tree</span>
-<span class="err">.</span>
-<span class="err">├── crawl</span>
-<span class="err">│   ├── __init__.py</span>
-<span class="err">│   ├── items.py</span>
-<span class="err">│   ├── middlewares.py</span>
-<span class="err">│   ├── pipelines.py</span>
-<span class="err">│   ├── settings.py</span>
-<span class="err">│   └── spiders</span>
-<span class="err">│       ├── __init__.py</span>
-<span class="err">│       └── zelda_items.py</span>
-<span class="err">└── scrapy.cfg</span>
+<div class="highlight"><pre><span></span><code>data-retrieval/crawl $ tree
+.
+├── crawl
+│   ├── __init__.py
+│   ├── items.py
+│   ├── middlewares.py
+│   ├── pipelines.py
+│   ├── settings.py
+│   └── spiders
+│       ├── __init__.py
+│       └── zelda_items.py
+└── scrapy.cfg
 </code></pre></div>
 
 
@@ -11959,7 +11961,9 @@ crawl
 
 <h2>Setup the scraper</h2>
 <p>The first element we want to crawl is the link to all the items to get the detailed information for each of them. The code to retrieve these links is added to the <code>parse</code> function. Looking at the source code it is easy to copy the selector to get to the right element.</p>
-<p><img src="images/scrapy_zelda_selector.PNG" widht=700 /></p>
+<p><center>
+<img src="images/scrapy_zelda_selector.PNG" widht=700 />
+</center></p>
 <p>The selector returns the following information. </p>
 <div class="highlight"><pre><span></span><code>#mw-content-text &gt; div &gt; center:nth-child(1) &gt; ul &gt; li:nth-child(2) &gt; div &gt; div.gallerytext &gt; p &gt; a
 </code></pre></div>
