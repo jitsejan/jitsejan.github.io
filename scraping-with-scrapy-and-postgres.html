@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>JJ's World - posts category | JJ's World</title>
+        <title>Scraping data with Scrapy and PostgreSQL | JJ's World</title>
 
 
 <style type="text/css">
@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="../theme/css/main.css?9c57dc56">
+            <link rel="stylesheet" href="./theme/css/main.css?9c57dc56">
 
 
     </head>
@@ -11843,237 +11843,487 @@ jQuery(document).ready(function($) {
         </div>
         <!-- <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
-                <li><a href="../pages/python-cheatsheet">Python cheatsheet</a></li>
-                <li><a href="../pages/spark-cheatsheet">Spark cheatsheet</a></li>
+                <li><a href="./pages/pandas-cheatsheet">Pandas cheatsheet</a></li>
+                <li><a href="./pages/python-cheatsheet">Python cheatsheet</a></li>
+                <li><a href="./pages/spark-cheatsheet">Spark cheatsheet</a></li>
             </ul>
         </div>.navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container index">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-9">
-  <article>
-    <header>
-      <h2><a href="../most-used-history-command.html">Find most used history command</a></h2>
-      <time datetime="" title="2016-07-27T16:55:00+01:00" pubdate>Wed 27 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><code>$ awk <span class="s1">&#39;{print $1}&#39;</span> ~/.bash_history <span class="p">|</span> sort <span class="p">|</span> uniq -c <span class="p">|</span> sort -n
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-
-  <nav class="pagination row">
-    <div class="col-xs-6 left">
-    </div>
-    <div class="col-xs-6 right">
-        <a class="next" href="../category/posts8.html">Future &#8594;</a>
-    </div>
-  </nav>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm">
-<form class="navbar-form navbar-right" role="search" action="../search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-3">
-<aside class="page-sidebar">
-    <nav class="widget" id="sidebar-about">
-        <div class="row img-div">
-            <img src="/theme/images/JJ_Montreal.png" />
-        </div>
-        <div class="row">
-        <p>I am the Head Of Data at <a href="https://www.lendinvest.com">LendInvest</a> in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
-<p>
-While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
-for visualizations as for modern web applications it is the go-to language. 
-</p>
-<p>
-I am using this page as a portfolio and showcase, but mainly as a cheatsheet. That is why you will mainly find shell commands, short scripts or notebooks just for myself to not reinvent the wheel.
-</p>
-
-        </div>  
-    </nav>
-    <hr/>
-    <nav class="widget">
-        <ul class="tagcloud">
-        <li class="tag-3">
-            <a href="../tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/vps.html">
-            VPS
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/hadoop.html">
-            Hadoop
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/postgres.html">
-            postgres
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/javascript.html">
-            Javascript
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/lambda.html">
-            Lambda
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/django.html">
-            Django
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/pyspark.html">
-            PySpark
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        </ul>
-    </nav>
-    <hr/>
+<div class="container post">
     <div class="row">
-        <div class="col-md-12">
-            <ul class="social-list">
-                    <li><a href="http://www.flickr.com/photos/jitsejan" title="Flickr" rel="me" target="new"><i class="fa fa-1x fa-flickr"></i></a></li>
-                    <li><a href="https://play.spotify.com/user/jitsejan" title="Spotify" rel="me" target="new"><i class="fa fa-1x fa-spotify"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jitsejan" title="LinkedIn" rel="me" target="new"><i class="fa fa-1x fa-linkedin"></i></a></li>
-                    <li><a href="http://twitter.com/jitsejan" title="Twitter" rel="me" target="new"><i class="fa fa-1x fa-twitter"></i></a></li>
-                    <li><a href="http://www.github.com/jitsejan" title="Github" rel="me" target="new"><i class="fa fa-1x fa-github"></i></a></li>
-                    <li><a href="http://bitbucket.org/jitsejan" title="Bitbucket" rel="me" target="new"><i class="fa fa-1x fa-bitbucket"></i></a></li>
-                    <li><a href="http://bl.ocks.org/jitsejan" title="Blocks.org" rel="me" target="new"><i class="fa fa-1x fa-bar-chart"></i></a></li>
-                    <li><a href="https://hub.docker.com/r/jitsejan" title="Docker" rel="me" target="new"><i class="fa fa-1x fa-docker"></i></a></li>
-            </ul>
-        </div>
+        <a href="javascript:history.back()">Go back</a>
     </div>
-    <iframe src="https://rcm-eu.amazon-adsystem.com/e/cm?o=2&p=12&l=ur1&category=consumerelectronics&banner=154BTPQKM87HBT4TD802&f=ifr&linkID=5855639ed929a875d305006b63834633&t=jitsejan-21&tracking_id=jitsejan-21" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
-</aside>  </div>
-  
-  </div>
+    <article>
+        <header>
+            <h1>Scraping data with Scrapy and PostgreSQL</h1>
+            <time datetime="article.date.isoformat()" pubdate>Tue 05 January 2021</time>
+        </header>
 
+        <div class="article_content">
+            <h2>Introduction</h2>
+<p>In the following tutorial I will use <a href="https://scrapy.org">Scrapy</a> to retrieve the items in The Legend of Zelda from <a href="http://zelda.gamepedia.com/Items_in_The_Legend_of_Zelda">Gamepedia</a>. I will focus on those items that have a name and a cost and add them to the database. In <a href="https://www.jitsejan.com/setting-up-postgres-for-python.html">this post</a> I have installed PostgreSQL on my VPS and configured it to work with Python. These items will help in the next project where I will use them to create a simple REST API with Flask.</p>
+<h2>Objective</h2>
+<ul>
+<li>Retrieve data from website using Scrapy.</li>
+<li>Store results in a PostgreSQL database.</li>
+</ul>
+<h2>Prerequisites</h2>
+<ul>
+<li><code>pipenv</code> installed (or any other Python virtual environment tool).</li>
+<li><code>Scrapy</code>,  <code>sqlalchemy</code> and <code>psycopg2</code> installed in the environment.</li>
+<li>PostgreSQL installed.</li>
+</ul>
+<div class="highlight"><pre><span></span><code>$ pipenv --python <span class="m">3</span>
+$ pipenv shell
+data-retrieval $ python --version
+Python <span class="m">3</span>.9.1
+data-retrieval $ pipenv install Scrapy
+data-retrieval $ pip freeze <span class="p">|</span> grep Scrapy
+<span class="nv">Scrapy</span><span class="o">==</span><span class="m">2</span>.4.1
+data-retrieval $ pip freeze <span class="p">|</span> grep SQLAlchemy
+<span class="nv">SQLAlchemy</span><span class="o">==</span><span class="m">1</span>.3.22
+data-retrieval $ pip freeze <span class="p">|</span> grep psycopg2
+<span class="nv">psycopg2</span><span class="o">==</span><span class="m">2</span>.8.6
+</code></pre></div>
+
+
+<h2>Initialize Scrapy</h2>
+<p>Start a new Scrapy project inside your new Python project. I picked the creative name <code>crawl</code> for the Scrapy project.</p>
+<div class="highlight"><pre><span></span><code>data-retrieval $ scrapy startproject crawl
+New Scrapy project <span class="s1">&#39;crawl&#39;</span>, using template directory <span class="s1">&#39;/Users/jitsejan/.local/share/virtualenvs/testscrapy-jJKHMw2I/lib/python3.9/site-packages/scrapy/templates/project&#39;</span>, created in:
+    /Users/jitsejan/code/testscrapy/data-retrieval/crawl
+
+You can start your first spider with:
+    <span class="nb">cd</span> crawl
+    scrapy genspider example example.com
+</code></pre></div>
+
+
+<p>Running the <code>startproject</code> command will create a folder with the structure outlined below. There is a top folder with the project name (<code>crawl</code>) that contains the Scrapy configuration and a subfolder with the same name containing the actual crawling code. </p>
+<p>NB: I don't want to go into too much detail about Scrapy because there are many tutorials for the tool online, and because I normally use <code>requests</code> with <code>lxml</code> to make (very simple) data crawlers. Many people prefer to use <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a> or other higher level data crawl libraries so feel free to go for that. I picked Scrapy in this particular case because it creates a nice scaffold when working with crawlers and databases but this can be completely done from scratch as well.</p>
+<div class="highlight"><pre><span></span><code>data-retrieval $ tree crawl
+crawl
+├── crawl
+│   ├── __init__.py
+│   ├── items.py
+│   ├── middlewares.py
+│   ├── pipelines.py
+│   ├── settings.py
+│   └── spiders
+│       └── __init__.py
+└── scrapy.cfg
+
+<span class="m">2</span> directories, <span class="m">7</span> files
+</code></pre></div>
+
+
+<p>You could choose to not use the generator and write the Scrapy files yourself but for simplicity I use the boilerplate that comes with Scrapy. Now navigate to the top level project folder and create the spider (<em>crawler</em>) using <code>genspider</code>. In my case I will be crawling data from Gamepedia.com about items that were found in the Zelda games. A completely random choice of website but it fits with the theme I normally use when playing around with code.</p>
+<p><img src="images/scrapy_zelda_overview.PNG" style="width: 700px" /></p>
+<div class="highlight"><pre><span></span><code><span class="err">data-retrieval $ cd crawl</span>
+<span class="err">data-retrieval/crawl $ scrapy genspider zelda_items zelda.gamepedia.com</span>
+<span class="err">Created spider &#39;zelda_items&#39; using template &#39;basic&#39; in module:</span>
+<span class="err">  crawl.spiders.zelda_items</span>
+</code></pre></div>
+
+
+<p>If we look again at the tree structure we see that inside the <code>spiders</code> folder a new file (<code>zelda_items.py</code>) has been created. This file creates the basic structure for a spider.</p>
+<div class="highlight"><pre><span></span><code><span class="err">data-retrieval/crawl $ tree</span>
+<span class="err">.</span>
+<span class="err">├── crawl</span>
+<span class="err">│   ├── __init__.py</span>
+<span class="err">│   ├── items.py</span>
+<span class="err">│   ├── middlewares.py</span>
+<span class="err">│   ├── pipelines.py</span>
+<span class="err">│   ├── settings.py</span>
+<span class="err">│   └── spiders</span>
+<span class="err">│       ├── __init__.py</span>
+<span class="err">│       └── zelda_items.py</span>
+<span class="err">└── scrapy.cfg</span>
+</code></pre></div>
+
+
+<p>The content of the <code>zelda_items.py</code> file is the minimal setup to get started with crawling data.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">scrapy</span>
+
+
+<span class="k">class</span> <span class="nc">ZeldaItemsSpider</span><span class="p">(</span><span class="n">scrapy</span><span class="o">.</span><span class="n">Spider</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;zelda_items&#39;</span>
+    <span class="n">allowed_domains</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;zelda.gamepedia.com&#39;</span><span class="p">]</span>
+    <span class="n">start_urls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://zelda.gamepedia.com/&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="k">pass</span>
+</code></pre></div>
+
+
+<h2>Setup the scraper</h2>
+<p>The first element we want to crawl is the link to all the items to get the detailed information for each of them. The code to retrieve these links is added to the <code>parse</code> function. Looking at the source code it is easy to copy the selector to get to the right element.</p>
+<p><img src="images/scrapy_zelda_selector.PNG" widht=700 /></p>
+<p>The selector returns the following information. </p>
+<div class="highlight"><pre><span></span><code>#mw-content-text &gt; div &gt; center:nth-child(1) &gt; ul &gt; li:nth-child(2) &gt; div &gt; div.gallerytext &gt; p &gt; a
+</code></pre></div>
+
+
+<p>As a selector I will use the CSS selector <code>li.gallerybox .gallerytext p a::attr(href)</code> to get the hyperlinks to all the items.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieve the links to the items</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">selector</span> <span class="o">=</span> <span class="s2">&quot;li.gallerybox .gallerytext p a::attr(href)&quot;</span>
+    <span class="k">for</span> <span class="n">href</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="n">selector</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="n">Request</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}{</span><span class="n">href</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_item</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>For each link that is retrieved the <code>parse_item</code> function is executed. The structure of the information page is a little ugly but we only care about the information table. Since this is a Wiki the data can be very unstructured and not all the tables will have the same fields which should be taken into account when retrieving data. For my particular case I want to retrieve the name and the price of each item (under the condition that the table contains the cost information). The following shows a simplified version of the HTML from which I am extracting the data.</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;infobox wikitable&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">tbody</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;infobox-name centered&quot;</span> <span class="na">colspan</span><span class="o">=</span><span class="s">&quot;2&quot;</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;term&quot;</span><span class="p">&gt;</span>Arrow<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;infobox-image centered&quot;</span> <span class="na">colspan</span><span class="o">=</span><span class="s">&quot;2&quot;</span><span class="p">&gt;</span> ... <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;infobox-field&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Main appearance(s)<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span> ... <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;infobox-field&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Other appearance(s)<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span> ... <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;infobox-field&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Cost(s)<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;infobox-field-content&quot;</span><span class="p">&gt;</span>
+                    80 <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/Rupee&quot;</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;Rupee&quot;</span><span class="p">&gt;</span>Rupees<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nt">sup</span><span class="p">&gt;</span>(<span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;&lt;</span><span class="nt">span</span> <span class="na">title</span><span class="o">=</span><span class="s">&quot;The Legend of Zelda&quot;</span><span class="p">&gt;</span>TLoZ<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;&lt;/</span><span class="nt">b</span><span class="p">&gt;</span>)<span class="p">&lt;/</span><span class="nt">sup</span><span class="p">&gt;</span>
+                <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;infobox-field&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Location(s)<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span> ... <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;infobox-field&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Use(s)<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span> ... <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;infobox-field&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Strength<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span> ... <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">tr</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;infobox-field&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">th</span><span class="p">&gt;</span>Comparable item(s)<span class="p">&lt;/</span><span class="nt">th</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span> ... <span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">tbody</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</code></pre></div>
+
+
+<p>To fetch the data I will again use a CSS selector for the name but the <code>xpath</code> selector to find the right element in the table for the cost. I explained in this <a href="https://www.jitsejan.com/scraping-with-xpaths.html">earlier article</a> how I figured out the right syntax to get the information. Only when the price returns an integer I will return the item. If there is no price I will ignore the item. In the future this code will most probably change to retrieve more items and different fields.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieve the item details</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">name_sel</span> <span class="o">=</span> <span class="s2">&quot;meta[property=&#39;og:title&#39;]::attr(content)&quot;</span>
+    <span class="n">price_sel</span> <span class="o">=</span> <span class="s2">&quot;//tr[th//text()[contains(., &#39;Cost(s)&#39;)]]/td/div/text()&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="n">name_sel</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="n">price</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="n">price_sel</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">price</span> <span class="ow">and</span> <span class="n">price</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+        <span class="k">yield</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">price</span><span class="p">)}</span>
+</code></pre></div>
+
+
+<h2>Crawl the data</h2>
+<p>Now the scraper is ready to be executed and retrieve the items. Run the crawler and verify that it is returning indeed the items that you would expect. There is no output that stores the items yet but the log tells me that there were 10 items that actually had a name and the cost defined (<code>'item_scraped_count': 10,</code>). Note that I set the <code>loglevel</code> to <strong>INFO</strong> to prevent an information overload in the console.</p>
+<div class="highlight"><pre><span></span><code>data-retrieval/crawl $ scrapy crawl zelda_items
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:07 <span class="o">[</span>scrapy.utils.log<span class="o">]</span> INFO: Scrapy <span class="m">2</span>.4.1 started <span class="o">(</span>bot: crawl<span class="o">)</span>
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:07 <span class="o">[</span>scrapy.utils.log<span class="o">]</span> INFO: Versions: lxml <span class="m">4</span>.6.2.0, libxml2 <span class="m">2</span>.9.10, cssselect <span class="m">1</span>.1.0, parsel <span class="m">1</span>.6.0, w3lib <span class="m">1</span>.22.0, Twisted <span class="m">20</span>.3.0, Python <span class="m">3</span>.9.1 <span class="o">(</span>default, Dec <span class="m">17</span> <span class="m">2020</span>, <span class="m">03</span>:41:37<span class="o">)</span> - <span class="o">[</span>Clang <span class="m">12</span>.0.0 <span class="o">(</span>clang-1200.0.32.27<span class="o">)]</span>, pyOpenSSL <span class="m">20</span>.0.1 <span class="o">(</span>OpenSSL <span class="m">1</span>.1.1i  <span class="m">8</span> Dec <span class="m">2020</span><span class="o">)</span>, cryptography <span class="m">3</span>.3.1, Platform macOS-10.15.7-x86_64-i386-64bit
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:07 <span class="o">[</span>scrapy.crawler<span class="o">]</span> INFO: Overridden settings:
+<span class="o">{</span><span class="s1">&#39;BOT_NAME&#39;</span>: <span class="s1">&#39;crawl&#39;</span>,
+ <span class="s1">&#39;LOG_LEVEL&#39;</span>: <span class="s1">&#39;INFO&#39;</span>,
+ <span class="s1">&#39;NEWSPIDER_MODULE&#39;</span>: <span class="s1">&#39;crawl.spiders&#39;</span>,
+ <span class="s1">&#39;ROBOTSTXT_OBEY&#39;</span>: True,
+ <span class="s1">&#39;SPIDER_MODULES&#39;</span>: <span class="o">[</span><span class="s1">&#39;crawl.spiders&#39;</span><span class="o">]}</span>
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:07 <span class="o">[</span>scrapy.extensions.telnet<span class="o">]</span> INFO: Telnet Password: 7313d2472beec312
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:07 <span class="o">[</span>scrapy.middleware<span class="o">]</span> INFO: Enabled extensions:
+<span class="o">[</span><span class="s1">&#39;scrapy.extensions.corestats.CoreStats&#39;</span>,
+ <span class="s1">&#39;scrapy.extensions.telnet.TelnetConsole&#39;</span>,
+ <span class="s1">&#39;scrapy.extensions.memusage.MemoryUsage&#39;</span>,
+ <span class="s1">&#39;scrapy.extensions.logstats.LogStats&#39;</span><span class="o">]</span>
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:07 <span class="o">[</span>scrapy.middleware<span class="o">]</span> INFO: Enabled downloader middlewares:
+<span class="o">[</span><span class="s1">&#39;scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.downloadermiddlewares.useragent.UserAgentMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.downloadermiddlewares.retry.RetryMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.downloadermiddlewares.redirect.RedirectMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.downloadermiddlewares.cookies.CookiesMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.downloadermiddlewares.stats.DownloaderStats&#39;</span><span class="o">]</span>
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:07 <span class="o">[</span>scrapy.middleware<span class="o">]</span> INFO: Enabled spider middlewares:
+<span class="o">[</span><span class="s1">&#39;scrapy.spidermiddlewares.httperror.HttpErrorMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.spidermiddlewares.offsite.OffsiteMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.spidermiddlewares.referer.RefererMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.spidermiddlewares.urllength.UrlLengthMiddleware&#39;</span>,
+ <span class="s1">&#39;scrapy.spidermiddlewares.depth.DepthMiddleware&#39;</span><span class="o">]</span>
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:09 <span class="o">[</span>scrapy.middleware<span class="o">]</span> INFO: Enabled item pipelines:
+<span class="o">[</span><span class="s1">&#39;crawl.pipelines.CrawlPipeline&#39;</span><span class="o">]</span>
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:09 <span class="o">[</span>scrapy.core.engine<span class="o">]</span> INFO: Spider opened
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:09 <span class="o">[</span>scrapy.extensions.logstats<span class="o">]</span> INFO: Crawled <span class="m">0</span> pages <span class="o">(</span>at <span class="m">0</span> pages/min<span class="o">)</span>, scraped <span class="m">0</span> items <span class="o">(</span>at <span class="m">0</span> items/min<span class="o">)</span>
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:09 <span class="o">[</span>scrapy.extensions.telnet<span class="o">]</span> INFO: Telnet console listening on <span class="m">127</span>.0.0.1:6023
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:13 <span class="o">[</span>scrapy.core.engine<span class="o">]</span> INFO: Closing spider <span class="o">(</span>finished<span class="o">)</span>
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:13 <span class="o">[</span>scrapy.statscollectors<span class="o">]</span> INFO: Dumping Scrapy stats:
+<span class="o">{</span><span class="s1">&#39;downloader/request_bytes&#39;</span>: <span class="m">22501</span>,
+ <span class="s1">&#39;downloader/request_count&#39;</span>: <span class="m">75</span>,
+ <span class="s1">&#39;downloader/request_method_count/GET&#39;</span>: <span class="m">75</span>,
+ <span class="s1">&#39;downloader/response_bytes&#39;</span>: <span class="m">1941159</span>,
+ <span class="s1">&#39;downloader/response_count&#39;</span>: <span class="m">75</span>,
+ <span class="s1">&#39;downloader/response_status_count/200&#39;</span>: <span class="m">37</span>,
+ <span class="s1">&#39;downloader/response_status_count/301&#39;</span>: <span class="m">38</span>,
+ <span class="s1">&#39;dupefilter/filtered&#39;</span>: <span class="m">1</span>,
+ <span class="s1">&#39;elapsed_time_seconds&#39;</span>: <span class="m">4</span>.146036,
+ <span class="s1">&#39;finish_reason&#39;</span>: <span class="s1">&#39;finished&#39;</span>,
+ <span class="s1">&#39;finish_time&#39;</span>: datetime.datetime<span class="o">(</span><span class="m">2021</span>, <span class="m">1</span>, <span class="m">5</span>, <span class="m">21</span>, <span class="m">26</span>, <span class="m">13</span>, <span class="m">283001</span><span class="o">)</span>,
+ <span class="s1">&#39;item_scraped_count&#39;</span>: <span class="m">10</span>,
+ <span class="s1">&#39;log_count/INFO&#39;</span>: <span class="m">10</span>,
+ <span class="s1">&#39;memusage/max&#39;</span>: <span class="m">73228288</span>,
+ <span class="s1">&#39;memusage/startup&#39;</span>: <span class="m">73224192</span>,
+ <span class="s1">&#39;request_depth_max&#39;</span>: <span class="m">1</span>,
+ <span class="s1">&#39;response_received_count&#39;</span>: <span class="m">37</span>,
+ <span class="s1">&#39;robotstxt/request_count&#39;</span>: <span class="m">1</span>,
+ <span class="s1">&#39;robotstxt/response_count&#39;</span>: <span class="m">1</span>,
+ <span class="s1">&#39;robotstxt/response_status_count/200&#39;</span>: <span class="m">1</span>,
+ <span class="s1">&#39;scheduler/dequeued&#39;</span>: <span class="m">73</span>,
+ <span class="s1">&#39;scheduler/dequeued/memory&#39;</span>: <span class="m">73</span>,
+ <span class="s1">&#39;scheduler/enqueued&#39;</span>: <span class="m">73</span>,
+ <span class="s1">&#39;scheduler/enqueued/memory&#39;</span>: <span class="m">73</span>,
+ <span class="s1">&#39;start_time&#39;</span>: datetime.datetime<span class="o">(</span><span class="m">2021</span>, <span class="m">1</span>, <span class="m">5</span>, <span class="m">21</span>, <span class="m">26</span>, <span class="m">9</span>, <span class="m">136965</span><span class="o">)}</span>
+<span class="m">2021</span>-01-05 <span class="m">21</span>:26:13 <span class="o">[</span>scrapy.core.engine<span class="o">]</span> INFO: Spider closed <span class="o">(</span>finished<span class="o">)</span>
+</code></pre></div>
+
+
+<h2>Store the data</h2>
+<p>First of all I define the schema of the element that I am crawling in the <code>items.py</code>. There is no fancy schema yet but this can obviously be improved in the future when more items are being retrieved and the actual datatypes do make a difference.</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;crawl/crawl/items.py&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">scrapy</span> <span class="kn">import</span> <span class="n">Field</span><span class="p">,</span> <span class="n">Item</span>
+
+
+<span class="k">class</span> <span class="nc">ZeldaItem</span><span class="p">(</span><span class="n">Item</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Definition of the ZeldaItem &quot;&quot;&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+    <span class="n">price</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
+</code></pre></div>
+
+
+<p>The <code>middlewares.py</code> is left untouched for the project. The important bit for storing data in a database is inside <code>models.py</code>. As described before I use SQLAlchemy to connect to the PostgreSQL database. The database details are stored in <code>settings.py</code> (see below) and are used to create the SQLAlchemy <code>engine</code>. I define the <code>Items</code> model with the two fields and use the <code>create_items_table</code> to create the table. </p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;crawl/crawl/models.py&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">create_engine</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.engine.base</span> <span class="kn">import</span> <span class="n">Engine</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.engine.url</span> <span class="kn">import</span> <span class="n">URL</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
+
+<span class="kn">from</span> <span class="nn">crawl</span> <span class="kn">import</span> <span class="n">settings</span>
+
+<span class="n">DeclarativeBase</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">db_connect</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Engine</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates database connection using database settings from settings.py.</span>
+<span class="sd">    Returns sqlalchemy engine instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">URL</span><span class="p">(</span><span class="o">**</span><span class="n">settings</span><span class="o">.</span><span class="n">DATABASE</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">create_items_table</span><span class="p">(</span><span class="n">engine</span><span class="p">:</span> <span class="n">Engine</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create the Items table</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">DeclarativeBase</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">Items</span><span class="p">(</span><span class="n">DeclarativeBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines the items model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;items&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">price</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>Inside the <code>pipelines.py</code> the spider is connected to the database. When the pipeline is started it will initalize the database and create the <code>engine</code>, create the table and setup a SQLAlchemy session. The <code>process_item</code> function is part of the default code and is executed for every yielded item in the scraper. In this case it means it will be triggered every time an item is retrieved with a name and a cost. For every item it is first checked if the item already exists in the database and in case is does not exist yet it will be added to the database. Remember to always <code>commit()</code> when adding (or removing) items to the table.</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;crawl/crawl/pipelines.py&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+
+<span class="kn">from</span> <span class="nn">crawl.models</span> <span class="kn">import</span> <span class="n">Items</span><span class="p">,</span> <span class="n">create_items_table</span><span class="p">,</span> <span class="n">db_connect</span>
+
+
+<span class="k">class</span> <span class="nc">CrawlPipeline</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes database connection and sessionmaker.</span>
+<span class="sd">        Creates items table.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">engine</span> <span class="o">=</span> <span class="n">db_connect</span><span class="p">()</span>
+        <span class="n">create_items_table</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">process_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">spider</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Process the item and store to database.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+        <span class="n">instance</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Items</span><span class="p">)</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span><span class="o">.</span><span class="n">one_or_none</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">instance</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">instance</span>
+        <span class="n">zelda_item</span> <span class="o">=</span> <span class="n">Items</span><span class="p">(</span><span class="o">**</span><span class="n">item</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">zelda_item</span><span class="p">)</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+            <span class="k">raise</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">item</span>
+</code></pre></div>
+
+
+<p>Finally, the <code>settings.py</code> is short and contains the information for the crawler. The only items I have added are the <code>DATABASE</code> and <code>LOG_LEVEL</code> variables. You could choose to add your security details in this file but I would recommend to keep them secret and store them elsewhere.</p>
+<div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;crawl/crawl/settings.py&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">BOT_NAME</span> <span class="o">=</span> <span class="s2">&quot;crawl&quot;</span>
+<span class="n">SPIDER_MODULES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;crawl.spiders&quot;</span><span class="p">]</span>
+<span class="n">NEWSPIDER_MODULE</span> <span class="o">=</span> <span class="s2">&quot;crawl.spiders&quot;</span>
+<span class="n">ROBOTSTXT_OBEY</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">ITEM_PIPELINES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;crawl.pipelines.CrawlPipeline&quot;</span><span class="p">:</span> <span class="mi">300</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="n">DATABASE</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;drivername&quot;</span><span class="p">:</span> <span class="s2">&quot;postgres&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;host&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_HOST&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;port&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_PORT&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_USER&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;password&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_PASS&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;database&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_DB&quot;</span><span class="p">],</span>
+<span class="p">}</span>
+<span class="n">LOG_LEVEL</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span>
+</code></pre></div>
+
+
+<h2>Verify the data</h2>
+<p>As a last step in this tutorial I will double check that there are indeed ten items in the database. I have used <code>pandas</code> as an easy way to query the database and add the results to a table. </p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sqlalchemy</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+
+<span class="n">USER</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;POSTGRES_USER&#39;</span><span class="p">]</span>
+<span class="n">PASS</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;POSTGRES_PASS&#39;</span><span class="p">]</span>
+<span class="n">HOST</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;POSTGRES_HOST&#39;</span><span class="p">]</span>
+<span class="n">PORT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;POSTGRES_PORT&#39;</span><span class="p">]</span>
+<span class="n">DB</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;POSTGRES_DB&#39;</span><span class="p">]</span>
+<span class="n">db_string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;postgres://</span><span class="si">{</span><span class="n">USER</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">PASS</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">HOST</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">PORT</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">DB</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">db_string</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM items&#39;</span><span class="p">,</span>
+                       <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="c1">#                  name  price</span>
+<span class="c1"># 0           Boomerang    300</span>
+<span class="c1"># 1     Heart Container      4</span>
+<span class="c1"># 2           Blue Ring    250</span>
+<span class="c1"># 3   Red Water of Life     68</span>
+<span class="c1"># 4                Food     60</span>
+<span class="c1"># 5  Blue Water of Life     40</span>
+<span class="c1"># 6         Blue Candle     60</span>
+<span class="c1"># 7               Arrow     80</span>
+<span class="c1"># 8                 Bow    980</span>
+<span class="c1"># 9                Bomb     20</span>
+</code></pre></div>
+
+
+<p>See the <a href="https://github.com/jitsejan/architecture-patterns-with-python/tree/main/data-retrieval">Github repo</a> for the final code. The code most probably will change once I (slowly) continue working on this side project but I hope it might help anyone playing with data crawling and databases.</p>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/postgres.html" class="tag">postgres</a>
+                    <a href="./tag/postgresql.html" class="tag">PostgreSQL</a>
+                    <a href="./tag/sqlalchemy.html" class="tag">SQLAlchemy</a>
+                    <a href="./tag/scrapy.html" class="tag">Scrapy</a>
+                    <a href="./tag/web-crawling.html" class="tag">web crawling</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
 
         </div>
 <footer class="footer">
     <div class="container">
         <center>
             <address id="about" class="vcard body">
-                &copy; <a href="..">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2021
+                &copy; <a href=".">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2021
             </address><!-- /#about -->
         </center>
     </div>

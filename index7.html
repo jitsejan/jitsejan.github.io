@@ -11867,6 +11867,41 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="./write-dictionary-to-csv-python.html">Write dictionary to CSV in Python</a></h2>
+      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
+    </header>
+
+    <div class="article_content">
+        <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="k">def</span> <span class="nf">write_dictionary_to_csv</span><span class="p">(</span><span class="n">o_file</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Write dictionary to output file &quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">o_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+        <span class="n">outputwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span><span class="p">)</span>
+        <span class="n">outputwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">outputwriter</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+
+<span class="n">dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">34</span><span class="p">],</span>
+              <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span><span class="mi">56</span><span class="p">,</span><span class="mi">67</span><span class="p">],</span>
+              <span class="s2">&quot;key3&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">78</span><span class="p">,</span><span class="mi">89</span><span class="p">,</span><span class="mi">90</span><span class="p">]}</span>
+<span class="n">output_file</span> <span class="o">=</span> <span class="s1">&#39;output.csv&#39;</span>
+<span class="n">write_dictionary_to_csv</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">)</span>
+</code></pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/dictionary.html" class="tag">dictionary</a>
+            <a href="./tag/csv.html" class="tag">CSV</a>
+            <a href="./tag/python.html" class="tag">Python</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./using-supervisor-start-gunicorn.html">Using Supervisor to start Gunicorn</a></h2>
       <time datetime="" title="2016-10-04T14:06:00+01:00" pubdate>Tue 04 October 2016</time>
     </header>
@@ -12084,31 +12119,6 @@ jQuery(document).ready(function($) {
 
   </article>
   <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./getting-started-with-datascience.html">Getting started with data science in Python</a></h2>
-      <time datetime="" title="2016-08-03T14:55:00+01:00" pubdate>Wed 03 August 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>A short summary of my first attempts to start with data science.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./getting-started-with-datascience.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/anaconda.html" class="tag">anaconda</a>
-            <a href="./tag/datascience.html" class="tag">datascience</a>
-            <a href="./tag/pandas.html" class="tag">pandas</a>
-            <a href="./tag/seaborn.html" class="tag">seaborn</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
 
   <nav class="pagination row">
     <div class="col-xs-6 left">
@@ -12160,48 +12170,38 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/pyspark.html">
-            PySpark
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-3">
             <a href="./tag/shell.html">
             shell
             </a>
         </li>
-        <li class="tag-4">
-            <a href="./tag/hadoop.html">
-            Hadoop
+        <li class="tag-2">
+            <a href="./tag/dataframe.html">
+            dataframe
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/mongodb.html">
-            MongoDB
+            <a href="./tag/devops.html">
+            DevOps
             </a>
         </li>
         <li class="tag-3">
             <a href="./tag/container.html">
             container
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="./tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-2">
+            <a href="./tag/docker.html">
+            Docker
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="./tag/python.html">
+            Python
             </a>
         </li>
         <li class="tag-3">
@@ -12210,33 +12210,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-4">
-            <a href="./tag/postgres.html">
-            postgres
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/django.html">
-            Django
+            <a href="./tag/hadoop.html">
+            Hadoop
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/ethereum.html">
-            Ethereum
+            <a href="./tag/postgres.html">
+            postgres
             </a>
         </li>
         <li class="tag-3">
@@ -12245,28 +12225,58 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-4">
+            <a href="./tag/javascript.html">
+            Javascript
+            </a>
+        </li>
+        <li class="tag-4">
             <a href="./tag/lambda.html">
             Lambda
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/devops.html">
-            DevOps
+            <a href="./tag/mongodb.html">
+            MongoDB
             </a>
         </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
+        <li class="tag-2">
+            <a href="./tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/pandas.html">
+            pandas
             </a>
         </li>
         <li class="tag-4">
-            <a href="./tag/javascript.html">
-            Javascript
+            <a href="./tag/django.html">
+            Django
             </a>
         </li>
         <li class="tag-3">
             <a href="./tag/aws.html">
             AWS
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/data-engineer.html">
+            data engineer
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/pyspark.html">
+            PySpark
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/notebook.html">
+            notebook
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/jupyter.html">
+            Jupyter
             </a>
         </li>
         </ul>
