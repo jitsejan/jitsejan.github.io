@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Home | JJ's World</title>
+        <title>Creating a simple REST API with Flask and SQLAlchemy | JJ's World</title>
 
 
 <style type="text/css">
@@ -11850,440 +11850,267 @@ jQuery(document).ready(function($) {
         </div>.navbar-collapse -->
     </div><!-- .container -->
 </nav>
-<div class="container index">
-  <div class="col-xs-12 col-sm-12 hidden-md hidden-lg">
-<form class="navbar-form navbar-right" role="search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-9">
-  <article>
-    <header>
-      <h2><a href="./getting-started-with-elasticsearch.html">Getting started with Elasticsearch</a></h2>
-      <time datetime="" title="2016-08-06T13:51:00+01:00" pubdate>Sat 06 August 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>A short summary of my first experience with Elasticsearch.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./getting-started-with-elasticsearch.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/elasticsearch.html" class="tag">elasticsearch</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./getting-started-with-datascience.html">Getting started with data science in Python</a></h2>
-      <time datetime="" title="2016-08-03T14:55:00+01:00" pubdate>Wed 03 August 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>A short summary of my first attempts to start with data science.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./getting-started-with-datascience.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/anaconda.html" class="tag">anaconda</a>
-            <a href="./tag/datascience.html" class="tag">datascience</a>
-            <a href="./tag/pandas.html" class="tag">pandas</a>
-            <a href="./tag/seaborn.html" class="tag">seaborn</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./add-spacers-dock-osx.html">Add spacers in your OSX dock</a></h2>
-      <time datetime="" title="2016-08-02T13:54:00+01:00" pubdate>Tue 02 August 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Run this command in the terminal to add a spacer</p>
-<div class="highlight"><pre><span></span><code>jitsejan@MBP $ defaults write com.apple.dock persistent-apps -array-add <span class="s1">&#39;{tile-data={}; tile-type=&quot;spacer-tile&quot;;}&#39;</span>
-</code></pre></div>
-
-
-<p>and restart the dock by running</p>
-<div class="highlight"><pre><span></span><code>jitsejan@MBP $ killall Dock
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/shell.html" class="tag">shell</a>
-            <a href="./tag/mac.html" class="tag">mac</a>
-            <a href="./tag/osx.html" class="tag">osx</a>
-            <a href="./tag/dock.html" class="tag">dock</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./setup-ec-instance.html">Setting up an AWS EC instance</a></h2>
-      <time datetime="" title="2016-08-01T09:33:00+01:00" pubdate>Mon 01 August 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>A short description of how to set up an instance at AWS EC</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./setup-ec-instance.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/amazon.html" class="tag">Amazon</a>
-            <a href="./tag/ec.html" class="tag">EC</a>
-            <a href="./tag/vps.html" class="tag">VPS</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./change-modified-time-file.html">Change the last modified time of a file</a></h2>
-      <time datetime="" title="2016-07-31T14:52:00+01:00" pubdate>Sun 31 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>This script will change the last modified time of a file in the current directory to 4 days back.</p>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/ksh </span>
-<span class="nv">numDays</span><span class="o">=</span><span class="m">4</span>
-<span class="nv">diff</span><span class="o">=</span><span class="m">86400</span>*<span class="nv">$numDays</span>
-<span class="nb">export</span> diff
-<span class="nv">newDate</span><span class="o">=</span><span class="k">$(</span>perl -e <span class="s1">&#39;use POSIX; print strftime &quot;%Y%m%d%H%M&quot;, localtime time-$ENV{diff};&#39;</span><span class="k">)</span>
-<span class="nv">lastFile</span><span class="o">=</span><span class="k">$(</span>ls -lt <span class="p">|</span> egrep -v ^d <span class="p">|</span> tail -1 <span class="p">|</span> awk <span class="s1">&#39; { print $9 } &#39;</span><span class="k">)</span>
-touch -t <span class="nv">$newDate</span> <span class="nv">$lastFile</span>
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./debugging-in-django.html">Show all debug information in Django</a></h2>
-      <time datetime="" title="2016-07-31T13:51:00+01:00" pubdate>Sun 31 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;</span> {% filter force_escape %} {% debug %} {% endfilter %} <span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/django.html" class="tag">Django</a>
-            <a href="./tag/python.html" class="tag">Python</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./webcrawling-with-selenium.html">Webcrawling in Python using Selenium</a></h2>
-      <time datetime="" title="2016-07-30T11:09:00+01:00" pubdate>Sat 30 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>This is a simple script to crawl information from a website when the content is dynamically loaded.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./webcrawling-with-selenium.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/python.html" class="tag">python</a>
-            <a href="./tag/selenium.html" class="tag">selenium</a>
-            <a href="./tag/webcrawl.html" class="tag">webcrawl</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./send-attachment-from-command-line.html">Send attachment from command line</a></h2>
-      <time datetime="" title="2016-07-29T19:09:00+01:00" pubdate>Fri 29 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><code>$ <span class="nb">echo</span> <span class="s1">&#39;Mail with attachment&#39;</span> <span class="p">|</span> mutt -a <span class="s2">&quot;/file/to/add/&quot;</span> -s <span class="s2">&quot;FYI: See attachment&quot;</span> -- name@email.com
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./mount-amazon-ec-local-folder.html">Mount Amazon EC as local folder</a></h2>
-      <time datetime="" title="2016-07-29T19:07:00+01:00" pubdate>Fri 29 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><code>jitsejan@MBP $ sshfs ubuntu@ec2-34-56-7-89.eu-central-1.compute.amazonaws.com:/home/ubuntu/ ~/AmazonEC2/ -oauto_cache,reconnect,defer_permissions,noappledouble,negative_vncache
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./simple-webcrawling-python.html">Simple webcrawling in Python</a></h2>
-      <time datetime="" title="2016-07-28T12:45:00+01:00" pubdate>Thu 28 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Simple webcrawling in Python</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./simple-webcrawling-python.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/python.html" class="tag">python</a>
-            <a href="./tag/webcrawl.html" class="tag">webcrawl</a>
-            <a href="./tag/lxml.html" class="tag">lxml</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-
-  <nav class="pagination row">
-    <div class="col-xs-6 left">
-        <a class="prev" href="./index9.html">&#8592; Past</a>
-    </div>
-    <div class="col-xs-6 right">
-        <a class="next" href="./index7.html">Future &#8594;</a>
-    </div>
-  </nav>
-
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm">
-<form class="navbar-form navbar-right" role="search" action="./search.html" onsubmit="return validateForm(this.elements['q'].value);">
-  <div class="form-group">
-    <div class="input-group">
-      <input type="text" name="q" id="search_input" class="form-control search-query" placeholder="Search" required />
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><i class="fa
-            fa-search fa-fw"></i></button>
-      </span>
-    </div>
-  </div>
-</form>
-  </div>
-  <div class="col-md-3">
-<aside class="page-sidebar">
-    <nav class="widget" id="sidebar-about">
-        <div class="row img-div">
-            <img src="/theme/images/JJ_Montreal.png" />
-        </div>
-        <div class="row">
-        <p>I am the Head Of Data at <a href="https://www.lendinvest.com">LendInvest</a> in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
-<p>
-While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
-for visualizations as for modern web applications it is the go-to language. 
-</p>
-<p>
-I am using this page as a portfolio and showcase, but mainly as a cheatsheet. That is why you will mainly find shell commands, short scripts or notebooks just for myself to not reinvent the wheel.
-</p>
-
-        </div>  
-    </nav>
-    <hr/>
-    <nav class="widget">
-        <ul class="tagcloud">
-        <li class="tag-4">
-            <a href="./tag/hadoop.html">
-            Hadoop
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/flask.html">
-            Flask
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/postgres.html">
-            postgres
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="./tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/vps.html">
-            VPS
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/pyspark.html">
-            PySpark
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/mongodb.html">
-            MongoDB
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/devops.html">
-            DevOps
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/dataframe.html">
-            dataframe
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/lambda.html">
-            Lambda
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/javascript.html">
-            Javascript
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/container.html">
-            container
-            </a>
-        </li>
-        </ul>
-    </nav>
-    <hr/>
+<div class="container post">
     <div class="row">
-        <div class="col-md-12">
-            <ul class="social-list">
-                    <li><a href="http://www.flickr.com/photos/jitsejan" title="Flickr" rel="me" target="new"><i class="fa fa-1x fa-flickr"></i></a></li>
-                    <li><a href="https://play.spotify.com/user/jitsejan" title="Spotify" rel="me" target="new"><i class="fa fa-1x fa-spotify"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/jitsejan" title="LinkedIn" rel="me" target="new"><i class="fa fa-1x fa-linkedin"></i></a></li>
-                    <li><a href="http://twitter.com/jitsejan" title="Twitter" rel="me" target="new"><i class="fa fa-1x fa-twitter"></i></a></li>
-                    <li><a href="http://www.github.com/jitsejan" title="Github" rel="me" target="new"><i class="fa fa-1x fa-github"></i></a></li>
-                    <li><a href="http://bitbucket.org/jitsejan" title="Bitbucket" rel="me" target="new"><i class="fa fa-1x fa-bitbucket"></i></a></li>
-                    <li><a href="http://bl.ocks.org/jitsejan" title="Blocks.org" rel="me" target="new"><i class="fa fa-1x fa-bar-chart"></i></a></li>
-                    <li><a href="https://hub.docker.com/r/jitsejan" title="Docker" rel="me" target="new"><i class="fa fa-1x fa-docker"></i></a></li>
-            </ul>
-        </div>
+        <a href="javascript:history.back()">Go back</a>
     </div>
-    <iframe src="https://rcm-eu.amazon-adsystem.com/e/cm?o=2&p=12&l=ur1&category=consumerelectronics&banner=154BTPQKM87HBT4TD802&f=ifr&linkID=5855639ed929a875d305006b63834633&t=jitsejan-21&tracking_id=jitsejan-21" width="300" height="250" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
-</aside>  </div>
-  
-  </div>
+    <article>
+        <header>
+            <h1>Creating a simple REST API with Flask and SQLAlchemy</h1>
+            <time datetime="article.date.isoformat()" pubdate>Tue 19 January 2021</time>
+        </header>
 
+        <div class="article_content">
+            <h2>Introduction</h2>
+<p>In my earlier posts I have discussed how to <a href="https://www.jitsejan.com/setting-up-postgres-for-python.html">install Postgres</a>, make it work with Python and create a simple <a href="https://www.jitsejan.com/scraping-with-scrapy-and-postgres.html">scraper</a> to pull data from a website and add it to a Postgres table. In this quick post I make a very straightforward API that <strong>only</strong> supports two actions:</p>
+<ul>
+<li>Retrieve all items</li>
+<li>Retrieve a single item</li>
+</ul>
+<p>I am not planning to update the API to support full <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> but want to show how easy it is to create a Flask API on top of Postgres. This post is a very basic example that could be a minimal setup for your own project. Note that there is no security or authorization at all (which should be okay when you run it locally).</p>
+<h2>Requirements</h2>
+<p>Install the following three packages. I often use <code>pipenv</code> but feel free to use your own environment. The first two are essential packages to get Flask working with SQLAlchemy. The latter is a package to add a config file to your Flask folder to make it easier to run your application.</p>
+<div class="highlight"><pre><span></span><code>$ pipenv install flask-sqlalchemy flask-Migrate python-dotenv
+</code></pre></div>
+
+
+<h2>Implement the API</h2>
+<p>A <code>.env</code> file is used to set some configuration items for the Flask application. Create the <code>.flaskenv</code> in your Flask folder and define the application, if debug mode is enabled, what environment you are running this and optionally a different port to expose your API. Read more about the dotenv in the <a href="https://flask.palletsprojects.com/en/1.1.x/cli/#environment-variables-from-dotenv">Flask docs</a>.</p>
+<p><strong>.flaskenv</strong></p>
+<div class="highlight"><pre><span></span><code><span class="na">FLASK_APP</span><span class="o">=</span><span class="s">app</span>
+<span class="na">FLASK_DEBUG</span><span class="o">=</span><span class="s">True</span>
+<span class="na">FLASK_ENV</span><span class="o">=</span><span class="s">development</span>
+<span class="na">FLASK_RUN_PORT</span><span class="o">=</span><span class="s">5055</span>
+</code></pre></div>
+
+
+<p>As you might know if you've worked with Flask before the <code>app.py</code> contains the main application that creates the API (or other backend). Since I keep this API as simple as possible I will only use the <code>ItemsModel</code> as defined below this file. The Postgres details are stored as environment variables to avoid exposing them in the code. After initializing the Flask app and configuring the link to my Postgres database I setup the database and the migration. Finally I setup two routes as explained before, one to expose all the items and one to get details for a single item. The API only supports <code>GET</code> and will error if anything else is done with the API. I know the code can still be tidier by moving the database to a different file, or moving the routes to another file but for simplicity I keep it all in a single file.</p>
+<p><strong>app.py</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span><span class="p">,</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">flask_migrate</span> <span class="kn">import</span> <span class="n">Migrate</span>
+<span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="kn">from</span> <span class="nn">models</span> <span class="kn">import</span> <span class="n">ItemsModel</span>
+
+<span class="n">host</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_HOST&quot;</span><span class="p">]</span>
+<span class="n">port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_PORT&quot;</span><span class="p">]</span>
+<span class="n">username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_USER&quot;</span><span class="p">]</span>
+<span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_PASS&quot;</span><span class="p">]</span>
+<span class="n">database</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_DB&quot;</span><span class="p">]</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span>
+    <span class="s2">&quot;SQLALCHEMY_DATABASE_URI&quot;</span>
+<span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;postgresql://</span><span class="si">{</span><span class="n">username</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;SQLALCHEMY_TRACK_MODIFICATIONS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">migrate</span> <span class="o">=</span> <span class="n">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/items&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">handle_items</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+        <span class="n">items</span> <span class="o">=</span> <span class="n">ItemsModel</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">([</span><span class="n">item</span><span class="o">.</span><span class="n">serialize</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;failure&quot;</span><span class="p">}</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">&quot;/items/&lt;item_name&gt;&quot;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;GET&quot;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">handle_item</span><span class="p">(</span><span class="n">item_name</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;GET&quot;</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="n">ItemsModel</span><span class="o">.</span><span class="n">query</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">item_name</span><span class="p">)</span><span class="o">.</span><span class="n">first_or_404</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">serialize</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s2">&quot;error&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Item </span><span class="si">{</span><span class="n">item_name</span><span class="si">}</span><span class="s2"> not found&quot;</span><span class="p">})</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Request method not implemented&quot;</span><span class="p">}</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+
+
+<p>The final file that is needed to run the API is the <code>models.py</code> that defines the model(s) I will use. As I have described before and shown in the previous articles, I have added a set of items to the database with only two properties (name and price). This will be the data that I return through my API. The <code>ItemsModel</code> looks very similar to the <a href="https://github.com/jitsejan/architecture-patterns-with-python/blob/main/data-retrieval/crawl/models.py">model</a> I have defined for the scraper which makes sense since it is both build using SQLAlchemy. </p>
+<p><strong>models.py</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask_sqlalchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemy</span>
+
+<span class="n">db</span> <span class="o">=</span> <span class="n">SQLAlchemy</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">ItemsModel</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines the items model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;items&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">price</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">db</span><span class="o">.</span><span class="n">Integer</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">price</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="n">price</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;Item </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return item in serializeable format</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="p">}</span>
+</code></pre></div>
+
+
+<h2>Run the API</h2>
+<p>Since I have used the <code>.flaskenv</code> file Flask knows the application file, the port to use and the other details. Run the API using <code>flask run</code> in the API folder.</p>
+<div class="highlight"><pre><span></span><code> ~/rest-api $ flask run
+ * Serving Flask app <span class="s2">&quot;app&quot;</span> <span class="o">(</span>lazy loading<span class="o">)</span>
+ * Environment: development
+ * Debug mode: on
+ * Running on http://127.0.0.1:5055/ <span class="o">(</span>Press CTRL+C to quit<span class="o">)</span>
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: <span class="m">999</span>-994-971
+</code></pre></div>
+
+
+<h2>Verify the API</h2>
+<p>Using <a href="https://httpie.io">httpie</a> we can easily validate the API by calling the <code>items</code> endpoint:</p>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="err">http</span> <span class="err">get</span> <span class="err">localhost:</span><span class="mi">5000</span><span class="err">/items</span>
+<span class="err">HTTP/</span><span class="mf">1.0</span> <span class="mi">200</span> <span class="err">OK</span>
+<span class="err">Content-Length:</span> <span class="mi">329</span>
+<span class="err">Content-Type:</span> <span class="err">application/json</span>
+<span class="err">Date:</span> <span class="err">Wed,</span> <span class="mi">06</span> <span class="err">Jan</span> <span class="mi">2021</span> <span class="mi">20</span><span class="err">:</span><span class="mi">22</span><span class="err">:</span><span class="mi">10</span> <span class="err">GMT</span>
+<span class="err">Server:</span> <span class="err">Werkzeug/</span><span class="mf">1.0</span><span class="err">.</span><span class="mi">1</span> <span class="err">Python/</span><span class="mf">3.9</span><span class="err">.</span><span class="mi">1</span>
+
+<span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Boomerang&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">300</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Heart Container&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">4</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Blue Ring&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">250</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Red Water of Life&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">68</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Food&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">60</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Blue Water of Life&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">40</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Blue Candle&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">60</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Arrow&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">80</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bow&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">980</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bomb&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">20</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+
+<p>Also the endpoint for a single item seems to work fine too as shown below.</p>
+<div class="highlight"><pre><span></span><code><span class="err">$</span> <span class="err">http</span> <span class="err">get</span> <span class="err">localhost:</span><span class="mi">5000</span><span class="err">/items/Bomb</span>
+<span class="err">HTTP/</span><span class="mf">1.0</span> <span class="mi">200</span> <span class="err">OK</span>
+<span class="err">Content-Length:</span> <span class="mi">27</span>
+<span class="err">Content-Type:</span> <span class="err">application/json</span>
+<span class="err">Date:</span> <span class="err">Wed,</span> <span class="mi">06</span> <span class="err">Jan</span> <span class="mi">2021</span> <span class="mi">20</span><span class="err">:</span><span class="mi">22</span><span class="err">:</span><span class="mi">32</span> <span class="err">GMT</span>
+<span class="err">Server:</span> <span class="err">Werkzeug/</span><span class="mf">1.0</span><span class="err">.</span><span class="mi">1</span> <span class="err">Python/</span><span class="mf">3.9</span><span class="err">.</span><span class="mi">1</span>
+
+<span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bomb&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">20</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>The final code can be found on <a href="https://github.com/jitsejan/architecture-patterns-with-python/tree/main/rest-api">Github</a>.</p>
+        </div>
+
+        <div class="meta">
+            <div>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/postgres.html" class="tag">postgres</a>
+                    <a href="./tag/postgresql.html" class="tag">PostgreSQL</a>
+                    <a href="./tag/sqlalchemy.html" class="tag">SQLAlchemy</a>
+                    <a href="./tag/flask.html" class="tag">Flask</a>
+                    <a href="./tag/rest.html" class="tag">REST</a>
+                    <a href="./tag/api.html" class="tag">API</a>
+            </div>
+        </div>
+    </article>
+    <div class="row">
+        <a href="javascript:history.back()">Go back</a>
+    </div>
 </div>
+
+<script type="text/javascript">
+(function () {
+    'use strict';
+
+    // Global object
+    var App = {};
+
+    // Create button
+    App.commentsButton = document.getElementById('comments-button');
+
+    App.commentsButton.onclick = function () {
+        // Remove button action on click
+        App.commentsButton.onclick = function () {
+        }
+
+        // Create comments container
+        App.disqusContainer = document.createElement('div');
+        App.disqusContainer.setAttribute('id', 'disqus_thread');
+        // App.disqusContainer.setAttribute('class', 'container');
+
+        // Append container to body or div
+        // document.body.appendChild( App.disqusContainer );
+        var container = document.getElementsByClassName('container post')[0];
+        container.appendChild(App.disqusContainer);
+
+        // Your Disqus shortname
+        App.disqus_shortname = '';
+
+        // Embed Disqus
+        var dsq = document.createElement('script');
+
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + App.disqus_shortname + '.disqus.com/embed.js';
+
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+
+        window.scrollTo(0, dsq.offsetTop - 200);
+    };
+})();
+</script>
 
         </div>
 <footer class="footer">
