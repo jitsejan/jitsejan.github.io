@@ -11867,6 +11867,89 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="../create-abstract-classes-with-lambda-and-terraform.html">Creating abstract classes with Lambda and Terraform</a></h2>
+      <time datetime="" title="2019-07-26T11:30:00+01:00" pubdate>Fri 26 July 2019</time>
+    </header>
+
+    <div class="article_content">
+        <p>In this article I will create an abstract class and different concrete classes to be used within AWS Lambda deployed with Terraform.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../create-abstract-classes-with-lambda-and-terraform.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/devops.html" class="tag">DevOps</a>
+            <a href="../tag/aws.html" class="tag">AWS</a>
+            <a href="../tag/data-engineer.html" class="tag">data engineer</a>
+            <a href="../tag/terraform.html" class="tag">Terraform</a>
+            <a href="../tag/lambda.html" class="tag">Lambda</a>
+            <a href="../tag/iac.html" class="tag">IaC</a>
+            <a href="../tag/oop.html" class="tag">OOP</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../find-and-delete-empty-columns-pandas-dataframe.html">Find and delete empty columns in Pandas dataframe</a></h2>
+      <time datetime="" title="2019-07-07T14:09:00+01:00" pubdate>Sun 07 July 2019</time>
+    </header>
+
+    <div class="article_content">
+        <div class="highlight"><pre><span></span><code><span class="c1"># Find the columns where each value is null</span>
+<span class="n">empty_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
+<span class="c1"># Drop these columns from the dataframe</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">empty_cols</span><span class="p">,</span>
+        <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/pandas.html" class="tag">pandas</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../setting-up-spark-with-minio-as-object-storage.html">Setting up Spark with minIO as object storage</a></h2>
+      <time datetime="" title="2019-06-30T23:05:00+01:00" pubdate>Sun 30 June 2019</time>
+    </header>
+
+    <div class="article_content">
+        <p>To setup one of my data projects, I need (object) storage to save my data. Using Spark I want to be able to read and write Parquet, CSV and other file formats.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../setting-up-spark-with-minio-as-object-storage.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/devops.html" class="tag">DevOps</a>
+            <a href="../tag/ansible.html" class="tag">Ansible</a>
+            <a href="../tag/data-engineer.html" class="tag">data engineer</a>
+            <a href="../tag/vps.html" class="tag">VPS</a>
+            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
+            <a href="../tag/spark.html" class="tag">Spark</a>
+            <a href="../tag/minio.html" class="tag">minIO</a>
+            <a href="../tag/object-storage.html" class="tag">object storage</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="../creating-ansible-deployment-for-ubuntu-vps.html">Creating an Ansible playbook to provision my Ubuntu VPS</a></h2>
       <time datetime="" title="2019-06-26T20:16:00+01:00" pubdate>Wed 26 June 2019</time>
     </header>
@@ -11922,284 +12005,135 @@ jQuery(document).ready(function($) {
   <div class="separator"></div>
   <article>
     <header>
-      <h2><a href="../developing-glue-scripts-on-mac-osx.html">Developing AWS Glue scripts on Mac OSX</a></h2>
-      <time datetime="" title="2018-11-21T17:40:00+00:00" pubdate>Wed 21 November 2018</time>
+      <h2><a href="../interacting-with-aws-glue.html">Interacting with AWS Glue</a></h2>
+      <time datetime="" title="2019-04-02T12:44:00+01:00" pubdate>Tue 02 April 2019</time>
     </header>
 
     <div class="article_content">
-        <p>In this short tutorial I show how I developed my first Glue scripts for the AWS platform.</p>
+        <p>In this notebook I interact with <a href="https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html">AWS Glue</a> using <code>boto3</code>.</p>
     </div>
     
     <div class="meta">
       <div>
-        <a href="../developing-glue-scripts-on-mac-osx.html" class="read_more">Read more &#8594;</a>
+        <a href="../interacting-with-aws-glue.html" class="read_more">Read more &#8594;</a>
       </div>
       <div>
-            <a href="../tag/devops.html" class="tag">DevOps</a>
-            <a href="../tag/data-architecture.html" class="tag">data architecture</a>
-            <a href="../tag/glue.html" class="tag">Glue</a>
-            <a href="../tag/aws.html" class="tag">AWS</a>
-            <a href="../tag/data-engineer.html" class="tag">data engineer</a>
-            <a href="../tag/spark.html" class="tag">Spark</a>
-            <a href="../tag/zeppelin.html" class="tag">Zeppelin</a>
             <a href="../tag/notebook.html" class="tag">notebook</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../aws-lambda-development-with-sam.html">AWS Lambda development - Python & SAM</a></h2>
-      <time datetime="" title="2018-10-23T10:40:00+01:00" pubdate>Tue 23 October 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>This tutorial explains how to write a lambda functions in Python, test it locally, deploy it to AWS and test it in the cloud using Amazon's SAM. The <code>README.md</code> inside the <a href="https://github.com/aws-samples/cookiecutter-aws-sam-python"><code>cookiecutter</code></a> template folder is used as the base of this tutorial.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../aws-lambda-development-with-sam.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/devops.html" class="tag">DevOps</a>
-            <a href="../tag/data-architecture.html" class="tag">data architecture</a>
-            <a href="../tag/serverless.html" class="tag">serverless</a>
             <a href="../tag/aws.html" class="tag">AWS</a>
-            <a href="../tag/data-engineer.html" class="tag">data engineer</a>
-            <a href="../tag/lambda.html" class="tag">Lambda</a>
-            <a href="../tag/sam.html" class="tag">SAM</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../none-shall-paas.html">None shall PAAS</a></h2>
-      <time datetime="" title="2018-10-17T14:00:00+01:00" pubdate>Wed 17 October 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>This article was originally posted on the <a href="https://blog.marketinvoice.com/2018/10/02/none-shall-paas-unlocking-the-data-warehouse/">MarketInvoice blog</a>.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../none-shall-paas.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/devops.html" class="tag">DevOps</a>
-            <a href="../tag/data-architecture.html" class="tag">data architecture</a>
-            <a href="../tag/serverless.html" class="tag">serverless</a>
-            <a href="../tag/aws.html" class="tag">AWS</a>
-            <a href="../tag/azure.html" class="tag">Azure</a>
-            <a href="../tag/data-engineer.html" class="tag">data engineer</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../write-dataframe-to-csv-on-s3.html">Write a Pandas dataframe to CSV on S3</a></h2>
-      <time datetime="" title="2018-10-05T11:00:00+01:00" pubdate>Fri 05 October 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>Write a <code>pandas</code> dataframe to a single CSV file on S3.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">boto3</span>
-<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
-
-<span class="n">DESTINATION</span> <span class="o">=</span> <span class="s1">&#39;my-bucket&#39;</span>
-
-<span class="k">def</span> <span class="nf">_write_dataframe_to_csv_on_s3</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Write a dataframe to a CSV on S3 &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing </span><span class="si">{}</span><span class="s2"> records to </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataframe</span><span class="p">),</span> <span class="n">filename</span><span class="p">))</span>
-    <span class="c1"># Create buffer</span>
-    <span class="n">csv_buffer</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">()</span>
-    <span class="c1"># Write dataframe to buffer</span>
-    <span class="n">dataframe</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_buffer</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="c1"># Create S3 object</span>
-    <span class="n">s3_resource</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s2">&quot;s3&quot;</span><span class="p">)</span>
-    <span class="c1"># Write buffer to S3 object</span>
-    <span class="n">s3_resource</span><span class="o">.</span><span class="n">Object</span><span class="p">(</span><span class="n">DESTINATION</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">Body</span><span class="o">=</span><span class="n">csv_buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">())</span>
-
-<span class="n">_write_dataframe_to_csv_on_s3</span><span class="p">(</span><span class="n">my_df</span><span class="p">,</span> <span class="s1">&#39;my-folder&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<p><a href="https://gist.github.com/jitsejan/e24c6f9b288a839f40edd1ce944a747e">Gist</a></p>
-    </div>
-    
-    <div class="meta">
-      <div>
             <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/pandas.html" class="tag">pandas</a>
-            <a href="../tag/csv.html" class="tag">CSV</a>
-            <a href="../tag/dataframe.html" class="tag">dataframe</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/glue.html" class="tag">Glue</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../date-range-with-python.html">Creating a data range with Python</a></h2>
+      <time datetime="" title="2019-03-08T14:45:00+00:00" pubdate>Fri 08 March 2019</time>
+    </header>
+
+    <div class="article_content">
+        <p>In this notebook I create a date range with a precision of days and a date range with a precision of a month using <code>datetime</code> with <code>timedelta</code>. This has helped me for automating filtering tasks, where I had to query data each day for a certain period and write te results to timestamped files.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../date-range-with-python.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/date.html" class="tag">date</a>
+            <a href="../tag/generation.html" class="tag">generation</a>
+            <a href="../tag/daterange.html" class="tag">daterange</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../using-azure-blob-and-parquet.html">Using Azure Blob Storage and Parquet</a></h2>
+      <time datetime="" title="2019-02-26T13:07:00+00:00" pubdate>Tue 26 February 2019</time>
+    </header>
+
+    <div class="article_content">
+        <p>My attempt to interact with Parquet files on Azure Blob Storage. Reading and writing Pandas dataframes is straightforward, but only the reading part is working with Spark 2.4.0.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../using-azure-blob-and-parquet.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/spark.html" class="tag">Spark</a>
+            <a href="../tag/azure.html" class="tag">Azure</a>
+            <a href="../tag/blob-pyspark.html" class="tag">Blob. PySpark</a>
+            <a href="../tag/parquet.html" class="tag">parquet</a>
+            <a href="../tag/data.html" class="tag">data</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../difference-with-sparse-dataframes.html">Calculate differences with sparse date/value dataframes</a></h2>
+      <time datetime="" title="2019-01-07T12:54:00+00:00" pubdate>Mon 07 January 2019</time>
+    </header>
+
+    <div class="article_content">
+        <p>This notebook contains a small example that interpolates the values for a sparse dataframe and calculates the difference with a smaller dataframe.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../difference-with-sparse-dataframes.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/interpolation.html" class="tag">interpolation</a>
+            <a href="../tag/pandas.html" class="tag">Pandas</a>
+            <a href="../tag/dataframes.html" class="tag">dataframes</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../using-spark-to-read-from-s3.html">Using Spark to read from S3</a></h2>
+      <time datetime="" title="2019-01-04T16:31:00+00:00" pubdate>Fri 04 January 2019</time>
+    </header>
+
+    <div class="article_content">
+        <p>A short example on how to interact with S3 from Pyspark.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../using-spark-to-read-from-s3.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/spark.html" class="tag">Spark</a>
+            <a href="../tag/pyspark.html" class="tag">pyspark</a>
             <a href="../tag/aws.html" class="tag">AWS</a>
             <a href="../tag/s3.html" class="tag">S3</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../write-dataframe-to-parquet-on-s3.html">Write a Pandas dataframe to Parquet on S3</a></h2>
-      <time datetime="" title="2018-10-05T11:00:00+01:00" pubdate>Fri 05 October 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>Write a <code>pandas</code> dataframe to a single Parquet file on S3.</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Note: make sure `s3fs` is installed in order to make Pandas use S3.</span>
-<span class="c1">#       Credentials for AWS in the normal location ~/.aws/credentials</span>
-<span class="n">DESTINATION</span> <span class="o">=</span> <span class="s1">&#39;my-bucket&#39;</span>
-
-<span class="k">def</span> <span class="nf">_write_dataframe_to_parquet_on_s3</span><span class="p">(</span><span class="n">dataframe</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Write a dataframe to a Parquet on S3 &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Writing </span><span class="si">{}</span><span class="s2"> records to </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dataframe</span><span class="p">),</span> <span class="n">filename</span><span class="p">))</span>
-    <span class="n">output_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;s3://</span><span class="si">{</span><span class="n">DESTINATION</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">/data.parquet&quot;</span>
-    <span class="n">dataframe</span><span class="o">.</span><span class="n">to_parquet</span><span class="p">(</span><span class="n">output_file</span><span class="p">)</span>
-
-<span class="n">_write_dataframe_to_parquet_on_s3</span><span class="p">(</span><span class="n">my_df</span><span class="p">,</span> <span class="s1">&#39;my-folder&#39;</span><span class="p">)</span>
-</code></pre></div>
-
-<p><a href="https://gist.github.com/jitsejan/557124bcbaf0780ab4efc6054199550a">Gist</a></p>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/pandas.html" class="tag">pandas</a>
-            <a href="../tag/parquet.html" class="tag">Parquet</a>
-            <a href="../tag/dataframe.html" class="tag">dataframe</a>
-            <a href="../tag/aws.html" class="tag">AWS</a>
-            <a href="../tag/s3.html" class="tag">S3</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../notes-on-kubernetes.html">Notes on Kubernetes</a></h2>
-      <time datetime="" title="2018-08-13T14:54:00+01:00" pubdate>Mon 13 August 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>After numerous restarts and resets of my VPS and executing over 20 different tutorials, I finally have my receipe to get my single node Kubernetes cluster with a proper load balancer working. Please note that the last version of my Kubernetes experiment can be found on my <a href="https://github.com/jitsejan/kubernetes-dev">Git repo</a>. Remember that this repository mainly contains a variety of YAML files that got the system working. What worked for me, might not work for anyone else.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../notes-on-kubernetes.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/devops.html" class="tag">DevOps</a>
-            <a href="../tag/kubernetes.html" class="tag">Kubernetes</a>
-            <a href="../tag/docker.html" class="tag">Docker</a>
-            <a href="../tag/traefik.html" class="tag">Traefik</a>
-            <a href="../tag/loadbalancer.html" class="tag">LoadBalancer</a>
-            <a href="../tag/helm.html" class="tag">helm</a>
-            <a href="../tag/weave.html" class="tag">weave</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../using-executemany-to-increase-pyodbc-connection.html">Using executemany to increase PyODBC connection</a></h2>
-      <time datetime="" title="2018-07-19T16:13:00+01:00" pubdate>Thu 19 July 2018</time>
-    </header>
-
-    <div class="article_content">
-        <p>I recently had to insert data from a Pandas dataframe into a Azure SQL database using <code>pandas.to_sql()</code>. This was performing very poorly and seemed to take ages, but since  PyODBC introduced <a href="https://github.com/mkleehammer/pyodbc/wiki/Features-beyond-the-DB-API#fast_executemany">executemany</a> it is easy to improve the performance: simply add an event listener that activates the <code>executemany</code> for the cursor. For 2300 records I did a small comparison 8.67s and 7.22s versus 5min 57s and 5min 26s, so roughly 50 times faster for this small example dataset.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">pyodbc</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span><span class="p">,</span> <span class="n">event</span>
-<span class="kn">from</span> <span class="nn">sqlalchemy.pool</span> <span class="kn">import</span> <span class="n">StaticPool</span>
-
-<span class="n">wh_conn</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DRIVER=</span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s1">&#39;driver&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">;SERVER=</span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s1">&#39;server&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s1">&#39;port&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">;DATABASE=</span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s1">&#39;database&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">;UID=</span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s1">&#39;username&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">;PWD=</span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s1">&#39;password&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&quot;mssql+pyodbc://&quot;</span><span class="p">,</span> <span class="n">poolclass</span><span class="o">=</span><span class="n">StaticPool</span><span class="p">,</span> <span class="n">creator</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">wh_conn</span><span class="p">)</span>
-
-<span class="nd">@event</span><span class="o">.</span><span class="n">listens_for</span><span class="p">(</span><span class="n">engine</span><span class="p">,</span> <span class="s1">&#39;before_cursor_execute&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">receive_before_cursor_execute</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">cursor</span><span class="p">,</span> <span class="n">statement</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">executemany</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">executemany</span><span class="p">:</span>
-        <span class="n">cursor</span><span class="o">.</span><span class="n">fast_executemany</span> <span class="o">=</span> <span class="kc">True</span>
-
-<span class="n">df</span><span class="o">.</span><span class="n">to_sql</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Table&#39;</span><span class="p">,</span>
-          <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span>
-          <span class="n">schema</span><span class="o">=</span><span class="s1">&#39;Schema&#39;</span><span class="p">,</span>
-          <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-          <span class="n">if_exists</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">)</span>
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/pandas.html" class="tag">pandas</a>
-            <a href="../tag/azure.html" class="tag">Azure</a>
-            <a href="../tag/dataframe.html" class="tag">dataframe</a>
-            <a href="../tag/pyodbc.html" class="tag">PyODBC</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../creating-dataframe-from-table-storage.html">Creating Pandas dataframe from Azure Table Storage</a></h2>
-      <time datetime="" title="2018-06-08T11:00:00+01:00" pubdate>Fri 08 June 2018</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">azure.cosmosdb.table.tableservice</span> <span class="kn">import</span> <span class="n">TableService</span>
-
-<span class="n">CONNECTION_STRING</span> <span class="o">=</span> <span class="s2">&quot;DUMMYSTRING&quot;</span>
-<span class="n">SOURCE_TABLE</span> <span class="o">=</span> <span class="s2">&quot;DUMMYTABLE&quot;</span>
-
-<span class="k">def</span> <span class="nf">set_table_service</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot; Set the Azure Table Storage service &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">TableService</span><span class="p">(</span><span class="n">connection_string</span><span class="o">=</span><span class="n">CONNECTION_STRING</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">get_dataframe_from_table_storage_table</span><span class="p">(</span><span class="n">table_service</span><span class="p">,</span> <span class="n">filter_query</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Create a dataframe from table storage data &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">get_data_from_table_storage_table</span><span class="p">(</span><span class="n">table_service</span><span class="p">,</span>
-                                                          <span class="n">filter_query</span><span class="p">))</span>
-
-<span class="k">def</span> <span class="nf">get_data_from_table_storage_table</span><span class="p">(</span><span class="n">table_service</span><span class="p">,</span> <span class="n">filter_query</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Retrieve data from Table Storage &quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">table_service</span><span class="o">.</span><span class="n">query_entities</span><span class="p">(</span>
-        <span class="n">SOURCE_TABLE</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="n">filter_query</span>
-    <span class="p">):</span>
-        <span class="k">yield</span> <span class="n">record</span>
-
-<span class="n">fq</span> <span class="o">=</span> <span class="s2">&quot;PartitionKey eq &#39;12345&#39;&quot;</span>
-<span class="n">ts</span> <span class="o">=</span> <span class="n">set_table_service</span><span class="p">()</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">get_dataframe_from_table_storage_table</span><span class="p">(</span><span class="n">table_service</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span>
-                                            <span class="n">filter_query</span><span class="o">=</span><span class="n">fq</span><span class="p">)</span>
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/pandas.html" class="tag">pandas</a>
-            <a href="../tag/azure.html" class="tag">Azure</a>
-            <a href="../tag/dataframe.html" class="tag">dataframe</a>
-            <a href="../tag/generator.html" class="tag">generator</a>
       </div>
 
     </div>
@@ -12251,24 +12185,29 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-2">
+        <li class="tag-3">
+            <a href="../tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/postgres.html">
+            postgres
+            </a>
+        </li>
+        <li class="tag-3">
             <a href="../tag/dataframe.html">
             dataframe
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/pyspark.html">
-            PySpark
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/sqlalchemy.html">
-            SQLAlchemy
+            <a href="../tag/ubuntu.html">
+            Ubuntu
             </a>
         </li>
         <li class="tag-4">
@@ -12277,48 +12216,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/aws.html">
-            AWS
+            <a href="../tag/data-engineer.html">
+            data engineer
             </a>
         </li>
-        <li class="tag-2">
+        <li class="tag-3">
             <a href="../tag/docker.html">
             Docker
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/lambda.html">
-            Lambda
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/postgres.html">
-            postgres
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/jupyter.html">
-            Jupyter
             </a>
         </li>
         <li class="tag-1">
@@ -12332,18 +12236,43 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-4">
-            <a href="../tag/postgresql.html">
-            PostgreSQL
+            <a href="../tag/container.html">
+            container
             </a>
         </li>
         <li class="tag-3">
+            <a href="../tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/pyspark.html">
+            pyspark
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="../tag/vps.html">
+            VPS
+            </a>
+        </li>
+        <li class="tag-1">
             <a href="../tag/notebook.html">
             notebook
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/mongodb.html">
-            MongoDB
+            <a href="../tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/aws.html">
+            AWS
             </a>
         </li>
         <li class="tag-3">
@@ -12351,19 +12280,24 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             DevOps
             </a>
         </li>
-        <li class="tag-3">
-            <a href="../tag/vps.html">
-            VPS
+        <li class="tag-1">
+            <a href="../tag/jupyter.html">
+            Jupyter
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/data-engineer.html">
-            data engineer
+            <a href="../tag/spark.html">
+            Spark
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/container.html">
-            container
+            <a href="../tag/pandas.html">
+            pandas
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="../tag/s3.html">
+            S3
             </a>
         </li>
         </ul>

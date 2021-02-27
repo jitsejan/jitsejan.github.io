@@ -11867,78 +11867,25 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
-      <h2><a href="../change-postgresql-database-encoding.html">Change PostgreSQL database encoding</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
+      <h2><a href="../using-d3-in-jupyter-notebook.html">Using D3.js in Jupyter notebook</a></h2>
+      <time datetime="" title="2017-05-19T15:21:00+01:00" pubdate>Fri 19 May 2017</time>
     </header>
 
     <div class="article_content">
-        <p>I ran into an issue where I couldn't save some JSON-data to the database because of a weird UTF8 character. Apparently my databases have the SQL ASCII encoding and not the necessary UTF8 encoding.</p>
+        <p>A short description how to use D3.js in a Jupyter notebook.</p>
     </div>
     
     <div class="meta">
       <div>
-        <a href="../change-postgresql-database-encoding.html" class="read_more">Read more &#8594;</a>
+        <a href="../using-d3-in-jupyter-notebook.html" class="read_more">Read more &#8594;</a>
       </div>
       <div>
-            <a href="../tag/postgres.html" class="tag">Postgres</a>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../upgrade-postgresql.html">Upgrade PostgreSQL</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>By default Ubuntu 14.04 is running PostgreSQL version 9.3. In order to use the json datatype PostgreSQL version 9.4 or bigger is needed. The versions can be installed side by side, but for clarity you could remove the</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../upgrade-postgresql.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/postgres.html" class="tag">Postgres</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../write-dictionary-to-csv-python.html">Write dictionary to CSV in Python</a></h2>
-      <time datetime="" title="2016-10-05T08:24:00+01:00" pubdate>Wed 05 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">csv</span>
-
-<span class="k">def</span> <span class="nf">write_dictionary_to_csv</span><span class="p">(</span><span class="n">o_file</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Write dictionary to output file &quot;&quot;&quot;</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">o_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
-        <span class="n">outputwriter</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">quoting</span><span class="o">=</span><span class="n">csv</span><span class="o">.</span><span class="n">QUOTE_MINIMAL</span><span class="p">)</span>
-        <span class="n">outputwriter</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="n">outputwriter</span><span class="o">.</span><span class="n">writerows</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
-
-<span class="n">dictionary</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;key1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">34</span><span class="p">],</span>
-              <span class="s2">&quot;key2&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span><span class="mi">56</span><span class="p">,</span><span class="mi">67</span><span class="p">],</span>
-              <span class="s2">&quot;key3&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">78</span><span class="p">,</span><span class="mi">89</span><span class="p">,</span><span class="mi">90</span><span class="p">]}</span>
-<span class="n">output_file</span> <span class="o">=</span> <span class="s1">&#39;output.csv&#39;</span>
-<span class="n">write_dictionary_to_csv</span><span class="p">(</span><span class="n">output_file</span><span class="p">,</span> <span class="n">dictionary</span><span class="p">)</span>
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/dictionary.html" class="tag">dictionary</a>
-            <a href="../tag/csv.html" class="tag">CSV</a>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
             <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/d3js.html" class="tag">D3.js</a>
+            <a href="../tag/graph.html" class="tag">graph</a>
+            <a href="../tag/javascript.html" class="tag">Javascript</a>
       </div>
 
     </div>
@@ -11947,69 +11894,26 @@ jQuery(document).ready(function($) {
   <div class="separator"></div>
   <article>
     <header>
-      <h2><a href="../using-supervisor-start-gunicorn.html">Using Supervisor to start Gunicorn</a></h2>
-      <time datetime="" title="2016-10-04T14:06:00+01:00" pubdate>Tue 04 October 2016</time>
+      <h2><a href="../building-a-crypto-app.html">Building a crypto app with ExpressJS, MongoDB and D3.js</a></h2>
+      <time datetime="" title="2017-05-15T23:21:00+01:00" pubdate>Mon 15 May 2017</time>
     </header>
 
     <div class="article_content">
-        <p>To avoid running the Gunicorn in a separate screen, you can use Supervisor to automatically start the Gunicorn server on system start or on user demand.</p>
+        <p>In this post I will describe my initial version of my crypto app, an application where I will simply show some data of my experiments with crypto currencies. Data is handled by Python, put in MongoDB and displayed using ExpressJS and D3.js.</p>
     </div>
     
     <div class="meta">
       <div>
-        <a href="../using-supervisor-start-gunicorn.html" class="read_more">Read more &#8594;</a>
+        <a href="../building-a-crypto-app.html" class="read_more">Read more &#8594;</a>
       </div>
       <div>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
-            <a href="../tag/supervisor.html" class="tag">Supervisor</a>
-            <a href="../tag/gunicorn.html" class="tag">gunicorn</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../check-listening-ports-on-server.html">Check the listening ports on the server</a></h2>
-      <time datetime="" title="2016-10-04T11:24:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Use netstat to check with ports are listening on the machine.</p>
-<div class="highlight"><pre><span></span><code>jitsejan@jjsvps:~$ netstat -lnt <span class="p">|</span> awk <span class="s1">&#39;$6 == &quot;LISTEN&quot;&#39;</span>
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-            <a href="../tag/network.html" class="tag">network</a>
-            <a href="../tag/netstat.html" class="tag">netstat</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../install-anaconda-ubuntu-1404.html">Install Anaconda on Ubuntu 14.04</a></h2>
-      <time datetime="" title="2016-10-04T10:29:00+01:00" pubdate>Tue 04 October 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Installation of Anaconda on Ubuntu 14.04.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../install-anaconda-ubuntu-1404.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/anaconda.html" class="tag">Anaconda</a>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
             <a href="../tag/python.html" class="tag">Python</a>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/cryptocurrency.html" class="tag">cryptocurrency</a>
+            <a href="../tag/d3js.html" class="tag">D3.js</a>
+            <a href="../tag/expressjs.html" class="tag">Express.js</a>
+            <a href="../tag/mongodb.html" class="tag">MongoDB</a>
       </div>
 
     </div>
@@ -12018,24 +11922,52 @@ jQuery(document).ready(function($) {
   <div class="separator"></div>
   <article>
     <header>
-      <h2><a href="../move-django-between-servers.html">Move Django database between servers</a></h2>
-      <time datetime="" title="2016-10-04T10:05:00+01:00" pubdate>Tue 04 October 2016</time>
+      <h2><a href="../creating-dapp-with-truffle-and-metamask.html">Setting up a Dapp with Truffle and Metamask</a></h2>
+      <time datetime="" title="2017-05-11T23:09:00+01:00" pubdate>Thu 11 May 2017</time>
     </header>
 
     <div class="article_content">
-        <p>Save the database on the old server.</p>
-<div class="highlight"><pre><span></span><code><span class="o">(</span>oldenv<span class="o">)</span>jitsejan@oldvps:/opt/oldenv/django_project$ sudo python manage.py dumpdata blog &gt; blog.json
-</code></pre></div>
-
-<p>Load the data on the new server. Make sure the models for both blogs are identical.</p>
-<div class="highlight"><pre><span></span><code><span class="o">(</span>env<span class="o">)</span>jitsejan@jjsvps:/opt/env/django_project$ sudo python manage.py loaddata blog.json
-</code></pre></div>
+        <p>Inspired by the <a href="https://medium.com/metamask/developing-ethereum-dapps-with-truffle-and-metamask-aa8ad7e363ba">article</a> by <a href="https://twitter.com/danfinlay">Dan Finlay</a> and the <a href="https://www.youtube.com/watch?v=muWuHIPeXb4">video</a> by <a href="https://twitter.com/timothyjcoulter">Tim Coulter</a>, I had my first attempt creating the scaffold for a Truffle application and checking it with Metamask.</p>
     </div>
     
     <div class="meta">
       <div>
-            <a href="../tag/django.html" class="tag">Django</a>
+        <a href="../creating-dapp-with-truffle-and-metamask.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/ether.html" class="tag">ether</a>
+            <a href="../tag/ethereum.html" class="tag">ethereum</a>
+            <a href="../tag/truffle.html" class="tag">Truffle</a>
+            <a href="../tag/metamask.html" class="tag">Metamask</a>
+            <a href="../tag/blockchain.html" class="tag">blockchain</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../using-ethereum-web3-client-python.html">Using the Ethereum Web3 client in Python</a></h2>
+      <time datetime="" title="2017-05-05T14:21:00+01:00" pubdate>Fri 05 May 2017</time>
+    </header>
+
+    <div class="article_content">
+        <p>Similar to the RPC client, I will use the web3 API to make a transaction on my private blockchain. I will probably move to develop in Javascript where web3 is the essential library to use for interacting with the blockchain. This way I can get familiar with its functionality.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../using-ethereum-web3-client-python.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
             <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/blockchain.html" class="tag">blockchain</a>
+            <a href="../tag/ethereum.html" class="tag">Ethereum</a>
+            <a href="../tag/ether.html" class="tag">ether</a>
+            <a href="../tag/web3.html" class="tag">web3</a>
       </div>
 
     </div>
@@ -12044,25 +11976,26 @@ jQuery(document).ready(function($) {
   <div class="separator"></div>
   <article>
     <header>
-      <h2><a href="../install-django-ubuntu-1404-virtualenv-nginx-gunicorn-and-postgres.html">Install Django on Ubuntu 14.04 with virtualenv, Nginx, Gunicorn and postgres</a></h2>
-      <time datetime="" title="2016-10-04T09:46:00+01:00" pubdate>Tue 04 October 2016</time>
+      <h2><a href="../using-ethereum-rpc-client-python.html">Using the Ethereum RPC client in Python</a></h2>
+      <time datetime="" title="2017-05-03T13:25:00+01:00" pubdate>Wed 03 May 2017</time>
     </header>
 
     <div class="article_content">
-        <p>A description of the steps needed to get Django working on Ubuntu 14.04.</p>
+        <p>In this notebook I will try out the RPC client of Ethereum using Python. See <a href="https://github.com/ethereum/wiki/wiki/JSON-RPC">JSON RPC</a> for more information on JSON RPC.</p>
     </div>
     
     <div class="meta">
       <div>
-        <a href="../install-django-ubuntu-1404-virtualenv-nginx-gunicorn-and-postgres.html" class="read_more">Read more &#8594;</a>
+        <a href="../using-ethereum-rpc-client-python.html" class="read_more">Read more &#8594;</a>
       </div>
       <div>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
-            <a href="../tag/django.html" class="tag">Django</a>
-            <a href="../tag/nginx.html" class="tag">Nginx</a>
-            <a href="../tag/gunicorn.html" class="tag">Gunicorn</a>
-            <a href="../tag/postgres.html" class="tag">postgres</a>
-            <a href="../tag/virtualenv.html" class="tag">virtualenv</a>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/blockchain.html" class="tag">blockchain</a>
+            <a href="../tag/ethereum.html" class="tag">Ethereum</a>
+            <a href="../tag/ether.html" class="tag">ether</a>
+            <a href="../tag/rpc.html" class="tag">rpc</a>
       </div>
 
     </div>
@@ -12071,21 +12004,25 @@ jQuery(document).ready(function($) {
   <div class="separator"></div>
   <article>
     <header>
-      <h2><a href="../install-jira-ubuntu-1404.html">Install Jira on Ubuntu 14.04</a></h2>
-      <time datetime="" title="2016-10-04T07:09:00+01:00" pubdate>Tue 04 October 2016</time>
+      <h2><a href="../setting-up-private-ethereum-blockchain.html">Setting up a private Ethereum blockchain</a></h2>
+      <time datetime="" title="2017-05-01T10:19:00+01:00" pubdate>Mon 01 May 2017</time>
     </header>
 
     <div class="article_content">
-        <p>These are the steps needed to get Jira working on Ubuntu 14.04.</p>
+        <p>Following the steps from the <a href="http://ethdocs.org/en/latest/network/test-networks.html">etcdocs.org</a>, I try to set up a private blockchain to perform my first -fake- transaction.</p>
     </div>
     
     <div class="meta">
       <div>
-        <a href="../install-jira-ubuntu-1404.html" class="read_more">Read more &#8594;</a>
+        <a href="../setting-up-private-ethereum-blockchain.html" class="read_more">Read more &#8594;</a>
       </div>
       <div>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
-            <a href="../tag/jira.html" class="tag">Jira</a>
+            <a href="../tag/vps.html" class="tag">vps</a>
+            <a href="../tag/ether.html" class="tag">ether</a>
+            <a href="../tag/ethereum.html" class="tag">ethereum</a>
+            <a href="../tag/linux.html" class="tag">Linux</a>
+            <a href="../tag/geth.html" class="tag">geth</a>
+            <a href="../tag/blockchain.html" class="tag">blockchain</a>
       </div>
 
     </div>
@@ -12094,22 +12031,105 @@ jQuery(document).ready(function($) {
   <div class="separator"></div>
   <article>
     <header>
-      <h2><a href="../install-docker-ubuntu-1404.html">Install Docker on Ubuntu 14.04</a></h2>
-      <time datetime="" title="2016-08-19T20:05:00+01:00" pubdate>Fri 19 August 2016</time>
+      <h2><a href="../setting-up-ether-on-vps.html">Setting up Ether on my VPS</a></h2>
+      <time datetime="" title="2017-04-28T18:34:00+01:00" pubdate>Fri 28 April 2017</time>
     </header>
 
     <div class="article_content">
-        <p>These are the steps needed to get Docker working on Ubuntu 14.04. I have tested these steps on a Digital Ocean droplet.</p>
+        <p>My first step in getting to know the Ether platform is installing it on one of my Linux machines.</p>
     </div>
     
     <div class="meta">
       <div>
-        <a href="../install-docker-ubuntu-1404.html" class="read_more">Read more &#8594;</a>
+        <a href="../setting-up-ether-on-vps.html" class="read_more">Read more &#8594;</a>
       </div>
       <div>
-            <a href="../tag/digitalocean.html" class="tag">digitalocean</a>
-            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
-            <a href="../tag/docker.html" class="tag">Docker</a>
+            <a href="../tag/vps.html" class="tag">vps</a>
+            <a href="../tag/ether.html" class="tag">ether</a>
+            <a href="../tag/ethereum.html" class="tag">ethereum</a>
+            <a href="../tag/linux.html" class="tag">Linux</a>
+            <a href="../tag/geth.html" class="tag">geth</a>
+            <a href="../tag/blockchain.html" class="tag">blockchain</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../creating-dashboard-with-meanjs.html">Creating a dashboard with MEAN.JS</a></h2>
+      <time datetime="" title="2017-04-16T18:55:00+01:00" pubdate>Sun 16 April 2017</time>
+    </header>
+
+    <div class="article_content">
+        <p>I will make a dashboard to give an overview of the refills for the car using MEAN.JS and D3.js.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../creating-dashboard-with-meanjs.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/mongodb.html" class="tag">MongoDB</a>
+            <a href="../tag/expressjs.html" class="tag">Express.js</a>
+            <a href="../tag/angular-2.html" class="tag">Angular 2</a>
+            <a href="../tag/node.html" class="tag">Node</a>
+            <a href="../tag/mean.html" class="tag">MEAN</a>
+            <a href="../tag/dashboard.html" class="tag">dashboard</a>
+            <a href="../tag/d3js.html" class="tag">D3.js</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../r-in-notebook.html">Using R and Python together in a notebook</a></h2>
+      <time datetime="" title="2017-04-07T17:04:00+01:00" pubdate>Fri 07 April 2017</time>
+    </header>
+
+    <div class="article_content">
+        <p>A simple description how to use R and Python to interact in a Jupyter notebook.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../r-in-notebook.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+            <a href="../tag/r.html" class="tag">R</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../mongodb_first_try.html">MongoDB - First try</a></h2>
+      <time datetime="" title="2017-04-05T16:58:00+01:00" pubdate>Wed 05 April 2017</time>
+    </header>
+
+    <div class="article_content">
+        <p>My first experience with <a href="https://www.mongodb.com/mongodb-3.4">MongoDB</a>. I will install MongoDB and Pymongo, insert some data and query it. Next step will be to tryout <a href="https://bitbucket.org/djcbeach/monary/wiki/Home">monary</a>, but for this notebook it is out of scope.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../mongodb_first_try.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/notebook.html" class="tag">notebook</a>
+            <a href="../tag/mongodb.html" class="tag">mongoDB</a>
+            <a href="../tag/pymongo.html" class="tag">pymongo</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="../tag/database.html" class="tag">database</a>
       </div>
 
     </div>
@@ -12161,24 +12181,29 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-2">
+        <li class="tag-3">
+            <a href="../tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/postgres.html">
+            postgres
+            </a>
+        </li>
+        <li class="tag-3">
             <a href="../tag/dataframe.html">
             dataframe
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/pyspark.html">
-            PySpark
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/sqlalchemy.html">
-            SQLAlchemy
+            <a href="../tag/ubuntu.html">
+            Ubuntu
             </a>
         </li>
         <li class="tag-4">
@@ -12187,48 +12212,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/aws.html">
-            AWS
+            <a href="../tag/data-engineer.html">
+            data engineer
             </a>
         </li>
-        <li class="tag-2">
+        <li class="tag-3">
             <a href="../tag/docker.html">
             Docker
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/lambda.html">
-            Lambda
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/postgres.html">
-            postgres
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/jupyter.html">
-            Jupyter
             </a>
         </li>
         <li class="tag-1">
@@ -12242,18 +12232,43 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-4">
-            <a href="../tag/postgresql.html">
-            PostgreSQL
+            <a href="../tag/container.html">
+            container
             </a>
         </li>
         <li class="tag-3">
+            <a href="../tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/pyspark.html">
+            pyspark
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="../tag/vps.html">
+            VPS
+            </a>
+        </li>
+        <li class="tag-1">
             <a href="../tag/notebook.html">
             notebook
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/mongodb.html">
-            MongoDB
+            <a href="../tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/aws.html">
+            AWS
             </a>
         </li>
         <li class="tag-3">
@@ -12261,19 +12276,24 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             DevOps
             </a>
         </li>
-        <li class="tag-3">
-            <a href="../tag/vps.html">
-            VPS
+        <li class="tag-1">
+            <a href="../tag/jupyter.html">
+            Jupyter
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/data-engineer.html">
-            data engineer
+            <a href="../tag/spark.html">
+            Spark
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/container.html">
-            container
+            <a href="../tag/pandas.html">
+            pandas
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="../tag/s3.html">
+            S3
             </a>
         </li>
         </ul>

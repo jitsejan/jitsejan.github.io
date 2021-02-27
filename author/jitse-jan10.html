@@ -11825,7 +11825,7 @@ jQuery(document).ready(function($) {
         <link rel="stylesheet" href="/theme/css/pygments.css">
         <!--<link rel="stylesheet" href="/theme/css/main.css">-->
 
-            <link rel="stylesheet" href="../theme/css/main.css?f0fb9e75">
+            <link rel="stylesheet" href="../theme/css/main.css?9c57dc56">
 
 
     </head>
@@ -11865,6 +11865,131 @@ jQuery(document).ready(function($) {
 </form>
   </div>
   <div class="col-md-9">
+  <article>
+    <header>
+      <h2><a href="../move-django-between-servers.html">Move Django database between servers</a></h2>
+      <time datetime="" title="2016-10-04T10:05:00+01:00" pubdate>Tue 04 October 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>Save the database on the old server.</p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>oldenv<span class="o">)</span>jitsejan@oldvps:/opt/oldenv/django_project$ sudo python manage.py dumpdata blog &gt; blog.json
+</code></pre></div>
+
+<p>Load the data on the new server. Make sure the models for both blogs are identical.</p>
+<div class="highlight"><pre><span></span><code><span class="o">(</span>env<span class="o">)</span>jitsejan@jjsvps:/opt/env/django_project$ sudo python manage.py loaddata blog.json
+</code></pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="../tag/django.html" class="tag">Django</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../install-django-ubuntu-1404-virtualenv-nginx-gunicorn-and-postgres.html">Install Django on Ubuntu 14.04 with virtualenv, Nginx, Gunicorn and postgres</a></h2>
+      <time datetime="" title="2016-10-04T09:46:00+01:00" pubdate>Tue 04 October 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>A description of the steps needed to get Django working on Ubuntu 14.04.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../install-django-ubuntu-1404-virtualenv-nginx-gunicorn-and-postgres.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
+            <a href="../tag/django.html" class="tag">Django</a>
+            <a href="../tag/nginx.html" class="tag">Nginx</a>
+            <a href="../tag/gunicorn.html" class="tag">Gunicorn</a>
+            <a href="../tag/postgres.html" class="tag">postgres</a>
+            <a href="../tag/virtualenv.html" class="tag">virtualenv</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../install-jira-ubuntu-1404.html">Install Jira on Ubuntu 14.04</a></h2>
+      <time datetime="" title="2016-10-04T07:09:00+01:00" pubdate>Tue 04 October 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>These are the steps needed to get Jira working on Ubuntu 14.04.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../install-jira-ubuntu-1404.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
+            <a href="../tag/jira.html" class="tag">Jira</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../install-docker-ubuntu-1404.html">Install Docker on Ubuntu 14.04</a></h2>
+      <time datetime="" title="2016-08-19T20:05:00+01:00" pubdate>Fri 19 August 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>These are the steps needed to get Docker working on Ubuntu 14.04. I have tested these steps on a Digital Ocean droplet.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../install-docker-ubuntu-1404.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/digitalocean.html" class="tag">digitalocean</a>
+            <a href="../tag/ubuntu.html" class="tag">Ubuntu</a>
+            <a href="../tag/docker.html" class="tag">Docker</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
+      <h2><a href="../install-lxml-digital-ocean.html">Install lxml for Python on DigitalOcean</a></h2>
+      <time datetime="" title="2016-08-09T20:05:00+01:00" pubdate>Tue 09 August 2016</time>
+    </header>
+
+    <div class="article_content">
+        <p>Installing LXML on a DigitalOcean droplet is tricky because of the small amount of memory.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="../install-lxml-digital-ocean.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="../tag/digitalocean.html" class="tag">digitalocean</a>
+            <a href="../tag/lxml.html" class="tag">lxml</a>
+            <a href="../tag/python.html" class="tag">Python</a>
+            <a href="../tag/swapfile.html" class="tag">swapfile</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
   <article>
     <header>
       <h2><a href="../getting-started-with-elasticsearch.html">Getting started with Elasticsearch</a></h2>
@@ -11920,13 +12045,12 @@ jQuery(document).ready(function($) {
 
     <div class="article_content">
         <p>Run this command in the terminal to add a spacer</p>
-<div class="highlight"><pre><span></span>jitsejan@MBP $ defaults write com.apple.dock persistent-apps -array-add <span class="s1">&#39;{tile-data={}; tile-type=&quot;spacer-tile&quot;;}&#39;</span>
-</pre></div>
-
+<div class="highlight"><pre><span></span><code>jitsejan@MBP $ defaults write com.apple.dock persistent-apps -array-add <span class="s1">&#39;{tile-data={}; tile-type=&quot;spacer-tile&quot;;}&#39;</span>
+</code></pre></div>
 
 <p>and restart the dock by running</p>
-<div class="highlight"><pre><span></span>jitsejan@MBP $ killall Dock
-</pre></div>
+<div class="highlight"><pre><span></span><code>jitsejan@MBP $ killall Dock
+</code></pre></div>
     </div>
     
     <div class="meta">
@@ -11973,128 +12097,19 @@ jQuery(document).ready(function($) {
 
     <div class="article_content">
         <p>This script will change the last modified time of a file in the current directory to 4 days back.</p>
-<div class="highlight"><pre><span></span><span class="ch">#!/bin/ksh </span>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/ksh </span>
 <span class="nv">numDays</span><span class="o">=</span><span class="m">4</span>
 <span class="nv">diff</span><span class="o">=</span><span class="m">86400</span>*<span class="nv">$numDays</span>
 <span class="nb">export</span> diff
 <span class="nv">newDate</span><span class="o">=</span><span class="k">$(</span>perl -e <span class="s1">&#39;use POSIX; print strftime &quot;%Y%m%d%H%M&quot;, localtime time-$ENV{diff};&#39;</span><span class="k">)</span>
 <span class="nv">lastFile</span><span class="o">=</span><span class="k">$(</span>ls -lt <span class="p">|</span> egrep -v ^d <span class="p">|</span> tail -1 <span class="p">|</span> awk <span class="s1">&#39; { print $9 } &#39;</span><span class="k">)</span>
 touch -t <span class="nv">$newDate</span> <span class="nv">$lastFile</span>
-</pre></div>
+</code></pre></div>
     </div>
     
     <div class="meta">
       <div>
             <a href="../tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../debugging-in-django.html">Show all debug information in Django</a></h2>
-      <time datetime="" title="2016-07-31T13:51:00+01:00" pubdate>Sun 31 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">pre</span><span class="p">&gt;</span> {% filter force_escape %} {% debug %} {% endfilter %} <span class="p">&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/django.html" class="tag">Django</a>
-            <a href="../tag/python.html" class="tag">Python</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../webcrawling-with-selenium.html">Webcrawling in Python using Selenium</a></h2>
-      <time datetime="" title="2016-07-30T11:09:00+01:00" pubdate>Sat 30 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>This is a simple script to crawl information from a website when the content is dynamically loaded.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../webcrawling-with-selenium.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/python.html" class="tag">python</a>
-            <a href="../tag/selenium.html" class="tag">selenium</a>
-            <a href="../tag/webcrawl.html" class="tag">webcrawl</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../send-attachment-from-command-line.html">Send attachment from command line</a></h2>
-      <time datetime="" title="2016-07-29T19:09:00+01:00" pubdate>Fri 29 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;Mail with attachment&#39;</span> <span class="p">|</span> mutt -a <span class="s2">&quot;/file/to/add/&quot;</span> -s <span class="s2">&quot;FYI: See attachment&quot;</span> -- name@email.com
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../mount-amazon-ec-local-folder.html">Mount Amazon EC as local folder</a></h2>
-      <time datetime="" title="2016-07-29T19:07:00+01:00" pubdate>Fri 29 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span>jitsejan@MBP $ sshfs ubuntu@ec2-34-56-7-89.eu-central-1.compute.amazonaws.com:/home/ubuntu/ ~/AmazonEC2/ -oauto_cache,reconnect,defer_permissions,noappledouble,negative_vncache
-</pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="../tag/shell.html" class="tag">shell</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="../simple-webcrawling-python.html">Simple webcrawling in Python</a></h2>
-      <time datetime="" title="2016-07-28T12:45:00+01:00" pubdate>Thu 28 July 2016</time>
-    </header>
-
-    <div class="article_content">
-        <p>Simple webcrawling in Python</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="../simple-webcrawling-python.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="../tag/python.html" class="tag">python</a>
-            <a href="../tag/webcrawl.html" class="tag">webcrawl</a>
-            <a href="../tag/lxml.html" class="tag">lxml</a>
       </div>
 
     </div>
@@ -12132,7 +12147,7 @@ touch -t <span class="nv">$newDate</span> <span class="nv">$lastFile</span>
             <img src="/theme/images/JJ_Montreal.png" />
         </div>
         <div class="row">
-        <p>I am a Data Engineering Manager at <a href="https://www.sainsburys.co.uk">Sainsbury's Tech</a> in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
+        <p>I am the Head Of Data at <a href="https://www.lendinvest.com">LendInvest</a> in London. I have a passion for the field of machine learning, pattern recognition, big data, blockchain and ubiquitous computing.</p>
 <p>
 While I mainly work in Python, I try to experiment with different languages and frameworks when I can. Lately I have been experimenting with Javascript a bit more, since both
 for visualizations as for modern web applications it is the go-to language. 
@@ -12147,83 +12162,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <nav class="widget">
         <ul class="tagcloud">
         <li class="tag-3">
-            <a href="../tag/javascript.html">
-            javascript
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/notebook.html">
-            notebook
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/ethereum.html">
-            Ethereum
-            </a>
-        </li>
-        <li class="tag-3">
             <a href="../tag/shell.html">
             shell
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/s3.html">
-            S3
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/testing.html">
-            testing
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/jupyter.html">
-            Jupyter
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/aws.html">
-            AWS
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/ether.html">
-            ether
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/docker.html">
-            Docker
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/container.html">
-            container
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="../tag/data-engineer.html">
-            data engineer
-            </a>
-        </li>
-        <li class="tag-1">
-            <a href="../tag/python.html">
-            Python
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="../tag/vps.html">
-            VPS
             </a>
         </li>
         <li class="tag-3">
@@ -12232,8 +12172,8 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/ubuntu.html">
-            Ubuntu
+            <a href="../tag/postgres.html">
+            postgres
             </a>
         </li>
         <li class="tag-3">
@@ -12242,13 +12182,38 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/pyspark.html">
-            pyspark
+            <a href="../tag/ubuntu.html">
+            Ubuntu
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="../tag/flask.html">
+            Flask
             </a>
         </li>
         <li class="tag-3">
-            <a href="../tag/devops.html">
-            DevOps
+            <a href="../tag/data-engineer.html">
+            data engineer
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/docker.html">
+            Docker
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/python.html">
+            Python
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="../tag/api.html">
+            API
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="../tag/container.html">
+            container
             </a>
         </li>
         <li class="tag-3">
@@ -12256,9 +12221,59 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             blockchain
             </a>
         </li>
+        <li class="tag-3">
+            <a href="../tag/pyspark.html">
+            pyspark
+            </a>
+        </li>
         <li class="tag-4">
-            <a href="../tag/flask.html">
-            Flask
+            <a href="../tag/vps.html">
+            VPS
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/notebook.html">
+            notebook
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/aws.html">
+            AWS
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/devops.html">
+            DevOps
+            </a>
+        </li>
+        <li class="tag-1">
+            <a href="../tag/jupyter.html">
+            Jupyter
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/spark.html">
+            Spark
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="../tag/pandas.html">
+            pandas
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="../tag/s3.html">
+            S3
             </a>
         </li>
         </ul>
@@ -12290,7 +12305,7 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <div class="container">
         <center>
             <address id="about" class="vcard body">
-                &copy; <a href="..">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2020
+                &copy; <a href="..">JJ's World</a> | Powered by <a href="http://getpelican.com/">Pelican</a> | Hosted on <a href="https://pages.github.com">Github Pages</a> | 2008 - 2021
             </address><!-- /#about -->
         </center>
     </div>

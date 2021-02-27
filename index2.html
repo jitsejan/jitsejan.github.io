@@ -11867,6 +11867,33 @@ jQuery(document).ready(function($) {
   <div class="col-md-9">
   <article>
     <header>
+      <h2><a href="./using-powerlevel10k-as-zsh-theme.html">Using Powerlevel10K as Zsh theme</a></h2>
+      <time datetime="" title="2020-03-29T04:18:00+01:00" pubdate>Sun 29 March 2020</time>
+    </header>
+
+    <div class="article_content">
+        <p>Previously I was using <a href="https://github.com/Powerlevel9k/powerlevel9k">powerlevel9k</a> as theme for my <a href="https://iterm2.com">iTerm2</a> Zsh configuration. Recently I had to install a new MacBook and found an easier way to make the terminal look fancier. <a href="https://github.com/romkatv/powerlevel10k">powerlevel10k</a> is the better version of <code>powerlevel9k</code>, especially since it has a configuration prompt where the installer guides you through all the changes you can make to the style.</p>
+<p>For Mac it is as simple as the following few lines, assuming you have <a href="https://brew.sh">brew</a> installed.</p>
+<div class="highlight"><pre><span></span><code>$ brew install romkatv/powerlevel10k/powerlevel10k
+$ <span class="nb">echo</span> <span class="s1">&#39;source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme&#39;</span> &gt;&gt;! ~/.zshrc
+$ p10k configure
+</code></pre></div>
+    </div>
+    
+    <div class="meta">
+      <div>
+            <a href="./tag/zshell.html" class="tag">zshell</a>
+            <a href="./tag/command-line.html" class="tag">command line</a>
+            <a href="./tag/iterm2.html" class="tag">iterm2</a>
+            <a href="./tag/styling.html" class="tag">styling</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./using-parametrize-with-pytest.html">Using parametrize with PyTest</a></h2>
       <time datetime="" title="2020-02-21T15:54:00+00:00" pubdate>Fri 21 February 2020</time>
     </header>
@@ -12028,6 +12055,33 @@ jQuery(document).ready(function($) {
   <div class="separator"></div>
   <article>
     <header>
+      <h2><a href="./using-faker-to-generate-events.html">Using Faker to generate events</a></h2>
+      <time datetime="" title="2019-10-29T18:05:00+00:00" pubdate>Tue 29 October 2019</time>
+    </header>
+
+    <div class="article_content">
+        <p>A simple introduction to create fake data using the Faker tool in Python. Very convenient if you need to generate dummy data for an experiment.</p>
+    </div>
+    
+    <div class="meta">
+      <div>
+        <a href="./using-faker-to-generate-events.html" class="read_more">Read more &#8594;</a>
+      </div>
+      <div>
+            <a href="./tag/notebook.html" class="tag">notebook</a>
+            <a href="./tag/faker.html" class="tag">faker</a>
+            <a href="./tag/testing.html" class="tag">testing</a>
+            <a href="./tag/generator.html" class="tag">generator</a>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
+      </div>
+
+    </div>
+
+  </article>
+  <div class="separator"></div>
+  <article>
+    <header>
       <h2><a href="./moving-from-unittest-to-pytest.html">Moving from `unittest` to `pytest`</a></h2>
       <time datetime="" title="2019-10-17T17:00:00+01:00" pubdate>Thu 17 October 2019</time>
     </header>
@@ -12054,81 +12108,26 @@ jQuery(document).ready(function($) {
   <div class="separator"></div>
   <article>
     <header>
-      <h2><a href="./create-abstract-classes-with-lambda-and-terraform.html">Creating abstract classes with Lambda and Terraform</a></h2>
-      <time datetime="" title="2019-07-26T11:30:00+01:00" pubdate>Fri 26 July 2019</time>
+      <h2><a href="./sftp-with-spark.html">Using SFTP with Spark</a></h2>
+      <time datetime="" title="2019-08-02T16:55:00+01:00" pubdate>Fri 02 August 2019</time>
     </header>
 
     <div class="article_content">
-        <p>In this article I will create an abstract class and different concrete classes to be used within AWS Lambda deployed with Terraform.</p>
+        <p>A simple showcase of how to use SFTP together with Spark. By using Spark I can read the files directly into a Spark RDD. Reading big files was failing for me when I was using plain Python with <code>pysftp</code>.</p>
     </div>
     
     <div class="meta">
       <div>
-        <a href="./create-abstract-classes-with-lambda-and-terraform.html" class="read_more">Read more &#8594;</a>
+        <a href="./sftp-with-spark.html" class="read_more">Read more &#8594;</a>
       </div>
       <div>
-            <a href="./tag/devops.html" class="tag">DevOps</a>
-            <a href="./tag/aws.html" class="tag">AWS</a>
-            <a href="./tag/data-engineer.html" class="tag">data engineer</a>
-            <a href="./tag/terraform.html" class="tag">Terraform</a>
-            <a href="./tag/lambda.html" class="tag">Lambda</a>
-            <a href="./tag/iac.html" class="tag">IaC</a>
-            <a href="./tag/oop.html" class="tag">OOP</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./find-and-delete-empty-columns-pandas-dataframe.html">Find and delete empty columns in Pandas dataframe</a></h2>
-      <time datetime="" title="2019-07-07T14:09:00+01:00" pubdate>Sun 07 July 2019</time>
-    </header>
-
-    <div class="article_content">
-        <div class="highlight"><pre><span></span><code><span class="c1"># Find the columns where each value is null</span>
-<span class="n">empty_cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">df</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">all</span><span class="p">()]</span>
-<span class="c1"># Drop these columns from the dataframe</span>
-<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">empty_cols</span><span class="p">,</span>
-        <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
-    </div>
-    
-    <div class="meta">
-      <div>
-            <a href="./tag/python.html" class="tag">Python</a>
-            <a href="./tag/pandas.html" class="tag">pandas</a>
-      </div>
-
-    </div>
-
-  </article>
-  <div class="separator"></div>
-  <article>
-    <header>
-      <h2><a href="./setting-up-spark-with-minio-as-object-storage.html">Setting up Spark with minIO as object storage</a></h2>
-      <time datetime="" title="2019-06-30T23:05:00+01:00" pubdate>Sun 30 June 2019</time>
-    </header>
-
-    <div class="article_content">
-        <p>To setup one of my data projects, I need (object) storage to save my data. Using Spark I want to be able to read and write Parquet, CSV and other file formats.</p>
-    </div>
-    
-    <div class="meta">
-      <div>
-        <a href="./setting-up-spark-with-minio-as-object-storage.html" class="read_more">Read more &#8594;</a>
-      </div>
-      <div>
-            <a href="./tag/devops.html" class="tag">DevOps</a>
-            <a href="./tag/ansible.html" class="tag">Ansible</a>
-            <a href="./tag/data-engineer.html" class="tag">data engineer</a>
-            <a href="./tag/vps.html" class="tag">VPS</a>
-            <a href="./tag/ubuntu.html" class="tag">Ubuntu</a>
+            <a href="./tag/notebook.html" class="tag">notebook</a>
             <a href="./tag/spark.html" class="tag">Spark</a>
-            <a href="./tag/minio.html" class="tag">minIO</a>
-            <a href="./tag/object-storage.html" class="tag">object storage</a>
+            <a href="./tag/pyspark.html" class="tag">PySpark</a>
+            <a href="./tag/python.html" class="tag">Python</a>
+            <a href="./tag/jupyter.html" class="tag">Jupyter</a>
+            <a href="./tag/sftp.html" class="tag">SFTP</a>
+            <a href="./tag/data-engineering.html" class="tag">Data Engineering</a>
       </div>
 
     </div>
@@ -12180,24 +12179,29 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
     <hr/>
     <nav class="widget">
         <ul class="tagcloud">
-        <li class="tag-2">
+        <li class="tag-3">
+            <a href="./tag/shell.html">
+            shell
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/mongodb.html">
+            MongoDB
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/postgres.html">
+            postgres
+            </a>
+        </li>
+        <li class="tag-3">
             <a href="./tag/dataframe.html">
             dataframe
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/pandas.html">
-            pandas
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/pyspark.html">
-            PySpark
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/sqlalchemy.html">
-            SQLAlchemy
+            <a href="./tag/ubuntu.html">
+            Ubuntu
             </a>
         </li>
         <li class="tag-4">
@@ -12206,48 +12210,13 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/aws.html">
-            AWS
+            <a href="./tag/data-engineer.html">
+            data engineer
             </a>
         </li>
-        <li class="tag-2">
+        <li class="tag-3">
             <a href="./tag/docker.html">
             Docker
-            </a>
-        </li>
-        <li class="tag-4">
-            <a href="./tag/lambda.html">
-            Lambda
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/shell.html">
-            shell
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/postgres.html">
-            postgres
-            </a>
-        </li>
-        <li class="tag-2">
-            <a href="./tag/ubuntu.html">
-            Ubuntu
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/blockchain.html">
-            blockchain
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/spark.html">
-            Spark
-            </a>
-        </li>
-        <li class="tag-3">
-            <a href="./tag/jupyter.html">
-            Jupyter
             </a>
         </li>
         <li class="tag-1">
@@ -12261,18 +12230,43 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             </a>
         </li>
         <li class="tag-4">
-            <a href="./tag/postgresql.html">
-            PostgreSQL
+            <a href="./tag/container.html">
+            container
             </a>
         </li>
         <li class="tag-3">
+            <a href="./tag/blockchain.html">
+            blockchain
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/pyspark.html">
+            pyspark
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="./tag/vps.html">
+            VPS
+            </a>
+        </li>
+        <li class="tag-1">
             <a href="./tag/notebook.html">
             notebook
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/mongodb.html">
-            MongoDB
+            <a href="./tag/javascript.html">
+            javascript
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/ethereum.html">
+            Ethereum
+            </a>
+        </li>
+        <li class="tag-3">
+            <a href="./tag/aws.html">
+            AWS
             </a>
         </li>
         <li class="tag-3">
@@ -12280,19 +12274,24 @@ I am using this page as a portfolio and showcase, but mainly as a cheatsheet. Th
             DevOps
             </a>
         </li>
-        <li class="tag-3">
-            <a href="./tag/vps.html">
-            VPS
+        <li class="tag-1">
+            <a href="./tag/jupyter.html">
+            Jupyter
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/data-engineer.html">
-            data engineer
+            <a href="./tag/spark.html">
+            Spark
             </a>
         </li>
         <li class="tag-3">
-            <a href="./tag/container.html">
-            container
+            <a href="./tag/pandas.html">
+            pandas
+            </a>
+        </li>
+        <li class="tag-4">
+            <a href="./tag/s3.html">
+            S3
             </a>
         </li>
         </ul>
