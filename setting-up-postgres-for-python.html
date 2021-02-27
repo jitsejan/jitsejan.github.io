@@ -11882,19 +11882,16 @@ jQuery(document).ready(function($) {
                                      libpq-dev
 </code></pre></div>
 
-
 <h3>Verify PostgreSQL</h3>
 <p>The PostgreSQL server version can be verified with the <code>locate</code> tool which returns version <code>12</code>:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ locate bin/postgres
 /usr/lib/postgresql/12/bin/postgres
 </code></pre></div>
 
-
 <p>The PostgreSQL client version can simply be checked using <code>psql</code> and in this case is <code>12.5</code>:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ psql -V
 psql <span class="o">(</span>PostgreSQL<span class="o">)</span> <span class="m">12</span>.5 <span class="o">(</span>Ubuntu <span class="m">12</span>.5-0ubuntu0.20.04.1<span class="o">)</span>
 </code></pre></div>
-
 
 <h3>Create new user</h3>
 <p>After installing PostgreSQL I add a new user for the project I will be working on. First login with the default <code>postgres</code> user and use <code>createuser --interactive</code> to add a user. In my case I will do a project around Zelda and therefor create a new user <code>zelda</code>.</p>
@@ -11907,7 +11904,6 @@ Shall the new role be allowed to create databases? <span class="o">(</span>y/n<s
 Shall the new role be allowed to create more new roles? <span class="o">(</span>y/n<span class="o">)</span> n
 </code></pre></div>
 
-
 <p>Default the user doesn't have a password set which means we have to login to the <code>psql</code> shell and add a password for the new user:</p>
 <div class="highlight"><pre><span></span><code>postgres@theviji:~$ psql
 psql <span class="o">(</span><span class="m">12</span>.5 <span class="o">(</span>Ubuntu <span class="m">12</span>.5-0ubuntu0.20.04.1<span class="o">))</span>
@@ -11917,7 +11913,6 @@ Type <span class="s2">&quot;help&quot;</span> <span class="k">for</span> help.
 Enter new password:
 Enter it again:
 </code></pre></div>
-
 
 <p>Since we are already here lets also add a database with the same name as the user.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">postgres</span><span class="o">=</span><span class="c1"># create database zelda;</span>
@@ -11934,7 +11929,6 @@ CREATE DATABASE
  zelda     <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> en_US.UTF-8 <span class="p">|</span> en_US.UTF-8 <span class="p">|</span>
 <span class="o">(</span><span class="m">4</span> rows<span class="o">)</span>
 </code></pre></div>
-
 
 <p>Additionally to adding the user to PostgreSQL I also add the user to the system.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo adduser zelda
@@ -11956,7 +11950,6 @@ Enter the new value, or press ENTER <span class="k">for</span> the default
 Is the information correct? <span class="o">[</span>Y/n<span class="o">]</span> Y
 </code></pre></div>
 
-
 <p>Now I can switch to the newly created user and start the PostgreSQL shell. The connection information shows that we are indeed connected to the new <code>zelda</code> database by default.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo -i -u zelda
 zelda@theviji:~$ psql
@@ -11964,39 +11957,32 @@ zelda@theviji:~$ psql
 You are connected to database <span class="s2">&quot;zelda&quot;</span> as user <span class="s2">&quot;zelda&quot;</span> via socket in <span class="s2">&quot;/var/run/postgresql&quot;</span> at port <span class="s2">&quot;5432&quot;</span>.
 </code></pre></div>
 
-
 <h3>Configure PostgreSQL for Python</h3>
 <p>The important part to get PostgreSQL working with Python remotely is to make sure PostgreSQL allows external IPs. Modify the <code>postgresql.conf</code> that should be located in <code>/etc/postgresql/12/main</code>.</p>
 <p>Open the file as <code>sudo</code> with a text editor:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo nano /etc/postgresql/12/main/postgresql.conf
 </code></pre></div>
 
-
 <p>And change the <code>listen_addresses</code> to <code>'*'</code> to make PostgreSQL listen to all IPs.</p>
 <div class="highlight"><pre><span></span><code><span class="nv">listen_addresses</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>                  <span class="c1"># what IP address(es) to listen on;</span>
 </code></pre></div>
 
-
 <p>Furthermore, update the <code>pg_hba.conf</code> to allow a connection from any IP. The file should be located in the same folder as the <code>postgresql.conf</code>.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ sudo nano /etc/postgresql/12/main/pg_hba.conf
 </code></pre></div>
-
 
 <p>Add this to that the bottom of the table at the bottom of the file:</p>
 <div class="highlight"><pre><span></span><code>host    all             all             <span class="m">0</span>.0.0.0/0               md5
 host    all             all             ::/0                    md5
 </code></pre></div>
 
-
 <p>Restart <code>postgreqsl</code> to apply the changes:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@theviji:~$ /etc/init.d/postgresql restart
 </code></pre></div>
 
-
 <p>In case of errors we can look at the log files located in <code>/var/log</code>. Use <code>sudo tail &lt;logfile&gt;</code> to check the last lines in the log file.</p>
 <div class="highlight"><pre><span></span><code> jitsejan@theviji:~$ sudo tail /var/log/postgresql/postgresql-12-main.log
 </code></pre></div>
-
 
 <h2>Connect to PostgreSQL with Python</h2>
 <p>At this point we have a running PostgreSQL server which allows external traffic. We have a dedicated user with a password that we can use to connect to the server. The Python version I will be using is <code>3.8.5</code>.</p>
@@ -12004,12 +11990,10 @@ host    all             all             ::/0                    md5
 <span class="n">Python</span> <span class="mf">3.8</span><span class="o">.</span><span class="mi">5</span>
 </code></pre></div>
 
-
 <h3>Install packages</h3>
 <p>Install <code>SQLAlchemy</code> and the <code>psycopg2</code> library. <a href="[]()">SQLAlchemy</a> is an ORM which abstracts the specific PostgreSQL code for the project. If at some point you were to switch databases you could simply update the connection but leave all the database definitions the same.</p>
 <div class="highlight"><pre><span></span><code>pip3 install psycopg2 sqlalchemy
 </code></pre></div>
-
 
 <h3>Create database engine</h3>
 <p>For safety I have added my secrets as environment variables. Update the <code>~/.bashrc</code> or <code>~/.zshrc</code> and add the necessary exports.</p>
@@ -12020,7 +12004,6 @@ host    all             all             ::/0                    md5
 <span class="n">export</span> <span class="n">POSTGRES_PORT</span><span class="o">=</span><span class="mi">1234</span>
 <span class="n">export</span> <span class="n">POSTGRES_HOST</span><span class="o">=</span><span class="n">dev</span><span class="o">.</span><span class="n">jitsejan</span><span class="o">.</span><span class="n">com</span>
 </code></pre></div>
-
 
 <p>Make sure to reload the configuration file with <code>source ~/.bashrc</code>. Now that the variables are exported we can use them in the following Python script to setup the database engine.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
@@ -12036,7 +12019,6 @@ host    all             all             ::/0                    md5
 
 <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">db_string</span><span class="p">)</span>
 </code></pre></div>
-
 
 <h3>Add a table</h3>
 <p>For the first project I will crawl items from a website with only two fields for simplicity. The table <code>items</code> contains two columns:</p>
@@ -12055,12 +12037,10 @@ host    all             all             ::/0                    md5
 <span class="n">meta</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>Verify the table has been created by calling the <code>table_names</code> function on the <code>engine</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">engine</span><span class="o">.</span><span class="n">table_names</span><span class="p">()</span>
 <span class="c1"># [&#39;items&#39;]</span>
 </code></pre></div>
-
 
 <p>And that is it. PostgreSQL is up and running and we are able to interact with it using Python.</p>
         </div>

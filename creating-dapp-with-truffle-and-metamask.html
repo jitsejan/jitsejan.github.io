@@ -11865,18 +11865,15 @@ jQuery(document).ready(function($) {
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code $ sudo npm install -g npm
 </code></pre></div>
 
-
 <h2>Update nodejs</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code $ sudo npm install -g n
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code $ sudo n stable
 </code></pre></div>
 
-
 <h2>Install geth</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ brew tap ethereum/ethereum
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ brew install ethereum
 </code></pre></div>
-
 
 <h2>Check versions</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ sw_vers
@@ -11902,12 +11899,10 @@ jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ python -V
 Python <span class="m">2</span>.7.13 :: Anaconda <span class="m">4</span>.3.1 <span class="o">(</span>x86_64<span class="o">)</span>
 </code></pre></div>
 
-
 <h2>Create structure for the app</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ mkdir truffle-dapp
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ <span class="nb">cd</span> truffle-dapp/ <span class="o">&amp;&amp;</span> git init <span class="o">&amp;&amp;</span> npm init
 </code></pre></div>
-
 
 <h2>Install web3 and testrpc</h2>
 <p>Note that you need to use Python 2.7 in order to be able to install the Ethereum testrpc.</p>
@@ -11915,7 +11910,6 @@ jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code  $ <span class="nb">cd</sp
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ <span class="nb">echo</span> node_modules/ &gt;&gt; .gitignore
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ git commit -a -m <span class="s2">&quot;Initial commit&quot;</span>
 </code></pre></div>
-
 
 <h2>Start the testrpc</h2>
 <p>This includes 10 unlocked accounts with 100 Ether each.</p>
@@ -11957,7 +11951,6 @@ Base HD Path:  m/44<span class="s1">&#39;/60&#39;</span>/0<span class="err">&#39
 Listening on localhost:8545
 </code></pre></div>
 
-
 <p>Note. The mnemonic with the 12 words will be used later in Metamask.</p>
 <h2>Connect to the testrpc</h2>
 <p>Create a client and check the balance.</p>
@@ -11974,7 +11967,6 @@ Listening on localhost:8545
 <span class="s1">&#39;100&#39;</span>
 </code></pre></div>
 
-
 <h2>Install the Truffle scaffold</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ npm install truffle --save --python<span class="o">=</span>python2.7
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ truffle version
@@ -11984,7 +11976,6 @@ jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ git add .
 jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ git commit -m <span class="s2">&quot;Truffle init&quot;</span>
 </code></pre></div>
 
-
 <h2>Compile</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ truffle compile
 Compiling ./contracts/ConvertLib.sol...
@@ -11993,17 +11984,14 @@ Compiling ./contracts/Migrations.sol...
 Writing artifacts to ./build/contracts
 </code></pre></div>
 
-
 <h2>Migrate</h2>
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ truffle migrate
 </code></pre></div>
-
 
 <h2>Deploy</h2>
 <p>Start the server in the development environment.</p>
 <div class="highlight"><pre><span></span><code>jitsejan@Jitse-Jans-MacBook-Pro  /Users/jitsejan/code/truffle-dapp  $ npm run dev
 </code></pre></div>
-
 
 <p>Now by accessing localhost:8080 the web application is visible and we can send some MetaCoin.</p>
 <p>Open up Google Chrome and make sure <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?authuser=2">Metamask</a> is installed. Next open up Metamask and restore from DEN and fill in the 12 words that the testrpc showed you before. Make sure you are connected to localhost:8545.</p>

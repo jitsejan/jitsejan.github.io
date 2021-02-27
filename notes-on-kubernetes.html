@@ -11887,14 +11887,12 @@ jQuery(document).ready(function($) {
 <div class="highlight"><pre><span></span><code><span class="err">jitsejan@dev16:~$ sudo apt-get update</span>
 </code></pre></div>
 
-
 <h3>Install Docker</h3>
 <p><center><img src="http://files.jitsejan.com/logos/docker.PNG" width=200/></center></p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~$ sudo apt-get install -qy docker.io
 jitsejan@dev16:~$ docker --version
 Docker version <span class="m">17</span>.03.2-ce, build f5ec1e2
 </code></pre></div>
-
 
 <h3>Install Kubernetes apt repository</h3>
 <p><center><img src="http://files.jitsejan.com/logos/kubernetes.svg" width=200/></center></p>
@@ -11903,7 +11901,6 @@ jitsejan@dev16:~$ <span class="nb">echo</span> <span class="s2">&quot;deb http:/
   <span class="p">|</span> sudo tee -a /etc/apt/sources.list.d/kubernetes.list <span class="se">\</span>
   <span class="o">&amp;&amp;</span> sudo apt-get update 
 </code></pre></div>
-
 
 <h3>Install <code>kubeadm</code>, <code>kubectl</code> and <code>kubelet</code></h3>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~$ sudo apt-get install -y kubelet kubeadm kubectl
@@ -11915,7 +11912,6 @@ jitsejan@dev16:~$ kubectl version
 Client Version: version.Info<span class="o">{</span>Major:<span class="s2">&quot;1&quot;</span>, Minor:<span class="s2">&quot;10&quot;</span>, GitVersion:<span class="s2">&quot;v1.10.0&quot;</span>, GitCommit:<span class="s2">&quot;fc32d2f3698e36b93322a3465f63a14e9f0eaead&quot;</span>, GitTreeState:<span class="s2">&quot;clean&quot;</span>, BuildDate:<span class="s2">&quot;2018-03-26T16:55:54Z&quot;</span>, GoVersion:<span class="s2">&quot;go1.9.3&quot;</span>, Compiler:<span class="s2">&quot;gc&quot;</span>, Platform:<span class="s2">&quot;linux/amd64&quot;</span><span class="o">}</span>
 The connection to the server localhost:8080 was refused - did you specify the right host or port?
 </code></pre></div>
-
 
 <h3>Initialize kubernetes</h3>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~$ sudo kubeadm init
@@ -11986,13 +11982,11 @@ as root:
   kubeadm join <span class="m">142</span>.44.184.35:6443 --token j8gf09.pe16y63l0hxygc77 --discovery-token-ca-cert-hash sha256:d8d47cbd352035d5a7746d0ed7e54ae7c0c6bcbb5e89ef410039f7b457be853f
 </code></pre></div>
 
-
 <p>Run the steps mentioned in the previous output:</p>
 <div class="highlight"><pre><span></span><code><span class="err">jitsejan@dev16:~$ mkdir -p $HOME/.kube</span>
 <span class="err">jitsejan@dev16:~$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config</span>
 <span class="err">jitsejan@dev16:~$ sudo chown $(id -u):$(id -g) $HOME/.kube/config</span>
 </code></pre></div>
-
 
 <h3>Weave net</h3>
 <div class="highlight"><pre><span></span><code><span class="err">jitsejan@dev16:~$ export kubever=$(kubectl version | base64 | tr -d &#39;\n&#39;)</span>
@@ -12005,13 +11999,11 @@ as root:
 <span class="err">daemonset.extensions/weave-net created</span>
 </code></pre></div>
 
-
 <h3>Untaint the master node</h3>
 <p>Make sure we can install pods on the master node:</p>
 <div class="highlight"><pre><span></span><code><span class="err">jitsejan@dev16:~$ kubectl taint nodes --all node-role.kubernetes.io/master-</span>
 <span class="err">node/dev16.jitsejan.com untainted</span>
 </code></pre></div>
-
 
 <p>Check status of the pods:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~$ kubectl get pods --all-namespaces
@@ -12025,7 +12017,6 @@ kube-system   kube-proxy-59l87                             <span class="m">1</sp
 kube-system   kube-scheduler-dev16.jitsejan.com            <span class="m">1</span>/1       Running   <span class="m">0</span>          4m
 kube-system   weave-net-rkmrb                              <span class="m">2</span>/2       Running   <span class="m">0</span>          1m
 </code></pre></div>
-
 
 <h2>Install <code>helm</code></h2>
 <p>Install the package manager for Kubernetes:</p>
@@ -12058,7 +12049,6 @@ Client: v2.9.1+g20adb27
 Server: v2.9.1+g20adb27
 </code></pre></div>
 
-
 <p>Check status of the pods:</p>
 <div class="highlight"><pre><span></span><code><span class="err">jitsejan@dev16:~/kubernetes-dev$ kubectl get pods --all-namespaces</span>
 <span class="err">NAMESPACE        NAME                                         READY     STATUS    RESTARTS   AGE</span>
@@ -12072,7 +12062,6 @@ Server: v2.9.1+g20adb27
 <span class="err">kube-system      tiller-deploy-759cb9df9-ddv2h                1/1       Running   0          1m</span>
 <span class="err">kube-system      weave-net-rkmrb                              2/2       Running   0          41m</span>
 </code></pre></div>
-
 
 <h2>Heapster</h2>
 <div class="highlight"><pre><span></span><code><span class="n">jitsejan</span><span class="nv">@dev16</span><span class="err">:</span><span class="o">~/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dev</span><span class="err">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">helm</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="n">stable</span><span class="o">/</span><span class="n">heapster</span><span class="w"> </span><span class="c1">--name heapster --set rbac.create=true</span>
@@ -12116,7 +12105,6 @@ Server: v2.9.1+g20adb27
 <span class="w">  </span><span class="n">export</span><span class="w"> </span><span class="n">POD_NAME</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">kubectl</span><span class="w"> </span><span class="k">get</span><span class="w"> </span><span class="n">pods</span><span class="w"> </span><span class="c1">--namespace default -l &quot;app=heapster-heapster&quot; -o jsonpath=&quot;{.items[0].metadata.name}&quot;)</span>
 <span class="w">  </span><span class="n">kubectl</span><span class="w"> </span><span class="c1">--namespace default port-forward $POD_NAME 8082</span>
 </code></pre></div>
-
 
 <h2>Traefik</h2>
 <p><center><img src="http://files.jitsejan.com/logos/traefik.PNG" width=200/></center></p>
@@ -12163,7 +12151,6 @@ Server: v2.9.1+g20adb27
   <span class="nt">namespace</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kube-system</span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/kubernetes-dev$ kubectl apply -f traefik-rbac.yml 
 clusterrole.rbac.authorization.k8s.io/traefik-ingress-controller created
 clusterrolebinding.rbac.authorization.k8s.io/traefik-ingress-controller created
@@ -12192,7 +12179,6 @@ jitsejan@dev16:~/kubernetes-dev$ curl -X GET <span class="m">10</span>.106.201.3
 <span class="m">404</span> page not found
 </code></pre></div>
 
-
 <p>Check the pods:</p>
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~/kubernetes-dev$ kubectl get pods --all-namespaces
 NAMESPACE        NAME                                          READY     STATUS    RESTARTS   AGE
@@ -12213,7 +12199,6 @@ metallb-system   controller-67cb74b4b5-4ll62                   <span class="m">1
 metallb-system   speaker-bbqnd                                 <span class="m">1</span>/1       Running   <span class="m">0</span>          1h
 </code></pre></div>
 
-
 <hr>
 <h2>Alternatives</h2>
 <hr>
@@ -12228,7 +12213,6 @@ metallb-system   speaker-bbqnd                                 <span class="m">1
 jitsejan@dev16:~$ minikube version
 minikube version: v0.28.2
 </code></pre></div>
-
 
 <h4>Start the Kubernetes cluster</h4>
 <div class="highlight"><pre><span></span><code><span class="n">jitsejan</span><span class="nv">@dev16</span><span class="err">:</span><span class="o">~</span><span class="err">$</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="n">minikube</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="c1">--vm-driver=none</span>
@@ -12264,11 +12248,9 @@ minikube version: v0.28.2
 <span class="n">Loading</span><span class="w"> </span><span class="n">cached</span><span class="w"> </span><span class="n">images</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="k">file</span><span class="p">.</span><span class="w"></span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code><span class="err">jitsejan@dev16:~$ sudo kubectl config current-context</span>
 <span class="err">minikube</span>
 </code></pre></div>
-
 
 <h3>Flannel (instead of Weave)</h3>
 <p><center><img src="http://files.jitsejan.com/logos/metallb.PNG" width=100/></center></p>
@@ -12306,7 +12288,6 @@ kube-proxy-mz7jt                             <span class="m">1</span>/1       Ru
 kube-scheduler-dev16.jitsejan.com            <span class="m">1</span>/1       Running   <span class="m">0</span>          7m
 </code></pre></div>
 
-
 <h3>Calico (instead of Weave)</h3>
 <p><center><img src="http://files.jitsejan.com/logos/calico.JPG" width=200/></center></p>
 <p>Instead of using Weave or Flannel, we can use <a href="https://docs.projectcalico.org/master/getting-started/kubernetes/"><code>Calico</code></a> to create a virtual network in our Kubernetes cluster.</p>
@@ -12343,7 +12324,6 @@ kube-system   kube-proxy-kb559                             <span class="m">1</sp
 kube-system   kube-scheduler-dev16.jitsejan.com            <span class="m">1</span>/1       Running   <span class="m">0</span>          7m
 </code></pre></div>
 
-
 <h3>metallb (instead of Traefik)</h3>
 <p><center><img src="http://files.jitsejan.com/logos/flannel.PNG" width=200/></center></p>
 <p>Because we are not using EKS, AKS or GCP, we need to deal with the <strong>load balancer</strong> ourselves. Before I showed how to use Traefik as the load balancer to take care of all incoming traffic to the VPS, but [<code>metallb</code>[(https://metallb.universe.tf/)] could be a good alternative. My initial approach involved both Traefik and metallb, but this seemed to create overhead and Traefik has enough functionality to handle the ingress and egress by itself. </p>
@@ -12366,7 +12346,6 @@ controller-67cb74b4b5-4ll62   <span class="m">1</span>/1       Running   <span c
 speaker-bbqnd                 <span class="m">1</span>/1       Running   <span class="m">0</span>          31s
 </code></pre></div>
 
-
 <h4>Configure the loadbalancer</h4>
 <p><code>metallb-conf.yml</code></p>
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
@@ -12382,7 +12361,6 @@ speaker-bbqnd                 <span class="m">1</span>/1       Running   <span c
       <span class="no">addresses:</span>
       <span class="no">- 192.168.1.16/28</span>
 </code></pre></div>
-
 
 <div class="highlight"><pre><span></span><code>jitsejan@dev16:~$ kubectl apply -f metallb-conf.yml 
 configmap/config created

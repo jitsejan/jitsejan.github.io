@@ -11895,7 +11895,6 @@ jQuery(document).ready(function($) {
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s2">&quot;ssm&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-
 <h3>Set the fixture</h3>
 <p>Now I can create an instance of the FixtureClass and add the <code>ssm_parameters</code> as fixture for my tests. Define them either on <code>conftest.py</code> next to your test files, or add them on top of the file where you will write the tests.</p>
 <div class="highlight"><pre><span></span><code><span class="n">fc</span> <span class="o">=</span> <span class="n">FixtureClass</span><span class="p">()</span>
@@ -11904,7 +11903,6 @@ jQuery(document).ready(function($) {
 <span class="k">def</span> <span class="nf">ssm_parameters</span><span class="p">():</span>
     <span class="k">return</span> <span class="n">fc</span><span class="o">.</span><span class="n">get_ssm_parameters</span><span class="p">()</span>
 </code></pre></div>
-
 
 <h3>Add fixture to test class</h3>
 <p>In order to make the fixture available for all the tests I add the fixture as attribute to the test class. By using <code>autouse=True</code> the fixtures become available in the <code>setup_class</code> method. This method is only called once per execution of the tests.</p>
@@ -11921,7 +11919,6 @@ jQuery(document).ready(function($) {
     <span class="k">def</span> <span class="nf">_get_param</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm_parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 </code></pre></div>
-
 
 <h3>Create the tests</h3>
 <p>Below I have defined five different tests to validate the availability of three different sources. Three of the tests are to verify the availability (good weather) and two of them ensure that the API does not work with the wrong parameters (bad weather).</p>
@@ -12004,7 +12001,6 @@ jQuery(document).ready(function($) {
         <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span>
 </code></pre></div>
 
-
 <h3>Execution of the tests</h3>
 <p>Make sure<code>pytest</code> is installed on your machine. Run the file we've created before and add verbosity if you wish. Note that I use Python 3.7 and pytest 5.3.1. In my case all tests are green, so we can continue!</p>
 <div class="highlight"><pre><span></span><code>$ pytest testsourceavailability.py -v
@@ -12021,7 +12017,6 @@ testsourceavailability.py::TestSourceAvailability::test_workable_api_is_availabl
 testsourceavailability.py::TestSourceAvailability::test_workable_api_is_not_available_for_wrong_credentials PASSED <span class="o">[</span><span class="m">100</span>%<span class="o">]</span>
 </code></pre></div>
 
-
 <h2>Lambda function</h2>
 <p>Because I do not only want to verify availability at the test stage, I will create a Lambda function that I can schedule to periodically check that the APIs are still available. </p>
 <h3>AvailabilityChecker class</h3>
@@ -12037,7 +12032,6 @@ testsourceavailability.py::TestSourceAvailability::test_workable_api_is_not_avai
         <span class="sd">&quot;&quot;&quot; Return the SSM parameter &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ssm_client</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">WithDecryption</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="s2">&quot;Parameter&quot;</span><span class="p">][</span><span class="s2">&quot;Value&quot;</span><span class="p">]</span>
 </code></pre></div>
-
 
 <h4>Verify functions</h4>
 <p>I will only add the good weather tests from the previous test set, hence I will verify HiBob, Jira and Workable, but I don't check for the negative cases.</p>
@@ -12088,7 +12082,6 @@ testsourceavailability.py::TestSourceAvailability::test_workable_api_is_not_avai
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="o">**</span><span class="n">arguments</span><span class="p">)</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
 </code></pre></div>
 
-
 <h4>Retrieve verify methods automatically</h4>
 <p>Because in reality this file is way larger since I need to test way more sources, I do not want to write out all the verify functions explicitly in my Lambda function like below.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
@@ -12098,13 +12091,11 @@ testsourceavailability.py::TestSourceAvailability::test_workable_api_is_not_avai
     <span class="n">avc</span><span class="o">.</span><span class="n">verify_workable_is_available</span><span class="p">()</span>
 </code></pre></div>
 
-
 <p>Instead, I want to dynamically retrieve these functions by iterating through the methods of the class.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_get_verify_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Return verify functions inside this class &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">func</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="k">if</span> <span class="n">callable</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">))</span> <span class="ow">and</span> <span class="n">func</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;verify&quot;</span><span class="p">)]</span>
 </code></pre></div>
-
 
 <p>This method will loop through the callable functions, check if it starts with <code>verify</code> and return a list of functions. </p>
 <h4>Final Lambda</h4>
@@ -12120,14 +12111,12 @@ testsourceavailability.py::TestSourceAvailability::test_workable_api_is_not_avai
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[OK] `</span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="s2">`&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>Running it will give the results for the three sources.</p>
 <div class="highlight"><pre><span></span><code>$ python availabilitychecker.py
 <span class="o">[</span>OK<span class="o">]</span> <span class="sb">`</span>Hibob<span class="sb">`</span>
 <span class="o">[</span>OK<span class="o">]</span> <span class="sb">`</span>Jira<span class="sb">`</span>
 <span class="o">[</span>OK<span class="o">]</span> <span class="sb">`</span>Workable Api<span class="sb">`</span>
 </code></pre></div>
-
 
 <p>Check the <a href="https://gist.github.com/jitsejan/c12a076f3950c0e1be4b55831d291f91">Gist</a> for the final code. Hope it helps :) </p>
         </div>

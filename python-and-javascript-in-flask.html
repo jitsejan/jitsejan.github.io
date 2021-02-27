@@ -11880,7 +11880,6 @@ jQuery(document).ready(function($) {
 <span class="p">...</span>
 </code></pre></div>
 
-
 <p>Retrieve the canvas_data from the POST request and write the content to a file. Return the unique id that was used for writing to the file.</p>
 <div class="highlight"><pre><span></span><code><span class="o">...</span>
 <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/postmethod&#39;</span><span class="p">,</span> <span class="n">methods</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
@@ -11891,7 +11890,6 @@ jQuery(document).ready(function($) {
     <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 <span class="o">...</span>
 </code></pre></div>
-
 
 <h3>Implementation</h3>
 <p>The core of the web application is inside this file. Here I define the different routes for the website and specify the settings. The default route shows the index.html where a canvas is shown. The result route will show the image once a picture is drawn, based on the provided unique ID. The postmethod route is defined to handle the data coming from Javascript into Python via a POST call. The content of the POST variable are written to a CSV file which can be used again on the result page where data is loaded from this same file.</p>
@@ -11961,7 +11959,6 @@ jQuery(document).ready(function($) {
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>The second part of the magic happens in the Javascript file. In this file a canvas is generated and added to the DOM. The mouse is used to draw dots on the canvas with a predefined color and radius. One button is used to send the data of the current drawing on the canvas and another one is used to clear the canvas.</p>
 <p><code>templates/static/js/script.js</code></p>
@@ -12042,7 +12039,6 @@ jQuery(document).ready(function($) {
 <span class="p">});</span>
 </code></pre></div>
 
-
 <p>Finally we need to define a base template to be used by the index and result page. I know this could be split up nicer and I could make better use of the templating engine, but for this experiment it seemed sufficient.</p>
 <p><code>templates/layouts/base.html</code></p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;!doctype html&gt;</span>
@@ -12089,7 +12085,6 @@ jQuery(document).ready(function($) {
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre></div>
 
-
 <p>The code for the index.html and results.html can be kept to a minimum this way.</p>
 <p><code>templates/layouts/index.html</code></p>
 <div class="highlight"><pre><span></span><code>{% extends &quot;layouts/base.html&quot; %}
@@ -12110,7 +12105,6 @@ jQuery(document).ready(function($) {
 {% endblock %}
 </code></pre></div>
 
-
 <p><code>templates/layouts/result.html</code></p>
 <div class="highlight"><pre><span></span><code>{% extends &quot;layouts/base.html&quot; %}
 {% block title %}{{title}}{% endblock %}
@@ -12124,7 +12118,6 @@ jQuery(document).ready(function($) {
 <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 {% endblock %}
 </code></pre></div>
-
 
 <p>Important: Please note that for the source of the image the specific URL for the matplotlib image is used. The route for plot is called with the parameter <code>imgdata</code> containing the data.</p>
 <p>I have kept the stylesheet very basic since this project is not aimed at making the most slick interface.</p>
@@ -12140,11 +12133,9 @@ jQuery(document).ready(function($) {
 <span class="p">}</span>
 </code></pre></div>
 
-
 <p>After putting all the files together the application can be started and visited on port 5000 on the localhost. </p>
 <div class="highlight"><pre><span></span><code>~/code/flask-app $ <span class="nv">FLASK_APP</span><span class="o">=</span>app.py <span class="nv">FLASK_DEBUG</span><span class="o">=</span><span class="m">1</span> flask run
 </code></pre></div>
-
 
 <p>See the <a href="https://github.com/jitsejan/python-flask-with-javascript">Github repo</a> for the final code.</p>
         </div>

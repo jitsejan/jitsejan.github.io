@@ -11887,7 +11887,6 @@ data-retrieval $ pip freeze <span class="p">|</span> grep psycopg2
 <span class="nv">psycopg2</span><span class="o">==</span><span class="m">2</span>.8.6
 </code></pre></div>
 
-
 <h2>Initialize Scrapy</h2>
 <p>Start a new Scrapy project inside your new Python project. I picked the creative name <code>crawl</code> for the Scrapy project.</p>
 <div class="highlight"><pre><span></span><code>data-retrieval $ scrapy startproject crawl
@@ -11898,7 +11897,6 @@ You can start your first spider with:
     <span class="nb">cd</span> crawl
     scrapy genspider example example.com
 </code></pre></div>
-
 
 <p>Running the <code>startproject</code> command will create a folder with the structure outlined below. There is a top folder with the project name (<code>crawl</code>) that contains the Scrapy configuration and a subfolder with the same name containing the actual crawling code. </p>
 <p>NB: I don't want to go into too much detail about Scrapy because there are many tutorials for the tool online, and because I normally use <code>requests</code> with <code>lxml</code> to make (very simple) data crawlers. Many people prefer to use <a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/">BeautifulSoup</a> or other higher level data crawl libraries so feel free to go for that. I picked Scrapy in this particular case because it creates a nice scaffold when working with crawlers and databases but this can be completely done from scratch as well.</p>
@@ -11917,7 +11915,6 @@ crawl
 <span class="m">2</span> directories, <span class="m">7</span> files
 </code></pre></div>
 
-
 <p>You could choose to not use the generator and write the Scrapy files yourself but for simplicity I use the boilerplate that comes with Scrapy. Now navigate to the top level project folder and create the spider (<em>crawler</em>) using <code>genspider</code>. In my case I will be crawling data from Gamepedia.com about items that were found in the Zelda games. A completely random choice of website but it fits with the theme I normally use when playing around with code.</p>
 <p><center>
 <img src="images/scrapy_zelda_overview.PNG" style="width: 700px" />
@@ -11927,7 +11924,6 @@ data-retrieval/crawl $ scrapy genspider zelda_items zelda.gamepedia.com
 Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <span class="s1">&#39;basic&#39;</span> in module:
   crawl.spiders.zelda_items
 </code></pre></div>
-
 
 <p>If we look again at the tree structure we see that inside the <code>spiders</code> folder a new file (<code>zelda_items.py</code>) has been created. This file creates the basic structure for a spider.</p>
 <div class="highlight"><pre><span></span><code>data-retrieval/crawl $ tree
@@ -11944,7 +11940,6 @@ Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <spa
 └── scrapy.cfg
 </code></pre></div>
 
-
 <p>The content of the <code>zelda_items.py</code> file is the minimal setup to get started with crawling data.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">scrapy</span>
 
@@ -11958,7 +11953,6 @@ Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <spa
         <span class="k">pass</span>
 </code></pre></div>
 
-
 <h2>Setup the scraper</h2>
 <p>The first element we want to crawl is the link to all the items to get the detailed information for each of them. The code to retrieve these links is added to the <code>parse</code> function. Looking at the source code it is easy to copy the selector to get to the right element.</p>
 <p><center>
@@ -11967,7 +11961,6 @@ Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <spa
 <p>The selector returns the following information. </p>
 <div class="highlight"><pre><span></span><code>#mw-content-text &gt; div &gt; center:nth-child(1) &gt; ul &gt; li:nth-child(2) &gt; div &gt; div.gallerytext &gt; p &gt; a
 </code></pre></div>
-
 
 <p>As a selector I will use the CSS selector <code>li.gallerybox .gallerytext p a::attr(href)</code> to get the hyperlinks to all the items.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
@@ -11978,7 +11971,6 @@ Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <spa
     <span class="k">for</span> <span class="n">href</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">css</span><span class="p">(</span><span class="n">selector</span><span class="p">)</span><span class="o">.</span><span class="n">extract</span><span class="p">():</span>
             <span class="k">yield</span> <span class="n">Request</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span><span class="si">}{</span><span class="n">href</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_item</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>For each link that is retrieved the <code>parse_item</code> function is executed. The structure of the information page is a little ugly but we only care about the information table. Since this is a Wiki the data can be very unstructured and not all the tables will have the same fields which should be taken into account when retrieving data. For my particular case I want to retrieve the name and the price of each item (under the condition that the table contains the cost information). The following shows a simplified version of the HTML from which I am extracting the data.</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">table</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;infobox wikitable&quot;</span><span class="p">&gt;</span>
@@ -12025,7 +12017,6 @@ Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <spa
 <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
 </code></pre></div>
 
-
 <p>To fetch the data I will again use a CSS selector for the name but the <code>xpath</code> selector to find the right element in the table for the cost. I explained in this <a href="https://www.jitsejan.com/scraping-with-xpaths.html">earlier article</a> how I figured out the right syntax to get the information. Only when the price returns an integer I will return the item. If there is no price I will ignore the item. In the future this code will most probably change to retrieve more items and different fields.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">parse_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -12038,7 +12029,6 @@ Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <spa
     <span class="k">if</span> <span class="n">price</span> <span class="ow">and</span> <span class="n">price</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
         <span class="k">yield</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">price</span><span class="p">)}</span>
 </code></pre></div>
-
 
 <h2>Crawl the data</h2>
 <p>Now the scraper is ready to be executed and retrieve the items. Run the crawler and verify that it is returning indeed the items that you would expect. There is no output that stores the items yet but the log tells me that there were 10 items that actually had a name and the cost defined (<code>'item_scraped_count': 10,</code>). Note that I set the <code>loglevel</code> to <strong>INFO</strong> to prevent an information overload in the console.</p>
@@ -12111,7 +12101,6 @@ Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <spa
 <span class="m">2021</span>-01-05 <span class="m">21</span>:26:13 <span class="o">[</span>scrapy.core.engine<span class="o">]</span> INFO: Spider closed <span class="o">(</span>finished<span class="o">)</span>
 </code></pre></div>
 
-
 <h2>Store the data</h2>
 <p>First of all I define the schema of the element that I am crawling in the <code>items.py</code>. There is no fancy schema yet but this can obviously be improved in the future when more items are being retrieved and the actual datatypes do make a difference.</p>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;crawl/crawl/items.py&quot;&quot;&quot;</span>
@@ -12124,7 +12113,6 @@ Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <spa
     <span class="n">name</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
     <span class="n">price</span> <span class="o">=</span> <span class="n">Field</span><span class="p">()</span>
 </code></pre></div>
-
 
 <p>The <code>middlewares.py</code> is left untouched for the project. The important bit for storing data in a database is inside <code>models.py</code>. As described before I use SQLAlchemy to connect to the PostgreSQL database. The database details are stored in <code>settings.py</code> (see below) and are used to create the SQLAlchemy <code>engine</code>. I define the <code>Items</code> model with the two fields and use the <code>create_items_table</code> to create the table. </p>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;crawl/crawl/models.py&quot;&quot;&quot;</span>
@@ -12163,7 +12151,6 @@ Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <spa
     <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">price</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;price&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>Inside the <code>pipelines.py</code> the spider is connected to the database. When the pipeline is started it will initalize the database and create the <code>engine</code>, create the table and setup a SQLAlchemy session. The <code>process_item</code> function is part of the default code and is executed for every yielded item in the scraper. In this case it means it will be triggered every time an item is retrieved with a name and a cost. For every item it is first checked if the item already exists in the database and in case is does not exist yet it will be added to the database. Remember to always <code>commit()</code> when adding (or removing) items to the table.</p>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;crawl/crawl/pipelines.py&quot;&quot;&quot;</span>
@@ -12204,7 +12191,6 @@ Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <spa
         <span class="k">return</span> <span class="n">item</span>
 </code></pre></div>
 
-
 <p>Finally, the <code>settings.py</code> is short and contains the information for the crawler. The only items I have added are the <code>DATABASE</code> and <code>LOG_LEVEL</code> variables. You could choose to add your security details in this file but I would recommend to keep them secret and store them elsewhere.</p>
 <div class="highlight"><pre><span></span><code><span class="sd">&quot;&quot;&quot;crawl/crawl/settings.py&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -12226,7 +12212,6 @@ Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <spa
 <span class="p">}</span>
 <span class="n">LOG_LEVEL</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span>
 </code></pre></div>
-
 
 <h2>Verify the data</h2>
 <p>As a last step in this tutorial I will double check that there are indeed ten items in the database. I have used <code>pandas</code> as an easy way to query the database and add the results to a table. </p>
@@ -12259,7 +12244,6 @@ Created spider <span class="s1">&#39;zelda_items&#39;</span> using template <spa
 <span class="c1"># 8                 Bow    980</span>
 <span class="c1"># 9                Bomb     20</span>
 </code></pre></div>
-
 
 <p>See the <a href="https://github.com/jitsejan/architecture-patterns-with-python/tree/main/data-retrieval">Github repo</a> for the final code. The code most probably will change once I (slowly) continue working on this side project but I hope it might help anyone playing with data crawling and databases.</p>
         </div>

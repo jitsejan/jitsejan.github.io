@@ -11878,7 +11878,6 @@ jQuery(document).ready(function($) {
 <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
 </code></pre></div>
 
-
 <p>It is difficult to get to this item because not every page has the same table, and not every table has the cost mentioned. The goal is to retrieve both the <code>name</code> and the <code>price</code> of an item. To keep things tidy I will use a <code>dataclass</code> for the items. Here I can define that the name will be a string and the price an integer as well as overwrite the print function for a single item.</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">Item</span><span class="p">:</span>
@@ -11889,7 +11888,6 @@ jQuery(document).ready(function($) {
         <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">&#39;</span>
             <span class="sa">f</span><span class="s1">&#39;(name=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">, price=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 </code></pre></div>
-
 
 <p>I am crawling data from https://zelda.gamepedia.com since it has a very complete overview of all the Zelda data. I use a simple function to get the XML tree from the page source using <code>requests</code> with <code>lxml.html</code>. <code>BeautifulSoup</code> and other fancy packages would work too but I like to stick to more basic libraries for simplicity.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">lxml.html</span>
@@ -11906,7 +11904,6 @@ jQuery(document).ready(function($) {
     <span class="k">return</span> <span class="n">lxml</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>The links to all the items are inside the <code>gallerybox</code> div and are easy to retrieve using <code>cssselect</code>. The following function is a generator that returns the links to all items mentioned on the Legend of Zelda page.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">_get_item_links</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
     <span class="n">items_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s2">/Items_in_The_Legend_of_Zelda&quot;</span>
@@ -11914,7 +11911,6 @@ jQuery(document).ready(function($) {
     <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s2">&quot;li.gallerybox .gallerytext p a&quot;</span><span class="p">):</span>
         <span class="k">yield</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BASE_URL</span><span class="si">}{</span><span class="n">elem</span><span class="o">.</span><span class="n">attrib</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre></div>
-
 
 <p>The next bit takes care of finding the right row in the table to retrieve the price and the name of the item. The <strong>name</strong> is retrieved from the <code>meta</code> tag with the <code>og:title</code> property by getting the <code>content</code> attribute. I wrote it with <code>cssselect</code> but this could easily be rewritten as xpath with <code>"//meta[@property='og:title']/@content"</code>. The more tricky part is to find the cell of the table where the header of the row contains a certain text. For the xpath you will need to find the <code>tr</code> for which the table header <code>contains()</code> a certain string and return the text of the div inside the cell.</p>
 <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_item_details</span><span class="p">(</span><span class="n">link</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Item</span><span class="p">:</span>
@@ -11926,7 +11922,6 @@ jQuery(document).ready(function($) {
     <span class="k">except</span><span class="p">:</span>
         <span class="k">pass</span> <span class="c1"># No price for this item</span>
 </code></pre></div>
-
 
 <p>Putting it all together:</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>

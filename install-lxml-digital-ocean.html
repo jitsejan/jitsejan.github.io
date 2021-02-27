@@ -11865,7 +11865,6 @@ jQuery(document).ready(function($) {
 <div class="highlight"><pre><span></span><code>$ sudo apt-get install python-dev libxml2-dev libxslt1-dev zlib1g-dev
 </code></pre></div>
 
-
 <p>Next, be aware that the 512 MB is not enough memory to compile the lxml package with Cython when you use pip to install, which means some additional steps are needed. To virtually increase your work memory, you could use a swapfile. Create a swapfile with these commands:</p>
 <div class="highlight"><pre><span></span><code>$ sudo dd <span class="k">if</span><span class="o">=</span>/dev/zero <span class="nv">of</span><span class="o">=</span>/swapfile1 <span class="nv">bs</span><span class="o">=</span><span class="m">1024</span> <span class="nv">count</span><span class="o">=</span><span class="m">524288</span>
 $ sudo mkswap /swapfile1
@@ -11873,11 +11872,9 @@ $ sudo chown root:root /swapfile1
 $ sudo chmod <span class="m">0600</span> /swapfile1
 </code></pre></div>
 
-
 <p>Now you can use pip to install the lxml Python module</p>
 <div class="highlight"><pre><span></span><code>$ sudo pip install lxml
 </code></pre></div>
-
 
 <p>And of course you need to clean up after installation is done.</p>
 <div class="highlight"><pre><span></span><code>$ sudo swapoff -v /swapfile1

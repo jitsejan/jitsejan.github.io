@@ -11871,7 +11871,6 @@ jQuery(document).ready(function($) {
 <span class="err">CMD [&quot;start.sh&quot;, &quot;jupyter&quot;, &quot;lab&quot;, &quot;--notebook-dir=/opt/notebooks&quot;, &quot;--ip=&#39;*&#39;&quot;, &quot;--no-browser&quot;, &quot;--allow-root&quot;, &quot;--port=8559&quot;]</span>
 </code></pre></div>
 
-
 <p>To start the container, I use the following docker-compose.yml</p>
 <div class="highlight"><pre><span></span><code>version: <span class="s1">&#39;2&#39;</span>
 services:
@@ -11884,33 +11883,27 @@ services:
       - <span class="s2">&quot;8559:8559&quot;</span>
 </code></pre></div>
 
-
 <h3>Using Pyspark</h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pyspark</span> <span class="kn">import</span> <span class="n">SparkConf</span><span class="p">,</span> <span class="n">SparkContext</span>
 <span class="kn">import</span> <span class="nn">collections</span>
 </code></pre></div>
-
 
 <h4>Configure the Spark connection</h4>
 <div class="highlight"><pre><span></span><code><span class="n">conf</span> <span class="o">=</span> <span class="n">SparkConf</span><span class="p">()</span><span class="o">.</span><span class="n">setMaster</span><span class="p">(</span><span class="s2">&quot;local&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">setAppName</span><span class="p">(</span><span class="s2">&quot;GameRatings&quot;</span><span class="p">)</span>
 <span class="n">sc</span> <span class="o">=</span> <span class="n">SparkContext</span><span class="p">(</span><span class="n">conf</span> <span class="o">=</span> <span class="n">conf</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>Verify that the Spark context is working by creating a random RDD of 1000 values and pick 5 values.</p>
 <div class="highlight"><pre><span></span><code><span class="n">rdd</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">parallelize</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">))</span>
 <span class="n">rdd</span><span class="o">.</span><span class="n">takeSample</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code><span class="err">[820, 967, 306, 62, 448]</span>
 </code></pre></div>
-
 
 <p>Next we can create an RDD from the data from the <a href="http://jitsejan.com/hadoop-experiment-mapreduce-on-cloudera.html">previous</a> Hadoop notebook.</p>
 <div class="highlight"><pre><span></span><code><span class="err">lines = sc.textFile(&quot;../data/nesgamedata.csv&quot;)</span>
 </code></pre></div>
-
 
 <h5>Experiment one</h5>
 <p>Lets calculate the average rating of the voters compared to the votes of the author.</p>
@@ -11927,37 +11920,30 @@ services:
     <span class="k">return</span> <span class="p">(</span><span class="n">grade</span><span class="p">,</span> <span class="n">total_grade</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">publisher</span><span class="p">,</span> <span class="n">reader_rating</span><span class="p">,</span> <span class="n">number_of_votes</span><span class="p">,</span> <span class="n">publish_year</span><span class="p">)</span>
 </code></pre></div>
 
-
 <p>We return the grade and the total grade as a tuple from the <code>parseLine</code> function.</p>
 <div class="highlight"><pre><span></span><code><span class="n">games_rdd</span> <span class="o">=</span> <span class="n">lines</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">parseLine</span><span class="p">)</span>
 <span class="n">games_rdd</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code><span class="err">[(12.0, 10.044444444444444, &#39;10-Yard Fight&#39;, &#39;Nintendo&#39;, 10.0, 44, 1985),</span>
 <span class="err"> (11.0, 8.044776119402986, &#39;1942&#39;, &#39;Capcom&#39;, 8.0, 66, 1985)]</span>
 </code></pre></div>
-
 
 <p>Add a 1 to each line so we can sum the <code>total_grades</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">games_mapped</span> <span class="o">=</span> <span class="n">games_rdd</span><span class="o">.</span><span class="n">mapValues</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
 <span class="n">games_mapped</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code><span class="err">[(12.0, (10.044444444444444, 1)), (11.0, (8.044776119402986, 1))]</span>
 </code></pre></div>
-
 
 <p>Sum all <code>total_grades</code> by using the key <code>grade</code>. For each row this will sum the grades and it will sum the 1's that we've added.</p>
 <div class="highlight"><pre><span></span><code><span class="n">games_reduced</span> <span class="o">=</span> <span class="n">games_mapped</span><span class="o">.</span><span class="n">reduceByKey</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 <span class="n">games_reduced</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code><span class="err">[(12.0, (70.26902777777778, 7)), (11.0, (193.88550134591918, 25))]</span>
 </code></pre></div>
-
 
 <p>Calculate the average <code>total_grade</code> for each <code>grade</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="n">average_grade</span> <span class="o">=</span> <span class="n">games_reduced</span><span class="o">.</span><span class="n">mapValues</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
@@ -11965,7 +11951,6 @@ services:
 <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>
-
 
 <div class="highlight"><pre><span></span><code><span class="err">(12.0, 10.03843253968254)</span>
 <span class="err">(11.0, 7.755420053836767)</span>
@@ -11982,28 +11967,23 @@ services:
 <span class="err">(1.0, 2.321295734457781)</span>
 </code></pre></div>
 
-
 <h5>Experiment two</h5>
 <p>Filter out all Nintendo games, where the publisher is the 4-th element in the row.</p>
 <div class="highlight"><pre><span></span><code><span class="n">nintendoGames</span> <span class="o">=</span> <span class="n">games_rdd</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;Nintendo&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
 <span class="n">nintendoGames</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code><span class="err">[(12.0, 10.044444444444444, &#39;10-Yard Fight&#39;, &#39;Nintendo&#39;, 10.0, 44, 1985),</span>
 <span class="err"> (5.0, 4.014705882352941, &#39;Balloon Fight&#39;, &#39;Nintendo&#39;, 4.0, 67, 1984)]</span>
 </code></pre></div>
-
 
 <p>Take the year and the total grade.</p>
 <div class="highlight"><pre><span></span><code><span class="n">nintendoYears</span> <span class="o">=</span> <span class="n">nintendoGames</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 <span class="n">nintendoYears</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>
 
-
 <div class="highlight"><pre><span></span><code><span class="err">[(1985, 10.044444444444444), (1984, 4.014705882352941)]</span>
 </code></pre></div>
-
 
 <p>Calculate the minimum grade for each year.</p>
 <div class="highlight"><pre><span></span><code><span class="n">minYears</span> <span class="o">=</span> <span class="n">nintendoYears</span><span class="o">.</span><span class="n">reduceByKey</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span>
@@ -12011,7 +11991,6 @@ services:
 <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Year: </span><span class="si">{:d}</span><span class="se">\t</span><span class="s1">Minimum score: </span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 </code></pre></div>
-
 
 <div class="highlight"><pre><span></span><code><span class="n">Year</span><span class="o">:</span> <span class="mi">1985</span>  <span class="n">Minimum</span> <span class="n">score</span><span class="o">:</span> <span class="mf">2.00</span>
 <span class="n">Year</span><span class="o">:</span> <span class="mi">1984</span>  <span class="n">Minimum</span> <span class="n">score</span><span class="o">:</span> <span class="mf">3.96</span>
@@ -12026,12 +12005,10 @@ services:
 <span class="n">Year</span><span class="o">:</span> <span class="mi">1993</span>  <span class="n">Minimum</span> <span class="n">score</span><span class="o">:</span> <span class="mf">6.92</span>
 </code></pre></div>
 
-
 <p>Lets try using FlatMap to count the most occurring words in the titles of the NES games.</p>
 <div class="highlight"><pre><span></span><code><span class="n">words</span> <span class="o">=</span> <span class="n">games_rdd</span><span class="o">.</span><span class="n">flatMap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
 <span class="n">words</span><span class="o">.</span><span class="n">take</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </code></pre></div>
-
 
 <div class="highlight"><pre><span></span><code><span class="err">[&#39;10-Yard&#39;,</span>
 <span class="err"> &#39;Fight&#39;,</span>
@@ -12045,7 +12022,6 @@ services:
 <span class="err"> &#39;Adventure&#39;]</span>
 </code></pre></div>
 
-
 <p>Now we count the words and sort by count.</p>
 <div class="highlight"><pre><span></span><code><span class="n">wordCounts</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">reduceByKey</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">wordCountsSorted</span> <span class="o">=</span> <span class="n">wordCounts</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="o">.</span><span class="n">sortByKey</span><span class="p">()</span>
@@ -12053,7 +12029,6 @@ services:
 <span class="k">for</span> <span class="n">count</span><span class="p">,</span> <span class="n">word</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
 </code></pre></div>
-
 
 <div class="highlight"><pre><span></span><code><span class="err">The 20</span>
 <span class="err">of 17</span>
@@ -12075,7 +12050,6 @@ services:
 <span class="err">....</span>
 </code></pre></div>
 
-
 <p>This will result in a list of words with weird characters, spaces and other unwanted content. The text can be filtered in the flatMap function.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">re</span>
 <span class="k">def</span> <span class="nf">normalizeWords</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
@@ -12088,7 +12062,6 @@ services:
     <span class="k">if</span> <span class="n">word</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">,</span> <span class="s1">&#39;ignore&#39;</span><span class="p">):</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
 </code></pre></div>
-
 
 <div class="highlight"><pre><span></span><code><span class="err">the 31</span>
 <span class="err">of 17</span>
@@ -12114,7 +12087,6 @@ services:
 <span class="err">version 4</span>
 <span class="err">....</span>
 </code></pre></div>
-
 
 <p>We can of course improve the normalize function and use NLTK or any other language processing library to clean up the stopwords, verbs and other undesired words in the text.</p>
 <p>The notebook can be found <a href="https://github.com/jitsejan/notebooks/blob/master/notebooks/Project%20-%20Hadoop%20experiment.ipynb">here</a>.</p>

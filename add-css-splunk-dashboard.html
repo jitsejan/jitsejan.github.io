@@ -11865,11 +11865,9 @@ jQuery(document).ready(function($) {
 <div class="highlight"><pre><span></span><code><span class="c">%SPLUNK_HOME%/etc/apps/&lt;APPNAME&gt;/appserver/static/</span>
 </code></pre></div>
 
-
 <p>If the file is called <em>dashboard.css</em>, the file will be automatically applied to all dashboards within this application. If you give it a custom name, you need to include it explicitly in the stylesheet attribute in the XML of your dashboard like the following</p>
 <div class="highlight"><pre><span></span><code><span class="err">&lt;form stylesheet=&quot;mycustomstyle.css&quot;&gt;</span>
 </code></pre></div>
-
 
 <p>Currently the base of my <em>dashboard.css</em> looks like the stylesheet of this webpage, to make it clear that I am in my own application.</p>
 <div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">import</span> <span class="nt">url</span><span class="o">(</span><span class="s1">&#39;https://fonts.googleapis.com/css?family=Raleway&#39;</span><span class="o">)</span><span class="p">;</span>
@@ -11906,7 +11904,6 @@ jQuery(document).ready(function($) {
     <span class="k">color</span><span class="p">:</span> <span class="nb">rgb</span><span class="p">(</span><span class="mi">102</span><span class="p">,</span> <span class="mi">153</span><span class="p">,</span> <span class="mi">255</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-
 
 <p>Note that when a new stylesheet is added, Splunkweb needs a restart. If you simply update the stylesheet, run the following command:</p>
 <div class="highlight"><pre><span></span><code><span class="c">http://SPLUNKHOST/en-US/_bump</span>

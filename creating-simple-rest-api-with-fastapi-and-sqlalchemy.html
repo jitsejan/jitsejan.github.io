@@ -6,7 +6,7 @@
         <meta name="author" content="Jitse-Jan">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
-        <title>Hadoop Experiment - MapReduce on Cloudera | JJ's World</title>
+        <title>Creating a simple REST API with FastAPI and SQLAlchemy | JJ's World</title>
 
 
 <style type="text/css">
@@ -11856,362 +11856,237 @@ jQuery(document).ready(function($) {
     </div>
     <article>
         <header>
-            <h1>Hadoop Experiment - MapReduce on Cloudera</h1>
-            <time datetime="article.date.isoformat()" pubdate>Fri 08 September 2017</time>
+            <h1>Creating a simple REST API with FastAPI and SQLAlchemy</h1>
+            <time datetime="article.date.isoformat()" pubdate>Sat 27 February 2021</time>
         </header>
 
         <div class="article_content">
-            <p><center><img src="http://community.cloudera.com/html/assets/cloudera-logo.png" width=100/></center></p>
-<p>In this example I will extract data with NES reviews from http://videogamecritic.com. I will create a dataframe, add some extra fields and save the data to a CSV-file. This file will be used for a simple MapReduce script.</p>
-<p>Note: I have a Docker container running with Selenium instead of installing all dependencies on my system. See <a href="https://hub.docker.com/r/selenium/standalone-chrome/">this page</a>.</p>
-<h2>Extract script</h2>
-<p>The script below is used to retrieve the data. It is ugly code, but it is doing the job.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">lxml.html</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
-<span class="kn">from</span> <span class="nn">selenium.webdriver.common.desired_capabilities</span> <span class="kn">import</span> <span class="n">DesiredCapabilities</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+            <h2>Introduction</h2>
+<p>In my previous article I made a quick example explaining how to use <a href="https://www.jitsejan.com/creating-simple-rest-api-with-flask-and-sqlalchemy.html">Flask with SQLALchemy as REST API</a>. Since then I have moved away from Flask and picked up <a href="https://fastapi.tiangolo.com">FastAPI</a> which makes it, in my opinion, much easier to create a REST API and it is even more performant. Throughout this tutorial I will use the same   data as in the Flask article and assume the data is already stored in Postgres with the same account. The only difference is the code to get the API running.</p>
+<blockquote>
+<p><em>FastAPI framework, high performance, easy to learn, fast to code, ready for production</em></p>
+</blockquote>
+<h2>Overview</h2>
+<ul>
+<li><strong>Database</strong> - connects to the Postgres database</li>
+<li><strong>Models</strong> - describes the data model(s)</li>
+<li><strong>CRUD</strong> - contains the Create, Read, Update and Delete actions which execute queries on the models against the database</li>
+<li><strong>Schemas</strong> - defines the schemas of the inputs and outputs of the API</li>
+<li><strong>Routers</strong> - explains the different routes of the API and what CRUD action to call</li>
+<li><strong>Main</strong> - </li>
+</ul>
+<h2>Database</h2>
+<p>The important bit is to have your database running and have some data to display. I will simply reuse the same connection that I have used for the Flask REST API which means I store my credentials as environment variables and construct the PostgreSQL connection string to connect to the database through SQLalchemy. The code is similar to the connection code for Flask, however, we can directly use SQLalchemy without an additional package whereas for Flask we had to use <code>flask_sqlalchemy</code>. This is one of the important arguments why people use FastAPI over Flask!</p>
+<p><strong><code>database.py</code></strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 
-<span class="n">URL</span> <span class="o">=</span> <span class="s1">&#39;http://videogamecritic.com/nes.htm&#39;</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>  <span class="c1"># type: ignore</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>  <span class="c1"># type: ignore</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>  <span class="c1"># type: ignore</span>
 
-<span class="k">def</span> <span class="nf">map_rating</span><span class="p">(</span><span class="n">rating</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Function to convert the rating to a number &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;A+&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;A&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;A-&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">3</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;B+&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">4</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;B&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">5</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;B-&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">6</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;C+&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">7</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;C&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">8</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;C-&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">9</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;D+&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">10</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;D&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">11</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;D-&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">12</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;F&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">13</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rating</span> <span class="o">==</span> <span class="s2">&quot;F-&quot;</span><span class="p">):</span> <span class="k">return</span> <span class="mi">14</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">15</span><span class="p">;</span>
+<span class="n">host</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_HOST&quot;</span><span class="p">]</span>
+<span class="n">port</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_PORT&quot;</span><span class="p">]</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_USER&quot;</span><span class="p">]</span>
+<span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_PASS&quot;</span><span class="p">]</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;POSTGRES_DB&quot;</span><span class="p">]</span>
+<span class="n">dbtype</span> <span class="o">=</span> <span class="s2">&quot;postgresql&quot;</span>
 
-<span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span>
-<span class="k">if</span> <span class="n">resp</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;GET &#39;</span><span class="o">+</span><span class="n">link</span><span class="o">+</span><span class="s1">&#39; </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">status_code</span><span class="p">))</span>
-<span class="n">tree</span><span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-<span class="n">gamepages</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;http://videogamecritic.com/&#39;</span> <span class="o">+</span> <span class="n">game</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">game</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s1">&#39;h3 a&#39;</span><span class="p">)]</span>
-<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Remote</span><span class="p">(</span><span class="s2">&quot;http://localhost:4444/wd/hub&quot;</span><span class="p">,</span> <span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">CHROME</span><span class="p">)</span>
-<span class="n">gamedata</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">gamepages</span><span class="p">:</span>
-    <span class="c1"># Retrieve the data</span>
-    <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">page</span><span class="p">)</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">lxml</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">)</span>
-    <span class="c1"># Extract the fields</span>
-    <span class="n">grades</span> <span class="o">=</span> <span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">text_content</span><span class="p">()</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s1">&#39;div[class*=</span><span class="se">\&#39;</span><span class="s1">hdr</span><span class="se">\&#39;</span><span class="s1">]&#39;</span><span class="p">)]</span>
-    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">text_content</span><span class="p">()</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s1">&#39;div[class*=</span><span class="se">\&#39;</span><span class="s1">hdl</span><span class="se">\&#39;</span><span class="s1">]&#39;</span><span class="p">)]</span>
-    <span class="n">metadata</span> <span class="o">=</span> <span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">text_content</span><span class="p">()</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s1">&#39;div[class*=</span><span class="se">\&#39;</span><span class="s1">mdl</span><span class="se">\&#39;</span><span class="s1">]&#39;</span><span class="p">)]</span>
-    <span class="n">votes</span> <span class="o">=</span> <span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">text_content</span><span class="p">()</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">cssselect</span><span class="p">(</span><span class="s1">&#39;div[class*=</span><span class="se">\&#39;</span><span class="s1">vote</span><span class="se">\&#39;</span><span class="s1">]&#39;</span><span class="p">)]</span>
-    <span class="c1"># Append to dataset</span>
-    <span class="n">gamedata</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">votes</span><span class="p">,</span> <span class="n">grades</span><span class="p">,</span> <span class="n">metadata</span><span class="p">))</span>
-<span class="n">driver</span><span class="o">.</span><span class="n">quit</span><span class="p">()</span>
-<span class="c1">##</span>
-<span class="c1"># DataFrame magic</span>
-<span class="c1">##</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">gamedata</span><span class="p">)</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;vote&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;grade&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s2">&quot;publisher&quot;</span><span class="p">})</span>
-<span class="c1"># Extract and convert data</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;reader_rating&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vote&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;Readers:\s(.*?)\s\(&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;reader_rating&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;reader_rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">map_rating</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;number_of_votes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;vote&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;\((\d*)\svotes\)&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;grade&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;grade&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;Grade:&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">map_rating</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;publish_year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s1">&#39;\((\d*)\)Reviewed&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="s2">&quot;Publisher:\s(.*?)\s\(&quot;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;vote&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="c1"># Calculate the total grade</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;total_grade&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;grade&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;reader_rating&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;number_of_votes&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;number_of_votes&#39;</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="c1"># Corrections</span>
-<span class="n">df</span><span class="p">[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;publisher&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Electrobrain&#39;</span><span class="p">,</span> <span class="s1">&#39;Electro Brain&#39;</span><span class="p">)</span>
-<span class="c1"># Save to file</span>
-<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;nesgamedata.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">SQLALCHEMY_DATABASE_URI</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">dbtype</span><span class="si">}</span><span class="s2">://</span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">password</span> <span class="si">}</span><span class="s2">@</span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="n">port</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">db</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">SQLALCHEMY_DATABASE_URI</span><span class="p">)</span>
+<span class="n">SessionLocal</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">autocommit</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">autoflush</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
 </code></pre></div>
 
-<p>This will result in the following file.</p>
-<div class="highlight"><pre><span></span><code><span class="m">0</span>   <span class="m">10</span>-Yard Fight   <span class="m">12</span>  Nintendo    <span class="m">10</span>  <span class="m">44</span>  <span class="m">1985</span>    <span class="m">10</span>.044444444444444
-<span class="m">1</span>   <span class="m">1942</span>    <span class="m">11</span>  Capcom  <span class="m">8</span>   <span class="m">65</span>  <span class="m">1985</span>    <span class="m">8</span>.045454545454545
-<span class="m">2</span>   <span class="m">1943</span>    <span class="m">5</span>   Capcom  <span class="m">4</span>   <span class="m">58</span>  <span class="m">1988</span>    <span class="m">4</span>.016949152542373
-<span class="m">3</span>   <span class="m">720</span> Degrees <span class="m">13</span>  Tengen  <span class="m">11</span>  <span class="m">24</span>  <span class="m">1989</span>    <span class="m">11</span>.08
-<span class="m">4</span>   <span class="m">8</span> Eyes  <span class="m">13</span>  Taxan   <span class="m">10</span>  <span class="m">30</span>  <span class="m">1989</span>    <span class="m">10</span>.096774193548388
-<span class="m">5</span>   Abadox  <span class="m">11</span>  Abadox  <span class="m">6</span>   <span class="m">34</span>  <span class="m">1989</span>    <span class="m">6</span>.142857142857143
-<span class="m">6</span>   Adventure Island    <span class="m">7</span>   Hudson Soft <span class="m">6</span>   <span class="m">63</span>  <span class="m">1987</span>    <span class="m">6</span>.015625
-<span class="m">7</span>   Adventure Island <span class="m">2</span>  <span class="m">4</span>   Hudson Soft <span class="m">5</span>   <span class="m">40</span>  <span class="m">1990</span>    <span class="m">4</span>.975609756097561
-<span class="m">8</span>   Adventure Island <span class="m">3</span>  <span class="m">4</span>   Hudson Soft <span class="m">5</span>   <span class="m">27</span>  <span class="m">1992</span>    <span class="m">4</span>.964285714285714
-<span class="m">9</span>   Adventures in the Magic Kingdom <span class="m">5</span>   Capcom  <span class="m">8</span>   <span class="m">23</span>  <span class="m">1990</span>    <span class="m">7</span>.875
-...
+<p>The <code># type: ignore</code> comment is to avoid running into errors with the <a href="https://mypy.readthedocs.io/en/stable/">mypy</a> typechecker.</p>
+<h2>Models</h2>
+<p>Secondly, I create the data model for the application now that I have a database connection. This will be identical to the one that we have used for the Flask app in the other article. The model only contains one table <code>items</code> with a name and a price column. Note that because FastAPI is all driven by <a href="https://www.python.org/dev/peps/pep-0484/">typehinting</a> and <a href="https://pydantic-docs.helpmanual.io">Pydantic</a> modelling I did add a <a href="https://www.python.org/dev/peps/pep-0589/"><code>TypedDict</code></a> as return value for the <code>serialize</code> method. Using this type I can indicate that I expect a dictionary back that contains the key <code>name</code> and the key <code>price</code> and their respective types. Obviously this is identical to the database model a few lines below. As mentioned in the previous paragraph, we do not need extra packages like <code>flask_sqlalchemy</code> and connect directly to SQLalchemy which makes the models here inherit from <code>Base</code> (<code>declarative_base()</code>) rather than the <code>flask_sqlalchemy</code> SQLalchemy model.</p>
+<p><strong><code>models.py</code></strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TypedDict</span>
+
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span>  <span class="c1"># type: ignore</span>
+
+<span class="kn">from</span> <span class="nn">.database</span> <span class="kn">import</span> <span class="n">Base</span>
+
+
+<span class="k">class</span> <span class="nc">ItemDict</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">price</span><span class="p">:</span> <span class="nb">int</span>
+
+
+<span class="k">class</span> <span class="nc">Item</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines the items model</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s2">&quot;items&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">price</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">price</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">price</span> <span class="o">=</span> <span class="n">price</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;Item </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&gt;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ItemDict</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return item in serializeable format</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;price&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">price</span><span class="p">}</span>
 </code></pre></div>
 
-<h2>MapReduce script</h2>
-<p>Calculate how often what rating is used.</p>
-<ol>
-<li>Map the reader ratings</li>
-<li>Reduce to counts per rating</li>
-</ol>
-<p>Lets create the script that will perform my first MapReduce action. The content of the following cell will be saved to a file which can in turn be used to perform the mapping and reducing.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mrjob.job</span> <span class="kn">import</span> <span class="n">MRJob</span>
-<span class="kn">from</span> <span class="nn">mrjob.step</span> <span class="kn">import</span> <span class="n">MRStep</span>
+<h2>CRUD</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> element of the API is kept unchanged and still only contains a function to get a single item by name or get all the items. These actions were in one single file in the Flask app where the route that was called directly executed the query against the database but for FastAPI it is common to seperate the routes from the database actions. Again I am using type hinting to indicate that the functions return a single <code>Item</code> or a list of <code>Item</code>s respectively. </p>
+<p><strong><code>crud.py</code></strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
 
-<span class="k">class</span> <span class="nc">GamesBreakdown</span><span class="p">(</span><span class="n">MRJob</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">steps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span>
-            <span class="n">MRStep</span><span class="p">(</span><span class="n">mapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mapper_get_ratings</span><span class="p">,</span>
-                   <span class="n">reducer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reducer_count_ratings</span><span class="p">)</span>
-        <span class="p">]</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>  <span class="c1"># type: ignore</span>
 
-    <span class="k">def</span> <span class="nf">mapper_get_ratings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-        <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">grade</span><span class="p">,</span> <span class="n">publisher</span><span class="p">,</span> <span class="n">reader_rating</span><span class="p">,</span> <span class="n">number_of_votes</span><span class="p">,</span> <span class="n">publish_year</span><span class="p">,</span> <span class="n">total_grade</span><span class="p">)</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> 
-        <span class="k">yield</span> <span class="n">reader_rating</span><span class="p">,</span> <span class="mi">1</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Item</span>
 
-    <span class="k">def</span> <span class="nf">reducer_count_ratings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-        <span class="k">yield</span> <span class="n">key</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">GamesBreakdown</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">get_item_by_name</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Item</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Item</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Item</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">first</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">get_items</span><span class="p">(</span><span class="n">session</span><span class="p">:</span> <span class="n">Session</span><span class="p">,</span> <span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Item</span><span class="p">]:</span>
+    <span class="k">return</span> <span class="n">session</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">Item</span><span class="p">)</span><span class="o">.</span><span class="n">offset</span><span class="p">(</span><span class="n">skip</span><span class="p">)</span><span class="o">.</span><span class="n">limit</span><span class="p">(</span><span class="n">limit</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+</code></pre></div>
+
+<h2>Schemas</h2>
+<p>As mentioned before, FastAPI heavily relies on <code>pydantic</code> for enforcing schemas for all the in- and outputs that are used in the API. There are more complex examples in their documentation where the input model (i.e. <em>ItemInputModel</em>) contains only a name and the return model (i.e. <em>ItemOutputModel</em>) consists of the name, the attributes and the particular ID. This file would be the place to define that and the schemas will be referred to in the <code>main.py</code> where the <em>routes</em> are defined. This particular example is kept (too) simple and the <code>ItemBase</code> contains a <code>name</code> and a <code>price</code>. This schema is identical to the return value that I defined before in the <code>models.py</code> but instead of <code>pydantic</code> I used the lower level <code>typing</code> library.</p>
+<p><strong><code>schemas.py</code></strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+
+
+<span class="k">class</span> <span class="nc">ItemBase</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">price</span><span class="p">:</span> <span class="nb">int</span>
+</code></pre></div>
+
+<h2>Routers</h2>
+<p>The routers file will connect the endpoint the user is calling to the corresponding CRUD action. As explained in the CRUD paragraph there are two actions we want to execute, one for getting an item and one for getting all the items. The route will call the right CRUD method and pass the database session to it. It uses the schemas to define the <code>response_model</code> for each route which helps to build the automated docs that FastAPI is also famous for. Note that for both API endpoints I <code>serialize</code> the output to make sure that the returned value is a dictionary (or a list of dictionaries) which match the <code>ItemBase</code> schema definition.</p>
+<p><strong><code>routers.py</code></strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">HTTPException</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">Session</span>  <span class="c1"># type: ignore</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">crud</span><span class="p">,</span> <span class="n">models</span>
+<span class="kn">from</span> <span class="nn">.database</span> <span class="kn">import</span> <span class="n">SessionLocal</span><span class="p">,</span> <span class="n">engine</span>
+<span class="kn">from</span> <span class="nn">.schemas</span> <span class="kn">import</span> <span class="n">ItemBase</span>
+
+<span class="n">models</span><span class="o">.</span><span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+<span class="n">itemrouter</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">get_session</span><span class="p">():</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">SessionLocal</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">session</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="nd">@itemrouter</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">List</span><span class="p">[</span><span class="n">ItemBase</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">read_items</span><span class="p">(</span>
+    <span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_session</span><span class="p">)</span>
+<span class="p">):</span>
+    <span class="n">items</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_items</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span> <span class="n">skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="n">limit</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">serialize</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">items</span><span class="p">]</span>
+
+
+<span class="nd">@itemrouter</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/items/</span><span class="si">{name}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">ItemBase</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">read_item</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_session</span><span class="p">)):</span>
+    <span class="n">item</span> <span class="o">=</span> <span class="n">crud</span><span class="o">.</span><span class="n">get_item_by_name</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="n">session</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">404</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Item not found&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">item</span><span class="o">.</span><span class="n">serialize</span>
+</code></pre></div>
+
+<h2>Main</h2>
+<p>The <code>main</code> file obviously glues all the above together but since it is all nicely split in small files its content is kept <em>very</em> short. It initiates a FastAPI app (equal to the Flask app) and add the <code>itemrouter</code> that we defined in <code>routers.py</code>. </p>
+<p><strong><code>main.py</code></strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">.routers</span> <span class="kn">import</span> <span class="n">itemrouter</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">include_router</span><span class="p">(</span><span class="n">itemrouter</span><span class="p">)</span>
 </code></pre></div>
 
 <h2>Execution</h2>
-<p>To use Hadoop, the command should look like the following and should be run on the Hadoop machine, with the hadoop-streaming-jar argument only given in case the .jar is not found:</p>
-<div class="highlight"><pre><span></span><code>python gamesbreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar nesgamedata.csv
+<p>At this stage I have the following structure:</p>
+<div class="highlight"><pre><span></span><code>❯ tree fastapiapp
+├── __init__.py
+├── crud.py
+├── database.py
+├── main.py
+├── models.py
+├── routers.py
+└── schemas.py
 </code></pre></div>
 
-<p>To do this, upload the <code>nesgamesdata.csv</code> file and the script <code>gamesbreakdown.py</code> to HDFS, using the Hue files view and upload functionality. Next copy them to the local folder to be used in the command. Of course other methods to get the files locally on the Hadoop machine can be used.</p>
-<p>I am using the <a href="https://hub.docker.com/r/cloudera/quickstart/">Cloudera Quickstart image</a> to experiment with Docker and Cloudera and the <code>docker-compose.yml</code> contains the following:</p>
-<div class="highlight"><pre><span></span><code><span class="c">version: &#39;2&#39;</span>
-<span class="c">services:</span>
-<span class="c">  cloudera:</span>
-<span class="c">    hostname: quickstart.cloudera</span>
-<span class="c">    command: /usr/bin/docker-quickstart</span>
-<span class="c">    tty: true</span>
-<span class="c">    privileged: true</span>
-<span class="c">    image: cloudera/quickstart:latest</span>
-<span class="c">    volumes:</span>
-<span class="c">      - ./data:/opt/data</span>
-<span class="c">    ports:</span>
-<span class="c">      - &quot;8020:8020&quot;</span>
-<span class="c">      - &quot;8022:22&quot;     # ssh</span>
-<span class="c">      - &quot;7180:7180&quot;   # Cloudera Manager</span>
-<span class="c">      - &quot;8888:8888&quot;   # HUE</span>
-<span class="c">      - &quot;11000:11000&quot; # Oozie</span>
-<span class="c">      - &quot;50070:50070&quot; # HDFS REST Namenode</span>
-<span class="c">      - &quot;2181:2181&quot;</span>
-<span class="c">      - &quot;11443:11443&quot;</span>
-<span class="c">      - &quot;9090:9090&quot;</span>
-<span class="c">      - &quot;8088:8088&quot;</span>
-<span class="c">      - &quot;19888:19888&quot;</span>
-<span class="c">      - &quot;9092:9092&quot;</span>
-<span class="c">      - &quot;8983:8983&quot;</span>
-<span class="c">      - &quot;16000:16000&quot;</span>
-<span class="c">      - &quot;16001:16001&quot;</span>
-<span class="c">      - &quot;42222:22&quot;</span>
-<span class="c">      - &quot;8042:8042&quot;</span>
-<span class="c">      - &quot;60010:60010&quot;</span>
-<span class="c">      - &quot;8080:8080&quot;</span>
-<span class="c">      - &quot;7077:7077&quot;</span>
+<p>Now to run the app I use the following command (make sure to move up from the app folder):</p>
+<div class="highlight"><pre><span></span><code>❯ uvicorn fastapiapp.main:app --reload --workers <span class="m">1</span> --host <span class="m">0</span>.0.0.0 --port <span class="m">8001</span>
+INFO:     Uvicorn running on http://0.0.0.0:8001 <span class="o">(</span>Press CTRL+C to quit<span class="o">)</span>
+INFO:     Started reloader process <span class="o">[</span><span class="m">84872</span><span class="o">]</span> using statreload
+INFO:     Started server process <span class="o">[</span><span class="m">84874</span><span class="o">]</span>
+INFO:     Waiting <span class="k">for</span> application startup.
+INFO:     Application startup complete.
 </code></pre></div>
 
-<p>Connect to the machine and verify the file is present:</p>
-<div class="highlight"><pre><span></span><code>jitsejan@ssdnodes-jj-kvm:~/cloudera_docker$ docker <span class="nb">exec</span> -ti clouderadocker_cloudera_1 bash
-<span class="o">[</span>root@quickstart /<span class="o">]</span><span class="c1"># cd home/</span>
-<span class="o">[</span>root@quickstart home<span class="o">]</span><span class="c1"># mkdir gamedata &amp;&amp; cd $_</span>
-<span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># hadoop fs -get gamedata/gamesbreakdown.py gamesbreakdown.py</span>
-<span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># hadoop fs -get gamedata/nesgamedata.csv nesgamedata.csv</span>
-<span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># ll</span>
-total <span class="m">20</span>
--rw-r--r-- <span class="m">1</span> root root   <span class="m">590</span> Sep  <span class="m">5</span> <span class="m">13</span>:42 gamesbreakdown.py
--rw-r--r-- <span class="m">1</span> root root <span class="m">15095</span> Sep  <span class="m">5</span> <span class="m">13</span>:56 nesgamedata.csv
+<p>This will use the asynchronous web server <a href="https://www.uvicorn.org">uvicorn</a> to kick off the main app on port 8001 open to the public (0.0.0.0). It will reload automatically here because I was debugging the app but this should of course be avoided. I only use a single worker because that should be enough for me hitting F5 to see the changes.</p>
+<h2>Verification</h2>
+<p>Now that the app is running verify that the docs are working. Navigate to localhost:<port>/docs (8001 in this case) and this will show the documentation for the API. Indeed it shows my two endpoints!</p>
+<p><center>
+<img src="images/fastapi_docs.PNG" style="width: 700px" />
+</center></p>
+<p>The next step is to actually test one of the endpoints which can be done through the docs page by expanding one of the two endpoints and click on "Try it out". Scroll down and hit Execute to see all the items returned in a JSON format.</p>
+<p><center>
+<img src="images/fastapi_get_items.PNG" style="width: 700px" />
+</center></p>
+<p>If you don't like user interfaces or documentation you can simply use <a href="https://httpie.io/">HTTPie</a> to call the <code>items</code> endpoint. Default it will use <code>GET</code> and I have set the limit to 3 and the skip to 2. </p>
+<div class="highlight"><pre><span></span><code><span class="err">❯</span> <span class="err">http</span> <span class="err">localhost:</span><span class="mi">8001</span><span class="err">/items/\?limit\=</span><span class="mi">3</span><span class="err">\&amp;skip\=</span><span class="mi">2</span>
+<span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="err">OK</span>
+<span class="err">content-length:</span> <span class="mi">101</span>
+<span class="err">content-type:</span> <span class="err">application/json</span>
+<span class="err">date:</span> <span class="err">Sat,</span> <span class="mi">27</span> <span class="err">Feb</span> <span class="mi">2021</span> <span class="mi">02</span><span class="err">:</span><span class="mi">22</span><span class="err">:</span><span class="mi">32</span> <span class="err">GMT</span>
+<span class="err">server:</span> <span class="err">uvicorn</span>
+
+<span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Blue Ring&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">250</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Red Water of Life&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">68</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Food&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">60</span>
+    <span class="p">}</span>
+<span class="p">]</span>
 </code></pre></div>
 
-<p>Install the mrjob library on the Cloudera container.</p>
-<div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># yum install python-pip -y</span>
-<span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># pip install mrjob</span>
-</code></pre></div>
-
-<p>Run the script without using Hadoop to verify the installation.</p>
-<div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># python gamesbreakdown.py nesgamedata.csv</span>
-No configs found<span class="p">;</span> falling back on auto-configuration
-Creating temp directory /tmp/gamesbreakdown.root.20170905.135809.859796
-Running step <span class="m">1</span> of <span class="m">1</span>...
-Streaming final output from /tmp/gamesbreakdown.root.20170905.135809.859796/output...
-<span class="s2">&quot;10&quot;</span>    <span class="m">15</span>
-<span class="s2">&quot;11&quot;</span>    <span class="m">14</span>
-<span class="s2">&quot;12&quot;</span>    <span class="m">12</span>
-<span class="s2">&quot;13&quot;</span>    <span class="m">4</span>
-<span class="s2">&quot;2&quot;</span>     <span class="m">9</span>
-<span class="s2">&quot;3&quot;</span>     <span class="m">28</span>
-<span class="s2">&quot;4&quot;</span>     <span class="m">44</span>
-<span class="s2">&quot;5&quot;</span>     <span class="m">34</span>
-<span class="s2">&quot;6&quot;</span>     <span class="m">48</span>
-<span class="s2">&quot;7&quot;</span>     <span class="m">31</span>
-<span class="s2">&quot;8&quot;</span>     <span class="m">28</span>
-<span class="s2">&quot;9&quot;</span>     <span class="m">15</span>
-Removing temp directory /tmp/gamesbreakdown.root.20170905.135809.859796...
-</code></pre></div>
-
-<p>Now use Hadoop to start the cluster magic.</p>
-<div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># python gamesbreakdown.py -r hadoop nesgamedata.csv</span>
-No configs found<span class="p">;</span> falling back on auto-configuration
-Looking <span class="k">for</span> hadoop binary in <span class="nv">$PATH</span>...
-Found hadoop binary: /usr/bin/hadoop
-Using Hadoop version <span class="m">2</span>.6.0
-Looking <span class="k">for</span> Hadoop streaming jar in /home/hadoop/contrib...
-Looking <span class="k">for</span> Hadoop streaming jar in /usr/lib/hadoop-mapreduce...
-Found Hadoop streaming jar: /usr/lib/hadoop-mapreduce/hadoop-streaming.jar
-Creating temp directory /tmp/gamesbreakdown.root.20170905.135908.241472
-Copying <span class="nb">local</span> files to hdfs:///user/root/tmp/mrjob/gamesbreakdown.root.20170905.135908.241472/files/...
-Running step <span class="m">1</span> of <span class="m">1</span>...
-  packageJobJar: <span class="o">[]</span> <span class="o">[</span>/usr/jars/hadoop-streaming-2.6.0-cdh5.7.0.jar<span class="o">]</span> /tmp/streamjob3556720292725669631.jar <span class="nv">tmpDir</span><span class="o">=</span>null
-  Connecting to ResourceManager at /0.0.0.0:8032
-  Connecting to ResourceManager at /0.0.0.0:8032
-  Total input paths to process : <span class="m">1</span>
-  number of splits:2
-  Submitting tokens <span class="k">for</span> job: job_1504618114531_0001
-  Submitted application application_1504618114531_0001
-  The url to track the job: http://quickstart.cloudera:8088/proxy/application_1504618114531_0001/
-  Running job: job_1504618114531_0001
-  Job job_1504618114531_0001 running in uber mode : <span class="nb">false</span>
-   map <span class="m">0</span>% reduce <span class="m">0</span>%
-   map <span class="m">50</span>% reduce <span class="m">0</span>%
-   map <span class="m">100</span>% reduce <span class="m">0</span>%
-   map <span class="m">100</span>% reduce <span class="m">100</span>%
-  Job job_1504618114531_0001 completed successfully
-  Output directory: hdfs:///user/root/tmp/mrjob/gamesbreakdown.root.20170905.135908.241472/output
-Counters: <span class="m">49</span>
-        File Input Format Counters
-                Bytes <span class="nv">Read</span><span class="o">=</span><span class="m">19191</span>
-        File Output Format Counters
-                Bytes <span class="nv">Written</span><span class="o">=</span><span class="m">86</span>
-        File System Counters
-                FILE: Number of bytes <span class="nv">read</span><span class="o">=</span><span class="m">2307</span>
-                FILE: Number of bytes <span class="nv">written</span><span class="o">=</span><span class="m">358424</span>
-                FILE: Number of large <span class="nb">read</span> <span class="nv">operations</span><span class="o">=</span><span class="m">0</span>
-                FILE: Number of <span class="nb">read</span> <span class="nv">operations</span><span class="o">=</span><span class="m">0</span>
-                FILE: Number of write <span class="nv">operations</span><span class="o">=</span><span class="m">0</span>
-                HDFS: Number of bytes <span class="nv">read</span><span class="o">=</span><span class="m">19527</span>
-                HDFS: Number of bytes <span class="nv">written</span><span class="o">=</span><span class="m">86</span>
-                HDFS: Number of large <span class="nb">read</span> <span class="nv">operations</span><span class="o">=</span><span class="m">0</span>
-                HDFS: Number of <span class="nb">read</span> <span class="nv">operations</span><span class="o">=</span><span class="m">9</span>
-                HDFS: Number of write <span class="nv">operations</span><span class="o">=</span><span class="m">2</span>
-        Job Counters
-                Data-local map <span class="nv">tasks</span><span class="o">=</span><span class="m">2</span>
-                Launched map <span class="nv">tasks</span><span class="o">=</span><span class="m">2</span>
-                Launched reduce <span class="nv">tasks</span><span class="o">=</span><span class="m">1</span>
-                Total megabyte-seconds taken by all map <span class="nv">tasks</span><span class="o">=</span><span class="m">8678400</span>
-                Total megabyte-seconds taken by all reduce <span class="nv">tasks</span><span class="o">=</span><span class="m">3588096</span>
-                Total <span class="nb">time</span> spent by all map tasks <span class="o">(</span>ms<span class="o">)=</span><span class="m">8475</span>
-                Total <span class="nb">time</span> spent by all maps in occupied slots <span class="o">(</span>ms<span class="o">)=</span><span class="m">8475</span>
-                Total <span class="nb">time</span> spent by all reduce tasks <span class="o">(</span>ms<span class="o">)=</span><span class="m">3504</span>
-                Total <span class="nb">time</span> spent by all reduces in occupied slots <span class="o">(</span>ms<span class="o">)=</span><span class="m">3504</span>
-                Total vcore-seconds taken by all map <span class="nv">tasks</span><span class="o">=</span><span class="m">8475</span>
-                Total vcore-seconds taken by all reduce <span class="nv">tasks</span><span class="o">=</span><span class="m">3504</span>
-        Map-Reduce Framework
-                CPU <span class="nb">time</span> spent <span class="o">(</span>ms<span class="o">)=</span><span class="m">2450</span>
-                Combine input <span class="nv">records</span><span class="o">=</span><span class="m">0</span>
-                Combine output <span class="nv">records</span><span class="o">=</span><span class="m">0</span>
-                Failed <span class="nv">Shuffles</span><span class="o">=</span><span class="m">0</span>
-                GC <span class="nb">time</span> elapsed <span class="o">(</span>ms<span class="o">)=</span><span class="m">367</span>
-                Input split <span class="nv">bytes</span><span class="o">=</span><span class="m">336</span>
-                Map input <span class="nv">records</span><span class="o">=</span><span class="m">282</span>
-                Map output <span class="nv">bytes</span><span class="o">=</span><span class="m">1737</span>
-                Map output materialized <span class="nv">bytes</span><span class="o">=</span><span class="m">2313</span>
-                Map output <span class="nv">records</span><span class="o">=</span><span class="m">282</span>
-                Merged Map <span class="nv">outputs</span><span class="o">=</span><span class="m">2</span>
-                Physical memory <span class="o">(</span>bytes<span class="o">)</span> <span class="nv">snapshot</span><span class="o">=</span><span class="m">651063296</span>
-                Reduce input <span class="nv">groups</span><span class="o">=</span><span class="m">12</span>
-                Reduce input <span class="nv">records</span><span class="o">=</span><span class="m">282</span>
-                Reduce output <span class="nv">records</span><span class="o">=</span><span class="m">12</span>
-                Reduce shuffle <span class="nv">bytes</span><span class="o">=</span><span class="m">2313</span>
-                Shuffled <span class="nv">Maps</span> <span class="o">=</span><span class="m">2</span>
-                Spilled <span class="nv">Records</span><span class="o">=</span><span class="m">564</span>
-                Total committed heap usage <span class="o">(</span>bytes<span class="o">)=</span><span class="m">679477248</span>
-                Virtual memory <span class="o">(</span>bytes<span class="o">)</span> <span class="nv">snapshot</span><span class="o">=</span><span class="m">4099473408</span>
-        Shuffle Errors
-                <span class="nv">BAD_ID</span><span class="o">=</span><span class="m">0</span>
-                <span class="nv">CONNECTION</span><span class="o">=</span><span class="m">0</span>
-                <span class="nv">IO_ERROR</span><span class="o">=</span><span class="m">0</span>
-                <span class="nv">WRONG_LENGTH</span><span class="o">=</span><span class="m">0</span>
-                <span class="nv">WRONG_MAP</span><span class="o">=</span><span class="m">0</span>
-                <span class="nv">WRONG_REDUCE</span><span class="o">=</span><span class="m">0</span>
-Streaming final output from hdfs:///user/root/tmp/mrjob/gamesbreakdown.root.20170905.135908.241472/output...
-<span class="s2">&quot;10&quot;</span>    <span class="m">15</span>
-<span class="s2">&quot;11&quot;</span>    <span class="m">14</span>
-<span class="s2">&quot;12&quot;</span>    <span class="m">12</span>
-<span class="s2">&quot;13&quot;</span>    <span class="m">4</span>
-<span class="s2">&quot;2&quot;</span>     <span class="m">9</span>
-<span class="s2">&quot;3&quot;</span>     <span class="m">28</span>
-<span class="s2">&quot;4&quot;</span>     <span class="m">44</span>
-<span class="s2">&quot;5&quot;</span>     <span class="m">34</span>
-<span class="s2">&quot;6&quot;</span>     <span class="m">48</span>
-<span class="s2">&quot;7&quot;</span>     <span class="m">31</span>
-<span class="s2">&quot;8&quot;</span>     <span class="m">28</span>
-<span class="s2">&quot;9&quot;</span>     <span class="m">15</span>
-Removing HDFS temp directory hdfs:///user/root/tmp/mrjob/gamesbreakdown.root.20170905.135908.241472...
-Removing temp directory /tmp/gamesbreakdown.root.20170905.135908.241472...
-</code></pre></div>
-
-<p>Now lets add another reducer step to sort the counts of the ratings.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">mrjob.job</span> <span class="kn">import</span> <span class="n">MRJob</span>
-<span class="kn">from</span> <span class="nn">mrjob.step</span> <span class="kn">import</span> <span class="n">MRStep</span>
-
-<span class="k">class</span> <span class="nc">GamesBreakdownUpdate</span><span class="p">(</span><span class="n">MRJob</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">steps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span>
-            <span class="n">MRStep</span><span class="p">(</span><span class="n">mapper</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mapper_get_ratings</span><span class="p">,</span>
-                   <span class="n">reducer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reducer_count_ratings</span><span class="p">),</span>
-            <span class="n">MRStep</span><span class="p">(</span><span class="n">reducer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reducer_sorted_output</span><span class="p">)</span>
-        <span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">mapper_get_ratings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-        <span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">grade</span><span class="p">,</span> <span class="n">publisher</span><span class="p">,</span> <span class="n">reader_rating</span><span class="p">,</span> <span class="n">number_of_votes</span><span class="p">,</span> <span class="n">publish_year</span><span class="p">,</span> <span class="n">total_grade</span><span class="p">)</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span> 
-        <span class="k">yield</span> <span class="n">reader_rating</span><span class="p">,</span> <span class="mi">1</span>
-
-    <span class="k">def</span> <span class="nf">reducer_count_ratings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-        <span class="k">yield</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">values</span><span class="p">))</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">key</span>
-
-    <span class="k">def</span> <span class="nf">reducer_sorted_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">ratings</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">rating</span> <span class="ow">in</span> <span class="n">ratings</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="n">rating</span><span class="p">,</span> <span class="n">count</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">GamesBreakdownUpdate</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
-</code></pre></div>
-
-<div class="highlight"><pre><span></span><code><span class="o">[</span>root@quickstart gamedata<span class="o">]</span><span class="c1"># python gamesbreakdownupdate.py nesgamedata.csv</span>
-No configs found<span class="p">;</span> falling back on auto-configuration
-Creating temp directory /tmp/gamesbreakdownupdate.root.20170905.142738.885314
-Running step <span class="m">1</span> of <span class="m">2</span>...
-Running step <span class="m">2</span> of <span class="m">2</span>...
-Streaming final output from /tmp/gamesbreakdownupdate.root.20170905.142738.885314/output...
-<span class="s2">&quot;13&quot;</span>    <span class="s2">&quot;04&quot;</span>
-<span class="s2">&quot;2&quot;</span>     <span class="s2">&quot;09&quot;</span>
-<span class="s2">&quot;12&quot;</span>    <span class="s2">&quot;12&quot;</span>
-<span class="s2">&quot;11&quot;</span>    <span class="s2">&quot;14&quot;</span>
-<span class="s2">&quot;10&quot;</span>    <span class="s2">&quot;15&quot;</span>
-<span class="s2">&quot;9&quot;</span>     <span class="s2">&quot;15&quot;</span>
-<span class="s2">&quot;3&quot;</span>     <span class="s2">&quot;28&quot;</span>
-<span class="s2">&quot;8&quot;</span>     <span class="s2">&quot;28&quot;</span>
-<span class="s2">&quot;7&quot;</span>     <span class="s2">&quot;31&quot;</span>
-<span class="s2">&quot;5&quot;</span>     <span class="s2">&quot;34&quot;</span>
-<span class="s2">&quot;4&quot;</span>     <span class="s2">&quot;44&quot;</span>
-<span class="s2">&quot;6&quot;</span>     <span class="s2">&quot;48&quot;</span>
-Removing temp directory /tmp/gamesbreakdownupdate.root.20170905.142738.885314...
-</code></pre></div>
-
-<p>That concludes my first experiments with Hadoop and MapReduce. Next step: using Pig or Spark to calculate similar statistics without all the overhead.</p>
+<p>The final code can be found <a href="https://github.com/jitsejan/architecture-patterns-with-python/tree/main/restapis/restfastapi">here</a>.</p>
+<h2>Sources</h2>
+<p>https://fastapi.tiangolo.com/tutorial/sql-databases/</p>
         </div>
 
         <div class="meta">
             <div>
-                    <a href="./tag/hadoop.html" class="tag">Hadoop</a>
-                    <a href="./tag/cloudera.html" class="tag">Cloudera</a>
-                    <a href="./tag/docker.html" class="tag">Docker</a>
-                    <a href="./tag/container.html" class="tag">container</a>
-                    <a href="./tag/virtualization.html" class="tag">virtualization</a>
-                    <a href="./tag/mapreduce.html" class="tag">mapreduce</a>
+                    <a href="./tag/python.html" class="tag">Python</a>
+                    <a href="./tag/postgres.html" class="tag">postgres</a>
+                    <a href="./tag/postgresql.html" class="tag">PostgreSQL</a>
+                    <a href="./tag/sqlalchemy.html" class="tag">SQLAlchemy</a>
+                    <a href="./tag/fastapi.html" class="tag">FastAPI</a>
+                    <a href="./tag/rest.html" class="tag">REST</a>
+                    <a href="./tag/api.html" class="tag">API</a>
             </div>
         </div>
     </article>
