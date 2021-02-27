@@ -12050,27 +12050,27 @@ INFO:     Application startup complete.
 <img src="images/fastapi_get_items.PNG" style="width: 700px" />
 </center></p>
 <p>If you don't like user interfaces or documentation you can simply use <a href="https://httpie.io/">HTTPie</a> to call the <code>items</code> endpoint. Default it will use <code>GET</code> and I have set the limit to 3 and the skip to 2. </p>
-<div class="highlight"><pre><span></span><code><span class="err">❯</span> <span class="err">http</span> <span class="err">localhost:</span><span class="mi">8001</span><span class="err">/items/\?limit\=</span><span class="mi">3</span><span class="err">\&amp;skip\=</span><span class="mi">2</span>
-<span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="err">OK</span>
-<span class="err">content-length:</span> <span class="mi">101</span>
-<span class="err">content-type:</span> <span class="err">application/json</span>
-<span class="err">date:</span> <span class="err">Sat,</span> <span class="mi">27</span> <span class="err">Feb</span> <span class="mi">2021</span> <span class="mi">02</span><span class="err">:</span><span class="mi">22</span><span class="err">:</span><span class="mi">32</span> <span class="err">GMT</span>
-<span class="err">server:</span> <span class="err">uvicorn</span>
+<div class="highlight"><pre><span></span><code>❯ http localhost:8001/items/<span class="se">\?</span>limit<span class="se">\=</span><span class="m">3</span><span class="se">\&amp;</span>skip<span class="se">\=</span><span class="m">2</span>
+HTTP/1.1 <span class="m">200</span> OK
+content-length: <span class="m">101</span>
+content-type: application/json
+date: Sat, <span class="m">27</span> Feb <span class="m">2021</span> <span class="m">02</span>:22:32 GMT
+server: uvicorn
 
-<span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Blue Ring&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">250</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Red Water of Life&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">68</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Food&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">60</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<span class="o">[</span>
+    <span class="o">{</span>
+        <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;Blue Ring&quot;</span>,
+        <span class="s2">&quot;price&quot;</span>: <span class="m">250</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;Red Water of Life&quot;</span>,
+        <span class="s2">&quot;price&quot;</span>: <span class="m">68</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+        <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;Food&quot;</span>,
+        <span class="s2">&quot;price&quot;</span>: <span class="m">60</span>
+    <span class="o">}</span>
+<span class="o">]</span>
 </code></pre></div>
 
 <p>The final code can be found <a href="https://github.com/jitsejan/architecture-patterns-with-python/tree/main/restapis/restfastapi">here</a>.</p>
