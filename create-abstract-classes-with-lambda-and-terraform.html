@@ -11896,9 +11896,9 @@ No IDE instance has been found. New one will be started.
 <h2>Testing</h2>
 <p>I will use the public gaming database from <a href="https://api.igdb.com">IGDB: Free Video Game Database API</a> as a source for this project. Check <a href="https://github.com/public-apis/public-apis">GitHub - public-apis/public-apis</a> for other APIs. Make sure to sign-up and get your personal API key to interact with the IGDB API. Test the API with <a href="https://www.getpostman.com">Postman</a> to ensure the credentials are working and you understand the endpoints. Add your API key as <code>user-key</code> to the <em>Headers</em> field. At the query to the (raw) <em>Body</em> field. </p>
 <p>First I hit the <code>platform</code> endpoint to retrieve the ID for the <em>N64</em> platform.</p>
-<p><img alt="" src="images/postman_get_platform.png"></p>
+<p><img src="images/postman_get_platform.png" /></p>
 <p>Second I hit the games endpoint to filter for N64 games that contain Mario in the name.</p>
-<p><img alt="" src="images/postman_get_games.png"></p>
+<p><img src="images/postman_get_games.png" /></p>
 <h2>Implementation</h2>
 <h3>Single file</h3>
 <p>Let's first start by recreating the Postman test in Python with the following code to get the platform ID for the N64.</p>
@@ -12843,9 +12843,9 @@ Apply complete! Resources: <span class="m">5</span> added, <span class="m">0</sp
 
 <h5>Results</h5>
 <p>Overview of the two Lambda functions:</p>
-<p><img alt="" src="images/lambda_overview.png"></p>
+<p><img src="images/lambda_overview.png" /></p>
 <p>Running the Lambda function:</p>
-<p><img alt="" src="images/lambda_execution.png"></p>
+<p><img src="images/lambda_execution.png" /></p>
 <h2>Conclusion</h2>
 <p>Using abstract classes makes it easier to create complex software, even when running serverless code on AWS. By using these type of classes you can enforce the developer that creates a new concrete class to implement all the necessary methods and properties to ensure code consistency. The approach in my team would be to create all classes as part of one Lambda layer that contains the Python module with the different abstract classes (APIConnector, FTPConnector, etc) and all concrete classes (CompaniesHouseApiConnector, ExperianApiConnector, etc). The Lambda functions to execute the actual data crawl can remain short and simple making it more scalable and flexible to add new endpoints and therefore new datasets to the data lake.</p>
 <h2>Reference</h2>

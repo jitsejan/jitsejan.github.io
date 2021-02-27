@@ -11873,7 +11873,7 @@ jQuery(document).ready(function($) {
 <li><strong>CRUD</strong> - contains the Create, Read, Update and Delete actions which execute queries on the models against the database</li>
 <li><strong>Schemas</strong> - defines the schemas of the inputs and outputs of the API</li>
 <li><strong>Routers</strong> - explains the different routes of the API and what CRUD action to call</li>
-<li><strong>Main</strong> - </li>
+<li><strong>Main</strong> - instantiates the FastAPI application and adds the routes from the routers</li>
 </ul>
 <h2>Database</h2>
 <p>The important bit is to have your database running and have some data to display. I will simply reuse the same connection that I have used for the Flask REST API which means I store my credentials as environment variables and construct the PostgreSQL connection string to connect to the database through SQLalchemy. The code is similar to the connection code for Flask, however, we can directly use SQLalchemy without an additional package whereas for Flask we had to use <code>flask_sqlalchemy</code>. This is one of the important arguments why people use FastAPI over Flask!</p>
@@ -12075,7 +12075,7 @@ server: uvicorn
 
 <p>The final code can be found <a href="https://github.com/jitsejan/architecture-patterns-with-python/tree/main/restapis/restfastapi">here</a>.</p>
 <h2>Sources</h2>
-<p>https://fastapi.tiangolo.com/tutorial/sql-databases/</p>
+<p><a href="https://fastapi.tiangolo.com/tutorial/sql-databases/">https://fastapi.tiangolo.com/tutorial/sql-databases/</a></p>
         </div>
 
         <div class="meta">
